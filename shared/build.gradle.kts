@@ -64,10 +64,6 @@ kotlin {
             implementation(libs.ktor.ios)
             implementation(libs.sqldelight.ios)
         }
-
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
-        }
     }
 }
 

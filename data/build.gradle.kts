@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -27,23 +28,31 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(libs.kotlin.stdlib)
-            }
-        }
-
-        commonTest {
-            dependencies {
-                implementation(libs.kotlin.test)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.ktor.core)
+                implementation(libs.ktor.logging)
+                implementation(libs.ktor.contentNegotiation)
+                implementation(libs.ktor.serialization)
+                implementation(libs.multiplatform.settings)
+                implementation(libs.sqldelight.common)
             }
         }
 
         androidMain {
             dependencies {
+                implementation(libs.kotlinx.coroutines.android)
+                implementation(libs.ktor.android)
+                implementation(libs.sqldelight.android)
+                implementation(libs.slf4j)
             }
         }
 
         iosMain {
             dependencies {
+                implementation(libs.ktor.ios)
+                implementation(libs.sqldelight.ios)
             }
         }
     }
