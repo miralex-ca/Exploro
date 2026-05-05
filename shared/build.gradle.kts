@@ -32,8 +32,10 @@ kotlin {
 
     targets.configureEach {
         compilations.configureEach {
-            compileTaskProvider.get().compilerOptions {
-                freeCompilerArgs.add("-Xexpect-actual-classes")
+            compileTaskProvider.configure {
+                compilerOptions {
+                    freeCompilerArgs.add("-Xexpect-actual-classes")
+                }
             }
         }
     }
@@ -85,7 +87,6 @@ sqldelight {
     databases {
         create("LocalDb") {
             packageName.set("mylocal.db")
-            srcDirs("src/commonMain/kotlin")
         }
     }
 }
