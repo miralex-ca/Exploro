@@ -42,6 +42,8 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
+         //   implementation(project(":data"))
+            implementation(project(":core:models"))
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization.json)

@@ -1,5 +1,6 @@
 package com.muralex.myapp.datalayer.functions
 
+
 import com.muralex.myapp.datalayer.Repository
 import com.muralex.myapp.datalayer.sources.localdb.getFavoriteCountriesMap
 import com.muralex.myapp.datalayer.sources.localdb.toggleFavoriteCountry
