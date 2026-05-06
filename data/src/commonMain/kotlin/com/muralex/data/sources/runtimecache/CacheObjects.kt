@@ -1,7 +1,8 @@
 package com.muralex.data.sources.runtimecache
 
-import com.muralex.data.objects.CountryExtraDto
+import com.muralex.models.CountryExtraInfo
+
 
 object CacheObjects {
-    internal val countryExtraData: MutableMap<String, CountryExtraDto> by lazy { mutableMapOf() }
+    internal val countryExtraData: MutableMap<String, CountryExtraInfo> by lazy { mutableMapOf() }
 }

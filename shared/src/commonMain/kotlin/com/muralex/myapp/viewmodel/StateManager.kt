@@ -1,6 +1,7 @@
 package com.muralex.myapp.viewmodel
 
-import com.muralex.myapp.datalayer.Repository
+
+import com.muralex.data.Repository
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
 import kotlinx.coroutines.*
@@ -11,10 +12,8 @@ interface ScreenState
 interface ScreenParams
 
 class StateManager(repo: Repository) {
-
     val screenStatesMap : MutableMap<URI,MutableStateFlow<ScreenState>> = mutableMapOf() // map of screen states currently in memory
     val screenScopesMap : MutableMap<URI,CoroutineScope> = mutableMapOf() // map of coroutine scopes associated to current screen states
-
 
     val level1Backstack: MutableList<ScreenIdentifier> = mutableListOf() // list elements are only NavigationLevel1 screenIdentifiers
     val currentVerticalBackstack: MutableList<ScreenIdentifier> = mutableListOf() // list elements are the screenIdentifiers of the current vertical backstack
@@ -28,7 +27,6 @@ class StateManager(repo: Repository) {
         get() = verticalNavigationLevels[currentLevel1ScreenIdentifier?.URI] ?: mutableMapOf()
 
     internal val dataRepository by lazy { repo }
-
 
 
     // INIT SCREEN

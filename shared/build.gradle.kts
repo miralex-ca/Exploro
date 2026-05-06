@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.sqlDelight)
     alias(libs.plugins.skie)
 }
 
@@ -42,29 +41,19 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-         //   implementation(project(":data"))
             implementation(project(":core:models"))
+            implementation(project(":data"))
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.ktor.core)
-            implementation(libs.ktor.logging)
-            implementation(libs.ktor.contentNegotiation)
-            implementation(libs.ktor.serialization)
-            implementation(libs.multiplatform.settings)
-            implementation(libs.sqldelight.common)
         }
 
         androidMain.dependencies {
             implementation(libs.kotlinx.coroutines.android)
-            implementation(libs.ktor.android)
-            implementation(libs.sqldelight.android)
             implementation(libs.slf4j)
         }
 
         iosMain.dependencies {
-            implementation(libs.ktor.ios)
-            implementation(libs.sqldelight.ios)
         }
     }
 }
@@ -81,10 +70,3 @@ android {
     }
 }
 
-sqldelight {
-    databases {
-        create("LocalDb") {
-            packageName.set("mylocal.db")
-        }
-    }
-}

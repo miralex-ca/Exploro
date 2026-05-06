@@ -1,16 +1,14 @@
 package com.muralex.data.functions
 
 import com.muralex.data.Repository
-import com.muralex.data.sources.localdb.getCountriesList
-import com.muralex.data.sources.webservices.apis.fetchCountryExtraData
 import com.muralex.models.CountryExtraInfo
 import com.muralex.models.CountryInfo
 
 suspend fun Repository.getCountryInfo(country: String): CountryInfo = withRepoContext {
 
     if (!runtimeCache.countryExtraData.containsKey(country)) {
-        webservices.fetchCountryExtraData(country)?.apply {
-            runtimeCache.countryExtraData[country] = data
+        webservices.fetchCountryExtraData(country)?.also {
+            runtimeCache.countryExtraData[country] = it
         }
     }
 
