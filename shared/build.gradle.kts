@@ -41,7 +41,6 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":core:models"))
             implementation(project(":data"))
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)
@@ -69,4 +68,3 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }
-

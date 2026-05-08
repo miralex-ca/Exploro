@@ -1,15 +1,10 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidKotlinMultiplatformLibrary)
-    alias(libs.plugins.androidLint)
+    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
-    androidLibrary {
-        namespace = "com.muralex.models"
-        compileSdk = 36
-        minSdk = 24
-    }
+    androidTarget()
 
     val xcfName = "coreModelsKit"
 
@@ -43,5 +38,13 @@ kotlin {
         iosMain {
             dependencies { }
         }
+    }
+}
+
+android {
+    namespace = "com.muralex.models"
+    compileSdk = 35
+    defaultConfig {
+        minSdk = 26
     }
 }

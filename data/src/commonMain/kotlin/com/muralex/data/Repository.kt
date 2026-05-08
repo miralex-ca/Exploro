@@ -9,13 +9,6 @@ import com.russhwolf.settings.Settings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-
-class RepoDebugLogger () {
-    fun log(message: String) {
-        println(message)
-    }
-}
-
 class Repository(
     val localDb: LocalDataSource,
     val webservices: RemoteDataSource = RemoteDataSourceImpl(),
@@ -34,5 +27,12 @@ class Repository(
                 block()
             }
         }
+    }
+}
+
+
+class RepoDebugLogger () {
+    fun log(message: String) {
+        println(message)
     }
 }

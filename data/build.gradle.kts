@@ -23,20 +23,21 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = xcfName
+            linkerOpts("-lsqlite3")
         }
     }
 
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":data:common"))
+                api(project(":core:models"))
+                api(project(":data:common"))
                 implementation(project(":data:localdb"))
-                implementation(project(":data:network"))
+                api(project(":data:network"))
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
-                implementation(libs.multiplatform.settings)
+                api(libs.multiplatform.settings)
             }
         }
 

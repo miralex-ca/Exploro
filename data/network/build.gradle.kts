@@ -1,18 +1,11 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidKotlinMultiplatformLibrary)
-    alias(libs.plugins.androidLint)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
-
-    androidLibrary {
-        namespace = "com.muralex.data.network"
-        compileSdk = 36
-        minSdk = 24
-
-    }
+    androidTarget()
 
     val xcfName = "dataNetworkKit"
 
@@ -37,13 +30,12 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":core:models"))
-                implementation(project(":data:common"))
+                api(project(":core:models"))
+                api(project(":data:common"))
                 implementation(libs.ktor.core)
                 implementation(libs.ktor.contentNegotiation)
                 implementation(libs.ktor.serialization)
                 implementation(libs.kotlinx.serialization.json)
-
             }
         }
 
@@ -59,5 +51,12 @@ kotlin {
             }
         }
     }
+}
 
+android {
+    namespace = "com.muralex.data.network"
+    compileSdk = 35
+    defaultConfig {
+        minSdk = 26
+    }
 }

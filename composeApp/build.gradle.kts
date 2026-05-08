@@ -20,6 +20,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.lifecycle)
             implementation(libs.android.material)
+//            implementation(project(":data:localdb"))     // ← add
+//            implementation(libs.sqldelight.android)
         }
         commonMain.dependencies {
             implementation(compose.foundation)
@@ -29,9 +31,11 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
             implementation(projects.shared)
+            implementation(project(":data"))             // ← add for Repository
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+
         }
     }
 }

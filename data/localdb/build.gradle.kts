@@ -1,16 +1,18 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidKotlinMultiplatformLibrary)
-    alias(libs.plugins.androidLint)
+    alias(libs.plugins.androidLibrary)
+   // alias(libs.plugins.androidLint)
     alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
-    androidLibrary {
-        namespace = "com.muralex.data.localdb"
-        compileSdk = 36
-        minSdk = 24
-    }
+//    androidLibrary {
+//        namespace = "com.muralex.data.localdb"
+//        compileSdk = 36
+//        minSdk = 24
+//    }
+
+    androidTarget()
 
     val xcfName = "dataLocaldbKit"
 
@@ -36,7 +38,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(project(":core:models"))
-                implementation(project(":data:common"))
+                api(project(":data:common"))
                 implementation(libs.sqldelight.common)
             }
         }
@@ -52,6 +54,14 @@ kotlin {
                 implementation(libs.sqldelight.ios)
             }
         }
+    }
+}
+
+android {
+    namespace = "com.muralex.data.localdb"
+    compileSdk = 36
+    defaultConfig {
+        minSdk = 24
     }
 }
 

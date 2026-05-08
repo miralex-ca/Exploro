@@ -1,15 +1,10 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidKotlinMultiplatformLibrary)
-    alias(libs.plugins.androidLint)
+    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
-    androidLibrary {
-        namespace = "com.muralex.data.common"
-        compileSdk = 36
-        minSdk = 24
-    }
+    androidTarget()
 
     val xcfName = "dataCommonKit"
 
@@ -34,7 +29,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation(project(":core:models"))
+                api(project(":core:models"))
             }
         }
 
@@ -46,5 +41,12 @@ kotlin {
             dependencies {}
         }
     }
+}
 
+android {
+    namespace = "com.muralex.data.common"
+    compileSdk = 35
+    defaultConfig {
+        minSdk = 26
+    }
 }
