@@ -31,6 +31,7 @@ kotlin {
         commonMain {
             dependencies {
                 api(project(":core:models"))
+                implementation(project(":core:common"))
                 api(project(":data:common"))
                 implementation(project(":data:localdb"))
                 api(project(":data:network"))

@@ -10,6 +10,8 @@ import com.muralex.network.dto.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+fun createRemoteDataSource(): RemoteDataSource = RemoteDataSourceImpl()
+
 class RemoteDataSourceImpl : RemoteDataSource {
     private val apiClient = ApiClient()
 
@@ -31,7 +33,6 @@ class RemoteDataSourceImpl : RemoteDataSource {
         return response.data.entity
     }
 }
-
 
 @Serializable
 data class CountriesListResponse(
