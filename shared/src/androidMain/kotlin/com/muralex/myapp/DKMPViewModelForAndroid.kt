@@ -1,10 +1,19 @@
 package com.muralex.myapp
 
-import android.content.Context
-import com.muralex.data.createAndroidRepository
+import com.muralex.data.Repository
 import com.muralex.myapp.viewmodel.DKMPViewModel
+import org.koin.mp.KoinPlatform
 
-fun DKMPViewModel.Factory.getAndroidInstance(context : Context): DKMPViewModel {
-    val repository = createAndroidRepository(context)
+//import android.content.Context
+//import com.muralex.data.createAndroidRepository
+//import com.muralex.myapp.viewmodel.DKMPViewModel
+//
+//fun DKMPViewModel.Factory.getAndroidInstance(context : Context): DKMPViewModel {
+//    val repository = createAndroidRepository(context)
+//    return DKMPViewModel(repository)
+//}
+
+fun DKMPViewModel.Factory.getAndroidInstance(): DKMPViewModel {
+    val repository = KoinPlatform.getKoin().get<Repository>()
     return DKMPViewModel(repository)
 }

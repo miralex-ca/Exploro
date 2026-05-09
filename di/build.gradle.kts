@@ -1,13 +1,13 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
+
     androidTarget()
 
-    val xcfName = "dataNetworkKit"
+    val xcfName = "diKit"
 
     iosX64 {
         binaries.framework {
@@ -30,34 +30,34 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(project(":core:models"))
-                api(project(":data:common"))
-                implementation(libs.ktor.core)
-                implementation(libs.ktor.contentNegotiation)
-                implementation(libs.ktor.serialization)
-                implementation(libs.kotlinx.serialization.json)
+                implementation(project(":core:models"))
+                implementation(project(":core:common"))
+                implementation(project(":data"))
+                implementation(project(":data:localdb"))
+                implementation(project(":data:network"))
                 implementation(libs.koin.core)
             }
         }
 
         androidMain {
             dependencies {
-                implementation(libs.ktor.android)
+                implementation(libs.koin.android)
             }
         }
+
 
         iosMain {
             dependencies {
-                implementation(libs.ktor.ios)
             }
         }
     }
+
 }
 
 android {
-    namespace = "com.muralex.data.network"
-    compileSdk = 35
+    namespace = "com.muralex.di"
+    compileSdk = 36
     defaultConfig {
-        minSdk = 26
+        minSdk = 24
     }
 }

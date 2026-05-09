@@ -33,12 +33,15 @@ kotlin {
                 api(project(":core:models"))
                 implementation(project(":core:common"))
                 api(project(":data:common"))
-                implementation(project(":data:localdb"))
-                api(project(":data:network"))
+
+
+               // implementation(project(":data:localdb"))
+               // api(project(":data:network"))
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
                 api(libs.multiplatform.settings)
+                implementation(libs.koin.core)
             }
         }
 

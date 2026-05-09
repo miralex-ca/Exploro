@@ -40,12 +40,14 @@ kotlin {
                 implementation(project(":core:models"))
                 api(project(":data:common"))
                 implementation(libs.sqldelight.common)
+                implementation(libs.koin.core)
             }
         }
 
         androidMain {
             dependencies {
                 implementation(libs.sqldelight.android)
+                implementation(libs.koin.android)
             }
         }
 

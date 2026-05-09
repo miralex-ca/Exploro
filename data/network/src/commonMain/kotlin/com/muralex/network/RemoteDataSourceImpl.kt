@@ -9,6 +9,12 @@ import com.muralex.network.dto.CountryListDto
 import com.muralex.network.dto.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.koin.dsl.module
+
+
+//val networkModule = module {
+//    single<RemoteDataSource> { RemoteDataSourceImpl() }
+//}
 
 fun createRemoteDataSource(): RemoteDataSource = RemoteDataSourceImpl()
 

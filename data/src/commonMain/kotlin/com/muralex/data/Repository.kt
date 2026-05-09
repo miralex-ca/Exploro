@@ -5,15 +5,14 @@ import com.muralex.data.common.LocalDataSource
 import com.muralex.data.common.RemoteDataSource
 import com.muralex.data.sources.localsettings.MySettings
 import com.muralex.data.sources.runtimecache.CacheObjects
-import com.muralex.network.createRemoteDataSource
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.withContext
 
 class Repository(
     val localDb: LocalDataSource,
-    val webservices: RemoteDataSource = createRemoteDataSource(),
+    val webservices: RemoteDataSource,
     val settings: Settings = Settings(),
-    val dispatchers: DispatchersProvider = DispatchersProvider.Base(),
+    val dispatchers: DispatchersProvider,
 ) {
 
     val localSettings by lazy { MySettings(settings) }

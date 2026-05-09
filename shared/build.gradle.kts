@@ -45,11 +45,13 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.koin.core)
         }
 
         androidMain.dependencies {
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.slf4j)
+            implementation(libs.koin.android)
         }
 
         iosMain.dependencies {

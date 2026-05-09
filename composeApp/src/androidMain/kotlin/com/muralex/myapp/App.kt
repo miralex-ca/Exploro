@@ -15,11 +15,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.muralex.myapp.viewmodel.DKMPViewModel
 
 
 @Composable
-@Preview
-fun App() {
+fun App(
+    model: DKMPViewModel
+) {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(

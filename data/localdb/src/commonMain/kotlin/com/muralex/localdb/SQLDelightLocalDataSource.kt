@@ -7,6 +7,12 @@ import appLocalDb.Countries
 import com.muralex.data.common.LocalDataSource
 import com.muralex.models.Country
 import com.muralex.models.CountryUserData
+import org.koin.core.module.Module
+import org.koin.dsl.module
+
+
+//expect val localdbModule: Module
+
 
 class SQLDelightLocalDataSource(
     sqlDriver: SqlDriver
