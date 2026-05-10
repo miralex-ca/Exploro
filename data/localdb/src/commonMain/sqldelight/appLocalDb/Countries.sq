@@ -1,14 +1,16 @@
-import kotlin.Int;
-
 CREATE TABLE Countries (
     id TEXT NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
-    population INTEGER AS Int NOT NULL
+    official_name TEXT NOT NULL,
+    capital TEXT NOT NULL,
+    region TEXT NOT NULL,
+    population INTEGER NOT NULL,
+    flag_png_url TEXT NOT NULL
 );
 
 upsertCountry:
-INSERT OR REPLACE INTO Countries(id, name, population)
-VALUES(:id, :name, :population);
+INSERT OR REPLACE INTO Countries(id, name, official_name, capital, region, population, flag_png_url)
+VALUES(:id, :name, :officialName, :capital, :region, :population, :flagPngUrl);
 
 getCountriesList:
 SELECT * FROM Countries;

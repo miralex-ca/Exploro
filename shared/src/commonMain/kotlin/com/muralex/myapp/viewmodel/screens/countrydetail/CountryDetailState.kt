@@ -16,6 +16,4 @@ data class CountryDetailInfo (
     val _extraData : CountryExtraInfo? = null,
 ) {
 
-    val population = _listData.population.toCommaThousandString()
-    val vaccinesList : List<String> = _extraData?.vaccinesList ?: emptyList()
 }

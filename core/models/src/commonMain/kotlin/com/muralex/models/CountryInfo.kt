@@ -8,8 +8,6 @@ data class Country(
     val region: String,
     val population: Long,
     val flagPngUrl: String,
-    val flagSvgUrl: String,
-    val flagDescription: String,
 ) {
 
     companion object {
@@ -22,8 +20,6 @@ data class Country(
             region = "",
             population = 0,
             flagPngUrl = "",
-            flagSvgUrl = "",
-            flagDescription = "",
         )
     }
 }

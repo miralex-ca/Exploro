@@ -10,12 +10,12 @@ removeFavorite:
 DELETE FROM Favorites WHERE country_id = ?;
 
 getCountriesWithUserData:
-SELECT c.id, c.name, c.population,
+SELECT c.id, c.name, c.official_name, c.capital, c.region, c.population, c.flag_png_url,
        CASE WHEN f.country_id IS NOT NULL THEN 1 ELSE 0 END AS isFavorite
 FROM Countries c
 LEFT JOIN Favorites f ON c.id = f.country_id;
 
 getFavorites:
-SELECT c.id, c.name, c.population
+SELECT c.id, c.name, c.official_name, c.capital, c.region, c.population, c.flag_png_url
 FROM Countries c
 INNER JOIN Favorites f ON c.id = f.country_id;

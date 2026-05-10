@@ -1,7 +1,12 @@
+import java.util.Properties
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.buildKonfig)
 }
 
 kotlin {
@@ -54,10 +59,27 @@ kotlin {
     }
 }
 
+val localProperties = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) load(file.inputStream())
+}
+
 android {
     namespace = "com.muralex.data.network"
     compileSdk = 35
     defaultConfig {
         minSdk = 26
+    }
+}
+
+buildkonfig {
+    packageName = "com.muralex.data.network"
+
+    defaultConfigs {
+        buildConfigField(
+            STRING,
+            "RESTCOUNTRIES_API_KEY",
+            localProperties.getProperty("RESTCOUNTRIES_API_KEY", "")
+        )
     }
 }

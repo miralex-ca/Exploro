@@ -11,20 +11,14 @@ class RemoteDataSourceImpl(
 ) : RemoteDataSource {
 
     override suspend fun fetchCountries(): List<Country> {
-        return countryApi
-            .fetchCountries()
-            .entity()
+        return countryApi.fetchCountries().entity()
     }
 
     override suspend fun fetchCountryDetails(code: String): Country? {
-        return countryApi
-            .fetchCountryDetails(code)
-            ?.entity
+        return countryApi.fetchCountryDetails(code)?.entity
     }
 
     override suspend fun searchCountries(query: String): List<Country> {
-        return countryApi
-            .searchCountries(query)
-            .entity()
+        return countryApi.searchCountries(query).entity()
     }
 }

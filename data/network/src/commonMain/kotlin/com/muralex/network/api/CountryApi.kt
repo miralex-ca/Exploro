@@ -10,20 +10,15 @@ class CountryApi(
 ) {
 
     companion object {
-        private const val BASE_FIELDS =
-            "cca3,name,flags,population,capital,region"
+        private const val BASE_FIELDS = "cca3,name,flags,population,capital,region"
 
-        private const val DETAILS_FIELDS =
-            "cca3,name,flags,population,capital,region,subregion"
+        private const val DETAILS_FIELDS = "cca3,name,flags,population,capital,region,subregion"
 
-        private const val ALL =
-            "/v3.1/all"
+        private const val ALL = "/v3.1/all"
 
-        private const val NAME =
-            "/v3.1/name"
+        private const val NAME = "/v3.1/name"
 
-        private const val ALPHA =
-            "/v3.1/alpha"
+        private const val ALPHA = "/v3.1/alpha"
     }
 
     suspend fun fetchCountries(): List<CountryDto> {

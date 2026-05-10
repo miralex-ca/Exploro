@@ -1,17 +1,10 @@
 package com.muralex.localdb
 
-import app.cash.sqldelight.adapter.primitive.IntColumnAdapter
 import app.cash.sqldelight.db.SqlDriver
 import appLocalDb.AppLocalDb
-import appLocalDb.Countries
 import com.muralex.data.common.LocalDataSource
 import com.muralex.models.Country
 import com.muralex.models.CountryUserData
-import org.koin.core.module.Module
-import org.koin.dsl.module
-
-
-//expect val localdbModule: Module
 
 
 class SQLDelightLocalDataSource(
@@ -19,8 +12,7 @@ class SQLDelightLocalDataSource(
 ) : LocalDataSource {
 
     private val database = AppLocalDb(
-        sqlDriver,
-        Countries.Adapter(IntColumnAdapter)
+        sqlDriver
     )
 
     private val favoritesQueries = database.favoritesQueries
@@ -34,14 +26,15 @@ class SQLDelightLocalDataSource(
         database.setCountriesList(list)
     }
 
-    override suspend fun addFavorite(id: String) =
+    override suspend fun addFavorite(id: String) {
         favoritesQueries.addFavorite(id)
+    }
 
-    override suspend fun removeFavorite(id: String) =
+    override suspend fun removeFavorite(id: String) {
         favoritesQueries.removeFavorite(id)
+    }
 
     override suspend fun getFavoriteCountriesMap(): Map<String, Boolean> =
         favoritesQueries.getFavorites().executeAsList().associate { it.id to true }
-
 
 }

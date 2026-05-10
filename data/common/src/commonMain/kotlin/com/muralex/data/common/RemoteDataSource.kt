@@ -7,5 +7,4 @@ interface RemoteDataSource {
     suspend fun fetchCountries(): List<Country>
     suspend fun fetchCountryDetails(code: String): Country?
     suspend fun searchCountries(query: String): List<Country>
-
 }
