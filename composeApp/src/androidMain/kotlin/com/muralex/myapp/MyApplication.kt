@@ -26,3 +26,4 @@ class MyApplication : Application() {
         model = DKMPViewModel.getAndroidInstance()
     }
 }
+

@@ -1,6 +1,7 @@
 package com.muralex.network.api
 
 import com.muralex.network.ApiClient
+import com.muralex.network.NetworkResult
 import com.muralex.network.environment.EnvironmentProvider
 import com.muralex.network.dto.CountryDto
 
@@ -21,23 +22,19 @@ class CountryApi(
         private const val ALPHA = "/v3.1/alpha"
     }
 
-    suspend fun fetchCountries(): List<CountryDto> {
+    suspend fun fetchCountries(): NetworkResult<List<CountryDto>> {
         return client.get(
             url = environments.current().countriesBaseUrl + "$ALL?fields=$BASE_FIELDS"
         )
     }
 
-    suspend fun fetchCountryDetails(code: String): CountryDto? {
-        val response: List<CountryDto> =
-            client.get(
+    suspend fun fetchCountryDetails(code: String): NetworkResult<CountryDto> {
+        return client.get(
                 url = environments.current().countriesBaseUrl + "$ALPHA/$code?fields=$DETAILS_FIELDS"
             )
-        return response.firstOrNull()
     }
 
-    suspend fun searchCountries(
-        query: String
-    ): List<CountryDto> {
+    suspend fun searchCountries(query: String): NetworkResult<List<CountryDto>> {
         return client.get(
             url = environments.current().countriesBaseUrl + "$NAME/$query?fields=$BASE_FIELDS"
         )
