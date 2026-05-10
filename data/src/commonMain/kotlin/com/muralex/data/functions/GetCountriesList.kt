@@ -9,7 +9,7 @@ suspend fun Repository.getCountriesListData(): List<Country> = withRepoContext {
     val nowUnixTime = Clock.System.now().epochSeconds
 
     if (nowUnixTime-localSettings.listCacheTimestamp > 60*60) {
-        val countries = webservices.fetchCountriesList()
+        val countries = webservices.fetchCountries()
         if (countries != null) {
             localDb.setCountriesList(countries.sortedBy { it.name })
             localSettings.listCacheTimestamp = nowUnixTime

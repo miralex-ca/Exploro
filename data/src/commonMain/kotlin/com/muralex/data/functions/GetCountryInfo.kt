@@ -7,8 +7,8 @@ import com.muralex.models.CountryInfo
 suspend fun Repository.getCountryInfo(country: String): CountryInfo = withRepoContext {
 
     if (!runtimeCache.countryExtraData.containsKey(country)) {
-        webservices.fetchCountryExtraData(country)?.also {
-            runtimeCache.countryExtraData[country] = it
+        webservices.fetchCountryDetails(country)?.also {
+           // runtimeCache.countryExtraData[country] = it
         }
     }
 
