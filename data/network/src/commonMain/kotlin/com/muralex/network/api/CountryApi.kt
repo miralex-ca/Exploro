@@ -13,7 +13,7 @@ class CountryApi(
     companion object {
         private const val BASE_FIELDS = "cca3,name,flags,population,capital,region"
 
-        private const val DETAILS_FIELDS = "cca3,name,flags,population,capital,region,subregion"
+        private const val DETAILS_FIELDS = "cca3,name,flags,population,capital,region,subregion,currencies"
 
         private const val ALL = "/v3.1/all"
 
@@ -24,7 +24,7 @@ class CountryApi(
 
     suspend fun fetchCountries(): NetworkResult<List<CountryDto>> {
         return client.get(
-            url = environments.current().countriesBaseUrl + "$ALL?fields=$BASE_FIELDS"
+            url = environments.current().countriesBaseUrl + "$ALL?fields=$DETAILS_FIELDS"
         )
     }
 

@@ -7,7 +7,7 @@ import com.muralex.myapp.viewmodel.utils.toCommaThousandString
 
 data class CountryDetailState (
     val isLoading: Boolean = false,
-    val countryInfo : CountryDetailInfo? = null,
+    val countryInfo : Country? = null,
 ): ScreenState
 
 

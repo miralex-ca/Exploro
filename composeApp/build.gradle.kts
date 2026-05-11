@@ -34,9 +34,15 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
             implementation(projects.shared)
+//            implementation(libs.coil3)
+//            implementation("io.coil-kt:coil-svg:2.6.0")
             implementation(project(":data"))             // ← add for Repository
 
             implementation(project(":di"))
+
+            implementation("io.coil-kt:coil-compose:2.6.0")
+            implementation("io.coil-kt:coil-svg:2.6.0")
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
