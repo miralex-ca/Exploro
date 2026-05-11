@@ -3,6 +3,7 @@ package com.muralex.localdb
 import appLocalDb.AppLocalDb
 import appLocalDb.Countries
 import com.muralex.models.Country
+import com.muralex.models.CountryListItem
 import com.muralex.models.CountryUserData
 
 
@@ -16,8 +17,11 @@ fun Countries.toDomain(): Country = Country(
     officialName = official_name,
     capital = capital,
     region = region,
+    subregion = subregion,
     population = population,
-    flagPngUrl = flag_png_url
+    flagPngUrl = flag_png_url,
+    currencyName = currency_name,
+    currencySymbol = currency_symbol,
 )
 
 fun AppLocalDb.setCountriesList(list: List<Country>) {
@@ -29,8 +33,11 @@ fun AppLocalDb.setCountriesList(list: List<Country>) {
                 officialName = it.officialName,
                 capital = it.capital,
                 region = it.region,
+                subregion = it.subregion,
                 population = it.population,
-                flagPngUrl = it.flagPngUrl
+                flagPngUrl = it.flagPngUrl,
+                currencyName = it.currencyName,
+                currencySymbol = it.currencySymbol,
             )
         }
     }
@@ -39,14 +46,14 @@ fun AppLocalDb.setCountriesList(list: List<Country>) {
 fun AppLocalDb.getCountriesWithUserData(): List<CountryUserData> {
     return favoritesQueries.getCountriesWithUserData().executeAsList().map {
         CountryUserData(
-            country = Country(
+            country = CountryListItem(
                 id = it.id,
                 name = it.name,
                 officialName = it.official_name,
                 capital = it.capital,
                 region = it.region,
-                population = it.population,
-                flagPngUrl = it.flag_png_url
+                subregion = it.subregion,
+                flagPngUrl = it.flag_png_url,
             ),
             isFavorite = it.isFavorite == 1L
         )

@@ -2,6 +2,7 @@ package com.muralex.myapp.viewmodel.screens.countriesList
 
 import com.muralex.data.functions.getCountriesListData
 import com.muralex.data.functions.getFavoriteCountries
+import com.muralex.data.sources.localdb.migrateDbIfNeeded
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
@@ -21,6 +22,9 @@ fun StateManager.initCountriesList(params: CountriesListParams) = ScreenInitSett
     title = "Countries: " + params.listType.name,
     initState = { CountriesListState(isLoading = true) },
     callOnInit = {
+
+        dataRepository.migrateDbIfNeeded()
+
         val listData = dataRepository.getCountriesListData()
         val favorites = dataRepository.getFavoriteCountries()
 

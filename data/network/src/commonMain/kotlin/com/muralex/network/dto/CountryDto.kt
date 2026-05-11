@@ -15,32 +15,46 @@ data class CountryDto(
     @SerialName("flags")
     val flags: CountryFlagsDto = CountryFlagsDto(),
 
+    @SerialName("currencies")
+    val currencies: Map<String, CurrencyDto> = emptyMap(),
+
     @SerialName("capital")
     val capital: List<String> = emptyList(),
 
     @SerialName("region")
     val region: String = "",
 
+    @SerialName("subregion")
+    val subregion: String = "",
+
     @SerialName("population")
     val population: Long = 0,
 ) {
 
     val entity: Country
-        get() = Country(
-            id = cca3,
-            name = name.common,
-            officialName = name.official,
-            capital = capital.firstOrNull().orEmpty(),
-            region = region,
-            population = population,
-            flagPngUrl = flags.png,
-        )
+        get() {
+            val currency = currencies.values.firstOrNull()
+
+            return Country(
+                id = cca3,
+                name = name.common,
+                officialName = name.official,
+                capital = capital.firstOrNull().orEmpty(),
+                region = region,
+                subregion = subregion,
+                population = population,
+                flagPngUrl = flags.png,
+                currencyName = currency?.name.orEmpty(),
+                currencySymbol = currency?.symbol.orEmpty(),
+            )
+        }
 }
 
 @Serializable
 data class CountryNameDto(
     @SerialName("common")
     val common: String = "",
+
     @SerialName("official")
     val official: String = "",
 )
@@ -49,10 +63,18 @@ data class CountryNameDto(
 data class CountryFlagsDto(
     @SerialName("png")
     val png: String = "",
-    @SerialName("svg")
-    val svg: String = "",
+
     @SerialName("alt")
     val alt: String = "",
+)
+
+@Serializable
+data class CurrencyDto(
+    @SerialName("name")
+    val name: String = "",
+
+    @SerialName("symbol")
+    val symbol: String = "",
 )
 
 fun List<CountryDto>.entity() =

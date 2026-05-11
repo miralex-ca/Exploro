@@ -41,6 +41,7 @@ kotlin {
                 api(project(":data:common"))
                 implementation(libs.sqldelight.common)
                 implementation(libs.koin.core)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
             }
         }
 

@@ -8,8 +8,5 @@ import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import appLocalDb.AppLocalDb
 import com.muralex.data.common.LocalDataSource
 
-fun createAndroidSqliteDriver(context: Context) : SqlDriver = AndroidSqliteDriver(AppLocalDb.Schema, context, "applocal.db")
-
-fun createAndroidLocalDataSource(context: Context): LocalDataSource = SQLDelightLocalDataSource(
-    createAndroidSqliteDriver(context)
-)
+fun createAndroidLocalDataSource(context: Context): LocalDataSource =
+    createLocalDataSource(AndroidSqliteDriver(AppLocalDb.Schema, context, DatabaseConfig.NAME))

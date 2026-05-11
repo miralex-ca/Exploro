@@ -6,14 +6,26 @@ import com.muralex.data.common.LocalDataSource
 import com.muralex.models.Country
 import com.muralex.models.CountryUserData
 
+internal object DatabaseConfig {
+    const val NAME = "applocal.db"
+    const val VERSION = 2L
+}
 
-class SQLDelightLocalDataSource(
-    sqlDriver: SqlDriver
+internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {
+    val appLocalDb = AppLocalDb(sqlDriver)
+    return SQLDelightLocalDataSource(
+        appLocalDb,
+        DatabaseManager.Base(sqlDriver, appLocalDb)
+    )
+}
+
+internal class SQLDelightLocalDataSource(
+    private val database:  AppLocalDb,
+    private val dbManager: DatabaseManager,
 ) : LocalDataSource {
 
-    private val database = AppLocalDb(
-        sqlDriver
-    )
+    override val databaseVersion: Long
+        get() = DatabaseConfig.VERSION
 
     private val favoritesQueries = database.favoritesQueries
 
@@ -37,4 +49,7 @@ class SQLDelightLocalDataSource(
     override suspend fun getFavoriteCountriesMap(): Map<String, Boolean> =
         favoritesQueries.getFavorites().executeAsList().associate { it.id to true }
 
+    override suspend fun resetAndMigrate() {
+        dbManager.rebuildDatabase()
+    }
 }

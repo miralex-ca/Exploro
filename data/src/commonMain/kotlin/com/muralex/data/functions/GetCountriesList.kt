@@ -9,7 +9,7 @@ import kotlinx.datetime.Clock
 suspend fun Repository.getCountriesListData(): List<Country> = withRepoContext {
     val nowUnixTime = Clock.System.now().epochSeconds
 
-    if (nowUnixTime-localSettings.listCacheTimestamp > 60*60) {
+    if (nowUnixTime - localSettings.listCacheTimestamp > 360 * 60) {
 
         when (val result = webservices.fetchCountries()) {
             is DataResult.Success -> {
@@ -33,5 +33,6 @@ suspend fun Repository.getFavoriteCountries(): List<Country> = withRepoContext {
 //        localDb.toggleFavoriteCountry(alsoToggleCountry)
 //    }
 
-    localDb.getCountriesWithUserData().mapNotNull { if (it.isFavorite) it.country else null }
+   // localDb.getCountriesWithUserData().mapNotNull { if (it.isFavorite) it.country else null }
+    emptyList()
 }

@@ -4,16 +4,42 @@ CREATE TABLE Countries (
     official_name TEXT NOT NULL,
     capital TEXT NOT NULL,
     region TEXT NOT NULL,
+    subregion TEXT NOT NULL,
     population INTEGER NOT NULL,
-    flag_png_url TEXT NOT NULL
+    flag_png_url TEXT NOT NULL,
+    currency_name TEXT NOT NULL,
+    currency_symbol TEXT NOT NULL
 );
 
 upsertCountry:
-INSERT OR REPLACE INTO Countries(id, name, official_name, capital, region, population, flag_png_url)
-VALUES(:id, :name, :officialName, :capital, :region, :population, :flagPngUrl);
+INSERT OR REPLACE INTO Countries(
+    id,
+    name,
+    official_name,
+    capital,
+    region,
+    subregion,
+    population,
+    flag_png_url,
+    currency_name,
+    currency_symbol
+)
+VALUES(
+    :id,
+    :name,
+    :officialName,
+    :capital,
+    :region,
+    :subregion,
+    :population,
+    :flagPngUrl,
+    :currencyName,
+    :currencySymbol
+);
 
 getCountriesList:
 SELECT * FROM Countries;
 
 getCountryById:
-SELECT * FROM Countries WHERE id = ?;
+SELECT * FROM Countries
+WHERE id = ?;

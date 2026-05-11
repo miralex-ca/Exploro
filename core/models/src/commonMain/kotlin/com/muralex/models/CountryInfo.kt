@@ -6,20 +6,25 @@ data class Country(
     val officialName: String,
     val capital: String,
     val region: String,
+    val subregion: String,
     val population: Long,
     val flagPngUrl: String,
+    val currencyName: String,
+    val currencySymbol: String,
 ) {
 
     companion object {
-
         val Empty = Country(
             id = "",
             name = "",
             officialName = "",
             capital = "",
             region = "",
+            subregion = "",
             population = 0,
             flagPngUrl = "",
+            currencyName = "",
+            currencySymbol = "",
         )
     }
 }
@@ -27,7 +32,7 @@ data class Country(
 
 
 data class CountryUserData(
-    val country: Country,
+    val country: CountryListItem,
     val isFavorite: Boolean = false
 )
 
@@ -51,3 +56,37 @@ data class CountriesListItem (
 ) {
     val name = _data.name
 }
+
+data class CountryListItem(
+    val id: String,
+    val name: String,
+    val officialName: String,
+    val capital: String,
+    val region: String,
+    val subregion: String,
+    val flagPngUrl: String,
+) {
+
+    companion object {
+
+        val Empty = CountryListItem(
+            id = "",
+            name = "",
+            officialName = "",
+            capital = "",
+            region = "",
+            subregion = "",
+            flagPngUrl = "",
+        )
+    }
+}
+
+fun Country.toListItem(): CountryListItem = CountryListItem(
+    id = id,
+    name = name,
+    officialName = officialName,
+    capital = capital,
+    region = region,
+    subregion = subregion,
+    flagPngUrl = flagPngUrl,
+)
