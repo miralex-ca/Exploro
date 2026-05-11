@@ -31,16 +31,23 @@ data class Country(
 
 
 
+data class CountryDetails(
+    val country: Country,
+    val isFavorite: Boolean = false
+)
+
+
+
 data class CountryUserData(
     val country: CountryListItem,
     val isFavorite: Boolean = false
 )
 
 data class CountryInfo (
-    val _listData : Country = Country.Empty,
+    val _listData : CountryListItem = CountryListItem.Empty,
     val _extraData : CountryExtraInfo? = CountryExtraInfo(),
 ) {
-    val population = _listData.population.toString()
+    val population = ""
 }
 
 data class CountryExtraInfo (

@@ -29,6 +29,7 @@ import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.muralex.models.Country
+import com.muralex.models.CountryListItem
 import com.muralex.myapp.viewmodel.screens.countriesList.CountriesListItem
 import com.muralex.myapp.viewmodel.screens.countriesList.CountriesListState
 import com.muralex.myapp.R
@@ -38,7 +39,7 @@ import com.muralex.myapp.R
 @Composable
 fun CountriesListScreen(
     countriesListState: CountriesListState,
-    onListItemClick: (Country) -> Unit,
+    onListItemClick: (CountryListItem) -> Unit,
     onFavoriteIconClick : (String) -> Unit,
 ) {
     if (countriesListState.isLoading) {
@@ -139,7 +140,7 @@ fun CountriesListRow(
         }
         Column(modifier = Modifier.width(200.dp), horizontalAlignment = Alignment.Start) {
             Text(text = item.name, style = MaterialTheme.typography.bodyLarge)
-            Text(text = item._data.capital, style = MaterialTheme.typography.bodyMedium)
+            Text(text = item._data.subregion, style = MaterialTheme.typography.bodyMedium)
 
         }
 
@@ -155,21 +156,4 @@ fun CountriesListRow(
         }
     }
     HorizontalDivider()
-}
-
-fun toPngFlagUrl(svgUrl: String, width: Int = 320): String {
-
-    return if (svgUrl.contains("wikimedia.org") && svgUrl.endsWith(".svg")) {
-        println("svgUrl: $svgUrl")
-        svgUrl
-            .replace(
-                "/commons/",
-                "/commons/thumb/"
-            ) + "/${width}px-${svgUrl.substringAfterLast("/")}.png"
-            .also {
-                println("svgUrl modified: $it")
-            }
-    } else {
-        svgUrl
-    }
 }

@@ -4,6 +4,8 @@ import app.cash.sqldelight.db.SqlDriver
 import appLocalDb.AppLocalDb
 import com.muralex.data.common.LocalDataSource
 import com.muralex.models.Country
+import com.muralex.models.CountryDetails
+import com.muralex.models.CountryListItem
 import com.muralex.models.CountryUserData
 
 internal object DatabaseConfig {
@@ -29,7 +31,9 @@ internal class SQLDelightLocalDataSource(
 
     private val favoritesQueries = database.favoritesQueries
 
-    override suspend fun getCountriesList(): List<Country> = database.getCountriesList()
+    override suspend fun getCountriesList(): List<CountryListItem> {
+        return database.getCountriesList().toListItems()
+    }
 
     override suspend fun getCountriesWithUserData(): List<CountryUserData> =
         database.getCountriesWithUserData()
@@ -51,5 +55,9 @@ internal class SQLDelightLocalDataSource(
 
     override suspend fun resetAndMigrate() {
         dbManager.rebuildDatabase()
+    }
+
+    override suspend fun getCountryDetailsById(id: String): CountryDetails? {
+        return database.getCountryDetailsById(id)?.toDetails()
     }
 }

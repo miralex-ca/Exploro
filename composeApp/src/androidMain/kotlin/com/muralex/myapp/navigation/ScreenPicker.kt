@@ -19,7 +19,6 @@ fun Navigation.ScreenPicker(
     screenIdentifier: ScreenIdentifier,
     navigate: (Screen, ScreenParams?) -> Unit
 ) {
-
     val state by stateProvider.getScreenStateFlow(screenIdentifier).collectAsState()
 
     when (screenIdentifier.screen) {

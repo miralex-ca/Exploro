@@ -23,3 +23,4 @@ getFavorites:
 SELECT c.id, c.name, c.official_name, c.capital, c.region, c.population, c.flag_png_url
 FROM Countries c
 INNER JOIN Favorites f ON c.id = f.country_id;
+

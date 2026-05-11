@@ -43,3 +43,24 @@ SELECT * FROM Countries;
 getCountryById:
 SELECT * FROM Countries
 WHERE id = ?;
+
+getCountryDetailsById:
+SELECT
+    c.id,
+    c.name,
+    c.official_name,
+    c.capital,
+    c.region,
+    c.subregion,
+    c.population,
+    c.flag_png_url,
+    c.currency_name,
+    c.currency_symbol,
+    CASE
+        WHEN f.country_id IS NOT NULL THEN 1
+        ELSE 0
+    END AS isFavorite
+FROM Countries c
+LEFT JOIN Favorites f
+    ON c.id = f.country_id
+WHERE c.id = ?;
