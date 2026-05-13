@@ -25,21 +25,17 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
 import com.muralex.myapp.R
-import com.muralex.myapp.viewmodel.screens.countriesList.CountriesListItem
-import com.muralex.myapp.viewmodel.screens.countriesList.CountriesListState
+import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
+import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CountriesListScreen(
-    countriesListState: CountriesListState,
-    onListItemClick: (CountryListItem) -> Unit,
-    onExitScreen: () -> Unit,
+fun FavoritesScreen(
+    screenState: FavoritesScreenState,
+    onListItemClick: (CountryListItem) -> Unit
 ) {
-
-    if (countriesListState.isLoading) {
-
-        println("Home screen: loading")
+    if (screenState.isLoading) {
 
         Text(
             text = "Loading ...",
@@ -52,29 +48,24 @@ fun CountriesListScreen(
         )
 
     } else {
-        if (countriesListState.countriesListItems.isEmpty()) {
+        if (screenState.countryListItems.isEmpty()) {
             Text(
                 text = "empty list",
-
-
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier
-                    .clickable(onClick = onExitScreen)
                     .padding(top = 30.dp)
-                    .fillMaxWidth()
-                ,
+                    .fillMaxWidth(),
                 textAlign = TextAlign.Center,
-                fontSize = 18.sp,
-
+                fontSize = 18.sp
             )
         } else {
             LazyColumn {
-                items(items = countriesListState.countriesListItems, itemContent = { item ->
-                    CountriesListRow(
+                items(items = screenState.countryListItems, itemContent = { item ->
+                    FavoritesScreenListRow(
                         item = item,
                         favorite = false,
                         onItemClick = {
-                            onListItemClick(item._data)
+                            onListItemClick(item)
                          }
                     )
                 })
@@ -85,8 +76,8 @@ fun CountriesListScreen(
 }
 
 @Composable
-fun CountriesListRow(
-    item: CountriesListItem,
+fun FavoritesScreenListRow(
+    item: CountryListItem,
     favorite : Boolean,
     onItemClick: () -> Unit,
 ) {
@@ -102,14 +93,14 @@ fun CountriesListRow(
             .width(100.dp)
             .padding(end = 10.dp)) {
 
-            val placeholderRes = when (item._data.id) {
+            val placeholderRes = when (item.id) {
                 "AFG" -> R.drawable.taliban_flag
                 else -> R.drawable.flag_placeholder
             }
 
 
             AsyncImage(
-                model = item._data.flagPngUrl, // now guaranteed PNG
+                model = item.flagPngUrl, // now guaranteed PNG
                 contentDescription = null,
                 error = painterResource(placeholderRes),
                 modifier = Modifier
@@ -128,7 +119,7 @@ fun CountriesListRow(
             horizontalAlignment = Alignment.Start
         ) {
             Text(text = item.name, style = MaterialTheme.typography.bodyLarge)
-            Text(text = item._data.subregion, style = MaterialTheme.typography.bodyMedium)
+            Text(text = item.subregion, style = MaterialTheme.typography.bodyMedium)
 
         }
 

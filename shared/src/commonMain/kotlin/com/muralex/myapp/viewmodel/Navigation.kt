@@ -19,7 +19,7 @@ data class NavigationState (
 class Navigation(val stateManager : StateManager) {
 
     val stateProvider by lazy { StateProvider(stateManager) }
-    val events by lazy { Events(stateManager) }
+    val events by lazy { Events(stateManager, this) }
 
     var navigationState = getStartNavigationState()
 

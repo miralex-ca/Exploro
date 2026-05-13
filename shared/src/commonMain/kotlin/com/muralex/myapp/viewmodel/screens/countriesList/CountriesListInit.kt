@@ -1,12 +1,10 @@
 package com.muralex.myapp.viewmodel.screens.countriesList
 
 import com.muralex.data.functions.getCountriesListData
-import com.muralex.data.functions.getFavoriteCountries
-import com.muralex.data.sources.localdb.migrateDbIfNeeded
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.StateManager
-import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
+import kotlinx.coroutines.delay
 import kotlinx.serialization.Serializable
 
 // INIZIALIZATION settings for this screen
@@ -18,28 +16,31 @@ import kotlinx.serialization.Serializable
 @Serializable // Note: ScreenParams should always be set as Serializable
 data class CountriesListParams(val listType: CountriesListType) : ScreenParams
 
-fun StateManager.initCountriesList(params: CountriesListParams) = ScreenInitSettings(
-    title = "Countries: " + params.listType.name,
+fun StateManager.initCountriesList() = ScreenInitSettings(
+    title = "Countries",
     initState = { CountriesListState(isLoading = true) },
     callOnInit = {
 
-        dataRepository.migrateDbIfNeeded()
+
 
         val listData = dataRepository.getCountriesListData()
-        val favorites = dataRepository.getFavoriteCountries()
+//        val favorites = dataRepository.getFavoriteCountries()
+//
+//
+//        updateScreen(CountriesListState::class) {
+//            it.copy(
+//                isLoading = false,
+//                countriesListItems = listData.map { CountriesListItem( it) },
+//                favoriteCountries = favorites.map { CountriesListItem( it) },
+//            )
+//        }
 
-        // update state, after retrieving data from the repository
+        delay(3000)
+
         updateScreen(CountriesListState::class) {
             it.copy(
-                isLoading = false,
-                countriesListItems = listData.map { CountriesListItem( it) },
-                favoriteCountries = favorites.map { CountriesListItem( it) },
+                isLoading = false
             )
         }
-    },
-
-    callOnInitAtEachNavigation = CallOnInitValues.CALL_BEFORE_SHOWING_SCREEN
-    // enabling in this way favourites can refresh at each navigation
-    // CALL_BEFORE_SHOWING_SCREEN is used, as favourites come from the local storage and not from the network
-    // (for more information about "callOnInitAtEachNavigation" values, look at "ScreenInitSettings" class definition)
+    }
 )

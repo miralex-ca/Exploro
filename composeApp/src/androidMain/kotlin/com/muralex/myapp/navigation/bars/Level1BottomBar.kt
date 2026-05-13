@@ -21,15 +21,16 @@ fun Navigation.Level1BottomBar(
     NavigationBar(content = {
         NavigationBarItem(
             icon = { Icon(Icons.Default.Menu, "ALL") },
-            label = { Text("All Countries", fontSize = 13.sp) },
-            selected = selectedTab.URI == Level1Navigation.AllCountries.screenIdentifier.URI,
-            onClick = { navigateByLevel1Menu(Level1Navigation.AllCountries) }
+            label = { Text("Home", fontSize = 13.sp) },
+            selected = selectedTab.URI == Level1Navigation.Home.screenIdentifier.URI,
+            onClick = { navigateByLevel1Menu(Level1Navigation.Home) }
         )
+
         NavigationBarItem(
             icon = { Icon(Icons.Default.Star, "FAVORITES") },
             label = { Text("Favourites", fontSize = 13.sp) },
-            selected = selectedTab.URI == Level1Navigation.FavoriteCountries.screenIdentifier.URI,
-            onClick = { navigateByLevel1Menu(Level1Navigation.FavoriteCountries) }
+            selected = selectedTab.URI == Level1Navigation.Favorites.screenIdentifier.URI,
+            onClick = { navigateByLevel1Menu(Level1Navigation.Favorites) }
         )
     })
 }

@@ -6,6 +6,7 @@ import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlin.reflect.KClass
 
 interface ScreenState
@@ -18,6 +19,16 @@ class StateManager(repo: Repository) {
     val level1Backstack: MutableList<ScreenIdentifier> = mutableListOf() // list elements are only NavigationLevel1 screenIdentifiers
     val currentVerticalBackstack: MutableList<ScreenIdentifier> = mutableListOf() // list elements are the screenIdentifiers of the current vertical backstack
     val verticalNavigationLevels : MutableMap<URI,MutableMap<Int, ScreenIdentifier>> = mutableMapOf() // the first map key is the NavigationLevel1 screenIdentifier URI, the second map key is the NavigationLevel numbers
+
+    val appScope: CoroutineScope = MainScope()
+
+    var isBootstrapped = false
+    private val _launchScreenState = MutableStateFlow(LaunchScreenState.ACTIVE)
+    val launchScreenState = _launchScreenState.asStateFlow()
+
+    fun updateLaunchScreenState(state: LaunchScreenState) {
+        _launchScreenState.value = state
+    }
 
     val currentScreenIdentifier : ScreenIdentifier
         get() = currentVerticalBackstack.last()
@@ -66,11 +77,6 @@ class StateManager(repo: Repository) {
         }
     }
 
-
-
-
-    // UPDATE SCREEN
-
     inline fun <reified T: ScreenState> updateScreen(
         @Suppress("UNUSED_PARAMETER") stateClass: KClass<T>,
         update: (T) -> T,
@@ -90,9 +96,6 @@ class StateManager(repo: Repository) {
             }
         }
     }
-
-
-
 
     // REMOVE SCREEN
 
@@ -136,5 +139,9 @@ class StateManager(repo: Repository) {
             it.value.cancel() // cancel screen's coroutine scope
         }
     }
+}
 
+enum class LaunchScreenState {
+    ACTIVE,
+    INACTIVE
 }

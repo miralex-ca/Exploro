@@ -24,10 +24,20 @@ fun Navigation.OnePane(
         content = { contentPadding ->
             Row(Modifier.padding(contentPadding)) {
                 saveableStateHolder.SaveableStateProvider(screenIdentifier.URI) {
-                    ScreenPicker(screenIdentifier, navigationProcessor(localNavigationState))
+                    ScreenPicker(
+                        screenIdentifier = screenIdentifier,
+                        navigate = navigationProcessor(localNavigationState),
+                        navigateByLevel1 = level1NavigationProcessor(localNavigationState)
+                    )
                 }
             }
         },
-        bottomBar = { if (screenIdentifier.screen.navigationLevel == 1) Level1BottomBar(screenIdentifier, level1NavigationProcessor(localNavigationState)) }
+        bottomBar = {
+            if (screenIdentifier.screen.navigationLevel == 1)
+                Level1BottomBar(
+                    selectedTab = screenIdentifier,
+                    navigateByLevel1Menu = level1NavigationProcessor(localNavigationState)
+                )
+        }
     )
 }

@@ -1,6 +1,8 @@
 package com.muralex.myapp.viewmodel
 
-class Events (val stateManager : StateManager) {
+import kotlinx.coroutines.launch
+
+class Events (val stateManager : StateManager, val navigation: Navigation) {
 
     val dataRepository
         get() = stateManager.dataRepository
@@ -9,6 +11,10 @@ class Events (val stateManager : StateManager) {
     fun screenCoroutine (block: suspend () -> Unit) {
         debugLogger.log("/"+stateManager.currentScreenIdentifier.URI+": an Event is called")
         stateManager.runInScreenScope { block() }
+    }
+
+    fun appCoroutine(block: suspend () -> Unit) {
+        stateManager.appScope.launch { block() }
     }
 
 }
