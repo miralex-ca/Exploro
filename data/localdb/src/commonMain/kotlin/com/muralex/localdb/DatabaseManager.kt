@@ -16,10 +16,12 @@ interface DatabaseManager {
         private object Tables {
             const val COUNTRIES = "Countries"
             const val FAVORITES = "Favorites"
+            const val COUNTRY_DETAILS = "CountryDetails"
 
             val all = listOf(
                 COUNTRIES,
                 FAVORITES,
+                COUNTRY_DETAILS,
             )
         }
 
@@ -47,10 +49,16 @@ interface DatabaseManager {
         }
 
         private fun captureUserData(): UserDataSnapshot {
-            return UserDataSnapshot(
-                favoriteCountryIds = db.favoritesQueries
+            val favoriteCountryIds = try {
+                db.favoritesQueries
                     .getFavoriteIds()
                     .executeAsList()
+            } catch (e: Exception) {
+                emptyList()
+            }
+
+            return UserDataSnapshot(
+                favoriteCountryIds = favoriteCountryIds
             )
         }
 

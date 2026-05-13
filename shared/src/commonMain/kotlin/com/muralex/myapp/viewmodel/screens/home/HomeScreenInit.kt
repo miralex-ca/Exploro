@@ -13,14 +13,10 @@ fun StateManager.initHomeScreen() = ScreenInitSettings(
     callOnInit = {
         val isFirstRun = !isBootstrapped
 
-        println("Home: Called on init")
-
         if (isFirstRun) {
             isBootstrapped = true
             bootstrapApp()
         }
-
-        val listData = dataRepository.getCountriesListData()
 
         val sections = dataRepository.getHomeSections()
 

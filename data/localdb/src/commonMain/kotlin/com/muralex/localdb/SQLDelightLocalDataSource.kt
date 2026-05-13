@@ -11,7 +11,7 @@ import com.muralex.models.CountryUserData
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
-    const val VERSION = 6L
+    const val VERSION = 8L
 }
 
 internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {
@@ -48,7 +48,13 @@ internal class SQLDelightLocalDataSource(
     }
 
     override suspend fun getCountriesByContinent(continent: String, limit: Long) : List<CountryListItem> {
-        return  database.getCountriesByContinent(continent, limit).toListItems()
+
+
+        val countries =  database.getCountriesByContinent(continent, limit)
+
+
+
+        return countries.toListItems()
     }
 
     override suspend fun addFavorite(id: String) {

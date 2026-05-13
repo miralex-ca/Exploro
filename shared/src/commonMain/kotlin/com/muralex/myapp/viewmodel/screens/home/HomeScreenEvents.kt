@@ -17,14 +17,3 @@ suspend fun StateManager.bootstrapApp() {
     )
 }
 
-fun Events.startHomeScreen() = screenCoroutine {
-    val listData = dataRepository.getCountriesListData()
-
-    stateManager.updateScreen(HomeScreenState::class) {
-        it.copy(
-            isLoading = false,
-            countriesListItems = listData
-        )
-    }
-}
-

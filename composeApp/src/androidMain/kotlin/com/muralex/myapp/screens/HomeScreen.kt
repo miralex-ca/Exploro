@@ -4,14 +4,17 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,11 +22,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
+import com.muralex.models.HomeSection
 import com.muralex.myapp.R
 import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 
@@ -47,7 +52,7 @@ fun HomeScreen(
         )
 
     } else {
-        if (screenState.countriesListItems.isEmpty()) {
+        if (screenState.homeSections.isEmpty()) {
             Text(
                 text = "empty list",
                 style = MaterialTheme.typography.bodyLarge,
@@ -58,79 +63,111 @@ fun HomeScreen(
                 fontSize = 18.sp
             )
         } else {
-            LazyColumn {
-                items(items = screenState.countriesListItems, itemContent = { item ->
-                    HomeScreenListRow(
-                        item = item,
-                        favorite = false,
-                        onItemClick = {
-                            onListItemClick(item)
-                        },
+            LazyColumn(
+                contentPadding = PaddingValues(vertical = 12.dp)
+            ) {
+
+                items(screenState.homeSections) { section ->
+
+                    HomeSectionView(
+                        section = section,
+                        onListItemClick = onListItemClick,
+                        onSectionClick = {
+                           // onSectionClick(section.continent)
+                        }
                     )
-                })
+                }
             }
         }
     }
+}
 
+
+@Composable
+fun HomeSectionView(
+    section: HomeSection,
+    onListItemClick: (CountryListItem) -> Unit,
+    onSectionClick: () -> Unit
+) {
+
+    Column {
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Text(
+                text = section.continent,
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.SemiBold
+            )
+
+            TextButton(
+                onClick = onSectionClick
+            ) {
+                Text("See all")
+            }
+        }
+
+        LazyRow(
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+
+            items(section.countries) { item ->
+
+                HomeCountryCard(
+                    item = item,
+                    onClick = {
+                        onListItemClick(item)
+                    }
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+    }
 }
 
 @Composable
-fun HomeScreenListRow(
+fun HomeCountryCard(
     item: CountryListItem,
-    favorite : Boolean,
-    onItemClick: () -> Unit,
+    onClick: () -> Unit
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onItemClick)
-            .height(60.dp)
-            .padding(start = 10.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Column(modifier = Modifier
-            .width(100.dp)
-            .padding(end = 10.dp)) {
 
-            val placeholderRes = when (item.id) {
-                "AFG" -> R.drawable.taliban_flag
-                else -> R.drawable.flag_placeholder
-            }
+    Card(
+        modifier = Modifier
+            .width(130.dp),
+        onClick = onClick,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+
+        Column {
 
             AsyncImage(
-                model = item.flagPngUrl, // now guaranteed PNG
+                model = item.flagPngUrl,
                 contentDescription = null,
-                error = painterResource(placeholderRes),
                 modifier = Modifier
-                    .clip(RoundedCornerShape(2.dp))
-                    .height(50.dp)
-                    .width(100.dp),
-                contentScale = ContentScale.Crop,
-                alignment = Alignment.Center
+                    .fillMaxWidth()
+                    .height(80.dp),
+                contentScale = ContentScale.Crop
             )
 
+            Column(
+                modifier = Modifier.padding(8.dp)
+            ) {
 
+                Text(
+                    text = item.name,
+                    style = MaterialTheme.typography.titleSmall,
+                    maxLines = 1
+                )
 
-        }
-        Column(modifier = Modifier
-            .weight(1f),
-            horizontalAlignment = Alignment.Start
-        ) {
-            Text(text = item.name, style = MaterialTheme.typography.bodyLarge)
-            Text(text = item.subregion, style = MaterialTheme.typography.bodyMedium)
-
-        }
-
-        Column(modifier = Modifier
-            .fillMaxHeight()
-            .width(80.dp),
-            horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-            if (favorite) {
-                Icon(Icons.Default.Star, contentDescription = "favorite", tint = Color.Magenta)
-            } else {
-                Icon(Icons.Default.Star, contentDescription = "not a favorite", tint = Color.LightGray)
             }
         }
     }
-    HorizontalDivider()
 }
