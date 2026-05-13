@@ -2,8 +2,9 @@ package com.muralex.network.api
 
 import com.muralex.network.ApiClient
 import com.muralex.network.NetworkResult
-import com.muralex.network.environment.EnvironmentProvider
+import com.muralex.network.dto.CountryDetailsDto
 import com.muralex.network.dto.CountryDto
+import com.muralex.network.environment.EnvironmentProvider
 
 class CountryApi(
     private val client: ApiClient,
@@ -11,9 +12,8 @@ class CountryApi(
 ) {
 
     companion object {
-        private const val BASE_FIELDS = "cca3,name,flags,population,capital,region"
-
-        private const val DETAILS_FIELDS = "cca3,name,flags,population,capital,region,subregion,currencies"
+        private const val BASE_FIELDS = "cca3,name,capital,flags,flag,continents,subregion"
+        private const val DETAILS_FIELDS = "cca3,area,coatOfArms,population,languages,currencies,maps,timezones"
 
         private const val ALL = "/v3.1/all"
 
@@ -22,7 +22,13 @@ class CountryApi(
         private const val ALPHA = "/v3.1/alpha"
     }
 
-    suspend fun fetchCountries(): NetworkResult<List<CountryDto>> {
+    suspend fun fetchAllCountries(): NetworkResult<List<CountryDto>> {
+        return client.get(
+            url = environments.current().countriesBaseUrl + "$ALL?fields=$BASE_FIELDS"
+        )
+    }
+
+    suspend fun fetchAllCountryDetails(): NetworkResult<List<CountryDetailsDto>> {
         return client.get(
             url = environments.current().countriesBaseUrl + "$ALL?fields=$DETAILS_FIELDS"
         )

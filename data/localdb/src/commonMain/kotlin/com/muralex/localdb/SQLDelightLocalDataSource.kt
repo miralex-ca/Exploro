@@ -5,12 +5,13 @@ import appLocalDb.AppLocalDb
 import com.muralex.data.common.LocalDataSource
 import com.muralex.models.Country
 import com.muralex.models.CountryDetails
+import com.muralex.models.CountryFull
 import com.muralex.models.CountryListItem
 import com.muralex.models.CountryUserData
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
-    const val VERSION = 4L
+    const val VERSION = 6L
 }
 
 internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {
@@ -42,6 +43,14 @@ internal class SQLDelightLocalDataSource(
         database.setCountriesList(list)
     }
 
+    override suspend fun setCountryDetailsList(list: List<CountryDetails>) {
+        database.setCountriesDetailsList(list)
+    }
+
+    override suspend fun getCountriesByContinent(continent: String, limit: Long) : List<CountryListItem> {
+        return  database.getCountriesByContinent(continent, limit).toListItems()
+    }
+
     override suspend fun addFavorite(id: String) {
         favoritesQueries.addFavorite(id)
     }
@@ -57,7 +66,7 @@ internal class SQLDelightLocalDataSource(
         dbManager.rebuildDatabase()
     }
 
-    override suspend fun getCountryDetailsById(id: String): CountryDetails? {
-        return database.getCountryDetailsById(id)?.toDetails()
+    override suspend fun getCountryDetailsById(id: String): CountryFull? {
+        return database.getCountryDetailsById(id)?.toDomain()
     }
 }

@@ -2,6 +2,7 @@ package com.muralex.data.common
 
 import com.muralex.models.Country
 import com.muralex.models.CountryDetails
+import com.muralex.models.CountryFull
 import com.muralex.models.CountryListItem
 import com.muralex.models.CountryUserData
 
@@ -14,5 +15,7 @@ interface LocalDataSource {
     suspend fun removeFavorite(id: String)
     suspend fun getFavoriteCountriesMap(): Map<String, Boolean>
     suspend fun resetAndMigrate()
-    suspend fun getCountryDetailsById(id: String): CountryDetails?
+    suspend fun getCountryDetailsById(id: String):  CountryFull?
+    suspend fun setCountryDetailsList(list: List<CountryDetails>)
+    suspend fun  getCountriesByContinent(continent: String, limit: Long = 12): List<CountryListItem>
 }

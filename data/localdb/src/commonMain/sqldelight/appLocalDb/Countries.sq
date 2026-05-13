@@ -3,13 +3,14 @@ CREATE TABLE Countries (
     name TEXT NOT NULL,
     official_name TEXT NOT NULL,
     capital TEXT NOT NULL,
-    region TEXT NOT NULL,
+    continent TEXT NOT NULL,
     subregion TEXT NOT NULL,
-    population INTEGER NOT NULL,
     flag_png_url TEXT NOT NULL,
-    currency_name TEXT NOT NULL,
-    currency_symbol TEXT NOT NULL
+    flag_alt TEXT NOT NULL
 );
+
+CREATE INDEX idx_countries_continent
+ON Countries(continent);
 
 upsertCountry:
 INSERT OR REPLACE INTO Countries(
@@ -17,24 +18,20 @@ INSERT OR REPLACE INTO Countries(
     name,
     official_name,
     capital,
-    region,
+    continent,
     subregion,
-    population,
     flag_png_url,
-    currency_name,
-    currency_symbol
+    flag_alt
 )
 VALUES(
     :id,
     :name,
     :officialName,
     :capital,
-    :region,
+    :continent,
     :subregion,
-    :population,
     :flagPngUrl,
-    :currencyName,
-    :currencySymbol
+    :flagAlt
 );
 
 getCountriesList:
@@ -50,17 +47,36 @@ SELECT
     c.name,
     c.official_name,
     c.capital,
-    c.region,
+    c.continent,
     c.subregion,
-    c.population,
     c.flag_png_url,
-    c.currency_name,
-    c.currency_symbol,
+    c.flag_alt,
+
+    d.population,
+    d.area,
+    d.coat_of_arms_png_url,
+    d.currency_code,
+    d.currency_name,
+    d.currency_symbol,
+    d.languages,
+    d.maps_google_url,
+    d.maps_osm_url,
+    d.timezones,
+
     CASE
         WHEN f.country_id IS NOT NULL THEN 1
         ELSE 0
     END AS isFavorite
+
 FROM Countries c
-LEFT JOIN Favorites f
-    ON c.id = f.country_id
+LEFT JOIN CountryDetails d ON d.country_id = c.id
+LEFT JOIN Favorites f ON f.country_id = c.id
 WHERE c.id = ?;
+
+
+getCountriesByContinent:
+SELECT *
+FROM Countries
+WHERE continent = :continent
+ORDER BY RANDOM()
+LIMIT :limit;

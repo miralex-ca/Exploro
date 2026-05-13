@@ -15,43 +15,32 @@ data class CountryDto(
     @SerialName("flags")
     val flags: CountryFlagsDto = CountryFlagsDto(),
 
-    @SerialName("currencies")
-    val currencies: Map<String, CurrencyDto> = emptyMap(),
-
     @SerialName("capital")
     val capital: List<String> = emptyList(),
 
-    @SerialName("region")
-    val region: String = "",
+    @SerialName("continents")
+    val continents: List<String> = emptyList(),
 
     @SerialName("subregion")
-    val subregion: String = "",
-
-    @SerialName("population")
-    val population: Long = 0,
+    val subregion: String = ""
 ) {
 
     val entity: Country
-        get() {
-            val currency = currencies.values.firstOrNull()
-
-            return Country(
-                id = cca3,
-                name = name.common,
-                officialName = name.official,
-                capital = capital.firstOrNull().orEmpty(),
-                region = region,
-                subregion = subregion,
-                population = population,
-                flagPngUrl = flags.png,
-                currencyName = currency?.name.orEmpty(),
-                currencySymbol = currency?.symbol.orEmpty(),
-            )
-        }
+        get() = Country(
+            id = cca3,
+            name = name.common,
+            officialName = name.official,
+            capital = capital.firstOrNull().orEmpty(),
+            continent = continents.firstOrNull().orEmpty(),
+            subregion = subregion,
+            flagPngUrl = flags.png,
+            flagAlt = flags.alt
+        )
 }
 
 @Serializable
 data class CountryNameDto(
+
     @SerialName("common")
     val common: String = "",
 
@@ -61,6 +50,7 @@ data class CountryNameDto(
 
 @Serializable
 data class CountryFlagsDto(
+
     @SerialName("png")
     val png: String = "",
 
@@ -68,14 +58,6 @@ data class CountryFlagsDto(
     val alt: String = "",
 )
 
-@Serializable
-data class CurrencyDto(
-    @SerialName("name")
-    val name: String = "",
-
-    @SerialName("symbol")
-    val symbol: String = "",
-)
 
 fun List<CountryDto>.entity() =
     map(CountryDto::entity)

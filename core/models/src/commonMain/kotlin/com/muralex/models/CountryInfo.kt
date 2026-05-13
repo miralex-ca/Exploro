@@ -1,37 +1,49 @@
 package com.muralex.models
 
 data class Country(
-    val id: String,
+    val id: String,                 // cca3
     val name: String,
     val officialName: String,
     val capital: String,
-    val region: String,
+    val continent: String,
     val subregion: String,
-    val population: Long,
     val flagPngUrl: String,
-    val currencyName: String,
-    val currencySymbol: String,
-) {
-
-    companion object {
-        val Empty = Country(
-            id = "",
-            name = "",
-            officialName = "",
-            capital = "",
-            region = "",
-            subregion = "",
-            population = 0,
-            flagPngUrl = "",
-            currencyName = "",
-            currencySymbol = "",
-        )
-    }
-}
-
+    val flagAlt: String,
+)
 
 
 data class CountryDetails(
+    val id: String,
+    val coatOfArmsPngUrl: String,
+    val area: Double,
+    val population: Long,
+
+    val currencyCode: String,
+    val currencyName: String,
+    val currencySymbol: String,
+
+    val languages: List<String>,
+
+    val mapsGoogleUrl: String,
+    val mapsOsmUrl: String,
+
+    val timezones: List<String>
+)
+
+data class Currency(
+    val code: String,
+    val name: String,
+    val symbol: String
+)
+
+data class CountryFull(
+    val country: Country,
+    val details: CountryDetails?,
+    val isFavorite: Boolean = false
+)
+
+
+data class CountrysDetails(
     val country: Country,
     val isFavorite: Boolean = false
 )
@@ -43,12 +55,6 @@ data class CountryUserData(
     val isFavorite: Boolean = false
 )
 
-data class CountryInfo (
-    val _listData : CountryListItem = CountryListItem.Empty,
-    val _extraData : CountryExtraInfo? = CountryExtraInfo(),
-) {
-    val population = ""
-}
 
 data class CountryExtraInfo (
     val vaccines : String = "",
@@ -58,30 +64,23 @@ data class CountryExtraInfo (
 }
 
 
-data class CountriesListItem (
-    val _data :  Country,
-) {
-    val name = _data.name
-}
-
 data class CountryListItem(
     val id: String,
     val name: String,
     val officialName: String,
     val capital: String,
-    val region: String,
+    val continent: String,
     val subregion: String,
     val flagPngUrl: String,
 ) {
 
     companion object {
-
         val Empty = CountryListItem(
             id = "",
             name = "",
             officialName = "",
             capital = "",
-            region = "",
+            continent = "",
             subregion = "",
             flagPngUrl = "",
         )
@@ -93,7 +92,7 @@ fun Country.toListItem(): CountryListItem = CountryListItem(
     name = name,
     officialName = officialName,
     capital = capital,
-    region = region,
+    continent = continent,
     subregion = subregion,
     flagPngUrl = flagPngUrl,
 )

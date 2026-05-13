@@ -1,0 +1,61 @@
+CREATE TABLE CountryDetails (
+    country_id TEXT NOT NULL PRIMARY KEY,
+
+    population INTEGER NOT NULL,
+    area REAL NOT NULL,
+
+    coat_of_arms_png_url TEXT NOT NULL,
+
+    currency_code TEXT NOT NULL,
+    currency_name TEXT NOT NULL,
+    currency_symbol TEXT NOT NULL,
+
+    languages TEXT NOT NULL,
+
+    maps_google_url TEXT NOT NULL,
+    maps_osm_url TEXT NOT NULL,
+
+    timezones TEXT NOT NULL,
+
+    FOREIGN KEY (country_id) REFERENCES Countries(id)
+);
+
+upsertCountryDetails:
+INSERT OR REPLACE INTO CountryDetails(
+    country_id,
+    population,
+    area,
+    coat_of_arms_png_url,
+    currency_code,
+    currency_name,
+    currency_symbol,
+    languages,
+    maps_google_url,
+    maps_osm_url,
+    timezones
+)
+VALUES(
+    :countryId,
+    :population,
+    :area,
+    :coatOfArmsPngUrl,
+    :currencyCode,
+    :currencyName,
+    :currencySymbol,
+    :languages,
+    :mapsGoogleUrl,
+    :mapsOsmUrl,
+    :timezones
+);
+
+getCountryDetailsById:
+SELECT *
+FROM CountryDetails
+WHERE country_id = ?;
+
+deleteCountryDetailsById:
+DELETE FROM CountryDetails
+WHERE country_id = ?;
+
+clearCountryDetails:
+DELETE FROM CountryDetails;

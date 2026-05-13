@@ -4,23 +4,46 @@ CREATE TABLE Favorites (
 );
 
 addFavorite:
-INSERT OR IGNORE INTO Favorites(country_id) VALUES (?);
+INSERT OR IGNORE INTO Favorites(country_id)
+VALUES (?);
 
 removeFavorite:
-DELETE FROM Favorites WHERE country_id = ?;
+DELETE FROM Favorites
+WHERE country_id = ?;
 
 getCountriesWithUserData:
-SELECT c.id, c.name, c.official_name, c.capital, c.region, c.subregion, c.flag_png_url,
-       CASE WHEN f.country_id IS NOT NULL THEN 1 ELSE 0 END AS isFavorite
+SELECT
+    c.id,
+    c.name,
+    c.official_name,
+    c.capital,
+    c.continent,
+    c.subregion,
+    c.flag_png_url,
+
+    CASE
+        WHEN f.country_id IS NOT NULL THEN 1
+        ELSE 0
+    END AS isFavorite
 FROM Countries c
-LEFT JOIN Favorites f ON c.id = f.country_id;
+LEFT JOIN Favorites f
+    ON c.id = f.country_id;
 
 getFavoriteIds:
 SELECT country_id
 FROM Favorites;
 
 getFavorites:
-SELECT c.id, c.name, c.official_name, c.capital, c.region, c.population, c.flag_png_url
+SELECT
+    c.id,
+    c.name,
+    c.official_name,
+    c.capital,
+    c.continent,
+    c.subregion,
+    c.flag_png_url,
+    c.flag_alt
 FROM Countries c
-INNER JOIN Favorites f ON c.id = f.country_id;
+INNER JOIN Favorites f
+    ON c.id = f.country_id;
 
