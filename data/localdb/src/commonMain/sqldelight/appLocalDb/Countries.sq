@@ -80,3 +80,9 @@ FROM Countries
 WHERE continent = :continent
 ORDER BY RANDOM()
 LIMIT :limit;
+
+getAllCountriesByContinent:
+SELECT *
+FROM Countries
+WHERE continent = :continent
+ORDER BY name ASC;

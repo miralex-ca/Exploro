@@ -4,9 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.muralex.myapp.screens.CountriesListScreen
-import com.muralex.myapp.screens.CountryDetailScreen
+import com.muralex.myapp.screens.DetailsScreen
 import com.muralex.myapp.screens.FavoritesScreen
 import com.muralex.myapp.screens.HomeScreen
+import com.muralex.myapp.screens.SectionScreen
 import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.ScreenIdentifier
 import com.muralex.myapp.viewmodel.ScreenParams
@@ -14,9 +15,11 @@ import com.muralex.myapp.viewmodel.screens.Level1Navigation
 import com.muralex.myapp.viewmodel.screens.Screen
 import com.muralex.myapp.viewmodel.screens.countriesList.CountriesListState
 import com.muralex.myapp.viewmodel.screens.countrydetail.CountryDetailParams
-import com.muralex.myapp.viewmodel.screens.countrydetail.CountryDetailState
+import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsState
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
 import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
+import com.muralex.myapp.viewmodel.screens.section.SectionParams
+import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
 
 @Composable
 fun Navigation.ScreenPicker(
@@ -36,11 +39,25 @@ fun Navigation.ScreenPicker(
                         CountryDetailParams(countryName = it.name, countryCode = it.id)
                     )
                 },
+                onSectionClick = {
+                    navigate(Screen.SectionScreen, SectionParams(it))
+                },
             )
 
         Screen.FavoritesScreen ->
             FavoritesScreen(
                 screenState = state as FavoritesScreenState,
+                onListItemClick = {
+                    navigate(
+                        Screen.CountryDetail,
+                        CountryDetailParams(countryName = it.name, countryCode = it.id)
+                    )
+                },
+            )
+
+        Screen.SectionScreen ->
+            SectionScreen  (
+                screenState = state as SectionScreenState,
                 onListItemClick = {
                     navigate(
                         Screen.CountryDetail,
@@ -74,8 +91,8 @@ fun Navigation.ScreenPicker(
 
 
         Screen.CountryDetail ->
-            CountryDetailScreen(
-                countryDetailState = state as CountryDetailState
+            DetailsScreen(
+                screenState = state as DetailsState
             )
 
         else -> {}

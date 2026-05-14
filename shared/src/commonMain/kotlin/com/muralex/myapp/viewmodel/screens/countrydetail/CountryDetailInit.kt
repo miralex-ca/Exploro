@@ -11,16 +11,16 @@ data class CountryDetailParams(val countryName: String, val countryCode: String?
 
 fun StateManager.initCountryDetail(params: CountryDetailParams) = ScreenInitSettings(
     title = params.countryName,
-    initState = { CountryDetailState(isLoading = true) },
+    initState = { DetailsState(isLoading = true) },
     callOnInit = {
 
         if (params.countryCode != null) {
             val countryDetails = dataRepository.getCountryDetails(params.countryCode)
 
-            updateScreen(CountryDetailState::class) {
+            updateScreen(DetailsState::class) {
                 it.copy(
                     isLoading = false,
-                    countryInfo = countryDetails,
+                    countryDetails = countryDetails,
                 )
             }
         }

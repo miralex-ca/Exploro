@@ -47,13 +47,12 @@ internal class SQLDelightLocalDataSource(
         database.setCountriesDetailsList(list)
     }
 
+    override suspend fun getAllCountriesByContinent(continent: String): List<CountryListItem> {
+        return database.getAllCountriesByContinent(continent).toListItems()
+    }
+
     override suspend fun getCountriesByContinent(continent: String, limit: Long) : List<CountryListItem> {
-
-
         val countries =  database.getCountriesByContinent(continent, limit)
-
-
-
         return countries.toListItems()
     }
 

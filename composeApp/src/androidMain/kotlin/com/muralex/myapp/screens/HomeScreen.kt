@@ -37,7 +37,8 @@ import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 @Composable
 fun HomeScreen(
     screenState: HomeScreenState,
-    onListItemClick: (CountryListItem) -> Unit
+    onListItemClick: (CountryListItem) -> Unit,
+    onSectionClick: (String) -> Unit
 ) {
     if (screenState.isLoading) {
 
@@ -73,7 +74,7 @@ fun HomeScreen(
                         section = section,
                         onListItemClick = onListItemClick,
                         onSectionClick = {
-                           // onSectionClick(section.continent)
+                            onSectionClick(section.continent)
                         }
                     )
                 }

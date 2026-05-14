@@ -98,5 +98,17 @@ fun AppLocalDb.getCountriesByContinent(
         .map { it.toDomain() }
 }
 
+fun AppLocalDb.getAllCountriesByContinent(
+    continent: String
+): List<Country> {
+
+    return countriesQueries
+        .getAllCountriesByContinent(
+            continent = continent
+        )
+        .executeAsList()
+        .map { it.toDomain() }
+}
+
 
 

@@ -18,4 +18,5 @@ interface LocalDataSource {
     suspend fun getCountryDetailsById(id: String):  CountryFull?
     suspend fun setCountryDetailsList(list: List<CountryDetails>)
     suspend fun  getCountriesByContinent(continent: String, limit: Long = 12): List<CountryListItem>
+    suspend fun getAllCountriesByContinent(continent: String): List<CountryListItem>
 }

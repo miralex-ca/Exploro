@@ -35,7 +35,7 @@ fun StateManager.initCountriesList() = ScreenInitSettings(
 //            )
 //        }
 
-        delay(3000)
+       // delay(3000)
 
         updateScreen(CountriesListState::class) {
             it.copy(
