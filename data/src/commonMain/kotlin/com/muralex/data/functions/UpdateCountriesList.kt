@@ -8,27 +8,11 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.datetime.Clock
 
 
-suspend fun Repository.updateCountriesListDatas() = withRepoContext {
-    val nowUnixTime = Clock.System.now().epochSeconds
-
-    if (nowUnixTime - localSettings.listCacheTimestamp > 360 * 60) {
-        when (val result = webservices.fetchAllCountries()) {
-            is DataResult.Success -> {
-                localDb.setCountriesList(result.data.sortedBy { it.name })
-                localSettings.listCacheTimestamp = nowUnixTime
-            }
-            is DataResult.Error -> {
-              repoDebugLogger.log("ERROR MESSAGE: fetch failed")
-            }
-        }
-    }
-}
-
 suspend fun Repository.updateCountriesListData() = withRepoContext {
 
     val nowUnixTime = Clock.System.now().epochSeconds
 
-    val shouldRefresh = nowUnixTime - localSettings.listCacheTimestamp > 360 * 60
+    val shouldRefresh = nowUnixTime - localSettings.listCacheTimestamp > 24 * 360 * 60
 
     if (!shouldRefresh) return@withRepoContext
 
