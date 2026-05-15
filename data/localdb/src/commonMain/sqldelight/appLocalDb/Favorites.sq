@@ -56,3 +56,16 @@ INNER JOIN Favorites f
     ON c.id = f.country_id
 ORDER BY f.added_at DESC;
 
+getFavoritesWithTimestamp:
+SELECT
+    country_id,
+    added_at
+FROM Favorites;
+
+addFavoriteWithTimestamp:
+INSERT OR IGNORE INTO Favorites(
+    country_id,
+    added_at
+)
+VALUES (?, ?);
+

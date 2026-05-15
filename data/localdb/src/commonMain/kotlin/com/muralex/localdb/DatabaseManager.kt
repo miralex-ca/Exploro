@@ -49,29 +49,44 @@ interface DatabaseManager {
         }
 
         private fun captureUserData(): UserDataSnapshot {
-            val favoriteCountryIds = try {
+            val favorites = try {
                 db.favoritesQueries
-                    .getFavoriteIds()
+                    .getFavoritesWithTimestamp()
                     .executeAsList()
+                    .map {
+                        FavoriteSnapshot(
+                            countryId = it.country_id,
+                            addedAt = it.added_at
+                        )
+                    }
             } catch (e: Exception) {
                 emptyList()
             }
 
             return UserDataSnapshot(
-                favoriteCountryIds = favoriteCountryIds
+                favorites = favorites
             )
         }
 
         private fun restoreUserData(snapshot: UserDataSnapshot) {
             db.transaction {
-                snapshot.favoriteCountryIds.forEach { id ->
-                    db.favoritesQueries.addFavorite(id)
+                snapshot.favorites.forEach { favorite ->
+
+                    db.favoritesQueries.addFavoriteWithTimestamp(
+                        country_id = favorite.countryId,
+                        added_at = favorite.addedAt
+                    )
                 }
             }
         }
 
         private data class UserDataSnapshot(
-            val favoriteCountryIds: List<String>
+            val favorites: List<FavoriteSnapshot>
+        )
+
+        data class FavoriteSnapshot(
+            val countryId: String,
+            val addedAt: Long
         )
     }
 }

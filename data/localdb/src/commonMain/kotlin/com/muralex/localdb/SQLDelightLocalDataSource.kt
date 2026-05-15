@@ -11,7 +11,7 @@ import com.muralex.models.CountryUserData
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
-    const val VERSION = 10L
+    const val VERSION = 12L
 }
 
 internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {
