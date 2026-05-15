@@ -1,28 +1,28 @@
 package com.muralex.myapp.screens
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -30,9 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
-import com.muralex.myapp.R
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
-
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -42,7 +41,6 @@ fun FavoritesScreen(
     toggleFavorite: (String) -> Unit
 ) {
     if (screenState.isLoading) {
-
         Text(
             text = "Loading ...",
             style = MaterialTheme.typography.bodyLarge,
@@ -52,7 +50,6 @@ fun FavoritesScreen(
             textAlign = TextAlign.Center,
             fontSize = 18.sp
         )
-
     } else {
         if (screenState.favorites.isEmpty()) {
             Text(
@@ -69,7 +66,6 @@ fun FavoritesScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.TopCenter
             ) {
-
                 LazyColumn(
                     contentPadding = PaddingValues(
                         horizontal = 8.dp,
@@ -79,13 +75,15 @@ fun FavoritesScreen(
                         .fillMaxSize()
                         .widthIn(max = 600.dp)
                 ) {
+                    items(
+                        items = screenState.favorites,
+                        key = { it.id }
+                    ) { item ->
 
-                    items(screenState.favorites) { item ->
-                        FavoriteListRow(
+                        SwipeableFavoriteRow(
                             item = item,
-                            isFavorite = true,
                             onClick = { onListItemClick(item) },
-                            onFavoriteClick = { toggleFavorite(item.id) },
+                            onRemove = { toggleFavorite(item.id) }
                         )
                     }
                 }
@@ -96,20 +94,15 @@ fun FavoritesScreen(
 }
 
 
-
 @Composable
 fun FavoriteListRow(
     item: CountryListItem,
-    isFavorite: Boolean,
     onClick: () -> Unit,
-    onFavoriteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp, vertical = 3.dp),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
@@ -173,6 +166,84 @@ fun FavoriteListRow(
             }
 
 
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SwipeableFavoriteRow(
+    item: CountryListItem,
+    onClick: () -> Unit,
+    onRemove: () -> Unit
+) {
+    val dismissState = rememberSwipeToDismissBoxState(
+        confirmValueChange = { value ->
+            value == SwipeToDismissBoxValue.EndToStart
+        }
+    )
+
+    var handled by remember { mutableStateOf(false) }
+
+    val alpha by animateFloatAsState(
+        if (handled) 0f else 1f
+    )
+
+    LaunchedEffect(dismissState.currentValue) {
+        if (dismissState.currentValue == SwipeToDismissBoxValue.EndToStart && !handled) {
+            handled = true
+            delay(1000)
+            onRemove()
+        }
+    }
+
+    SwipeToDismissBox(
+        state = dismissState,
+        enableDismissFromStartToEnd = false,
+        enableDismissFromEndToStart = true,
+        modifier = Modifier
+            .padding(horizontal = 12.dp),
+        backgroundContent = {
+            Box(
+                modifier = Modifier
+                    .padding(vertical = 3.dp)
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(
+                        Color(0xFFF85146).copy(alpha = 0.9f * alpha)
+                    )
+                    .alpha(alpha)
+                    .padding(horizontal = 24.dp),
+                contentAlignment = Alignment.CenterEnd
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.Delete,
+                    contentDescription = null,
+                    tint = Color.White
+                )
+            }
+        }
+    ) {
+
+        AnimatedVisibility(
+            visible = !handled,
+            exit = fadeOut(animationSpec = tween(durationMillis = 100))
+                    + shrinkVertically(
+                animationSpec = tween(
+                    durationMillis = 200,
+                    delayMillis = 200
+                )
+            )
+        ) {
+            Box(
+                modifier = Modifier.padding(vertical = 3.dp)
+            ) {
+                FavoriteListRow(
+                    item = item,
+                    onClick = onClick,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
     }
 }

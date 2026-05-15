@@ -4,6 +4,7 @@ import com.muralex.data.functions.getCountryDetails
 import com.muralex.data.functions.isFavorite
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.StateManager
+import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
 import kotlinx.serialization.Serializable
 
@@ -12,16 +13,15 @@ data class CountryDetailParams(val countryName: String, val countryCode: String?
 
 fun StateManager.initCountryDetail(params: CountryDetailParams) = ScreenInitSettings(
     title = params.countryName,
-    initState = { DetailsState(isLoading = true) },
+    initState = { DetailsScreenState(isLoading = true) },
     callOnInit = {
-
         if (params.countryCode != null) {
             val countryCode = params.countryCode
             val countryDetails = dataRepository.getCountryDetails(countryCode)
 
             val isFavorite = dataRepository.isFavorite(countryCode)
 
-            updateScreen(DetailsState::class) {
+            updateScreen(DetailsScreenState::class) {
                 it.copy(
                     isLoading = false,
                     countryDetails = countryDetails,
@@ -29,6 +29,7 @@ fun StateManager.initCountryDetail(params: CountryDetailParams) = ScreenInitSett
                 )
             }
         }
-
     },
+    callOnInitAtEachNavigation = CallOnInitValues.CALL_BEFORE_SHOWING_SCREEN
+
 )
