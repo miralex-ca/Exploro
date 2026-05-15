@@ -5,7 +5,6 @@ import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
 
-
 fun StateManager.initFavoritesScreen() = ScreenInitSettings(
     title = "Favorites",
     initState = { FavoritesScreenState(isLoading = true) },
