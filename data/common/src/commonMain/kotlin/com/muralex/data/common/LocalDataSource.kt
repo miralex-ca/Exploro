@@ -11,9 +11,10 @@ interface LocalDataSource {
     suspend fun getCountriesList(): List<CountryListItem>
     suspend fun getCountriesWithUserData(): List<CountryUserData>
     suspend fun setCountriesList(list: List<Country>)
+    suspend fun isFavorite(id: String): Boolean
     suspend fun addFavorite(id: String)
     suspend fun removeFavorite(id: String)
-    suspend fun getFavoriteCountriesMap(): Map<String, Boolean>
+    suspend fun getFavorites(): List<CountryListItem>
     suspend fun resetAndMigrate()
     suspend fun getCountryDetailsById(id: String):  CountryFull?
     suspend fun setCountryDetailsList(list: List<CountryDetails>)

@@ -16,6 +16,7 @@ import com.muralex.myapp.viewmodel.screens.Screen
 import com.muralex.myapp.viewmodel.screens.countriesList.CountriesListState
 import com.muralex.myapp.viewmodel.screens.countrydetail.CountryDetailParams
 import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsState
+import com.muralex.myapp.viewmodel.screens.countrydetail.toggleFavorite
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
 import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 import com.muralex.myapp.viewmodel.screens.section.SectionParams
@@ -53,6 +54,7 @@ fun Navigation.ScreenPicker(
                         CountryDetailParams(countryName = it.name, countryCode = it.id)
                     )
                 },
+                toggleFavorite = { code ->    },
             )
 
         Screen.SectionScreen ->
@@ -92,7 +94,8 @@ fun Navigation.ScreenPicker(
 
         Screen.CountryDetail ->
             DetailsScreen(
-                screenState = state as DetailsState
+                screenState = state as DetailsState,
+                toggleFavorite = { code -> events.toggleFavorite(code)  }
             )
 
         else -> {}

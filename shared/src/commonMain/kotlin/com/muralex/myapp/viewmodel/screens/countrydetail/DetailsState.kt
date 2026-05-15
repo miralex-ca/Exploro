@@ -8,6 +8,7 @@ import com.muralex.myapp.viewmodel.ScreenState
 data class DetailsState (
     val isLoading: Boolean = false,
     val countryDetails : CountryFull? = null,
+    val isFavorite: Boolean = false,
 ): ScreenState
 
 

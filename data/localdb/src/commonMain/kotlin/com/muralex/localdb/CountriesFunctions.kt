@@ -111,4 +111,12 @@ fun AppLocalDb.getAllCountriesByContinent(
 }
 
 
+fun AppLocalDb.getFavorites(): List<Country> {
+    return favoritesQueries
+        .getFavorites()
+        .executeAsList()
+        .map { it.toDomain() }
+}
+
+
 

@@ -1,6 +1,7 @@
 package com.muralex.myapp.viewmodel.screens.countrydetail
 
 import com.muralex.data.functions.getCountryDetails
+import com.muralex.data.functions.isFavorite
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
@@ -15,12 +16,16 @@ fun StateManager.initCountryDetail(params: CountryDetailParams) = ScreenInitSett
     callOnInit = {
 
         if (params.countryCode != null) {
-            val countryDetails = dataRepository.getCountryDetails(params.countryCode)
+            val countryCode = params.countryCode
+            val countryDetails = dataRepository.getCountryDetails(countryCode)
+
+            val isFavorite = dataRepository.isFavorite(countryCode)
 
             updateScreen(DetailsState::class) {
                 it.copy(
                     isLoading = false,
                     countryDetails = countryDetails,
+                    isFavorite = isFavorite,
                 )
             }
         }

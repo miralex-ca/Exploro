@@ -1,29 +1,20 @@
 package com.muralex.myapp.screens
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AttachMoney
-import androidx.compose.material.icons.outlined.LocationCity
-import androidx.compose.material.icons.outlined.Map
-import androidx.compose.material.icons.outlined.People
-import androidx.compose.material.icons.outlined.Schedule
-import androidx.compose.material.icons.outlined.Straighten
-import androidx.compose.material.icons.outlined.Translate
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.VerticalDivider
+import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.rounded.Star
+import androidx.compose.material.icons.rounded.StarBorder
+import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,25 +28,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.toUpperCase
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
 import com.muralex.myapp.R
 import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsState
 import java.util.Locale
 
+import androidx.compose.material3.ripple
+import androidx.compose.foundation.clickable
+import androidx.compose.runtime.remember
+
+
 @Composable
 fun DetailsScreen(
     screenState: DetailsState,
+    toggleFavorite: (String) -> Unit
 ) {
 
     if (screenState.isLoading) return
@@ -87,8 +78,11 @@ fun DetailsScreen(
                     officialName = country.officialName,
                     coatOfArmsUrl = details.coatOfArmsPngUrl,
                     capital = country.capital,
-                    languages = details.languages,
-                    continent = country.continent
+                    continent = country.continent,
+                    isFavorite = screenState.isFavorite,
+                    onFavoriteClick = {
+                        toggleFavorite(country.id)
+                    }
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -128,8 +122,6 @@ fun DetailsScreen(
                         value = "${details.currencySymbol} (${details.currencyName})"
                     )
 
-
-
                     DetailRow(
                         icon = Icons.Outlined.Schedule,
                         label = "Time zones",
@@ -151,8 +143,9 @@ fun CountryHeaderSection(
     officialName: String,
     coatOfArmsUrl: String?,
     capital: String,
-    languages: List<String>,
-    continent: String
+    continent: String,
+    isFavorite: Boolean = false,
+    onFavoriteClick: () -> Unit
 ) {
 
     Column(
@@ -164,7 +157,9 @@ fun CountryHeaderSection(
 
        FlagHero(
            flagUrl = flagUrl,
-           flagAlt = flagAlt
+           flagAlt = flagAlt,
+           isFavorite = isFavorite,
+           onFavoriteClick = onFavoriteClick
        )
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -182,7 +177,9 @@ fun CountryHeaderSection(
 @Composable
 fun FlagHero(
     flagUrl: String,
-    flagAlt: String?
+    flagAlt: String?,
+    isFavorite: Boolean = false,
+    onFavoriteClick: () -> Unit
 ) {
 
     Box(
@@ -191,7 +188,6 @@ fun FlagHero(
             .height(200.dp)
             .clip(RoundedCornerShape(12.dp))
     ) {
-
 
         AsyncImage(
             model = flagUrl,
@@ -221,6 +217,52 @@ fun FlagHero(
                 .clip(RoundedCornerShape(6.dp)),
             contentScale = ContentScale.Fit
         )
+
+        FavoriteButton(
+            isFavorite = isFavorite,
+            onClick = onFavoriteClick,
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(6.dp)
+        )
+
+    }
+}
+
+@Composable
+fun FavoriteButton(
+    isFavorite: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+
+    Box(
+        modifier = modifier
+            .size(48.dp),
+        contentAlignment = Alignment.Center
+    ) {
+
+        Box(
+            modifier = Modifier
+                .size(38.dp)
+                .clip(CircleShape)
+                .background(Color.Black.copy(alpha = 0.42f))
+                .clickable(onClick = onClick),
+
+            contentAlignment = Alignment.Center
+        ) {
+
+            Icon(
+                imageVector = if (isFavorite) {
+                    Icons.Rounded.Star
+                } else {
+                    Icons.Rounded.StarBorder
+                },
+                contentDescription = null,
+                tint = Color.White,
+                modifier = Modifier.size(22.dp)
+            )
+        }
     }
 }
 

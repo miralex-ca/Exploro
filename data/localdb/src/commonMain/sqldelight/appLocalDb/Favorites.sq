@@ -1,11 +1,19 @@
 CREATE TABLE Favorites (
     country_id TEXT NOT NULL PRIMARY KEY,
+    added_at INTEGER NOT NULL,
     FOREIGN KEY (country_id) REFERENCES Countries(id)
 );
 
+isFavorite:
+SELECT EXISTS(
+    SELECT 1
+    FROM Favorites
+    WHERE country_id = ?
+);
+
 addFavorite:
-INSERT OR IGNORE INTO Favorites(country_id)
-VALUES (?);
+INSERT OR IGNORE INTO Favorites(country_id, added_at)
+VALUES (?, strftime('%s','now'));
 
 removeFavorite:
 DELETE FROM Favorites
@@ -45,5 +53,6 @@ SELECT
     c.flag_alt
 FROM Countries c
 INNER JOIN Favorites f
-    ON c.id = f.country_id;
+    ON c.id = f.country_id
+ORDER BY f.added_at DESC;
 
