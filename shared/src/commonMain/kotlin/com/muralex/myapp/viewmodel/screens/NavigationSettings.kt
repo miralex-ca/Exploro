@@ -1,7 +1,6 @@
 package com.muralex.myapp.viewmodel.screens
 
 import com.muralex.myapp.viewmodel.ScreenIdentifier
-import com.muralex.myapp.viewmodel.screens.Screen.CountriesList
 import com.muralex.myapp.viewmodel.screens.Screen.HomeScreen
 
 // CONFIGURATION SETTINGS

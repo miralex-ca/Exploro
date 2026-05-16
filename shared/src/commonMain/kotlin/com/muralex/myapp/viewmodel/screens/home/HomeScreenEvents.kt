@@ -1,10 +1,8 @@
 package com.muralex.myapp.viewmodel.screens.home
 
 
-import com.muralex.data.functions.getCountriesListData
 import com.muralex.data.functions.updateCountriesListData
 import com.muralex.data.sources.localdb.migrateDbIfNeeded
-import com.muralex.myapp.viewmodel.Events
 import com.muralex.myapp.viewmodel.LaunchScreenState
 import com.muralex.myapp.viewmodel.StateManager
 

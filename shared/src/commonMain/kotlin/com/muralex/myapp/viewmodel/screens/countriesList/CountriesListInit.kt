@@ -4,7 +4,6 @@ import com.muralex.data.functions.getCountriesListData
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
-import kotlinx.coroutines.delay
 import kotlinx.serialization.Serializable
 
 // INIZIALIZATION settings for this screen

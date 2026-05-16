@@ -1,6 +1,10 @@
 package com.muralex.core.common
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.withContext
 
 interface DispatchersProvider {
     val ui: CoroutineDispatcher

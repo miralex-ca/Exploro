@@ -1,10 +1,7 @@
 package com.muralex.myapp.viewmodel.screens.search
 
 import com.muralex.data.functions.searchCountries
-import com.muralex.models.CountryListItem
 import com.muralex.myapp.viewmodel.Events
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 
 
 fun Events.searchCountriesByQuery(query: String) = screenCoroutine {

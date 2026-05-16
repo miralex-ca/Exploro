@@ -4,7 +4,6 @@ import com.muralex.data.functions.getCountryDetails
 import com.muralex.data.functions.isFavorite
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.StateManager
-import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
 import kotlinx.serialization.Serializable
 

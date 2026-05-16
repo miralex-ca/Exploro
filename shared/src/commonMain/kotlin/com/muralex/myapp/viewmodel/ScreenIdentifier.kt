@@ -3,7 +3,6 @@ package com.muralex.myapp.viewmodel
 import com.muralex.myapp.viewmodel.screens.Level1Navigation
 import com.muralex.myapp.viewmodel.screens.Screen
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 typealias URI = String

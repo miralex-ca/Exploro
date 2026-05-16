@@ -18,9 +18,6 @@ import com.muralex.myapp.navigation.bars.Level1TopBar
 import com.muralex.myapp.navigation.bars.TopBar
 import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.NavigationState
-import com.muralex.myapp.viewmodel.ScreenIdentifier
-import com.muralex.myapp.viewmodel.ScreenParams
-import com.muralex.myapp.viewmodel.screens.Level1Navigation
 import com.muralex.myapp.viewmodel.screens.Screen
 
 
