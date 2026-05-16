@@ -6,6 +6,7 @@ import com.muralex.myapp.viewmodel.screens.countriesList.initCountriesList
 import com.muralex.myapp.viewmodel.screens.countrydetail.initCountryDetail
 import com.muralex.myapp.viewmodel.screens.favorites.initFavoritesScreen
 import com.muralex.myapp.viewmodel.screens.home.initHomeScreen
+import com.muralex.myapp.viewmodel.screens.search.initSearchScreen
 import com.muralex.myapp.viewmodel.screens.section.initSectionScreen
 
 enum class Screen(
@@ -29,9 +30,15 @@ enum class Screen(
         initCountriesList()
     }),
 
+    SearchScreen("search", 2, {
+        initSearchScreen()
+    }),
+
     CountryDetail("country", 3, {
         initCountryDetail(it.params())
     }),
+
+
 
 
 }

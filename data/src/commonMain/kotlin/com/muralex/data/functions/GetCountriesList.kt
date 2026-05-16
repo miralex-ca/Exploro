@@ -10,3 +10,7 @@ suspend fun Repository.getCountriesListData(): List<CountryListItem> = withRepoC
 suspend fun Repository.getCountriesByContinent(continent: String): List<CountryListItem> = withRepoContext {
     localDb.getAllCountriesByContinent(continent)
 }
+
+suspend fun Repository.searchCountries(query: String): List<CountryListItem> = withRepoContext {
+    localDb.searchCountries(query)
+}

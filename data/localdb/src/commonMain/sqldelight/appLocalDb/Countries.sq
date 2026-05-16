@@ -86,3 +86,11 @@ SELECT *
 FROM Countries
 WHERE continent = :continent
 ORDER BY name ASC;
+
+searchCountries:
+SELECT *
+FROM Countries
+WHERE LOWER(name) LIKE LOWER('%' || ? || '%')
+   OR LOWER(official_name) LIKE LOWER('%' || ? || '%')
+   OR LOWER(capital) LIKE LOWER('%' || ? || '%')
+ORDER BY name;

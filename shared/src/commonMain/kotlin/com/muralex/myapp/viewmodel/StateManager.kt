@@ -110,10 +110,6 @@ class StateManager(repo: Repository) {
         }
     }
 
-
-
-
-
     // COROUTINE SCOPES FUNCTIONS
 
     fun reinitScreenScopes() : List<ScreenIdentifier> {

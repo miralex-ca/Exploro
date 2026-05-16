@@ -118,5 +118,13 @@ fun AppLocalDb.getFavorites(): List<Country> {
         .map { it.toDomain() }
 }
 
+fun AppLocalDb.searchCountries(query: String): List<Country> {
+    val q = query.trim()
+    if (q.isBlank()) return emptyList()
+
+    return countriesQueries.searchCountries(q, q, q)
+        .executeAsList().map { it.toDomain() }
+}
+
 
 

@@ -30,6 +30,6 @@ fun StateManager.initCountryDetail(params: CountryDetailParams) = ScreenInitSett
             }
         }
     },
-    callOnInitAtEachNavigation = CallOnInitValues.CALL_BEFORE_SHOWING_SCREEN
+    clearStateCacheWhenScreenIsRemovedFromBackstack = true
 
 )

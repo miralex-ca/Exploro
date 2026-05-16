@@ -186,6 +186,7 @@ class Navigation(val stateManager : StateManager) {
             }
         }
         val newScreenInitSettings = stateManager.currentScreenIdentifier.getScreenInitSettings(stateManager)
+
         if (newScreenInitSettings.callOnInitAtEachNavigation != CallOnInitValues.DONT_CALL) {
             stateManager.runCallOnInit(stateManager.currentScreenIdentifier, newScreenInitSettings)
         }

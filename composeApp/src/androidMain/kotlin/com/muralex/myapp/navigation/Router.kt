@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,17 +49,3 @@ fun Navigation.Router() {
 
 }
 
-fun Navigation.navigationProcessor(localNavigationState: MutableState<NavigationState>) : (Screen, ScreenParams?) -> Unit {
-    return { screen, screenParams ->
-        val screenIdentifier = ScreenIdentifier.get(screen, screenParams)
-        navigateToScreen(screenIdentifier) // shared navigationState is updated
-        localNavigationState.value = navigationState // update localNavigationState
-    }
-}
-
-fun Navigation.level1NavigationProcessor(localNavigationState: MutableState<NavigationState>) : (Level1Navigation) -> Unit {
-    return {
-        selectLevel1Navigation(it.screenIdentifier) // shared navigationState is updated
-        localNavigationState.value = navigationState // update localNavigationState
-    }
-}

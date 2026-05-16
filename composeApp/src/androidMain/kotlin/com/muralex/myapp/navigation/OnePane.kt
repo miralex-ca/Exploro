@@ -1,17 +1,30 @@
 package com.muralex.myapp.navigation
 
+import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.muralex.myapp.navigation.bars.Level1BottomBar
+import com.muralex.myapp.navigation.bars.Level1TopBar
 import com.muralex.myapp.navigation.bars.TopBar
 import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.NavigationState
+import com.muralex.myapp.viewmodel.ScreenIdentifier
+import com.muralex.myapp.viewmodel.ScreenParams
+import com.muralex.myapp.viewmodel.screens.Level1Navigation
+import com.muralex.myapp.viewmodel.screens.Screen
 
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun Navigation.OnePane(
     saveableStateHolder: SaveableStateHolder,
@@ -19,16 +32,45 @@ fun Navigation.OnePane(
 ) {
     val screenIdentifier = localNavigationState.value.topScreenIdentifier
     val title = getTitle(screenIdentifier)
+
+    val navigator = remember { createNavigator(localNavigationState, saveableStateHolder) }
+
     Scaffold(
-        topBar = { TopBar(title) },
-        content = { contentPadding ->
-            Row(Modifier.padding(contentPadding)) {
-                saveableStateHolder.SaveableStateProvider(screenIdentifier.URI) {
-                    ScreenPicker(
-                        screenIdentifier = screenIdentifier,
-                        navigate = navigationProcessor(localNavigationState),
-                        navigateByLevel1 = level1NavigationProcessor(localNavigationState)
-                    )
+        content = {  contentPadding ->
+            val adjustedPadding = PaddingValues(
+                top = 0.dp,
+                bottom = contentPadding.calculateBottomPadding()
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(adjustedPadding)
+            ) {
+                when {
+                    screenIdentifier.screen == Screen.SearchScreen -> { }
+                    screenIdentifier.screen.navigationLevel == 1 -> {
+                        Level1TopBar(
+                            title = title,
+                            navigate = navigationProcessor(localNavigationState),
+                        )
+                    }
+
+                    else -> {
+                        TopBar(title, onBackClick = navigator::navigateBack)
+                    }
+                }
+
+                Row() {
+                    saveableStateHolder.SaveableStateProvider(screenIdentifier.URI) {
+                        ScreenPicker(
+                            screenIdentifier = screenIdentifier,
+                            navigator = navigator,
+                            navigate = navigationProcessor(localNavigationState),
+                            navigateByLevel1 = level1NavigationProcessor(localNavigationState),
+                            navigateBack = navigator::navigateBack
+                        )
+                    }
                 }
             }
         },
@@ -41,3 +83,4 @@ fun Navigation.OnePane(
         }
     )
 }
+

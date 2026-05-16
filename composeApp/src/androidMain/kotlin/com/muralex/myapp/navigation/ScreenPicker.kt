@@ -8,6 +8,8 @@ import com.muralex.myapp.screens.DetailsScreen
 import com.muralex.myapp.screens.FavoritesScreen
 import com.muralex.myapp.screens.HomeScreen
 import com.muralex.myapp.screens.SectionScreen
+import com.muralex.myapp.screens.search.SearchScreen
+import com.muralex.myapp.screens.search.onSearchScreenEvent
 import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.ScreenIdentifier
 import com.muralex.myapp.viewmodel.ScreenParams
@@ -20,14 +22,17 @@ import com.muralex.myapp.viewmodel.screens.countrydetail.toggleFavorite
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
 import com.muralex.myapp.viewmodel.screens.favorites.toggleFavoriteBySwipe
 import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
+import com.muralex.myapp.viewmodel.screens.search.SearchScreenState
 import com.muralex.myapp.viewmodel.screens.section.SectionParams
 import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
 
 @Composable
 fun Navigation.ScreenPicker(
     screenIdentifier: ScreenIdentifier,
+    navigator: ScreenNavigator,
     navigate: (Screen, ScreenParams?) -> Unit,
     navigateByLevel1: (Level1Navigation) -> Unit,
+    navigateBack: () -> Unit,
 ) {
     val state by stateProvider.getScreenStateFlow(screenIdentifier).collectAsState()
 
@@ -69,6 +74,12 @@ fun Navigation.ScreenPicker(
                         CountryDetailParams(countryName = it.name, countryCode = it.id)
                     )
                 },
+            )
+        Screen.SearchScreen ->
+            SearchScreen(
+                screenState = state as SearchScreenState,
+                navigator = navigator,
+                onEvent = events::onSearchScreenEvent,
             )
 
         Screen.CountriesList ->
