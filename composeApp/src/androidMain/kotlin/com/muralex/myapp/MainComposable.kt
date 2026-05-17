@@ -3,6 +3,7 @@ package com.muralex.myapp
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import com.muralex.myapp.navigation.Router
+import com.muralex.myapp.theme.AppTheme
 import com.muralex.myapp.viewmodel.DKMPViewModel
 
 
@@ -12,7 +13,9 @@ fun MainComposable(
 ) {
     val dkmpNav = model.navigation
 
-    MaterialTheme {
+    AppTheme {
         dkmpNav.Router()
     }
+
+
 }

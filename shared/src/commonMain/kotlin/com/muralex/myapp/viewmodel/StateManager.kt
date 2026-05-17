@@ -67,7 +67,7 @@ class StateManager(repo: Repository) {
 
     fun runCallOnInit(screenIdentifier: ScreenIdentifier, screenInitSettings: ScreenInitSettings, firstInit : Boolean = false) {
         if (!firstInit && screenInitSettings.callOnInitAtEachNavigation == CallOnInitValues.CALL_BEFORE_SHOWING_SCREEN) {
-            runBlocking {
+            appScope.launch {
                 screenInitSettings.callOnInit(this@StateManager)
             }
         } else {

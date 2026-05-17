@@ -1,11 +1,17 @@
 package com.muralex.myapp.navigation.bars
 
+import androidx.compose.foundation.layout.tappableElement
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import com.muralex.myapp.theme.appColors
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.screens.Screen
 
@@ -13,15 +19,18 @@ import com.muralex.myapp.viewmodel.screens.Screen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Level1TopBar(
-    title : String,
+    title: String,
     navigate: (Screen, ScreenParams?) -> Unit,
-){
-    CenterAlignedTopAppBar(title = {
-        Text(text = title)
-    },
+) {
+    CenterAlignedTopAppBar(
+        title = {
+            Text(text = title)
+        },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            titleContentColor = MaterialTheme.colorScheme.onPrimary
+            containerColor = MaterialTheme.appColors.topBarContainer,
+            titleContentColor = MaterialTheme.appColors.onTopBarContainer,
+            navigationIconContentColor = MaterialTheme.appColors.onTopBarContainer,
+            actionIconContentColor = MaterialTheme.appColors.onTopBarContainer,
         ),
         actions = {
             IconButton(onClick = {
@@ -30,7 +39,6 @@ fun Level1TopBar(
                 Icon(
                     imageVector = Icons.Outlined.Search,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
         }
@@ -52,8 +60,10 @@ fun TopBar(
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            titleContentColor = MaterialTheme.colorScheme.onPrimary
+            containerColor = MaterialTheme.appColors.topBarContainer,
+            titleContentColor = MaterialTheme.appColors.onTopBarContainer,
+            navigationIconContentColor = MaterialTheme.appColors.onTopBarContainer,
+            actionIconContentColor = MaterialTheme.appColors.onTopBarContainer,
         ),
         navigationIcon = {
             IconButton(
@@ -62,7 +72,6 @@ fun TopBar(
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
                     contentDescription = "Back",
-                    tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
         }

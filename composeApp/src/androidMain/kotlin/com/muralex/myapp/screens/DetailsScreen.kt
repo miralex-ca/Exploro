@@ -2,6 +2,7 @@ package com.muralex.myapp.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -20,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -33,6 +35,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.muralex.myapp.R
+import com.muralex.myapp.theme.appColors
 import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsScreenState
 import java.util.Locale
 
@@ -58,11 +61,17 @@ fun DetailsScreen(
 
         Surface(
             shape = RoundedCornerShape(16.dp),
-            color = Color.White,
-            shadowElevation = 8.dp,
+            color = MaterialTheme.colorScheme.surfaceContainerHighest,
+            contentColor = MaterialTheme.colorScheme.onSurface,
+            shadowElevation = 0.dp,
             modifier = Modifier
                 .widthIn(max = 700.dp)
                 .padding(16.dp)
+                .border(
+                    width = 1.dp,
+                    color = MaterialTheme.appColors.cardBorder,
+                    shape = RoundedCornerShape(16.dp)
+                )
         ) {
 
             Column {
@@ -149,12 +158,12 @@ fun CountryHeaderSection(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-       FlagHero(
-           flagUrl = flagUrl,
-           flagAlt = flagAlt,
-           isFavorite = isFavorite,
-           onFavoriteClick = onFavoriteClick
-       )
+        FlagHero(
+            flagUrl = flagUrl,
+            flagAlt = flagAlt,
+            isFavorite = isFavorite,
+            onFavoriteClick = onFavoriteClick
+        )
 
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -197,7 +206,7 @@ fun FlagHero(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.05f))
+                .background(MaterialTheme.appColors.detailHederWrapper)
         )
 
         AsyncImage(
@@ -253,7 +262,7 @@ fun FavoriteButton(
                     Icons.Rounded.StarBorder
                 },
                 contentDescription = null,
-                tint = Color.White,
+                tint = if (isFavorite) { MaterialTheme.appColors.favorite } else Color.White,
                 modifier = Modifier.size(22.dp)
             )
         }
@@ -273,13 +282,12 @@ fun DetailRow(
             .padding(vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-
         Icon(
             imageVector = icon,
             contentDescription = null,
             modifier = Modifier
-                .size(28.dp),
-            tint = Color.Black.copy(alpha = 0.8f)
+                .size(28.dp)
+                .alpha(0.8f)
         )
 
         Spacer(modifier = Modifier.width(28.dp))
@@ -291,14 +299,13 @@ fun DetailRow(
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelSmall,
-                color = Color.Gray
+                modifier = Modifier.alpha(0.8f)
             )
 
             Text(
                 text = value,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Normal,
-                color = Color.Black
             )
         }
     }
@@ -346,7 +353,6 @@ fun Long.toHumanReadable(): String {
     }
 }
 
-//@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 fun CountryHeaderTitle(
     officialName: String,
@@ -363,7 +369,7 @@ fun CountryHeaderTitle(
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding( horizontal = 16.dp, vertical = 6.dp)
+                .padding(horizontal = 16.dp, vertical = 6.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -371,7 +377,6 @@ fun CountryHeaderTitle(
         Box(
             modifier = Modifier
                 .fillMaxWidth(),
-
             contentAlignment = Alignment.Center
         ) {
 
@@ -389,14 +394,14 @@ fun CountryHeaderTitle(
                 ) {
 
                     if (capital.isNotBlank()) {
-                        InlineDetailRow(
+                        InlineHeaderDetailRow(
                             label = "Capital:",
                             value = capital.uppercase(Locale.getDefault())
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                     }
 
-                    InlineDetailRow(
+                    InlineHeaderDetailRow(
                         label = "Region:",
                         value = continent
                     )
@@ -410,7 +415,6 @@ fun CountryHeaderTitle(
 fun CoatOfArmsImage(
     url: String
 ) {
-
     var showDialog by remember {
         mutableStateOf(false)
     }
@@ -420,10 +424,10 @@ fun CoatOfArmsImage(
             showDialog = true
         },
         shape = RoundedCornerShape(8.dp),
-        color = Color(0xFFF3F3F3),
+        color = Color(0xADD5DEEC),
         border = BorderStroke(
             0.5.dp,
-            Color.Black.copy(alpha = 0.08f)
+            Color(0xD8C9D3E3)
         ),
         modifier = Modifier.size(52.dp)
     ) {
@@ -441,6 +445,7 @@ fun CoatOfArmsImage(
     if (showDialog) {
 
         AlertDialog(
+
             onDismissRequest = { showDialog = false },
             modifier = Modifier.padding(10.dp),
 
@@ -480,30 +485,28 @@ fun CoatOfArmsImage(
 }
 
 @Composable
-fun InlineDetailRow(
+fun InlineHeaderDetailRow(
     label: String,
     value: String,
     modifier: Modifier = Modifier,
     labelWidth: Dp = 55.dp
 ) {
-
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.Top
     ) {
-
         Text(
             text = label,
             modifier = Modifier.width(labelWidth),
-           // textAlign = TextAlign.End,
             style = MaterialTheme.typography.bodyMedium
         )
 
         Text(
             text = value,
-           // modifier = Modifier.weight(1f),
             style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.SemiBold
+            fontWeight = FontWeight.SemiBold,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
         )
     }
 }

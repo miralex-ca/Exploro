@@ -23,6 +23,7 @@ import androidx.compose.runtime.retain.retain
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
 import com.muralex.myapp.navigation.ScreenNavigator
+import com.muralex.myapp.theme.appColors
 import com.muralex.myapp.utils.OnChange
 import com.muralex.myapp.utils.SingleEffect
 import com.muralex.myapp.viewmodel.screens.search.SearchResult
@@ -74,8 +76,6 @@ fun SearchScreen(
 
     val focusRequester = remember { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
-
-
 
 
     LaunchedEffect(imeVisible) {
@@ -122,9 +122,12 @@ fun SearchScreen(
             modifier = Modifier.fillMaxSize()
         ) {
 
-            CenterAlignedTopAppBar(
+            TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary
+                    containerColor = MaterialTheme.appColors.topBarContainer,
+                    titleContentColor = MaterialTheme.appColors.onTopBarContainer,
+                    navigationIconContentColor = MaterialTheme.appColors.onTopBarContainer,
+                    actionIconContentColor = MaterialTheme.appColors.onTopBarContainer,
                 ),
                 title = {
                     SearchTopBar(
@@ -139,7 +142,6 @@ fun SearchScreen(
                             query = ""
                             searchFieldState.clearText()
                                        },
-                        isLoading = uiState.isSearching,
                         focusRequester = focusRequester,
                     )
                 }
@@ -188,6 +190,7 @@ fun SearchScreen(
         }
 
         FloatingActionButton(
+            containerColor = FloatingActionButtonDefaults.containerColor,
             onClick = {
                 focusRequester.requestFocus()
                 keyboardController?.show()
@@ -210,15 +213,12 @@ fun SearchTopBar(
     onQueryChange: (String) -> Unit,
     onBackClick: () -> Unit,
     onClearClick: () -> Unit,
-    isLoading: Boolean,
     focusRequester: FocusRequester,
 ) {
     var isSearching by remember { mutableStateOf(false) }
 
     LaunchedEffect(state.text) {
         onQueryChange(state.text.toString())
-
-
     }
 
     OnChange(state.text) { _, new ->
@@ -230,14 +230,21 @@ fun SearchTopBar(
         isSearching = false
     }
 
-
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(48.dp)
-            .padding(horizontal = 12.dp)
+            .height(42.dp)
+            .padding(start = 5.dp, end = 15.dp)
+            .shadow(
+                elevation = 1.dp,
+                shape = RoundedCornerShape(24.dp),
+                clip = false,
+                spotColor = MaterialTheme.colorScheme.surfaceTint
+            )
             .clip(RoundedCornerShape(24.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant),
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+
+        ,
         contentAlignment = Alignment.Center
     ) {
 
@@ -245,7 +252,11 @@ fun SearchTopBar(
             state = state,
             modifier = Modifier
                 .fillMaxSize()
-                .focusRequester(focusRequester),
+                .focusRequester(focusRequester)
+                .padding(3.dp)
+            ,
+            shape = RoundedCornerShape(24.dp),
+
             lineLimits = TextFieldLineLimits.SingleLine,
 
             textStyle = TextStyle(
@@ -282,7 +293,6 @@ fun SearchTopBar(
                     modifier = Modifier
                         .padding(end = 12.dp)
                         .width(60.dp)
-
                         .fillMaxHeight(),
                     contentAlignment = Alignment.CenterEnd
                 ) {
@@ -294,7 +304,7 @@ fun SearchTopBar(
 
                         if (isSearching) {
                             CircularProgressIndicator(
-                                modifier = Modifier.size(16.dp),
+                                modifier = Modifier.size(20.dp),
                                 strokeWidth = 2.dp,
                                 color = Color.Black.copy(alpha = 0.3f),
                                 gapSize = 2.dp
@@ -319,10 +329,8 @@ fun SearchTopBar(
                     }
                 }
             },
-
-            shape = RoundedCornerShape(24.dp),
-
             colors = TextFieldDefaults.colors(
+                cursorColor = MaterialTheme.appColors.caretColor,
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
                 disabledContainerColor = Color.Transparent,
@@ -343,18 +351,13 @@ fun SearchListRow(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 2.dp)
+            .padding(vertical = 3.dp)
         ,
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White
-        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         border = BorderStroke(
-            1.dp,
-            Color.LightGray.copy(alpha = 0.25f)
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 1.dp
+            width = 1.dp,
+            color = MaterialTheme.appColors.cardBorder
         ),
         onClick = onClick
     ) {

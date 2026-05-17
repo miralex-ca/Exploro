@@ -14,12 +14,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
+import com.muralex.myapp.theme.appColors
 import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
 
 @Composable
@@ -83,15 +86,11 @@ fun CountryGridCard(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(10.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 1.dp
-        ),
+        colors  = CardDefaults.cardColors(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         border = BorderStroke(
             width = 1.dp,
-            color = Color.LightGray.copy(alpha = 0.35f)
+            color = MaterialTheme.appColors.cardBorder
         )
     ) {
 
@@ -110,7 +109,7 @@ fun CountryGridCard(
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(110.dp)
+                        .height(100.dp)
                         .clip(RoundedCornerShape(6.dp))
                         .border(
                             width = 1.dp,
@@ -124,25 +123,22 @@ fun CountryGridCard(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-//                    .background(
-//                        Color(0xFFF7F7F7)
-//                    )
                     .padding(12.dp, 4.dp, 12.dp,10.dp)
             ) {
 
                 Text(
                     text = item.name,
                     style = MaterialTheme.typography.titleMedium,
-                    maxLines = 1
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
-
-                Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
                     text = item.subregion,
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color.Gray,
-                    maxLines = 1
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.alpha(0.8f)
                 )
             }
         }

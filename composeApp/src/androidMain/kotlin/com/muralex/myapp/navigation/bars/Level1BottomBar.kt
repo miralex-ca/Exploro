@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -18,7 +19,9 @@ fun Navigation.Level1BottomBar(
     selectedTab: ScreenIdentifier,
     navigateByLevel1Menu: (Level1Navigation) -> Unit
 ) {
-    NavigationBar(content = {
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.surface,
+        content = {
         NavigationBarItem(
             icon = { Icon(Icons.Default.Menu, "ALL") },
             label = { Text("Home", fontSize = 13.sp) },

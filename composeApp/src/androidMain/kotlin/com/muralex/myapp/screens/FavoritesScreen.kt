@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
+import com.muralex.myapp.theme.appColors
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
 import kotlinx.coroutines.delay
 
@@ -103,15 +104,10 @@ fun FavoriteListRow(
         modifier = modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White
-        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         border = BorderStroke(
-            1.dp,
-            Color.LightGray.copy(alpha = 0.25f)
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 1.dp
+            width = 1.dp,
+            color = MaterialTheme.appColors.cardBorder
         ),
         onClick = onClick
     ) {
@@ -172,7 +168,7 @@ fun SwipeableFavoriteRow(
 ) {
     val dismissState = rememberSwipeToDismissBoxState(
         initialValue = SwipeToDismissBoxValue.Settled,
-        positionalThreshold = { it * 0.70f },
+        positionalThreshold = { it * 0.70f }, // seems to be not working
     )
     var handled by remember { mutableStateOf(false) }
 
@@ -201,7 +197,7 @@ fun SwipeableFavoriteRow(
                     .fillMaxSize()
                     .clip(RoundedCornerShape(12.dp))
                     .background(
-                        Color(0xFFF85146).copy(alpha = 0.9f * alpha)
+                        MaterialTheme.appColors.destructive.copy(alpha = 0.9f * alpha)
                     )
                     .alpha(alpha)
                     .padding(horizontal = 24.dp),
