@@ -22,7 +22,6 @@ fun Events.onSearchScreenEvent(event: SearchScreenUiEvent) {
             event.navigator.navigate(
                 screen = Screen.CountryDetail,
                 screenParams = CountryDetailParams(
-                    countryName = event.item.name,
                     countryCode = event.item.id
                 )
             )

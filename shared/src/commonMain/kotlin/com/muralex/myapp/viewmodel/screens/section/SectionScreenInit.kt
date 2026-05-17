@@ -8,10 +8,10 @@ import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SectionParams(val continent: String) : ScreenParams
+data class SectionParams(val continent: String, val screenTitle: String? = null) : ScreenParams
 
 fun StateManager.initSectionScreen(params: SectionParams) = ScreenInitSettings(
-    title = "Section",
+    title = params.screenTitle ?: "",
     initState = { SectionScreenState(isLoading = true) },
     callOnInit = {
 

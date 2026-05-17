@@ -5,6 +5,7 @@ import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.style.TextOverflow
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.screens.Screen
 
@@ -39,12 +40,17 @@ fun Level1TopBar(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    title : String,
+    title: String,
     onBackClick: () -> Unit
-){
-    CenterAlignedTopAppBar(title = {
-        Text(text = title)
-    },
+) {
+    CenterAlignedTopAppBar(
+        title = {
+            Text(
+                text = title,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary,
             titleContentColor = MaterialTheme.colorScheme.onPrimary

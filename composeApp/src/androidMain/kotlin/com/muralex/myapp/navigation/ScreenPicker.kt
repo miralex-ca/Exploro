@@ -43,11 +43,11 @@ fun Navigation.ScreenPicker(
                 onListItemClick = {
                     navigate(
                         Screen.CountryDetail,
-                        CountryDetailParams(countryName = it.name, countryCode = it.id)
+                        CountryDetailParams(countryCode = it.id, screenTitle = it.name)
                     )
                 },
                 onSectionClick = {
-                    navigate(Screen.SectionScreen, SectionParams(it))
+                    navigate(Screen.SectionScreen, SectionParams(it, screenTitle = it))
                 },
             )
 
@@ -57,7 +57,7 @@ fun Navigation.ScreenPicker(
                 onListItemClick = {
                     navigate(
                         Screen.CountryDetail,
-                        CountryDetailParams(countryName = it.name, countryCode = it.id)
+                        CountryDetailParams(countryCode = it.id, screenTitle = it.name)
                     )
                 },
                 toggleFavorite = { code ->
@@ -71,7 +71,7 @@ fun Navigation.ScreenPicker(
                 onListItemClick = {
                     navigate(
                         Screen.CountryDetail,
-                        CountryDetailParams(countryName = it.name, countryCode = it.id)
+                        CountryDetailParams(countryCode = it.id, screenTitle = it.name)
                     )
                 },
             )
@@ -86,7 +86,7 @@ fun Navigation.ScreenPicker(
             CountriesListScreen(
                 countriesListState = state as CountriesListState,
                 onListItemClick = {
-                    navigate(Screen.CountryDetail, CountryDetailParams(countryName = it.name, countryCode = it.id)
+                    navigate(Screen.CountryDetail, CountryDetailParams(countryCode = it.id, screenTitle = it.name)
                 ) },
 
                 onExitScreen = {
