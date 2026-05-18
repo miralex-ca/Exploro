@@ -3,11 +3,7 @@ package com.muralex.myapp.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.muralex.myapp.screens.CountriesListScreen
-import com.muralex.myapp.screens.DetailsScreen
-import com.muralex.myapp.screens.FavoritesScreen
-import com.muralex.myapp.screens.HomeScreen
-import com.muralex.myapp.screens.SectionScreen
+import com.muralex.myapp.screens.*
 import com.muralex.myapp.screens.search.SearchScreen
 import com.muralex.myapp.screens.search.onSearchScreenEvent
 import com.muralex.myapp.viewmodel.Navigation
@@ -25,6 +21,8 @@ import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 import com.muralex.myapp.viewmodel.screens.search.SearchScreenState
 import com.muralex.myapp.viewmodel.screens.section.SectionParams
 import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
+import com.muralex.myapp.viewmodel.screens.settings.SettingsScreenState
+import com.muralex.myapp.viewmodel.screens.settings.setThemeModeByIndex
 
 @Composable
 fun Navigation.ScreenPicker(
@@ -80,6 +78,12 @@ fun Navigation.ScreenPicker(
                 screenState = state as SearchScreenState,
                 navigator = navigator,
                 onEvent = events::onSearchScreenEvent,
+            )
+
+        Screen.SettingsScreen ->
+            SettingsScreen(
+                screenState = state as SettingsScreenState,
+                selectThemeMode = { events.setThemeModeByIndex(it) },
             )
 
         Screen.CountriesList ->

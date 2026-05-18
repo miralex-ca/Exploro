@@ -1,7 +1,7 @@
 package com.muralex.myapp.navigation.bars
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -23,8 +23,8 @@ fun Navigation.Level1BottomBar(
         containerColor = MaterialTheme.colorScheme.surface,
         content = {
         NavigationBarItem(
-            icon = { Icon(Icons.Default.Menu, "ALL") },
-            label = { Text("Home", fontSize = 13.sp) },
+            icon = { Icon(Icons.Default.Explore, "ALL") },
+            label = { Text("Browse", fontSize = 13.sp) },
             selected = selectedTab.URI == Level1Navigation.Home.screenIdentifier.URI,
             onClick = { navigateByLevel1Menu(Level1Navigation.Home) }
         )

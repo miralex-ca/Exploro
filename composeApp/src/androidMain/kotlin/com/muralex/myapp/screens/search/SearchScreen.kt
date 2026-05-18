@@ -233,7 +233,7 @@ fun SearchTopBar(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(42.dp)
+            .height(46.dp)
             .padding(start = 5.dp, end = 15.dp)
             .shadow(
                 elevation = 1.dp,

@@ -8,6 +8,7 @@ import com.muralex.myapp.viewmodel.screens.favorites.initFavoritesScreen
 import com.muralex.myapp.viewmodel.screens.home.initHomeScreen
 import com.muralex.myapp.viewmodel.screens.search.initSearchScreen
 import com.muralex.myapp.viewmodel.screens.section.initSectionScreen
+import com.muralex.myapp.viewmodel.screens.settings.initSettingsScreen
 
 enum class Screen(
     val asString: String,
@@ -32,6 +33,10 @@ enum class Screen(
 
     SearchScreen("search", 2, {
         initSearchScreen()
+    }),
+
+    SettingsScreen("settings", 2, {
+        initSettingsScreen(params = it.params())
     }),
 
     CountryDetail("country", 3, {

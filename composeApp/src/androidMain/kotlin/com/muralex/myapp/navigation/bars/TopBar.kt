@@ -1,19 +1,19 @@
 package com.muralex.myapp.navigation.bars
 
-import androidx.compose.foundation.layout.tappableElement
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.muralex.myapp.theme.appColors
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.screens.Screen
+import com.muralex.myapp.viewmodel.screens.settings.SettingsParams
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -22,9 +22,12 @@ fun Level1TopBar(
     title: String,
     navigate: (Screen, ScreenParams?) -> Unit,
 ) {
-    CenterAlignedTopAppBar(
+    TopAppBar(
         title = {
-            Text(text = title)
+            Text(
+                text = title,
+                modifier = Modifier.padding(start = 12.dp)
+            )
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.appColors.topBarContainer,
@@ -41,6 +44,17 @@ fun Level1TopBar(
                     contentDescription = null,
                 )
             }
+
+            IconButton(
+                onClick = {
+                    navigate(Screen.SettingsScreen, SettingsParams(screenTitle = "Settings"))
+                }
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Settings,
+                    contentDescription = "Settings"
+                )
+            }
         }
     )
 }
@@ -51,7 +65,7 @@ fun TopBar(
     title: String,
     onBackClick: () -> Unit
 ) {
-    CenterAlignedTopAppBar(
+    TopAppBar(
         title = {
             Text(
                 text = title,

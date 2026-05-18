@@ -8,13 +8,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.muralex.myapp.viewmodel.LaunchScreenState
 import com.muralex.myapp.viewmodel.Navigation
 
@@ -23,7 +23,7 @@ import com.muralex.myapp.viewmodel.Navigation
 fun Navigation.Router() {
     val screenUIsStateHolder = rememberSaveableStateHolder()
     val localNavigationState = remember { mutableStateOf( navigationState ) }
-    val launchScreenState by stateProvider.getLaunchScreenStateFlow().collectAsState()
+    val launchScreenState by stateProvider.getLaunchScreenStateFlow().collectAsStateWithLifecycle()
 
     if (launchScreenState == LaunchScreenState.ACTIVE) {
         Scaffold { padding ->

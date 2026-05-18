@@ -2,6 +2,8 @@ package com.muralex.myapp.viewmodel
 
 
 import com.muralex.data.Repository
+import com.muralex.myapp.viewmodel.appconfig.AppConfig
+import com.muralex.myapp.viewmodel.appconfig.updateAppConfig
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
 import kotlinx.coroutines.*
@@ -30,6 +32,13 @@ class StateManager(repo: Repository) {
         _launchScreenState.value = state
     }
 
+    private val _appConfig = MutableStateFlow(AppConfig())
+    val appConfig = _appConfig.asStateFlow()
+
+    fun updateAppConfigState(config: AppConfig) {
+        _appConfig.value = config
+    }
+
     val currentScreenIdentifier : ScreenIdentifier
         get() = currentVerticalBackstack.last()
     val currentLevel1ScreenIdentifier : ScreenIdentifier?
@@ -39,7 +48,10 @@ class StateManager(repo: Repository) {
 
     internal val dataRepository by lazy { repo }
 
+    init {
+        updateAppConfig()
 
+    }
     // INIT SCREEN
 
     fun initScreen(screenIdentifier: ScreenIdentifier) {
@@ -141,3 +153,6 @@ enum class LaunchScreenState {
     ACTIVE,
     INACTIVE
 }
+
+
+
