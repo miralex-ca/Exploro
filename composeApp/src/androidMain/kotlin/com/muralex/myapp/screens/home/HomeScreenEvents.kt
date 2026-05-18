@@ -1,7 +1,7 @@
 package com.muralex.myapp.screens.home
 
 import com.muralex.models.CountryListItem
-import com.muralex.myapp.navigation.ScreenNavigator
+import com.muralex.myapp.navigation.ScreenNavActions
 
 sealed class HomeUiEvent {
     data class OnItemClicked(val item: CountryListItem) : HomeUiEvent()
@@ -9,12 +9,12 @@ sealed class HomeUiEvent {
 }
 
 class HomeEventHandler(
-    val navigator: ScreenNavigator
+    val navActions: ScreenNavActions
 ) {
     fun onEvent(event: HomeUiEvent) {
         when (event) {
-            is HomeUiEvent.OnItemClicked ->  navigator.toDetailFromList(event.item)
-            is HomeUiEvent.OnSectionClicked -> navigator.toSection(event.section)
+            is HomeUiEvent.OnItemClicked ->  navActions.toDetailFromList(event.item)
+            is HomeUiEvent.OnSectionClicked -> navActions.toSection(event.section)
         }
     }
 }

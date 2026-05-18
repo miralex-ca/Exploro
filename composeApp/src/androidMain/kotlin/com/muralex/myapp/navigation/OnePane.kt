@@ -30,8 +30,8 @@ fun Navigation.OnePane(
     val screenIdentifier = localNavigationState.value.topScreenIdentifier
     val screenTitle = getScreenTitle(screenIdentifier)
 
-    val screenNavigator = remember {
-        ScreenNavigator.Default(createAppNavigator(localNavigationState, saveableStateHolder))
+    val screenNavActions = remember {
+        ScreenNavActions.Default(createAppNavController(localNavigationState, saveableStateHolder))
     }
 
     Scaffold(
@@ -51,13 +51,13 @@ fun Navigation.OnePane(
                     screenIdentifier.screen.navigationLevel == 1 -> {
                         Level1TopBar(
                             title = screenTitle,
-                            onSettingsClick = screenNavigator::toSettings,
-                            onSearchClick = screenNavigator::toSearch
+                            onSettingsClick = screenNavActions::toSettings,
+                            onSearchClick = screenNavActions::toSearch
                         )
                     }
 
                     else -> {
-                        TopBar(screenTitle, onBackClick = screenNavigator::navigateBack)
+                        TopBar(screenTitle, onBackClick = screenNavActions::navigateBack)
                     }
                 }
 
@@ -65,7 +65,7 @@ fun Navigation.OnePane(
                     saveableStateHolder.SaveableStateProvider(screenIdentifier.URI) {
                         ScreenPicker(
                             screenIdentifier = screenIdentifier,
-                            navigator = screenNavigator,
+                            screenNavActions = screenNavActions,
                         )
                     }
                 }
@@ -75,7 +75,7 @@ fun Navigation.OnePane(
             if (screenIdentifier.screen.navigationLevel == 1)
                 Level1BottomBar(
                     selectedTab = screenIdentifier,
-                    navigateByLevel1Menu = level1NavigationProcessor(localNavigationState)
+                    navigateByLevel1Menu = screenNavActions::toLevel1Screen
                 )
         }
     )

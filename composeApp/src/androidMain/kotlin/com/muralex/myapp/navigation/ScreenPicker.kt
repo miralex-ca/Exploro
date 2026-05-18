@@ -23,12 +23,12 @@ import com.muralex.myapp.viewmodel.screens.settings.SettingsScreenState
 @Composable
 fun Navigation.ScreenPicker(
     screenIdentifier: ScreenIdentifier,
-    navigator: ScreenNavigator,
+    screenNavActions: ScreenNavActions,
 ) {
     val state by stateProvider.getScreenStateFlow(screenIdentifier).collectAsState()
 
     val eventHandlers = remember {
-        EventHandlers(events = events, navigator = navigator)
+        EventHandlers(events = events, navActions = screenNavActions)
     }
 
     when (screenIdentifier.screen) {

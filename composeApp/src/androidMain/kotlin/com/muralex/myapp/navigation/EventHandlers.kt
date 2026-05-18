@@ -10,14 +10,14 @@ import com.muralex.myapp.viewmodel.Events
 
 class EventHandlers(
     private val events: Events,
-    private val navigator: ScreenNavigator,
+    private val navActions: ScreenNavActions,
 ) {
     val home by lazy {
-        HomeEventHandler(navigator)
+        HomeEventHandler(navActions)
     }
 
     val section by lazy {
-        SectionEventHandler(navigator)
+        SectionEventHandler(navActions)
     }
 
     val details by lazy {
@@ -25,11 +25,11 @@ class EventHandlers(
     }
 
     val favorites by lazy {
-        FavoritesEventHandler(navigator, events)
+        FavoritesEventHandler(navActions, events)
     }
 
     val search by lazy {
-        SearchEventHandler(navigator, events)
+        SearchEventHandler(navActions, events)
     }
 
     val settings by lazy {
