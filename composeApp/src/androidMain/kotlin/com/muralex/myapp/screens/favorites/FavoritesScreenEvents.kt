@@ -2,7 +2,6 @@ package com.muralex.myapp.screens.favorites
 
 import com.muralex.models.CountryListItem
 import com.muralex.myapp.navigation.ScreenNavigator
-import com.muralex.myapp.navigation.toDetailFromList
 import com.muralex.myapp.viewmodel.Events
 import com.muralex.myapp.viewmodel.screens.favorites.removeFavoriteBySwipe
 

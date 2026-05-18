@@ -29,14 +29,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
-import com.muralex.myapp.navigation.AppNavigator
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.RemoveFavorite
-import com.muralex.myapp.screens.home.HomeEventHandler
-import com.muralex.myapp.screens.home.HomeScreenContent
-import com.muralex.myapp.theme.appColors
+import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
-import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 import kotlinx.coroutines.delay
 
 

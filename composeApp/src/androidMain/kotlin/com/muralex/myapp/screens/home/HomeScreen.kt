@@ -30,13 +30,8 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
 import com.muralex.models.HomeSection
-import com.muralex.myapp.navigation.NavDestination
-import com.muralex.myapp.navigation.AppNavigator
-import com.muralex.myapp.navigation.ScreenNavigator
-import com.muralex.myapp.navigation.toDetailFromList
-import com.muralex.myapp.navigation.toSection
-import com.muralex.myapp.theme.AppTypography
-import com.muralex.myapp.theme.appColors
+import com.muralex.myapp.ui.theme.AppTypography
+import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 
 

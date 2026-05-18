@@ -15,7 +15,7 @@ interface AppNavigator {
     fun navigateByLevel1(level1Navigation: Level1Navigation)
 }
 
-fun Navigation.createNavigator(
+fun Navigation.createAppNavigator(
     localNavigationState: MutableState<NavigationState>,
     saveableStateHolder: SaveableStateHolder
 ): AppNavigator {

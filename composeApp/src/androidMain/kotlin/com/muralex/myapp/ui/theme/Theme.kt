@@ -1,4 +1,4 @@
-package com.muralex.myapp.theme
+package com.muralex.myapp.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme

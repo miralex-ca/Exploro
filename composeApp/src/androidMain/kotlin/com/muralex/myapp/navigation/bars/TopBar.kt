@@ -10,17 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.muralex.myapp.theme.appColors
-import com.muralex.myapp.viewmodel.ScreenParams
-import com.muralex.myapp.viewmodel.screens.Screen
-import com.muralex.myapp.viewmodel.screens.settings.SettingsParams
+import com.muralex.myapp.ui.theme.appColors
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Level1TopBar(
     title: String,
-    navigate: (Screen, ScreenParams?) -> Unit,
+    onSettingsClick: () -> Unit,
+    onSearchClick: () -> Unit,
 ) {
     TopAppBar(
         title = {
@@ -36,20 +34,14 @@ fun Level1TopBar(
             actionIconContentColor = MaterialTheme.appColors.onTopBarContainer,
         ),
         actions = {
-            IconButton(onClick = {
-                navigate(Screen.SearchScreen, null)
-            }) {
+            IconButton(onClick = onSearchClick) {
                 Icon(
                     imageVector = Icons.Outlined.Search,
                     contentDescription = null,
                 )
             }
 
-            IconButton(
-                onClick = {
-                    navigate(Screen.SettingsScreen, SettingsParams(screenTitle = "Settings"))
-                }
-            ) {
+            IconButton( onClick = onSettingsClick ) {
                 Icon(
                     imageVector = Icons.Outlined.Settings,
                     contentDescription = "Settings"

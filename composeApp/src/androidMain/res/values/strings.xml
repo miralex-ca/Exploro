@@ -3,4 +3,5 @@
     <string name="screen_home_title">Discover</string>
     <string name="screen_favorites_title">Favorites</string>
     <string name="screen_search_title">Search</string>
+    <string name="screen_settings_title">Search</string>
 </resources>

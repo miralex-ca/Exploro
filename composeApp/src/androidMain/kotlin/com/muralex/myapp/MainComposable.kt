@@ -6,8 +6,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.muralex.myapp.navigation.Router
-import com.muralex.myapp.theme.AppTheme
-import com.muralex.myapp.theme.ThemesMode
+import com.muralex.myapp.ui.theme.AppTheme
+import com.muralex.myapp.ui.theme.ThemesMode
 import com.muralex.myapp.viewmodel.DKMPViewModel
 import com.muralex.myapp.viewmodel.appconfig.AppConfig
 import com.muralex.myapp.viewmodel.appconfig.ThemeStatus

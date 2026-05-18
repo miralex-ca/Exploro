@@ -30,7 +30,9 @@ fun Navigation.OnePane(
     val screenIdentifier = localNavigationState.value.topScreenIdentifier
     val screenTitle = getScreenTitle(screenIdentifier)
 
-    val navigator = remember { createNavigator(localNavigationState, saveableStateHolder) }
+    val screenNavigator = remember {
+        ScreenNavigator.Default(createAppNavigator(localNavigationState, saveableStateHolder))
+    }
 
     Scaffold(
         content = { contentPadding ->
@@ -49,12 +51,13 @@ fun Navigation.OnePane(
                     screenIdentifier.screen.navigationLevel == 1 -> {
                         Level1TopBar(
                             title = screenTitle,
-                            navigate = navigationProcessor(localNavigationState),
+                            onSettingsClick = screenNavigator::toSettings,
+                            onSearchClick = screenNavigator::toSearch
                         )
                     }
 
                     else -> {
-                        TopBar(screenTitle, onBackClick = navigator::navigateBack)
+                        TopBar(screenTitle, onBackClick = screenNavigator::navigateBack)
                     }
                 }
 
@@ -62,10 +65,7 @@ fun Navigation.OnePane(
                     saveableStateHolder.SaveableStateProvider(screenIdentifier.URI) {
                         ScreenPicker(
                             screenIdentifier = screenIdentifier,
-                            navigator = navigator,
-                            navigate = navigationProcessor(localNavigationState),
-                            navigateByLevel1 = level1NavigationProcessor(localNavigationState),
-                            navigateBack = navigator::navigateBack
+                            navigator = screenNavigator,
                         )
                     }
                 }
@@ -89,6 +89,7 @@ fun Navigation.getScreenTitle(screenIdentifier: ScreenIdentifier): String {
         Screen.HomeScreen -> Strings.homeTitle
         Screen.FavoritesScreen -> Strings.favoritesTitle
         Screen.SearchScreen -> Strings.searchTitle
+        Screen.SettingsScreen -> Strings.settingsTitle
         else -> screenInitSettings.title
     }
 }

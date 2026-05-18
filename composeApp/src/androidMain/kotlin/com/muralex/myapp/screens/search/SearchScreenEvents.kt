@@ -1,9 +1,7 @@
 package com.muralex.myapp.screens.search
 
 import com.muralex.models.CountryListItem
-import com.muralex.myapp.navigation.NavDestination
 import com.muralex.myapp.navigation.ScreenNavigator
-import com.muralex.myapp.navigation.toDetailFromList
 import com.muralex.myapp.viewmodel.Events
 import com.muralex.myapp.viewmodel.screens.search.consumeSearchBecomeActiveEffect
 import com.muralex.myapp.viewmodel.screens.search.searchCountriesByQuery
@@ -24,7 +22,7 @@ class SearchEventHandler(
             SearchUiEvent.DidBecomeActive -> events.consumeSearchBecomeActiveEffect()
             is SearchUiEvent.OnItemClicked -> navigator.toDetailFromList(event.item)
             is SearchUiEvent.SearchByQuery -> events.searchCountriesByQuery(event.query)
-            SearchUiEvent.OnBackClicked -> navigator.handle(NavDestination.Back)
+            SearchUiEvent.OnBackClicked -> navigator.navigateBack()
         }
     }
 }

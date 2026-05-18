@@ -1,4 +1,4 @@
-package com.muralex.myapp.theme
+package com.muralex.myapp.ui.theme
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
