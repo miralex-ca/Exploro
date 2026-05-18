@@ -5,7 +5,6 @@ import appLocalDb.GetCountryDetailsById
 import com.muralex.models.Country
 import com.muralex.models.CountryDetails
 import com.muralex.models.CountryFull
-import com.muralex.models.CountryListItem
 
 fun Countries.toDomain(): Country =
     Country(
@@ -19,19 +18,7 @@ fun Countries.toDomain(): Country =
         flagAlt = flag_alt
     )
 
-fun Country.toListItem(): CountryListItem =
-    CountryListItem(
-        id = id,
-        name = name,
-        officialName = officialName,
-        capital = capital,
-        continent = continent,
-        subregion = subregion,
-        flagPngUrl = flagPngUrl,
-    )
 
-fun List<Country>.toListItems():
-        List<CountryListItem> = map { it.toListItem() }
 
 fun GetCountryDetailsById.toDomain(): CountryFull =
     CountryFull(

@@ -1,6 +1,6 @@
 package com.muralex.myapp.viewmodel.screens.section
 
-import com.muralex.data.functions.getCountriesByContinent
+import com.muralex.data.functions.getCountriesBySectionId
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
@@ -15,7 +15,7 @@ fun StateManager.initSectionScreen(params: SectionParams) = ScreenInitSettings(
     initState = { SectionScreenState(isLoading = true) },
     callOnInit = {
 
-        val countries = dataRepository.getCountriesByContinent(params.continent)
+        val countries = dataRepository.getCountriesBySectionId(params.continent)
 
          updateScreen(SectionScreenState::class) {
             it.copy(

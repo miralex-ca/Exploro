@@ -6,8 +6,6 @@ import com.muralex.data.common.LocalDataSource
 import com.muralex.models.Country
 import com.muralex.models.CountryDetails
 import com.muralex.models.CountryFull
-import com.muralex.models.CountryListItem
-import com.muralex.models.CountryUserData
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
@@ -32,13 +30,6 @@ internal class SQLDelightLocalDataSource(
 
     private val favoritesQueries = database.favoritesQueries
 
-    override suspend fun getCountriesList(): List<CountryListItem> {
-        return database.getCountriesList().toListItems()
-    }
-
-    override suspend fun getCountriesWithUserData(): List<CountryUserData> =
-        database.getCountriesWithUserData()
-
     override suspend fun setCountriesList(list: List<Country>) {
         database.setCountriesList(list)
     }
@@ -47,17 +38,16 @@ internal class SQLDelightLocalDataSource(
         database.setCountriesDetailsList(list)
     }
 
-    override suspend fun getAllCountriesByContinent(continent: String): List<CountryListItem> {
-        return database.getAllCountriesByContinent(continent).toListItems()
+    override suspend fun getAllCountriesBySectionId(sectionId: String): List<Country> {
+        return database.getAllCountriesBySection(sectionId)
     }
 
-    override suspend fun searchCountries(query: String): List<CountryListItem> {
-        return database.searchCountries(query).toListItems()
+    override suspend fun searchCountries(query: String): List<Country> {
+        return database.searchCountries(query)
     }
 
-    override suspend fun getCountriesByContinent(continent: String, limit: Long) : List<CountryListItem> {
-        val countries =  database.getCountriesByContinent(continent, limit)
-        return countries.toListItems()
+    override suspend fun getCountriesBySection(sectionId: String, limit: Long) : List<Country> {
+        return database.getCountriesByContinent(sectionId, limit)
     }
 
     override suspend fun isFavorite(id: String): Boolean {
@@ -74,8 +64,8 @@ internal class SQLDelightLocalDataSource(
         favoritesQueries.removeFavorite(id)
     }
 
-    override suspend fun getFavorites(): List<CountryListItem> {
-        return database.getFavorites().toListItems()
+    override suspend fun getFavorites(): List<Country> {
+        return database.getFavorites()
     }
 
     override suspend fun resetAndMigrate() {

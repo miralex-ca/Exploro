@@ -20,7 +20,7 @@ class Repository(
     val runtimeCache get() = CacheObjects
 
     suspend fun <T> withRepoContext (block: suspend () -> T) : T {
-        return withContext(dispatchers.default) {
+        return withContext(dispatchers.io) {
             block()
         }
     }

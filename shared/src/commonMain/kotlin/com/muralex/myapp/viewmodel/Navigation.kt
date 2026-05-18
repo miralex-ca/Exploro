@@ -168,7 +168,7 @@ class Navigation(val stateManager : StateManager) {
     fun exitScreen(screenIdentifier: ScreenIdentifier) {
         debugLogger.log("exitScreen: "+screenIdentifier.URI)
         if (screenIdentifier.screen.navigationLevel == 1) {
-            stateManager.level1Backstack.removeLast()
+            stateManager.level1Backstack.removeAt(stateManager.level1Backstack.size - 1)
             stateManager.verticalNavigationLevels.remove(screenIdentifier.URI)
             stateManager.currentVerticalBackstack.clear()
             stateManager.removeScreen(screenIdentifier)

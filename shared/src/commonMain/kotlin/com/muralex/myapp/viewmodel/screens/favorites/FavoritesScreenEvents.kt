@@ -4,7 +4,6 @@ import com.muralex.data.functions.getFavorites
 import com.muralex.data.functions.removeFavorite
 import com.muralex.myapp.viewmodel.Events
 
-
 fun Events.removeFavoriteBySwipe(code: String) = screenCoroutine {
     dataRepository.removeFavorite(code)
 

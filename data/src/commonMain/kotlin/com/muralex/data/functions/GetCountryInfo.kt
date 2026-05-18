@@ -1,6 +1,7 @@
 package com.muralex.data.functions
 
 import com.muralex.data.Repository
+import com.muralex.mappers.toListItems
 import com.muralex.models.CountryFull
 
 
@@ -21,5 +22,5 @@ suspend fun Repository.addFavorite(code: String) = withRepoContext {
 }
 
 suspend fun Repository.getFavorites() = withRepoContext {
-     localDb.getFavorites()
+     localDb.getFavorites().toListItems()
 }
