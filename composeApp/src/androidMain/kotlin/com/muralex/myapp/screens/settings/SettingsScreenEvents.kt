@@ -1,10 +1,11 @@
 package com.muralex.myapp.screens.settings
 
+import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.Events
-import com.muralex.myapp.viewmodel.screens.settings.setThemeModeByIndex
+import com.muralex.myapp.viewmodel.screens.settings.saveThemeMode
 
 sealed class SettingsUiEvent {
-    data class OnThemeSelected(val themeIndex: Int) : SettingsUiEvent()
+    data class OnThemeSelected(val mode: ThemeMode) : SettingsUiEvent()
 }
 
 class SettingsEventHandler(
@@ -12,7 +13,7 @@ class SettingsEventHandler(
 ) {
     fun onEvent(event: SettingsUiEvent) {
         when (event) {
-            is SettingsUiEvent.OnThemeSelected -> events.setThemeModeByIndex(event.themeIndex)
+            is SettingsUiEvent.OnThemeSelected -> events.saveThemeMode(event.mode)
         }
     }
 }

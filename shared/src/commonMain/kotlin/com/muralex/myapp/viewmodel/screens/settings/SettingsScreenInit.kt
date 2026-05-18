@@ -1,6 +1,6 @@
 package com.muralex.myapp.viewmodel.screens.settings
 
-import com.muralex.data.functions.getThemeModeIndex
+import com.muralex.data.functions.getThemeMode
 import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
@@ -10,12 +10,12 @@ fun StateManager.initSettingsScreen() = ScreenInitSettings(
     initState = { SettingsScreenState(isLoading = true) },
     callOnInit = {
 
-        val savedThemeModeIndex = dataRepository.getThemeModeIndex()
+        val savedThemeMode = dataRepository.getThemeMode()
 
          updateScreen(SettingsScreenState::class) {
             it.copy(
                 isLoading = false,
-                savedThemeMode = savedThemeModeIndex
+                savedThemeMode = savedThemeMode
             )
         }
     },

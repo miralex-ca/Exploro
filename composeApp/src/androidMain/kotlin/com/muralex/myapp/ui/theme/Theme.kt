@@ -9,16 +9,17 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.muralex.models.ThemeMode
 
 @Composable
 fun AppTheme(
-    themesMode: ThemesMode = ThemesMode.SYSTEM,
+    themeMode: ThemeMode = ThemeMode.LIGHT,
     content: @Composable () -> Unit
 ) {
-    val darkTheme = when (themesMode) {
-        ThemesMode.LIGHT -> false
-        ThemesMode.DARK -> true
-        ThemesMode.SYSTEM -> isSystemInDarkTheme()
+    val darkTheme = when (themeMode) {
+        ThemeMode.LIGHT -> false
+        ThemeMode.DARK -> true
+        ThemeMode.SYSTEM -> isSystemInDarkTheme()
     }
 
     val colorScheme =
@@ -57,9 +58,3 @@ val MaterialTheme.appColors: AppColors
     @Composable
     @ReadOnlyComposable
     get() = LocalAppColors.current
-
-enum class ThemesMode {
-    LIGHT,
-    DARK,
-    SYSTEM
-}

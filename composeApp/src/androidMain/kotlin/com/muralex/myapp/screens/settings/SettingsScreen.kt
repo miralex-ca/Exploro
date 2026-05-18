@@ -27,7 +27,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.muralex.models.ThemeMode
+import com.muralex.myapp.utils.Strings
 import com.muralex.myapp.viewmodel.screens.settings.SettingsScreenState
+
+data class ThemeOption(
+    val mode: ThemeMode,
+    val label: String,
+)
+
+
+@Composable
+fun themeOptions(): List<ThemeOption> = listOf(
+    ThemeOption(ThemeMode.LIGHT, Strings.themeModeLight),
+    ThemeOption(ThemeMode.DARK, Strings.themeModeDark),
+    ThemeOption(ThemeMode.SYSTEM, Strings.themeModeSystem),
+)
+
 
 @Composable
 fun SettingsScreen(
@@ -69,9 +85,8 @@ fun AppSettingsContent(
 @Composable
 private fun AppSettingsBox(
     screenState: SettingsScreenState,
-    selectThemeMode: (Int) -> Unit,
+    selectThemeMode: (ThemeMode) -> Unit,
 ) {
-    val modesList = listOf("Light", "Dark", "System default")
 
     Box(
         modifier = Modifier
@@ -99,14 +114,16 @@ private fun AppSettingsBox(
                     fontSize = 18.sp
                 )
 
+                val options = themeOptions()
+
                 OptionsWithDialog(
-                    radioOptions = modesList,
                     title = "App theme mode",
-                    summary = modesList[screenState.savedThemeMode],
-                    optionSelectedIndex = {
-                        selectThemeMode(it)
+                    radioOptions = options.map { it.label },
+                    summary = options.first { it.mode == screenState.savedThemeMode }.label,
+                    selectedIndex = options.indexOfFirst { it.mode == screenState.savedThemeMode },
+                    optionSelectedIndex = { selected ->
+                        selectThemeMode(options[selected].mode)
                     },
-                    selectedIndex = screenState.savedThemeMode,
                 )
 
                 Spacer(Modifier.height(35.dp))

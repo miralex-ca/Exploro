@@ -2,13 +2,14 @@ package com.muralex.myapp.viewmodel
 
 
 import com.muralex.data.Repository
-import com.muralex.myapp.viewmodel.appconfig.AppConfig
-import com.muralex.myapp.viewmodel.appconfig.updateAppConfig
+import com.muralex.myapp.viewmodel.appenvironment.AppEnvironment
+import com.muralex.myapp.viewmodel.appenvironment.prepareAppEnvironment
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlin.reflect.KClass
 
 interface ScreenState
@@ -32,11 +33,11 @@ class StateManager(repo: Repository) {
         _launchScreenState.value = state
     }
 
-    private val _appConfig = MutableStateFlow(AppConfig())
-    val appConfig = _appConfig.asStateFlow()
+    private val _appEnvironment = MutableStateFlow(AppEnvironment())
+    val appEnvironment = _appEnvironment.asStateFlow()
 
-    fun updateAppConfigState(config: AppConfig) {
-        _appConfig.value = config
+    fun updateAppEnvironment(state: AppEnvironment) {
+        _appEnvironment.update { state }
     }
 
     val currentScreenIdentifier : ScreenIdentifier
@@ -49,7 +50,7 @@ class StateManager(repo: Repository) {
     internal val dataRepository by lazy { repo }
 
     init {
-        updateAppConfig()
+        prepareAppEnvironment()
 
     }
     // INIT SCREEN

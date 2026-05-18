@@ -7,41 +7,27 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.muralex.myapp.navigation.Router
 import com.muralex.myapp.ui.theme.AppTheme
-import com.muralex.myapp.ui.theme.ThemesMode
-import com.muralex.myapp.viewmodel.DKMPViewModel
-import com.muralex.myapp.viewmodel.appconfig.AppConfig
-import com.muralex.myapp.viewmodel.appconfig.ThemeStatus
+import com.muralex.myapp.viewmodel.Navigation
+import com.muralex.myapp.viewmodel.appenvironment.AppEnvironment
 
 
 @Composable
 fun MainComposable(
-    model: DKMPViewModel
+    navigation: Navigation
 ) {
-    val dkmpNav = model.navigation
-
-    val appConfigFlow = model.navigation.stateProvider.getAppConfigStateFlow()
-    val appConfig by appConfigFlow.collectAsStateWithLifecycle()
+    val appEnvironment by navigation.stateProvider
+        .getAppEnvironmentFlow()
+        .collectAsStateWithLifecycle()
 
     CompositionLocalProvider(
-        LocalAppConfig provides appConfig
+        LocalAppEnvironment provides appEnvironment
     ) {
-        AppTheme(
-            themesMode = themeFromStatus(appConfig.themeMode)
-        ) {
-            dkmpNav.Router()
+        AppTheme(themeMode = appEnvironment.themeMode) {
+            navigation.Router()
         }
     }
-
 }
 
-val LocalAppConfig = staticCompositionLocalOf<AppConfig> {
+val LocalAppEnvironment = staticCompositionLocalOf<AppEnvironment> {
     error("AppConfig not provided")
-}
-
-fun themeFromStatus(status: ThemeStatus): ThemesMode {
-    return when (status) {
-        ThemeStatus.SYSTEM -> ThemesMode.SYSTEM
-        ThemeStatus.LIGHT -> ThemesMode.LIGHT
-        ThemeStatus.DARK -> ThemesMode.DARK
-    }
 }

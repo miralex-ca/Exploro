@@ -1,6 +1,6 @@
 package com.muralex.myapp.viewmodel
 
-import com.muralex.myapp.viewmodel.appconfig.AppConfig
+import com.muralex.myapp.viewmodel.appenvironment.AppEnvironment
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -13,7 +13,7 @@ class StateProvider(val stateManager: StateManager) {
         return stateManager.launchScreenState
     }
 
-    fun getAppConfigStateFlow(): StateFlow<AppConfig> {
-        return stateManager.appConfig
+    fun getAppEnvironmentFlow(): StateFlow<AppEnvironment> {
+        return stateManager.appEnvironment
     }
 }

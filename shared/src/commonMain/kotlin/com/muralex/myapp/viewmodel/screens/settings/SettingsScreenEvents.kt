@@ -1,20 +1,15 @@
 package com.muralex.myapp.viewmodel.screens.settings
 
-import com.muralex.data.functions.getThemeIndex
-import com.muralex.data.functions.getThemeModeIndex
-import com.muralex.data.functions.setThemeModeByIndex
+
+import com.muralex.data.functions.getThemeMode
+import com.muralex.data.functions.saveThemeMode
+import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.Events
-import com.muralex.myapp.viewmodel.appconfig.themeStausByIndex
 
-fun Events.setThemeModeByIndex(index: Int) = screenCoroutine {
 
-    println("setThemeModeByIndex: $index")
-
-    dataRepository.setThemeModeByIndex(index)
-
-    val current = dataRepository.getThemeModeIndex()
-
-    println("setThemeModeByIndex: $index")
+fun Events.saveThemeMode(themeMode: ThemeMode) = screenCoroutine {
+    dataRepository.saveThemeMode(themeMode)
+    val current = dataRepository.getThemeMode()
 
     stateManager.updateScreen(SettingsScreenState::class) {
         it.copy(
@@ -22,15 +17,9 @@ fun Events.setThemeModeByIndex(index: Int) = screenCoroutine {
         )
     }
 
-    stateManager.updateAppConfigState(
-        config = stateManager.appConfig.value.copy(
-            themeMode = themeStausByIndex(current)
+    stateManager.updateAppEnvironment(
+        state = stateManager.appEnvironment.value.copy(
+            themeMode = current
         )
     )
-}
-
-fun Events.getThemeModeIndex() : Int {
-    return dataRepository.getThemeIndex().also {
-        navigation.updateNavigationState()
-    }
 }
