@@ -1,11 +1,17 @@
 package com.muralex.models
 
-enum class ThemeMode {
-    LIGHT,
-    DARK,
-    SYSTEM;
+enum class ThemeMode(
+    val id: Int
+) {
+    LIGHT(0),
+    DARK(1),
+    SYSTEM(2);
 
     companion object {
-        val DEFAULT = LIGHT
+        val DEFAULT = SYSTEM
+
+        fun fromId(id: Int): ThemeMode {
+            return entries.firstOrNull { it.id == id } ?: DEFAULT
+        }
     }
 }

@@ -13,21 +13,3 @@ class MySettings (s : Settings) {
     var shouldForceDbUpdate by s.boolean(defaultValue = false)
     var themeModeId by s.int(defaultValue = 0)
 }
-
-
-enum class ThemeMode(val id: Int, val title: String) {
-    LIGHT(0, "Light mode"),
-    DARK(1, "Dark mode"),
-    AUTO(2, "System default");
-
-    companion object {
-        val list = listOf(LIGHT, DARK, AUTO)
-        fun fromId(value: Int?): ThemeMode {
-            return when (value) {
-                DARK.id -> DARK
-                LIGHT.id -> LIGHT
-                else -> AUTO
-            }
-        }
-    }
-}
