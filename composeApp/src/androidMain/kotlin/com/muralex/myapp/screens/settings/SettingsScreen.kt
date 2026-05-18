@@ -1,4 +1,4 @@
-package com.muralex.myapp.screens
+package com.muralex.myapp.screens.settings
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.MutableTransitionState
@@ -32,18 +32,18 @@ import com.muralex.myapp.viewmodel.screens.settings.SettingsScreenState
 @Composable
 fun SettingsScreen(
     screenState: SettingsScreenState,
-    selectThemeMode: (Int) -> Unit,
+    eventHandler: SettingsEventHandler,
 ) {
     AppSettingsContent(
         screenState = screenState,
-        selectThemeMode = selectThemeMode,
+        onEvent = eventHandler::onEvent,
     )
 }
 
 @Composable
 fun AppSettingsContent(
     screenState: SettingsScreenState,
-    selectThemeMode: (Int) -> Unit,
+    onEvent: (SettingsUiEvent) -> Unit,
 ) {
 
     Column {
@@ -60,7 +60,7 @@ fun AppSettingsContent(
         ) {
             AppSettingsBox(
                 screenState = screenState,
-                selectThemeMode = selectThemeMode,
+                selectThemeMode = { onEvent(SettingsUiEvent.OnThemeSelected(it)) },
             )
         }
     }

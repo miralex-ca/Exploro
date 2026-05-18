@@ -1,10 +1,5 @@
-package com.muralex.myapp.screens
+package com.muralex.myapp.screens.details
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -35,40 +30,29 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.muralex.myapp.R
+import com.muralex.myapp.screens.details.DetailsUiEvent.ToggleFavorite
 import com.muralex.myapp.theme.appColors
+import com.muralex.myapp.ui.components.FadeInScreenContent
 import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsScreenState
 import java.util.Locale
 
 @Composable
 fun DetailsScreen(
     screenState: DetailsScreenState,
-    toggleFavorite: (String) -> Unit
+    eventHandler: DetailsEventHandler
 ) {
-
-    Column {
-        val state = remember {
-            MutableTransitionState(false).apply {
-                targetState = true
-            }
-        }
-
-        AnimatedVisibility(
-            visibleState = state,
-            enter = fadeIn(animationSpec = tween(320)),
-            exit = fadeOut()
-        ) {
-            DetailsScreenContent(
-                screenState = screenState,
-                toggleFavorite = toggleFavorite,
-            )
-        }
+    FadeInScreenContent {
+        DetailsScreenContent(
+            screenState = screenState,
+            onEvent = eventHandler::onEvent,
+        )
     }
 }
 
 @Composable
 fun DetailsScreenContent(
     screenState: DetailsScreenState,
-    toggleFavorite: (String) -> Unit
+    onEvent: (DetailsUiEvent) -> Unit,
 ) {
 
     if (screenState.isLoading) return
@@ -108,9 +92,7 @@ fun DetailsScreenContent(
                     capital = country.capital,
                     continent = country.continent,
                     isFavorite = screenState.isFavorite,
-                    onFavoriteClick = {
-                        toggleFavorite(country.id)
-                    }
+                    onFavoriteClick = { onEvent(ToggleFavorite(country.id)) }
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))

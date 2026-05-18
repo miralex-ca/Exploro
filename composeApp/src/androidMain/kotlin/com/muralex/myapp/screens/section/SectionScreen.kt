@@ -1,10 +1,5 @@
-package com.muralex.myapp.screens
+package com.muralex.myapp.screens.section
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -17,7 +12,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -28,33 +22,22 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
+import com.muralex.myapp.navigation.AppNavigator
 import com.muralex.myapp.theme.appColors
+import com.muralex.myapp.ui.components.FadeInScreenContent
 import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
 
 
 @Composable
 fun SectionScreen(
     screenState: SectionScreenState,
-    onListItemClick: (CountryListItem) -> Unit,
+    eventHandler: SectionEventHandler
 ) {
-
-    Column {
-        val state = remember {
-            MutableTransitionState(false).apply {
-                targetState = true
-            }
-        }
-
-        AnimatedVisibility(
-            visibleState = state,
-            enter = fadeIn(animationSpec = tween(320)),
-            exit = fadeOut()
-        ) {
-            SectionScreenContent(
-                screenState = screenState,
-                onListItemClick = onListItemClick,
-            )
-        }
+    FadeInScreenContent {
+        SectionScreenContent(
+            screenState = screenState,
+            onListItemClick = { eventHandler.onEvent(SectionUiEvent.OnItemClicked(it)) },
+        )
     }
 }
 
@@ -63,11 +46,8 @@ fun SectionScreenContent(
     screenState: SectionScreenState,
     onListItemClick: (CountryListItem) -> Unit,
 ) {
-
     when {
-
         screenState.isLoading -> {
-
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center

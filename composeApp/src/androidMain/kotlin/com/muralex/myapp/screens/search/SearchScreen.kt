@@ -37,20 +37,40 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
-import com.muralex.myapp.navigation.ScreenNavigator
+import com.muralex.myapp.navigation.AppNavigator
+import com.muralex.myapp.screens.home.HomeEventHandler
+import com.muralex.myapp.screens.home.HomeScreenContent
+import com.muralex.myapp.screens.search.SearchUiEvent.DidBecomeActive
+import com.muralex.myapp.screens.search.SearchUiEvent.OnItemClicked
+import com.muralex.myapp.screens.search.SearchUiEvent.SearchByQuery
 import com.muralex.myapp.theme.appColors
 import com.muralex.myapp.utils.OnChange
 import com.muralex.myapp.utils.SingleEffect
+import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 import com.muralex.myapp.viewmodel.screens.search.SearchResult
 import com.muralex.myapp.viewmodel.screens.search.SearchScreenState
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+
+
 @Composable
 fun SearchScreen(
     screenState: SearchScreenState,
-    navigator: ScreenNavigator,
-    onEvent: (SearchScreenUiEvent) -> Unit,
+    eventHandler: SearchEventHandler
+) {
+
+    SearchScreenContent(
+        screenState = screenState,
+        onEvent = eventHandler::onEvent,
+    )
+
+}
+
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@Composable
+fun SearchScreenContent(
+    screenState: SearchScreenState,
+    onEvent: (SearchUiEvent) -> Unit,
 ) {
 
     var query by remember { mutableStateOf("") }
@@ -63,7 +83,7 @@ fun SearchScreen(
 
     LaunchedEffect(query) {
         delay(400)
-        onEvent(SearchScreenUiEvent.SearchByQuery(query))
+        onEvent(SearchByQuery(query))
     }
 
     LaunchedEffect(screenState.searchResult) {
@@ -97,7 +117,7 @@ fun SearchScreen(
 
     SingleEffect(
         effect = screenState.screenBecomeActive,
-        consume = { onEvent(SearchScreenUiEvent.DidBecomeActive) })
+        consume = { onEvent(DidBecomeActive) })
     {
         query = ""
         searchFieldState.clearText()
@@ -136,7 +156,7 @@ fun SearchScreen(
                         onBackClick = {
                             query = ""
                             searchFieldState.clearText()
-                            navigator.navigateBack()
+                            onEvent(SearchUiEvent.OnBackClicked)
                         },
                         onClearClick = {
                             query = ""
@@ -175,14 +195,10 @@ fun SearchScreen(
                             ) { item ->
                                 SearchListRow(
                                     item = item,
-                                    onClick = {
-                                        onEvent(SearchScreenUiEvent.OnItemClicked(item, navigator))
-                                    }
+                                    onClick = { onEvent(OnItemClicked(item)) }
                                 )
                             }
                         }
-
-
                     }
 
                 }

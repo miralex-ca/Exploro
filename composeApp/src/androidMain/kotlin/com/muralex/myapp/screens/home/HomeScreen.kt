@@ -1,7 +1,6 @@
-package com.muralex.myapp.screens
+package com.muralex.myapp.screens.home
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -18,15 +17,12 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -34,20 +30,37 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
 import com.muralex.models.HomeSection
+import com.muralex.myapp.navigation.NavDestination
+import com.muralex.myapp.navigation.AppNavigator
+import com.muralex.myapp.navigation.ScreenNavigator
+import com.muralex.myapp.navigation.toDetailFromList
+import com.muralex.myapp.navigation.toSection
 import com.muralex.myapp.theme.AppTypography
 import com.muralex.myapp.theme.appColors
 import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 
 
-@OptIn(ExperimentalFoundationApi::class)
+
 @Composable
 fun HomeScreen(
     screenState: HomeScreenState,
-    onListItemClick: (CountryListItem) -> Unit,
-    onSectionClick: (String) -> Unit
+    eventHandler: HomeEventHandler
 ) {
-    if (screenState.isLoading) {
 
+    HomeScreenContent(
+        screenState = screenState,
+        onEvent = eventHandler::onEvent,
+    )
+}
+
+
+@Composable
+fun HomeScreenContent(
+    screenState: HomeScreenState,
+    onEvent: (HomeUiEvent) -> Unit,
+) {
+
+    if (screenState.isLoading) {
         Text(
             text = "Loading ...",
             style = MaterialTheme.typography.bodyLarge,
@@ -57,7 +70,6 @@ fun HomeScreen(
             textAlign = TextAlign.Center,
             fontSize = 18.sp
         )
-
     } else {
         if (screenState.homeSections.isEmpty()) {
             Text(
@@ -74,17 +86,14 @@ fun HomeScreen(
                 contentPadding = PaddingValues(top = 10.dp, bottom = 30.dp),
                 verticalArrangement = Arrangement.spacedBy(0.dp)
             ) {
-
                 items(
                     screenState.homeSections,
                     key = { it.continent }
                 ) { section ->
                     HomeSectionView(
                         section = section,
-                        onListItemClick = onListItemClick,
-                        onSectionClick = {
-                            onSectionClick(section.continent)
-                        }
+                        onListItemClick = { onEvent(HomeUiEvent.OnItemClicked(it))},
+                        onSectionClick = { onEvent(HomeUiEvent.OnSectionClicked(section.continent))}
                     )
                 }
             }
@@ -200,8 +209,8 @@ fun HomeCountryCard(
 
             Column(
                 modifier = Modifier
-                          .padding(top = 8.dp, bottom = 2.dp)
-                          .padding(horizontal = 4.dp)
+                    .padding(top = 8.dp, bottom = 2.dp)
+                    .padding(horizontal = 4.dp)
             ) {
                 Text(
                     text = item.name,

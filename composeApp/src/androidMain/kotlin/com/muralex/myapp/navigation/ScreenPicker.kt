@@ -3,9 +3,19 @@ package com.muralex.myapp.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.muralex.myapp.screens.*
+import com.muralex.myapp.screens.CountriesListScreen
+import com.muralex.myapp.screens.settings.SettingsScreen
+import com.muralex.myapp.screens.details.DetailsEventHandler
+import com.muralex.myapp.screens.details.DetailsScreen
+import com.muralex.myapp.screens.favorites.FavoritesEventHandler
+import com.muralex.myapp.screens.favorites.FavoritesScreen
+import com.muralex.myapp.screens.home.HomeEventHandler
+import com.muralex.myapp.screens.home.HomeScreen
+import com.muralex.myapp.screens.search.SearchEventHandler
 import com.muralex.myapp.screens.search.SearchScreen
-import com.muralex.myapp.screens.search.onSearchScreenEvent
+import com.muralex.myapp.screens.section.SectionEventHandler
+import com.muralex.myapp.screens.section.SectionScreen
+import com.muralex.myapp.screens.settings.SettingsEventHandler
 import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.ScreenIdentifier
 import com.muralex.myapp.viewmodel.ScreenParams
@@ -14,12 +24,9 @@ import com.muralex.myapp.viewmodel.screens.Screen
 import com.muralex.myapp.viewmodel.screens.countriesList.CountriesListState
 import com.muralex.myapp.viewmodel.screens.countrydetail.CountryDetailParams
 import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsScreenState
-import com.muralex.myapp.viewmodel.screens.countrydetail.toggleFavorite
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
-import com.muralex.myapp.viewmodel.screens.favorites.toggleFavoriteBySwipe
 import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 import com.muralex.myapp.viewmodel.screens.search.SearchScreenState
-import com.muralex.myapp.viewmodel.screens.section.SectionParams
 import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
 import com.muralex.myapp.viewmodel.screens.settings.SettingsScreenState
 import com.muralex.myapp.viewmodel.screens.settings.setThemeModeByIndex
@@ -27,63 +34,48 @@ import com.muralex.myapp.viewmodel.screens.settings.setThemeModeByIndex
 @Composable
 fun Navigation.ScreenPicker(
     screenIdentifier: ScreenIdentifier,
-    navigator: ScreenNavigator,
+    navigator: AppNavigator,
     navigate: (Screen, ScreenParams?) -> Unit,
     navigateByLevel1: (Level1Navigation) -> Unit,
     navigateBack: () -> Unit,
 ) {
     val state by stateProvider.getScreenStateFlow(screenIdentifier).collectAsState()
+    val screenNavigator = ScreenNavigator.Default(navigator)
 
     when (screenIdentifier.screen) {
         Screen.HomeScreen ->
             HomeScreen(
                 screenState = state as HomeScreenState,
-                onListItemClick = {
-                    navigate(
-                        Screen.CountryDetail,
-                        CountryDetailParams(countryCode = it.id, screenTitle = it.name)
-                    )
-                },
-                onSectionClick = {
-                    navigate(Screen.SectionScreen, SectionParams(it, screenTitle = it))
-                },
+                eventHandler = HomeEventHandler(screenNavigator),
             )
 
         Screen.FavoritesScreen ->
             FavoritesScreen(
                 screenState = state as FavoritesScreenState,
-                onListItemClick = {
-                    navigate(
-                        Screen.CountryDetail,
-                        CountryDetailParams(countryCode = it.id, screenTitle = it.name)
-                    )
-                },
-                toggleFavorite = { code ->
-                    events.toggleFavoriteBySwipe(code)
-                },
+                eventHandler = FavoritesEventHandler(screenNavigator, events),
             )
 
         Screen.SectionScreen ->
-            SectionScreen  (
+            SectionScreen(
                 screenState = state as SectionScreenState,
-                onListItemClick = {
-                    navigate(
-                        Screen.CountryDetail,
-                        CountryDetailParams(countryCode = it.id, screenTitle = it.name)
-                    )
-                },
+                eventHandler = SectionEventHandler(screenNavigator),
             )
+        Screen.CountryDetail ->
+            DetailsScreen(
+                screenState = state as DetailsScreenState,
+                eventHandler = DetailsEventHandler(events),
+            )
+
         Screen.SearchScreen ->
             SearchScreen(
                 screenState = state as SearchScreenState,
-                navigator = navigator,
-                onEvent = events::onSearchScreenEvent,
+                eventHandler = SearchEventHandler(screenNavigator, events),
             )
 
         Screen.SettingsScreen ->
             SettingsScreen(
                 screenState = state as SettingsScreenState,
-                selectThemeMode = { events.setThemeModeByIndex(it) },
+                eventHandler = SettingsEventHandler(events),
             )
 
         Screen.CountriesList ->
@@ -110,11 +102,7 @@ fun Navigation.ScreenPicker(
 
 
 
-        Screen.CountryDetail ->
-            DetailsScreen(
-                screenState = state as DetailsScreenState,
-                toggleFavorite = { code -> events.toggleFavorite(code)  }
-            )
+
 
         else -> {}
     }

@@ -1,4 +1,4 @@
-package com.muralex.myapp.screens
+package com.muralex.myapp.screens.favorites
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
@@ -6,7 +6,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -30,16 +29,34 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
+import com.muralex.myapp.navigation.AppNavigator
+import com.muralex.myapp.screens.favorites.FavoritesUiEvent.OnItemClicked
+import com.muralex.myapp.screens.favorites.FavoritesUiEvent.RemoveFavorite
+import com.muralex.myapp.screens.home.HomeEventHandler
+import com.muralex.myapp.screens.home.HomeScreenContent
 import com.muralex.myapp.theme.appColors
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
+import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalFoundationApi::class)
+
+
 @Composable
 fun FavoritesScreen(
     screenState: FavoritesScreenState,
-    onListItemClick: (CountryListItem) -> Unit,
-    toggleFavorite: (String) -> Unit
+    eventHandler: FavoritesEventHandler
+) {
+
+    FavoritesScreenContent(
+        screenState = screenState,
+        onEvent = eventHandler::onEvent,
+    )
+}
+
+@Composable
+fun FavoritesScreenContent(
+    screenState: FavoritesScreenState,
+    onEvent: (FavoritesUiEvent) -> Unit,
 ) {
     if (screenState.isLoading) {
         Text(
@@ -80,11 +97,10 @@ fun FavoritesScreen(
                         items = screenState.favorites,
                         key = { it.id }
                     ) { item ->
-
                         SwipeableFavoriteRow(
                             item = item,
-                            onClick = { onListItemClick(item) },
-                            onRemove = { toggleFavorite(item.id) },
+                            onClick = { onEvent(OnItemClicked(item)) },
+                            onRemove = { onEvent(RemoveFavorite(item.id)) },
                         )
                     }
                 }

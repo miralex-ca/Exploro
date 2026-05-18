@@ -9,7 +9,7 @@ import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.screens.Level1Navigation
 import com.muralex.myapp.viewmodel.screens.Screen
 
-interface ScreenNavigator {
+interface AppNavigator {
     fun navigateBack()
     fun navigate(screen: Screen, screenParams: ScreenParams? = null)
     fun navigateByLevel1(level1Navigation: Level1Navigation)
@@ -18,11 +18,11 @@ interface ScreenNavigator {
 fun Navigation.createNavigator(
     localNavigationState: MutableState<NavigationState>,
     saveableStateHolder: SaveableStateHolder
-): ScreenNavigator {
+): AppNavigator {
     val navigateFn = navigationProcessor(localNavigationState)
     val navigateLevel1Fn = level1NavigationProcessor(localNavigationState)
 
-    return object : ScreenNavigator {
+    return object : AppNavigator {
         override fun navigateBack() =
             navigateBack(localNavigationState, saveableStateHolder)
         override fun navigate(screen: Screen, screenParams: ScreenParams?) =
