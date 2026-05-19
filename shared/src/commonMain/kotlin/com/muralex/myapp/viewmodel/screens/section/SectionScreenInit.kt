@@ -1,6 +1,6 @@
 package com.muralex.myapp.viewmodel.screens.section
 
-import com.muralex.data.functions.getCountriesBySectionId
+import com.muralex.data.repository.functions.getCountriesBySectionId
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues

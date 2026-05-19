@@ -1,8 +1,8 @@
 package com.muralex.myapp.viewmodel.screens.countrydetail
 
-import com.muralex.data.functions.addFavorite
-import com.muralex.data.functions.isFavorite
-import com.muralex.data.functions.removeFavorite
+import com.muralex.data.repository.functions.addFavorite
+import com.muralex.data.repository.functions.isFavorite
+import com.muralex.data.repository.functions.removeFavorite
 import com.muralex.myapp.viewmodel.Events
 
 fun Events.toggleFavorite(code: String) = screenCoroutine {

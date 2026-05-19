@@ -1,6 +1,6 @@
 package com.muralex.myapp
 
-import com.muralex.data.Repository
+import com.muralex.data.repository.Repository
 import com.muralex.myapp.viewmodel.DKMPViewModel
 import org.koin.mp.KoinPlatform
 

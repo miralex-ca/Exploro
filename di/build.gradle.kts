@@ -32,7 +32,7 @@ kotlin {
             dependencies {
                 implementation(project(":core:models"))
                 implementation(project(":core:common"))
-                implementation(project(":data"))
+                implementation(project(":data:repository"))
                 implementation(project(":data:localdb"))
                 implementation(project(":data:network"))
                 implementation(libs.koin.core)

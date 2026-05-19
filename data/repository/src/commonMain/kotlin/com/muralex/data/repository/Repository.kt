@@ -1,10 +1,10 @@
-package com.muralex.data
+package com.muralex.data.repository
 
+import com.muralex.data.repository.sources.localsettings.MySettings
+import com.muralex.data.repository.sources.runtimecache.CacheObjects
 import com.muralex.core.common.DispatchersProvider
 import com.muralex.data.common.LocalDataSource
 import com.muralex.data.common.RemoteDataSource
-import com.muralex.data.sources.localsettings.MySettings
-import com.muralex.data.sources.runtimecache.CacheObjects
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.withContext
 

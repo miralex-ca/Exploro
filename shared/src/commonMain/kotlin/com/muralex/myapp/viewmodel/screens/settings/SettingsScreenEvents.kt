@@ -1,8 +1,8 @@
 package com.muralex.myapp.viewmodel.screens.settings
 
 
-import com.muralex.data.functions.getThemeMode
-import com.muralex.data.functions.saveThemeMode
+import com.muralex.data.repository.functions.getThemeMode
+import com.muralex.data.repository.functions.saveThemeMode
 import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.Events
 

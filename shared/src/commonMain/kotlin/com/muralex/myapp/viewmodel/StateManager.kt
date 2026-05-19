@@ -1,7 +1,7 @@
 package com.muralex.myapp.viewmodel
 
 
-import com.muralex.data.Repository
+import com.muralex.data.repository.Repository
 import com.muralex.myapp.viewmodel.appenvironment.AppEnvironment
 import com.muralex.myapp.viewmodel.appenvironment.prepareAppEnvironment
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues

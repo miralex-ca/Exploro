@@ -1,7 +1,7 @@
 package com.muralex.myapp.viewmodel.screens.countrydetail
 
-import com.muralex.data.functions.getCountryDetails
-import com.muralex.data.functions.isFavorite
+import com.muralex.data.repository.functions.getCountryDetails
+import com.muralex.data.repository.functions.isFavorite
 import com.muralex.myapp.viewmodel.ScreenParams
 import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings

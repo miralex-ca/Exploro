@@ -1,4 +1,4 @@
-package com.muralex.data.sources.localsettings
+package com.muralex.data.repository.sources.localsettings
 
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.boolean

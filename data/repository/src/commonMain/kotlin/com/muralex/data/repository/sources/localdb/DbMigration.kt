@@ -1,7 +1,7 @@
-package com.muralex.data.sources.localdb
+package com.muralex.data.repository.sources.localdb
 
-import com.muralex.data.Repository
-import com.muralex.data.utils.repoDebugLogger
+import com.muralex.data.repository.Repository
+import com.muralex.data.repository.utils.repoDebugLogger
 
 suspend fun Repository.migrateDbIfNeeded() = withRepoContext {
     val currentVersion = localSettings.dbVersion

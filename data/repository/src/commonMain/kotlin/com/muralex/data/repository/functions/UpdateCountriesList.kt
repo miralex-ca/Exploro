@@ -1,12 +1,11 @@
-package com.muralex.data.functions
+package com.muralex.data.repository.functions
 
-import com.muralex.data.Repository
-import com.muralex.data.utils.repoDebugLogger
+import com.muralex.data.repository.Repository
+import com.muralex.data.repository.utils.repoDebugLogger
 import com.muralex.models.DataResult
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.datetime.Clock
-
 
 suspend fun Repository.updateCountriesListData() = withRepoContext {
 

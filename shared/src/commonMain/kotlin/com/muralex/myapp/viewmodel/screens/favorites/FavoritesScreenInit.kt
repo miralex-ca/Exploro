@@ -1,6 +1,6 @@
 package com.muralex.myapp.viewmodel.screens.favorites
 
-import com.muralex.data.functions.getFavorites
+import com.muralex.data.repository.functions.getFavorites
 import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings

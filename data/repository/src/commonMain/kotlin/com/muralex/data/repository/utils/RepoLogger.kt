@@ -1,4 +1,4 @@
-package com.muralex.data.utils
+package com.muralex.data.repository.utils
 
 
 val repoDebugLogger = RepoDebugLogger()

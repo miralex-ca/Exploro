@@ -1,6 +1,6 @@
 package com.muralex.myapp.viewmodel.screens.search
 
-import com.muralex.data.functions.searchCountries
+import com.muralex.data.repository.functions.searchCountries
 import com.muralex.myapp.viewmodel.Events
 
 

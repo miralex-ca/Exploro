@@ -1,6 +1,6 @@
-package com.muralex.data.functions
+package com.muralex.data.repository.functions
 
-import com.muralex.data.Repository
+import com.muralex.data.repository.Repository
 import com.muralex.mappers.toListItems
 import com.muralex.models.CountryListItem
 

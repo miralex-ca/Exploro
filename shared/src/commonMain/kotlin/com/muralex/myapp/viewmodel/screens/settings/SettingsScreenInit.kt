@@ -1,6 +1,6 @@
 package com.muralex.myapp.viewmodel.screens.settings
 
-import com.muralex.data.functions.getThemeMode
+import com.muralex.data.repository.functions.getThemeMode
 import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings

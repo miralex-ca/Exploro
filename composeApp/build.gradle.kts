@@ -35,7 +35,7 @@ kotlin {
             implementation(projects.shared)
 //            implementation(libs.coil3)
 //            implementation("io.coil-kt:coil-svg:2.6.0")
-            implementation(project(":data"))             // ← add for Repository
+            implementation(project(":data:repository"))             // ← add for Repository
 
             implementation(project(":di"))
 

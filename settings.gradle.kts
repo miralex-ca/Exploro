@@ -30,7 +30,6 @@ dependencyResolutionManagement {
 
 include(":composeApp")
 include(":shared")
-include(":data")
 include(":core:models")
 include(":data:localdb")
 include(":data:network")

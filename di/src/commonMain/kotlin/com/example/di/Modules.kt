@@ -1,7 +1,7 @@
 package com.example.di
 
 import com.muralex.core.common.DispatchersProvider
-import com.muralex.data.Repository
+import com.muralex.data.repository.Repository
 import com.muralex.data.common.RemoteDataSource
 import com.muralex.network.ApiClient
 import com.muralex.network.RemoteDataSourceImpl
