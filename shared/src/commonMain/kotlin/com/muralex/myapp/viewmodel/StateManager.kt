@@ -25,7 +25,6 @@ class StateManager(repo: Repository) {
 
     val appScope: CoroutineScope = MainScope()
 
-    var isBootstrapped = false
     private val _launchScreenState = MutableStateFlow(LaunchScreenState.ACTIVE)
     val launchScreenState = _launchScreenState.asStateFlow()
 

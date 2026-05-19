@@ -10,10 +10,10 @@ fun StateManager.initHomeScreen() = ScreenInitSettings(
     title = "Home",
     initState = { HomeScreenState(isLoading = true) },
     callOnInit = {
-        val isFirstRun = !isBootstrapped
+        val isFirstRun = !dataRepository.runtimeCache.isBootstrapped
 
         if (isFirstRun) {
-            isBootstrapped = true
+            dataRepository.runtimeCache.isBootstrapped = true
             bootstrapApp()
         }
 
