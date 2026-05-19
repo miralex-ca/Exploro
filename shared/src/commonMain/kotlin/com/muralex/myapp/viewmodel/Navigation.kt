@@ -204,9 +204,6 @@ class Navigation(val stateManager : StateManager) {
         return false
     }
 
-
-
-
     fun onEnterForeground() {
         debugLogger.log("onEnterForeground: screen scopes are reinitialized")
         val reinitializedScreens = stateManager.reinitScreenScopes()

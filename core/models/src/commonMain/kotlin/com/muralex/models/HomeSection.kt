@@ -1,6 +1,7 @@
 package com.muralex.models
 
 data class HomeSection(
-    val continent: String,
+    val sectionId: String,
+    val sectionName: String,
     val countries: List<CountryListItem>
 )

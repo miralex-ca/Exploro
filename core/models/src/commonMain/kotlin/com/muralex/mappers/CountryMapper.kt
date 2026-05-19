@@ -14,5 +14,4 @@ fun Country.toListItem(): CountryListItem =
         flagPngUrl = flagPngUrl,
     )
 
-fun List<Country>.toListItems():
-        List<CountryListItem> = map { it.toListItem() }
+fun List<Country>.toListItems() = map { it.toListItem() }

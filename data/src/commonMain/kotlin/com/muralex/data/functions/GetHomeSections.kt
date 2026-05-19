@@ -22,7 +22,8 @@ suspend fun Repository.getHomeSections(): List<HomeSection> = withRepoContext {
             null
         } else {
             HomeSection(
-                continent = continent,
+                sectionId = continent,
+                sectionName = continent,
                 countries = countries
             )
         }

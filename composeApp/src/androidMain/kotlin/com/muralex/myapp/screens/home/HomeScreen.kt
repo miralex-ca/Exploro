@@ -83,12 +83,12 @@ fun HomeScreenContent(
             ) {
                 items(
                     screenState.homeSections,
-                    key = { it.continent }
+                    key = { it.sectionName }
                 ) { section ->
                     HomeSectionView(
                         section = section,
                         onListItemClick = { onEvent(HomeUiEvent.OnItemClicked(it))},
-                        onSectionClick = { onEvent(HomeUiEvent.OnSectionClicked(section.continent))}
+                        onSectionClick = { onEvent(HomeUiEvent.OnSectionClicked(section.sectionName))}
                     )
                 }
             }
@@ -118,7 +118,7 @@ fun HomeSectionView(
         ) {
 
             Text(
-                text = section.continent,
+                text = section.sectionName,
                 style = AppTypography.homeSectionTitle,
                 modifier = Modifier.weight(1f)
             )

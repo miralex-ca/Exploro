@@ -30,21 +30,9 @@ data class CountryDetails(
     val timezones: List<String>
 )
 
-data class Currency(
-    val code: String,
-    val name: String,
-    val symbol: String
-)
-
 data class CountryFull(
     val country: Country,
     val details: CountryDetails?,
-    val isFavorite: Boolean = false
-)
-
-
-data class CountrysDetails(
-    val country: Country,
     val isFavorite: Boolean = false
 )
 
@@ -54,14 +42,6 @@ data class CountryUserData(
     val country: CountryListItem,
     val isFavorite: Boolean = false
 )
-
-
-data class CountryExtraInfo (
-    val vaccines : String = "",
-) {
-    val vaccinesList : List<String>
-        get() = vaccines.split(", ")
-}
 
 
 data class CountryListItem(
@@ -86,13 +66,3 @@ data class CountryListItem(
         )
     }
 }
-
-fun Country.toListItem(): CountryListItem = CountryListItem(
-    id = id,
-    name = name,
-    officialName = officialName,
-    capital = capital,
-    continent = continent,
-    subregion = subregion,
-    flagPngUrl = flagPngUrl,
-)

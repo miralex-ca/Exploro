@@ -1,7 +1,6 @@
 package com.muralex.models
 
 sealed interface DataResult<out T> {
-
     data class Success<T>(
         val data: T
     ) : DataResult<T>
