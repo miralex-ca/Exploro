@@ -4,7 +4,6 @@ import com.muralex.data.repository.functions.getThemeMode
 import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.StateManager
 
-
 data class AppEnvironment(
     val themeMode: ThemeMode = ThemeMode.DEFAULT
 )

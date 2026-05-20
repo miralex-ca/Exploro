@@ -27,5 +27,4 @@ fun StateManager.initHomeScreen() = ScreenInitSettings(
         }
     },
     callOnInitAtEachNavigation = CallOnInitValues.DONT_CALL
-
 )
