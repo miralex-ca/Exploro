@@ -126,5 +126,9 @@ fun AppLocalDb.searchCountries(query: String): List<Country> {
         .executeAsList().map { it.toDomain() }
 }
 
+fun AppLocalDb.getCountriesCount(): Long {
+    return countriesQueries.countCountries().executeAsOne()
+}
+
 
 

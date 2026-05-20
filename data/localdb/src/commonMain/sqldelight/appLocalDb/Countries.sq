@@ -94,3 +94,6 @@ WHERE LOWER(name) LIKE LOWER('%' || ? || '%')
    OR LOWER(official_name) LIKE LOWER('%' || ? || '%')
    OR LOWER(capital) LIKE LOWER('%' || ? || '%')
 ORDER BY name;
+
+countCountries:
+SELECT COUNT(*) FROM Countries;

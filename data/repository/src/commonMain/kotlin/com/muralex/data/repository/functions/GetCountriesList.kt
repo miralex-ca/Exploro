@@ -11,3 +11,9 @@ suspend fun Repository.getCountriesBySectionId(sectionId: String): List<CountryL
 suspend fun Repository.searchCountries(query: String): List<CountryListItem> = withRepoContext {
     localDb.searchCountries(query).toListItems()
 }
+
+suspend fun Repository.hasCountriesData(): Boolean = withRepoContext {
+    localDb.hasCountriesData()
+}
+
+
