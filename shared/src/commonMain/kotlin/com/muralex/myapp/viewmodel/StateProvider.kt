@@ -9,8 +9,8 @@ class StateProvider(val stateManager: StateManager) {
         return stateManager.screenStatesMap[screenIdentifier.URI]!!.asStateFlow()
     }
 
-    fun getLaunchScreenStateFlow(): StateFlow<LaunchScreenState> {
-        return stateManager.launchScreenState
+    fun getAppStartupStateFlow(): StateFlow<AppStartupState> {
+        return stateManager.appStartupState
     }
 
     fun getAppEnvironmentFlow(): StateFlow<AppEnvironment> {

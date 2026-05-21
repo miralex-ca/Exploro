@@ -9,10 +9,9 @@ fun StateManager.initSettingsScreen() = ScreenInitSettings(
     title = "Settings",
     initState = { SettingsScreenState(isLoading = true) },
     callOnInit = {
-
         val savedThemeMode = dataRepository.getThemeMode()
 
-         updateScreen(SettingsScreenState::class) {
+        updateScreen(SettingsScreenState::class) {
             it.copy(
                 isLoading = false,
                 savedThemeMode = savedThemeMode
@@ -21,5 +20,4 @@ fun StateManager.initSettingsScreen() = ScreenInitSettings(
     },
     clearStateCacheWhenScreenIsRemovedFromBackstack = true,
     callOnInitAtEachNavigation = CallOnInitValues.DONT_CALL
-
 )

@@ -13,7 +13,10 @@ object navigationSettings {
 
 // LEVEL 1 NAVIGATION OF THE APP
 
-enum class Level1Navigation(val screenIdentifier: ScreenIdentifier, val rememberVerticalStack: Boolean = false) {
-    Home(ScreenIdentifier.get( HomeScreen, null), true),
-    Favorites( ScreenIdentifier.get( Screen.FavoritesScreen, null), true),
+enum class Level1Navigation(
+    val screenIdentifier: ScreenIdentifier,
+    val rememberVerticalStack: Boolean = false
+) {
+    Home(ScreenIdentifier.get(HomeScreen, null), true),
+    Favorites(ScreenIdentifier.get(Screen.FavoritesScreen, null), true),
 }

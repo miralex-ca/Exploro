@@ -1,58 +1,57 @@
 package com.muralex.data.repository.functions
 
 import com.muralex.data.repository.Repository
-import com.muralex.data.repository.utils.repoDebugLogger
+import com.muralex.models.AppError
 import com.muralex.models.DataResult
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.datetime.Clock
 
-suspend fun Repository.updateCountriesListData() = withRepoContext {
 
-    val nowUnixTime = Clock.System.now().epochSeconds
+suspend fun Repository.updateCountriesListData(): DataResult<Unit> = withRepoContext {
+        val nowUnixTime = Clock.System.now().epochSeconds
+        val shouldRefresh = nowUnixTime - localSettings.listCacheTimestamp > 24 * 3600
 
-    val shouldRefresh = nowUnixTime - localSettings.listCacheTimestamp > 24 * 360 * 60
-
-    if (!shouldRefresh) return@withRepoContext
-
-    coroutineScope {
-
-        val countriesDeferred = async {
-            webservices.fetchAllCountries()
+        if (!shouldRefresh) {
+            return@withRepoContext  DataResult.Success(Unit)
         }
 
-        val detailsDeferred = async {
-            webservices.fetchAllCountryDetails()
-        }
+        coroutineScope {
+            val countriesDeferred = async { webservices.fetchAllCountries() }
+            val detailsDeferred = async { webservices.fetchAllCountryDetails() }
 
-        val countriesResult = countriesDeferred.await()
-        val detailsResult = detailsDeferred.await()
+            val countriesResult = countriesDeferred.await()
+            val detailsResult = detailsDeferred.await()
 
-        when (countriesResult) {
-            is DataResult.Success -> {
-                localDb.setCountriesList(
-                    countriesResult.data.sortedBy { it.name }
-                )
+            val countriesStored =
+                if (countriesResult is DataResult.Success) {
+                    runCatching {
+                        localDb.setCountriesList(
+                            countriesResult.data.sortedBy { it.name }
+                        )
+                    }.isSuccess
+                } else {
+                    false
+                }
+
+            val detailsStored =
+                if (detailsResult is DataResult.Success) {
+                    runCatching {
+                        localDb.setCountryDetailsList(detailsResult.data)
+                    }.isSuccess
+                } else {
+                    false
+                }
+            when {
+                countriesStored && detailsStored -> {
+                    localSettings.listCacheTimestamp = nowUnixTime
+                    DataResult.Success(Unit)
+                }
+
+                else -> {
+                    DataResult.Error(error = AppError.Unexpected)
+                }
             }
-
-            is DataResult.Error -> {
-                repoDebugLogger.log("ERROR: countries fetch failed")
-            }
-        }
-
-        when (detailsResult) {
-            is DataResult.Success -> {
-                localDb.setCountryDetailsList(detailsResult.data)
-            }
-
-            is DataResult.Error -> {
-                repoDebugLogger.log("ERROR: details fetch failed")
-            }
-        }
-
-
-        if (countriesResult is DataResult.Success || detailsResult is DataResult.Success) {
-            localSettings.listCacheTimestamp = nowUnixTime
         }
     }
-}

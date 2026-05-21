@@ -7,4 +7,3 @@ data class FavoritesScreenState (
     val isLoading : Boolean = false,
     val favorites : List<CountryListItem> = emptyList(),
 ): ScreenState
-

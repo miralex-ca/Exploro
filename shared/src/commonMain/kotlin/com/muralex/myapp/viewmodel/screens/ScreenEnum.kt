@@ -11,7 +11,7 @@ import com.muralex.myapp.viewmodel.screens.settings.initSettingsScreen
 
 enum class Screen(
     val asString: String,
-    val navigationLevel : Int = 1,
+    val navigationLevel: Int = 1,
     val initSettings: StateManager.(ScreenIdentifier) -> ScreenInitSettings,
 ) {
     HomeScreen("home", 1, {
@@ -37,5 +37,4 @@ enum class Screen(
     FavoritesScreen("favorites", 1, {
         initFavoritesScreen()
     }),
-
 }

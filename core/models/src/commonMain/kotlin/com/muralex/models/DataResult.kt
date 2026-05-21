@@ -10,6 +10,8 @@ sealed interface DataResult<out T> {
     ) : DataResult<Nothing>
 }
 
+fun DataResult<*>.isSuccess() = this is DataResult.Success
+
 sealed interface AppError {
     data object Network : AppError
     data object Unexpected : AppError

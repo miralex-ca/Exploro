@@ -14,7 +14,11 @@ fun StateManager.initHomeScreen() = ScreenInitSettings(
 
         if (isFirstRun) {
             dataRepository.runtimeCache.isBootstrapped = true
-            bootstrapApp()
+            val bootstrapResult = bootstrapApp()
+
+            if (bootstrapResult.isFailure()) {
+                return@ScreenInitSettings
+            }
         }
 
         val sections = dataRepository.getHomeSections()

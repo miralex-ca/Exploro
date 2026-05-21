@@ -25,11 +25,11 @@ class StateManager(repo: Repository) {
 
     val appScope: CoroutineScope = MainScope()
 
-    private val _launchScreenState = MutableStateFlow(LaunchScreenState.ACTIVE)
-    val launchScreenState = _launchScreenState.asStateFlow()
+    private val _appStartupState = MutableStateFlow<AppStartupState>(AppStartupState.Loading)
+    val appStartupState = _appStartupState.asStateFlow()
 
-    fun updateLaunchScreenState(state: LaunchScreenState) {
-        _launchScreenState.value = state
+    fun updateStartupState(state: AppStartupState) {
+        _appStartupState.update { state }
     }
 
     private val _appEnvironment = MutableStateFlow(AppEnvironment())
@@ -149,9 +149,10 @@ class StateManager(repo: Repository) {
     }
 }
 
-enum class LaunchScreenState {
-    ACTIVE,
-    INACTIVE
+sealed interface AppStartupState {
+    data object Loading : AppStartupState
+    data object Ready : AppStartupState
+    data class Error(val message: String) : AppStartupState
 }
 
 
