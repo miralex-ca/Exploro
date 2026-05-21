@@ -5,7 +5,6 @@ import com.muralex.data.repository.utils.repoDebugLogger
 
 suspend fun Repository.migrateDbIfNeeded() = withRepoContext {
     val currentVersion = localSettings.dbVersion
-
     val dbVersion = localDb.databaseVersion
 
     if (currentVersion == dbVersion && !localSettings.shouldForceDbUpdate) {

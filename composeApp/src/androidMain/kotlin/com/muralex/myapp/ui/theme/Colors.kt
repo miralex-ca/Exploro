@@ -76,29 +76,28 @@ val CardBorderDark = Color(0xFF333C49)
 val DarkCaretColor = Color(0xFF7FA7FF)
 
 
+val LightColorScheme = lightColorScheme(
+    primary = AccentBlue,
+    onPrimary = OnAccentBlue,
 
-val LightColorScheme =  lightColorScheme(
-        primary = AccentBlue,
-        onPrimary =  OnAccentBlue,
+    background = BlueBackground,
+    onBackground = OnBlueBackground,
 
-        background = BlueBackground,
-        onBackground = OnBlueBackground,
+    surface = BlueSurface,
+    onSurface = onBlueSurface,
+    surfaceTint = BlueSurfaceTint,
+    surfaceContainerHighest = CardLight,
 
-        surface = BlueSurface,
-        onSurface = onBlueSurface,
-        surfaceTint = BlueSurfaceTint,
-        surfaceContainerHighest = CardLight,
+    surfaceContainer = BlueSurfaceContainer,
+    surfaceContainerHigh = BlueSurfaceContainerHigh,
 
-    surfaceContainer  = BlueSurfaceContainer,
-    surfaceContainerHigh  = BlueSurfaceContainerHigh,
+    secondaryContainer = BlueSecondaryContainer,
 
-        secondaryContainer = BlueSecondaryContainer,
+    surfaceVariant = BlueSurfaceVariant,
+    onSurfaceVariant = onBlueSurfaceVariant,
 
-        surfaceVariant = BlueSurfaceVariant,
-        onSurfaceVariant = onBlueSurfaceVariant,
-
-        primaryContainer = BluePrimaryContainer,
-        onPrimaryContainer = onBluePrimaryContainer,
+    primaryContainer = BluePrimaryContainer,
+    onPrimaryContainer = onBluePrimaryContainer,
 
     )
 

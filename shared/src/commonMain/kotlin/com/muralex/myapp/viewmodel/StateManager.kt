@@ -25,7 +25,7 @@ class StateManager(repo: Repository) {
 
     val appScope: CoroutineScope = MainScope()
 
-    private val _appStartupState = MutableStateFlow<AppStartupState>(AppStartupState.Loading)
+    private val _appStartupState = MutableStateFlow<AppStartupState>(AppStartupState.Ready)
     val appStartupState = _appStartupState.asStateFlow()
 
     fun updateStartupState(state: AppStartupState) {
