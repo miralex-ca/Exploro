@@ -13,6 +13,10 @@ object Strings {
     val themeModeLight @Composable get() = "Light mode"
     val themeModeDark @Composable get() = "Dark mode"
     val themeModeSystem @Composable get() = "System mode"
+
+    val appStartupErrorTitle @Composable get() = "Something went wrong"
+    val appStartupErrorSyncDes @Composable get() = "We couldn't load your data. Please check your connection and try again."
+    val appStartupErrorDes @Composable get() = "We couldn't load your data. Please try again later."
 }
 
 @Composable

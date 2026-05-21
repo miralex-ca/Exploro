@@ -15,7 +15,6 @@ import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.screens.home.retryBootstrapApp
 
 @SuppressLint("UnusedBoxWithConstraintsScope")
-
 @Composable
 fun Navigation.Router() {
     val screenUIsStateHolder = rememberSaveableStateHolder()
@@ -25,7 +24,12 @@ fun Navigation.Router() {
     when (startupState) {
         is AppStartupState.Loading -> AppLoadingScreen()
 
-        is AppStartupState.Error -> AppErrorScreen(onRetry = { events.retryBootstrapApp() })
+        is AppStartupState.Failure -> {
+            AppErrorScreen(
+                failedAfterSync = startupState is AppStartupState.Failure.AfterSync,
+                onRetry = { events.retryBootstrapApp() }
+            )
+        }
 
         AppStartupState.Ready -> {
             BoxWithConstraints {

@@ -15,9 +15,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.muralex.myapp.utils.Strings
 
 @Composable
-fun AppErrorScreen(onRetry: () -> Unit) {
+fun AppErrorScreen(
+    failedAfterSync: Boolean = false,
+    onRetry: () -> Unit
+) {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -54,14 +58,14 @@ fun AppErrorScreen(onRetry: () -> Unit) {
                     Spacer(modifier = Modifier.height(20.dp))
 
                     Text(
-                        text = "Something went wrong",
+                        text = Strings.appStartupErrorTitle,
                         style = MaterialTheme.typography.titleLarge
                     )
 
                     Spacer(modifier = Modifier.height(28.dp))
 
                     Text(
-                        text = "We couldn't load your data. Please check your connection and try again.",
+                        text = if (failedAfterSync) Strings.appStartupErrorSyncDes else Strings.appStartupErrorDes,
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center
@@ -78,6 +82,5 @@ fun AppErrorScreen(onRetry: () -> Unit) {
                 }
             }
         }
-
     }
 }

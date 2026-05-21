@@ -152,7 +152,10 @@ class StateManager(repo: Repository) {
 sealed interface AppStartupState {
     data object Loading : AppStartupState
     data object Ready : AppStartupState
-    data object Error : AppStartupState
+    sealed interface Failure : AppStartupState {
+        data object AfterSync : Failure
+        data object UnexpectedError : Failure
+    }
 }
 
 

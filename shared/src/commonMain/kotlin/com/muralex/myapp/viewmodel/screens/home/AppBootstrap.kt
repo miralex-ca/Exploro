@@ -8,13 +8,20 @@ import com.muralex.data.repository.sources.localdb.migrateDbIfNeeded
 import com.muralex.myapp.viewmodel.AppStartupState
 import com.muralex.myapp.viewmodel.StateManager
 
+sealed interface BootstrapResult {
+    data object Success : BootstrapResult
+    data object Failure : BootstrapResult
+}
+
+fun BootstrapResult.isFailure() = this == BootstrapResult.Failure
+
 suspend fun StateManager.bootstrapApp(): BootstrapResult {
     updateStartupState(AppStartupState.Loading)
 
     val migrationResult = dataRepository.migrateDbIfNeeded()
 
     if (migrationResult is DataResult.Error) {
-        updateStartupState(AppStartupState.Error)
+        updateStartupState(AppStartupState.Failure.UnexpectedError)
         return BootstrapResult.Failure
     }
 
@@ -27,14 +34,9 @@ suspend fun StateManager.bootstrapApp(): BootstrapResult {
         updateStartupState(AppStartupState.Ready)
         BootstrapResult.Success
     } else {
-        updateStartupState(AppStartupState.Error)
+        updateStartupState(AppStartupState.Failure.AfterSync)
         BootstrapResult.Failure
     }
 }
 
-sealed interface BootstrapResult {
-    data object Success : BootstrapResult
-    data object Failure : BootstrapResult
-}
 
-fun BootstrapResult.isFailure() = this == BootstrapResult.Failure
