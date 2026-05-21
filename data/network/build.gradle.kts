@@ -35,6 +35,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(project(":core:common"))
                 api(project(":core:models"))
                 api(project(":data:common"))
                 implementation(libs.ktor.core)

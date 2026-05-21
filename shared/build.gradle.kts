@@ -41,6 +41,7 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":core:common"))
             implementation(project(":data:repository"))
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.coroutines.core)

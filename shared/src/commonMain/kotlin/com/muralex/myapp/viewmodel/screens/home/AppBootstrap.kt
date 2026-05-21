@@ -1,18 +1,22 @@
 package com.muralex.myapp.viewmodel.screens.home
 
+import com.muralex.core.common.result.DataResult
+import com.muralex.core.common.result.isSuccess
 import com.muralex.data.repository.functions.hasCountriesData
 import com.muralex.data.repository.functions.updateCountriesListData
 import com.muralex.data.repository.sources.localdb.migrateDbIfNeeded
-import com.muralex.models.AppError
-import com.muralex.models.DataResult
-import com.muralex.models.isSuccess
 import com.muralex.myapp.viewmodel.AppStartupState
 import com.muralex.myapp.viewmodel.StateManager
 
 suspend fun StateManager.bootstrapApp(): BootstrapResult {
     updateStartupState(AppStartupState.Loading)
 
-    dataRepository.migrateDbIfNeeded()
+    val migrationResult = dataRepository.migrateDbIfNeeded()
+
+    if (migrationResult is DataResult.Error) {
+        updateStartupState(AppStartupState.Error)
+        return BootstrapResult.Failure
+    }
 
     val hasLocalData = dataRepository.hasCountriesData()
     val syncResult = dataRepository.updateCountriesListData()
@@ -23,7 +27,7 @@ suspend fun StateManager.bootstrapApp(): BootstrapResult {
         updateStartupState(AppStartupState.Ready)
         BootstrapResult.Success
     } else {
-        updateStartupState(AppStartupState.Error(syncResult.toErrorMessage()))
+        updateStartupState(AppStartupState.Error)
         BootstrapResult.Failure
     }
 }
@@ -34,10 +38,3 @@ sealed interface BootstrapResult {
 }
 
 fun BootstrapResult.isFailure() = this == BootstrapResult.Failure
-
-private fun DataResult<*>.toErrorMessage(): String {
-    return when {
-        this is DataResult.Error && error == AppError.Network -> "Network error"
-        else -> "Unable to start app"
-    }
-}

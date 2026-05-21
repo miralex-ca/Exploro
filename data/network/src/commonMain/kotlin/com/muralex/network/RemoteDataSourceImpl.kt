@@ -1,9 +1,9 @@
 package com.muralex.network
 
+import com.muralex.core.common.result.DataResult
 import com.muralex.data.common.RemoteDataSource
 import com.muralex.models.Country
 import com.muralex.models.CountryDetails
-import com.muralex.models.DataResult
 import com.muralex.network.api.CountryApi
 import com.muralex.network.dto.entity
 
@@ -20,7 +20,7 @@ class RemoteDataSourceImpl(
             }
 
             is NetworkResult.Error -> {
-                DataResult.Error(result.toAppError())
+                DataResult.Error(result.error.toDataError())
             }
         }
     }
@@ -32,9 +32,8 @@ class RemoteDataSourceImpl(
                     result.data.entity()
                 )
             }
-
             is NetworkResult.Error -> {
-                DataResult.Error(result.toAppError())
+                DataResult.Error(result.error.toDataError())
             }
         }
     }
@@ -44,9 +43,8 @@ class RemoteDataSourceImpl(
             is NetworkResult.Success -> {
                 DataResult.Success(result.data.entity)
             }
-
             is NetworkResult.Error -> {
-                DataResult.Error(result.toAppError())
+                DataResult.Error(result.error.toDataError())
             }
         }
     }
@@ -60,7 +58,7 @@ class RemoteDataSourceImpl(
             }
 
             is NetworkResult.Error -> {
-                DataResult.Error(result.toAppError())
+                DataResult.Error(result.error.toDataError())
             }
         }
     }

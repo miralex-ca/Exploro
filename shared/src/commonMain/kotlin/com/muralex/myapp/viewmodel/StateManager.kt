@@ -152,7 +152,7 @@ class StateManager(repo: Repository) {
 sealed interface AppStartupState {
     data object Loading : AppStartupState
     data object Ready : AppStartupState
-    data class Error(val message: String) : AppStartupState
+    data object Error : AppStartupState
 }
 
 

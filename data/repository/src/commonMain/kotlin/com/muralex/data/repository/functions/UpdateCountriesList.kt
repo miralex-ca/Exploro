@@ -1,11 +1,9 @@
 package com.muralex.data.repository.functions
 
+import com.muralex.core.common.result.DataResult
 import com.muralex.data.repository.Repository
-import com.muralex.models.AppError
-import com.muralex.models.DataResult
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.datetime.Clock
 
 
@@ -27,9 +25,7 @@ suspend fun Repository.updateCountriesListData(): DataResult<Unit> = withRepoCon
             val countriesStored =
                 if (countriesResult is DataResult.Success) {
                     runCatching {
-                        localDb.setCountriesList(
-                            countriesResult.data.sortedBy { it.name }
-                        )
+                        localDb.setCountriesList(countriesResult.data.sortedBy { it.name })
                     }.isSuccess
                 } else {
                     false
@@ -50,7 +46,7 @@ suspend fun Repository.updateCountriesListData(): DataResult<Unit> = withRepoCon
                 }
 
                 else -> {
-                    DataResult.Error(error = AppError.Unexpected)
+                    DataResult.Error(error = null)
                 }
             }
         }

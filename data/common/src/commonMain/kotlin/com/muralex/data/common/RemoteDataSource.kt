@@ -1,8 +1,8 @@
 package com.muralex.data.common
 
+import com.muralex.core.common.result.DataResult
 import com.muralex.models.Country
 import com.muralex.models.CountryDetails
-import com.muralex.models.DataResult
 
 interface RemoteDataSource {
     suspend fun fetchAllCountries(): DataResult<List<Country>>
