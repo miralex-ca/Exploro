@@ -120,8 +120,6 @@ fun SearchScreenContent(
         keyboardController?.show()
     }
 
-
-
     val listState = rememberLazyListState()
 
     LaunchedEffect(listState.isScrollInProgress) {
@@ -176,8 +174,8 @@ fun SearchScreenContent(
                         LazyColumn(
                             state = listState,
                             contentPadding = PaddingValues(
-                                horizontal = 14.dp,
-                                vertical = 12.dp
+                                start = 14.dp, end = 14.dp,
+                                top = 12.dp, bottom = 60.dp
                             ),
                             modifier = Modifier
                                 .fillMaxSize()
@@ -194,7 +192,6 @@ fun SearchScreenContent(
                             }
                         }
                     }
-
                 }
             }
         }
@@ -207,7 +204,8 @@ fun SearchScreenContent(
             },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .padding(16.dp)
+                .padding(end = 26.dp)
+                .padding(bottom = 46.dp)
         ) {
             Icon(
                 imageVector = Icons.Default.Search,
@@ -377,21 +375,6 @@ fun SearchListRow(
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-//            AsyncImage(
-//                model = item.flagPngUrl,
-//                contentDescription = null,
-//                modifier = Modifier
-//                    .height(58.dp)
-//                    .width(75.dp)
-//                    .border(
-//                        width = 1.dp,
-//                        color = Color.LightGray.copy(alpha = 0.45f),
-//                        shape = RoundedCornerShape(6.dp)
-//                    ),
-//
-//                contentScale = ContentScale.Crop
-//            )
-
 
             RemoteImage(
                 imageUrl = item.flagPngUrl,

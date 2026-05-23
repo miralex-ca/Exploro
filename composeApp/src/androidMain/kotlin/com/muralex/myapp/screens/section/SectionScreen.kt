@@ -61,7 +61,7 @@ fun SectionScreenContent(
     } else {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 160.dp),
-            contentPadding = PaddingValues(12.dp),
+            contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 60.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {

@@ -69,7 +69,7 @@ fun DetailsScreenContent(
             .fillMaxSize()
             .padding(0.dp)
             .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
         Surface(
@@ -79,7 +79,8 @@ fun DetailsScreenContent(
             shadowElevation = 0.dp,
             modifier = Modifier
                 .widthIn(max = 700.dp)
-                .padding(16.dp)
+                .padding(horizontal = 16.dp)
+                .padding(top = 16.dp, bottom = 60.dp)
                 .border(
                     width = 1.dp,
                     color = MaterialTheme.appColors.cardBorder,

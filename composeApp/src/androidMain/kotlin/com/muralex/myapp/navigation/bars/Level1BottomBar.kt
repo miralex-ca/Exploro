@@ -9,6 +9,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.ScreenIdentifier
@@ -17,7 +18,7 @@ import com.muralex.myapp.viewmodel.screens.Level1Navigation
 @Composable
 fun Navigation.Level1BottomBar(
     selectedTab: ScreenIdentifier,
-    navigateByLevel1Menu: (Level1Navigation) -> Unit
+    navigateByLevel1Menu: (Level1Navigation) -> Unit,
 ) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.surface,

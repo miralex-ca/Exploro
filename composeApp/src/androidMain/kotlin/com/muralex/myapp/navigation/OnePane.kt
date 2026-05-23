@@ -3,7 +3,9 @@ package com.muralex.myapp.navigation
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -35,6 +37,7 @@ fun Navigation.OnePane(
     }
 
     Scaffold(
+        contentWindowInsets = WindowInsets(0),
         content = { contentPadding ->
             val adjustedPadding = PaddingValues(
                 top = 0.dp,
@@ -44,7 +47,7 @@ fun Navigation.OnePane(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(adjustedPadding)
+                    .padding(contentPadding)
             ) {
                 when {
                     screenIdentifier.screen == Screen.SearchScreen -> {}
@@ -75,7 +78,7 @@ fun Navigation.OnePane(
             if (screenIdentifier.screen.navigationLevel == 1)
                 Level1BottomBar(
                     selectedTab = screenIdentifier,
-                    navigateByLevel1Menu = screenNavActions::toLevel1Screen
+                    navigateByLevel1Menu = screenNavActions::toLevel1Screen,
                 )
         }
     )
