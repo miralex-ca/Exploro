@@ -6,5 +6,5 @@ import com.muralex.myapp.viewmodel.ScreenState
 data class HomeScreenState(
     val isLoading: Boolean = false,
     val homeSections: List<HomeSection> = emptyList(),
-    ) : ScreenState
+) : ScreenState
 

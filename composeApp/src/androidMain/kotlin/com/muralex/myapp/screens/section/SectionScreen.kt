@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
 import com.muralex.myapp.ui.components.FadeInScreenContent
+import com.muralex.myapp.ui.components.RemoteImage
+import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
 
@@ -33,10 +35,14 @@ fun SectionScreen(
     eventHandler: SectionEventHandler
 ) {
     FadeInScreenContent {
-        SectionScreenContent(
-            screenState = screenState,
-            onListItemClick = { eventHandler.onEvent(SectionUiEvent.OnItemClicked(it)) },
-        )
+        if (screenState.isLoading) {
+            ScreenLoading()
+        } else {
+            SectionScreenContent(
+                screenState = screenState,
+                onListItemClick = { eventHandler.onEvent(SectionUiEvent.OnItemClicked(it)) },
+            )
+        }
     }
 }
 
@@ -45,44 +51,27 @@ fun SectionScreenContent(
     screenState: SectionScreenState,
     onListItemClick: (CountryListItem) -> Unit,
 ) {
-    when {
-        screenState.isLoading -> {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("Loading...")
-            }
+    if (screenState.countries.isEmpty()) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("No countries found")
         }
-
-        screenState.countries.isEmpty() -> {
-
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("No countries found")
-            }
-        }
-
-        else -> {
-
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(minSize = 160.dp),
-                contentPadding = PaddingValues(12.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-
-                items(screenState.countries) { item ->
-
-                    CountryGridCard(
-                        item = item,
-                        onClick = {
-                            onListItemClick(item)
-                        }
-                    )
-                }
+    } else {
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(minSize = 160.dp),
+            contentPadding = PaddingValues(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            items(screenState.countries) { item ->
+                CountryGridCard(
+                    item = item,
+                    onClick = {
+                        onListItemClick(item)
+                    }
+                )
             }
         }
     }
@@ -116,26 +105,25 @@ fun CountryGridCard(
                 )
             ) {
 
-                AsyncImage(
-                    model = item.flagPngUrl,
-                    contentDescription = null,
+                RemoteImage(
+                    imageUrl = item.flagPngUrl,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(100.dp)
-                        .clip(RoundedCornerShape(6.dp))
                         .border(
                             width = 1.dp,
                             color = Color.LightGray.copy(alpha = 0.25f),
                             shape = RoundedCornerShape(6.dp)
                         ),
-                    contentScale = ContentScale.Crop
+                    shape = RoundedCornerShape(6.dp)
                 )
+
             }
 
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(12.dp, 4.dp, 12.dp,10.dp)
+                    .padding(12.dp, 4.dp, 12.dp, 10.dp)
             ) {
 
                 Text(

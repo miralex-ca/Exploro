@@ -31,6 +31,8 @@ import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.RemoveFavorite
+import com.muralex.myapp.ui.components.RemoteImage
+import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
 import kotlinx.coroutines.delay
@@ -43,10 +45,14 @@ fun FavoritesScreen(
     eventHandler: FavoritesEventHandler
 ) {
 
-    FavoritesScreenContent(
-        screenState = screenState,
-        onEvent = eventHandler::onEvent,
-    )
+    if (screenState.isLoading) {
+        ScreenLoading()
+    } else {
+        FavoritesScreenContent(
+            screenState = screenState,
+            onEvent = eventHandler::onEvent,
+        )
+    }
 }
 
 @Composable
@@ -54,9 +60,10 @@ fun FavoritesScreenContent(
     screenState: FavoritesScreenState,
     onEvent: (FavoritesUiEvent) -> Unit,
 ) {
-    if (screenState.isLoading) {
+
+    if (screenState.favorites.isEmpty()) {
         Text(
-            text = "Loading ...",
+            text = "empty list",
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .padding(top = 30.dp)
@@ -65,44 +72,33 @@ fun FavoritesScreenContent(
             fontSize = 18.sp
         )
     } else {
-        if (screenState.favorites.isEmpty()) {
-            Text(
-                text = "empty list",
-                style = MaterialTheme.typography.bodyLarge,
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            LazyColumn(
+                contentPadding = PaddingValues(
+                    horizontal = 8.dp,
+                    vertical = 12.dp
+                ),
                 modifier = Modifier
-                    .padding(top = 30.dp)
-                    .fillMaxWidth(),
-                textAlign = TextAlign.Center,
-                fontSize = 18.sp
-            )
-        } else {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.TopCenter
+                    .fillMaxSize()
+                    .widthIn(max = 600.dp)
             ) {
-                LazyColumn(
-                    contentPadding = PaddingValues(
-                        horizontal = 8.dp,
-                        vertical = 12.dp
-                    ),
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .widthIn(max = 600.dp)
-                ) {
-                    items(
-                        items = screenState.favorites,
-                        key = { it.id }
-                    ) { item ->
-                        SwipeableFavoriteRow(
-                            item = item,
-                            onClick = { onEvent(OnItemClicked(item)) },
-                            onRemove = { onEvent(RemoveFavorite(item.id)) },
-                        )
-                    }
+                items(
+                    items = screenState.favorites,
+                    key = { it.id }
+                ) { item ->
+                    SwipeableFavoriteRow(
+                        item = item,
+                        onClick = { onEvent(OnItemClicked(item)) },
+                        onRemove = { onEvent(RemoveFavorite(item.id)) },
+                    )
                 }
             }
         }
     }
+
 }
 
 
@@ -129,19 +125,18 @@ fun FavoriteListRow(
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
-                model = item.flagPngUrl,
-                contentDescription = null,
+
+            RemoteImage(
+                imageUrl = item.flagPngUrl,
                 modifier = Modifier
                     .height(52.dp)
                     .width(90.dp)
-                    .clip(RoundedCornerShape(6.dp))
                     .border(
                         width = 1.dp,
                         color = Color.LightGray.copy(alpha = 0.45f),
                         shape = RoundedCornerShape(6.dp)
                     ),
-
+                shape = RoundedCornerShape(6.dp),
                 contentScale = ContentScale.Crop
             )
 

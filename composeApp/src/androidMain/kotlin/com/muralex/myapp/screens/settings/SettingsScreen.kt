@@ -36,14 +36,12 @@ data class ThemeOption(
     val label: String,
 )
 
-
 @Composable
 fun themeOptions(): List<ThemeOption> = listOf(
     ThemeOption(ThemeMode.LIGHT, Strings.themeModeLight),
     ThemeOption(ThemeMode.DARK, Strings.themeModeDark),
     ThemeOption(ThemeMode.SYSTEM, Strings.themeModeSystem),
 )
-
 
 @Composable
 fun SettingsScreen(

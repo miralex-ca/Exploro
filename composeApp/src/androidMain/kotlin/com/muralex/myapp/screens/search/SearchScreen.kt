@@ -40,14 +40,13 @@ import com.muralex.models.CountryListItem
 import com.muralex.myapp.screens.search.SearchUiEvent.DidBecomeActive
 import com.muralex.myapp.screens.search.SearchUiEvent.OnItemClicked
 import com.muralex.myapp.screens.search.SearchUiEvent.SearchByQuery
+import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.utils.OnChange
 import com.muralex.myapp.utils.SingleEffect
 import com.muralex.myapp.viewmodel.screens.search.SearchResult
 import com.muralex.myapp.viewmodel.screens.search.SearchScreenState
 import kotlinx.coroutines.delay
-
-
 
 @Composable
 fun SearchScreen(
@@ -59,7 +58,6 @@ fun SearchScreen(
         screenState = screenState,
         onEvent = eventHandler::onEvent,
     )
-
 }
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
@@ -379,19 +377,33 @@ fun SearchListRow(
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
-                model = item.flagPngUrl,
-                contentDescription = null,
+//            AsyncImage(
+//                model = item.flagPngUrl,
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .height(58.dp)
+//                    .width(75.dp)
+//                    .border(
+//                        width = 1.dp,
+//                        color = Color.LightGray.copy(alpha = 0.45f),
+//                        shape = RoundedCornerShape(6.dp)
+//                    ),
+//
+//                contentScale = ContentScale.Crop
+//            )
+
+
+            RemoteImage(
+                imageUrl = item.flagPngUrl,
                 modifier = Modifier
                     .height(58.dp)
                     .width(75.dp)
-                    .clip(RoundedCornerShape(6.dp))
                     .border(
                         width = 1.dp,
                         color = Color.LightGray.copy(alpha = 0.45f),
                         shape = RoundedCornerShape(6.dp)
                     ),
-
+                shape = RoundedCornerShape(6.dp),
                 contentScale = ContentScale.Crop
             )
 

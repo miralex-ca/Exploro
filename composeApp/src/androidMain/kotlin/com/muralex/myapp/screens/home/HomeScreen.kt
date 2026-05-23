@@ -30,34 +30,35 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
 import com.muralex.models.HomeSection
+import com.muralex.myapp.ui.components.RemoteImage
+import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.AppTypography
 import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
-
-
 
 @Composable
 fun HomeScreen(
     screenState: HomeScreenState,
     eventHandler: HomeEventHandler
 ) {
-
-    HomeScreenContent(
-        screenState = screenState,
-        onEvent = eventHandler::onEvent,
-    )
+    if (screenState.isLoading) {
+        ScreenLoading()
+    } else {
+        HomeScreenContent(
+            screenState = screenState,
+            onEvent = eventHandler::onEvent,
+        )
+    }
 }
-
 
 @Composable
 fun HomeScreenContent(
     screenState: HomeScreenState,
     onEvent: (HomeUiEvent) -> Unit,
 ) {
-
-    if (screenState.isLoading) {
+    if (screenState.homeSections.isEmpty()) {
         Text(
-            text = "Loading ...",
+            text = "empty list",
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .padding(top = 30.dp)
@@ -66,31 +67,19 @@ fun HomeScreenContent(
             fontSize = 18.sp
         )
     } else {
-        if (screenState.homeSections.isEmpty()) {
-            Text(
-                text = "empty list",
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier
-                    .padding(top = 30.dp)
-                    .fillMaxWidth(),
-                textAlign = TextAlign.Center,
-                fontSize = 18.sp
-            )
-        } else {
-            LazyColumn(
-                contentPadding = PaddingValues(top = 10.dp, bottom = 30.dp),
-                verticalArrangement = Arrangement.spacedBy(0.dp)
-            ) {
-                items(
-                    screenState.homeSections,
-                    key = { it.sectionName }
-                ) { section ->
-                    HomeSectionView(
-                        section = section,
-                        onListItemClick = { onEvent(HomeUiEvent.OnItemClicked(it))},
-                        onSectionClick = { onEvent(HomeUiEvent.OnSectionClicked(section.sectionName))}
-                    )
-                }
+        LazyColumn(
+            contentPadding = PaddingValues(top = 10.dp, bottom = 40.dp),
+            verticalArrangement = Arrangement.spacedBy(0.dp)
+        ) {
+            items(
+                screenState.homeSections,
+                key = { it.sectionName }
+            ) { section ->
+                HomeSectionView(
+                    section = section,
+                    onListItemClick = { onEvent(HomeUiEvent.OnItemClicked(it)) },
+                    onSectionClick = { onEvent(HomeUiEvent.OnSectionClicked(section.sectionName)) }
+                )
             }
         }
     }
@@ -108,7 +97,6 @@ fun HomeSectionView(
         modifier = Modifier
             .padding(bottom = 14.dp),
     ) {
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -127,7 +115,6 @@ fun HomeSectionView(
                 modifier = Modifier
                     .size(32.dp)
                     .clip(CircleShape)
-                    //.clickable(onClick = onSectionClick)
                     .background(
                         MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
                     ),
@@ -160,8 +147,6 @@ fun HomeSectionView(
                 )
             }
         }
-
-       // Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
@@ -186,20 +171,17 @@ fun HomeCountryCard(
             modifier =  Modifier.padding(8.dp)
         ) {
 
-            AsyncImage(
-                model = item.flagPngUrl,
-                contentDescription = null,
+            RemoteImage(
+                imageUrl = item.flagPngUrl,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(70.dp)
-                    .clip(RoundedCornerShape(3.dp))
                     .border(
                         width = 1.dp,
                         color = Color.LightGray.copy(alpha = 0.25f),
-                        shape = RoundedCornerShape(6.dp)
-                    )
-                ,
-                contentScale = ContentScale.Crop
+                        shape = RoundedCornerShape(4.dp)
+                    ),
+                shape = RoundedCornerShape(4.dp)
             )
 
             Column(

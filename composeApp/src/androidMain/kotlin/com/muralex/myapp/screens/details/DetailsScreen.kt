@@ -32,6 +32,8 @@ import coil.compose.AsyncImage
 import com.muralex.myapp.R
 import com.muralex.myapp.screens.details.DetailsUiEvent.ToggleFavorite
 import com.muralex.myapp.ui.components.FadeInScreenContent
+import com.muralex.myapp.ui.components.RemoteImage
+import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsScreenState
 import java.util.Locale
@@ -42,10 +44,14 @@ fun DetailsScreen(
     eventHandler: DetailsEventHandler
 ) {
     FadeInScreenContent {
-        DetailsScreenContent(
-            screenState = screenState,
-            onEvent = eventHandler::onEvent,
-        )
+        if (screenState.isLoading) {
+            ScreenLoading()
+        } else {
+            DetailsScreenContent(
+                screenState = screenState,
+                onEvent = eventHandler::onEvent,
+            )
+        }
     }
 }
 
@@ -54,8 +60,6 @@ fun DetailsScreenContent(
     screenState: DetailsScreenState,
     onEvent: (DetailsUiEvent) -> Unit,
 ) {
-
-    if (screenState.isLoading) return
 
     val country = screenState.countryDetails?.country ?: return
     val details = screenState.countryDetails?.details ?: return
@@ -199,9 +203,9 @@ fun FlagHero(
             .clip(RoundedCornerShape(12.dp))
     ) {
 
-        AsyncImage(
-            model = flagUrl,
-            contentDescription = null,
+        RemoteImage(
+            imageUrl = flagUrl,
+            contentDescription = flagAlt,
             modifier = Modifier
                 .fillMaxSize()
                 .blur(30.dp),
@@ -209,23 +213,21 @@ fun FlagHero(
             alpha = 0.45f
         )
 
-        // dark overlay for contrast (optional but recommended)
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.appColors.detailHederWrapper)
         )
 
-        AsyncImage(
-            model = flagUrl,
+        RemoteImage(
+            imageUrl = flagUrl,
             contentDescription = flagAlt,
-            error = painterResource(R.drawable.flag_placeholder),
+            contentScale = ContentScale.Fit,
             modifier = Modifier
                 .align(Alignment.Center)
                 .fillMaxWidth(0.85f)
-                .height(140.dp)
-                .clip(RoundedCornerShape(6.dp)),
-            contentScale = ContentScale.Fit
+                .height(140.dp),
+            shape = RoundedCornerShape(6.dp),
         )
 
         FavoriteButton(
@@ -439,20 +441,18 @@ fun CoatOfArmsImage(
         modifier = Modifier.size(52.dp)
     ) {
 
-        AsyncImage(
-            model = url,
-            contentDescription = "Coat of arms",
+        RemoteImage(
+            imageUrl = url,
             contentScale = ContentScale.Fit,
+            contentDescription = "Coat of arms",
             modifier = Modifier
                 .fillMaxSize()
-                .padding(6.dp)
+                .padding(6.dp),
         )
     }
 
     if (showDialog) {
-
         AlertDialog(
-
             onDismissRequest = { showDialog = false },
             modifier = Modifier.padding(10.dp),
 
