@@ -1,5 +1,6 @@
 package com.muralex.myapp.screens.search
 
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -187,7 +188,12 @@ fun SearchScreenContent(
                             ) { item ->
                                 SearchListRow(
                                     item = item,
-                                    onClick = { onEvent(OnItemClicked(item)) }
+                                    onClick = { onEvent(OnItemClicked(item)) },
+                                    modifier = Modifier.animateItem(
+                                        fadeInSpec = tween(180),
+                                        fadeOutSpec = tween(180),
+                                        placementSpec = tween(180)
+                                    )
                                 )
                             }
                         }
