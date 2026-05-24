@@ -5,12 +5,15 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,13 +24,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muralex.myapp.ui.components.dialogs.ConfirmationDialog
 import com.muralex.myapp.ui.components.dialogs.SingleChoiceDialog
+import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.utils.asString
 import com.muralex.myapp.viewmodel.screens.settings.Setting
 import com.muralex.myapp.viewmodel.screens.settings.SettingAction
+import com.muralex.myapp.viewmodel.screens.settings.SettingsCategory
 import com.muralex.myapp.viewmodel.screens.settings.SettingsScreenState
 
 @Composable
@@ -69,8 +75,80 @@ fun AppSettingsContent(
     }
 }
 
+
 @Composable
-private fun AppSettingsBox(
+fun AppSettingsBox(
+    screenState: SettingsScreenState,
+    onSettingAction: (SettingAction) -> Unit,
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp, vertical = 16.dp)
+            .widthIn(max = 600.dp)
+    ) {
+        screenState.categories.forEach { category ->
+            SettingsCategoryContent(
+                category = category,
+                onAction = onSettingAction
+            )
+            Spacer(Modifier.height(24.dp))
+        }
+    }
+}
+
+@Composable
+fun SettingsCategoryContent(
+    category: SettingsCategory,
+    onAction: (SettingAction) -> Unit,
+) {
+    Column {
+        category.title?.let {
+            Text(
+                text = it.asString(),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.primary,
+                fontSize = 18.sp,
+                modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
+            )
+        } ?: Spacer(Modifier.height(12.dp))
+
+        category.settings.forEachIndexed { index, setting ->
+            val isFirst = index == 0
+            val isLast = index == category.settings.lastIndex
+
+            val shape = when {
+                isFirst && isLast -> RoundedCornerShape(14.dp)
+                isFirst -> RoundedCornerShape(topStart = 14.dp, topEnd = 14.dp)
+                isLast -> RoundedCornerShape(bottomStart = 14.dp, bottomEnd = 14.dp)
+                else -> RoundedCornerShape(0.dp)
+            }
+
+            Surface(
+                shape = shape,
+                color = MaterialTheme.colorScheme.surfaceContainerHighest,
+                contentColor = MaterialTheme.colorScheme.onSurface,
+                border = BorderStroke(0.5.dp, MaterialTheme.appColors.cardBorder),
+            ) {
+                SettingItem(
+                    setting = setting,
+                    onAction = onAction
+                )
+            }
+
+            if (!isLast) {
+                Spacer(Modifier.height(0.5.dp))
+            }
+        }
+    }
+}
+
+
+
+
+@Composable
+private fun AppSettingsBoxes(
     screenState: SettingsScreenState,
     onSettingAction: (SettingAction) -> Unit,
 ) {
@@ -123,6 +201,7 @@ fun SettingItem(
         is Setting.Options -> ListPreference(setting, onAction)
         is Setting.Switch -> SwitchPreference(setting, onAction)
         is Setting.Action -> PreferenceWithAction(setting, onAction)
+        is Setting.Info -> PreferenceWithInfo(setting)
     }
 }
 
@@ -135,7 +214,7 @@ fun SwitchPreference(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = { onAction(setting.onToggle()) })
-            .padding(8.dp),
+            .padding(14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
@@ -171,7 +250,7 @@ fun ListPreference(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = { isDialogVisible = true  })
-            .padding(8.dp),
+            .padding(14.dp),
     ) {
         PreferenceContent(
             title = setting.title.asString(),
@@ -202,7 +281,7 @@ fun PreferenceWithAction(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = { isDialogVisible = true  })
-            .padding(8.dp),
+            .padding(14.dp),
     ) {
         PreferenceContent(
             title = setting.title.asString(),
@@ -227,6 +306,22 @@ fun PreferenceWithAction(
 }
 
 @Composable
+fun PreferenceWithInfo(
+    setting: Setting.Info,
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(14.dp),
+    ) {
+        PreferenceContent(
+            title = setting.title.asString(),
+            summary = setting.info,
+        )
+    }
+}
+
+@Composable
 private fun PreferenceContent(
     title: String = "",
     summary: String? = null,
@@ -239,12 +334,13 @@ private fun PreferenceContent(
             text = title,
             modifier = Modifier.padding(2.dp),
             style = MaterialTheme.typography.bodyLarge,
-            fontSize = 18.sp
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium
         )
 
         summary?.let {
             Text(
-                text = "Current: $summary",
+                text = it,
                 modifier = Modifier
                     .padding(2.dp)
                     .alpha(0.8F),

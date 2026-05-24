@@ -22,6 +22,7 @@ class SettingsEventHandler(
     fun onSettingAction(action: SettingAction) {
         when (action) {
             is SettingAction.SetFavoriteSwipe -> {
+                println("SettingAction.SetFavoriteSwipe")
                 events.setFavoriteSwipeEnabled(action.enabled)
             }
 

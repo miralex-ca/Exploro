@@ -9,6 +9,7 @@ import com.muralex.myapp.viewmodel.resources.StringRef
 data class SettingsScreenState(
     val isLoading: Boolean = false,
     val settings: List<Setting> = emptyList(),
+    val categories: List<SettingsCategory> = emptyList(),
     val savedThemeMode: ThemeMode = ThemeMode.DEFAULT,
     private val settingsBuilder: SettingsBuilder? = null,
 ) : ScreenState {
@@ -53,6 +54,13 @@ sealed class Setting {
         val dialogMessage: StringRef? = null,
         val onClick: () -> SettingAction
     ) : Setting()
+
+    data class Info(
+        override val key: String,
+        override val title: StringRef,
+        override val summary: StringRef? = null,
+        val info: String? = null,
+    ) : Setting()
 }
 
 data class SettingOption(
@@ -66,7 +74,7 @@ sealed class SettingAction {
     data object SyncData: SettingAction()
 }
 
-class SettingsBuilder(repository: Repository) {
+class SettingsBuilder(private val repository: Repository) {
     val localSettings = repository.localSettings
 
     val settings = listOf(
@@ -78,6 +86,34 @@ class SettingsBuilder(repository: Repository) {
     fun build(): List<Setting> {
         return settings
     }
+
+    fun buildCategories(): List<SettingsCategory> = listOf(
+        SettingsCategory(
+            id = "interface",
+            title = SharedRes.Strings.settings_category_interface,
+            settings = listOf(
+                addThemeMode(),
+                addFavoriteSwipe(),
+            )
+        ),
+        SettingsCategory(
+            id = "sync",
+            title = SharedRes.Strings.settings_category_data,
+            settings = listOf(
+                addSync(),
+
+            )
+        ),
+
+        SettingsCategory(
+            id = "info",
+            title = null,
+            settings = listOf(
+                addAppInfo(),
+                addDeviceInfo(),
+            )
+        )
+    )
 
     private fun addThemeMode(): Setting {
         val themeModeName = ThemeMode.fromId(localSettings.themeModeId).name
@@ -117,8 +153,34 @@ class SettingsBuilder(repository: Repository) {
             onClick = { SettingAction.SyncData }
         )
     }
+
+    private fun addAppInfo() : Setting {
+         val info = repository.platformInfo.getAppInfo()
+        return Setting.Info(
+            key = "app_info",
+            title = SharedRes.Strings.settings_appversion_title,
+            summary = SharedRes.Strings.settings_appversion_summary,
+            info = info.appVersion
+        )
+    }
+
+    private fun addDeviceInfo() : Setting {
+        val info = repository.platformInfo.getAppInfo()
+        return Setting.Info(
+            key = "device_info",
+            title = SharedRes.Strings.settings_deviceinfo_title,
+            summary = SharedRes.Strings.settings_deviceinfo_summary,
+            info = "${info.deviceModel} (${info.platformName} ${info.osVersion})"
+        )
+    }
 }
 
+
+data class SettingsCategory(
+    val id: String,
+    val title: StringRef? = null,
+    val settings: List<Setting>
+)
 
 
 

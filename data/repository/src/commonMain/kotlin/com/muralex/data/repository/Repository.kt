@@ -4,6 +4,7 @@ import com.muralex.data.repository.sources.localsettings.MySettings
 import com.muralex.data.repository.sources.runtimecache.CacheObjects
 import com.muralex.core.common.DispatchersProvider
 import com.muralex.data.common.LocalDataSource
+import com.muralex.data.common.PlatformInfoProvider
 import com.muralex.data.common.RemoteDataSource
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.withContext
@@ -13,6 +14,7 @@ class Repository(
     val localDb: LocalDataSource,
     val webservices: RemoteDataSource,
     val settings: Settings = Settings(),
+    val platformInfo: PlatformInfoProvider,
     val dispatchers: DispatchersProvider,
 ) {
 

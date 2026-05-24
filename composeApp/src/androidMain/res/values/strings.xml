@@ -23,6 +23,14 @@
     <string name="settings_sync_dialog_title">Sync data?</string>
     <string name="settings_sync_dialog_message">Do you want to sync your data now?</string>
 
+    <string name="settings_category_interface">Interface</string>
+    <string name="settings_category_data">Data</string>
+
+    <string name="settings_appversion_title">App version</string>
+    <string name="settings_appversion_summary">Current: %s</string>
+    <string name="settings_deviceinfo_title">Device</string>
+    <string name="settings_deviceinfo_summary">Current: %s</string>
+
     <string name="app_startup_error_title">Something went wrong</string>
     <string name="app_startup_error_sync_desc">We couldn’t load your data. Please check your connection and try again.</string>
     <string name="app_startup_error_desc">We couldn’t load your data. Please try again later.</string>

@@ -32,6 +32,14 @@ object Strings {
     val settingsSyncDialogTitle @Composable get() = stringRes(R.string.settings_sync_dialog_title)
     val settingsSyncDialogMessage @Composable get() = stringRes(R.string.settings_sync_dialog_message)
 
+    val settingsInterface @Composable get() = stringRes(R.string.settings_category_interface)
+    val settingsData @Composable get() = stringRes(R.string.settings_category_data)
+
+    val settingsAppversionTitle @Composable get() = stringRes(R.string.settings_appversion_title)
+    val settingsAppversionSummary @Composable get() = stringRes(R.string.settings_appversion_summary)
+    val settingsDeviceInfoTitle @Composable get() = stringRes(R.string.settings_deviceinfo_title)
+    val settingsDeviceInfoSummary @Composable get() = stringRes(R.string.settings_deviceinfo_summary)
+
     val appStartupErrorTitle @Composable get() = stringRes(R.string.app_startup_error_title)
     val appStartupErrorSyncDesc @Composable get() = stringRes(R.string.app_startup_error_sync_desc)
     val appStartupErrorDesc @Composable get() = stringRes(R.string.app_startup_error_desc)
@@ -88,6 +96,12 @@ object StringRefResolver {
         SharedRes.Strings.settings_sync_summary -> Strings.settingsSyncSummary
         SharedRes.Strings.settings_sync_dialog_title -> Strings.settingsSyncDialogTitle
         SharedRes.Strings.settings_sync_dialog_message -> Strings.settingsSyncDialogMessage
+        SharedRes.Strings.settings_category_interface -> Strings.settingsInterface
+        SharedRes.Strings.settings_category_data -> Strings.settingsData
+        SharedRes.Strings.settings_appversion_title -> Strings.settingsAppversionTitle
+        SharedRes.Strings.settings_appversion_summary -> Strings.settingsAppversionSummary
+        SharedRes.Strings.settings_deviceinfo_title -> Strings.settingsDeviceInfoTitle
+        SharedRes.Strings.settings_deviceinfo_summary -> Strings.settingsDeviceInfoSummary
         else -> ref.simpleName()
     }
 }
