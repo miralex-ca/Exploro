@@ -22,19 +22,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.muralex.myapp.R
 import com.muralex.myapp.screens.details.DetailsUiEvent.ToggleFavorite
 import com.muralex.myapp.ui.components.FadeInScreenContent
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
+import com.muralex.myapp.utils.Strings
 import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsScreenState
 import java.util.Locale
 
@@ -108,38 +107,38 @@ fun DetailsScreenContent(
 
                     DetailRow(
                         icon = Icons.Outlined.Map,
-                        label = "Location",
+                        label = Strings.detailLabelLocation,
                         value = country.subregion
                     )
 
                     DetailRow(
                         icon = Icons.Outlined.Straighten,
-                        label = "Area",
+                        label = Strings.detailLabelArea,
                         value = formatArea(details.area)
                     )
 
                     DetailRow(
                         icon = Icons.Outlined.People,
-                        label = "Population",
+                        label = Strings.detailLabelPopulation,
                         value = details.population.toHumanReadable()
                     )
 
                     DetailRow(
                         icon = Icons.Outlined.Translate,
-                        label = "Official languages",
+                        label = Strings.detailLabelLanguages,
                         value = details.languages.joinToString()
                     )
 
 
                     DetailRow(
                         icon = Icons.Outlined.AttachMoney,
-                        label = "Currency",
+                        label = Strings.detailLabelCurrency,
                         value = "${details.currencySymbol} (${details.currencyName})"
                     )
 
                     DetailRow(
                         icon = Icons.Outlined.Schedule,
-                        label = "Time zones",
+                        label = Strings.detailLabelTimezones,
                         value = formatTimezones(details.timezones)
                     )
 
@@ -405,14 +404,14 @@ fun CountryHeaderTitle(
 
                     if (capital.isNotBlank()) {
                         InlineHeaderDetailRow(
-                            label = "Capital:",
+                            label = Strings.detailLabelCapital,
                             value = capital.uppercase(Locale.getDefault())
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                     }
 
                     InlineHeaderDetailRow(
-                        label = "Region:",
+                        label = Strings.detailLabelRegion,
                         value = continent
                     )
                 }
@@ -445,7 +444,7 @@ fun CoatOfArmsImage(
         RemoteImage(
             imageUrl = url,
             contentScale = ContentScale.Fit,
-            contentDescription = "Coat of arms",
+            contentDescription = Strings.detailsCoatOfArms,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(6.dp),
@@ -458,7 +457,7 @@ fun CoatOfArmsImage(
             modifier = Modifier.padding(10.dp),
 
             title = {
-                Text("Coat of Arms")
+                Text(Strings.detailsCoatOfArms)
             },
 
             text = {
@@ -471,7 +470,7 @@ fun CoatOfArmsImage(
                 ) {
                     AsyncImage(
                         model = url,
-                        contentDescription = "Coat of arms",
+                        contentDescription = Strings.detailsCoatOfArms,
                         contentScale = ContentScale.Fit,
                         modifier = Modifier.size(180.dp)
                     )
@@ -483,7 +482,7 @@ fun CoatOfArmsImage(
                     onClick = { showDialog = false },
                     contentPadding = PaddingValues(horizontal = 18.dp, vertical = 0.dp)
                 ) {
-                    Text("CLOSE")
+                    Text(Strings.commonClose)
                 }
             },
 

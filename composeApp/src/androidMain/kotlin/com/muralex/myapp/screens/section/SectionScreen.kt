@@ -15,17 +15,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
 import com.muralex.myapp.ui.components.FadeInScreenContent
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
+import com.muralex.myapp.utils.Strings
 import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
 
 
@@ -56,7 +54,7 @@ fun SectionScreenContent(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text("No countries found")
+            Text(Strings.noCountriesFound)
         }
     } else {
         LazyVerticalGrid(

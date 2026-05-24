@@ -39,8 +39,7 @@ sealed class Setting {
         override val key: String,
         override val title: StringRef,
         override val summary: StringRef? = null,
-        val entries: List<StringRef>,
-        val entryValues: List<String>,
+        val options: List<SettingOption>,
         val selectedValue: String = "",
         val dialogTitle: StringRef? = null,
         val onSelect: (String) -> SettingAction
@@ -50,47 +49,50 @@ sealed class Setting {
         override val key: String,
         override val title: StringRef,
         override val summary: StringRef? = null,
+        val dialogTitle: StringRef? = null,
+        val dialogMessage: StringRef? = null,
         val onClick: () -> SettingAction
     ) : Setting()
 }
 
+data class SettingOption(
+    val value: String,
+    val label: StringRef
+)
+
 sealed class SettingAction {
     data class SetThemeMode(val value: String) : SettingAction()
     data class SetFavoriteSwipe(val enabled: Boolean) : SettingAction()
+    data object SyncData: SettingAction()
 }
 
 class SettingsBuilder(repository: Repository) {
-
     val localSettings = repository.localSettings
 
     val settings = listOf(
         addThemeMode(),
         addFavoriteSwipe(),
+        addSync(),
     )
 
     fun build(): List<Setting> {
         return settings
     }
 
-    private fun addThemeMode() : Setting {
+    private fun addThemeMode(): Setting {
         val themeModeName = ThemeMode.fromId(localSettings.themeModeId).name
 
         return Setting.Options(
             key = "theme_mode",
             title = SharedRes.Strings.settings_theme_title,
             summary = SharedRes.Strings.settings_theme_summary,
-            entries = listOf(
-                SharedRes.Strings.settings_theme_option_dark,
-                SharedRes.Strings.settings_theme_option_light,
-                SharedRes.Strings.settings_theme_option_system,
-            ),
-            entryValues = listOf(
-                ThemeMode.LIGHT.name,
-                ThemeMode.DARK.name,
-                ThemeMode.SYSTEM.name,
+            options = listOf(
+                SettingOption(ThemeMode.LIGHT.name, SharedRes.Strings.settings_theme_option_light),
+                SettingOption(ThemeMode.DARK.name, SharedRes.Strings.settings_theme_option_dark),
+                SettingOption(ThemeMode.SYSTEM.name, SharedRes.Strings.settings_theme_option_system),
             ),
             selectedValue = themeModeName,
-            onSelect =  { theme -> SettingAction.SetThemeMode(theme) }
+            onSelect = { SettingAction.SetThemeMode(it) }
         )
     }
 
@@ -106,7 +108,18 @@ class SettingsBuilder(repository: Repository) {
             onToggle = { SettingAction.SetFavoriteSwipe(!isEnabled) }
         )
     }
+
+    private fun addSync() : Setting {
+        return Setting.Action(
+            key = "sync_data",
+            title = SharedRes.Strings.settings_sync_title,
+            summary = SharedRes.Strings.settings_sync_summary,
+            onClick = { SettingAction.SyncData }
+        )
+    }
 }
+
+
 
 
 

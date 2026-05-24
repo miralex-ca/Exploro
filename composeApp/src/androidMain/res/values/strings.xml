@@ -5,5 +5,47 @@
     <string name="screen_search_title">Search</string>
     <string name="screen_settings_title">Settings</string>
 
+    <string name="nav_browse">Browse</string>
+    <string name="nav_favorites">Favourites</string>
+
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_theme_summary">Change the app theme</string>
+    <string name="settings_theme_option_system">System</string>
+    <string name="settings_theme_option_dark">Dark</string>
+    <string name="settings_theme_option_light">Light</string>
+    <string name="settings_theme_dialog_title">Select theme</string>
+    <string name="settings_favorite_swipe_title">Favorite swipe</string>
+    <string name="settings_favorite_swipe_summary">Enable swipe to favorite</string>
+    <string name="settings_favorite_swipe_summaryOn">Enabled</string>
+    <string name="settings_favorite_swipe_summaryOff">Disabled</string>
+    <string name="settings_sync_title">Sync</string>
+    <string name="settings_sync_summary">Sync your data</string>
+    <string name="settings_sync_dialog_title">Sync data?</string>
+    <string name="settings_sync_dialog_message">Do you want to sync your data now?</string>
+
+    <string name="app_startup_error_title">Something went wrong</string>
+    <string name="app_startup_error_sync_desc">We couldn’t load your data. Please check your connection and try again.</string>
+    <string name="app_startup_error_desc">We couldn’t load your data. Please try again later.</string>
+    <string name="app_error_try_again">Try again</string>
+
+    <string name="theme_mode_light">Light mode</string>
+    <string name="theme_mode_dark">Dark mode</string>
+    <string name="theme_mode_system">System mode</string>
+
+    <string name="no_countries_found">No countries found</string>
+    <string name="details_coat_of_arms">Coat of Arms</string>
+    <string name="common_close">Close</string>
+    <string name="common_confirm">Confirm</string>
+    <string name="common_cancel">Cancel</string>
+
+    <string name="detail_label_location">Location</string>
+    <string name="detail_label_area">Area</string>
+    <string name="detail_label_population">Population</string>
+    <string name="detail_label_languages">Official languages</string>
+    <string name="detail_label_currency">Currency</string>
+    <string name="detail_label_timezones">Time zones</string>
+    <string name="detail_label_capital">Capital:</string>
+    <string name="detail_label_region">Region:</string>
+
     <string name="settings_mode_summary">Current: %s</string>
 </resources>

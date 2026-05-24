@@ -23,6 +23,10 @@ object SharedRes {
         settings_favorite_swipe_summary,
         settings_favorite_swipe_summaryOn,
         settings_favorite_swipe_summaryOff,
+        settings_sync_title,
+        settings_sync_summary,
+        settings_sync_dialog_title,
+        settings_sync_dialog_message,
         ;
 
         override fun simpleName(): String {

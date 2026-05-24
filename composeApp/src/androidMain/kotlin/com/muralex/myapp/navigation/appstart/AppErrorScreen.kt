@@ -65,7 +65,7 @@ fun AppErrorScreen(
                     Spacer(modifier = Modifier.height(28.dp))
 
                     Text(
-                        text = if (failedAfterSync) Strings.appStartupErrorSyncDes else Strings.appStartupErrorDes,
+                        text = if (failedAfterSync) Strings.appStartupErrorSyncDesc else Strings.appStartupErrorDesc,
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center
@@ -77,7 +77,7 @@ fun AppErrorScreen(
                         onClick = onRetry,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("Try again")
+                        Text(Strings.appErrorTryAgain)
                     }
                 }
             }

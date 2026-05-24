@@ -99,9 +99,7 @@ fun FavoritesScreenContent(
             }
         }
     }
-
 }
-
 
 @Composable
 fun FavoriteListRow(

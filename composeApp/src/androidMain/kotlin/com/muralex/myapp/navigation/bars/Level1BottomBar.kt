@@ -9,8 +9,8 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
+import com.muralex.myapp.utils.Strings
 import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.ScreenIdentifier
 import com.muralex.myapp.viewmodel.screens.Level1Navigation
@@ -25,14 +25,14 @@ fun Navigation.Level1BottomBar(
         content = {
         NavigationBarItem(
             icon = { Icon(Icons.Default.Explore, "ALL") },
-            label = { Text("Browse", fontSize = 13.sp) },
+            label = { Text(Strings.navBrowse, fontSize = 13.sp) },
             selected = selectedTab.URI == Level1Navigation.Home.screenIdentifier.URI,
             onClick = { navigateByLevel1Menu(Level1Navigation.Home) }
         )
 
         NavigationBarItem(
             icon = { Icon(Icons.Default.Star, "FAVORITES") },
-            label = { Text("Favourites", fontSize = 13.sp) },
+            label = { Text(Strings.navFavorites, fontSize = 13.sp) },
             selected = selectedTab.URI == Level1Navigation.Favorites.screenIdentifier.URI,
             onClick = { navigateByLevel1Menu(Level1Navigation.Favorites) }
         )
