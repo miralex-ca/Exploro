@@ -4,4 +4,6 @@
     <string name="screen_favorites_title">Favorites</string>
     <string name="screen_search_title">Search</string>
     <string name="screen_settings_title">Settings</string>
+
+    <string name="settings_mode_summary">Current: %s</string>
 </resources>

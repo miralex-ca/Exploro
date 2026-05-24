@@ -12,4 +12,5 @@ class MySettings (s : Settings) {
     var dbVersion by s.long(defaultValue = 1)
     var shouldForceDbUpdate by s.boolean(defaultValue = false)
     var themeModeId by s.int(defaultValue = 0)
+    var favoriteSwipeEnabled by s.boolean(defaultValue = true)
 }

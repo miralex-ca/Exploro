@@ -11,10 +11,16 @@ fun StateManager.initSettingsScreen() = ScreenInitSettings(
     callOnInit = {
         val savedThemeMode = dataRepository.getThemeMode()
 
+        val settingsBuilder = SettingsBuilder(dataRepository)
+
+        val settings = settingsBuilder.build()
+
         updateScreen(SettingsScreenState::class) {
             it.copy(
                 isLoading = false,
-                savedThemeMode = savedThemeMode
+                settings = settings,
+                savedThemeMode = savedThemeMode,
+                settingsBuilder = settingsBuilder
             )
         }
     },

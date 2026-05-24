@@ -29,6 +29,9 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.muralex.models.ThemeMode
 import com.muralex.myapp.utils.Strings
+import com.muralex.myapp.utils.asString
+import com.muralex.myapp.viewmodel.screens.settings.Setting
+import com.muralex.myapp.viewmodel.screens.settings.SettingAction
 import com.muralex.myapp.viewmodel.screens.settings.SettingsScreenState
 
 data class ThemeOption(
@@ -51,6 +54,7 @@ fun SettingsScreen(
     AppSettingsContent(
         screenState = screenState,
         onEvent = eventHandler::onEvent,
+        onSettingAction = eventHandler::onSettingAction
     )
 }
 
@@ -58,6 +62,7 @@ fun SettingsScreen(
 fun AppSettingsContent(
     screenState: SettingsScreenState,
     onEvent: (SettingsUiEvent) -> Unit,
+    onSettingAction: (SettingAction) -> Unit,
 ) {
 
     Column {
@@ -74,7 +79,7 @@ fun AppSettingsContent(
         ) {
             AppSettingsBox(
                 screenState = screenState,
-                selectThemeMode = { onEvent(SettingsUiEvent.OnThemeSelected(it)) },
+                onSettingAction = onSettingAction
             )
         }
     }
@@ -83,7 +88,7 @@ fun AppSettingsContent(
 @Composable
 private fun AppSettingsBox(
     screenState: SettingsScreenState,
-    selectThemeMode: (ThemeMode) -> Unit,
+    onSettingAction: (SettingAction) -> Unit,
 ) {
 
     Box(
@@ -112,17 +117,15 @@ private fun AppSettingsBox(
                     fontSize = 18.sp
                 )
 
-                val options = themeOptions()
 
-                OptionsWithDialog(
-                    title = "App theme mode",
-                    radioOptions = options.map { it.label },
-                    summary = options.first { it.mode == screenState.savedThemeMode }.label,
-                    selectedIndex = options.indexOfFirst { it.mode == screenState.savedThemeMode },
-                    optionSelectedIndex = { selected ->
-                        selectThemeMode(options[selected].mode)
-                    },
-                )
+                screenState.settings.forEach { setting ->
+                    SettingItem(
+                        setting = setting,
+                        onAction = {
+                            action -> onSettingAction(action)
+                        }
+                    )
+                }
 
                 Spacer(Modifier.height(35.dp))
             }
@@ -331,3 +334,109 @@ fun NoPaddingAlertDialog(
         }
     }
 }
+
+
+@Composable
+fun SettingItem(
+    setting: Setting,
+    onAction: (SettingAction) -> Unit
+) {
+    when (setting) {
+        is Setting.Options -> OptionsSettingItem(setting, onAction)
+        is Setting.Switch -> SwitchSettingItem(setting, onAction)
+        is Setting.Action -> ActionSettingItem(setting, onAction)
+    }
+}
+
+
+@Composable
+fun SwitchSettingItem(
+    setting: Setting.Switch,
+    onAction: (SettingAction) -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = { onAction(setting.onToggle()) })
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = setting.title.simpleName(),
+                style = MaterialTheme.typography.bodyLarge,
+                fontSize = 18.sp
+            )
+            val summary = when {
+                setting.value && setting.summaryOn != null -> setting.summaryOn
+                !setting.value && setting.summaryOff != null -> setting.summaryOff
+                else -> setting.summary
+            }
+            summary?.let {
+                Text(
+                    text = it.simpleName(),
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.alpha(0.8f)
+                )
+            }
+        }
+        Switch(
+            checked = setting.value,
+            onCheckedChange = { onAction(setting.onToggle()) }
+        )
+    }
+}
+
+@Composable
+fun ActionSettingItem(
+    setting: Setting.Action,
+    onAction: (SettingAction) -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .clickable {
+                //setting.action?.let { onAction(it) }
+            }
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Text(
+            text = setting.title.simpleName(),
+            style = MaterialTheme.typography.bodyLarge,
+            fontSize = 18.sp
+        )
+        setting.summary?.let {
+            Text(
+                text = it.simpleName(),
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.alpha(0.8f)
+            )
+        }
+    }
+}
+
+@Composable
+fun OptionsSettingItem(
+    setting: Setting.Options,
+    onAction: (SettingAction) -> Unit
+) {
+    val openDialog = remember { mutableStateOf(false) }
+
+
+    OptionsSetting(
+        title = setting.title.simpleName(),
+        summary = setting.summary?.asString() ?: setting.selectedValue   ,
+        openDialog = openDialog
+    )
+
+    OptionDialog(
+        dialogTitle = setting.dialogTitle?.simpleName()  ?: setting.title.simpleName(),
+        radioOptions = setting.entries.map { it.simpleName() },
+        openDialog = openDialog,
+        selectedIndex = setting.entryValues.indexOf(setting.selectedValue),
+        optionSelectedIndex = { index ->
+            onAction(setting.onSelect(setting.entryValues[index]))
+        }
+    )
+}
+

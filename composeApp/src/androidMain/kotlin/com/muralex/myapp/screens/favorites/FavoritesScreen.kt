@@ -4,7 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -27,8 +26,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.muralex.models.CountryListItem
+import com.muralex.myapp.LocalAppEnvironment
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.RemoveFavorite
 import com.muralex.myapp.ui.components.RemoteImage
@@ -36,7 +35,6 @@ import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
 import kotlinx.coroutines.delay
-
 
 
 @Composable
@@ -60,6 +58,8 @@ fun FavoritesScreenContent(
     screenState: FavoritesScreenState,
     onEvent: (FavoritesUiEvent) -> Unit,
 ) {
+
+    val isFavoriteSwipeEnabled = LocalAppEnvironment.current.favoriteSwipeEnabled
 
     if (screenState.favorites.isEmpty()) {
         Text(
@@ -91,6 +91,7 @@ fun FavoritesScreenContent(
                 ) { item ->
                     SwipeableFavoriteRow(
                         item = item,
+                        isSwipeEnabled = isFavoriteSwipeEnabled,
                         onClick = { onEvent(OnItemClicked(item)) },
                         onRemove = { onEvent(RemoveFavorite(item.id)) },
                     )
@@ -169,13 +170,15 @@ fun FavoriteListRow(
 
 @Composable
 fun SwipeableFavoriteRow(
+    modifier: Modifier = Modifier,
     item: CountryListItem,
+    isSwipeEnabled: Boolean = true,
     onClick: () -> Unit,
-    onRemove: () -> Unit
+    onRemove: () -> Unit,
 ) {
     val dismissState = rememberSwipeToDismissBoxState(
         initialValue = SwipeToDismissBoxValue.Settled,
-        positionalThreshold = { it * 0.70f }, // seems to be not working
+        positionalThreshold = { it * 0.60f }, // seems to be not working
     )
     var handled by remember { mutableStateOf(false) }
 
@@ -186,7 +189,7 @@ fun SwipeableFavoriteRow(
     LaunchedEffect(dismissState.currentValue) {
         if (dismissState.currentValue == SwipeToDismissBoxValue.EndToStart && !handled) {
             handled = true
-            delay(700)
+            delay(200)
             onRemove()
         }
     }
@@ -194,8 +197,8 @@ fun SwipeableFavoriteRow(
     SwipeToDismissBox(
         state = dismissState,
         enableDismissFromStartToEnd = false,
-        enableDismissFromEndToStart = true,
-        modifier = Modifier
+        enableDismissFromEndToStart = isSwipeEnabled,
+        modifier = modifier
             .padding(horizontal = 12.dp),
         backgroundContent = {
             Box(
@@ -221,10 +224,7 @@ fun SwipeableFavoriteRow(
 
         AnimatedVisibility(
             visible = !handled,
-            exit = fadeOut(animationSpec = tween(durationMillis = 100))
-                    + shrinkVertically(
-                animationSpec = tween(durationMillis = 200, delayMillis = 200)
-            )
+            exit = fadeOut(animationSpec = tween(durationMillis = 150))
         ) {
             Box(
                 modifier = Modifier.padding(vertical = 3.dp)

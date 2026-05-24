@@ -10,3 +10,12 @@ fun Repository.getThemeMode(): ThemeMode {
 fun Repository.saveThemeMode(themeMode: ThemeMode) {
     localSettings.themeModeId = themeMode.id
 }
+
+
+fun Repository.setFavoriteSwipeEnabled(enabled: Boolean) {
+    localSettings.favoriteSwipeEnabled = enabled
+}
+
+fun Repository.getFavoriteSwipeEnabled(): Boolean {
+    return localSettings.favoriteSwipeEnabled
+}

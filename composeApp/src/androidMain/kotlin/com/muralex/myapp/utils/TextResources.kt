@@ -3,6 +3,8 @@ package com.muralex.myapp.utils
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.muralex.myapp.R
+import com.muralex.myapp.viewmodel.resources.SharedRes
+import com.muralex.myapp.viewmodel.resources.StringRef
 
 object Strings {
     val homeTitle @Composable get() = stringRes(R.string.screen_home_title)
@@ -26,3 +28,23 @@ fun stringRes(
 ): String {
     return stringResource(resId, *formatArgs)
 }
+
+
+@Composable
+fun StringRef.asString(): String = StringRefResolver.resolve(this)
+
+@Composable
+fun StringRef.asStringWithArgs(vararg args: Any): String = StringRefResolver.resolve(this).format(*args)
+
+object StringRefResolver {
+    @Composable
+    fun resolve(ref: StringRef): String = when (ref) {
+        SharedRes.Strings.settings_theme_title -> Strings.settingsTitle
+        SharedRes.Strings.settings_theme_option_light -> Strings.themeModeLight
+        SharedRes.Strings.settings_theme_option_dark -> Strings.themeModeDark
+        SharedRes.Strings.settings_theme_option_system -> Strings.themeModeSystem
+        else -> ref.simpleName()
+    }
+}
+
+

@@ -1,18 +1,20 @@
 package com.muralex.myapp.viewmodel.appenvironment
 
+import com.muralex.data.repository.functions.getFavoriteSwipeEnabled
 import com.muralex.data.repository.functions.getThemeMode
 import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.StateManager
 
 data class AppEnvironment(
-    val themeMode: ThemeMode = ThemeMode.DEFAULT
+    val themeMode: ThemeMode = ThemeMode.DEFAULT,
+    val favoriteSwipeEnabled: Boolean = false
 )
 
 fun StateManager.prepareAppEnvironment() {
     val appEnvironment = AppEnvironment(
-        themeMode =  dataRepository.getThemeMode()
+        themeMode =  dataRepository.getThemeMode(),
+        favoriteSwipeEnabled = dataRepository.getFavoriteSwipeEnabled()
     )
-
     updateAppEnvironment(appEnvironment)
 }
 
