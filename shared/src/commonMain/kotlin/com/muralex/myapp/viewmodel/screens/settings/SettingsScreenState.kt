@@ -5,6 +5,7 @@ import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.ScreenState
 import com.muralex.myapp.viewmodel.resources.SharedRes
 import com.muralex.myapp.viewmodel.resources.StringRef
+import com.muralex.myapp.viewmodel.resources.StringRefWithArgs
 
 data class SettingsScreenState(
     val isLoading: Boolean = false,
@@ -19,6 +20,16 @@ data class SettingsScreenState(
     }
 }
 
+
+fun List<SettingsCategory>.updateSetting(key: String, update: (Setting) -> Setting): List<SettingsCategory> {
+    return map { category ->
+        category.copy(
+            settings = category.settings.map { setting ->
+                if (setting.key == key) update(setting) else setting
+            }
+        )
+    }
+}
 
 sealed class Setting {
     abstract val key: String
@@ -40,6 +51,7 @@ sealed class Setting {
         override val key: String,
         override val title: StringRef,
         override val summary: StringRef? = null,
+        val formattedSummary: StringRefWithArgs? = null,
         val options: List<SettingOption>,
         val selectedValue: String = "",
         val dialogTitle: StringRef? = null,
@@ -121,12 +133,13 @@ class SettingsBuilder(private val repository: Repository) {
         return Setting.Options(
             key = "theme_mode",
             title = SharedRes.Strings.settings_theme_title,
-            summary = SharedRes.Strings.settings_theme_summary,
+            formattedSummary = StringRefWithArgs(SharedRes.Strings.settings_summary_current),
             options = listOf(
                 SettingOption(ThemeMode.LIGHT.name, SharedRes.Strings.settings_theme_option_light),
                 SettingOption(ThemeMode.DARK.name, SharedRes.Strings.settings_theme_option_dark),
                 SettingOption(ThemeMode.SYSTEM.name, SharedRes.Strings.settings_theme_option_system),
             ),
+            dialogTitle = SharedRes.Strings.settings_theme_dialog_title,
             selectedValue = themeModeName,
             onSelect = { SettingAction.SetThemeMode(it) }
         )

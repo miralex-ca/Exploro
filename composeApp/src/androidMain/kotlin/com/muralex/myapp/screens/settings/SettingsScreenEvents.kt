@@ -5,6 +5,7 @@ import com.muralex.myapp.viewmodel.Events
 import com.muralex.myapp.viewmodel.screens.settings.SettingAction
 import com.muralex.myapp.viewmodel.screens.settings.saveThemeMode
 import com.muralex.myapp.viewmodel.screens.settings.setFavoriteSwipeEnabled
+import com.muralex.myapp.viewmodel.screens.settings.syncDataFromSettings
 
 sealed class SettingsUiEvent {
     data class OnThemeSelected(val mode: ThemeMode) : SettingsUiEvent()
@@ -31,7 +32,7 @@ class SettingsEventHandler(
             }
 
             SettingAction.SyncData -> {
-
+                events.syncDataFromSettings()
             }
         }
     }

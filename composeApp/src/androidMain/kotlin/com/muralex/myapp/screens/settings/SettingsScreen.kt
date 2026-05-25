@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
@@ -31,6 +30,7 @@ import com.muralex.myapp.ui.components.dialogs.ConfirmationDialog
 import com.muralex.myapp.ui.components.dialogs.SingleChoiceDialog
 import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.utils.asString
+import com.muralex.myapp.utils.asStringWithArgs
 import com.muralex.myapp.viewmodel.screens.settings.Setting
 import com.muralex.myapp.viewmodel.screens.settings.SettingAction
 import com.muralex.myapp.viewmodel.screens.settings.SettingsCategory
@@ -81,6 +81,7 @@ fun AppSettingsBox(
     screenState: SettingsScreenState,
     onSettingAction: (SettingAction) -> Unit,
 ) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -109,10 +110,10 @@ fun SettingsCategoryContent(
                 text = it.asString(),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
-                fontSize = 18.sp,
-                modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
+                fontSize = 16.sp,
+                modifier = Modifier.padding(start = 14.dp, bottom = 8.dp)
             )
-        } ?: Spacer(Modifier.height(12.dp))
+        } ?: Spacer(Modifier.height(14.dp))
 
         category.settings.forEachIndexed { index, setting ->
             val isFirst = index == 0
@@ -139,54 +140,6 @@ fun SettingsCategoryContent(
 
             if (!isLast) {
                 Spacer(Modifier.height(0.5.dp))
-            }
-        }
-    }
-}
-
-
-
-
-@Composable
-private fun AppSettingsBoxes(
-    screenState: SettingsScreenState,
-    onSettingAction: (SettingAction) -> Unit,
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-        contentAlignment = Alignment.TopCenter) {
-
-        Card(
-            modifier = Modifier
-                .padding(horizontal = 12.dp, vertical = 12.dp)
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .defaultMinSize(minHeight = 300.dp)
-                    .padding(12.dp)
-            ) {
-
-                Text(
-                    text = "Interface",
-                    modifier = Modifier.padding(8.dp),
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.surfaceTint,
-                    fontSize = 18.sp
-                )
-
-                screenState.settings.forEach { setting ->
-                    SettingItem(
-                        setting = setting,
-                        onAction = {
-                            action -> onSettingAction(action)
-                        }
-                    )
-                }
-
-                Spacer(Modifier.height(35.dp))
             }
         }
     }
@@ -246,6 +199,14 @@ fun ListPreference(
     var isDialogVisible by remember { mutableStateOf(false) }
     val selectedOption = setting.options.find { it.value == setting.selectedValue }
 
+    val summary = selectedOption?.label?.asString()?.let {
+        when {
+            setting.formattedSummary != null -> setting.formattedSummary?.asStringWithArgs(it)
+            setting.summary != null ->  setting.summary?.asString()
+            else -> it
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -254,7 +215,7 @@ fun ListPreference(
     ) {
         PreferenceContent(
             title = setting.title.asString(),
-            summary = selectedOption?.label?.asString() ?: setting.selectedValue,
+            summary = summary,
         )
     }
 
@@ -334,7 +295,7 @@ private fun PreferenceContent(
             text = title,
             modifier = Modifier.padding(2.dp),
             style = MaterialTheme.typography.bodyLarge,
-            fontSize = 16.sp,
+            fontSize = 15.sp,
             fontWeight = FontWeight.Medium
         )
 

@@ -1,11 +1,9 @@
 package com.muralex.myapp.navigation
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -13,7 +11,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.muralex.myapp.navigation.bars.Level1BottomBar
 import com.muralex.myapp.navigation.bars.Level1TopBar
 import com.muralex.myapp.navigation.bars.TopBar
@@ -39,10 +36,6 @@ fun Navigation.OnePane(
     Scaffold(
         contentWindowInsets = WindowInsets(0),
         content = { contentPadding ->
-            val adjustedPadding = PaddingValues(
-                top = 0.dp,
-                bottom = contentPadding.calculateBottomPadding()
-            )
 
             Column(
                 modifier = Modifier

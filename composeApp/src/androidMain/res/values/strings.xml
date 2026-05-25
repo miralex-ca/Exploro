@@ -8,16 +8,17 @@
     <string name="nav_browse">Browse</string>
     <string name="nav_favorites">Favourites</string>
 
+    <string name="settings_summary_current">Current: %s</string>
     <string name="settings_theme_title">Theme</string>
-    <string name="settings_theme_summary">Change the app theme</string>
-    <string name="settings_theme_option_system">System</string>
-    <string name="settings_theme_option_dark">Dark</string>
     <string name="settings_theme_option_light">Light</string>
-    <string name="settings_theme_dialog_title">Select theme</string>
-    <string name="settings_favorite_swipe_title">Favorite swipe</string>
-    <string name="settings_favorite_swipe_summary">Enable swipe to favorite</string>
+    <string name="settings_theme_option_dark">Dark</string>
+    <string name="settings_theme_option_system">Use device settings</string>
+    <string name="settings_theme_dialog_title">Choose theme</string>
+
+    <string name="settings_favorite_swipe_title">Swipe to delete favorites</string>
     <string name="settings_favorite_swipe_summaryOn">Enabled</string>
     <string name="settings_favorite_swipe_summaryOff">Disabled</string>
+
     <string name="settings_sync_title">Sync</string>
     <string name="settings_sync_summary">Sync your data</string>
     <string name="settings_sync_dialog_title">Sync data?</string>

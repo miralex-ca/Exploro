@@ -5,6 +5,8 @@ import androidx.compose.ui.res.stringResource
 import com.muralex.myapp.R
 import com.muralex.myapp.viewmodel.resources.SharedRes
 import com.muralex.myapp.viewmodel.resources.StringRef
+import com.muralex.myapp.viewmodel.resources.StringRefWithArgs
+
 
 object Strings {
     val homeTitle @Composable get() = stringRes(R.string.screen_home_title)
@@ -16,14 +18,12 @@ object Strings {
     val navFavorites @Composable get() = stringRes(R.string.nav_favorites)
 
     val settingsThemeTitle @Composable get() = stringRes(R.string.settings_theme_title)
-    val settingsThemeSummary @Composable get() = stringRes(R.string.settings_theme_summary)
     val settingsThemeOptionSystem @Composable get() = stringRes(R.string.settings_theme_option_system)
     val settingsThemeOptionDark @Composable get() = stringRes(R.string.settings_theme_option_dark)
     val settingsThemeOptionLight @Composable get() = stringRes(R.string.settings_theme_option_light)
     val settingsThemeDialogTitle @Composable get() = stringRes(R.string.settings_theme_dialog_title)
 
     val settingsFavoriteSwipeTitle @Composable get() = stringRes(R.string.settings_favorite_swipe_title)
-    val settingsFavoriteSwipeSummary @Composable get() = stringRes(R.string.settings_favorite_swipe_summary)
     val settingsFavoriteSwipeSummaryOn @Composable get() = stringRes(R.string.settings_favorite_swipe_summaryOn)
     val settingsFavoriteSwipeSummaryOff @Composable get() = stringRes(R.string.settings_favorite_swipe_summaryOff)
 
@@ -63,6 +63,13 @@ object Strings {
     val detailLabelTimezones @Composable get() = stringRes(R.string.detail_label_timezones)
     val detailLabelCapital @Composable get() = stringRes(R.string.detail_label_capital)
     val detailLabelRegion @Composable get() = stringRes(R.string.detail_label_region)
+
+
+    object Formatted {
+        @Composable
+        fun settingsSummaryCurrent(vararg args: String) =
+            stringRes(R.string.settings_summary_current, *args)
+    }
 }
 
 @Composable
@@ -77,19 +84,18 @@ fun stringRes(
 fun StringRef.asString(): String = StringRefResolver.resolve(this)
 
 @Composable
-fun StringRef.asStringWithArgs(vararg args: Any): String = StringRefResolver.resolve(this).format(*args)
+fun StringRefWithArgs.asStringWithArgs(firstArg: String, vararg otherArgs: String): String =
+    StringRefResolver.resolve(this, firstArg, *otherArgs)
 
 object StringRefResolver {
     @Composable
     fun resolve(ref: StringRef): String = when (ref) {
         SharedRes.Strings.settings_theme_title -> Strings.settingsThemeTitle
-        SharedRes.Strings.settings_theme_summary -> Strings.settingsThemeSummary
         SharedRes.Strings.settings_theme_option_system -> Strings.settingsThemeOptionSystem
         SharedRes.Strings.settings_theme_option_dark -> Strings.settingsThemeOptionDark
         SharedRes.Strings.settings_theme_option_light -> Strings.settingsThemeOptionLight
         SharedRes.Strings.settings_theme_dialog_title -> Strings.settingsThemeDialogTitle
         SharedRes.Strings.settings_favorite_swipe_title -> Strings.settingsFavoriteSwipeTitle
-        SharedRes.Strings.settings_favorite_swipe_summary -> Strings.settingsFavoriteSwipeSummary
         SharedRes.Strings.settings_favorite_swipe_summaryOn -> Strings.settingsFavoriteSwipeSummaryOn
         SharedRes.Strings.settings_favorite_swipe_summaryOff -> Strings.settingsFavoriteSwipeSummaryOff
         SharedRes.Strings.settings_sync_title -> Strings.settingsSyncTitle
@@ -103,5 +109,11 @@ object StringRefResolver {
         SharedRes.Strings.settings_deviceinfo_title -> Strings.settingsDeviceInfoTitle
         SharedRes.Strings.settings_deviceinfo_summary -> Strings.settingsDeviceInfoSummary
         else -> ref.simpleName()
+    }
+
+    @Composable
+    fun resolve(ref: StringRefWithArgs, vararg args: String): String = when (ref.ref) {
+        SharedRes.Strings.settings_summary_current -> Strings.Formatted.settingsSummaryCurrent(*args)
+        else -> ref.ref.simpleName()
     }
 }

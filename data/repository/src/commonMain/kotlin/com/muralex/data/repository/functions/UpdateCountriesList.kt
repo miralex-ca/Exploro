@@ -7,11 +7,11 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.datetime.Clock
 
 
-suspend fun Repository.updateCountriesListData(): DataResult<Unit> = withRepoContext {
+suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): DataResult<Unit> = withRepoContext {
         val nowUnixTime = Clock.System.now().epochSeconds
         val shouldRefresh = nowUnixTime - localSettings.listCacheTimestamp > 24 * 3600
 
-        if (!shouldRefresh) {
+        if (!shouldRefresh && !forceUpdate) {
             return@withRepoContext  DataResult.Success(Unit)
         }
 
