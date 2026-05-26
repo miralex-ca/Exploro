@@ -28,12 +28,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.muralex.myapp.resources.Strings
 import com.muralex.myapp.screens.details.DetailsUiEvent.ToggleFavorite
 import com.muralex.myapp.ui.components.FadeInScreenContent
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
-import com.muralex.myapp.utils.Strings
 import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsScreenState
 import java.util.Locale
 

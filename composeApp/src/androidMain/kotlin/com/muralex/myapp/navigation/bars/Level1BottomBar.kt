@@ -10,7 +10,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.sp
-import com.muralex.myapp.utils.Strings
+import com.muralex.myapp.resources.Strings
 import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.ScreenIdentifier
 import com.muralex.myapp.viewmodel.screens.Level1Navigation

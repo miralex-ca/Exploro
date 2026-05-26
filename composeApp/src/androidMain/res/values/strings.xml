@@ -19,13 +19,19 @@
     <string name="settings_favorite_swipe_summaryOn">Enabled</string>
     <string name="settings_favorite_swipe_summaryOff">Disabled</string>
 
-    <string name="settings_sync_title">Sync</string>
-    <string name="settings_sync_summary">Sync your data</string>
-    <string name="settings_sync_dialog_title">Sync data?</string>
-    <string name="settings_sync_dialog_message">Do you want to sync your data now?</string>
+    <string name="settings_sync_title">Content updates</string>
+    <string name="settings_sync_summary">Keep app content up to date</string>
+    <string name="settings_sync_dialog_title">Check for updates?</string>
+    <string name="settings_sync_dialog_message">We’ll refresh the app content with the latest available data.</string>
+
+    <string name="settings_sync_in_progress">Updating content…</string>
+    <string name="settings_sync_last">Last updated: %s</string>
+    <string name="settings_sync_success">Content updated successfully\nLast updated: %s</string>
+    <string name="settings_sync_failed">Update failed. Please try again.\nLast updated: %s</string>
+
 
     <string name="settings_category_interface">Interface</string>
-    <string name="settings_category_data">Data</string>
+    <string name="settings_category_data">App data</string>
 
     <string name="settings_appversion_title">App version</string>
     <string name="settings_appversion_summary">Current: %s</string>

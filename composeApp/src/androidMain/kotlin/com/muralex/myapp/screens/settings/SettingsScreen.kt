@@ -26,11 +26,11 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.muralex.myapp.resources.asString
+import com.muralex.myapp.resources.with
 import com.muralex.myapp.ui.components.dialogs.ConfirmationDialog
 import com.muralex.myapp.ui.components.dialogs.SingleChoiceDialog
 import com.muralex.myapp.ui.theme.appColors
-import com.muralex.myapp.utils.asString
-import com.muralex.myapp.utils.asStringWithArgs
 import com.muralex.myapp.viewmodel.screens.settings.Setting
 import com.muralex.myapp.viewmodel.screens.settings.SettingAction
 import com.muralex.myapp.viewmodel.screens.settings.SettingsCategory
@@ -199,11 +199,11 @@ fun ListPreference(
     var isDialogVisible by remember { mutableStateOf(false) }
     val selectedOption = setting.options.find { it.value == setting.selectedValue }
 
-    val summary = selectedOption?.label?.asString()?.let {
+    val summary = selectedOption?.label?.asString()?.let { label ->
         when {
-            setting.formattedSummary != null -> setting.formattedSummary?.asStringWithArgs(it)
+            setting.formattedSummary != null -> setting.formattedSummary?.with(label)
             setting.summary != null ->  setting.summary?.asString()
-            else -> it
+            else -> label
         }
     }
 
@@ -238,6 +238,8 @@ fun PreferenceWithAction(
 ) {
     var isDialogVisible by remember { mutableStateOf(false) }
 
+    val summary = setting.formattedSummary?.asString() ?: setting.summary?.asString()
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -246,7 +248,7 @@ fun PreferenceWithAction(
     ) {
         PreferenceContent(
             title = setting.title.asString(),
-            summary = setting.summary?.asString(),
+            summary = summary,
         )
     }
 

@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.muralex.myapp.utils.Strings
+import com.muralex.myapp.resources.Strings
 
 @Composable
 fun AppErrorScreen(

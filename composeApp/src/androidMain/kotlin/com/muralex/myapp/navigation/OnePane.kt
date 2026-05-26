@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import com.muralex.myapp.navigation.bars.Level1BottomBar
 import com.muralex.myapp.navigation.bars.Level1TopBar
 import com.muralex.myapp.navigation.bars.TopBar
-import com.muralex.myapp.utils.Strings
+import com.muralex.myapp.resources.Strings
 import com.muralex.myapp.viewmodel.Navigation
 import com.muralex.myapp.viewmodel.NavigationState
 import com.muralex.myapp.viewmodel.ScreenIdentifier

@@ -2,6 +2,7 @@ package com.muralex.myapp.viewmodel.screens.settings
 
 
 import com.muralex.core.common.result.DataResult
+import com.muralex.core.common.result.isSuccess
 import com.muralex.data.repository.functions.getFavoriteSwipeEnabled
 import com.muralex.data.repository.functions.getThemeMode
 import com.muralex.data.repository.functions.saveThemeMode
@@ -9,7 +10,10 @@ import com.muralex.data.repository.functions.setFavoriteSwipeEnabled
 import com.muralex.data.repository.functions.updateCountriesListData
 import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.Events
+import com.muralex.myapp.viewmodel.resources.FormattedText
 import com.muralex.myapp.viewmodel.resources.SharedRes
+import com.muralex.myapp.viewmodel.screens.Level1Navigation
+import com.muralex.myapp.viewmodel.utils.toFormattedDate
 
 fun Events.setFavoriteSwipeEnabled(enabled: Boolean) = screenCoroutine {
     dataRepository.setFavoriteSwipeEnabled(enabled)
@@ -22,7 +26,6 @@ fun Events.setFavoriteSwipeEnabled(enabled: Boolean) = screenCoroutine {
     )
 
     val builder = SettingsBuilder(repository = dataRepository)
-
 
     stateManager.updateScreen(SettingsScreenState::class) {
         it.copy(
@@ -57,24 +60,31 @@ fun Events.syncDataFromSettings() = screenCoroutine {
         it.copy(
             categories = it.categories.updateSetting("sync_data") { setting ->
                 (setting as Setting.Action).copy(
-                    summary = SharedRes.Strings.settings_sync_in_progress
+                    formattedSummary = FormattedText.SimpleText.of(SharedRes.Strings.settings_sync_in_progress)
                 )
             }
         )
     }
 
-  //  delay(2000)
-
     val result = dataRepository.updateCountriesListData(forceUpdate = true)
+    val lastUpdate = dataRepository.localSettings.listCacheTimestamp
+    val timeLabel = lastUpdate.toFormattedDate()
+
+    if (result.isSuccess()) {
+        Level1Navigation.Home.screenIdentifier.getScreenInitSettings(stateManager).callOnInit(stateManager)
+        Level1Navigation.Favorites.screenIdentifier.getScreenInitSettings(stateManager).callOnInit(stateManager)
+    }
+
+    val formattedSummary = when (result) {
+        is DataResult.Success -> buildSyncResultSummary(true, timeLabel)
+        is DataResult.Error -> buildSyncResultSummary(false, timeLabel)
+    }
 
     stateManager.updateScreen(SettingsScreenState::class) {
         it.copy(
             categories = it.categories.updateSetting("sync_data") { setting ->
                 (setting as Setting.Action).copy(
-                    summary = when (result) {
-                        is DataResult.Success -> SharedRes.Strings.settings_sync_success
-                        is DataResult.Error -> SharedRes.Strings.settings_sync_failed
-                    }
+                    formattedSummary = formattedSummary
                 )
             }
         )

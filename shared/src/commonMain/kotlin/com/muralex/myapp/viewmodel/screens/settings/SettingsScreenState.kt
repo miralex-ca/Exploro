@@ -3,9 +3,10 @@ package com.muralex.myapp.viewmodel.screens.settings
 import com.muralex.data.repository.Repository
 import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.ScreenState
+import com.muralex.myapp.viewmodel.resources.FormattedText
 import com.muralex.myapp.viewmodel.resources.SharedRes
 import com.muralex.myapp.viewmodel.resources.StringRef
-import com.muralex.myapp.viewmodel.resources.StringRefWithArgs
+import com.muralex.myapp.viewmodel.utils.toFormattedDate
 
 data class SettingsScreenState(
     val isLoading: Boolean = false,
@@ -51,7 +52,7 @@ sealed class Setting {
         override val key: String,
         override val title: StringRef,
         override val summary: StringRef? = null,
-        val formattedSummary: StringRefWithArgs? = null,
+        val formattedSummary: FormattedText.Ref? = null,
         val options: List<SettingOption>,
         val selectedValue: String = "",
         val dialogTitle: StringRef? = null,
@@ -62,6 +63,7 @@ sealed class Setting {
         override val key: String,
         override val title: StringRef,
         override val summary: StringRef? = null,
+        val formattedSummary: FormattedText? = null,
         val dialogTitle: StringRef? = null,
         val dialogMessage: StringRef? = null,
         val onClick: () -> SettingAction
@@ -133,7 +135,7 @@ class SettingsBuilder(private val repository: Repository) {
         return Setting.Options(
             key = "theme_mode",
             title = SharedRes.Strings.settings_theme_title,
-            formattedSummary = StringRefWithArgs(SharedRes.Strings.settings_summary_current),
+            formattedSummary = FormattedText.Ref.of(SharedRes.Strings.settings_summary_current_formatted),
             options = listOf(
                 SettingOption(ThemeMode.LIGHT.name, SharedRes.Strings.settings_theme_option_light),
                 SettingOption(ThemeMode.DARK.name, SharedRes.Strings.settings_theme_option_dark),
@@ -159,10 +161,17 @@ class SettingsBuilder(private val repository: Repository) {
     }
 
     private fun addSync() : Setting {
+        val lastUpdate = localSettings.listCacheTimestamp
+        val timeLabel = lastUpdate.toFormattedDate()
+        val formattedSummary = buildSyncSummary(timeLabel)
+
         return Setting.Action(
             key = "sync_data",
             title = SharedRes.Strings.settings_sync_title,
             summary = SharedRes.Strings.settings_sync_summary,
+            dialogTitle = SharedRes.Strings.settings_sync_dialog_title,
+            dialogMessage = SharedRes.Strings.settings_sync_dialog_message,
+            formattedSummary = formattedSummary,
             onClick = { SettingAction.SyncData }
         )
     }
@@ -194,6 +203,18 @@ data class SettingsCategory(
     val title: StringRef? = null,
     val settings: List<Setting>
 )
+
+fun buildSyncResultSummary(isSuccess: Boolean, timeLabel: String?) = timeLabel?.let {
+    when (isSuccess) {
+        true -> FormattedText.WithString.of(SharedRes.Strings.settings_sync_success_formatted, timeLabel)
+        false -> FormattedText.WithString.of(SharedRes.Strings.settings_sync_failed_formatted, timeLabel)
+    }
+}
+
+fun buildSyncSummary(timeLabel: String?) = timeLabel?.let {
+    FormattedText.WithString.of(SharedRes.Strings.settings_sync_last_formatted, timeLabel)
+}
+
 
 
 

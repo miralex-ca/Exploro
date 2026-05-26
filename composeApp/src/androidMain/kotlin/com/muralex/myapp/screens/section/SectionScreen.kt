@@ -19,11 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.muralex.models.CountryListItem
+import com.muralex.myapp.resources.Strings
 import com.muralex.myapp.ui.components.FadeInScreenContent
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
-import com.muralex.myapp.utils.Strings
 import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
 
 

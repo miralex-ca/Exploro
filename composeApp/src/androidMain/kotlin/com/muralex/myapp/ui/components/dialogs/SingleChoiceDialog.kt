@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.muralex.myapp.utils.Strings
+import com.muralex.myapp.resources.Strings
 
 @Composable
 fun SingleChoiceDialog(
