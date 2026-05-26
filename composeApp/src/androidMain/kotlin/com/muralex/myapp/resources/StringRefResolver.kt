@@ -32,6 +32,13 @@ object StringRefResolver {
     }
 
     @Composable
+    fun resolve(ref: StringRefWithArgs, vararg args: String): String = when (ref.ref) {
+        SharedRes.Strings.settings_summary_current_formatted ->
+            stringRes(R.string.settings_summary_current, *args)
+        else -> ref.ref.simpleName()
+    }
+
+    @Composable
     fun resolve(ref: StringRefWithArgs, arg: String): String = when (ref.ref) {
         SharedRes.Strings.settings_sync_last_formatted ->
             stringRes(R.string.settings_sync_last, arg)
@@ -41,14 +48,6 @@ object StringRefResolver {
 
         SharedRes.Strings.settings_sync_failed_formatted ->
             stringRes(R.string.settings_sync_failed, arg)
-
-        else -> ref.ref.simpleName()
-    }
-
-    @Composable
-    fun resolve(ref: StringRefWithArgs, vararg args: String): String = when (ref.ref) {
-        SharedRes.Strings.settings_summary_current_formatted ->
-            stringRes(R.string.settings_summary_current, *args)
 
         else -> ref.ref.simpleName()
     }

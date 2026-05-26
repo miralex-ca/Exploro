@@ -7,23 +7,16 @@ import com.muralex.myapp.viewmodel.screens.settings.saveThemeMode
 import com.muralex.myapp.viewmodel.screens.settings.setFavoriteSwipeEnabled
 import com.muralex.myapp.viewmodel.screens.settings.syncDataFromSettings
 
-sealed class SettingsUiEvent {
-    data class OnThemeSelected(val mode: ThemeMode) : SettingsUiEvent()
-}
+sealed class SettingsUiEvent
 
 class SettingsEventHandler(
     val events: Events
 ) {
-    fun onEvent(event: SettingsUiEvent) {
-        when (event) {
-            is SettingsUiEvent.OnThemeSelected -> events.saveThemeMode(event.mode)
-        }
-    }
+    fun onEvent(event: SettingsUiEvent) {}
 
     fun onSettingAction(action: SettingAction) {
         when (action) {
             is SettingAction.SetFavoriteSwipe -> {
-                println("SettingAction.SetFavoriteSwipe")
                 events.setFavoriteSwipeEnabled(action.enabled)
             }
 

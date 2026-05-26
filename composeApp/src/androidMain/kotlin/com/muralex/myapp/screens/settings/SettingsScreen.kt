@@ -41,17 +41,15 @@ fun SettingsScreen(
     screenState: SettingsScreenState,
     eventHandler: SettingsEventHandler,
 ) {
-    AppSettingsContent(
+    SettingsScreenContent(
         screenState = screenState,
-        onEvent = eventHandler::onEvent,
         onSettingAction = eventHandler::onSettingAction
     )
 }
 
 @Composable
-fun AppSettingsContent(
+fun SettingsScreenContent(
     screenState: SettingsScreenState,
-    onEvent: (SettingsUiEvent) -> Unit,
     onSettingAction: (SettingAction) -> Unit,
 ) {
 
@@ -67,7 +65,7 @@ fun AppSettingsContent(
             enter = fadeIn(animationSpec = tween(300)),
             exit = fadeOut()
         ) {
-            AppSettingsBox(
+            SettingsCategoriesList(
                 screenState = screenState,
                 onSettingAction = onSettingAction
             )
@@ -77,11 +75,10 @@ fun AppSettingsContent(
 
 
 @Composable
-fun AppSettingsBox(
+fun SettingsCategoriesList(
     screenState: SettingsScreenState,
     onSettingAction: (SettingAction) -> Unit,
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -90,7 +87,7 @@ fun AppSettingsBox(
             .widthIn(max = 600.dp)
     ) {
         screenState.categories.forEach { category ->
-            SettingsCategoryContent(
+            SettingsCategory(
                 category = category,
                 onAction = onSettingAction
             )
@@ -99,8 +96,9 @@ fun AppSettingsBox(
     }
 }
 
+
 @Composable
-fun SettingsCategoryContent(
+fun SettingsCategory(
     category: SettingsCategory,
     onAction: (SettingAction) -> Unit,
 ) {
@@ -144,6 +142,7 @@ fun SettingsCategoryContent(
         }
     }
 }
+
 
 @Composable
 fun SettingItem(
