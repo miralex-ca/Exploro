@@ -1,26 +1,10 @@
 package com.muralex.myapp.viewmodel.resources
 
-/**
- * Interface for references to string resources
- */
-interface StringRef {
-    /**
-     * Returns the name of reference
-     */
-    fun simpleName(): String
-}
-
-/**
- * Class for references to string resources with arguments
- */
-data class StringRefWithArgs(
-    val ref: StringRef
-)
-
 object SharedRes {
     enum class Strings : StringRef {
+        empty_ref_placeholder,
+        settings_summary_current_formatted,
         settings_theme_title,
-        settings_summary_current,
         settings_theme_option_system,
         settings_theme_option_dark,
         settings_theme_option_light,
@@ -39,8 +23,9 @@ object SharedRes {
         settings_deviceinfo_title,
         settings_deviceinfo_summary,
         settings_sync_in_progress,
-        settings_sync_success,
-        settings_sync_failed
+        settings_sync_last_formatted,
+        settings_sync_success_formatted,
+        settings_sync_failed_formatted,
         ;
 
         override fun simpleName(): String {
