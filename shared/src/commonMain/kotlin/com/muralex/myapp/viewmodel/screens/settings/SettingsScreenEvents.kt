@@ -1,7 +1,6 @@
 package com.muralex.myapp.viewmodel.screens.settings
 
 
-import com.muralex.core.common.result.DataResult
 import com.muralex.core.common.result.isSuccess
 import com.muralex.data.repository.functions.getFavoriteSwipeEnabled
 import com.muralex.data.repository.functions.getThemeMode
@@ -10,9 +9,13 @@ import com.muralex.data.repository.functions.setFavoriteSwipeEnabled
 import com.muralex.data.repository.functions.updateCountriesListData
 import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.Events
+import com.muralex.myapp.viewmodel.StateManager
 import com.muralex.myapp.viewmodel.resources.FormattedText
 import com.muralex.myapp.viewmodel.resources.SharedRes
 import com.muralex.myapp.viewmodel.screens.Level1Navigation
+import com.muralex.myapp.viewmodel.screens.settings.builder.DataSettingsCategory
+import com.muralex.myapp.viewmodel.screens.settings.builder.Setting
+import com.muralex.myapp.viewmodel.screens.settings.builder.updateSetting
 import com.muralex.myapp.viewmodel.utils.toFormattedDate
 
 fun Events.setFavoriteSwipeEnabled(enabled: Boolean) = screenCoroutine {
@@ -24,15 +27,7 @@ fun Events.setFavoriteSwipeEnabled(enabled: Boolean) = screenCoroutine {
             favoriteSwipeEnabled = isFavoriteSwipeEnabled
         )
     )
-
-    val builder = SettingsBuilder(repository = dataRepository)
-
-    stateManager.updateScreen(SettingsScreenState::class) {
-        it.copy(
-            categories = builder.buildCategories(),
-            settings = builder.build().also { println("Settings $it") }
-        )
-    }
+    stateManager.rebuildSettings()
 }
 
 fun Events.saveThemeMode(themeMode: ThemeMode) = screenCoroutine {
@@ -44,49 +39,43 @@ fun Events.saveThemeMode(themeMode: ThemeMode) = screenCoroutine {
             themeMode = current
         )
     )
+    stateManager.rebuildSettings()
+}
 
-    val builder = SettingsBuilder(repository = dataRepository)
+fun Events.syncDataFromSettings() = screenCoroutine {
+    stateManager.updateSyncSummary(
+        FormattedText.SimpleText.of(SharedRes.Strings.settings_sync_in_progress)
+    )
 
-    stateManager.updateScreen(SettingsScreenState::class) {
+    val result = dataRepository.updateCountriesListData(forceUpdate = true)
+
+    if (result.isSuccess()) {
+        stateManager.reinitLevel1Screens()
+    }
+    val timeLabel = dataRepository.localSettings.listCacheTimestamp.toFormattedDate()
+
+    stateManager.updateSyncSummary(
+        DataSettingsCategory.buildSyncResultSummary(result, timeLabel)
+    )
+}
+
+private fun StateManager.updateSyncSummary(summary: FormattedText?) {
+    updateScreen(SettingsScreenState::class) {
         it.copy(
-            categories = builder.buildCategories(),
-            settings = builder.build()
+            categories = it.categories.updateSetting(DataSettingsCategory.SYNC_SETTING_ID) { setting ->
+                (setting as Setting.Action).copy(formattedSummary = summary)
+            }
         )
     }
 }
 
-fun Events.syncDataFromSettings() = screenCoroutine {
-    stateManager.updateScreen(SettingsScreenState::class) {
-        it.copy(
-            categories = it.categories.updateSetting("sync_data") { setting ->
-                (setting as Setting.Action).copy(
-                    formattedSummary = FormattedText.SimpleText.of(SharedRes.Strings.settings_sync_in_progress)
-                )
-            }
-        )
+private fun StateManager.rebuildSettings() {
+    updateScreen(SettingsScreenState::class) {
+        it.copy(categories = settingsBuilder.buildCategories())
     }
+}
 
-    val result = dataRepository.updateCountriesListData(forceUpdate = true)
-    val lastUpdate = dataRepository.localSettings.listCacheTimestamp
-    val timeLabel = lastUpdate.toFormattedDate()
-
-    if (result.isSuccess()) {
-        Level1Navigation.Home.screenIdentifier.getScreenInitSettings(stateManager).callOnInit(stateManager)
-        Level1Navigation.Favorites.screenIdentifier.getScreenInitSettings(stateManager).callOnInit(stateManager)
-    }
-
-    val formattedSummary = when (result) {
-        is DataResult.Success -> buildSyncResultSummary(true, timeLabel)
-        is DataResult.Error -> buildSyncResultSummary(false, timeLabel)
-    }
-
-    stateManager.updateScreen(SettingsScreenState::class) {
-        it.copy(
-            categories = it.categories.updateSetting("sync_data") { setting ->
-                (setting as Setting.Action).copy(
-                    formattedSummary = formattedSummary
-                )
-            }
-        )
-    }
+private suspend fun StateManager.reinitLevel1Screens() {
+    Level1Navigation.Home.screenIdentifier.getScreenInitSettings(this).callOnInit(this)
+    Level1Navigation.Favorites.screenIdentifier.getScreenInitSettings(this).callOnInit(this)
 }

@@ -31,10 +31,10 @@ import com.muralex.myapp.resources.with
 import com.muralex.myapp.ui.components.dialogs.ConfirmationDialog
 import com.muralex.myapp.ui.components.dialogs.SingleChoiceDialog
 import com.muralex.myapp.ui.theme.appColors
-import com.muralex.myapp.viewmodel.screens.settings.Setting
-import com.muralex.myapp.viewmodel.screens.settings.SettingAction
-import com.muralex.myapp.viewmodel.screens.settings.SettingsCategory
 import com.muralex.myapp.viewmodel.screens.settings.SettingsScreenState
+import com.muralex.myapp.viewmodel.screens.settings.builder.Setting
+import com.muralex.myapp.viewmodel.screens.settings.builder.SettingAction
+import com.muralex.myapp.viewmodel.screens.settings.builder.SettingsCategory
 
 @Composable
 fun SettingsScreen(

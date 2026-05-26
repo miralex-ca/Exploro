@@ -6,6 +6,7 @@ import com.muralex.myapp.viewmodel.appenvironment.AppEnvironment
 import com.muralex.myapp.viewmodel.appenvironment.prepareAppEnvironment
 import com.muralex.myapp.viewmodel.screens.CallOnInitValues
 import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
+import com.muralex.myapp.viewmodel.screens.settings.builder.SettingsBuilder
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -47,6 +48,8 @@ class StateManager(repo: Repository) {
         get() = verticalNavigationLevels[currentLevel1ScreenIdentifier?.URI] ?: mutableMapOf()
 
     internal val dataRepository by lazy { repo }
+    internal val settingsBuilder by lazy { SettingsBuilder(dataRepository) }
+
 
     init {
         prepareAppEnvironment()

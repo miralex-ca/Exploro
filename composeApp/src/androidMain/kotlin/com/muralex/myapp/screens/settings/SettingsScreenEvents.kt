@@ -2,7 +2,7 @@ package com.muralex.myapp.screens.settings
 
 import com.muralex.models.ThemeMode
 import com.muralex.myapp.viewmodel.Events
-import com.muralex.myapp.viewmodel.screens.settings.SettingAction
+import com.muralex.myapp.viewmodel.screens.settings.builder.SettingAction
 import com.muralex.myapp.viewmodel.screens.settings.saveThemeMode
 import com.muralex.myapp.viewmodel.screens.settings.setFavoriteSwipeEnabled
 import com.muralex.myapp.viewmodel.screens.settings.syncDataFromSettings
