@@ -13,7 +13,7 @@ fun Events.retryBootstrapApp() = screenCoroutine {
     stateManager.updateScreen(HomeScreenState::class) {
         it.copy(
             isLoading = false,
-            homeSections = sections
+            homeSections = sections.toHomeSectionStates()
         )
     }
 }

@@ -9,7 +9,7 @@ fun Events.removeFavoriteBySwipe(code: String) = screenCoroutine {
 
     stateManager.updateScreen(FavoritesScreenState::class) {
         it.copy(
-            favorites = dataRepository.getFavorites()
+            favorites = dataRepository.getFavorites().toFavoriteItems()
         )
     }
 }

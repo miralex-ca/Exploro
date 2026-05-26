@@ -22,19 +22,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import com.muralex.models.CountryListItem
-import com.muralex.models.HomeSection
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.AppTypography
 import com.muralex.myapp.ui.theme.appColors
+import com.muralex.myapp.viewmodel.screens.home.HomeListItem
 import com.muralex.myapp.viewmodel.screens.home.HomeScreenState
+import com.muralex.myapp.viewmodel.screens.home.HomeSectionState
 
 @Composable
 fun HomeScreen(
@@ -75,10 +73,10 @@ fun HomeScreenContent(
                 screenState.homeSections,
                 key = { it.sectionName }
             ) { section ->
-                HomeSectionView(
+                HomeSectionRow(
                     section = section,
                     onListItemClick = { onEvent(HomeUiEvent.OnItemClicked(it)) },
-                    onSectionClick = { onEvent(HomeUiEvent.OnSectionClicked(section.sectionName)) }
+                    onSectionClick = { onEvent(HomeUiEvent.OnSectionClicked(section)) }
                 )
             }
         }
@@ -87,9 +85,9 @@ fun HomeScreenContent(
 
 
 @Composable
-fun HomeSectionView(
-    section: HomeSection,
-    onListItemClick: (CountryListItem) -> Unit,
+fun HomeSectionRow(
+    section: HomeSectionState,
+    onListItemClick: (HomeListItem) -> Unit,
     onSectionClick: () -> Unit
 ) {
 
@@ -136,14 +134,12 @@ fun HomeSectionView(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(
-                section.countries,
+                section.sectionListItems,
                 key = { it.id }
             ) { item ->
-                HomeCountryCard(
+                HomeSectionListCard(
                     item = item,
-                    onClick = {
-                        onListItemClick(item)
-                    }
+                    onClick = { onListItemClick(item) }
                 )
             }
         }
@@ -151,11 +147,10 @@ fun HomeSectionView(
 }
 
 @Composable
-fun HomeCountryCard(
-    item: CountryListItem,
+fun HomeSectionListCard(
+    item: HomeListItem,
     onClick: () -> Unit
 ) {
-
     Card(
         modifier = Modifier.width(140.dp),
         onClick = onClick,

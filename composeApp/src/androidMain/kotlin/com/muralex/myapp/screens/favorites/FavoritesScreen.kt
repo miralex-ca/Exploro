@@ -26,13 +26,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.muralex.models.CountryListItem
 import com.muralex.myapp.LocalAppEnvironment
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.RemoveFavorite
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
+import com.muralex.myapp.viewmodel.screens.favorites.FavoriteListItem
 import com.muralex.myapp.viewmodel.screens.favorites.FavoritesScreenState
 import kotlinx.coroutines.delay
 
@@ -103,7 +103,7 @@ fun FavoritesScreenContent(
 
 @Composable
 fun FavoriteListRow(
-    item: CountryListItem,
+    item: FavoriteListItem,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -169,7 +169,7 @@ fun FavoriteListRow(
 @Composable
 fun SwipeableFavoriteRow(
     modifier: Modifier = Modifier,
-    item: CountryListItem,
+    item: FavoriteListItem,
     isSwipeEnabled: Boolean = true,
     onClick: () -> Unit,
     onRemove: () -> Unit,

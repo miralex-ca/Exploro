@@ -5,7 +5,7 @@ import com.muralex.myapp.viewmodel.Events
 
 
 fun Events.searchCountriesByQuery(query: String) = screenCoroutine {
-    val results = dataRepository.searchCountries(query)
+    val results = dataRepository.searchCountries(query).toSearchItems()
 
     stateManager.updateScreen(SearchScreenState::class) {
         it.copy(

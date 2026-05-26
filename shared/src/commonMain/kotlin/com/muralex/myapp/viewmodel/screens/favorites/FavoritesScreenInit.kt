@@ -9,7 +9,7 @@ fun StateManager.initFavoritesScreen() = ScreenInitSettings(
     title = "Favorites",
     initState = { FavoritesScreenState(isLoading = true) },
     callOnInit = {
-        val favorites = dataRepository.getFavorites()
+        val favorites = dataRepository.getFavorites().toFavoriteItems()
         updateScreen(FavoritesScreenState::class) {
             it.copy(
                 isLoading = false,

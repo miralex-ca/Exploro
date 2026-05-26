@@ -21,7 +21,7 @@ fun StateManager.initHomeScreen() = ScreenInitSettings(
             }
         }
 
-        val sections = dataRepository.getHomeSections()
+        val sections = dataRepository.getHomeSections().toHomeSectionStates()
 
          updateScreen(HomeScreenState::class) {
             it.copy(

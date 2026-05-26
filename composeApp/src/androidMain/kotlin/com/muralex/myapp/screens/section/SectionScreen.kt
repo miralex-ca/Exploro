@@ -18,12 +18,12 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.muralex.models.CountryListItem
 import com.muralex.myapp.resources.Strings
 import com.muralex.myapp.ui.components.FadeInScreenContent
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
+import com.muralex.myapp.viewmodel.screens.section.SectionListItem
 import com.muralex.myapp.viewmodel.screens.section.SectionScreenState
 
 
@@ -47,7 +47,7 @@ fun SectionScreen(
 @Composable
 fun SectionScreenContent(
     screenState: SectionScreenState,
-    onListItemClick: (CountryListItem) -> Unit,
+    onListItemClick: (SectionListItem) -> Unit,
 ) {
     if (screenState.countries.isEmpty()) {
         Box(
@@ -77,7 +77,7 @@ fun SectionScreenContent(
 
 @Composable
 fun CountryGridCard(
-    item: CountryListItem,
+    item: SectionListItem,
     onClick: () -> Unit
 ) {
 
@@ -85,7 +85,6 @@ fun CountryGridCard(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(10.dp),
-        colors  = CardDefaults.cardColors(),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         border = BorderStroke(
             width = 1.dp,

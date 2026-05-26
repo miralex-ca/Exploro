@@ -15,8 +15,26 @@ data class SearchScreenState(
 sealed class SearchResult {
     data object Idle : SearchResult()
     data object Searching : SearchResult()
-    data class Success(val items: List<CountryListItem>) : SearchResult()
+    data class Success(val items: List<SearchListItem>) : SearchResult()
     data object NotFound : SearchResult()
     data class Error(val message: String) : SearchResult()
 }
+
+data class SearchListItem(
+    val id: String,
+    val name: String,
+    val officialName: String,
+    val capital: String,
+    val flagPngUrl: String,
+)
+
+fun CountryListItem.toSearchListItem() = SearchListItem(
+    id = id,
+    name = name,
+    officialName = officialName,
+    capital = capital,
+    flagPngUrl = flagPngUrl
+)
+
+fun List<CountryListItem>.toSearchItems() = map { it.toSearchListItem() }
 

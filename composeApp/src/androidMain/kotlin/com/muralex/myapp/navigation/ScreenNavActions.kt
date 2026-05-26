@@ -1,6 +1,5 @@
 package com.muralex.myapp.navigation
 
-import com.muralex.models.CountryListItem
 import com.muralex.myapp.viewmodel.screens.Level1Navigation
 import com.muralex.myapp.viewmodel.screens.Screen
 import com.muralex.myapp.viewmodel.screens.countrydetail.CountryDetailParams
@@ -15,9 +14,9 @@ interface ScreenNavActions {
 
     fun toSettings()
 
-    fun toDetailFromList(item: CountryListItem)
+    fun toDetailFromList(item: DetailsNavParams)
 
-    fun toSection(section: String)
+    fun toSection(section: SectionNavParams)
 
     fun toLevel1Screen(level1Navigation: Level1Navigation)
 
@@ -37,7 +36,7 @@ interface ScreenNavActions {
             appNavController.navigate(Screen.SettingsScreen)
         }
 
-        override fun toDetailFromList(item: CountryListItem) {
+        override fun toDetailFromList(item: DetailsNavParams) {
             appNavController.navigate(
                 Screen.CountryDetail,
                 CountryDetailParams(
@@ -47,10 +46,10 @@ interface ScreenNavActions {
             )
         }
 
-        override fun toSection(section: String) {
+        override fun toSection(section: SectionNavParams) {
             appNavController.navigate(
                 Screen.SectionScreen,
-                SectionParams(section, screenTitle = section)
+                SectionParams(section.id, screenTitle = section.name)
             )
         }
 
@@ -58,5 +57,14 @@ interface ScreenNavActions {
             appNavController.navigateByLevel1(level1Navigation)
         }
     }
-
 }
+
+data class DetailsNavParams(
+    val id: String,
+    val name: String,
+)
+
+data class SectionNavParams(
+    val id: String,
+    val name: String,
+)

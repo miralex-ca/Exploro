@@ -4,7 +4,6 @@ import com.muralex.data.repository.Repository
 import com.muralex.mappers.toListItems
 import com.muralex.models.HomeSection
 
-
 val homeContinents = listOf(
     "Europe",
     "Asia",

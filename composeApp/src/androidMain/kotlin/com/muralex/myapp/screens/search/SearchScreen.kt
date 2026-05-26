@@ -36,8 +36,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import com.muralex.models.CountryListItem
 import com.muralex.myapp.screens.search.SearchUiEvent.DidBecomeActive
 import com.muralex.myapp.screens.search.SearchUiEvent.OnItemClicked
 import com.muralex.myapp.screens.search.SearchUiEvent.SearchByQuery
@@ -45,6 +43,7 @@ import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.theme.appColors
 import com.muralex.myapp.utils.OnChange
 import com.muralex.myapp.utils.SingleEffect
+import com.muralex.myapp.viewmodel.screens.search.SearchListItem
 import com.muralex.myapp.viewmodel.screens.search.SearchResult
 import com.muralex.myapp.viewmodel.screens.search.SearchScreenState
 import kotlinx.coroutines.delay
@@ -358,7 +357,7 @@ fun SearchTopBar(
 
 @Composable
 fun SearchListRow(
-    item: CountryListItem,
+    item: SearchListItem,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
