@@ -2,7 +2,7 @@ package com.muralex.myapp.navigation
 
 import com.muralex.myapp.viewmodel.screens.Level1Navigation
 import com.muralex.myapp.viewmodel.screens.Screen
-import com.muralex.myapp.viewmodel.screens.countrydetail.CountryDetailParams
+import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsScreenParams
 import com.muralex.myapp.viewmodel.screens.section.SectionParams
 
 interface ScreenNavActions {
@@ -39,7 +39,7 @@ interface ScreenNavActions {
         override fun toDetailFromList(item: DetailsNavParams) {
             appNavController.navigate(
                 Screen.CountryDetail,
-                CountryDetailParams(
+                DetailsScreenParams(
                     countryCode = item.id,
                     screenTitle = item.name
                 )

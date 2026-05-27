@@ -22,13 +22,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.muralex.myapp.LocalAppEnvironment
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.muralex.myapp.screens.favorites.FavoritesUiEvent.RemoveFavorite
+import com.muralex.myapp.ui.components.EmptyState
+import com.muralex.myapp.ui.components.EmptyStateView
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
@@ -58,19 +58,10 @@ fun FavoritesScreenContent(
     screenState: FavoritesScreenState,
     onEvent: (FavoritesUiEvent) -> Unit,
 ) {
-
     val isFavoriteSwipeEnabled = LocalAppEnvironment.current.favoriteSwipeEnabled
 
     if (screenState.favorites.isEmpty()) {
-        Text(
-            text = "empty list",
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier
-                .padding(top = 30.dp)
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            fontSize = 18.sp
-        )
+        EmptyStateView(EmptyState.EmptyList)
     } else {
         Box(
             modifier = Modifier.fillMaxSize(),

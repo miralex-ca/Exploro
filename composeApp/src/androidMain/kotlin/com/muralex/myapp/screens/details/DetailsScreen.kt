@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.outlined.SearchOff
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.icons.rounded.StarBorder
 import androidx.compose.material3.*
@@ -20,7 +20,6 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -30,10 +29,13 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.muralex.myapp.resources.Strings
 import com.muralex.myapp.screens.details.DetailsUiEvent.ToggleFavorite
+import com.muralex.myapp.ui.components.EmptyState
+import com.muralex.myapp.ui.components.EmptyStateView
 import com.muralex.myapp.ui.components.FadeInScreenContent
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.appColors
+import com.muralex.myapp.viewmodel.screens.countrydetail.CountryDetailsState
 import com.muralex.myapp.viewmodel.screens.countrydetail.DetailsScreenState
 import java.util.Locale
 
@@ -42,26 +44,84 @@ fun DetailsScreen(
     screenState: DetailsScreenState,
     eventHandler: DetailsEventHandler
 ) {
+    val details = screenState.details
+
     FadeInScreenContent {
-        if (screenState.isLoading) {
-            ScreenLoading()
-        } else {
-            DetailsScreenContent(
-                screenState = screenState,
-                onEvent = eventHandler::onEvent,
-            )
+        when {
+            screenState.isLoading -> {
+                ScreenLoading()
+            }
+            details == null -> {
+                EmptyStateView(EmptyState.NotFound)
+            }
+            else -> {
+                DetailsScreenContent(
+                    details = details,
+                    onEvent = eventHandler::onEvent
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun DetailsNotFoundScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
+    ) {
+
+        Surface(
+            modifier = Modifier
+                .padding(24.dp)
+                .widthIn(max = 360.dp)
+                .padding(top = 30.dp),
+            shape = RoundedCornerShape(20.dp),
+            color = MaterialTheme.colorScheme.surfaceVariant,
+        ) {
+            Column(
+                modifier = Modifier.padding(
+                    horizontal = 28.dp,
+                    vertical = 32.dp
+                ),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+                Icon(
+                    imageVector = Icons.Outlined.SearchOff,
+                    contentDescription = null,
+                    modifier = Modifier.size(42.dp).alpha(0.8f),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Text(
+                    text = "Details not available",
+                    style = MaterialTheme.typography.titleMedium
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Text(
+                    text = "We couldn't find information for this item.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 }
 
 @Composable
 fun DetailsScreenContent(
-    screenState: DetailsScreenState,
+    details: CountryDetailsState,
     onEvent: (DetailsUiEvent) -> Unit,
 ) {
-
-    val country = screenState.countryDetails?.country ?: return
-    val details = screenState.countryDetails?.details ?: return
 
     Column(
         modifier = Modifier
@@ -89,14 +149,14 @@ fun DetailsScreenContent(
 
             Column {
                 CountryHeaderSection(
-                    flagUrl = country.flagPngUrl,
-                    flagAlt = country.flagAlt,
-                    officialName = country.officialName,
-                    coatOfArmsUrl = details.coatOfArmsPngUrl,
-                    capital = country.capital,
-                    continent = country.continent,
-                    isFavorite = screenState.isFavorite,
-                    onFavoriteClick = { onEvent(ToggleFavorite(country.id)) }
+                    flagUrl = details.flagUrl,
+                    flagAlt = details.flagAlt,
+                    officialName = details.officialName,
+                    coatOfArmsUrl = details.coatOfArmsUrl,
+                    capital = details.capital,
+                    continent = details.continent,
+                    isFavorite = details.isFavorite,
+                    onFavoriteClick = { onEvent(ToggleFavorite(details.id)) }
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -105,42 +165,14 @@ fun DetailsScreenContent(
                     modifier = Modifier.padding( horizontal = 24.dp, vertical = 20.dp)
                 ) {
 
-                    DetailRow(
-                        icon = Icons.Outlined.Map,
-                        label = Strings.detailLabelLocation,
-                        value = country.subregion
-                    )
-
-                    DetailRow(
-                        icon = Icons.Outlined.Straighten,
-                        label = Strings.detailLabelArea,
-                        value = formatArea(details.area)
-                    )
-
-                    DetailRow(
-                        icon = Icons.Outlined.People,
-                        label = Strings.detailLabelPopulation,
-                        value = details.population.toHumanReadable()
-                    )
-
-                    DetailRow(
-                        icon = Icons.Outlined.Translate,
-                        label = Strings.detailLabelLanguages,
-                        value = details.languages.joinToString()
-                    )
-
-
-                    DetailRow(
-                        icon = Icons.Outlined.AttachMoney,
-                        label = Strings.detailLabelCurrency,
-                        value = "${details.currencySymbol} (${details.currencyName})"
-                    )
-
-                    DetailRow(
-                        icon = Icons.Outlined.Schedule,
-                        label = Strings.detailLabelTimezones,
-                        value = formatTimezones(details.timezones)
-                    )
+                    detailRows(details).forEach { row ->
+                        DetailsScreenInfoRow(
+                            icon = row.icon,
+                            label = row.label,
+                            value = row.value,
+                            url = row.url
+                        )
+                    }
 
                     Spacer(modifier = Modifier.height(16.dp))
 
@@ -279,90 +311,6 @@ fun FavoriteButton(
 }
 
 @Composable
-fun DetailRow(
-    icon: ImageVector,
-    label: String,
-    value: String,
-) {
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
-            modifier = Modifier
-                .size(28.dp)
-                .alpha(0.8f)
-        )
-
-        Spacer(modifier = Modifier.width(28.dp))
-
-        Column(
-            modifier = Modifier.fillMaxWidth()
-        ) {
-
-            Text(
-                text = label,
-                style = MaterialTheme.typography.labelSmall,
-                modifier = Modifier.alpha(0.8f)
-            )
-
-            Text(
-                text = value,
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Normal,
-            )
-        }
-    }
-}
-
-fun formatArea(area: Double): String {
-    return when {
-        area >= 1_000_000 -> "${"%.1f".format(area / 1_000_000)}M km²"
-        area >= 1_000 -> "${"%.1f".format(area / 1_000)}K km²"
-        else -> "${area.toInt()} km²"
-    }
-}
-
-fun formatTimezones(timezones: List<String>): String {
-    if (timezones.isEmpty()) return "N/A"
-
-    return when {
-        timezones.size == 1 -> timezones.first()
-        timezones.size <= 3 -> timezones.joinToString(", ")
-        else -> "${timezones.take(2).joinToString(", ")} +${timezones.size - 2} more"
-    }
-}
-
-
-
-fun Long.toHumanReadable(): String {
-    fun Double.clean(): String =
-        if (this % 1.0 == 0.0) {
-            this.toInt().toString()
-        } else {
-            String.format(Locale.getDefault(), "%.1f", this)
-        }
-
-    return when {
-        this >= 1_000_000_000 ->
-            "${(this / 1_000_000_000.0).clean()}B"
-
-        this >= 1_000_000 ->
-            "${(this / 1_000_000.0).clean()}M"
-
-        this >= 1_000 ->
-            "${(this / 1_000.0).clean()}K"
-
-        else -> this.toString()
-    }
-}
-
-@Composable
 fun CountryHeaderTitle(
     officialName: String,
     coatOfArmsUrl: String,
@@ -401,7 +349,6 @@ fun CountryHeaderTitle(
                 Column (
                     modifier = Modifier.padding(end = 15.dp)
                 ) {
-
                     if (capital.isNotBlank()) {
                         InlineHeaderDetailRow(
                             label = Strings.detailLabelCapital,

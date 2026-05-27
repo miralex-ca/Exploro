@@ -1,10 +1,5 @@
 package com.muralex.myapp.screens.settings
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -28,6 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muralex.myapp.resources.asString
 import com.muralex.myapp.resources.with
+import com.muralex.myapp.ui.components.EmptyState
+import com.muralex.myapp.ui.components.EmptyStateView
+import com.muralex.myapp.ui.components.FadeInScreenContent
+import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.components.dialogs.ConfirmationDialog
 import com.muralex.myapp.ui.components.dialogs.SingleChoiceDialog
 import com.muralex.myapp.ui.theme.appColors
@@ -54,21 +53,17 @@ fun SettingsScreenContent(
 ) {
 
     Column {
-        val state = remember {
-            MutableTransitionState(false).apply {
-                targetState = true
+        FadeInScreenContent {
+            if (screenState.isLoading) {
+                ScreenLoading()
+            } else if (screenState.categories.isEmpty()) {
+                EmptyStateView(EmptyState.EmptyList)
+            } else {
+                SettingsCategoriesList(
+                    screenState = screenState,
+                    onSettingAction = onSettingAction
+                )
             }
-        }
-
-        AnimatedVisibility(
-            visibleState = state,
-            enter = fadeIn(animationSpec = tween(300)),
-            exit = fadeOut()
-        ) {
-            SettingsCategoriesList(
-                screenState = screenState,
-                onSettingAction = onSettingAction
-            )
         }
     }
 }

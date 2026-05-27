@@ -16,7 +16,7 @@ fun Events.toggleFavorite(code: String) = screenCoroutine {
 
     stateManager.updateScreen(DetailsScreenState::class) {
         it.copy(
-            isFavorite = newValue
+            details = it.details?.copy(isFavorite = newValue),
         )
     }
 }

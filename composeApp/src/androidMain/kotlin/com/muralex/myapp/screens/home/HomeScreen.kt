@@ -22,10 +22,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.muralex.myapp.ui.components.EmptyState
+import com.muralex.myapp.ui.components.EmptyStateView
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
 import com.muralex.myapp.ui.theme.AppTypography
@@ -55,15 +55,7 @@ fun HomeScreenContent(
     onEvent: (HomeUiEvent) -> Unit,
 ) {
     if (screenState.homeSections.isEmpty()) {
-        Text(
-            text = "empty list",
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier
-                .padding(top = 30.dp)
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            fontSize = 18.sp
-        )
+        EmptyStateView(EmptyState.EmptyList)
     } else {
         LazyColumn(
             contentPadding = PaddingValues(top = 10.dp, bottom = 40.dp),

@@ -56,6 +56,7 @@
     <string name="detail_label_location">Location</string>
     <string name="detail_label_area">Area</string>
     <string name="detail_label_population">Population</string>
+    <string name="detail_label_language">Official language</string>
     <string name="detail_label_languages">Official languages</string>
     <string name="detail_label_currency">Currency</string>
     <string name="detail_label_timezones">Time zones</string>
@@ -63,4 +64,11 @@
     <string name="detail_label_region">Region:</string>
 
     <string name="settings_mode_summary">Current: %s</string>
+    <string name="empty_title_no_results">No results found</string>
+    <string name="empty_title_empty_list">Nothing here yet</string>
+    <string name="empty_title_not_found">Not found</string>
+    <string name="empty_msg_no_results">We couldn’t find anything matching your request.</string>
+    <string name="empty_msg_empty_list">There is nothing to show here yet.</string>
+    <string name="empty_msg_not_found">The requested content could not be found.</string>
+
 </resources>

@@ -8,24 +8,25 @@ import com.muralex.myapp.viewmodel.screens.ScreenInitSettings
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CountryDetailParams(val countryCode: String? = null, val screenTitle: String? = null) : ScreenParams
+data class DetailsScreenParams(val countryCode: String? = null, val screenTitle: String? = null) : ScreenParams
 
-fun StateManager.initCountryDetail(params: CountryDetailParams) = ScreenInitSettings(
+fun StateManager.initCountryDetail(params: DetailsScreenParams) = ScreenInitSettings(
     title = params.screenTitle ?: "",
     initState = { DetailsScreenState(isLoading = true) },
     callOnInit = {
-        if (params.countryCode != null) {
-            val countryCode = params.countryCode
-            val countryDetails = dataRepository.getCountryDetails(countryCode)
-            val isFavorite = dataRepository.isFavorite(countryCode)
+        val countryCode = params.countryCode ?: return@ScreenInitSettings
 
-            updateScreen(DetailsScreenState::class) {
-                it.copy(
-                    isLoading = false,
-                    countryDetails = countryDetails,
-                    isFavorite = isFavorite,
-                )
-            }
+        val countryDetailsState = dataRepository.getCountryDetails(countryCode)?.toDetailsState()
+
+        val details = countryDetailsState?.copy(
+            isFavorite = dataRepository.isFavorite(countryCode)
+        )
+
+        updateScreen(DetailsScreenState::class) {
+            it.copy(
+                isLoading = false,
+                details = details
+            )
         }
     },
     clearStateCacheWhenScreenIsRemovedFromBackstack = true

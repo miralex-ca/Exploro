@@ -12,13 +12,13 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.muralex.myapp.resources.Strings
+import com.muralex.myapp.ui.components.EmptyState
+import com.muralex.myapp.ui.components.EmptyStateView
 import com.muralex.myapp.ui.components.FadeInScreenContent
 import com.muralex.myapp.ui.components.RemoteImage
 import com.muralex.myapp.ui.components.ScreenLoading
@@ -50,12 +50,7 @@ fun SectionScreenContent(
     onListItemClick: (SectionListItem) -> Unit,
 ) {
     if (screenState.countries.isEmpty()) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(Strings.noCountriesFound)
-        }
+        EmptyStateView(EmptyState.EmptyList)
     } else {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 160.dp),
