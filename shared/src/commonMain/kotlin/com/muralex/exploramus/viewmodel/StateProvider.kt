@@ -1,0 +1,19 @@
+package com.muralex.exploramus.viewmodel
+
+import com.muralex.exploramus.viewmodel.appenvironment.AppEnvironment
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+
+class StateProvider(val stateManager: StateManager) {
+    fun getScreenStateFlow(screenIdentifier: ScreenIdentifier): StateFlow<ScreenState> {
+        return stateManager.screenStatesMap[screenIdentifier.URI]!!.asStateFlow()
+    }
+
+    fun getAppStartupStateFlow(): StateFlow<AppStartupState> {
+        return stateManager.appStartupState
+    }
+
+    fun getAppEnvironmentFlow(): StateFlow<AppEnvironment> {
+        return stateManager.appEnvironment
+    }
+}
