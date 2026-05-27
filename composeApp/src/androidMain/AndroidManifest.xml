@@ -6,11 +6,11 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
-        android:name=".ExploramusApplication"
+        android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_app_explore"
+        android:icon="@mipmap/ic_app_launcher_explore"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_app_explore_round"
+        android:roundIcon="@mipmap/ic_app_launcher_explore_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App.Starting">
         <activity

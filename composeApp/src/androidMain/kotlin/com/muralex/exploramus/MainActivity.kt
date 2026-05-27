@@ -1,6 +1,5 @@
 package com.muralex.exploramus
 
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,11 +11,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         enableEdgeToEdge()
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-//            window.isNavigationBarContrastEnforced = false
-//        }
-
-        val model = (application as ExploramusApplication).model
+        val model = (application as App).model
 
         super.onCreate(savedInstanceState)
 

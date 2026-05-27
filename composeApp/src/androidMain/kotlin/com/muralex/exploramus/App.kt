@@ -13,14 +13,14 @@ import com.muralex.exploramus.viewmodel.DKMPViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class ExploramusApplication : Application() {
+class App : Application() {
 
     lateinit var model: DKMPViewModel
 
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidContext(this@ExploramusApplication)
+            androidContext(this@App)
             modules(
                 localdbModule,
                 networkModule,
