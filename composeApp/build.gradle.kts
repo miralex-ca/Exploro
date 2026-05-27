@@ -19,6 +19,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.lifecycle)
             implementation(libs.android.material)
+            implementation(libs.androidx.core.splashscreen)
 
 
             implementation(libs.koin.android)
