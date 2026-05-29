@@ -1,6 +1,6 @@
 package com.muralex.exploramus.viewmodel.screens.search
 
-import com.muralex.exploramus.viewmodel.StateManager
+import com.muralex.exploramus.viewmodel.core.StateManager
 import com.muralex.exploramus.viewmodel.screens.CallOnInitValues
 import com.muralex.exploramus.viewmodel.screens.ScreenInitSettings
 

@@ -1,6 +1,6 @@
 package com.muralex.exploramus.viewmodel.screens.search
 
-import com.muralex.exploramus.viewmodel.ScreenState
+import com.muralex.exploramus.viewmodel.core.ScreenState
 import com.muralex.exploramus.viewmodel.utils.SingleEffect
 import com.muralex.models.Country
 

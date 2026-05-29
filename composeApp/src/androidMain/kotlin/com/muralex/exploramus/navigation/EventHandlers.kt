@@ -6,7 +6,7 @@ import com.muralex.exploramus.screens.home.HomeEventHandler
 import com.muralex.exploramus.screens.search.SearchEventHandler
 import com.muralex.exploramus.screens.section.SectionEventHandler
 import com.muralex.exploramus.screens.settings.SettingsEventHandler
-import com.muralex.exploramus.viewmodel.Events
+import com.muralex.exploramus.viewmodel.core.Events
 
 class EventHandlers(
     private val events: Events,

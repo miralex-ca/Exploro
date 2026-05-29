@@ -1,7 +1,5 @@
 package com.muralex.exploramus
 
-import com.russhwolf.settings.Settings
-
 
 expect class Platform() {
     val system: String

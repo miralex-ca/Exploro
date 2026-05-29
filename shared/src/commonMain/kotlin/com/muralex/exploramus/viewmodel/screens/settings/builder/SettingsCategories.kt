@@ -3,10 +3,10 @@ package com.muralex.exploramus.viewmodel.screens.settings.builder
 import com.muralex.core.common.result.DataResult
 import com.muralex.data.common.PlatformInfoProvider
 import com.muralex.data.repository.sources.localsettings.MySettings
-import com.muralex.models.ThemeMode
-import com.muralex.exploramus.viewmodel.resources.FormattedText
-import com.muralex.exploramus.viewmodel.resources.SharedRes
+import com.muralex.exploramus.resources.FormattedText
+import com.muralex.exploramus.resources.SharedRes
 import com.muralex.exploramus.viewmodel.utils.toFormattedDate
+import com.muralex.models.ThemeMode
 
 
 class InterfaceSettingsCategory(private val localSettings: MySettings) {

@@ -7,16 +7,16 @@ import com.muralex.data.repository.functions.getThemeMode
 import com.muralex.data.repository.functions.saveThemeMode
 import com.muralex.data.repository.functions.setFavoriteSwipeEnabled
 import com.muralex.data.repository.functions.updateCountriesListData
-import com.muralex.models.ThemeMode
-import com.muralex.exploramus.viewmodel.Events
-import com.muralex.exploramus.viewmodel.StateManager
-import com.muralex.exploramus.viewmodel.resources.FormattedText
-import com.muralex.exploramus.viewmodel.resources.SharedRes
+import com.muralex.exploramus.resources.FormattedText
+import com.muralex.exploramus.resources.SharedRes
+import com.muralex.exploramus.viewmodel.core.Events
+import com.muralex.exploramus.viewmodel.core.StateManager
 import com.muralex.exploramus.viewmodel.screens.Level1Navigation
 import com.muralex.exploramus.viewmodel.screens.settings.builder.DataSettingsCategory
 import com.muralex.exploramus.viewmodel.screens.settings.builder.Setting
 import com.muralex.exploramus.viewmodel.screens.settings.builder.updateSetting
 import com.muralex.exploramus.viewmodel.utils.toFormattedDate
+import com.muralex.models.ThemeMode
 
 fun Events.setFavoriteSwipeEnabled(enabled: Boolean) = screenCoroutine {
     dataRepository.setFavoriteSwipeEnabled(enabled)

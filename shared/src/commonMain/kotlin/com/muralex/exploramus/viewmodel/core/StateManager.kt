@@ -1,9 +1,10 @@
-package com.muralex.exploramus.viewmodel
+package com.muralex.exploramus.viewmodel.core
 
-
+import com.muralex.core.common.logging.Log
 import com.muralex.data.repository.Repository
-import com.muralex.exploramus.viewmodel.appenvironment.AppEnvironment
-import com.muralex.exploramus.viewmodel.appenvironment.prepareAppEnvironment
+import com.muralex.exploramus.viewmodel.appstate.AppEnvironment
+import com.muralex.exploramus.viewmodel.appstate.AppStartupState
+import com.muralex.exploramus.viewmodel.appstate.prepareAppEnvironment
 import com.muralex.exploramus.viewmodel.screens.CallOnInitValues
 import com.muralex.exploramus.viewmodel.screens.ScreenInitSettings
 import com.muralex.exploramus.viewmodel.screens.settings.builder.SettingsBuilder
@@ -58,7 +59,7 @@ class StateManager(repo: Repository) {
     // INIT SCREEN
 
     fun initScreen(screenIdentifier: ScreenIdentifier) {
-        debugLogger.log("initScreen: "+screenIdentifier.URI)
+        Log.d("initScreen: "+screenIdentifier.URI)
         val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
         if (screenScopesMap[screenIdentifier.URI] == null || !screenScopesMap[screenIdentifier.URI]!!.isActive) {
             screenScopesMap[screenIdentifier.URI]?.cancel()
@@ -96,7 +97,7 @@ class StateManager(repo: Repository) {
         @Suppress("UNUSED_PARAMETER") stateClass: KClass<T>,
         update: (T) -> T,
     ) {
-        debugLogger.log("updateScreen: "+stateClass.simpleName)
+        Log.d("updateScreen: "+stateClass.simpleName)
         //debugLogger.log("currentVerticalNavigationLevelsMap: "+currentVerticalNavigationLevelsMap.values.map { it.URI } )
 
         lateinit var screenIdentifier : ScreenIdentifier
@@ -106,7 +107,7 @@ class StateManager(repo: Repository) {
             if (screenState != null) {
                 screenIdentifier = currentVerticalNavigationLevelsMap[i]!!
                 screenStatesMap[screenIdentifier.URI]!!.value = update(screenState)
-                debugLogger.log("state updated @ /${screenIdentifier.URI}")
+                Log.d("state updated @ /${screenIdentifier.URI}")
                 return
             }
         }
@@ -115,12 +116,12 @@ class StateManager(repo: Repository) {
     // REMOVE SCREEN
 
     fun removeScreen(screenIdentifier: ScreenIdentifier) {
-        debugLogger.log("removeScreen: "+screenIdentifier.URI+" / level "+screenIdentifier.screen.navigationLevel)
+        Log.d("removeScreen: "+screenIdentifier.URI+" / level "+screenIdentifier.screen.navigationLevel)
         screenScopesMap[screenIdentifier.URI]?.cancel() // cancel screen's coroutine scope
         screenScopesMap.remove(screenIdentifier.URI)
         val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
         if (screenInitSettings.clearStateCacheWhenScreenIsRemovedFromBackstack) {
-            debugLogger.log("removeState "+screenIdentifier.URI)
+            Log.d("removeState "+screenIdentifier.URI)
             screenStatesMap.remove(screenIdentifier.URI)
         }
     }
@@ -149,15 +150,6 @@ class StateManager(repo: Repository) {
             //debugLogger.log("cancelScreenScopes() "+it.key)
             it.value.cancel() // cancel screen's coroutine scope
         }
-    }
-}
-
-sealed interface AppStartupState {
-    data object Loading : AppStartupState
-    data object Ready : AppStartupState
-    sealed interface Failure : AppStartupState {
-        data object AfterSync : Failure
-        data object UnexpectedError : Failure
     }
 }
 

@@ -11,8 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.sp
 import com.muralex.exploramus.resources.Strings
-import com.muralex.exploramus.viewmodel.Navigation
-import com.muralex.exploramus.viewmodel.ScreenIdentifier
+import com.muralex.exploramus.viewmodel.core.Navigation
+import com.muralex.exploramus.viewmodel.core.ScreenIdentifier
 import com.muralex.exploramus.viewmodel.screens.Level1Navigation
 
 @Composable

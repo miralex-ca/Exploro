@@ -3,7 +3,7 @@ package com.muralex.exploramus.viewmodel.screens.countrydetail
 import com.muralex.data.repository.functions.addFavorite
 import com.muralex.data.repository.functions.isFavorite
 import com.muralex.data.repository.functions.removeFavorite
-import com.muralex.exploramus.viewmodel.Events
+import com.muralex.exploramus.viewmodel.core.Events
 
 fun Events.toggleFavorite(code: String) = screenCoroutine {
     val newValue = !dataRepository.isFavorite(code)

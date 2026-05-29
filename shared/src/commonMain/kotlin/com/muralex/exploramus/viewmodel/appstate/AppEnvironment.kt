@@ -1,9 +1,9 @@
-package com.muralex.exploramus.viewmodel.appenvironment
+package com.muralex.exploramus.viewmodel.appstate
 
 import com.muralex.data.repository.functions.getFavoriteSwipeEnabled
 import com.muralex.data.repository.functions.getThemeMode
+import com.muralex.exploramus.viewmodel.core.StateManager
 import com.muralex.models.ThemeMode
-import com.muralex.exploramus.viewmodel.StateManager
 
 data class AppEnvironment(
     val themeMode: ThemeMode = ThemeMode.DEFAULT,

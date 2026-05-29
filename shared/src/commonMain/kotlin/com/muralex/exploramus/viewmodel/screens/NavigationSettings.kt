@@ -1,6 +1,6 @@
 package com.muralex.exploramus.viewmodel.screens
 
-import com.muralex.exploramus.viewmodel.ScreenIdentifier
+import com.muralex.exploramus.viewmodel.core.ScreenIdentifier
 import com.muralex.exploramus.viewmodel.screens.Screen.HomeScreen
 
 // CONFIGURATION SETTINGS

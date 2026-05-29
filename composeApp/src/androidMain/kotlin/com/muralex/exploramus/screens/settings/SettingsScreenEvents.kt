@@ -1,11 +1,11 @@
 package com.muralex.exploramus.screens.settings
 
-import com.muralex.models.ThemeMode
-import com.muralex.exploramus.viewmodel.Events
+import com.muralex.exploramus.viewmodel.core.Events
 import com.muralex.exploramus.viewmodel.screens.settings.builder.SettingAction
 import com.muralex.exploramus.viewmodel.screens.settings.saveThemeMode
 import com.muralex.exploramus.viewmodel.screens.settings.setFavoriteSwipeEnabled
 import com.muralex.exploramus.viewmodel.screens.settings.syncDataFromSettings
+import com.muralex.models.ThemeMode
 
 sealed class SettingsUiEvent
 

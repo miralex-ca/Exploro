@@ -1,9 +1,6 @@
 package com.muralex.exploramus.resources
 
 import androidx.compose.runtime.Composable
-import com.muralex.exploramus.viewmodel.resources.FormattedText
-import com.muralex.exploramus.viewmodel.resources.StringRef
-import com.muralex.exploramus.viewmodel.resources.StringRefWithArgs
 
 
 @Composable

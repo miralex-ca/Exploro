@@ -2,8 +2,8 @@ package com.muralex.exploramus.viewmodel.screens.countrydetail
 
 import com.muralex.data.repository.functions.getCountryDetails
 import com.muralex.data.repository.functions.isFavorite
-import com.muralex.exploramus.viewmodel.ScreenParams
-import com.muralex.exploramus.viewmodel.StateManager
+import com.muralex.exploramus.viewmodel.core.ScreenParams
+import com.muralex.exploramus.viewmodel.core.StateManager
 import com.muralex.exploramus.viewmodel.screens.ScreenInitSettings
 import kotlinx.serialization.Serializable
 

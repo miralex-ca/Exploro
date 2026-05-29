@@ -1,7 +1,7 @@
 package com.muralex.exploramus.viewmodel.screens.search
 
 import com.muralex.data.repository.functions.searchCountries
-import com.muralex.exploramus.viewmodel.Events
+import com.muralex.exploramus.viewmodel.core.Events
 
 
 fun Events.searchCountriesByQuery(query: String) = screenCoroutine {

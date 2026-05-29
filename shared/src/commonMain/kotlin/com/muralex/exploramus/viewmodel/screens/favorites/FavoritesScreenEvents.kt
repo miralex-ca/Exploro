@@ -2,7 +2,7 @@ package com.muralex.exploramus.viewmodel.screens.favorites
 
 import com.muralex.data.repository.functions.getFavorites
 import com.muralex.data.repository.functions.removeFavorite
-import com.muralex.exploramus.viewmodel.Events
+import com.muralex.exploramus.viewmodel.core.Events
 
 fun Events.removeFavoriteBySwipe(code: String) = screenCoroutine {
     dataRepository.removeFavorite(code)

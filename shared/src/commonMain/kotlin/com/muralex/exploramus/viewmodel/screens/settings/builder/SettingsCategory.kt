@@ -1,6 +1,6 @@
 package com.muralex.exploramus.viewmodel.screens.settings.builder
 
-import com.muralex.exploramus.viewmodel.resources.StringRef
+import com.muralex.exploramus.resources.StringRef
 
 data class SettingsCategory(
     val id: String,

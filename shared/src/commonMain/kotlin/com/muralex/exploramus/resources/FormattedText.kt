@@ -1,4 +1,4 @@
-package com.muralex.exploramus.viewmodel.resources
+package com.muralex.exploramus.resources
 
 /**
  * A container that holds a [StringRef] and is intended to be used with formatting arguments

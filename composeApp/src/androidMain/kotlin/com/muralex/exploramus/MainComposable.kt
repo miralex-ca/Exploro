@@ -7,8 +7,8 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.muralex.exploramus.navigation.Router
 import com.muralex.exploramus.ui.theme.AppTheme
-import com.muralex.exploramus.viewmodel.Navigation
-import com.muralex.exploramus.viewmodel.appenvironment.AppEnvironment
+import com.muralex.exploramus.viewmodel.appstate.AppEnvironment
+import com.muralex.exploramus.viewmodel.core.Navigation
 
 
 @Composable

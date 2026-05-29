@@ -1,8 +1,8 @@
 package com.muralex.exploramus.viewmodel.screens
 
-import com.muralex.exploramus.viewmodel.ScreenIdentifier
-import com.muralex.exploramus.viewmodel.ScreenState
-import com.muralex.exploramus.viewmodel.StateManager
+import com.muralex.exploramus.viewmodel.core.ScreenIdentifier
+import com.muralex.exploramus.viewmodel.core.ScreenState
+import com.muralex.exploramus.viewmodel.core.StateManager
 
 /* INITALIZATION BEHAVIOUR (two UI recompositions):
 when a screen is first navigated to, using "dkmpNav.navigate(screen,params)", this is what happens in sequence:

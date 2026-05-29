@@ -1,5 +1,6 @@
-package com.muralex.exploramus.viewmodel
+package com.muralex.exploramus.viewmodel.core
 
+import com.muralex.core.common.logging.Log
 import com.muralex.exploramus.viewmodel.screens.CallOnInitValues
 import com.muralex.exploramus.viewmodel.screens.navigationSettings
 
@@ -59,7 +60,7 @@ class Navigation(val stateManager : StateManager) {
         if (navigationSettings.saveLastLevel1Screen && navigationState.topScreenIdentifier.screen.navigationLevel==1) {
             savedLevel1URI = navigationState.topScreenIdentifier.URI
         }
-        debugLogger.log("UI NAVIGATION RECOMPOSITION: topScreenIdentifier URI -> "+navigationState.topScreenIdentifier.URI)
+        Log.d("UI NAVIGATION RECOMPOSITION: topScreenIdentifier URI -> "+navigationState.topScreenIdentifier.URI)
     }
 
     fun getPaths() : MutableMap<String,MutableList<ScreenIdentifier>> {
@@ -92,14 +93,14 @@ class Navigation(val stateManager : StateManager) {
     }
 
     fun navigateToScreen(screenIdentifier: ScreenIdentifier) {
-        debugLogger.log("navigate -> "+screenIdentifier.URI)
+        Log.d("navigate -> "+screenIdentifier.URI)
         addScreenToBackstack(screenIdentifier)
         updateNavigationState()
     }
 
 
     fun selectLevel1Navigation(level1ScreenIdentifier: ScreenIdentifier) {
-        debugLogger.log("selectLevel1Navigation -> "+level1ScreenIdentifier.URI)
+        Log.d("selectLevel1Navigation -> "+level1ScreenIdentifier.URI)
         cleanCurrentVerticalBackstacks()
         stateManager.level1Backstack.removeAll { it.URI == level1ScreenIdentifier.URI }
         if (navigationSettings.alwaysQuitOnHomeScreen) {
@@ -144,7 +145,7 @@ class Navigation(val stateManager : StateManager) {
     // ADD SCREEN TO BACKSTACK
 
     fun addScreenToBackstack(screenIdentifier: ScreenIdentifier) {
-        debugLogger.log("addScreenToBackstack: "+screenIdentifier.URI)
+        Log.d("addScreenToBackstack: "+screenIdentifier.URI)
         stateManager.currentVerticalBackstack.add(screenIdentifier)
         stateManager.currentVerticalNavigationLevelsMap[screenIdentifier.screen.navigationLevel] = screenIdentifier
         stateManager.initScreen(screenIdentifier)
@@ -166,7 +167,7 @@ class Navigation(val stateManager : StateManager) {
     }
 
     fun exitScreen(screenIdentifier: ScreenIdentifier) {
-        debugLogger.log("exitScreen: "+screenIdentifier.URI)
+        Log.d("exitScreen: "+screenIdentifier.URI)
         if (screenIdentifier.screen.navigationLevel == 1) {
             stateManager.level1Backstack.removeAt(stateManager.level1Backstack.size - 1)
             stateManager.verticalNavigationLevels.remove(screenIdentifier.URI)
@@ -205,7 +206,7 @@ class Navigation(val stateManager : StateManager) {
     }
 
     fun onEnterForeground() {
-        debugLogger.log("onEnterForeground: screen scopes are reinitialized")
+        Log.d("onEnterForeground: screen scopes are reinitialized")
         val reinitializedScreens = stateManager.reinitScreenScopes()
         reinitializedScreens.forEach {
             it.getScreenInitSettings(stateManager).apply {
@@ -217,7 +218,7 @@ class Navigation(val stateManager : StateManager) {
     }
 
     fun onEnterBackground() {
-        debugLogger.log("onEnterBackground: screen scopes are cancelled")
+        Log.d("onEnterBackground: screen scopes are cancelled")
         stateManager.cancelScreenScopes()
     }
 

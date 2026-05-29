@@ -1,4 +1,4 @@
-package com.muralex.exploramus.viewmodel
+package com.muralex.exploramus.viewmodel.core
 
 import com.muralex.exploramus.viewmodel.screens.Level1Navigation
 import com.muralex.exploramus.viewmodel.screens.Screen

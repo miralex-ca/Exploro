@@ -15,9 +15,9 @@ import com.muralex.exploramus.navigation.bars.Level1BottomBar
 import com.muralex.exploramus.navigation.bars.Level1TopBar
 import com.muralex.exploramus.navigation.bars.TopBar
 import com.muralex.exploramus.resources.Strings
-import com.muralex.exploramus.viewmodel.Navigation
-import com.muralex.exploramus.viewmodel.NavigationState
-import com.muralex.exploramus.viewmodel.ScreenIdentifier
+import com.muralex.exploramus.viewmodel.core.Navigation
+import com.muralex.exploramus.viewmodel.core.NavigationState
+import com.muralex.exploramus.viewmodel.core.ScreenIdentifier
 import com.muralex.exploramus.viewmodel.screens.Screen
 
 

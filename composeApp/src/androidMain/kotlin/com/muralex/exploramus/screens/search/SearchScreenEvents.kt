@@ -2,7 +2,7 @@ package com.muralex.exploramus.screens.search
 
 import com.muralex.exploramus.navigation.DetailsNavParams
 import com.muralex.exploramus.navigation.ScreenNavActions
-import com.muralex.exploramus.viewmodel.Events
+import com.muralex.exploramus.viewmodel.core.Events
 import com.muralex.exploramus.viewmodel.screens.search.SearchListItem
 import com.muralex.exploramus.viewmodel.screens.search.consumeSearchBecomeActiveEffect
 import com.muralex.exploramus.viewmodel.screens.search.searchCountriesByQuery

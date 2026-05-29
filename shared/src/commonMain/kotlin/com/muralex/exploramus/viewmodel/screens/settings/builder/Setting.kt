@@ -1,7 +1,7 @@
 package com.muralex.exploramus.viewmodel.screens.settings.builder
 
-import com.muralex.exploramus.viewmodel.resources.FormattedText
-import com.muralex.exploramus.viewmodel.resources.StringRef
+import com.muralex.exploramus.resources.FormattedText
+import com.muralex.exploramus.resources.StringRef
 
 
 sealed class Setting {

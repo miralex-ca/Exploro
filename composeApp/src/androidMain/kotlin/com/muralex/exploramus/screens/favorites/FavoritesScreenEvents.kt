@@ -2,7 +2,7 @@ package com.muralex.exploramus.screens.favorites
 
 import com.muralex.exploramus.navigation.DetailsNavParams
 import com.muralex.exploramus.navigation.ScreenNavActions
-import com.muralex.exploramus.viewmodel.Events
+import com.muralex.exploramus.viewmodel.core.Events
 import com.muralex.exploramus.viewmodel.screens.favorites.FavoriteListItem
 import com.muralex.exploramus.viewmodel.screens.favorites.removeFavoriteBySwipe
 

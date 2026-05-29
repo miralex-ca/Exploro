@@ -1,6 +1,6 @@
 package com.muralex.exploramus.screens.details
 
-import com.muralex.exploramus.viewmodel.Events
+import com.muralex.exploramus.viewmodel.core.Events
 import com.muralex.exploramus.viewmodel.screens.countrydetail.toggleFavorite
 
 sealed class DetailsUiEvent {

@@ -34,9 +34,8 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
             implementation(projects.shared)
-
+            implementation(project(":core:common"))
             implementation(project(":data:repository"))
-
             implementation(project(":di"))
 
             implementation("io.coil-kt:coil-compose:2.6.0")

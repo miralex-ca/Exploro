@@ -1,10 +1,7 @@
-package com.muralex.exploramus.viewmodel
+package com.muralex.exploramus.viewmodel.core
 
 
 import com.muralex.data.repository.Repository
-import com.muralex.exploramus.DebugLogger
-
-val debugLogger by lazy { DebugLogger("D-KMP SAMPLE") }
 
 
 class DKMPViewModel (repo: Repository) {

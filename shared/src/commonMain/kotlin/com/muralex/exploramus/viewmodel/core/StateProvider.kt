@@ -1,6 +1,7 @@
-package com.muralex.exploramus.viewmodel
+package com.muralex.exploramus.viewmodel.core
 
-import com.muralex.exploramus.viewmodel.appenvironment.AppEnvironment
+import com.muralex.exploramus.viewmodel.appstate.AppEnvironment
+import com.muralex.exploramus.viewmodel.appstate.AppStartupState
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

@@ -2,10 +2,10 @@ package com.muralex.exploramus.navigation
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.saveable.SaveableStateHolder
-import com.muralex.exploramus.viewmodel.Navigation
-import com.muralex.exploramus.viewmodel.NavigationState
-import com.muralex.exploramus.viewmodel.ScreenIdentifier
-import com.muralex.exploramus.viewmodel.ScreenParams
+import com.muralex.exploramus.viewmodel.core.Navigation
+import com.muralex.exploramus.viewmodel.core.NavigationState
+import com.muralex.exploramus.viewmodel.core.ScreenIdentifier
+import com.muralex.exploramus.viewmodel.core.ScreenParams
 import com.muralex.exploramus.viewmodel.screens.Level1Navigation
 import com.muralex.exploramus.viewmodel.screens.Screen
 

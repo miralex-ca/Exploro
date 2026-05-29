@@ -1,5 +1,6 @@
-package com.muralex.exploramus.viewmodel
+package com.muralex.exploramus.viewmodel.core
 
+import com.muralex.core.common.logging.Log
 import kotlinx.coroutines.launch
 
 class Events (val stateManager : StateManager, val navigation: Navigation) {
@@ -9,7 +10,7 @@ class Events (val stateManager : StateManager, val navigation: Navigation) {
 
     // we run each event function on a Dispatchers.Main coroutine
     fun screenCoroutine (block: suspend () -> Unit) {
-        debugLogger.log("/"+stateManager.currentScreenIdentifier.URI+": an Event is called")
+        Log.d("/"+stateManager.currentScreenIdentifier.URI+": an Event is called")
         stateManager.runInScreenScope { block() }
     }
 

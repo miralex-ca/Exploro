@@ -2,9 +2,6 @@ package com.muralex.exploramus.resources
 
 import androidx.compose.runtime.Composable
 import com.muralex.exploramus.R
-import com.muralex.exploramus.viewmodel.resources.SharedRes
-import com.muralex.exploramus.viewmodel.resources.StringRef
-import com.muralex.exploramus.viewmodel.resources.StringRefWithArgs
 
 object StringRefResolver {
     @Composable

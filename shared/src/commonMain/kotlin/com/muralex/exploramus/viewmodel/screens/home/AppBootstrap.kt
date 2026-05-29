@@ -5,8 +5,8 @@ import com.muralex.core.common.result.isSuccess
 import com.muralex.data.repository.functions.hasCountriesData
 import com.muralex.data.repository.functions.updateCountriesListData
 import com.muralex.data.repository.sources.localdb.migrateDbIfNeeded
-import com.muralex.exploramus.viewmodel.AppStartupState
-import com.muralex.exploramus.viewmodel.StateManager
+import com.muralex.exploramus.viewmodel.appstate.AppStartupState
+import com.muralex.exploramus.viewmodel.core.StateManager
 
 sealed interface BootstrapResult {
     data object Success : BootstrapResult

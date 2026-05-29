@@ -1,7 +1,7 @@
 package com.muralex.exploramus.viewmodel.screens
 
-import com.muralex.exploramus.viewmodel.ScreenIdentifier
-import com.muralex.exploramus.viewmodel.StateManager
+import com.muralex.exploramus.viewmodel.core.ScreenIdentifier
+import com.muralex.exploramus.viewmodel.core.StateManager
 import com.muralex.exploramus.viewmodel.screens.countrydetail.initCountryDetail
 import com.muralex.exploramus.viewmodel.screens.favorites.initFavoritesScreen
 import com.muralex.exploramus.viewmodel.screens.home.initHomeScreen

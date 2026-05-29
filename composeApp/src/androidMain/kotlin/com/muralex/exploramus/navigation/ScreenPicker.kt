@@ -10,8 +10,8 @@ import com.muralex.exploramus.screens.home.HomeScreen
 import com.muralex.exploramus.screens.search.SearchScreen
 import com.muralex.exploramus.screens.section.SectionScreen
 import com.muralex.exploramus.screens.settings.SettingsScreen
-import com.muralex.exploramus.viewmodel.Navigation
-import com.muralex.exploramus.viewmodel.ScreenIdentifier
+import com.muralex.exploramus.viewmodel.core.Navigation
+import com.muralex.exploramus.viewmodel.core.ScreenIdentifier
 import com.muralex.exploramus.viewmodel.screens.Screen
 import com.muralex.exploramus.viewmodel.screens.countrydetail.DetailsScreenState
 import com.muralex.exploramus.viewmodel.screens.favorites.FavoritesScreenState

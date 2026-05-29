@@ -1,4 +1,4 @@
-package com.muralex.exploramus.viewmodel.resources
+package com.muralex.exploramus.resources
 
 
 /**

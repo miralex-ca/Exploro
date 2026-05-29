@@ -1,6 +1,6 @@
 package com.muralex.exploramus.viewmodel.screens.section
 
-import com.muralex.exploramus.viewmodel.ScreenState
+import com.muralex.exploramus.viewmodel.core.ScreenState
 import com.muralex.models.Country
 
 data class SectionScreenState(

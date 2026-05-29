@@ -9,7 +9,7 @@ import com.example.di.dataModule
 import com.example.di.localdbModule
 import com.example.di.networkModule
 import com.example.di.platformInfoModule
-import com.muralex.exploramus.viewmodel.DKMPViewModel
+import com.muralex.exploramus.viewmodel.core.DKMPViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

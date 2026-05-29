@@ -1,7 +1,7 @@
 package com.muralex.exploramus.viewmodel.screens.favorites
 
 import com.muralex.data.repository.functions.getFavorites
-import com.muralex.exploramus.viewmodel.StateManager
+import com.muralex.exploramus.viewmodel.core.StateManager
 import com.muralex.exploramus.viewmodel.screens.CallOnInitValues
 import com.muralex.exploramus.viewmodel.screens.ScreenInitSettings
 
