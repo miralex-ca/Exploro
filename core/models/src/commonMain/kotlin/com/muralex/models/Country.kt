@@ -30,7 +30,7 @@ data class CountryDetails(
     val timezones: List<String>
 )
 
-data class CountryFull(
+data class CountryWithDetails(
     val country: Country,
     val details: CountryDetails?,
     val isFavorite: Boolean = false

@@ -2,7 +2,7 @@ package com.muralex.data.common
 
 import com.muralex.models.Country
 import com.muralex.models.CountryDetails
-import com.muralex.models.CountryFull
+import com.muralex.models.CountryWithDetails
 
 interface LocalDataSource {
     val databaseVersion: Long
@@ -12,7 +12,7 @@ interface LocalDataSource {
     suspend fun removeFavorite(id: String)
     suspend fun getFavorites(): List<Country>
     suspend fun resetAndMigrate()
-    suspend fun getCountryDetailsById(id: String):  CountryFull?
+    suspend fun getCountryDetailsById(id: String):  CountryWithDetails?
     suspend fun setCountryDetailsList(list: List<CountryDetails>)
     suspend fun getCountriesBySection(sectionId: String, limit: Long = 12): List<Country>
     suspend fun getAllCountriesBySectionId(sectionId: String): List<Country>

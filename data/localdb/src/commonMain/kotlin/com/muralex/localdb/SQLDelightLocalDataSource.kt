@@ -5,7 +5,7 @@ import appLocalDb.AppLocalDb
 import com.muralex.data.common.LocalDataSource
 import com.muralex.models.Country
 import com.muralex.models.CountryDetails
-import com.muralex.models.CountryFull
+import com.muralex.models.CountryWithDetails
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
@@ -39,11 +39,11 @@ internal class SQLDelightLocalDataSource(
     }
 
     override suspend fun getAllCountriesBySectionId(sectionId: String): List<Country> {
-        return database.getAllCountriesBySection(sectionId)
+        return database.getAllCountriesBySection(sectionId).toCountryList()
     }
 
     override suspend fun searchCountries(query: String): List<Country> {
-        return database.searchCountries(query)
+        return database.searchCountries(query).toCountryList()
     }
 
     override fun hasCountriesData(): Boolean {
@@ -51,7 +51,7 @@ internal class SQLDelightLocalDataSource(
     }
 
     override suspend fun getCountriesBySection(sectionId: String, limit: Long) : List<Country> {
-        return database.getCountriesByContinent(sectionId, limit)
+        return database.getCountriesByContinent(sectionId, limit).toCountryList()
     }
 
     override suspend fun isFavorite(id: String): Boolean {
@@ -69,14 +69,14 @@ internal class SQLDelightLocalDataSource(
     }
 
     override suspend fun getFavorites(): List<Country> {
-        return database.getFavorites()
+        return database.getFavorites().toCountryList()
     }
 
     override suspend fun resetAndMigrate() {
         dbManager.rebuildDatabase()
     }
 
-    override suspend fun getCountryDetailsById(id: String): CountryFull? {
-        return database.getCountryDetailsById(id)?.toDomain()
+    override suspend fun getCountryDetailsById(id: String): CountryWithDetails? {
+        return database.getCountryDetailsById(id)?.toCountryWithDetails()
     }
 }

@@ -4,9 +4,9 @@ import appLocalDb.Countries
 import appLocalDb.GetCountryDetailsById
 import com.muralex.models.Country
 import com.muralex.models.CountryDetails
-import com.muralex.models.CountryFull
+import com.muralex.models.CountryWithDetails
 
-fun Countries.toDomain(): Country =
+private fun Countries.toCountry(): Country =
     Country(
         id = id,
         name = name,
@@ -18,10 +18,10 @@ fun Countries.toDomain(): Country =
         flagAlt = flag_alt
     )
 
+fun List<Countries>.toCountryList() = map { it.toCountry() }
 
-
-fun GetCountryDetailsById.toDomain(): CountryFull =
-    CountryFull(
+fun GetCountryDetailsById.toCountryWithDetails(): CountryWithDetails =
+    CountryWithDetails(
         country = Country(
             id = id,
             name = name,

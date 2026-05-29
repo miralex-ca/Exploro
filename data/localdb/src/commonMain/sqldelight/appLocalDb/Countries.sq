@@ -34,13 +34,6 @@ VALUES(
     :flagAlt
 );
 
-getCountriesList:
-SELECT * FROM Countries;
-
-getCountryById:
-SELECT * FROM Countries
-WHERE id = ?;
-
 getCountryDetailsById:
 SELECT
     c.id,

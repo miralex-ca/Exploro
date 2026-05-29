@@ -1,7 +1,7 @@
 package com.muralex.exploramus.viewmodel.screens.countrydetail
 
-import com.muralex.models.CountryFull
 import com.muralex.exploramus.viewmodel.ScreenState
+import com.muralex.models.CountryWithDetails
 
 data class DetailsScreenState (
     val isLoading: Boolean = false,
@@ -29,7 +29,7 @@ data class CountryDetailsState(
     val mapsUrl: String = "",
 )
 
-fun CountryFull.toDetailsState() = CountryDetailsState(
+fun CountryWithDetails.toDetailsState() = CountryDetailsState(
     id = country.id,
     name = country.name,
     officialName = country.officialName,
@@ -48,7 +48,7 @@ fun CountryFull.toDetailsState() = CountryDetailsState(
     mapsUrl = details?.mapsGoogleUrl ?: "",
 )
 
-fun CountryFull.formattedCurrency(): String? {
+fun CountryWithDetails.formattedCurrency(): String? {
     val details = details ?: return null
     if (details.currencyCode.isBlank() && details.currencyName.isBlank() && details.currencySymbol.isBlank()) return null
 
@@ -59,6 +59,6 @@ fun CountryFull.formattedCurrency(): String? {
     }.trim()
 }
 
-fun CountryFull.validatedLocation(): String {
+fun CountryWithDetails.validatedLocation(): String {
     return country.subregion.takeIf { it.isNotBlank() } ?: country.name.takeIf { details?.mapsGoogleUrl != null } ?: ""
 }
