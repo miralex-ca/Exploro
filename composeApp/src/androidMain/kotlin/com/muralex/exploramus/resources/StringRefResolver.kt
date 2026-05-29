@@ -33,20 +33,20 @@ object StringRefResolver {
 
     @Composable
     fun resolve(ref: StringRefWithArgs, vararg args: String): String = when (ref.ref) {
-        SharedRes.Strings.settings_summary_current_formatted ->
+        SharedRes.Strings.settings_summary_current_fmt ->
             stringRes(R.string.settings_summary_current, *args)
         else -> ref.ref.simpleName()
     }
 
     @Composable
     fun resolve(ref: StringRefWithArgs, arg: String): String = when (ref.ref) {
-        SharedRes.Strings.settings_sync_last_formatted ->
+        SharedRes.Strings.settings_sync_last_fmt ->
             stringRes(R.string.settings_sync_last, arg)
 
-        SharedRes.Strings.settings_sync_success_formatted ->
+        SharedRes.Strings.settings_sync_success_fmt ->
             stringRes(R.string.settings_sync_success, arg)
 
-        SharedRes.Strings.settings_sync_failed_formatted ->
+        SharedRes.Strings.settings_sync_failed_fmt ->
             stringRes(R.string.settings_sync_failed, arg)
 
         else -> ref.ref.simpleName()

@@ -25,7 +25,7 @@ class InterfaceSettingsCategory(private val localSettings: MySettings) {
         return Setting.Options(
             key = THEME_SETTING_ID,
             title = SharedRes.Strings.settings_theme_title,
-            formattedSummary = FormattedText.Ref.of(SharedRes.Strings.settings_summary_current_formatted),
+            formattedSummary = FormattedText.Ref.of(SharedRes.Strings.settings_summary_current_fmt),
             options = listOf(
                 SettingOption(ThemeMode.LIGHT.name, SharedRes.Strings.settings_theme_option_light),
                 SettingOption(ThemeMode.DARK.name, SharedRes.Strings.settings_theme_option_dark),
@@ -94,14 +94,14 @@ class DataSettingsCategory(private val localSettings: MySettings) {
             timeLabel: String?
         ): FormattedText.WithString? {
             val ref = when (result) {
-                is DataResult.Success -> SharedRes.Strings.settings_sync_success_formatted
-                is DataResult.Error -> SharedRes.Strings.settings_sync_failed_formatted
+                is DataResult.Success -> SharedRes.Strings.settings_sync_success_fmt
+                is DataResult.Error -> SharedRes.Strings.settings_sync_failed_fmt
             }
             return timeLabel?.let { FormattedText.WithString.of(ref, it) }
         }
 
         private fun buildSyncSummary(timeLabel: String?) = timeLabel?.let {
-            FormattedText.WithString.of(SharedRes.Strings.settings_sync_last_formatted, it)
+            FormattedText.WithString.of(SharedRes.Strings.settings_sync_last_fmt, it)
         }
     }
 }

@@ -1,9 +1,20 @@
 package com.muralex.exploramus.viewmodel.resources
 
+
+/**
+ * Entry point for shared resource references.
+ *
+ * Provides a type-safe way to reference resources across platforms within the shared module.
+ */
 object SharedRes {
+    /**
+     * Enum of string resource keys.
+     *
+     * Note: Suffix `_fmt` indicates the resource is used for [FormattedText] and requires arguments.
+     */
     enum class Strings : StringRef {
         empty_ref_placeholder,
-        settings_summary_current_formatted,
+        settings_summary_current_fmt,
         settings_theme_title,
         settings_theme_option_system,
         settings_theme_option_dark,
@@ -23,9 +34,9 @@ object SharedRes {
         settings_deviceinfo_title,
         settings_deviceinfo_summary,
         settings_sync_in_progress,
-        settings_sync_last_formatted,
-        settings_sync_success_formatted,
-        settings_sync_failed_formatted,
+        settings_sync_last_fmt,
+        settings_sync_success_fmt,
+        settings_sync_failed_fmt,
         ;
 
         override fun simpleName(): String {
