@@ -1,7 +1,7 @@
 package com.muralex.models
 
 data class Country(
-    val id: String,                 // cca3
+    val id: String,
     val name: String,
     val officialName: String,
     val capital: String,
@@ -30,39 +30,9 @@ data class CountryDetails(
     val timezones: List<String>
 )
 
+
 data class CountryWithDetails(
     val country: Country,
     val details: CountryDetails?,
     val isFavorite: Boolean = false
 )
-
-
-
-data class CountryUserData(
-    val country: CountryListItem,
-    val isFavorite: Boolean = false
-)
-
-
-data class CountryListItem(
-    val id: String,
-    val name: String,
-    val officialName: String,
-    val capital: String,
-    val continent: String,
-    val subregion: String,
-    val flagPngUrl: String,
-) {
-
-    companion object {
-        val Empty = CountryListItem(
-            id = "",
-            name = "",
-            officialName = "",
-            capital = "",
-            continent = "",
-            subregion = "",
-            flagPngUrl = "",
-        )
-    }
-}

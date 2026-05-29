@@ -26,8 +26,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.muralex.exploramus.ui.components.EmptyState
 import com.muralex.exploramus.ui.components.EmptyStateView
+import com.muralex.exploramus.ui.components.FadeLoadingContent
 import com.muralex.exploramus.ui.components.RemoteImage
-import com.muralex.exploramus.ui.components.ScreenLoading
 import com.muralex.exploramus.ui.theme.AppTypography
 import com.muralex.exploramus.ui.theme.appColors
 import com.muralex.exploramus.viewmodel.screens.home.HomeListItem
@@ -39,9 +39,7 @@ fun HomeScreen(
     screenState: HomeScreenState,
     eventHandler: HomeEventHandler
 ) {
-    if (screenState.isLoading) {
-        ScreenLoading()
-    } else {
+    FadeLoadingContent(isLoading = screenState.isLoading) {
         HomeScreenContent(
             screenState = screenState,
             onEvent = eventHandler::onEvent,
@@ -62,7 +60,7 @@ fun HomeScreenContent(
             verticalArrangement = Arrangement.spacedBy(0.dp)
         ) {
             items(
-                screenState.homeSections,
+                items = screenState.homeSections,
                 key = { it.sectionName }
             ) { section ->
                 HomeSectionRow(
@@ -126,7 +124,7 @@ fun HomeSectionRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(
-                section.sectionListItems,
+                  items = section.sectionListItems,
                 key = { it.id }
             ) { item ->
                 HomeSectionListCard(

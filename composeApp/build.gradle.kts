@@ -20,7 +20,7 @@ kotlin {
             implementation(libs.androidx.lifecycle)
             implementation(libs.android.material)
             implementation(libs.androidx.core.splashscreen)
-
+            implementation(compose.runtime)
 
             implementation(libs.koin.android)
             implementation(libs.koin.compose)
@@ -34,9 +34,8 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
             implementation(projects.shared)
-//            implementation(libs.coil3)
-//            implementation("io.coil-kt:coil-svg:2.6.0")
-            implementation(project(":data:repository"))             // ← add for Repository
+
+            implementation(project(":data:repository"))
 
             implementation(project(":di"))
 

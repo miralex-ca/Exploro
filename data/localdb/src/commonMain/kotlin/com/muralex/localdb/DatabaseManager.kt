@@ -36,8 +36,6 @@ interface DatabaseManager {
         private fun resetSchema() {
             dropAllTables()
             AppLocalDb.Schema.create(sqlDriver)
-        //    throw Exception("Schema rebuilt")
-            Error("Schema rebuilt")
         }
 
         private fun dropAllTables() {
@@ -61,7 +59,7 @@ interface DatabaseManager {
                             addedAt = it.added_at
                         )
                     }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 emptyList()
             }
 

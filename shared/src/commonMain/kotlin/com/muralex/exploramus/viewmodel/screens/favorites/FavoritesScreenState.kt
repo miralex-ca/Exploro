@@ -1,7 +1,7 @@
 package com.muralex.exploramus.viewmodel.screens.favorites
 
-import com.muralex.models.CountryListItem
 import com.muralex.exploramus.viewmodel.ScreenState
+import com.muralex.models.Country
 
 data class FavoritesScreenState (
     val isLoading : Boolean = false,
@@ -16,11 +16,11 @@ data class FavoriteListItem(
     val flagPngUrl: String,
 )
 
-fun CountryListItem.toFavoriteListItem() = FavoriteListItem(
+fun Country.toFavoriteListItem() = FavoriteListItem(
     id = id,
     name = name,
     subregion = subregion,
     flagPngUrl = flagPngUrl
 )
 
-fun List<CountryListItem>.toFavoriteItems() = map { it.toFavoriteListItem() }
+fun List<Country>.toFavoriteItems() = map { it.toFavoriteListItem() }

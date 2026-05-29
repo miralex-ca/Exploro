@@ -46,7 +46,7 @@ internal class SQLDelightLocalDataSource(
         return database.searchCountries(query).toCountryList()
     }
 
-    override fun hasCountriesData(): Boolean {
+    override suspend fun hasCountriesData(): Boolean {
         return database.getCountriesCount() > 0
     }
 

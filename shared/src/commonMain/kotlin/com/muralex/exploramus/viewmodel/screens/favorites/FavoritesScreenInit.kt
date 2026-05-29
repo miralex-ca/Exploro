@@ -13,7 +13,7 @@ fun StateManager.initFavoritesScreen() = ScreenInitSettings(
         updateScreen(FavoritesScreenState::class) {
             it.copy(
                 isLoading = false,
-                favorites = favorites
+                favorites = favorites,
             )
         }
     },

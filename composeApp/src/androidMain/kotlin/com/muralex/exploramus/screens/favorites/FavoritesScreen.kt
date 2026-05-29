@@ -29,8 +29,8 @@ import com.muralex.exploramus.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.muralex.exploramus.screens.favorites.FavoritesUiEvent.RemoveFavorite
 import com.muralex.exploramus.ui.components.EmptyState
 import com.muralex.exploramus.ui.components.EmptyStateView
+import com.muralex.exploramus.ui.components.FadeLoadingContent
 import com.muralex.exploramus.ui.components.RemoteImage
-import com.muralex.exploramus.ui.components.ScreenLoading
 import com.muralex.exploramus.ui.theme.appColors
 import com.muralex.exploramus.viewmodel.screens.favorites.FavoriteListItem
 import com.muralex.exploramus.viewmodel.screens.favorites.FavoritesScreenState
@@ -42,10 +42,7 @@ fun FavoritesScreen(
     screenState: FavoritesScreenState,
     eventHandler: FavoritesEventHandler
 ) {
-
-    if (screenState.isLoading) {
-        ScreenLoading()
-    } else {
+    FadeLoadingContent(isLoading = screenState.isLoading) {
         FavoritesScreenContent(
             screenState = screenState,
             onEvent = eventHandler::onEvent,

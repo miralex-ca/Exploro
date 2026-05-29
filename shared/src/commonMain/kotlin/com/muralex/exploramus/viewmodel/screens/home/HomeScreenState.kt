@@ -1,8 +1,8 @@
 package com.muralex.exploramus.viewmodel.screens.home
 
-import com.muralex.models.CountryListItem
-import com.muralex.models.HomeSection
 import com.muralex.exploramus.viewmodel.ScreenState
+import com.muralex.models.Country
+import com.muralex.models.HomeSection
 
 data class HomeScreenState(
     val isLoading: Boolean = false,
@@ -29,12 +29,12 @@ data class HomeListItem(
     val flagPngUrl: String,
 )
 
-fun CountryListItem.toHomeListItem() = HomeListItem(
+fun Country.toHomeListItem() = HomeListItem(
     id = id,
     name = name,
     flagPngUrl = flagPngUrl
 )
 
-fun List<CountryListItem>.toHomeItems() = map { it.toHomeListItem() }
+fun List<Country>.toHomeItems() = map { it.toHomeListItem() }
 
 

@@ -1,7 +1,7 @@
 package com.muralex.exploramus.viewmodel.screens.section
 
-import com.muralex.models.CountryListItem
 import com.muralex.exploramus.viewmodel.ScreenState
+import com.muralex.models.Country
 
 data class SectionScreenState(
     val isLoading: Boolean = false,
@@ -16,12 +16,12 @@ data class SectionListItem(
     val flagPngUrl: String,
 )
 
-fun CountryListItem.toSectionListItem() = SectionListItem(
+fun Country.toSectionListItem() = SectionListItem(
     id = id,
     name = name,
     subregion = subregion,
     flagPngUrl = flagPngUrl
 )
 
-fun List<CountryListItem>.toSectionItems() = map { it.toSectionListItem() }
+fun List<Country>.toSectionItems() = map { it.toSectionListItem() }
 

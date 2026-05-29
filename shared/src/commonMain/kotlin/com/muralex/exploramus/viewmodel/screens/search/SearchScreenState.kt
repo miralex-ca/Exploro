@@ -1,8 +1,8 @@
 package com.muralex.exploramus.viewmodel.screens.search
 
-import com.muralex.models.CountryListItem
 import com.muralex.exploramus.viewmodel.ScreenState
 import com.muralex.exploramus.viewmodel.utils.SingleEffect
+import com.muralex.models.Country
 
 data class SearchScreenState(
     val isLoading: Boolean = false,
@@ -28,7 +28,7 @@ data class SearchListItem(
     val flagPngUrl: String,
 )
 
-fun CountryListItem.toSearchListItem() = SearchListItem(
+fun Country.toSearchListItem() = SearchListItem(
     id = id,
     name = name,
     officialName = officialName,
@@ -36,5 +36,5 @@ fun CountryListItem.toSearchListItem() = SearchListItem(
     flagPngUrl = flagPngUrl
 )
 
-fun List<CountryListItem>.toSearchItems() = map { it.toSearchListItem() }
+fun List<Country>.toSearchItems() = map { it.toSearchListItem() }
 

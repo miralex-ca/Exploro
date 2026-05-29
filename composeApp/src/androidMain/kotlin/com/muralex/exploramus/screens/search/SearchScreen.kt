@@ -51,7 +51,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun SearchScreen(
     screenState: SearchScreenState,
-    eventHandler: SearchEventHandler
+    eventHandler: SearchEventHandler,
 ) {
 
     SearchScreenContent(
@@ -111,8 +111,8 @@ fun SearchScreenContent(
 
     SingleEffect(
         effect = screenState.screenBecomeActive,
-        consume = { onEvent(DidBecomeActive) })
-    {
+        consume = { onEvent(DidBecomeActive) },
+    ) {
         query = ""
         searchFieldState.clearText()
         delay(100)
@@ -123,7 +123,7 @@ fun SearchScreenContent(
     val listState = rememberLazyListState()
 
     LaunchedEffect(listState.isScrollInProgress) {
-        if (listState.isScrollInProgress && listState.firstVisibleItemScrollOffset > 0) {
+        if (listState.isScrollInProgress && (listState.firstVisibleItemScrollOffset > 0)) {
             keyboardController?.hide()
             focusRequester.freeFocus()
         }
@@ -228,7 +228,7 @@ fun SearchTopBar(
     onClearClick: () -> Unit,
     focusRequester: FocusRequester,
 ) {
-    var isSearching by remember { mutableStateOf(false) }
+    var isSearching by remember { mutableStateOf(value = false) }
 
     LaunchedEffect(state.text) {
         onQueryChange(state.text.toString())
@@ -255,9 +255,7 @@ fun SearchTopBar(
                 spotColor = MaterialTheme.colorScheme.surfaceTint
             )
             .clip(RoundedCornerShape(24.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-
-        ,
+            .background(MaterialTheme.colorScheme.surfaceVariant),
         contentAlignment = Alignment.Center
     ) {
 
@@ -430,8 +428,8 @@ fun SearchListRow(
 }
 
 class SearchUiState {
-    var wasKeyboardVisible by mutableStateOf(false)
-    var isSearching by mutableStateOf(false)  // ← starts immediately on query change
+    var wasKeyboardVisible by mutableStateOf(value = false)
+    var isSearching by mutableStateOf(value = false)  // ← starts immediately on query change
 }
 
 
