@@ -3,8 +3,8 @@ package com.muralex.exploramus.viewmodel.screens.section
 import com.muralex.data.repository.functions.getCountriesBySectionId
 import com.muralex.exploramus.viewmodel.core.ScreenParams
 import com.muralex.exploramus.viewmodel.core.StateManager
-import com.muralex.exploramus.viewmodel.screens.CallOnInitValues
-import com.muralex.exploramus.viewmodel.screens.ScreenInitSettings
+import com.muralex.exploramus.viewmodel.core.CallOnInitValues
+import com.muralex.exploramus.viewmodel.core.ScreenInitSettings
 import kotlinx.serialization.Serializable
 
 @Serializable

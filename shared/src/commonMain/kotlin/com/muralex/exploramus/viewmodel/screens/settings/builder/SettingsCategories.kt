@@ -20,7 +20,7 @@ class InterfaceSettingsCategory(private val localSettings: MySettings) {
     )
 
     private fun addThemeMode(): Setting {
-        val themeModeName = ThemeMode.Companion.fromId(localSettings.themeModeId).name
+        val themeModeName = ThemeMode.fromId(localSettings.themeModeId).name
 
         return Setting.Options(
             key = THEME_SETTING_ID,

@@ -2,7 +2,6 @@ package com.muralex.exploramus.viewmodel.core
 
 import com.muralex.exploramus.viewmodel.screens.Level1Navigation
 import com.muralex.exploramus.viewmodel.screens.Screen
-import com.muralex.exploramus.viewmodel.screens.ScreenInitSettings
 import kotlinx.serialization.json.Json
 
 typealias URI = String

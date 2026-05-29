@@ -1,7 +1,6 @@
 package com.muralex.exploramus.viewmodel.core
 
 import com.muralex.core.common.logging.Log
-import com.muralex.exploramus.viewmodel.screens.CallOnInitValues
 import com.muralex.exploramus.viewmodel.screens.navigationSettings
 
 data class NavigationState (

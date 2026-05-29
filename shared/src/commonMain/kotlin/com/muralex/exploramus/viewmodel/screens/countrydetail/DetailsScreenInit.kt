@@ -4,7 +4,7 @@ import com.muralex.data.repository.functions.getCountryDetails
 import com.muralex.data.repository.functions.isFavorite
 import com.muralex.exploramus.viewmodel.core.ScreenParams
 import com.muralex.exploramus.viewmodel.core.StateManager
-import com.muralex.exploramus.viewmodel.screens.ScreenInitSettings
+import com.muralex.exploramus.viewmodel.core.ScreenInitSettings
 import kotlinx.serialization.Serializable
 
 @Serializable

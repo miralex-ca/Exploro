@@ -2,8 +2,8 @@ package com.muralex.exploramus.viewmodel.screens.favorites
 
 import com.muralex.data.repository.functions.getFavorites
 import com.muralex.exploramus.viewmodel.core.StateManager
-import com.muralex.exploramus.viewmodel.screens.CallOnInitValues
-import com.muralex.exploramus.viewmodel.screens.ScreenInitSettings
+import com.muralex.exploramus.viewmodel.core.CallOnInitValues
+import com.muralex.exploramus.viewmodel.core.ScreenInitSettings
 
 fun StateManager.initFavoritesScreen() = ScreenInitSettings(
     title = "Favorites",
