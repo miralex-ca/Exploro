@@ -24,7 +24,6 @@ val typography = Typography(
 )
 
 
-
 object AppTypography {
 
     val homeSectionTitle = TextStyle(
@@ -32,11 +31,18 @@ object AppTypography {
         fontWeight = FontWeight.SemiBold,
     )
 
+    val searchResultText = TextStyle(
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Normal,
+    )
+
     val searchText = TextStyle(
         fontSize = 15.sp,
         fontWeight = FontWeight.Normal,
         lineHeight = 20.sp
     )
+
+
 
     val appBarTitle = TextStyle(
         fontSize = 18.sp,

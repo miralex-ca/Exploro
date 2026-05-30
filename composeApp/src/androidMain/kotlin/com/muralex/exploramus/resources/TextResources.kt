@@ -26,7 +26,9 @@ object Strings {
     val appStartupErrorDesc @Composable get() = stringRes(R.string.app_startup_error_desc)
     val appErrorTryAgain @Composable get() = stringRes(R.string.app_error_try_again)
 
-    val noCountriesFound @Composable get() = stringRes(R.string.no_countries_found)
+    val searchPlaceholder @Composable get() = stringRes(R.string.search_placeholder)
+    val noSearchResult @Composable get() = stringRes(R.string.no_search_result)
+    val startSearch @Composable get() = stringRes(R.string.start_search)
     val detailsCoatOfArms @Composable get() = stringRes(R.string.details_coat_of_arms)
     val commonClose @Composable get() = stringRes(R.string.common_close)
     val commonConfirm @Composable get() = stringRes(R.string.common_confirm)

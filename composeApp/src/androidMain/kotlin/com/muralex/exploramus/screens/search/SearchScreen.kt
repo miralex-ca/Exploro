@@ -2,18 +2,20 @@ package com.muralex.exploramus.screens.search
 
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.clearText
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.filled.Search
@@ -23,6 +25,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.retain.retain
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusRequester
@@ -33,13 +36,16 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.muralex.exploramus.resources.Strings
 import com.muralex.exploramus.screens.search.SearchUiEvent.DidBecomeActive
 import com.muralex.exploramus.screens.search.SearchUiEvent.OnItemClicked
 import com.muralex.exploramus.screens.search.SearchUiEvent.SearchByQuery
 import com.muralex.exploramus.ui.components.RemoteImage
+import com.muralex.exploramus.ui.theme.AppTypography
 import com.muralex.exploramus.ui.theme.appColors
 import com.muralex.exploramus.utils.OnChange
 import com.muralex.exploramus.utils.SingleEffect
@@ -53,26 +59,22 @@ fun SearchScreen(
     screenState: SearchScreenState,
     eventHandler: SearchEventHandler,
 ) {
-
     SearchScreenContent(
         screenState = screenState,
         onEvent = eventHandler::onEvent,
     )
 }
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreenContent(
     screenState: SearchScreenState,
     onEvent: (SearchUiEvent) -> Unit,
 ) {
-
     var query by remember { mutableStateOf("") }
-
     val searchFieldState = rememberTextFieldState(query)
-
     val uiState = retain { SearchUiState() }
-
     val imeVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
 
     LaunchedEffect(query) {
@@ -87,10 +89,8 @@ fun SearchScreenContent(
         uiState.isSearching = false
     }
 
-
     val focusRequester = remember { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
-
 
     LaunchedEffect(imeVisible) {
         if (imeVisible) {
@@ -133,7 +133,6 @@ fun SearchScreenContent(
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.appColors.topBarContainer,
@@ -153,7 +152,7 @@ fun SearchScreenContent(
                         onClearClick = {
                             query = ""
                             searchFieldState.clearText()
-                                       },
+                        },
                         focusRequester = focusRequester,
                     )
                 }
@@ -163,40 +162,14 @@ fun SearchScreenContent(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.TopCenter
             ) {
-
                 when (val result = screenState.searchResult) {
-                    is SearchResult.Idle -> { /* show empty state */ }
-                    is SearchResult.NotFound -> { /* show not found */ }
-                    is SearchResult.Error -> { /* show error */ }
-                    is SearchResult.Searching -> { /* optional */ }
-                    is SearchResult.Success -> {
-
-                        LazyColumn(
-                            state = listState,
-                            contentPadding = PaddingValues(
-                                start = 14.dp, end = 14.dp,
-                                top = 12.dp, bottom = 60.dp
-                            ),
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .widthIn(max = 600.dp)
-                        ) {
-                            items(
-                                items = result.items,
-                                key = { it.id }
-                            ) { item ->
-                                SearchListRow(
-                                    item = item,
-                                    onClick = { onEvent(OnItemClicked(item)) },
-                                    modifier = Modifier.animateItem(
-                                        fadeInSpec = tween(180),
-                                        fadeOutSpec = tween(180),
-                                        placementSpec = tween(180)
-                                    )
-                                )
-                            }
-                        }
-                    }
+                    is SearchResult.Idle -> SearchInitial()
+                    is SearchResult.NotFound -> SearchEmptyResult(query = query)
+                    is SearchResult.Success -> SearchItemsList(
+                        listState = listState,
+                        result = result,
+                        onEvent = onEvent
+                    )
                 }
             }
         }
@@ -215,6 +188,94 @@ fun SearchScreenContent(
             Icon(
                 imageVector = Icons.Default.Search,
                 contentDescription = "Open keyboard"
+            )
+        }
+    }
+}
+
+@Composable
+fun SearchInitial() {
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
+    ) {
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Text(
+            text = Strings.startSearch,
+            style = AppTypography.searchResultText,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.alpha(0.7f)
+        )
+    }
+}
+
+@Composable
+fun SearchEmptyResult(
+    query: String
+) {
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
+    ) {
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Text(
+            text = Strings.noSearchResult,
+            style = AppTypography.searchResultText,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.alpha(0.7f)
+
+        )
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Text(
+            text = query.trim(),
+            style = AppTypography.searchResultText,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+private fun SearchItemsList(
+    listState: LazyListState,
+    result: SearchResult.Success,
+    onEvent: (SearchUiEvent) -> Unit
+) {
+    LazyColumn(
+        state = listState,
+        contentPadding = PaddingValues(
+            start = 14.dp, end = 14.dp,
+            top = 12.dp, bottom = 60.dp
+        ),
+        modifier = Modifier
+            .fillMaxSize()
+            .widthIn(max = 600.dp)
+    ) {
+        items(
+            items = result.items,
+            key = { it.id }
+        ) { item ->
+            SearchListRow(
+                item = item,
+                onClick = { onEvent(OnItemClicked(item)) },
+                modifier = Modifier.animateItem(
+                    fadeInSpec = tween(180),
+                    fadeOutSpec = tween(180),
+                    placementSpec = tween(180)
+                )
             )
         }
     }
@@ -267,21 +328,17 @@ fun SearchTopBar(
                 .padding(3.dp)
             ,
             shape = RoundedCornerShape(24.dp),
-
             lineLimits = TextFieldLineLimits.SingleLine,
-
             textStyle = TextStyle(
                 fontSize = 18.sp,
                 lineHeight = 20.sp,
-
             ),
-
             contentPadding = PaddingValues(horizontal = 0.dp, vertical = 0.dp),
-
             placeholder = {
                 Text(
-                    "Search",
-                    style = MaterialTheme.typography.bodyMedium
+                    text = Strings.searchPlaceholder,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Light
                 )
             },
 
@@ -315,9 +372,8 @@ fun SearchTopBar(
 
                         if (isSearching) {
                             CircularProgressIndicator(
-                                modifier = Modifier.size(20.dp),
+                                modifier = Modifier.size(20.dp).alpha(0.7f),
                                 strokeWidth = 2.dp,
-                                color = Color.Black.copy(alpha = 0.3f),
                                 gapSize = 2.dp
                             )
 
@@ -429,7 +485,7 @@ fun SearchListRow(
 
 class SearchUiState {
     var wasKeyboardVisible by mutableStateOf(value = false)
-    var isSearching by mutableStateOf(value = false)  // ← starts immediately on query change
+    var isSearching by mutableStateOf(value = false)
 }
 
 

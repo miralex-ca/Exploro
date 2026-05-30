@@ -14,10 +14,8 @@ data class SearchScreenState(
 
 sealed class SearchResult {
     data object Idle : SearchResult()
-    data object Searching : SearchResult()
     data class Success(val items: List<SearchListItem>) : SearchResult()
     data object NotFound : SearchResult()
-    data class Error(val message: String) : SearchResult()
 }
 
 data class SearchListItem(

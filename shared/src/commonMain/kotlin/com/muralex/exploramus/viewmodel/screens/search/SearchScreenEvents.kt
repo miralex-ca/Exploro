@@ -5,14 +5,19 @@ import com.muralex.exploramus.viewmodel.core.Events
 
 
 fun Events.searchCountriesByQuery(query: String) = screenCoroutine {
+
+
     val results = dataRepository.searchCountries(query).toSearchItems()
+
+    val searchResult = when {
+        results.isNotEmpty() -> SearchResult.Success(results)
+        query.isNotBlank() && results.isEmpty() -> SearchResult.NotFound
+        else -> SearchResult.Idle
+    }
 
     stateManager.updateScreen(SearchScreenState::class) {
         it.copy(
-            searchResult = if (results.isEmpty())
-                SearchResult.NotFound
-            else
-                SearchResult.Success(results)
+            searchResult = searchResult
         )
     }
 }
