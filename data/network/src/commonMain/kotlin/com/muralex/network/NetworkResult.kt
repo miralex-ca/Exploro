@@ -46,7 +46,5 @@ fun NetworkError.toDataError(): DataError.Network {
         }
         NetworkError.Unknown ->
             DataError.Network.UNKNOWN
-    }.also {
-        Log.e("Network error: $it")
     }
 }

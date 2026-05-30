@@ -1,5 +1,6 @@
 package com.muralex.network
 
+import com.muralex.core.common.logging.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpTimeout
@@ -41,10 +42,12 @@ class ApiClient {
         return try {
             val response = client.get(url)
             val body = response.body<T>()
+            Log.d("KTOR SUCCESS GET $url - Status: ${response.status}")
             NetworkResult.Success(body)
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
+            Log.e("KTOR FAILD GET $url - Status: ${e.message}")
             NetworkResult.Error(
                 error = e.toNetworkError()
             )
