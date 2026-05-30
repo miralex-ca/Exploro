@@ -8,9 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.muralex.exploramus.navigation.appstart.AppErrorScreen
-import com.muralex.exploramus.navigation.appstart.AppLoadingScreen
-import com.muralex.exploramus.viewmodel.appstate.AppStartupState
+import com.muralex.exploramus.navigation.appstart.AppStartupContent
 import com.muralex.exploramus.viewmodel.core.Navigation
 import com.muralex.exploramus.viewmodel.screens.home.retryBootstrapApp
 
@@ -21,22 +19,14 @@ fun Navigation.Router() {
     val localNavigationState = remember { mutableStateOf( navigationState ) }
     val startupState by stateProvider.getAppStartupStateFlow().collectAsStateWithLifecycle()
 
-    when (startupState) {
-        is AppStartupState.Loading -> AppLoadingScreen()
-
-        is AppStartupState.Failure -> {
-            AppErrorScreen(
-                failedAfterSync = startupState is AppStartupState.Failure.AfterSync,
-                onRetry = { events.retryBootstrapApp() }
-            )
+    AppStartupContent(
+        state = startupState,
+        onRetry = { events.retryBootstrapApp() }
+    ) {
+        BoxWithConstraints {
+            OnePane(screenUIsStateHolder, localNavigationState)
         }
-
-        AppStartupState.Ready -> {
-            BoxWithConstraints {
-                OnePane(screenUIsStateHolder, localNavigationState)
-            }
-            HandleBackButton(screenUIsStateHolder, localNavigationState)
-        }
+        HandleBackButton(screenUIsStateHolder, localNavigationState)
     }
 }
 

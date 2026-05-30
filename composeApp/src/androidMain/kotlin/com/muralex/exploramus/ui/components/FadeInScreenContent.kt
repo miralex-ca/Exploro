@@ -37,7 +37,7 @@ fun FadeLoadingContent(
     AnimatedContent(
         targetState = isLoading,
         transitionSpec = {
-            fadeIn(tween(800)) togetherWith fadeOut(tween(850))
+            fadeIn(tween(200)) togetherWith fadeOut(tween(100))
         },
         label = "loading_content"
     ) { loading ->

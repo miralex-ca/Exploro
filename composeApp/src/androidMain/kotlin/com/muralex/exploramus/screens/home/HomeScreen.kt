@@ -26,8 +26,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.muralex.exploramus.ui.components.EmptyState
 import com.muralex.exploramus.ui.components.EmptyStateView
-import com.muralex.exploramus.ui.components.FadeLoadingContent
+import com.muralex.exploramus.ui.components.FadeInScreenContent
 import com.muralex.exploramus.ui.components.RemoteImage
+import com.muralex.exploramus.ui.components.ScreenLoading
 import com.muralex.exploramus.ui.theme.AppTypography
 import com.muralex.exploramus.ui.theme.appColors
 import com.muralex.exploramus.viewmodel.screens.home.HomeListItem
@@ -39,11 +40,30 @@ fun HomeScreen(
     screenState: HomeScreenState,
     eventHandler: HomeEventHandler
 ) {
-    FadeLoadingContent(isLoading = screenState.isLoading) {
-        HomeScreenContent(
-            screenState = screenState,
-            onEvent = eventHandler::onEvent,
-        )
+//    FadeLoadingContent(isLoading = screenState.isLoading) {
+//        HomeScreenContent(
+//            screenState = screenState,
+//            onEvent = eventHandler::onEvent,
+//        )
+//    }
+
+
+
+
+        if (screenState.isLoading) {
+            ScreenLoading()
+        } else {
+
+            FadeInScreenContent(
+                durationMillis = 200
+            ) {
+
+            HomeScreenContent(
+                screenState = screenState,
+                onEvent = eventHandler::onEvent,
+            )
+        }
+
     }
 }
 

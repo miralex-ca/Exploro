@@ -22,7 +22,6 @@ fun AppErrorScreen(
     failedAfterSync: Boolean = false,
     onRetry: () -> Unit
 ) {
-
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
