@@ -152,6 +152,8 @@ fun SearchScreenContent(
                         onClearClick = {
                             query = ""
                             searchFieldState.clearText()
+                            focusRequester.requestFocus()
+                            keyboardController?.show()
                         },
                         focusRequester = focusRequester,
                     )

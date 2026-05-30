@@ -1,6 +1,5 @@
 package com.muralex.network
 
-import com.muralex.core.common.logging.Log
 import com.muralex.core.common.result.DataError
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.HttpRequestTimeoutException
