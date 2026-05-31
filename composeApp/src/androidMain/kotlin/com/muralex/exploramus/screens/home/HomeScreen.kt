@@ -40,20 +40,10 @@ fun HomeScreen(
     screenState: HomeScreenState,
     eventHandler: HomeEventHandler
 ) {
-//    FadeLoadingContent(isLoading = screenState.isLoading) {
-//        HomeScreenContent(
-//            screenState = screenState,
-//            onEvent = eventHandler::onEvent,
-//        )
-//    }
-
-
-
 
         if (screenState.isLoading) {
             ScreenLoading()
         } else {
-
             FadeInScreenContent(
                 durationMillis = 200
             ) {
@@ -63,7 +53,6 @@ fun HomeScreen(
                 onEvent = eventHandler::onEvent,
             )
         }
-
     }
 }
 

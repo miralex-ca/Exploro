@@ -17,6 +17,8 @@ import com.muralex.exploramus.ui.theme.appColors
 @Composable
 fun Level1TopBar(
     title: String,
+    hasActions: Boolean,
+    scrollBehavior: TopAppBarScrollBehavior? = null,
     onSettingsClick: () -> Unit,
     onSearchClick: () -> Unit,
 ) {
@@ -27,6 +29,7 @@ fun Level1TopBar(
                 modifier = Modifier.padding(start = 12.dp)
             )
         },
+        scrollBehavior = scrollBehavior,
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.appColors.topBarContainer,
             titleContentColor = MaterialTheme.appColors.onTopBarContainer,
@@ -34,18 +37,20 @@ fun Level1TopBar(
             actionIconContentColor = MaterialTheme.appColors.onTopBarContainer,
         ),
         actions = {
-            IconButton(onClick = onSearchClick) {
-                Icon(
-                    imageVector = Icons.Outlined.Search,
-                    contentDescription = null,
-                )
-            }
+            if (hasActions) {
+                IconButton(onClick = onSearchClick) {
+                    Icon(
+                        imageVector = Icons.Outlined.Search,
+                        contentDescription = null,
+                    )
+                }
 
-            IconButton( onClick = onSettingsClick ) {
-                Icon(
-                    imageVector = Icons.Outlined.Settings,
-                    contentDescription = "Settings"
-                )
+                IconButton( onClick = onSettingsClick ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Settings,
+                        contentDescription = "Settings"
+                    )
+                }
             }
         }
     )

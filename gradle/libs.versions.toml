@@ -28,6 +28,7 @@ landscapist = "2.4.7"
 ui = "1.11.1"
 uiGraphics = "1.11.2"
 androidx-core-splashscreen = "1.2.0"
+androidx-compose-material3-adaptive = "1.2.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
@@ -61,6 +62,9 @@ androidx-runner = { group = "androidx.test", name = "runner", version.ref = "run
 androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx-core-splashscreen" }
+adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "androidx-compose-material3-adaptive" }
+adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout", version.ref = "androidx-compose-material3-adaptive" }
+adaptive-navigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation", version.ref = "androidx-compose-material3-adaptive" }
 
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }

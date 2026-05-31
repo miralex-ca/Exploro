@@ -6,10 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.muralex.exploramus.navigation.Router
+import com.muralex.exploramus.ui.adaptive.LocalFormFactor
+import com.muralex.exploramus.ui.adaptive.rememberFormFactor
 import com.muralex.exploramus.ui.theme.AppTheme
 import com.muralex.exploramus.viewmodel.appstate.AppEnvironment
 import com.muralex.exploramus.viewmodel.core.Navigation
-
 
 @Composable
 fun MainComposable(
@@ -19,8 +20,11 @@ fun MainComposable(
         .getAppEnvironmentFlow()
         .collectAsStateWithLifecycle()
 
+    val formFactor = rememberFormFactor()
+
     CompositionLocalProvider(
-        LocalAppEnvironment provides appEnvironment
+        LocalAppEnvironment provides appEnvironment,
+        LocalFormFactor provides formFactor
     ) {
         AppTheme(themeMode = appEnvironment.themeMode) {
             navigation.Router()

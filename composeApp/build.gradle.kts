@@ -20,6 +20,9 @@ kotlin {
             implementation(libs.androidx.lifecycle)
             implementation(libs.android.material)
             implementation(libs.androidx.core.splashscreen)
+            implementation(libs.adaptive)
+            implementation(libs.adaptive.layout)
+            implementation(libs.adaptive.navigation)
             implementation(compose.runtime)
 
             implementation(libs.koin.android)
