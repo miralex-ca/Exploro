@@ -3,7 +3,7 @@ package com.muralex.exploramus.viewmodel.core
 import com.muralex.core.common.logging.Log
 import kotlinx.coroutines.launch
 
-class Events (val stateManager : StateManager, val navigation: Navigation) {
+class Events (val stateManager : StateManager) {
 
     val dataRepository
         get() = stateManager.dataRepository

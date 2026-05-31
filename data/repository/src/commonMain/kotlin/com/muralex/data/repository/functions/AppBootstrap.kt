@@ -1,9 +1,10 @@
-package com.muralex.data.repository.sources.localdb
+package com.muralex.data.repository.functions
 
 import com.muralex.core.common.logging.Log
 import com.muralex.core.common.result.DataError
 import com.muralex.core.common.result.DataResult
 import com.muralex.data.repository.Repository
+
 
 suspend fun Repository.migrateDbIfNeeded(): DataResult<Unit> = withRepoContext {
     val currentVersion = localSettings.dbVersion
@@ -31,4 +32,8 @@ suspend fun Repository.migrateDbIfNeeded(): DataResult<Unit> = withRepoContext {
             DataResult.Error(DataError.Database)
         }
     )
+}
+
+suspend fun Repository.hasCountriesData(): Boolean = withRepoContext {
+    localDb.hasCountriesData()
 }

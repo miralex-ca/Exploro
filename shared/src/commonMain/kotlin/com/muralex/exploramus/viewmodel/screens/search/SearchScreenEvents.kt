@@ -5,8 +5,6 @@ import com.muralex.exploramus.viewmodel.core.Events
 
 
 fun Events.searchCountriesByQuery(query: String) = screenCoroutine {
-
-
     val results = dataRepository.searchCountries(query).toSearchItems()
 
     val searchResult = when {
