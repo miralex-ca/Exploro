@@ -34,7 +34,7 @@ fun rememberFormFactor(): FormFactor {
             .isWidthAtLeastBreakpoint(WindowSizeClass.WIDTH_DP_EXPANDED_LOWER_BOUND)
 
         when {
-            isExpandedWidth -> FormFactor.TABLET_LANDSCAPE
+            isExpandedWidth && !isCompactHeight -> FormFactor.TABLET_LANDSCAPE
             isCompactHeight -> FormFactor.PHONE_LANDSCAPE
             !isCompactWidth -> FormFactor.TABLET_PORTRAIT
             else -> FormFactor.PHONE_PORTRAIT

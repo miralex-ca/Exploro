@@ -14,11 +14,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import com.muralex.exploramus.navigation.bars.Level1BottomBar
-import com.muralex.exploramus.navigation.bars.Level1NavDrawer
-import com.muralex.exploramus.navigation.bars.Level1NavRail
 import com.muralex.exploramus.navigation.bars.Level1TopBar
 import com.muralex.exploramus.navigation.bars.TopBar
+import com.muralex.exploramus.navigation.bars.navigation.Level1BottomBar
+import com.muralex.exploramus.navigation.bars.navigation.Level1NavDrawer
+import com.muralex.exploramus.navigation.bars.navigation.Level1NavRail
 import com.muralex.exploramus.resources.Strings
 import com.muralex.exploramus.ui.adaptive.FormFactor
 import com.muralex.exploramus.ui.adaptive.LocalFormFactor
@@ -94,7 +94,10 @@ fun Navigation.OnePane(
                             )
                         }
                         else -> {
-                            TopBar(screenTitle, onBackClick = screenNavActions::navigateBack)
+                            TopBar(
+                                title = screenTitle,
+                                onBackClick = screenNavActions::navigateBack
+                            )
                         }
                     }
 

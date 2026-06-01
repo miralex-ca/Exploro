@@ -60,6 +60,7 @@ fun Level1TopBar(
 @Composable
 fun TopBar(
     title: String,
+    scrollBehavior: TopAppBarScrollBehavior? = null,
     onBackClick: () -> Unit
 ) {
     TopAppBar(
@@ -70,6 +71,7 @@ fun TopBar(
                 overflow = TextOverflow.Ellipsis
             )
         },
+        scrollBehavior = scrollBehavior,
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.appColors.topBarContainer,
             titleContentColor = MaterialTheme.appColors.onTopBarContainer,
