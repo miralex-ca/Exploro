@@ -6,7 +6,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.muralex.exploramus.navigation.Router
+import com.muralex.exploramus.ui.adaptive.AppLayoutDefaults
+import com.muralex.exploramus.ui.adaptive.LocalAppLayout
 import com.muralex.exploramus.ui.adaptive.LocalFormFactor
+import com.muralex.exploramus.ui.adaptive.isTablet
 import com.muralex.exploramus.ui.adaptive.rememberFormFactor
 import com.muralex.exploramus.ui.theme.AppTheme
 import com.muralex.exploramus.viewmodel.appstate.AppEnvironment
@@ -21,10 +24,15 @@ fun MainComposable(
         .collectAsStateWithLifecycle()
 
     val formFactor = rememberFormFactor()
+    val dimensions = when {
+        formFactor.isTablet -> AppLayoutDefaults.Tablet
+        else -> AppLayoutDefaults.Phone
+    }
 
     CompositionLocalProvider(
         LocalAppEnvironment provides appEnvironment,
-        LocalFormFactor provides formFactor
+        LocalFormFactor provides formFactor,
+        LocalAppLayout provides dimensions,
     ) {
         AppTheme(themeMode = appEnvironment.themeMode) {
             navigation.Router()

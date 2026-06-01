@@ -44,6 +44,7 @@ import com.muralex.exploramus.resources.Strings
 import com.muralex.exploramus.screens.search.SearchUiEvent.DidBecomeActive
 import com.muralex.exploramus.screens.search.SearchUiEvent.OnItemClicked
 import com.muralex.exploramus.screens.search.SearchUiEvent.SearchByQuery
+import com.muralex.exploramus.ui.adaptive.layout
 import com.muralex.exploramus.ui.components.RemoteImage
 import com.muralex.exploramus.ui.theme.AppTypography
 import com.muralex.exploramus.ui.theme.appColors
@@ -176,21 +177,23 @@ fun SearchScreenContent(
             }
         }
 
-        FloatingActionButton(
-            containerColor = FloatingActionButtonDefaults.containerColor,
-            onClick = {
-                focusRequester.requestFocus()
-                keyboardController?.show()
-            },
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(end = 26.dp)
-                .padding(bottom = 46.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Default.Search,
-                contentDescription = "Open keyboard"
-            )
+        if (MaterialTheme.layout.showSearchFab) {
+            FloatingActionButton(
+                containerColor = FloatingActionButtonDefaults.containerColor,
+                onClick = {
+                    focusRequester.requestFocus()
+                    keyboardController?.show()
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(end = 26.dp)
+                    .padding(bottom = 46.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = "Open keyboard"
+                )
+            }
         }
     }
 }

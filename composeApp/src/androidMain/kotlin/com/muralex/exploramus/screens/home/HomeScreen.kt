@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.muralex.exploramus.ui.adaptive.layout
 import com.muralex.exploramus.ui.components.EmptyState
 import com.muralex.exploramus.ui.components.EmptyStateView
 import com.muralex.exploramus.ui.components.FadeInScreenContent
@@ -40,7 +41,6 @@ fun HomeScreen(
     screenState: HomeScreenState,
     eventHandler: HomeEventHandler
 ) {
-
         if (screenState.isLoading) {
             ScreenLoading()
         } else {
@@ -150,8 +150,10 @@ fun HomeSectionListCard(
     item: HomeListItem,
     onClick: () -> Unit
 ) {
+    val layout = MaterialTheme.layout
+
     Card(
-        modifier = Modifier.width(140.dp),
+        modifier = Modifier.width(layout.homeCard.width),
         onClick = onClick,
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -169,7 +171,7 @@ fun HomeSectionListCard(
                 imageUrl = item.flagPngUrl,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .height(layout.homeCard.imageHeight)
                     .border(
                         width = 1.dp,
                         color = Color.LightGray.copy(alpha = 0.25f),
