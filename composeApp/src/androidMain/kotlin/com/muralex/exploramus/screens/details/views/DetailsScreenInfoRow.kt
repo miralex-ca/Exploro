@@ -1,4 +1,4 @@
-package com.muralex.exploramus.screens.details
+package com.muralex.exploramus.screens.details.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,9 +16,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import com.muralex.exploramus.resources.Strings
+import com.muralex.exploramus.ui.adaptive.layout
+import com.muralex.exploramus.ui.adaptive.value
 import com.muralex.exploramus.viewmodel.screens.countrydetail.CountryDetailsState
 import java.util.Locale
-
 
 data class DetailsRowModel(
     val icon: ImageVector,
@@ -64,6 +65,7 @@ fun detailRows(details: CountryDetailsState): List<DetailsRowModel> = listOf(
 
 @Composable
 fun DetailsScreenInfoRow(
+    modifier: Modifier = Modifier,
     icon: ImageVector,
     label: String,
     value: String,
@@ -73,32 +75,37 @@ fun DetailsScreenInfoRow(
     if (value.isBlank()) return
 
     val uriHandler = LocalUriHandler.current
+    val layout = MaterialTheme.layout.details
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .then(
                 if (url != null) Modifier.clickable { uriHandler.openUri(url) }
                 else Modifier
             )
-            .padding(vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(vertical = layout.infoRowVerticalPadding.value())
+            .padding(end = 10.dp),
+        verticalAlignment = Alignment.Top
     ) {
+
         Icon(
             imageVector = icon,
             contentDescription = null,
             modifier = Modifier
+                .padding(top = 6.dp)
                 .size(28.dp)
                 .alpha(0.8f)
+
         )
 
-        Spacer(modifier = Modifier.width(28.dp))
+        Spacer(modifier = Modifier.width(layout.infoCardIconEndSpace.value()))
 
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelSmall,
-                modifier = Modifier.alpha(0.8f)
+                modifier = Modifier.alpha(0.7f)
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -115,7 +122,7 @@ fun DetailsScreenInfoRow(
                         modifier = Modifier
                             .padding(start = 6.dp)
                             .size(18.dp)
-                            .alpha(0.6f)//.padding(start = 12.dp)
+                            .alpha(0.6f)
                     )
                 }
             }

@@ -9,7 +9,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.muralex.exploramus.ui.adaptive.FormFactor
+import com.muralex.exploramus.ui.adaptive.LocalFormFactor
+import com.muralex.exploramus.ui.adaptive.isCompactHeight
 import com.muralex.exploramus.ui.theme.appColors
 
 
@@ -22,6 +26,8 @@ fun Level1TopBar(
     onSettingsClick: () -> Unit,
     onSearchClick: () -> Unit,
 ) {
+    val formFactor = LocalFormFactor.current
+
     TopAppBar(
         title = {
             Text(
@@ -29,6 +35,7 @@ fun Level1TopBar(
                 modifier = Modifier.padding(start = 12.dp)
             )
         },
+        expandedHeight = topBarAdaptiveHeight(formFactor),
         scrollBehavior = scrollBehavior,
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.appColors.topBarContainer,
@@ -63,6 +70,8 @@ fun TopBar(
     scrollBehavior: TopAppBarScrollBehavior? = null,
     onBackClick: () -> Unit
 ) {
+    val formFactor = LocalFormFactor.current
+
     TopAppBar(
         title = {
             Text(
@@ -71,6 +80,7 @@ fun TopBar(
                 overflow = TextOverflow.Ellipsis
             )
         },
+        expandedHeight = topBarAdaptiveHeight(formFactor),
         scrollBehavior = scrollBehavior,
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.appColors.topBarContainer,
@@ -90,3 +100,11 @@ fun TopBar(
         }
     )
 }
+
+@Composable
+private fun topBarAdaptiveHeight(formFactor: FormFactor): Dp =
+    if (formFactor.isCompactHeight) {
+        46.dp
+    } else {
+        TopAppBarDefaults.TopAppBarExpandedHeight
+    }

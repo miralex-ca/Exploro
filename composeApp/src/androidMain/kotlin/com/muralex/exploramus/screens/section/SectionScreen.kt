@@ -17,6 +17,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.muralex.exploramus.ui.adaptive.layout
+import com.muralex.exploramus.ui.adaptive.value
 import com.muralex.exploramus.ui.components.EmptyState
 import com.muralex.exploramus.ui.components.EmptyStateView
 import com.muralex.exploramus.ui.components.FadeInScreenContent
@@ -49,14 +51,21 @@ fun SectionScreenContent(
     screenState: SectionScreenState,
     onListItemClick: (SectionListItem) -> Unit,
 ) {
+    val layout = MaterialTheme.layout
+
     if (screenState.countries.isEmpty()) {
         EmptyStateView(EmptyState.EmptyList)
     } else {
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 160.dp),
-            contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 60.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            columns = GridCells.Adaptive(minSize = layout.sectionCard.width.value()),
+            contentPadding = PaddingValues(
+                start = layout.section.horizontalPadding.value(),
+                end = layout.section.horizontalPadding.value(),
+                top = layout.section.topPadding.value(),
+                bottom = layout.section.bottomPadding.value()
+            ),
+            horizontalArrangement = Arrangement.spacedBy(layout.section.cardSpacing.value()),
+            verticalArrangement = Arrangement.spacedBy(layout.section.cardSpacing.value())
         ) {
             items(screenState.countries) { item ->
                 CountryGridCard(
@@ -76,6 +85,8 @@ fun CountryGridCard(
     onClick: () -> Unit
 ) {
 
+    val layout = MaterialTheme.layout
+
     Card(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
@@ -86,9 +97,7 @@ fun CountryGridCard(
             color = MaterialTheme.appColors.cardBorder
         )
     ) {
-
         Column {
-
             Box(
                 modifier = Modifier.padding(
                     start = 8.dp,
@@ -101,7 +110,7 @@ fun CountryGridCard(
                     imageUrl = item.flagPngUrl,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(100.dp)
+                        .height(layout.sectionCard.imageHeight.value())
                         .border(
                             width = 1.dp,
                             color = Color.LightGray.copy(alpha = 0.25f),

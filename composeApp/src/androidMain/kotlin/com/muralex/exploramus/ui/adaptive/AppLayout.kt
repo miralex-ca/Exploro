@@ -2,54 +2,137 @@ package com.muralex.exploramus.ui.adaptive
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.ui.unit.Dp
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
-val LocalAppLayout = compositionLocalOf { AppLayoutDefaults.Phone }
+val LocalAppLayout = staticCompositionLocalOf<AppLayout> {
+    error("LocalAppLayout not provided — wrap with CompositionLocalProvider at root")
+}
 
 val MaterialTheme.layout: AppLayout
     @Composable get() = LocalAppLayout.current
 
 data class AppLayout(
-    val screenHorizontalPadding: Dp,
-    val sectionHorizontalPadding: Dp,
-    val cardSpacing: Dp,
-    val sectionArrowSize: Dp,
-    val sectionArrowIconSize: Dp,
-    var showSearchFab: Boolean,
+    val home: Home,
+    val section: Section,
+    val details: Details,
+    var showSearchFab: AdBool,
     val homeCard: HomeCard,
+    val sectionCard: SectionCard,
 ) {
+
+    data class Home(
+        val horizontalPadding: Adp,
+        val topPadding: Adp,
+        val bottomPadding: Adp,
+    )
+
+    data class Section(
+        val horizontalPadding: Adp,
+        val topPadding: AdpH,
+        val bottomPadding: Adp,
+        val cardSpacing: Adp
+    )
+
+    data class Details(
+        val maxWidth: Adp,
+        val horizontalPadding:Adp,
+        val topPadding: Adp,
+        val bottomPadding: Adp,
+        val cardCorner: Adp,
+        val imageHeight: Adp,
+        val imageCorner: Adp,
+        val titleFontSize: AdSp,
+        val coatsOfArmsSize: Adp,
+        val coatsTextSpace: Adp,
+        val infoCardHorizontalPadding: Adp,
+        val infoCardVerticalPadding: Adp,
+        val infoCardIconEndSpace: Adp,
+        val infoRowVerticalPadding: Adp,
+    )
+
     data class HomeCard(
-        val width: Dp,
-        val imageHeight: Dp,
+        val width: Adp,
+        val imageHeight: Adp,
     )
+
+    data class SectionCard(
+        val width: Adp,
+        val imageHeight: Adp,
+    )
+
+    companion object {
+        fun build(formFactor: FormFactor) : AppLayout {
+            return when {
+                formFactor.isCompactHeight && formFactor.isLandscape -> {
+                    AppLayouts.compactLandscape()
+                }
+                else -> AppLayouts.default()
+            }
+        }
+    }
 }
 
-object AppLayoutDefaults {
-    val Phone = AppLayout(
-        screenHorizontalPadding = 16.dp,
-        sectionHorizontalPadding = 16.dp,
-        cardSpacing = 8.dp,
-        sectionArrowSize = 32.dp,
-        sectionArrowIconSize = 20.dp,
-        showSearchFab = true,
+
+
+object AppLayouts {
+    fun default() = AppLayout(
+        home = AppLayout.Home(
+            horizontalPadding = adp(16.dp, 24.dp),
+            topPadding = adp(12.dp, 16.dp),
+            bottomPadding = adp(36.dp, 46.dp),
+        ),
+
+        section = AppLayout.Section(
+            horizontalPadding = adp(16.dp, 28.dp, 50.dp),
+            topPadding = adph(16.dp, 20.dp, 28.dp),
+            bottomPadding = adp(36.dp, 46.dp),
+            cardSpacing = adp(10.dp, 14.dp, 16.dp)
+        ),
+        sectionCard = AppLayout.SectionCard(
+            width = adp(160.dp, 180.dp, 200.dp),
+            imageHeight = adp(100.dp, 110.dp, 115.dp),
+        ),
+
+        details = AppLayout.Details(
+            maxWidth = adp(420.dp, 580.dp, 750.dp),
+            horizontalPadding = adp(16.dp),
+            topPadding = adp(16.dp, 28.dp),
+            bottomPadding = adp(36.dp),
+            cardCorner = adp(16.dp, 20.dp),
+            imageHeight = adp(140.dp),
+            imageCorner = adp(12.dp, 16.dp),
+            titleFontSize = AdSp(28.sp, 28.sp, 26.sp),
+            coatsOfArmsSize = adp(58.dp, 64.dp),
+            coatsTextSpace = adp(20.dp, 26.dp),
+            infoCardHorizontalPadding = adp(24.dp, 36.dp, 40.dp),
+            infoCardVerticalPadding = adp(20.dp),
+            infoCardIconEndSpace = adp(20.dp, 28.dp, 20.dp),
+            infoRowVerticalPadding = adp(10.dp, 14.dp, 18.dp),
+        ),
+        showSearchFab = AdBool(true),
         homeCard = AppLayout.HomeCard(
-            width = 140.dp,
-            imageHeight = 70.dp,
+            width = adp(140.dp, 180.dp),
+            imageHeight = adp(70.dp, 100.dp),
         ),
     )
 
-    val Tablet = AppLayout(
-        screenHorizontalPadding = 24.dp,
-        sectionHorizontalPadding = 24.dp,
-        cardSpacing = 12.dp,
-        sectionArrowSize = 36.dp,
-        sectionArrowIconSize = 22.dp,
-        showSearchFab = false,
-        homeCard = AppLayout.HomeCard(
-            width = 180.dp,
-            imageHeight = 100.dp,
-        ),
-    )
+    fun compactLandscape(base: AppLayout = default()): AppLayout {
+        return base.copy(
+            details = base.details.copy(
+                maxWidth = adp(700.dp),
+                titleFontSize = AdSp( 26.sp),
+                infoCardIconEndSpace = adp(20.dp),
+            ),
+            homeCard = base.homeCard.copy(
+                width = adp(140.dp, 140.dp, 160.dp),
+                imageHeight = adp(70.dp, 70.dp,80.dp),
+            )
+        )
+    }
+
+
 }
+
+

@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.muralex.exploramus.ui.adaptive.LocalFormFactor
-import com.muralex.exploramus.ui.adaptive.isPhone
+import com.muralex.exploramus.ui.adaptive.isCompactHeight
 import com.muralex.exploramus.viewmodel.core.Navigation
 import com.muralex.exploramus.viewmodel.core.ScreenIdentifier
 import com.muralex.exploramus.viewmodel.screens.Level1Navigation
@@ -37,12 +37,11 @@ fun Navigation.Level1NavRail(
     onSearchClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
-
     val formFactor = LocalFormFactor.current
-    val isPhone = formFactor.isPhone
+    val isCompactHeight = formFactor.isCompactHeight
 
     NavigationRail(containerColor = MaterialTheme.colorScheme.surface) {
-        if (isPhone) {
+        if (isCompactHeight) {
             Spacer(modifier = Modifier.weight(1f))
         } else {
             Spacer(modifier = Modifier.height(60.dp))
@@ -50,7 +49,7 @@ fun Navigation.Level1NavRail(
 
         Column(
             modifier = Modifier.padding(top = 10.dp),
-            verticalArrangement = Arrangement.spacedBy(if (isPhone) 8.dp else 20.dp)
+            verticalArrangement = Arrangement.spacedBy(if (isCompactHeight) 8.dp else 20.dp)
         ) {
             val navItems =
                 rememberNavItems(selectedTab, navigateByLevel1Menu, onSearchClick, onSettingsClick)

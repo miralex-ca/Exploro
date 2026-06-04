@@ -20,7 +20,6 @@ import com.muralex.exploramus.navigation.bars.navigation.Level1BottomBar
 import com.muralex.exploramus.navigation.bars.navigation.Level1NavDrawer
 import com.muralex.exploramus.navigation.bars.navigation.Level1NavRail
 import com.muralex.exploramus.resources.Strings
-import com.muralex.exploramus.ui.adaptive.FormFactor
 import com.muralex.exploramus.ui.adaptive.LocalFormFactor
 import com.muralex.exploramus.ui.adaptive.useBottomBar
 import com.muralex.exploramus.ui.adaptive.useDrawer
@@ -47,7 +46,7 @@ fun Navigation.OnePane(
 
     val formFactor = LocalFormFactor.current
 
-    val applyScroll = formFactor == FormFactor.PHONE_LANDSCAPE //isCompactHeight
+    val applyScroll = false//formFactor.applyTopBarScroll
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     val content = @Composable {
@@ -86,7 +85,7 @@ fun Navigation.OnePane(
 
                             Level1TopBar(
                                 title = screenTitle,
-                                hasActions = formFactor == FormFactor.PHONE_PORTRAIT,
+                                hasActions = formFactor.useBottomBar,
                                 scrollBehavior = if (applyScroll) scrollBehavior else null,
                                 onSettingsClick = screenNavActions::toSettings,
                                 onSearchClick = screenNavActions::toSearch,

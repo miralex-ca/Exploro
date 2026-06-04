@@ -1,7 +1,6 @@
 package com.muralex.exploramus.navigation
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,9 +22,9 @@ fun Navigation.Router() {
         state = startupState,
         onRetry = { events.retryBootstrapApp() }
     ) {
-        BoxWithConstraints {
-            OnePane(screenUIsStateHolder, localNavigationState)
-        }
+
+        OnePane(screenUIsStateHolder, localNavigationState)
+
         HandleBackButton(screenUIsStateHolder, localNavigationState)
     }
 }

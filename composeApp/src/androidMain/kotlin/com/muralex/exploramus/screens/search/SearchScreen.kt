@@ -45,6 +45,7 @@ import com.muralex.exploramus.screens.search.SearchUiEvent.DidBecomeActive
 import com.muralex.exploramus.screens.search.SearchUiEvent.OnItemClicked
 import com.muralex.exploramus.screens.search.SearchUiEvent.SearchByQuery
 import com.muralex.exploramus.ui.adaptive.layout
+import com.muralex.exploramus.ui.adaptive.value
 import com.muralex.exploramus.ui.components.RemoteImage
 import com.muralex.exploramus.ui.theme.AppTypography
 import com.muralex.exploramus.ui.theme.appColors
@@ -177,7 +178,7 @@ fun SearchScreenContent(
             }
         }
 
-        if (MaterialTheme.layout.showSearchFab) {
+        if (MaterialTheme.layout.showSearchFab.value()) {
             FloatingActionButton(
                 containerColor = FloatingActionButtonDefaults.containerColor,
                 onClick = {

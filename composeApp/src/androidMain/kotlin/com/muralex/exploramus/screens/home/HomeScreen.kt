@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.muralex.exploramus.ui.adaptive.layout
+import com.muralex.exploramus.ui.adaptive.value
 import com.muralex.exploramus.ui.components.EmptyState
 import com.muralex.exploramus.ui.components.EmptyStateView
 import com.muralex.exploramus.ui.components.FadeInScreenContent
@@ -61,11 +62,16 @@ fun HomeScreenContent(
     screenState: HomeScreenState,
     onEvent: (HomeUiEvent) -> Unit,
 ) {
+    val layout = MaterialTheme.layout
+
     if (screenState.homeSections.isEmpty()) {
         EmptyStateView(EmptyState.EmptyList)
     } else {
         LazyColumn(
-            contentPadding = PaddingValues(top = 10.dp, bottom = 40.dp),
+            contentPadding = PaddingValues(
+                top = layout.home.topPadding.value(),
+                bottom = layout.home.bottomPadding.value()
+            ),
             verticalArrangement = Arrangement.spacedBy(0.dp)
         ) {
             items(
@@ -79,6 +85,7 @@ fun HomeScreenContent(
                 )
             }
         }
+
     }
 }
 
@@ -90,6 +97,8 @@ fun HomeSectionRow(
     onSectionClick: () -> Unit
 ) {
 
+    val layout = MaterialTheme.layout
+
     Column (
         modifier = Modifier
             .padding(bottom = 14.dp),
@@ -98,14 +107,22 @@ fun HomeSectionRow(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable(onClick = onSectionClick)
-                .padding(start = 25.dp, end = 20.dp, top = 4.dp, bottom = 4.dp),
+                .padding(
+                    start = layout.home.horizontalPadding.value(),
+                    end = layout.home.horizontalPadding.value(),
+                    top = 4.dp,
+                    bottom = 4.dp
+                ),
             verticalAlignment = Alignment.CenterVertically
         ) {
 
             Text(
                 text = section.sectionName,
                 style = AppTypography.homeSectionTitle,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 10.dp)
+
             )
 
             Box(
@@ -129,7 +146,7 @@ fun HomeSectionRow(
         Spacer(modifier = Modifier.height(4.dp))
 
         LazyRow(
-            contentPadding = PaddingValues(horizontal = 16.dp),
+            contentPadding = PaddingValues(horizontal = layout.home.horizontalPadding.value() ),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(
@@ -153,7 +170,7 @@ fun HomeSectionListCard(
     val layout = MaterialTheme.layout
 
     Card(
-        modifier = Modifier.width(layout.homeCard.width),
+        modifier = Modifier.width(layout.homeCard.width.value()),
         onClick = onClick,
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -162,7 +179,6 @@ fun HomeSectionListCard(
             color = MaterialTheme.appColors.cardBorder
         )
     ) {
-
         Column (
             modifier =  Modifier.padding(8.dp)
         ) {
@@ -171,7 +187,7 @@ fun HomeSectionListCard(
                 imageUrl = item.flagPngUrl,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(layout.homeCard.imageHeight)
+                    .height(layout.homeCard.imageHeight.value())
                     .border(
                         width = 1.dp,
                         color = Color.LightGray.copy(alpha = 0.25f),
