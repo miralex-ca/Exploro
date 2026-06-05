@@ -24,7 +24,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.muralex.exploramus.ui.adaptive.LocalFormFactor
 import com.muralex.exploramus.ui.adaptive.layout
+import com.muralex.exploramus.ui.adaptive.useBottomBar
 import com.muralex.exploramus.ui.adaptive.value
 import com.muralex.exploramus.ui.components.EmptyState
 import com.muralex.exploramus.ui.components.EmptyStateView
@@ -62,7 +64,10 @@ fun HomeScreenContent(
     screenState: HomeScreenState,
     onEvent: (HomeUiEvent) -> Unit,
 ) {
+    val formFactor = LocalFormFactor.current
     val layout = MaterialTheme.layout
+    val bottomPadding = layout.home.bottomPadding.value() +
+            if (formFactor.useBottomBar) 60.dp else 0.dp
 
     if (screenState.homeSections.isEmpty()) {
         EmptyStateView(EmptyState.EmptyList)
@@ -70,7 +75,7 @@ fun HomeScreenContent(
         LazyColumn(
             contentPadding = PaddingValues(
                 top = layout.home.topPadding.value(),
-                bottom = layout.home.bottomPadding.value()
+                bottom = bottomPadding,
             ),
             verticalArrangement = Arrangement.spacedBy(0.dp)
         ) {

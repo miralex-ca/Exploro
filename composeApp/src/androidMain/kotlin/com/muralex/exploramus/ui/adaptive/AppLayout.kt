@@ -15,6 +15,7 @@ val MaterialTheme.layout: AppLayout
 
 data class AppLayout(
     val home: Home,
+    val favorites: Favorites,
     val section: Section,
     val details: Details,
     var showSearchFab: AdBool,
@@ -57,6 +58,10 @@ data class AppLayout(
         val imageHeight: Adp,
     )
 
+    data class Favorites(
+        val bottomPadding: Adp,
+    )
+
     data class SectionCard(
         val width: Adp,
         val imageHeight: Adp,
@@ -82,6 +87,10 @@ object AppLayouts {
             horizontalPadding = adp(16.dp, 24.dp),
             topPadding = adp(12.dp, 16.dp),
             bottomPadding = adp(36.dp, 46.dp),
+        ),
+
+        favorites =  AppLayout.Favorites(
+            bottomPadding = adp(60.dp),
         ),
 
         section = AppLayout.Section(

@@ -27,6 +27,10 @@ import androidx.compose.ui.unit.dp
 import com.muralex.exploramus.LocalAppEnvironment
 import com.muralex.exploramus.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.muralex.exploramus.screens.favorites.FavoritesUiEvent.RemoveFavorite
+import com.muralex.exploramus.ui.adaptive.LocalFormFactor
+import com.muralex.exploramus.ui.adaptive.layout
+import com.muralex.exploramus.ui.adaptive.useBottomBar
+import com.muralex.exploramus.ui.adaptive.value
 import com.muralex.exploramus.ui.components.EmptyState
 import com.muralex.exploramus.ui.components.EmptyStateView
 import com.muralex.exploramus.ui.components.FadeLoadingContent
@@ -56,6 +60,10 @@ fun FavoritesScreenContent(
     onEvent: (FavoritesUiEvent) -> Unit,
 ) {
     val isFavoriteSwipeEnabled = LocalAppEnvironment.current.favoriteSwipeEnabled
+    val formFactor = LocalFormFactor.current
+    val layout = MaterialTheme.layout
+    val bottomPadding = layout.favorites.bottomPadding.value() +
+            if (formFactor.useBottomBar) 60.dp else 0.dp
 
     if (screenState.favorites.isEmpty()) {
         EmptyStateView(EmptyState.EmptyList)
@@ -67,7 +75,7 @@ fun FavoritesScreenContent(
             LazyColumn(
                 contentPadding = PaddingValues(
                     start = 8.dp, end = 8.dp,
-                    top = 12.dp, bottom = 60.dp
+                    top = 12.dp, bottom = bottomPadding
                 ),
                 modifier = Modifier
                     .fillMaxSize()

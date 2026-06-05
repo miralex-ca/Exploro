@@ -22,7 +22,6 @@ import com.muralex.exploramus.ui.theme.appColors
 fun Level1TopBar(
     title: String,
     hasActions: Boolean,
-    scrollBehavior: TopAppBarScrollBehavior? = null,
     onSettingsClick: () -> Unit,
     onSearchClick: () -> Unit,
 ) {
@@ -36,7 +35,6 @@ fun Level1TopBar(
             )
         },
         expandedHeight = topBarAdaptiveHeight(formFactor),
-        scrollBehavior = scrollBehavior,
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.appColors.topBarContainer,
             titleContentColor = MaterialTheme.appColors.onTopBarContainer,
@@ -67,7 +65,6 @@ fun Level1TopBar(
 @Composable
 fun TopBar(
     title: String,
-    scrollBehavior: TopAppBarScrollBehavior? = null,
     onBackClick: () -> Unit
 ) {
     val formFactor = LocalFormFactor.current
@@ -81,7 +78,6 @@ fun TopBar(
             )
         },
         expandedHeight = topBarAdaptiveHeight(formFactor),
-        scrollBehavior = scrollBehavior,
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.appColors.topBarContainer,
             titleContentColor = MaterialTheme.appColors.onTopBarContainer,

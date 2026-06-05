@@ -43,10 +43,8 @@ val FormFactor.isCompact get() = this.widthType == WidthType.COMPACT || this.hei
 val FormFactor.isLandscape get() = this.orientation == ScreenOrientation.LANDSCAPE
 val FormFactor.isLargeOrLandscape get() = isLarge || isLandscape
 val FormFactor.useBottomBar get() = this.widthType == WidthType.COMPACT
-val FormFactor.useNavRail get() = this.widthType == WidthType.MEDIUM
-val FormFactor.useDrawer get() = this.widthType == WidthType.EXPANDED
-val FormFactor.applyTopBarScroll get() = this.heightType == HeightType.COMPACT
-
+val FormFactor.useNavRail get() = widthType == WidthType.MEDIUM || (widthType == WidthType.EXPANDED && isCompactHeight)
+val FormFactor.useDrawer get() = this.widthType == WidthType.EXPANDED && !isCompactHeight
 val FormFactor.isCompactHeight get() = this.heightType == HeightType.COMPACT
 
 @SuppressLint("ConfigurationScreenWidthHeight")
