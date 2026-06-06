@@ -46,35 +46,35 @@ val OnAccentBlueDark = Color.White
 //val DarkPrimary = Color(0xFF2F3C52)
 //val OnDarkPrimary = Color(0xFFEAF0FF)
 
-val TopBarContainerDark = Color(0xFF2F3C52) // top bar
+val TopBarContainerDark = Color(0xFF2A3548) // top bar
 val OnTopBarContainerDark = Color(0xFFEAF0FF) // top bar text
 
 val DarkBackground = Color(0xFF202934)
 val OnDarkBackground = Color(0xFFE6EAF2)
 
-val DarkSurface = Color(0xFF28303D)
+val DarkSurface = Color(0xFF2F3C52)
 val OnDarkSurface = Color(0xFFE6EAF2)
 
 val DarkSurfaceTint = Color(0xFF6F8FD6)
 
-val DarkCard = Color(0xFF3E4C62)
+val DarkCard = Color(0xFF364457)
 
 val DarkSurfaceContainer = Color(0xFF323C4D)
 val DarkSurfaceContainerHigh = Color(0xFF39465B) // dialog
 
 val DarkSecondaryContainer = Color(0xFF32455C)
+val OnDarkSecondaryContainer = Color(0xFFC2DDFC)
 
 val DarkSurfaceVariant = Color(0xFF252F3B)
-val OnDarkSurfaceVariant = Color(0xFFB8C2D6)
+val OnDarkSurfaceVariant = Color(0xFFBECCE0)
 
 val DarkPrimaryContainer = Color(0xFF2C5296)
 val OnDarkPrimaryContainer = Color(0xFFEAF0FF)
 
 
-val CardBorderDark = Color(0xFF333C49)
+val CardBorderDark = Color(0xFF424E67)
 
 val DarkCaretColor = Color(0xFF7FA7FF)
-
 
 val LightColorScheme = lightColorScheme(
     primary = AccentBlue,
@@ -118,6 +118,8 @@ val DarkColorScheme = darkColorScheme(
     surfaceContainerHigh  = DarkSurfaceContainerHigh,
 
     secondaryContainer = DarkSecondaryContainer,
+    onSecondaryContainer = OnDarkSecondaryContainer,
+    secondary = OnDarkSecondaryContainer.copy(alpha = 0.9f),
 
     surfaceVariant = DarkSurfaceVariant,
     onSurfaceVariant = OnDarkSurfaceVariant,

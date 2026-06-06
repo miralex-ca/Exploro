@@ -113,7 +113,10 @@ fun DetailsSections(
         shape = RoundedCornerShape(bottomStart = cornerRadius, bottomEnd = cornerRadius),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 1.dp, bottom = 60.dp)
+            .padding(
+                top = MaterialTheme.layout.cardSpacing.value(),
+                bottom = 60.dp
+            )
     ) {
         DetailsInfoSection(details)
     }
@@ -136,11 +139,14 @@ fun LargeDetailsSections(
         )
     }
 
-    Spacer(modifier = Modifier.height(0.5.dp))
-
     DetailsCard(
         shape = RoundedCornerShape(bottomStart = cornerRadius, bottomEnd = cornerRadius),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                top = MaterialTheme.layout.cardSpacing.value(),
+                bottom = 60.dp
+            )
     ) {
         LargeDetailsInfoSection(details)
     }

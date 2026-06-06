@@ -14,6 +14,7 @@ val MaterialTheme.layout: AppLayout
     @Composable get() = LocalAppLayout.current
 
 data class AppLayout(
+    val cardSpacing: Adp,
     val home: Home,
     val favorites: Favorites,
     val section: Section,
@@ -24,6 +25,7 @@ data class AppLayout(
     val homeCard: HomeCard,
     val sectionCard: SectionCard,
 ) {
+
 
     data class Home(
         val horizontalPadding: Adp,
@@ -94,9 +96,9 @@ data class AppLayout(
 }
 
 
-
 object AppLayouts {
     fun default() = AppLayout(
+        cardSpacing = adp(2.dp),
         home = AppLayout.Home(
             horizontalPadding = adp(16.dp, 24.dp),
             topPadding = adp(12.dp, 16.dp),

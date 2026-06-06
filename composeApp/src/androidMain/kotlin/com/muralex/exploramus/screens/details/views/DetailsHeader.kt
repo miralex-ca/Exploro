@@ -48,7 +48,7 @@ fun DetailHeaderSection(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 8.dp, top = 8.dp, end = 8.dp, bottom = 28.dp),
+            .padding(start = 10.dp, top = 10.dp, end = 10.dp, bottom = 28.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         FlagHero(
@@ -76,7 +76,7 @@ fun LargeDetailsHeaderSection(
 ) {
     Row(modifier = Modifier
         .fillMaxWidth()
-        .padding(16.dp, 8.dp, 8.dp, 24.dp)
+        .padding(16.dp, 10.dp, 10.dp, 24.dp)
     ) {
         Box(
             modifier = Modifier

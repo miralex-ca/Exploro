@@ -265,7 +265,7 @@ private fun SearchItemsList(
     LazyColumn(
         state = listState,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(2.dp),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.layout.cardSpacing.value()),
         contentPadding = PaddingValues(
             start = 14.dp,
             end = 14.dp,

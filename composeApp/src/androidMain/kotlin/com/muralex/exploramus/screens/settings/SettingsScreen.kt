@@ -105,7 +105,7 @@ fun SettingsCategory(
 
     val layout = MaterialTheme.layout.settings
     Column (
-        verticalArrangement = Arrangement.spacedBy(1.dp),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.layout.cardSpacing.value()),
     ) {
         category.title?.let {
             Text(
