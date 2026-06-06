@@ -5,9 +5,11 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -262,20 +264,24 @@ private fun SearchItemsList(
 ) {
     LazyColumn(
         state = listState,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(2.dp),
         contentPadding = PaddingValues(
-            start = 14.dp, end = 14.dp,
-            top = 12.dp, bottom = 60.dp
+            start = 14.dp,
+            end = 14.dp,
+            top = 12.dp,
+            bottom = 60.dp
         ),
-        modifier = Modifier
-            .fillMaxSize()
-            .widthIn(max = 600.dp)
+        modifier = Modifier.fillMaxSize()
     ) {
-        items(
+        itemsIndexed(
             items = result.items,
-            key = { it.id }
-        ) { item ->
+            key = { _, item -> item.id }
+        ) { index, item ->
             SearchListRow(
                 item = item,
+                index = index,
+                lastIndex = result.items.lastIndex,
                 onClick = { onEvent(OnItemClicked(item)) },
                 modifier = Modifier.animateItem(
                     fadeInSpec = tween(180),
@@ -418,18 +424,32 @@ fun SearchTopBar(
 @Composable
 fun SearchListRow(
     item: SearchListItem,
+    index: Int,
+    lastIndex: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+    val layout = MaterialTheme.layout.search
+
+    val isFirst = index == 0
+    val isLast = index == lastIndex
+
+    val shape = when {
+        isFirst && isLast -> RoundedCornerShape(12.dp)
+        isFirst -> RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
+        isLast -> RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
+        else -> RoundedCornerShape(0.dp)
+    }
+
+
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 3.dp)
-        ,
-        shape = RoundedCornerShape(12.dp),
+            .widthIn(max = layout.listItemMaxWidth.value()),
+        shape = shape,
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         border = BorderStroke(
-            width = 1.dp,
+            width = 0.5.dp,
             color = MaterialTheme.appColors.cardBorder
         ),
         onClick = onClick
@@ -445,7 +465,7 @@ fun SearchListRow(
                 imageUrl = item.flagPngUrl,
                 modifier = Modifier
                     .height(58.dp)
-                    .width(75.dp)
+                    .width(layout.itemImageWidth.value())
                     .border(
                         width = 1.dp,
                         color = Color.LightGray.copy(alpha = 0.45f),

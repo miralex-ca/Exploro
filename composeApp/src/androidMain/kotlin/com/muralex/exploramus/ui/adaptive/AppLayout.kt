@@ -18,6 +18,8 @@ data class AppLayout(
     val favorites: Favorites,
     val section: Section,
     val details: Details,
+    val search: Search,
+    val settings: Settings,
     var showSearchFab: AdBool,
     val homeCard: HomeCard,
     val sectionCard: SectionCard,
@@ -59,7 +61,19 @@ data class AppLayout(
     )
 
     data class Favorites(
+        val listItemMaxWidth: Adp,
+        val gridItemMaxWidth: Adp,
+        val itemImageHeight: Adp,
         val bottomPadding: Adp,
+    )
+
+    data class Search(
+        val listItemMaxWidth: Adp,
+        val itemImageWidth: Adp,
+    )
+
+    data class Settings(
+        val listItemMaxWidth: Adp,
     )
 
     data class SectionCard(
@@ -90,6 +104,9 @@ object AppLayouts {
         ),
 
         favorites =  AppLayout.Favorites(
+            listItemMaxWidth = adp(420.dp, 500.dp),
+            gridItemMaxWidth = adp(200.dp, 100.dp),
+            itemImageHeight = adp(52.dp, 60.dp,70.dp),
             bottomPadding = adp(60.dp),
         ),
 
@@ -120,7 +137,14 @@ object AppLayouts {
             infoCardIconEndSpace = adp(20.dp, 28.dp, 20.dp),
             infoRowVerticalPadding = adp(10.dp, 14.dp, 18.dp),
         ),
-        showSearchFab = AdBool(true),
+        search = AppLayout.Search(
+            listItemMaxWidth = adp(420.dp, 500.dp, 540.dp),
+            itemImageWidth = adp(75.dp, 85.dp,100.dp),
+        ),
+        settings = AppLayout.Settings(
+            listItemMaxWidth = adp(420.dp, 560.dp, 620.dp),
+        ),
+        showSearchFab = AdBool(true, false, false),
         homeCard = AppLayout.HomeCard(
             width = adp(140.dp, 180.dp),
             imageHeight = adp(70.dp, 100.dp),

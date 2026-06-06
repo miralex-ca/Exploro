@@ -15,6 +15,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.zIndex
 import com.muralex.exploramus.navigation.bars.Level1TopBar
 import com.muralex.exploramus.navigation.bars.TopBar
 import com.muralex.exploramus.navigation.bars.navigation.Level1BottomBar
@@ -47,7 +49,7 @@ fun Navigation.OnePane(
 
     val formFactor = LocalFormFactor.current
 
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+
 
     val content = @Composable {
         Scaffold(contentWindowInsets = WindowInsets(0)) { contentPadding ->
@@ -58,6 +60,7 @@ fun Navigation.OnePane(
             ) {
                 if (formFactor.useNavRail && isLevel1) {
                     Level1NavRail(
+                        modifier = Modifier.zIndex(1f),
                         selectedTab = screenIdentifier,
                         navigateByLevel1Menu = screenNavActions::toLevel1Screen,
                         onSearchClick = screenNavActions::toSearch,
@@ -65,7 +68,10 @@ fun Navigation.OnePane(
                     )
                 }
 
-                Column(modifier = Modifier.fillMaxSize()) {
+                Column(modifier = Modifier
+                    .fillMaxSize()
+                    .clipToBounds()
+                ) {
                     when {
                         screenIdentifier.screen == Screen.SearchScreen -> {}
                         isLevel1 -> {

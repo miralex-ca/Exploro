@@ -9,6 +9,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -28,6 +31,8 @@ import com.muralex.exploramus.LocalAppEnvironment
 import com.muralex.exploramus.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.muralex.exploramus.screens.favorites.FavoritesUiEvent.RemoveFavorite
 import com.muralex.exploramus.ui.adaptive.LocalFormFactor
+import com.muralex.exploramus.ui.adaptive.WidthType
+import com.muralex.exploramus.ui.adaptive.isLarge
 import com.muralex.exploramus.ui.adaptive.layout
 import com.muralex.exploramus.ui.adaptive.useBottomBar
 import com.muralex.exploramus.ui.adaptive.value
@@ -61,36 +66,73 @@ fun FavoritesScreenContent(
 ) {
     val isFavoriteSwipeEnabled = LocalAppEnvironment.current.favoriteSwipeEnabled
     val formFactor = LocalFormFactor.current
-    val layout = MaterialTheme.layout
-    val bottomPadding = layout.favorites.bottomPadding.value() +
+    val layout = MaterialTheme.layout.favorites
+    val bottomPadding = layout.bottomPadding.value() +
             if (formFactor.useBottomBar) 60.dp else 0.dp
+
+    val useGrid = formFactor.widthType == WidthType.EXPANDED
 
     if (screenState.favorites.isEmpty()) {
         EmptyStateView(EmptyState.EmptyList)
     } else {
-        Box(
+        BoxWithConstraints(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.TopCenter
         ) {
-            LazyColumn(
-                contentPadding = PaddingValues(
-                    start = 8.dp, end = 8.dp,
-                    top = 12.dp, bottom = bottomPadding
-                ),
-                modifier = Modifier
-                    .fillMaxSize()
-                    .widthIn(max = 600.dp)
-            ) {
-                items(
-                    items = screenState.favorites,
-                    key = { it.id }
-                ) { item ->
-                    SwipeableFavoriteRow(
-                        item = item,
-                        isSwipeEnabled = isFavoriteSwipeEnabled,
-                        onClick = { onEvent(OnItemClicked(item)) },
-                        onRemove = { onEvent(RemoveFavorite(item.id)) },
-                    )
+            val contentPadding = PaddingValues(
+                start = 8.dp, end = 8.dp,
+                top = 12.dp, bottom = bottomPadding
+            )
+
+            if (useGrid) {
+                val horizontalPadding = ((maxWidth - 740.dp) / 2)
+                    .coerceIn(24.dp, 150.dp)
+
+                LazyVerticalGrid(
+                    columns = GridCells.Adaptive(minSize = 300.dp),
+                    contentPadding = PaddingValues(
+                        start = horizontalPadding, end = horizontalPadding,
+                        top = 12.dp, bottom = bottomPadding
+                    ),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    items(
+                        items = screenState.favorites,
+                        key = { it.id }
+                    ) { item ->
+                        SwipeableFavoriteRow(
+                            item = item,
+                            isSwipeEnabled = isFavoriteSwipeEnabled,
+                            onClick = { onEvent(OnItemClicked(item)) },
+                            onRemove = { onEvent(RemoveFavorite(item.id)) },
+                        )
+                    }
+                }
+            } else {
+                LazyColumn(
+                    contentPadding = PaddingValues(
+                        start = 16.dp, end = 16.dp,
+                        top = 12.dp, bottom = bottomPadding
+                    ),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    items(
+                        items = screenState.favorites,
+                        key = { it.id }
+                    ) { item ->
+                        SwipeableFavoriteRow(
+                            item = item,
+                            isSwipeEnabled = isFavoriteSwipeEnabled,
+                            onClick = { onEvent(OnItemClicked(item)) },
+                            onRemove = { onEvent(RemoveFavorite(item.id)) },
+                            modifier = Modifier.widthIn(max = layout.listItemMaxWidth.value())
+                        )
+                    }
                 }
             }
         }
@@ -103,6 +145,9 @@ fun FavoriteListRow(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+    val layout = MaterialTheme.layout.favorites
+
     Card(
         modifier = modifier
             .fillMaxWidth(),
@@ -124,7 +169,7 @@ fun FavoriteListRow(
             RemoteImage(
                 imageUrl = item.flagPngUrl,
                 modifier = Modifier
-                    .height(52.dp)
+                    .height(layout.itemImageHeight.value())
                     .width(90.dp)
                     .border(
                         width = 1.dp,
@@ -192,12 +237,11 @@ fun SwipeableFavoriteRow(
         state = dismissState,
         enableDismissFromStartToEnd = false,
         enableDismissFromEndToStart = isSwipeEnabled,
-        modifier = modifier
-            .padding(horizontal = 12.dp),
+        modifier = modifier,
         backgroundContent = {
             Box(
                 modifier = Modifier
-                    .padding(vertical = 3.dp)
+                    .padding( 2.dp)
                     .fillMaxSize()
                     .clip(RoundedCornerShape(12.dp))
                     .background(
@@ -221,7 +265,7 @@ fun SwipeableFavoriteRow(
             exit = fadeOut(animationSpec = tween(durationMillis = 150))
         ) {
             Box(
-                modifier = Modifier.padding(vertical = 3.dp)
+                modifier = Modifier
             ) {
                 FavoriteListRow(
                     item = item,

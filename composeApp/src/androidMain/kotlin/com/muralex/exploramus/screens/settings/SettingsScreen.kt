@@ -1,8 +1,10 @@
 package com.muralex.exploramus.screens.settings
 
+import android.R
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -23,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muralex.exploramus.resources.asString
 import com.muralex.exploramus.resources.with
+import com.muralex.exploramus.ui.adaptive.layout
+import com.muralex.exploramus.ui.adaptive.value
 import com.muralex.exploramus.ui.components.EmptyState
 import com.muralex.exploramus.ui.components.EmptyStateView
 import com.muralex.exploramus.ui.components.FadeInScreenContent
@@ -75,6 +79,7 @@ fun SettingsCategoriesList(
     onSettingAction: (SettingAction) -> Unit,
 ) {
     Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
@@ -97,7 +102,11 @@ fun SettingsCategory(
     category: SettingsCategory,
     onAction: (SettingAction) -> Unit,
 ) {
-    Column {
+
+    val layout = MaterialTheme.layout.settings
+    Column (
+        verticalArrangement = Arrangement.spacedBy(1.dp),
+    ) {
         category.title?.let {
             Text(
                 text = it.asString(),
@@ -121,6 +130,7 @@ fun SettingsCategory(
 
             Surface(
                 shape = shape,
+                modifier = Modifier.widthIn(max = layout.listItemMaxWidth.value()),
                 color = MaterialTheme.colorScheme.surfaceContainerHighest,
                 contentColor = MaterialTheme.colorScheme.onSurface,
                 border = BorderStroke(0.5.dp, MaterialTheme.appColors.cardBorder),
@@ -129,10 +139,6 @@ fun SettingsCategory(
                     setting = setting,
                     onAction = onAction
                 )
-            }
-
-            if (!isLast) {
-                Spacer(Modifier.height(0.5.dp))
             }
         }
     }

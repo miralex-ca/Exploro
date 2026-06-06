@@ -32,6 +32,7 @@ fun Navigation.Level1BottomBar(
 
 @Composable
 fun Navigation.Level1NavRail(
+    modifier: Modifier = Modifier,
     selectedTab: ScreenIdentifier,
     navigateByLevel1Menu: (Level1Navigation) -> Unit,
     onSearchClick: () -> Unit,
@@ -40,7 +41,10 @@ fun Navigation.Level1NavRail(
     val formFactor = LocalFormFactor.current
     val isCompactHeight = formFactor.isCompactHeight
 
-    NavigationRail(containerColor = MaterialTheme.colorScheme.surface) {
+    NavigationRail(
+        modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.surface
+    ) {
         if (isCompactHeight) {
             Spacer(modifier = Modifier.weight(1f))
         } else {
