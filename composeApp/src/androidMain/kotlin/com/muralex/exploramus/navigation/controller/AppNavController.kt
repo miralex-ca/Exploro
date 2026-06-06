@@ -1,4 +1,4 @@
-package com.muralex.exploramus.navigation
+package com.muralex.exploramus.navigation.controller
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.saveable.SaveableStateHolder
@@ -9,7 +9,7 @@ import com.muralex.exploramus.viewmodel.core.ScreenParams
 import com.muralex.exploramus.viewmodel.screens.Level1Navigation
 import com.muralex.exploramus.viewmodel.screens.Screen
 
-interface AppNavigationController {
+interface AppNavController {
     fun navigateBack()
     fun navigate(screen: Screen, screenParams: ScreenParams? = null)
     fun navigateByLevel1(level1Navigation: Level1Navigation)
@@ -18,7 +18,7 @@ interface AppNavigationController {
         private val navigation: Navigation,
         private val localNavigationState: MutableState<NavigationState>,
         private val saveableStateHolder: SaveableStateHolder,
-    ) : AppNavigationController {
+    ) : AppNavController {
         private val navigateFn = navigation.navigationProcessor(localNavigationState)
         private val navigateLevel1Fn = navigation.level1NavigationProcessor(localNavigationState)
 
@@ -36,8 +36,8 @@ interface AppNavigationController {
 fun Navigation.createAppNavController(
     localNavigationState: MutableState<NavigationState>,
     saveableStateHolder: SaveableStateHolder
-): AppNavigationController {
-    return AppNavigationController.Base(
+): AppNavController {
+    return AppNavController.Base(
         navigation = this,
         localNavigationState = localNavigationState,
         saveableStateHolder = saveableStateHolder

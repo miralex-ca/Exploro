@@ -67,11 +67,13 @@ data class AppLayout(
         val gridItemMaxWidth: Adp,
         val itemImageHeight: Adp,
         val bottomPadding: Adp,
+        val imageTextSpace: Adp,
     )
 
     data class Search(
         val listItemMaxWidth: Adp,
         val itemImageWidth: Adp,
+        val imageTextSpace: Adp,
     )
 
     data class Settings(
@@ -110,6 +112,7 @@ object AppLayouts {
             gridItemMaxWidth = adp(200.dp, 100.dp),
             itemImageHeight = adp(52.dp, 60.dp,70.dp),
             bottomPadding = adp(60.dp),
+            imageTextSpace = adp(20.dp, 26.dp),
         ),
 
         section = AppLayout.Section(
@@ -142,6 +145,7 @@ object AppLayouts {
         search = AppLayout.Search(
             listItemMaxWidth = adp(420.dp, 500.dp, 540.dp),
             itemImageWidth = adp(75.dp, 85.dp,100.dp),
+            imageTextSpace = adp(16.dp),
         ),
         settings = AppLayout.Settings(
             listItemMaxWidth = adp(420.dp, 560.dp, 620.dp),

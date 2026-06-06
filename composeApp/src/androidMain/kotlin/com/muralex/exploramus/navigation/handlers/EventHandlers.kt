@@ -1,5 +1,6 @@
-package com.muralex.exploramus.navigation
+package com.muralex.exploramus.navigation.handlers
 
+import com.muralex.exploramus.navigation.controller.ScreenNavActions
 import com.muralex.exploramus.screens.details.DetailsEventHandler
 import com.muralex.exploramus.screens.favorites.FavoritesEventHandler
 import com.muralex.exploramus.screens.home.HomeEventHandler

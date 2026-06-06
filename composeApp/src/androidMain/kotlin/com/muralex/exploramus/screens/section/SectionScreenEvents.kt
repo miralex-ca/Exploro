@@ -1,7 +1,7 @@
 package com.muralex.exploramus.screens.section
 
-import com.muralex.exploramus.navigation.DetailsNavParams
-import com.muralex.exploramus.navigation.ScreenNavActions
+import com.muralex.exploramus.navigation.controller.DetailsNavParams
+import com.muralex.exploramus.navigation.controller.ScreenNavActions
 import com.muralex.exploramus.viewmodel.screens.section.SectionListItem
 
 sealed class SectionUiEvent {

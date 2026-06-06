@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import com.muralex.exploramus.navigation.controller.ScreenNavActions
+import com.muralex.exploramus.navigation.handlers.EventHandlers
 import com.muralex.exploramus.screens.details.DetailsScreen
 import com.muralex.exploramus.screens.favorites.FavoritesScreen
 import com.muralex.exploramus.screens.home.HomeScreen

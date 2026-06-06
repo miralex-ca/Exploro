@@ -38,9 +38,6 @@ import com.muralex.exploramus.viewmodel.screens.countrydetail.CountryDetailsStat
 import java.util.Locale
 
 @Composable
-fun detailsLayout() =  MaterialTheme.layout.details
-
-@Composable
 fun DetailHeaderSection(
     details: CountryDetailsState,
     onFavoriteClick: () -> Unit
@@ -51,7 +48,7 @@ fun DetailHeaderSection(
             .padding(start = 10.dp, top = 10.dp, end = 10.dp, bottom = 28.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        FlagHero(
+        FlagContainer(
             flagUrl = details.flagUrl,
             flagAlt = details.flagAlt,
             isFavorite = details.isFavorite,
@@ -74,9 +71,10 @@ fun LargeDetailsHeaderSection(
     details: CountryDetailsState,
     onFavoriteClick: () -> Unit
 ) {
-    Row(modifier = Modifier
-        .fillMaxWidth()
-        .padding(16.dp, 10.dp, 10.dp, 24.dp)
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp, 10.dp, 10.dp, 24.dp)
     ) {
         Box(
             modifier = Modifier
@@ -96,7 +94,7 @@ fun LargeDetailsHeaderSection(
         Box(
             modifier = Modifier.weight(0.85f)
         ) {
-            FlagHero(
+            FlagContainer(
                 flagUrl = details.flagUrl,
                 flagAlt = details.flagAlt,
                 isFavorite = details.isFavorite,
@@ -107,7 +105,7 @@ fun LargeDetailsHeaderSection(
 }
 
 @Composable
-fun FlagHero(
+fun FlagContainer(
     flagUrl: String,
     flagAlt: String?,
     isFavorite: Boolean = false,
@@ -115,12 +113,12 @@ fun FlagHero(
 ) {
     val formFactor = LocalFormFactor.current
     val alignFavoriteButton = if (formFactor.isCompact) Alignment.BottomEnd else Alignment.TopEnd
-
+    val detailsLayout = MaterialTheme.layout.details
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(200.dp)
-            .clip(RoundedCornerShape(detailsLayout().imageCorner.value()))
+            .clip(RoundedCornerShape(detailsLayout.imageCorner.value()))
     ) {
 
         RemoteImage(
@@ -146,7 +144,7 @@ fun FlagHero(
             modifier = Modifier
                 .align(Alignment.Center)
                 .fillMaxWidth(0.85f)
-                .height(detailsLayout().imageHeight.value()),
+                .height(detailsLayout.imageHeight.value()),
             shape = RoundedCornerShape(6.dp),
         )
 
@@ -190,7 +188,9 @@ fun FavoriteButton(
                     Icons.Rounded.StarBorder
                 },
                 contentDescription = null,
-                tint = if (isFavorite) { MaterialTheme.appColors.favorite } else Color.White,
+                tint = if (isFavorite) {
+                    MaterialTheme.appColors.favorite
+                } else Color.White,
                 modifier = Modifier.size(22.dp)
             )
         }
@@ -205,13 +205,13 @@ fun CountryHeaderTitle(
     region: String,
     isCenterAligned: Boolean = true,
 ) {
-    val detailLayout = detailsLayout()
+    val detailsLayout = MaterialTheme.layout.details
 
     Column {
         Text(
             text = officialName,
             style = MaterialTheme.typography.headlineMedium,
-            fontSize = detailLayout.titleFontSize.value(),
+            fontSize = detailsLayout.titleFontSize.value(),
             maxLines = 4,
             overflow = TextOverflow.Ellipsis,
             textAlign = if (isCenterAligned) TextAlign.Center else TextAlign.Start,
@@ -225,11 +225,11 @@ fun CountryHeaderTitle(
         Box(
             modifier = Modifier
                 .fillMaxWidth(),
-            contentAlignment = if (isCenterAligned) Alignment.Center else  Alignment.CenterStart
+            contentAlignment = if (isCenterAligned) Alignment.Center else Alignment.CenterStart
         ) {
 
             Row(
-                horizontalArrangement = Arrangement.spacedBy(detailsLayout().coatsTextSpace.value()),
+                horizontalArrangement = Arrangement.spacedBy(detailsLayout.coatsTextSpace.value()),
                 verticalAlignment = Alignment.Top,
             ) {
 
@@ -237,7 +237,7 @@ fun CountryHeaderTitle(
                     CoatOfArmsImage(coatOfArmsUrl)
                 }
 
-                Column (
+                Column(
                     modifier = Modifier.padding(top = 4.dp, end = 15.dp)
                 ) {
                     if (capital.isNotBlank()) {
@@ -289,6 +289,8 @@ fun InlineHeaderDetailRow(
 fun CoatOfArmsImage(
     url: String
 ) {
+    val detailsLayout = MaterialTheme.layout.details
+
     var showDialog by remember {
         mutableStateOf(false)
     }
@@ -303,7 +305,7 @@ fun CoatOfArmsImage(
             0.5.dp,
             Color(0xD8C9D3E3)
         ),
-        modifier = Modifier.size(detailsLayout().coatsOfArmsSize.value())
+        modifier = Modifier.size(detailsLayout.coatsOfArmsSize.value())
     ) {
         RemoteImage(
             imageUrl = url,
@@ -328,8 +330,7 @@ fun CoatOfArmsImage(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 30.dp, bottom = 20.dp)
-                    ,
+                        .padding(top = 30.dp, bottom = 20.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     AsyncImage(

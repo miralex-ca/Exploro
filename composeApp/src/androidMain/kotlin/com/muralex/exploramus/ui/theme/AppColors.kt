@@ -19,7 +19,7 @@ data class AppColors(
 )
 
 val LightAppColors = AppColors(
-    topBarContainer = TopBarContainer,
+    topBarContainer = TopBarContaineColor,
     onTopBarContainer = OnTopBarContainer,
     detailHederWrapper = Color.Black.copy(alpha = 0.05f),
     caretColor = CaretColor,

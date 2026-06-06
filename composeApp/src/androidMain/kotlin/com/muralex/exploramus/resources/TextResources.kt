@@ -43,6 +43,8 @@ object Strings {
     val detailLabelCapital @Composable get() = stringRes(R.string.detail_label_capital)
     val detailLabelRegion @Composable get() = stringRes(R.string.detail_label_region)
 
+    val listItemLabelCapital @Composable get() = stringRes(R.string.list_item_label_capital)
+
     val emptyTitleNoResults @Composable get() = stringRes(R.string.empty_title_no_results)
     val emptyMsgNoResults @Composable get() = stringRes(R.string.empty_msg_no_results)
     val emptyTitleEmptyList @Composable get() = stringRes(R.string.empty_title_empty_list)

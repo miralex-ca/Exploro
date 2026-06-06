@@ -31,7 +31,7 @@ val BluePrimaryContainer = Color(0xFFBBC6EF) // fab button
 val onBluePrimaryContainer = Color(0xFF001946)
 
 
-val TopBarContainer = Color(0xFFEAF2FA) // top bar
+val TopBarContaineColor = Color(0xFFEAF2FA) // top bar
 val OnTopBarContainer = Color(0xFF001946) // top bar text
 
 val CaretColor = Color(0xFF3C5BA9)

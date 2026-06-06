@@ -32,7 +32,6 @@ import com.muralex.exploramus.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.muralex.exploramus.screens.favorites.FavoritesUiEvent.RemoveFavorite
 import com.muralex.exploramus.ui.adaptive.LocalFormFactor
 import com.muralex.exploramus.ui.adaptive.WidthType
-import com.muralex.exploramus.ui.adaptive.isLarge
 import com.muralex.exploramus.ui.adaptive.layout
 import com.muralex.exploramus.ui.adaptive.useBottomBar
 import com.muralex.exploramus.ui.adaptive.value
@@ -79,10 +78,6 @@ fun FavoritesScreenContent(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.TopCenter
         ) {
-            val contentPadding = PaddingValues(
-                start = 8.dp, end = 8.dp,
-                top = 12.dp, bottom = bottomPadding
-            )
 
             if (useGrid) {
                 val horizontalPadding = ((maxWidth - 740.dp) / 2)
@@ -139,73 +134,6 @@ fun FavoritesScreenContent(
     }
 }
 
-@Composable
-fun FavoriteListRow(
-    item: FavoriteListItem,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-
-    val layout = MaterialTheme.layout.favorites
-
-    Card(
-        modifier = modifier
-            .fillMaxWidth(),
-        shape = RoundedCornerShape(12.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-        border = BorderStroke(
-            width = 1.dp,
-            color = MaterialTheme.appColors.cardBorder
-        ),
-        onClick = onClick
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            RemoteImage(
-                imageUrl = item.flagPngUrl,
-                modifier = Modifier
-                    .height(layout.itemImageHeight.value())
-                    .width(90.dp)
-                    .border(
-                        width = 1.dp,
-                        color = Color.LightGray.copy(alpha = 0.45f),
-                        shape = RoundedCornerShape(6.dp)
-                    ),
-                shape = RoundedCornerShape(6.dp),
-                contentScale = ContentScale.Crop
-            )
-
-            Spacer(modifier = Modifier.width(26.dp))
-
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-
-                Text(
-                    text = item.name,
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.SemiBold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-
-                Text(
-                    text = item.subregion,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
-        }
-    }
-}
-
 
 @Composable
 fun SwipeableFavoriteRow(
@@ -241,7 +169,7 @@ fun SwipeableFavoriteRow(
         backgroundContent = {
             Box(
                 modifier = Modifier
-                    .padding( 2.dp)
+                    .padding(2.dp)
                     .fillMaxSize()
                     .clip(RoundedCornerShape(12.dp))
                     .background(
@@ -271,6 +199,74 @@ fun SwipeableFavoriteRow(
                     item = item,
                     onClick = onClick,
                     modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun FavoriteListRow(
+    item: FavoriteListItem,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+
+    val layout = MaterialTheme.layout.favorites
+
+    Card(
+        modifier = modifier
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(12.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+        border = BorderStroke(
+            width = 1.dp,
+            color = MaterialTheme.appColors.cardBorder
+        ),
+        onClick = onClick
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp, 10.dp, 16.dp, 10.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            RemoteImage(
+                imageUrl = item.flagPngUrl,
+                modifier = Modifier
+                    .height(layout.itemImageHeight.value())
+                    .width(90.dp)
+                    .border(
+                        width = 1.dp,
+                        color = Color.LightGray.copy(alpha = 0.45f),
+                        shape = RoundedCornerShape(6.dp)
+                    ),
+                shape = RoundedCornerShape(6.dp),
+                contentScale = ContentScale.Crop
+            )
+
+            Spacer(modifier = Modifier.width(layout.imageTextSpace.value()))
+
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+
+                Text(
+                    text = item.name,
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+
+                Text(
+                    text = item.subregion,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }

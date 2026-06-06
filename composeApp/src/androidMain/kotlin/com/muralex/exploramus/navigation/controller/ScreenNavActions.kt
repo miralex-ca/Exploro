@@ -1,4 +1,4 @@
-package com.muralex.exploramus.navigation
+package com.muralex.exploramus.navigation.controller
 
 import com.muralex.exploramus.viewmodel.screens.Level1Navigation
 import com.muralex.exploramus.viewmodel.screens.Screen
@@ -6,7 +6,7 @@ import com.muralex.exploramus.viewmodel.screens.countrydetail.DetailsScreenParam
 import com.muralex.exploramus.viewmodel.screens.section.SectionParams
 
 interface ScreenNavActions {
-    val appNavController: AppNavigationController
+    val appNavController: AppNavController
 
     fun navigateBack()
 
@@ -21,7 +21,7 @@ interface ScreenNavActions {
     fun toLevel1Screen(level1Navigation: Level1Navigation)
 
     class Default(
-        override val appNavController: AppNavigationController
+        override val appNavController: AppNavController
     ) : ScreenNavActions {
 
         override fun navigateBack() {

@@ -1,8 +1,8 @@
 package com.muralex.exploramus.screens.home
 
-import com.muralex.exploramus.navigation.DetailsNavParams
-import com.muralex.exploramus.navigation.ScreenNavActions
-import com.muralex.exploramus.navigation.SectionNavParams
+import com.muralex.exploramus.navigation.controller.DetailsNavParams
+import com.muralex.exploramus.navigation.controller.ScreenNavActions
+import com.muralex.exploramus.navigation.controller.SectionNavParams
 import com.muralex.exploramus.viewmodel.screens.home.HomeListItem
 import com.muralex.exploramus.viewmodel.screens.home.HomeSectionState
 
@@ -18,6 +18,7 @@ class HomeEventHandler(
         when (event) {
             is HomeUiEvent.OnItemClicked ->
                 navActions.toDetailFromList(event.item.toDetailsNavParams())
+
             is HomeUiEvent.OnSectionClicked ->
                 navActions.toSection(event.section.toSectionNavParams())
         }

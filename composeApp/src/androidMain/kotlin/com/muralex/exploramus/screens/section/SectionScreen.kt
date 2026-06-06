@@ -84,7 +84,6 @@ fun CountryGridCard(
     item: SectionListItem,
     onClick: () -> Unit
 ) {
-
     val layout = MaterialTheme.layout
 
     Card(

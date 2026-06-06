@@ -1,14 +1,14 @@
 package com.muralex.exploramus.screens.search
 
-import com.muralex.exploramus.navigation.DetailsNavParams
-import com.muralex.exploramus.navigation.ScreenNavActions
+import com.muralex.exploramus.navigation.controller.DetailsNavParams
+import com.muralex.exploramus.navigation.controller.ScreenNavActions
 import com.muralex.exploramus.viewmodel.core.Events
 import com.muralex.exploramus.viewmodel.screens.search.SearchListItem
 import com.muralex.exploramus.viewmodel.screens.search.consumeSearchBecomeActiveEffect
 import com.muralex.exploramus.viewmodel.screens.search.searchCountriesByQuery
 
 sealed class SearchUiEvent {
-    object DidBecomeActive : SearchUiEvent()
+    object ConsumeBecomeActive : SearchUiEvent()
     object OnBackClicked : SearchUiEvent()
     data class SearchByQuery(val query: String) : SearchUiEvent()
     data class OnItemClicked(val item: SearchListItem) : SearchUiEvent()
@@ -20,7 +20,7 @@ class SearchEventHandler(
 ) {
     fun onEvent(event: SearchUiEvent) {
         when (event) {
-            SearchUiEvent.DidBecomeActive -> events.consumeSearchBecomeActiveEffect()
+            SearchUiEvent.ConsumeBecomeActive -> events.consumeSearchBecomeActiveEffect()
             is SearchUiEvent.OnItemClicked -> navActions.toDetailFromList(event.item.toDetailsNavParams())
             is SearchUiEvent.SearchByQuery -> events.searchCountriesByQuery(event.query)
             SearchUiEvent.OnBackClicked -> navActions.navigateBack()

@@ -44,12 +44,12 @@ fun HomeScreen(
     screenState: HomeScreenState,
     eventHandler: HomeEventHandler
 ) {
-        if (screenState.isLoading) {
-            ScreenLoading()
-        } else {
-            FadeInScreenContent(
-                durationMillis = 200
-            ) {
+    if (screenState.isLoading) {
+        ScreenLoading()
+    } else {
+        FadeInScreenContent(
+            durationMillis = 200
+        ) {
 
             HomeScreenContent(
                 screenState = screenState,
@@ -101,10 +101,9 @@ fun HomeSectionRow(
     onListItemClick: (HomeListItem) -> Unit,
     onSectionClick: () -> Unit
 ) {
-
     val layout = MaterialTheme.layout
 
-    Column (
+    Column(
         modifier = Modifier
             .padding(bottom = 14.dp),
     ) {
@@ -151,11 +150,11 @@ fun HomeSectionRow(
         Spacer(modifier = Modifier.height(4.dp))
 
         LazyRow(
-            contentPadding = PaddingValues(horizontal = layout.home.horizontalPadding.value() ),
+            contentPadding = PaddingValues(horizontal = layout.home.horizontalPadding.value()),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(
-                  items = section.sectionListItems,
+                items = section.sectionListItems,
                 key = { it.id }
             ) { item ->
                 HomeSectionListCard(
@@ -184,10 +183,9 @@ fun HomeSectionListCard(
             color = MaterialTheme.appColors.cardBorder
         )
     ) {
-        Column (
-            modifier =  Modifier.padding(8.dp)
+        Column(
+            modifier = Modifier.padding(8.dp)
         ) {
-
             RemoteImage(
                 imageUrl = item.flagPngUrl,
                 modifier = Modifier
@@ -212,7 +210,6 @@ fun HomeSectionListCard(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-
             }
         }
     }

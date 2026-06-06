@@ -64,6 +64,7 @@
     <string name="detail_label_timezones">Time zones</string>
     <string name="detail_label_capital">Capital:</string>
     <string name="detail_label_region">Region:</string>
+    <string name="list_item_label_capital">Capital:</string>
 
     <string name="settings_mode_summary">Current: %s</string>
     <string name="empty_title_no_results">No results found</string>

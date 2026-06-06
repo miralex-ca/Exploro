@@ -1,17 +1,19 @@
 package com.muralex.exploramus.navigation
 
-import android.annotation.SuppressLint
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.muralex.exploramus.navigation.appstart.AppStartupContent
 import com.muralex.exploramus.viewmodel.core.Navigation
+import com.muralex.exploramus.viewmodel.core.NavigationState
 import com.muralex.exploramus.viewmodel.screens.home.retryBootstrapApp
 
-@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 fun Navigation.Router() {
     val screenUIsStateHolder = rememberSaveableStateHolder()
@@ -23,9 +25,23 @@ fun Navigation.Router() {
         onRetry = { events.retryBootstrapApp() }
     ) {
 
-        OnePane(screenUIsStateHolder, localNavigationState)
+        AppScaffold(screenUIsStateHolder, localNavigationState)
 
         HandleBackButton(screenUIsStateHolder, localNavigationState)
+    }
+}
+
+@Composable
+private fun Navigation.HandleBackButton(
+    saveableStateHolder: SaveableStateHolder,
+    localNavigationState: MutableState<NavigationState>
+) {
+    BackHandler(!localNavigationState.value.nextBackQuitsApp) { // catching the back button
+        val navState = localNavigationState.value
+        val originScreenIdentifier = navState.topScreenIdentifier
+        exitScreen(originScreenIdentifier) // shared navigationState is updated
+        localNavigationState.value = navigationState // update localNavigationState
+        saveableStateHolder.removeState(originScreenIdentifier)
     }
 }
 
