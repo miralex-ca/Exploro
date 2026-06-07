@@ -26,6 +26,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
             isStatic = true
+            linkerOpts("-lsqlite3")
         }
     }
 
@@ -45,6 +46,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            api(project(":di"))
             implementation(project(":core:common"))
             implementation(project(":data:repository"))
             implementation(libs.kotlinx.datetime)
@@ -60,6 +62,7 @@ kotlin {
         }
 
         iosMain.dependencies {
+            implementation(project(":di"))
         }
     }
 }

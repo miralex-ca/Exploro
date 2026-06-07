@@ -16,23 +16,35 @@ kotlin {
 
     val xcfName = "dataLocaldbKit"
 
-    iosX64 {
-        binaries.framework {
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
             baseName = xcfName
+            linkerOpts("-lsqlite3")
         }
     }
 
-    iosArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosSimulatorArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
+//    iosX64 {
+//        binaries.framework {
+//            baseName = xcfName
+//        }
+//    }
+//
+//    iosArm64 {
+//        binaries.framework {
+//            baseName = xcfName
+//        }
+//    }
+//
+//    iosSimulatorArm64 {
+//        binaries.framework {
+//            baseName = xcfName
+//        }
+//    }
 
     sourceSets {
         commonMain {
