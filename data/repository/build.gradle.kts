@@ -34,6 +34,7 @@ kotlin {
                 api(project(":core:models"))
                 implementation(project(":core:common"))
                 api(project(":data:common"))
+                api(project(":data:localdb"))
 
 
                 implementation(libs.kotlinx.datetime)
