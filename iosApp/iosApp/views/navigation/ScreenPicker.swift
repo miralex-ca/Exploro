@@ -59,8 +59,17 @@ struct ScreenPicker: View {
                         navigate(.countryDetail, DetailsScreenParams(countryCode: name.id, screenTitle: name.name))
                     }
                 )
+                
+            case .searchScreen:
+                SearchScreen(
+                    screenState: state as! SearchScreenState,
+                    onItemClick: { name in
+                        navigate(.countryDetail, DetailsScreenParams(countryCode: name.id, screenTitle: name.name))
+                    }
+                )
 
             default: EmptyView()
+                
             }
         }
         .safeAreaInset(edge: .bottom) {

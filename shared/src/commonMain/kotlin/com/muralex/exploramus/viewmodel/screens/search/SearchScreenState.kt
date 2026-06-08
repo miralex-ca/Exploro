@@ -3,6 +3,7 @@ package com.muralex.exploramus.viewmodel.screens.search
 import com.muralex.exploramus.viewmodel.core.ScreenState
 import com.muralex.exploramus.viewmodel.utils.SingleEffect
 import com.muralex.models.Country
+import kotlin.uuid.Uuid
 
 data class SearchScreenState(
     val isLoading: Boolean = false,
@@ -14,7 +15,7 @@ data class SearchScreenState(
 
 sealed class SearchResult {
     data object Idle : SearchResult()
-    data class Success(val items: List<SearchListItem>) : SearchResult()
+    data class Success(val items: List<SearchListItem>, val newVersion: String = Uuid.random().toString()) : SearchResult()
     data object NotFound : SearchResult()
 }
 
