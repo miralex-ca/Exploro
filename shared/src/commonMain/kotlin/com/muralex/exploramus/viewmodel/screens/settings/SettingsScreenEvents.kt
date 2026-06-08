@@ -30,7 +30,8 @@ fun Events.setFavoriteSwipeEnabled(enabled: Boolean) = screenCoroutine {
     stateManager.rebuildSettings()
 }
 
-fun Events.saveThemeMode(themeMode: ThemeMode) = screenCoroutine {
+fun Events.saveThemeMode(name: String) = screenCoroutine {
+    val themeMode = ThemeMode.byName(name)
     dataRepository.saveThemeMode(themeMode)
     val current = dataRepository.getThemeMode()
 

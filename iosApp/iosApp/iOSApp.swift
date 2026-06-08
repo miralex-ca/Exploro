@@ -12,7 +12,7 @@ struct iOSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Router()
+            MainView()
                 .environmentObject(appObj)
                 .onChange(of: scenePhase) { _, newPhase in
                     if newPhase == .active {
@@ -23,5 +23,21 @@ struct iOSApp: App {
                     }
                 }
         }
+    }
+}
+
+
+struct MainView: View {
+    @EnvironmentObject var appObj: AppObservableObject
+    
+    var body: some View {
+        Router()
+            .preferredColorScheme(
+                appObj.appEnvironment.themeMode == .dark ? .dark :
+                    appObj.appEnvironment.themeMode == .light ? .light : nil
+            )
+            .task {
+                await appObj.collectAppEnvironment()
+            }
     }
 }

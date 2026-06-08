@@ -15,13 +15,15 @@ extension SharedRes.Strings {
         case .settingsFavoriteSwipeTitle: return "Swipe to remove"
         case .settingsFavoriteSwipeSummaryOn: return "Swipe enabled"
         case .settingsFavoriteSwipeSummaryOff: return "Swipe disabled"
-        case .settingsSyncTitle: return "Sync"
-        case .settingsSyncSummary: return "Sync data"
+        case .settingsSyncTitle: return "Content updates"
+        case .settingsSyncSummary: return "Keep app content up to date"
         case .settingsCategoryInterface: return "Interface"
         case .settingsCategoryData: return "Data"
         case .settingsAppversionTitle: return "App Version"
         case .settingsAppversionSummary: return "Version info"
         case .settingsDeviceinfoTitle: return "Device Info"
+        case .settingsSyncDialogTitle: return "Check for updates?"
+        case .settingsSyncDialogMessage: return "\nWe’ll refresh the app content with the latest available data.\n\n"
         default: return String(describing: self)
         }
     }

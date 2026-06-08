@@ -21,7 +21,7 @@ class SettingsEventHandler(
             }
 
             is SettingAction.SetThemeMode -> {
-                events.saveThemeMode(ThemeMode.byName(action.value))
+                events.saveThemeMode(name = action.value)
             }
 
             SettingAction.SyncData -> {
