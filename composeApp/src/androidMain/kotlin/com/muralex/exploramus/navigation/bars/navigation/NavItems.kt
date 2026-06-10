@@ -3,6 +3,7 @@ package com.muralex.exploramus.navigation.bars.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarOutline
 import androidx.compose.material.icons.outlined.Explore
@@ -20,8 +21,8 @@ class NavItems(
     val settings: NavItemData,
 ) {
     val level1Items get() = listOf(home, favorites)
-    val utilities get() = listOf(search, settings)
-    val allItems get() = listOf(home, favorites, search, settings)
+    val utilities get() = listOf(settings, search)
+    val allItems get() = listOf(home, favorites, settings, search,)
 }
 
 @Composable
@@ -46,17 +47,19 @@ fun rememberNavItems(
             navigation = Level1Navigation.Favorites,
             onClick = { navigateByLevel1Menu(Level1Navigation.Favorites) }
         ),
+        settings = NavItemData(
+            icon = Icons.Outlined.Settings,
+            selectedIcon = Icons.Filled.Settings,
+            label = { Strings.settingsTitle },
+            navigation = Level1Navigation.Lv1Settings,
+            onClick = onSettingsClick
+        ),
         search = NavItemData(
             icon = Icons.Default.Search,
             label = { Strings.searchTitle },
             navigation = null,
             onClick = onSearchClick
         ),
-        settings = NavItemData(
-            icon = Icons.Outlined.Settings,
-            label = { Strings.settingsTitle },
-            navigation = null,
-            onClick = onSettingsClick
-        ),
+
     )
 }

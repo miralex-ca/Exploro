@@ -69,6 +69,18 @@ fun Navigation.ScreenPicker(
                 eventHandler = eventHandlers.settings,
             )
 
+        Screen.Lv1SettingsScreen ->
+            SettingsScreen(
+                screenState = state as SettingsScreenState,
+                eventHandler = eventHandlers.settings,
+            )
+
+        Screen.Lv1SearchScreen ->
+            SearchScreen(
+                screenState = state as SearchScreenState,
+                eventHandler = eventHandlers.search,
+            )
+
         else -> {}
     }
 

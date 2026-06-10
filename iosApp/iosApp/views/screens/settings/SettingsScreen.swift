@@ -2,34 +2,11 @@
 import SwiftUI
 import Shared
 
-
-class SettingsEventHandler {
-    private let events: Events
-
-    init(events: Events) {
-        self.events = events
-    }
- 
-    func onSettingAction(_ action: SettingAction) {
-        if let action = action as? SettingAction.SetFavoriteSwipe {
-            events.setFavoriteSwipeEnabled(enabled: action.enabled)
-        } else if let action = action as? SettingAction.SetThemeMode {
-            print("theme mode \(action)")
-            events.saveThemeMode(name: action.value)
-            
-        } else if action is SettingAction.SyncData {
-            events.syncDataFromSettings()
-        }
-    }
-}
-
 struct SettingsScreen: View {
-
     let screenState: SettingsScreenState
     let eventHandler: SettingsEventHandler
 
     var body: some View {
-
         if screenState.isLoading {
             ProgressView()
         } else if screenState.categories.isEmpty {
@@ -40,7 +17,6 @@ struct SettingsScreen: View {
         } else {
             ScrollView {
                 VStack(spacing: 24) {
-
                     ForEach(screenState.categories, id: \.id) { category in
                         SettingsCategoryView(
                             category: category,
@@ -57,44 +33,49 @@ struct SettingsScreen: View {
 
 
 struct SettingsCategoryView: View {
-
     let category: SettingsCategory
     let onAction: (SettingAction) -> Void
 
+    @Environment(\.appTheme) var theme
+
     var body: some View {
-
-        VStack(alignment: .leading, spacing: 8) {
-
+        VStack(alignment: .leading, spacing: 0) {
             if let title = category.title {
                 Text(title.asString())
                     .font(.headline)
                     .foregroundStyle(.tint)
                     .padding(.leading, 8)
+                    .padding(.bottom, 8)
             }
 
-            VStack(spacing: 0) {
+            let settings = category.settings as! [Setting]
 
-                ForEach(Array(category.settings.enumerated()), id: \.offset) { _, setting in
-                    SettingRow(
-                        setting: setting,
-                        onAction: onAction
-                    )
+            VStack(spacing: 2) {  // tiny space between cards
+                ForEach(Array(settings.enumerated()), id: \.offset) { index, setting in
+                    let isFirst = index == 0
+                    let isLast = index == settings.count - 1
 
-                    if setting !== category.settings.last {
-                        Divider()
-                    }
+                    let corners: UIRectCorner = {
+                        if isFirst && isLast { return .allCorners }
+                        if isFirst { return [.topLeft, .topRight] }
+                        if isLast { return [.bottomLeft, .bottomRight] }
+                        return []
+                    }()
+
+                    SettingRow(setting: setting, onAction: onAction)
+                        .background(theme.cardSurface)
+                        .clipShape(RoundedCornerShape(corners: corners, radius: 14))
+                        .overlay(
+                            RoundedCornerShape(corners: corners, radius: 14)
+                                .stroke(Color.gray.opacity(0.2), lineWidth: 0.5)
+                        )
                 }
             }
-            .background(.regularMaterial)
-            .clipShape(
-                RoundedRectangle(cornerRadius: 14)
-            )
         }
     }
 }
 
 struct SettingRow: View {
-
     let setting: Setting
     let onAction: (SettingAction) -> Void
 
@@ -163,11 +144,9 @@ struct SwitchPreference: View {
 struct ActionPreference: View {
     let setting: Setting.Action
     let onAction: (SettingAction) -> Void
-
     @State private var showDialog = false
 
     var body: some View {
-
         Button {
             showDialog = true
         } label: {
@@ -175,9 +154,11 @@ struct ActionPreference: View {
                 title: setting.title.asString(),
                 summary: setting.summary?.asString()
             )
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .padding()
         .alert(
             setting.dialogTitle?.asString() ?? setting.title.asString(),
             isPresented: $showDialog
@@ -208,9 +189,11 @@ struct OptionsPreference: View {
                 title: setting.title.asString(),
                 summary: selectedLabel
             )
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .padding()
         .sheet(isPresented: $showSheet) {
             NavigationStack {
                 let options = setting.options.map { $0.toUitItem() }
@@ -281,12 +264,10 @@ struct PreferenceContent: View {
     let summary: String?
 
     var body: some View {
-
         VStack(
             alignment: .leading,
             spacing: 4
         ) {
-
             Text(title)
                 .font(.body.weight(.medium))
 
@@ -305,15 +286,13 @@ struct PreferenceContent: View {
 
 
 struct InfoPreference: View {
-
     let setting: Setting.Info
-
+    
     var body: some View {
-
         PreferenceContent(
             title: setting.title.asString(),
             summary: setting.info
         )
-        .padding()
+        .padding(14)
     }
 }

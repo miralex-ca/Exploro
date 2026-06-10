@@ -30,10 +30,13 @@ interface ScreenNavActions {
 
         override fun toSearch() {
             appNavController.navigate(Screen.SearchScreen)
+           // appNavController.navigateByLevel1(Level1Navigation.Lv1Search)
         }
 
         override fun toSettings() {
-            appNavController.navigate(Screen.SettingsScreen)
+           // appNavController.navigate(Screen.SettingsScreen)
+           // appNavController.navigate(Screen.Lv1SettingsScreen)
+            appNavController.navigateByLevel1(Level1Navigation.Lv1Settings)
         }
 
         override fun toDetailFromList(item: DetailsNavParams) {

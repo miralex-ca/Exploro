@@ -3,33 +3,12 @@ import SwiftUI
 import Shared
 
 
-enum SearchUiEvent {
-    case OnItemClicked(item: SearchListItem)
-    case SearchByQuery(query: String)
-}
-
-extension SearchScreen {
-    func onEvent(_ event: SearchUiEvent) {
-        let navigation = appObj.dkmpNav
-        let events = navigation.events
-
-        switch event {
-        case .OnItemClicked(let item):
-            print("")
-            
-        case .SearchByQuery(let query):
-            events.searchCountriesByQuery(query: query)
-        }
-    }
-}
-
-
 struct SearchScreen: View {
     let screenState: SearchScreenState
-    //let onEvent: (SearchUiEvent) -> Void
-    let onItemClick: (SearchListItem) -> Void
-    
+    let eventHandler: SearchEventHandler
+
     @EnvironmentObject var appObj: AppObservableObject
+    @Environment(\.appTheme) var theme
 
     @State private var query: String = ""
     @FocusState private var isFocused: Bool
@@ -42,8 +21,7 @@ struct SearchScreen: View {
                 query: query,
                 screenState: screenState,
                 onItemClicked: { item in
-                   // onEvent(SearchUiEvent.OnItemClicked(item: item))
-                    onItemClick(item)
+                    eventHandler.onEvent(.OnItemClicked(item: item))
                 }
             )
             
@@ -59,6 +37,12 @@ struct SearchScreen: View {
             .padding(.vertical, 8)
              
         }
+        .simultaneousGesture(
+            DragGesture().onChanged { _ in
+                isFocused = false
+            }
+        )
+        .background(theme.background.ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             if (!isAppeared) {
@@ -70,7 +54,7 @@ struct SearchScreen: View {
         .onChange(of: query) { _, newQuery in
             Task {
                 try? await Task.sleep(nanoseconds: 400_000_000)
-                onEvent(SearchUiEvent.SearchByQuery(query: newQuery))
+                eventHandler.onEvent(.SearchByQuery(query: newQuery))
             }
         }
     }
@@ -102,8 +86,6 @@ struct SearchTextField: View {
         .font(.system(size: 22))
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
-        //.background(Color(.systemGray6))
-        //.clipShape(RoundedRectangle(cornerRadius: 24))
         .glassCapsule()
     }
 }
@@ -190,6 +172,7 @@ struct SearchResultsList: View {
                 }
             }
         }
+        .scrollDismissesKeyboard(.interactively)
     }
 }
 
@@ -198,6 +181,8 @@ struct SearchListRow: View {
     let isFirst: Bool
     let isLast: Bool
     let onClick: () -> Void
+    
+    @Environment(\.appTheme) var theme
 
     var corners: UIRectCorner {
         if isFirst && isLast { return .allCorners }
@@ -209,17 +194,16 @@ struct SearchListRow: View {
     var body: some View {
         Button(action: onClick) {
             HStack(spacing: 12) {
-                AsyncImage(url: URL(string: item.flagPngUrl)) { image in
-                    image.resizable().scaledToFill()
-                } placeholder: {
-                    Color(.systemGray5)
-                }
-                .frame(width: 80, height: 58)
-                .clipShape(RoundedRectangle(cornerRadius: 6))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 6)
-                        .stroke(Color(.systemGray4), lineWidth: 0.5)
-                )
+                
+                RemoteImage(url: item.flagPngUrl, size: CGSize(width: 80, height: 58))
+                    .scaledToFill()
+                    .frame(width: 80, height: 58)
+                    .clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color(.systemGray4), lineWidth: 0.5)
+                    )
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(item.name)
@@ -239,7 +223,7 @@ struct SearchListRow: View {
                 Spacer()
             }
             .padding(10)
-            .background(Color(.secondarySystemGroupedBackground))
+            .background(theme.cardSurface)
             .clipShape(
                 RoundedCornerShape(corners: corners, radius: 12)
             )
@@ -253,7 +237,7 @@ struct SearchListRow: View {
     }
 }
 
-// helper for per-corner rounding
+ 
 struct RoundedCornerShape: Shape {
     var corners: UIRectCorner
     var radius: CGFloat

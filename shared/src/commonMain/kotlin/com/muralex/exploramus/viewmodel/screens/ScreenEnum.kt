@@ -35,6 +35,14 @@ enum class Screen(
         initSettingsScreen()
     }),
 
+    Lv1SettingsScreen("lv1settings", 1, {
+        initSettingsScreen()
+    }),
+
+    Lv1SearchScreen("lv1search", 1, {
+        initSearchScreen()
+    }),
+
     FavoritesScreen("favorites", 1, {
         initFavoritesScreen()
     }),

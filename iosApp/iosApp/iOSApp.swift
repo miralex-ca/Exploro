@@ -5,6 +5,7 @@ import Shared
 struct iOSApp: App {
     init() {
         KoinInitKt.doInitKoin()
+       // UIView.appearance().backgroundColor = UIColor(named: "AppBackground")
     }
     
     @StateObject var appObj = AppObservableObject()
@@ -14,6 +15,7 @@ struct iOSApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(appObj)
+                .background(Color("AppBackground").ignoresSafeArea())
                 .onChange(of: scenePhase) { _, newPhase in
                     if newPhase == .active {
                         appObj.dkmpNav.onEnterForeground()
@@ -29,15 +31,24 @@ struct iOSApp: App {
 
 struct MainView: View {
     @EnvironmentObject var appObj: AppObservableObject
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         Router()
-            .preferredColorScheme(
-                appObj.appEnvironment.themeMode == .dark ? .dark :
-                    appObj.appEnvironment.themeMode == .light ? .light : nil
-            )
+            .environment(\.appTheme, AppTheme.from(colorScheme))
+            .preferredColorScheme(colorScheme(from: appObj.appEnvironment.themeMode))
             .task {
                 await appObj.collectAppEnvironment()
             }
+            
+    }
+    
+    
+    func colorScheme(from themeMode: ModelsThemeMode) -> ColorScheme? {
+        switch themeMode {
+        case .dark: return .dark
+        case .light: return .light
+        default: return nil
+        }
     }
 }

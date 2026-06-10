@@ -1,11 +1,13 @@
 package com.muralex.exploramus.viewmodel.screens.favorites
 
 import com.muralex.exploramus.viewmodel.core.ScreenState
+import com.muralex.exploramus.viewmodel.screens.countrydetail.CountryDetailsState
 import com.muralex.models.Country
 
 data class FavoritesScreenState (
     val isLoading : Boolean = false,
     val favorites : List<FavoriteListItem> = emptyList(),
+    val selectedCountry: CountryDetailsState? = null,
 ): ScreenState
 
 

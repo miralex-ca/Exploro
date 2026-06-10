@@ -3,24 +3,32 @@ import SwiftUI
 import Shared
 
 struct OnePane: View {
-    @EnvironmentObject var appObj: AppObservableObject
     var level1ScreenIdentifier : ScreenIdentifier
+    let screenNavActions: ScreenNavActions
     
-    
+    @EnvironmentObject var appObj: AppObservableObject
 
     var body: some View {
-        
         let isLevel1 = appObj.localNavigationState.topScreenIdentifier.screen.navigationLevel == 1
         
-            NavigationStack(path: $appObj.localNavigationState.paths.getPath(level1URI: level1ScreenIdentifier.URI)) {
-                ScreenPicker(requestedSId: level1ScreenIdentifier, level1ScreenIdentifier: level1ScreenIdentifier)
-                    .navigationDestination(for: ScreenIdentifier.self) { sId in
-                        let _ = appObj.dkmpNav.navigateToScreenForIos(screenIdentifier: sId, level1ScreenIdentifier: level1ScreenIdentifier)
-                        ScreenPicker(requestedSId: sId, level1ScreenIdentifier: level1ScreenIdentifier)
-                    }
+        NavigationStack(path: $appObj.localNavigationState.paths.getPath(level1URI: level1ScreenIdentifier.URI)) {
+            ScreenPicker(
+                requestedSId: level1ScreenIdentifier,
+                level1ScreenIdentifier: level1ScreenIdentifier,
+                screenNavActions: screenNavActions
+            )
+            .navigationDestination(for: ScreenIdentifier.self) { sId in
+                let _ = appObj.dkmpNav.navigateToScreenForIos(screenIdentifier: sId, level1ScreenIdentifier: level1ScreenIdentifier)
+                ScreenPicker(
+                    requestedSId: sId,
+                    level1ScreenIdentifier: level1ScreenIdentifier,
+                    screenNavActions: screenNavActions
+                )
             }
-            .toolbar(isLevel1 ? .visible : .hidden, for: .tabBar)
+            
         }
+        .toolbar(isLevel1 ? .visible : .hidden, for: .tabBar)
+    }
     
 }
 

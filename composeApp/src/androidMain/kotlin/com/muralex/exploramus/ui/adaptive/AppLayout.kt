@@ -66,6 +66,7 @@ data class AppLayout(
         val listItemMaxWidth: Adp,
         val gridItemMaxWidth: Adp,
         val itemImageHeight: Adp,
+        val itemGridImageHeight: Adp,
         val bottomPadding: Adp,
         val imageTextSpace: Adp,
     )
@@ -111,6 +112,7 @@ object AppLayouts {
             listItemMaxWidth = adp(420.dp, 500.dp),
             gridItemMaxWidth = adp(200.dp, 100.dp),
             itemImageHeight = adp(52.dp, 60.dp,70.dp),
+            itemGridImageHeight = adp(60.dp, 70.dp,80.dp),
             bottomPadding = adp(60.dp),
             imageTextSpace = adp(20.dp, 26.dp),
         ),

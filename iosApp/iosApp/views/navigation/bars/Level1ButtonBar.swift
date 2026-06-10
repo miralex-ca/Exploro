@@ -13,7 +13,7 @@ struct Level1ButtonBar: View {
         let level1ScreenIdentifier = appObj.localNavigationState.currentLevel1ScreenIdentifier
         Spacer()
         BottomBarButton(
-            itemLabel: "All Countries",
+            itemLabel: "Explore",
             iconName: "list.bullet",
             selected: level1ScreenIdentifier.URI==Level1Navigation.home.screenIdentifier.URI,
             onClick: { appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: Level1Navigation.home) }

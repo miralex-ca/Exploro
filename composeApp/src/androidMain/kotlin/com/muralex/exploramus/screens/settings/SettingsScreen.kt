@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.muralex.exploramus.resources.asString
 import com.muralex.exploramus.resources.with
+import com.muralex.exploramus.ui.adaptive.LocalFormFactor
+import com.muralex.exploramus.ui.adaptive.isCompact
 import com.muralex.exploramus.ui.adaptive.layout
 import com.muralex.exploramus.ui.adaptive.value
 import com.muralex.exploramus.ui.components.EmptyState
@@ -33,9 +35,11 @@ import com.muralex.exploramus.ui.components.dialogs.ConfirmationDialog
 import com.muralex.exploramus.ui.components.dialogs.SingleChoiceDialog
 import com.muralex.exploramus.ui.theme.appColors
 import com.muralex.exploramus.viewmodel.screens.settings.SettingsScreenState
+import com.muralex.exploramus.viewmodel.screens.settings.builder.InterfaceSettingsCategory
 import com.muralex.exploramus.viewmodel.screens.settings.builder.Setting
 import com.muralex.exploramus.viewmodel.screens.settings.builder.SettingAction
 import com.muralex.exploramus.viewmodel.screens.settings.builder.SettingsCategory
+import com.muralex.exploramus.viewmodel.screens.settings.builder.filter
 
 @Composable
 fun SettingsScreen(
@@ -53,6 +57,11 @@ fun SettingsScreenContent(
     screenState: SettingsScreenState,
     onSettingAction: (SettingAction) -> Unit,
 ) {
+    val formFactor = LocalFormFactor.current
+
+    val blacklist = buildList {
+        if (!formFactor.isCompact) add(InterfaceSettingsCategory.FAVORITE_SWIPE_SETTING_ID)
+    }
 
     Column {
         FadeInScreenContent {
@@ -62,7 +71,7 @@ fun SettingsScreenContent(
                 EmptyStateView(EmptyState.EmptyList)
             } else {
                 SettingsCategoriesList(
-                    screenState = screenState,
+                    settingsCategories = screenState.categories.filter(blacklist),
                     onSettingAction = onSettingAction
                 )
             }
@@ -73,7 +82,7 @@ fun SettingsScreenContent(
 
 @Composable
 fun SettingsCategoriesList(
-    screenState: SettingsScreenState,
+    settingsCategories: List<SettingsCategory>,
     onSettingAction: (SettingAction) -> Unit,
 ) {
     Column(
@@ -84,7 +93,7 @@ fun SettingsCategoriesList(
             .padding(horizontal = 16.dp, vertical = 16.dp)
             .widthIn(max = 600.dp)
     ) {
-        screenState.categories.forEach { category ->
+        settingsCategories.forEach { category ->
             SettingsCategory(
                 category = category,
                 onAction = onSettingAction

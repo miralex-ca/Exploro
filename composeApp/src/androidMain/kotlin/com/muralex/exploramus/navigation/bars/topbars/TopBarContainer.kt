@@ -20,6 +20,7 @@ fun Navigation.TopBarContainer(
 
     when {
         screenIdentifier.screen == Screen.SearchScreen -> {}
+        screenIdentifier.screen == Screen.Lv1SearchScreen -> {}
         isLevel1 -> {
             Level1TopBar(
                 title = screenTitle,

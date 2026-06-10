@@ -4,7 +4,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-val AccentBlue = Color(0xFF405FB0)
+val AccentBlue = Color(0xFF90AEEE)
 val OnAccentBlue = Color.White
 
 //val BluePrimary = Color(0xFFEAF2FA)
