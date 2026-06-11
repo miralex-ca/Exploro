@@ -10,6 +10,7 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.get
+import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
@@ -38,16 +39,23 @@ class ApiClient {
         expectSuccess = true
     }
 
-    suspend inline fun <reified T> get(url: String): NetworkResult<T> {
+    suspend inline fun <reified T> get(
+        url: String,
+        headers: Map<String, String> = emptyMap()
+    ): NetworkResult<T> {
         return try {
-            val response = client.get(url)
+            val response = client.get(url) {
+                headers.forEach { (key, value) ->
+                    header(key, value)
+                }
+            }
             val body = response.body<T>()
             Log.d("KTOR SUCCESS GET $url - Status: ${response.status}")
             NetworkResult.Success(body)
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            Log.e("KTOR FAILD GET $url - Status: ${e.message}")
+            Log.e("KTOR FAILED GET $url - Status: ${e.message}")
             NetworkResult.Error(
                 error = e.toNetworkError()
             )

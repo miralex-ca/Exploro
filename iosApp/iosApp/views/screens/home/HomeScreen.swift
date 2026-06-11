@@ -24,6 +24,8 @@ struct HomeScreenContent: View {
     let onEvent: (HomeUiEvent) -> Void
     
     var body: some View {
+        let isIpad = UIDevice.current.userInterfaceIdiom == .pad
+        
         ZStack {
             if screenState.homeSections.isEmpty {
                 //EmptyStateView()
@@ -47,7 +49,7 @@ struct HomeScreenContent: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text("Discover")
+                Text(isIpad ? "" : "Discover")
                     .font(.title2)
                     .fontWeight(.semibold)
             }

@@ -13,7 +13,9 @@ import com.muralex.exploramus.viewmodel.core.Events
 import com.muralex.exploramus.viewmodel.core.StateManager
 import com.muralex.exploramus.viewmodel.screens.Level1Navigation
 import com.muralex.exploramus.viewmodel.screens.settings.builder.DataSettingsCategory
+import com.muralex.exploramus.viewmodel.screens.settings.builder.InterfaceSettingsCategory
 import com.muralex.exploramus.viewmodel.screens.settings.builder.Setting
+import com.muralex.exploramus.viewmodel.screens.settings.builder.SettingsCategory
 import com.muralex.exploramus.viewmodel.screens.settings.builder.updateSetting
 import com.muralex.exploramus.viewmodel.utils.toFormattedDate
 import com.muralex.models.ThemeMode
@@ -61,6 +63,8 @@ fun Events.syncDataFromSettings() = screenCoroutine {
 }
 
 private fun StateManager.updateSyncSummary(summary: FormattedText?) {
+    updateSettingsSyncSummary(summary)
+
     updateScreen(SettingsScreenState::class) {
         it.copy(
             categories = it.categories.updateSetting(DataSettingsCategory.SYNC_SETTING_ID) { setting ->
@@ -72,11 +76,86 @@ private fun StateManager.updateSyncSummary(summary: FormattedText?) {
 
 private fun StateManager.rebuildSettings() {
     updateScreen(SettingsScreenState::class) {
-        it.copy(categories = settingsBuilder.buildCategories())
+        it.copy(categories = settingsManager.getCategories())
     }
 }
 
 private suspend fun StateManager.reinitLevel1Screens() {
     Level1Navigation.Home.screenIdentifier.getScreenInitSettings(this).callOnInit(this)
     Level1Navigation.Favorites.screenIdentifier.getScreenInitSettings(this).callOnInit(this)
+}
+
+
+fun Events.buildSettingsCategories(callback: (List<SettingsCategory>) -> Unit ) = appCoroutine {
+    val categories = stateManager.settingsManager.getCategories()
+    callback.invoke(categories)
+}
+
+
+
+fun Events.updateSettingsState() = appCoroutine {
+    stateManager.settingsManager.updateSettingsState()
+}
+
+fun Events.updateSetting(key: String, value: String) {
+    when (key) {
+        InterfaceSettingsCategory.THEME_SETTING_ID -> {
+            updateThemeMode(name = value)
+        }
+    }
+}
+
+fun Events.updateSetting(key: String, value: Boolean) {
+    when (key) {
+        InterfaceSettingsCategory.FAVORITE_SWIPE_SETTING_ID -> {
+            updateFavoriteSwipeEnabled(enabled = value)
+        }
+    }
+}
+
+fun Events.triggerSettingAction(key: String) {
+    when (key) {
+        DataSettingsCategory.SYNC_SETTING_ID -> {
+            syncDataFromSettings()
+        }
+    }
+}
+
+
+
+
+fun Events.updateThemeMode(name: String) = appCoroutine {
+    val themeMode = ThemeMode.byName(name)
+    dataRepository.saveThemeMode(themeMode)
+    val current = dataRepository.getThemeMode()
+
+    stateManager.updateAppEnvironment(
+        state = stateManager.appEnvironment.value.copy(
+            themeMode = current
+        )
+    )
+
+    stateManager.settingsManager.updateSettingsState()
+}
+
+fun Events.updateFavoriteSwipeEnabled(enabled: Boolean) = appCoroutine {
+    dataRepository.setFavoriteSwipeEnabled(enabled)
+    val isFavoriteSwipeEnabled = dataRepository.getFavoriteSwipeEnabled()
+
+    stateManager.updateAppEnvironment(
+        state = stateManager.appEnvironment.value.copy(
+            favoriteSwipeEnabled = isFavoriteSwipeEnabled
+        )
+    )
+    stateManager.settingsManager.updateSettingsState()
+}
+
+private fun StateManager.updateSettingsSyncSummary(summary: FormattedText?) {
+    val settings = settingsManager.getCategories()
+
+    val updatedSettings = settings.updateSetting(DataSettingsCategory.SYNC_SETTING_ID) { setting ->
+        (setting as Setting.Action).copy(formattedSummary = summary)
+    }
+
+    settingsManager.setSettingsState(updatedSettings)
 }

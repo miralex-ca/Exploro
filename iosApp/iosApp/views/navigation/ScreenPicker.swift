@@ -87,7 +87,8 @@ struct ScreenPicker: View {
             if isLevel1 {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        screenNavActions.toSettings()
+                       // screenNavActions.toSettings()
+                        appObj.showSettings = true
                     } label: {
                         Image(systemName: "gearshape")
                     }

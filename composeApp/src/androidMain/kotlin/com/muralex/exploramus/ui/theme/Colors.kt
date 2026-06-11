@@ -49,7 +49,7 @@ val OnAccentBlueDark = Color.White
 val TopBarContainerDark = Color(0xFF2A3548) // top bar
 val OnTopBarContainerDark = Color(0xFFEAF0FF) // top bar text
 
-val DarkBackground = Color(0xFF202934)
+val DarkBackground = Color(0xFF060E18)
 val OnDarkBackground = Color(0xFFE6EAF2)
 
 val DarkSurface = Color(0xFF2F3C52)

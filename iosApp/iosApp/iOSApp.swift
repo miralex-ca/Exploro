@@ -34,6 +34,9 @@ struct MainView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
+        
+        
+        
         Router()
             .environment(\.appTheme, AppTheme.from(colorScheme))
             .preferredColorScheme(colorScheme(from: appObj.appEnvironment.themeMode))

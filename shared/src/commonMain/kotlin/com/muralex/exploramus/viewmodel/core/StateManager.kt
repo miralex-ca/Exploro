@@ -6,6 +6,7 @@ import com.muralex.exploramus.viewmodel.appstate.AppEnvironment
 import com.muralex.exploramus.viewmodel.appstate.AppStartupState
 import com.muralex.exploramus.viewmodel.appstate.prepareAppEnvironment
 import com.muralex.exploramus.viewmodel.screens.settings.builder.SettingsBuilder
+import com.muralex.exploramus.viewmodel.screens.settings.builder.SettingsCategory
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -47,7 +48,8 @@ class StateManager(repo: Repository) {
         get() = verticalNavigationLevels[currentLevel1ScreenIdentifier?.URI] ?: mutableMapOf()
 
     internal val dataRepository by lazy { repo }
-    internal val settingsBuilder by lazy { SettingsBuilder(dataRepository) }
+
+    internal val settingsManager by lazy { SettingsStateManager(SettingsBuilder(dataRepository)) }
 
 
     init {
@@ -149,6 +151,24 @@ class StateManager(repo: Repository) {
             it.value.cancel() // cancel screen's coroutine scope
         }
     }
+}
+
+
+class SettingsStateManager(
+    private val settingsBuilder: SettingsBuilder
+) {
+    private val _settings = MutableStateFlow<List<SettingsCategory>>(emptyList())
+    val settings = _settings.asStateFlow()
+
+    fun updateSettingsState() {
+        _settings.value = settingsBuilder.buildCategories()
+    }
+
+    fun setSettingsState(state: List<SettingsCategory>) {
+        _settings.value = state
+    }
+
+    fun getCategories(): List<SettingsCategory> = settingsBuilder.buildCategories()
 }
 
 

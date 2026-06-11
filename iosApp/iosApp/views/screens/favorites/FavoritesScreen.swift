@@ -9,6 +9,9 @@ struct FavoritesScreen: View {
     let eventHandler: FavoritesEventHandler
 
     var body: some View {
+        
+        let isIpad = UIDevice.current.userInterfaceIdiom == .pad
+        
         ZStack {
             if screenState.isLoading {
                 ScreenLoadingView()
@@ -21,7 +24,7 @@ struct FavoritesScreen: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text("Favorites")
+                Text(isIpad ? "" : "Favorites")
                     .font(.title2)
                     .fontWeight(.semibold)
             }

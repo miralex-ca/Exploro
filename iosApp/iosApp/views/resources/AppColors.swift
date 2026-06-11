@@ -33,6 +33,8 @@ struct AppTheme {
     let favorite: Color
     let destructive: Color
     let caret: Color
+    
+    let navBackground: Color
 }
 
  
@@ -68,7 +70,8 @@ extension AppTheme {
         cardBorder: Color(hex: "#CED6E7"),
         favorite: Color(hex: "#FFEB3B"),
         destructive: Color(hex: "#F85146"),
-        caret: Color(hex: "#3C5BA9")
+        caret: Color(hex: "#3C5BA9"),
+        navBackground: Color(hex: "#E6EAF2")
     )
 
     static let dark = AppTheme(
@@ -101,7 +104,8 @@ extension AppTheme {
         cardBorder: Color(hex: "#424E67"),
         favorite: Color(hex: "#FFEB3B"),
         destructive: Color(hex: "#F85146"),
-        caret: Color(hex: "#7FA7FF")
+        caret: Color(hex: "#7FA7FF"),
+        navBackground: Color(hex: "#060E18")
     )
 }
 
