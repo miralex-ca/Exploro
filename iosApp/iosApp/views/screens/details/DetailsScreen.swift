@@ -28,16 +28,20 @@ struct DetailsScreenContent: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
-                DetailsHeaderCard(
-                    details: details,
-                    onFavoriteClick: { onEvent(.toggleFavorite(details.id)) }
-                )
-                
-                DetailsInfoCard(details: details)
+            ZStack (alignment: .top) {
+                Color.clear
+                VStack(spacing: 0) {
+                    DetailsHeaderCard(
+                        details: details,
+                        onFavoriteClick: { onEvent(.toggleFavorite(details.id)) }
+                    )
+                    DetailsInfoCard(details: details)
+                }
+                .padding(16)
+                .frame(maxWidth: 600)  // ← add this
             }
-            .padding(16)
-            .frame(maxWidth: .infinity)  // ← add this
+            
+           
         }
     }
 }

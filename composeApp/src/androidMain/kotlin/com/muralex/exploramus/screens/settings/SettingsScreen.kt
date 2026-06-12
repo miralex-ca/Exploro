@@ -39,7 +39,7 @@ import com.muralex.exploramus.viewmodel.screens.settings.builder.InterfaceSettin
 import com.muralex.exploramus.viewmodel.screens.settings.builder.Setting
 import com.muralex.exploramus.viewmodel.screens.settings.builder.SettingAction
 import com.muralex.exploramus.viewmodel.screens.settings.builder.SettingsCategory
-import com.muralex.exploramus.viewmodel.screens.settings.builder.filter
+import com.muralex.exploramus.viewmodel.screens.settings.builder.filterSettings
 
 @Composable
 fun SettingsScreen(
@@ -71,7 +71,7 @@ fun SettingsScreenContent(
                 EmptyStateView(EmptyState.EmptyList)
             } else {
                 SettingsCategoriesList(
-                    settingsCategories = screenState.categories.filter(blacklist),
+                    settingsCategories = screenState.categories.filterSettings(blacklist),
                     onSettingAction = onSettingAction
                 )
             }

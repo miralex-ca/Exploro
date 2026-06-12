@@ -21,10 +21,7 @@ struct HomeScreen: View {
                     screenState: screenState,
                     onEvent: eventHandler.onEvent
                 )
-               // .navigationBarTitleDisplayMode(.large)
-                
             }
-            
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -44,46 +41,32 @@ struct HomeScreenContent: View {
     @Environment(\.appLayout) var appLayout
     
     var body: some View {
-        
-        
-        
-        
         ZStack {
             if screenState.homeSections.isEmpty {
                 //EmptyStateView()
                 EmptyView()
             } else {
                 HStack(spacing: 0) {
-//                    Color.clear
-//                        .frame(width: 200)
                     ScrollView {
                         LazyVStack(alignment: .leading, spacing: 0) {
-                            
                             ForEach(screenState.homeSections, id: \.sectionId) { section in
                                 HomeSectionRow(
                                     section: section,
                                     onListItemClick: { onEvent(.onItemClicked($0)) },
                                     onSectionClick: { onEvent(.onSectionClicked(section)) }
                                 )
-                               // .listRowInsets(EdgeInsets(top: 0, leading: 200, bottom: 0, trailing: 0))
                             }
-                            
-                            //.padding(.trailing, 200)
-                             
-                            
-                            
                         }
+                        .padding(.top, Dimens.Home.topPadding.of(appLayout))
+                        .padding(.leading, Dimens.Home.leadingPadding.of(appLayout))
                         .scrollClipDisabled()
-                        //.defaultScrollAnchor(.some(.init(x: 0, y: 0)))
                     }
-                    
                 }
+                
+                
             }
             
         }
-        
-        
-        
     }
 }
 
@@ -95,7 +78,7 @@ struct HomeSectionRow: View {
     @Environment(\.appTheme) var theme
     @Environment(\.appLayout) var appLayout
     
-    @State private var drawerSpace: CGFloat = 280
+    let drawerSpace: CGFloat = 260
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -104,8 +87,8 @@ struct HomeSectionRow: View {
                 Button(action: onSectionClick) {
                     HStack {
                         Text(section.sectionName)
-                            .font(.headline)
-                            .padding(.leading, 10)
+                            .font(.system(size: Dimens.Home.sectionHeaderFont.of(appLayout), weight: .semibold))
+                            .padding(.leading, 14)
                         Spacer()
                         
                         ZStack {
@@ -116,18 +99,18 @@ struct HomeSectionRow: View {
                             Image(systemName: "arrow.forward")
                                 .font(.system(size: 15, weight: .semibold))
                                 .foregroundColor(theme.onSurfaceVariant)
+                                .padding(.horizontal)
                         }
                     }
-                    .padding(.horizontal)
                     .padding(.vertical, 4)
                 }
                 .tint(.primary)
             }
-            .padding(.leading, appLayout.hasSpaceForDrawer ? 280 : 0)
+            .padding(.leading, appLayout.hasSpaceForDrawer ? drawerSpace : 0)
             
             
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 8) {
+                LazyHStack(spacing: Dimens.Home.cardSpacing.of(appLayout)) {
                     ForEach(section.sectionListItems, id: \.id) { item in
                         HomeSectionListCard(
                             item: item,
@@ -135,7 +118,7 @@ struct HomeSectionRow: View {
                         )
                     }
                 }
-                .padding(.leading, appLayout.hasSpaceForDrawer ? 280 : 0)
+                .padding(.leading, appLayout.hasSpaceForDrawer ? drawerSpace : 0)
                
             }
             .scrollClipDisabled()
@@ -150,11 +133,16 @@ struct HomeSectionListCard: View {
     let onClick: () -> Void
     
     @Environment(\.appTheme) var theme
+    @Environment(\.appLayout) var appLayout
     
     private let cardWidth: CGFloat = 160
     private let imageHeight: CGFloat = 80
     
     var body: some View {
+        
+        let cardWidth = Dimens.Home.cardWidth.of(appLayout)
+        let imageHeight = Dimens.Home.imageHeight.of(appLayout)
+        
         let imageSize = CGSize(width: cardWidth - 16, height: imageHeight)
         
         Button(action: onClick) {

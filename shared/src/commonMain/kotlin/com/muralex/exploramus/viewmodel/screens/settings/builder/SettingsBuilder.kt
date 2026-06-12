@@ -17,11 +17,11 @@ class SettingsBuilder(repository: Repository) {
             InterfaceSettingsCategory(localSettings).build(),
             DataSettingsCategory(localSettings).build(),
             InfoSettingsCategory(platformInfo).build(),
-        ).filter(blacklistedIds)
+        ).filterSettings(blacklistedIds)
     }
 }
 
-fun List<SettingsCategory>.filter(blacklistedIds: List<String>): List<SettingsCategory> {
+fun List<SettingsCategory>.filterSettings(blacklistedIds: List<String>): List<SettingsCategory> {
     return mapNotNull { category ->
         if (category.id in blacklistedIds) return@mapNotNull null
         val filteredSettings = category.settings.filter { it.key !in blacklistedIds }
@@ -30,7 +30,14 @@ fun List<SettingsCategory>.filter(blacklistedIds: List<String>): List<SettingsCa
     }
 }
 
-
+fun filterSettings(settings: List<SettingsCategory>, blacklistedIds: List<String>): List<SettingsCategory> {
+    return settings.mapNotNull { category ->
+        if (category.id in blacklistedIds) return@mapNotNull null
+        val filteredSettings = category.settings.filter { it.key !in blacklistedIds }
+        if (filteredSettings.isEmpty()) null
+        else category.copy(settings = filteredSettings)
+    }
+}
 
 
 

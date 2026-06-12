@@ -6,6 +6,38 @@ struct Level1ScreenContainer<Content: View>: View {
     let screenTitle : String?
     let isAdjustedPadding: Bool
     let content: Content
+   
+    @Environment(\.appLayout) var appLayout
+    
+    init(
+        screenTitle: String? = nil,
+        isAdjustedPadding: Bool = true,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.screenTitle = screenTitle
+        self.isAdjustedPadding = isAdjustedPadding
+        self.content = content()
+    }
+
+    var body: some View {
+        if appLayout.isPhone {
+            content
+        } else {
+            TabletLevel1Layout(
+                screenTitle: screenTitle,
+                isAdjustedPadding: isAdjustedPadding
+            ) {
+                content
+            }
+        }
+    }
+}
+
+struct TabletLevel1Layout<Content: View>: View {
+    let screenTitle : String?
+    let isAdjustedPadding: Bool
+    let content: Content
+    
     @State private var hasAppeared = false
     
     @Environment(\.appLayout) var appLayout
@@ -23,6 +55,7 @@ struct Level1ScreenContainer<Content: View>: View {
     }
 
     var body: some View {
+
         ScrollView(showsIndicators: false) {
             ZStack(alignment: .top) {
                 if let screenTitle, appLayout.useDrawer, appLayout.isLandscape {
@@ -38,7 +71,7 @@ struct Level1ScreenContainer<Content: View>: View {
                 }
                 
                 content
-                    .padding(.top, appLayout.isTablet ? 20 : 0)
+                    .padding(.top, appLayout.isTablet ? 8 : 0)
                     .padding(.leading, hasSpaceForDrawer && isAdjustedPadding ? 260 : 0)
             }
         }

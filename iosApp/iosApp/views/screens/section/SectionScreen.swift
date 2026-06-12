@@ -22,15 +22,25 @@ struct SectionScreenContent: View {
     let screenState: SectionScreenState
     let onListItemClick: (SectionListItem) -> Void
     
-    let columns = [GridItem(.adaptive(minimum: 160))]
+    @Environment(\.appLayout) var appLayout
+    
+    
     
     var body: some View {
+        let spacing = Dimens.Favorites.cardSpacing.of(appLayout)
+        
+        let columns = [GridItem(
+            .adaptive(
+                minimum: Dimens.Favorites.gridItemMinWidth.of(appLayout)),
+                spacing: spacing
+            )
+        ]
+        
         if screenState.countries.isEmpty {
-           // EmptyStateView()
             EmptyView()
         } else {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 12) {
+                LazyVGrid(columns: columns, spacing: spacing) {
                     ForEach(screenState.countries, id: \.id) { item in
                         CountryGridCard(
                             item: item,
@@ -49,6 +59,7 @@ struct CountryGridCard: View {
     let onClick: () -> Void
     
     @Environment(\.appTheme) var theme
+    @Environment(\.appLayout) var appLayout
 
     var body: some View {
         Button(action: onClick) {

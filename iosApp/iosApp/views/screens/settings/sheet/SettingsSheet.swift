@@ -43,6 +43,15 @@ class SettingsSheetEventHandler {
 //    }
 }
 
+class SettingsConfig {
+    static let shared = SettingsConfig()
+    private init() {}
+    
+    let tabletBlacklistedSettings: [String] = [InterfaceSettingsCategory.companion.FAVORITE_SWIPE_SETTING_ID]
+    
+ 
+}
+
 
 struct SettingsView: View { 
     @EnvironmentObject var appObj: AppObservableObject
@@ -52,6 +61,7 @@ struct SettingsView: View {
     @State var settingsList: [SettingsCategory] = []
     
     @Environment(\.appTheme) var theme
+    @Environment(\.appLayout) var appLayout
 
     var body: some View {
         NavigationStack {
@@ -81,7 +91,7 @@ struct SettingsView: View {
         }
         .background(theme.background)
         .task {
-            vm.bind(appObj)
+            vm.bind(appObj, isTablet: appLayout.isTablet)
         }
     }
 }

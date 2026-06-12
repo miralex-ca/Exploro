@@ -9,7 +9,6 @@ enum NavigationType {
 }
 
 
-
 struct NavScaffold: View {
     let screenNavActions: ScreenNavActions
     @EnvironmentObject var appObj: AppObservableObject
@@ -33,7 +32,7 @@ struct NavScaffold: View {
                     
                 }
             
-            if layout.useBottomBar {
+            if layout.useBottomBar && isLevel1 {
                 VStack {
                     Spacer()
                     FloatingTabBar(
