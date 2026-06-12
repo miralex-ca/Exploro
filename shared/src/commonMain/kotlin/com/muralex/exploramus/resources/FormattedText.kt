@@ -15,9 +15,9 @@ data class StringRefWithArgs(
  * This sealed interface provides a type-safe way to handle different string resource formatting
  * requirements across the application.
  */
-sealed interface FormattedText {
+sealed class FormattedText {
     /** The base resource reference and its associated formatting metadata. */
-    val ref: StringRefWithArgs
+    abstract val ref: StringRefWithArgs
 
     /**
      * A simple resource reference that does not require any additional formatting arguments.
@@ -27,7 +27,7 @@ sealed interface FormattedText {
      */
     data class Ref(
         override val ref: StringRefWithArgs,
-    ) : FormattedText {
+    ) : FormattedText() {
         companion object {
             /** Creates a [Ref] instance from a [StringRef]. */
             fun of(ref: StringRef) = Ref(StringRefWithArgs(ref))
@@ -43,7 +43,7 @@ sealed interface FormattedText {
     data class WithString(
         override val ref: StringRefWithArgs,
         val arg: String
-    ) : FormattedText {
+    ) : FormattedText() {
         companion object {
             /** Creates a [WithString] instance from a [StringRef] and a [String] argument. */
             fun of(ref: StringRef, arg: String) = WithString(StringRefWithArgs(ref), arg)
@@ -59,7 +59,7 @@ sealed interface FormattedText {
     data class WithRef(
         override val ref: StringRefWithArgs,
         val arg: StringRef
-    ) : FormattedText {
+    ) : FormattedText() {
         companion object {
             /** Creates a [WithRef] instance from two [StringRef] objects. */
             fun of(ref: StringRef, arg: StringRef) = WithRef(StringRefWithArgs(ref), arg)
@@ -76,7 +76,7 @@ sealed interface FormattedText {
     data class SimpleText(
         override val ref: StringRefWithArgs = StringRefWithArgs(SharedRes.Strings.empty_ref_placeholder),
         val textRef: StringRef
-    ) : FormattedText {
+    ) : FormattedText() {
         companion object {
             /** Creates a [SimpleText] instance from a [StringRef]. */
             fun of(arg: StringRef) = SimpleText(textRef = arg)

@@ -7,6 +7,8 @@ struct SettingsScreen: View {
     let eventHandler: SettingsEventHandler
 
     var body: some View {
+        
+        Level1ScreenContainer  {
         if screenState.isLoading {
             ProgressView()
         } else if screenState.categories.isEmpty {
@@ -27,6 +29,7 @@ struct SettingsScreen: View {
                 .padding()
                 .frame(maxWidth: 600)
             }
+        }
         }
     }
 }
@@ -180,6 +183,14 @@ struct OptionsPreference: View {
     let onAction: (SettingAction) -> Void
 
     @State private var showSheet = false
+    
+    private var selectedLabel: String {
+        print(setting.selectedValue)
+        return setting.options
+            .first { $0.value.lowercased() == setting.selectedValue.lowercased() }?
+            .label
+            .asString() ?? ""
+    }
 
     var body: some View {
         Button {
@@ -187,7 +198,7 @@ struct OptionsPreference: View {
         } label: {
             PreferenceContent(
                 title: setting.title.asString(),
-                summary: selectedLabel
+                summary: selectedLabel //setting.formattedSummary?.asString(arg: )
             )
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -240,12 +251,7 @@ struct OptionsPreference: View {
         }
     }
 
-    private var selectedLabel: String {
-        setting.options
-            .first { $0.value == setting.selectedValue }?
-            .label
-            .asString() ?? ""
-    }
+    
 }
 
 struct SettingsOptionsUiItem {

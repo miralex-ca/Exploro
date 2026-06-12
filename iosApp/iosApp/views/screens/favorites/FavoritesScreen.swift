@@ -11,25 +11,29 @@ struct FavoritesScreen: View {
     var body: some View {
         
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
+        Level1ScreenContainer (screenTitle: "Favorites") {
+            ZStack {
+                Color.clear
+                if screenState.isLoading {
+                    ScreenLoadingView()
+                } else {
+                    FavoritesScreenContent(
+                        screenState: screenState,
+                        onEvent: eventHandler.onEvent
+                    )
+                }
+            }
+            
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(isIpad ? "" : "Favorites")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+        }
         
-        ZStack {
-            if screenState.isLoading {
-                ScreenLoadingView()
-            } else {
-                FavoritesScreenContent(
-                    screenState: screenState,
-                    onEvent: eventHandler.onEvent
-                )
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text(isIpad ? "" : "Favorites")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-            }
-        }
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

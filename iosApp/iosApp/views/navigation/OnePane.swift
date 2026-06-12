@@ -7,6 +7,7 @@ struct OnePane: View {
     let screenNavActions: ScreenNavActions
     
     @EnvironmentObject var appObj: AppObservableObject
+    @Environment(\.appTheme) var theme
 
     var body: some View {
         let isLevel1 = appObj.localNavigationState.topScreenIdentifier.screen.navigationLevel == 1

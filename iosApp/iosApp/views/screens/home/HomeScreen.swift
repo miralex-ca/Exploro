@@ -6,46 +6,25 @@ struct HomeScreen: View {
     let eventHandler: HomeEventHandler
     
     var body: some View {
-        if screenState.isLoading {
-            ScreenLoadingView()
-        } else {
-            HomeScreenContent(
-                screenState: screenState,
-                onEvent: eventHandler.onEvent
-            )
-           // .navigationBarTitleDisplayMode(.large)
-            
-        }
-    }
-}
-
-struct HomeScreenContent: View {
-    let screenState: HomeScreenState
-    let onEvent: (HomeUiEvent) -> Void
-    
-    var body: some View {
+        
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         
-        ZStack {
-            if screenState.homeSections.isEmpty {
-                //EmptyStateView()
-                EmptyView()
+        Level1ScreenContainer(
+            screenTitle: "Discover",
+            isAdjustedPadding: false
+        ) {
+            
+            if screenState.isLoading {
+                ScreenLoadingView()
             } else {
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 0) {
-                        ForEach(screenState.homeSections, id: \.sectionId) { section in
-                            HomeSectionRow(
-                                section: section,
-                                onListItemClick: { onEvent(.onItemClicked($0)) },
-                                onSectionClick: { onEvent(.onSectionClicked(section)) }
-                            )
-                        }
-                    }
-                    .padding(.bottom, 12)
-                }
-                
+                HomeScreenContent(
+                    screenState: screenState,
+                    onEvent: eventHandler.onEvent
+                )
+               // .navigationBarTitleDisplayMode(.large)
                 
             }
+            
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -59,40 +38,94 @@ struct HomeScreenContent: View {
     }
 }
 
+struct HomeScreenContent: View {
+    let screenState: HomeScreenState
+    let onEvent: (HomeUiEvent) -> Void
+    @Environment(\.appLayout) var appLayout
+    
+    var body: some View {
+        
+        
+        
+        
+        ZStack {
+            if screenState.homeSections.isEmpty {
+                //EmptyStateView()
+                EmptyView()
+            } else {
+                HStack(spacing: 0) {
+//                    Color.clear
+//                        .frame(width: 200)
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 0) {
+                            
+                            ForEach(screenState.homeSections, id: \.sectionId) { section in
+                                HomeSectionRow(
+                                    section: section,
+                                    onListItemClick: { onEvent(.onItemClicked($0)) },
+                                    onSectionClick: { onEvent(.onSectionClicked(section)) }
+                                )
+                               // .listRowInsets(EdgeInsets(top: 0, leading: 200, bottom: 0, trailing: 0))
+                            }
+                            
+                            //.padding(.trailing, 200)
+                             
+                            
+                            
+                        }
+                        .scrollClipDisabled()
+                        //.defaultScrollAnchor(.some(.init(x: 0, y: 0)))
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        
+        
+    }
+}
+
 struct HomeSectionRow: View {
     let section: HomeSectionState
     let onListItemClick: (HomeListItem) -> Void
     let onSectionClick: () -> Void
     
     @Environment(\.appTheme) var theme
+    @Environment(\.appLayout) var appLayout
+    
+    @State private var drawerSpace: CGFloat = 280
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
            
-            Button(action: onSectionClick) {
-                HStack {
-                    Text(section.sectionName)
-                        .font(.headline)
-                        .padding(.leading, 10)
-                    Spacer()
-                    
-                    ZStack {
-                        Circle()
-                            .fill(theme.surface)
-                            .frame(width: 32, height: 32)
+            ZStack {
+                Button(action: onSectionClick) {
+                    HStack {
+                        Text(section.sectionName)
+                            .font(.headline)
+                            .padding(.leading, 10)
+                        Spacer()
                         
-                        Image(systemName: "arrow.forward")
-                            .font(.system(size: 15, weight: .semibold))
-                            .foregroundColor(theme.onSurfaceVariant)
+                        ZStack {
+                            Circle()
+                                .fill(theme.surface)
+                                .frame(width: 32, height: 32)
+                            
+                            Image(systemName: "arrow.forward")
+                                .font(.system(size: 15, weight: .semibold))
+                                .foregroundColor(theme.onSurfaceVariant)
+                        }
                     }
-                    
+                    .padding(.horizontal)
+                    .padding(.vertical, 4)
                 }
-                .padding(.horizontal)
-                .padding(.vertical, 4)
+                .tint(.primary)
             }
-            .tint(.primary)
+            .padding(.leading, appLayout.hasSpaceForDrawer ? 280 : 0)
             
- 
+            
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 8) {
                     ForEach(section.sectionListItems, id: \.id) { item in
@@ -102,10 +135,13 @@ struct HomeSectionRow: View {
                         )
                     }
                 }
-                .padding(.horizontal)
+                .padding(.leading, appLayout.hasSpaceForDrawer ? 280 : 0)
+               
             }
+            .scrollClipDisabled()
         }
         .padding(.bottom, 14)
+        .animation(.spring(duration: 0.12), value: appLayout.hasSpaceForDrawer)
     }
 }
 

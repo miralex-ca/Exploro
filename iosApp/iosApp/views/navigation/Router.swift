@@ -9,9 +9,10 @@ struct Router: View {
     
     @Environment(\.colorScheme) var systemScheme
     
+    @Environment(\.appLayout) var layout
+    
     
     var body: some View {
-        
         let level1ScreenIdentifiers = getAllLevel1ScreenIdentifiers()
         let level1ScreenIdentifiersWithState = appObj.dkmpNav.stateManager.verticalNavigationLevels
             .map { ($0.value as! Dictionary<Int, ScreenIdentifier>)[1]! }
@@ -23,41 +24,19 @@ struct Router: View {
             Color.clear.ignoresSafeArea()
             ForEach(level1ScreenIdentifiers, id: \.self.URI) { screenIdentifier in
                 if level1ScreenIdentifiersWithState.contains(where: { $0.URI == screenIdentifier.URI }) {
+                    let isActive = screenIdentifier.URI == appObj.dkmpNav.stateManager.currentLevel1ScreenIdentifier?.URI
+                    
                     OnePane(
                         level1ScreenIdentifier: screenIdentifier,
                         screenNavActions: screenNavActions
                     )
-                    .opacity(screenIdentifier.URI == appObj.dkmpNav.stateManager.currentLevel1ScreenIdentifier?.URI ? 1 : 0)
-                    
-                } else {
-                    EmptyView()
+                    .opacity(isActive ? 1 : 0) 
                 }
             }
             
-            if isLevel1 {
-                
-                if UIDevice.current.userInterfaceIdiom == .pad {
-                    VStack {
-                        
-                        TopTabBar(
-                            screenNavActions: screenNavActions
-                        )
-                        Spacer()
-                    }
-                } else {
-                    VStack {
-                        Spacer()
-                        FloatingTabBar(
-                            onSearch: { navigate(.searchScreen, nil) }
-                        )
-                    }
-                }
-                
-            }
+            NavScaffold(screenNavActions: screenNavActions)
             
         }
-       // .ignoresSafeArea()
-        
         .background(theme.background)
         .sheet(isPresented: $appObj.showSettings) {
             SettingsView()
@@ -228,134 +207,6 @@ extension View {
     }
 }
 
-struct TopbarGlassCapsuleModifier: ViewModifier {
-    
-    @Environment(\.appTheme) var theme
-    
-    func body(content: Content) -> some View {
-        if #available(iOS 26, *) {
-            content
-                .glassEffect(.regular, in: Capsule())
-//                .glassEffect(.clear, in: Capsule())
-//                .background(
-//                    theme.navBackground.opacity(0.9),
-//                    in: Capsule()
-//                )
-            
-        } else {
-            content
-                .background(
-                    .ultraThinMaterial,
-                    in: Capsule()
-                )
-                .overlay {
-                    Capsule()
-                        .strokeBorder(.white.opacity(0.15))
-                }
-                .shadow(
-                    color: .black.opacity(0.12),
-                    radius: 12,
-                    y: 4
-                )
-        }
-    }
-}
 
-extension View {
-    func topbarGlassCapsule() -> some View {
-        modifier(TopbarGlassCapsuleModifier())
-    }
-}
-
-
-
-struct TopTabBar: View {
-    @EnvironmentObject var appObj: AppObservableObject
-    let screenNavActions: ScreenNavActions
-    
-    @Environment(\.appTheme) var theme
-
-    var body: some View {
-        let currentURI = appObj.localNavigationState.currentLevel1ScreenIdentifier.URI
-
-        HStack(spacing: 12) {
-            HStack(spacing: 16) {
-                TopTabButton(
-                    label: "Discover",
-                    icon: "safari",
-                    selectedIcon: "safari.fill",
-                    selected: currentURI == Level1Navigation.home.screenIdentifier.URI
-                ) {
-                    appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .home)
-                }
-                TopTabButton(
-                    label: "Favorites",
-                    icon: "star",
-                    selectedIcon: "star.fill",
-                    selected: currentURI == Level1Navigation.favorites.screenIdentifier.URI
-                ) {
-                    appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .favorites)
-                }
-                
-                TopTabButton(
-                    label: "Search",
-                    icon: "magnifyingglass",
-                    selectedIcon: "magnifyingglass",
-                    selected: false,
-                    isIcon: true,
-                ) {
-                    screenNavActions.toSearch()
-                }
-            }
-            .padding(.horizontal, 4)
-            .padding(.vertical, 2)
-            .topbarGlassCapsule()
- 
-        }
-        .padding(.top, 6)
-        .background(Color.black.opacity(0.001))
-    }
-}
-
-
-struct TopTabButton: View {
-    let label: String
-    let icon: String
-    let selectedIcon: String
-    let selected: Bool
-    var isIcon: Bool = false
-    let onClick: () -> Void
-    
-    @Environment(\.appTheme) var theme
-
-    var body: some View {
-        Button(action: onClick) {
-            VStack(spacing: 3) {
-                if isIcon {
-                    Image(systemName: selected ? selectedIcon : icon)
-                        .font(.system(size: 20))
-                } else {
-                    Text(label)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                }
- 
-            }
-            .foregroundStyle(selected ? theme.navSelected: theme.navText)
-//            .padding(.leading, isIcon ? 12 : 20)
-//            .padding(.trailing, 20)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background {
-                if selected {
-                    Capsule()
-                        .fill(.gray.opacity(0.2))
-                    
-                }
-            }
-        }
-        .buttonStyle(.plain)
-    }
-}
 
  

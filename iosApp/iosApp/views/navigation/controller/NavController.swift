@@ -17,10 +17,11 @@ struct ScreenNavActions {
     
     func toSearch() {
         navController.navigate(.searchScreen, nil)
+       // navController.navigateByLevel1(.lv1Search)
     }
     func toSettings() {
-        navController.navigate(.settingsScreen, nil)
-        //navController.navigateByLevel1(.lv1Settings)
+        //navController.navigate(.settingsScreen, nil)
+        navController.navigateByLevel1(.lv1Settings)
     }
     func toLevel1Screen(_ level1: Level1Navigation) {
         navController.navigateByLevel1(level1)

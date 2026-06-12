@@ -10,6 +10,8 @@ struct ScreenPicker: View {
     @EnvironmentObject var appObj: AppObservableObject
     @Environment(\.appTheme) var theme
     
+    @Environment(\.appLayout) var appLayout
+    
 
     var body: some View {
         let state = appObj.getScreenState(sID: requestedSId)
@@ -28,6 +30,8 @@ struct ScreenPicker: View {
                     screenState: state as! HomeScreenState,
                     eventHandler: HomeEventHandler(navActions: screenNavActions)
                 )
+                
+            
                 
             case .sectionScreen:
                 SectionScreen(
@@ -69,6 +73,7 @@ struct ScreenPicker: View {
                 
             }
         }
+        
         .background(theme.background)
         .safeAreaInset(edge: .bottom) {
             if isLevel1 {
@@ -84,7 +89,7 @@ struct ScreenPicker: View {
             await appObj.collectScreenStateFlow(sID: requestedSId)
         }
         .toolbar {
-            if isLevel1 {
+            if isLevel1 && !appLayout.useDrawer {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                        // screenNavActions.toSettings()
@@ -94,6 +99,9 @@ struct ScreenPicker: View {
                     }
                 }
             }
+        }
+        .onChange(of: appLayout.isLandscape, initial: true) { oldValue, newValue in
+            print("forma factor changed - \(appLayout)")
         }
          
    

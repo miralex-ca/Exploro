@@ -3,13 +3,11 @@ import SwiftUI
 import Shared
 
 
-
 enum SettingsAction {
     case toggle(key: String, value: Bool)
     case select(key: String, value: String)
     case action(key: String)
 }
-
 
 
 class SettingsSheetEventHandler {
@@ -89,7 +87,6 @@ struct SettingsView: View {
 }
 
 extension Setting {
-
     var isNavigable: Bool {
         switch self {
         case is Setting.Options, is Setting.Action:
@@ -141,14 +138,6 @@ struct SettingsCategorySection: View {
                         )
                 }
             }
-
-//            VStack(spacing: 5) {
-//                ForEach(category.settings, id: \.key) { setting in
-//                    SettingsRow(setting: setting)
-//                }
-//            }
-//            .background(Color(.secondarySystemGroupedBackground))
-//            .clipShape(RoundedRectangle(cornerRadius: 14))
         }
     }
 }
@@ -176,7 +165,7 @@ func SettingsRow(
         } label: {
             OptionsRow(setting: s)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(SettingsRowButtonStyle())
 
     case let s as Setting.Action:
         NavigationLink {
@@ -184,14 +173,24 @@ func SettingsRow(
         } label: {
             ActionRow(setting: s)
         }
-        .buttonStyle(.plain)
+        .buttonStyle(SettingsRowButtonStyle())
         
     default:
         EmptyView()
     }
 }
 
-
+struct SettingsRowButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .background(
+                configuration.isPressed
+                    ? Color.primary.opacity(0.08)
+                    : Color.clear
+            )
+            .animation(.easeOut(duration: 0.12), value: configuration.isPressed)
+    }
+}
 
 
 struct OptionsSettingView: View {
@@ -221,32 +220,54 @@ struct OptionsSettingView: View {
                         
                         if selectedValue == option.id {
                             Image(systemName: "checkmark")
-                                .foregroundStyle(theme.onBackground)
+                                .foregroundStyle(theme.caret)
+                                .padding(.trailing, 10)
                         }
                     }
                     .padding(.vertical, 6)
+                    //.contentShape(Rectangle())
                 }
+                
+                //.buttonStyle(SettingsRowButtonStyle())
                 .listRowBackground(theme.cardSurface)
+                .contentShape(Rectangle())
+                .foregroundStyle(.primary)
             }
         }
         .scrollContentBackground(.hidden)
         .background(theme.background)
         .navigationTitle(setting.dialogTitle?.asString() ?? setting.title.asString())
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 
 struct OptionsRow: View {
     let setting: Setting.Options
+    
+    private var selectedLabel: String {
+        print(setting.selectedValue)
+        return setting.options
+            .first { $0.value.lowercased() == setting.selectedValue.lowercased() }?
+            .label
+            .asString() ?? ""
+    }
      
-
     var body: some View {
-        PreferenceContent(
-            title: setting.title.asString(),
-            summary: "Summary"
-        )
+        HStack {
+            PreferenceContent(
+                title: setting.title.asString(),
+                summary: setting.formattedSummary?.asString(arg: selectedLabel)
+            )
+
+            Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .padding(.trailing, 8)
+        }
         .padding(14)
-        .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
     }
 }
@@ -255,10 +276,18 @@ struct ActionRow: View {
     let setting: Setting.Action
  
     var body: some View {
-        PreferenceContent(
-            title: setting.title.asString(),
-            summary: "Summary"
-        )
+        HStack {
+            PreferenceContent(
+                title: setting.title.asString(),
+                summary: setting.formattedSummary?.asString()
+            )
+            Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .padding(.trailing, 8)
+        }
         .padding(14)
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
@@ -269,21 +298,40 @@ struct ActionRow: View {
 struct ActionSettingView: View {
     let setting: Setting.Action
     let onAction: (SettingsAction) -> Void
+    @Environment(\.appTheme) var theme
 
     var body: some View {
-        VStack(spacing: 16) {
-            Text(setting.dialogMessage?.asString() ?? "")
-                .multilineTextAlignment(.center)
-
-            Button() {
-                onAction(.action(key: setting.key))
-            } label: {
-                Text(setting.title.asString())
+        ZStack (alignment: .top) {
+            Color.clear
+            VStack(spacing: 16) {
+                Text(setting.formattedSummary?.asString() ?? "")
+                    .multilineTextAlignment(.center)
+                
+                Text(setting.dialogMessage?.asString() ?? "")
+                    .multilineTextAlignment(.center)
+                
+                Button() {
+                    onAction(.action(key: setting.key))
+                } label: {
+                    Text("Update")
+                }
+                .buttonStyle(.bordered)
             }
-            Spacer()
+            .padding(.horizontal, 20)
+            .padding(.vertical, 16)
+            .background(theme.cardSurface)
+            .clipShape(RoundedRectangle(cornerRadius: 14))
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 0.5)
+            )
         }
-        .padding()
+        .padding(.top, 16)
+        .padding(.horizontal, 20)
+        .background(theme.background)
         .navigationTitle(setting.dialogTitle?.asString() ?? setting.title.asString())
+        .navigationBarTitleDisplayMode(.inline)
+        
     }
 }
 
@@ -293,13 +341,24 @@ struct ActionSettingView: View {
 struct SwitchRow: View {
     let setting: Setting.Switch
     let onAction: (SettingsAction) -> Void
+    
+    private var summary: String? {
+            if setting.value, let summaryOn = setting.summaryOn {
+                return summaryOn.asString()
+            }
+
+            if !setting.value, let summaryOff = setting.summaryOff {
+                return summaryOff.asString()
+            }
+
+            return setting.summary?.asString()
+        }
 
     var body: some View {
-
         HStack {
             PreferenceContent(
                 title: setting.title.asString(),
-                summary: "Swipe to delete favorites"//setting.summary?.asString()
+                summary: summary
             )
 
             Spacer()
