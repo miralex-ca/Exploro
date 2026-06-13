@@ -267,7 +267,7 @@ struct OptionsRow: View {
         HStack {
             PreferenceContent(
                 title: setting.title.asString(),
-                summary: setting.formattedSummary?.asString(arg: selectedLabel)
+                summary: setting.formattedSummary?.with(selectedLabel)
             )
 
             Spacer()
@@ -319,6 +319,8 @@ struct ActionSettingView: View {
                 
                 Text(setting.dialogMessage?.asString() ?? "")
                     .multilineTextAlignment(.center)
+                
+                Spacer().frame(height: 24)
                 
                 Button() {
                     onAction(.action(key: setting.key))

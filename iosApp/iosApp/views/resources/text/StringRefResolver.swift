@@ -1,56 +1,56 @@
- 
-
-import SwiftUI
+import Foundation
 import Shared
 
+struct StringRefResolver {
+    
+    static func resolve(ref: StringRef) -> String {
+        guard let sharedRef = ref as? SharedRes.__Strings else {
+            return ref.simpleName()
+        }
+        
+        switch sharedRef.toSwiftEnum() {
+        case .settingsThemeTitle: return stringRes("settings_theme_title")
+        case .settingsThemeOptionSystem: return stringRes("settings_theme_option_system")
+        case .settingsThemeOptionDark: return stringRes("settings_theme_option_dark")
+        case .settingsThemeOptionLight: return stringRes("settings_theme_option_light")
+        case .settingsThemeDialogTitle: return stringRes("settings_theme_dialog_title")
+        case .settingsFavoriteSwipeTitle: return stringRes("settings_favorite_swipe_title")
+        case .settingsFavoriteSwipeSummaryOn: return stringRes("settings_favorite_swipe_summaryOn")
+        case .settingsFavoriteSwipeSummaryOff: return stringRes("settings_favorite_swipe_summaryOff")
+        case .settingsSyncTitle: return stringRes("settings_sync_title")
+        case .settingsSyncSummary: return stringRes("settings_sync_summary")
+        case .settingsSyncDialogTitle: return stringRes("settings_sync_dialog_title")
+        case .settingsSyncDialogMessage: return stringRes("settings_sync_dialog_message")
+        case .settingsCategoryInterface: return stringRes("settings_category_interface")
+        case .settingsCategoryData: return stringRes("settings_category_data")
+        case .settingsAppversionTitle: return stringRes("settings_appversion_title")
+        case .settingsAppversionSummary: return stringRes("settings_appversion_summary")
+        case .settingsDeviceinfoTitle: return stringRes("settings_deviceinfo_title")
+        case .settingsDeviceinfoSummary: return stringRes("settings_deviceinfo_summary")
+        case .settingsSyncInProgress: return stringRes("settings_sync_in_progress")
+        default: return ref.simpleName()
+        }
+    }
+    
+    static func resolve(ref: StringRefWithArgs, args: [String]) -> String {
+        switch ref.ref {
+        case SharedRes.Strings.settingsSummaryCurrentFmt:
+            return stringRes("settings_summary_current", args.first ?? "")
+        default:
+            return ref.ref.simpleName()
+        }
+    }
 
-extension SharedRes.Strings {
-    func asString() -> String {
-        switch self {
-        case .settingsThemeTitle: return "Theme"
-        case .settingsThemeOptionSystem: return "System"
-        case .settingsThemeOptionDark: return "Dark"
-        case .settingsThemeOptionLight: return "Light"
-        case .settingsThemeDialogTitle: return "Choose Theme"
-        case .settingsFavoriteSwipeTitle: return "Swipe to remove"
-        case .settingsFavoriteSwipeSummaryOn: return "Swipe enabled"
-        case .settingsFavoriteSwipeSummaryOff: return "Swipe disabled"
-        case .settingsSyncTitle: return "Content updates"
-        case .settingsSyncSummary: return "Keep app content up to date"
-        case .settingsSyncInProgress: return "Updating content…"
-        case .settingsCategoryInterface: return "Interface"
-        case .settingsCategoryData: return "Data"
-        case .settingsAppversionTitle: return "App Version"
-        case .settingsAppversionSummary: return "Version info"
-        case .settingsDeviceinfoTitle: return "Device Info"
-        case .settingsSyncDialogTitle: return "Check for updates?"
-        case .settingsSyncDialogMessage: return "\nWe’ll refresh the app content with the latest available data.\n"
-        default: return String(describing: self)
+    static func resolve(ref: StringRefWithArgs, arg: String) -> String {
+        switch ref.ref {
+        case SharedRes.Strings.settingsSyncLastFmt:
+            return stringRes("settings_sync_last", arg)
+        case SharedRes.Strings.settingsSyncSuccessFmt:
+            return stringRes("settings_sync_success", arg)
+        case SharedRes.Strings.settingsSyncFailedFmt:
+            return stringRes("settings_sync_failed", arg)
+        default:
+            return ref.ref.simpleName()
         }
     }
 }
-
-
-extension StringRef {
-    func asString() -> String {
-        if let ref = self as? SharedRes.__Strings {
-            return ref.toSwiftEnum().asString()
-        }
-        return String(describing: self)
-    }
-}
-
-
-extension StringRefWithArgs {
-    func asStringWithArg(_ arg: String) -> String {
-        switch self.ref {
-        case SharedRes.Strings.settingsSummaryCurrentFmt: return "Current: \(arg)"
-        case SharedRes.Strings.settingsSyncLastFmt: return "Last updated: \(arg)"
-        case SharedRes.Strings.settingsSyncSuccessFmt: return "Content updated successfully\nLast updated: \(arg)"
-        case SharedRes.Strings.settingsSyncFailedFmt: return "Update failed. Please try again.\nLast updated: \(arg)"
-        default: return self.ref.simpleName()
-        }
-    }
-}
-
-

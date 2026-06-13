@@ -1,22 +1,58 @@
-import SwiftUI
+import Foundation
 import Shared
 
+extension StringRef {
+    func asString() -> String {
+        return StringRefResolver.resolve(ref: self)
+    }
+}
+
+extension StringRefWithArgs {
+    func asStringWithArgs(_ firstArg: String, _ otherArgs: String...) -> String {
+        let allArgs = [firstArg] + otherArgs
+        return StringRefResolver.resolve(ref: self, args: allArgs)
+    }
+    
+    func asStringWithArg(_ arg: String) -> String {
+        return StringRefResolver.resolve(ref: self, arg: arg)
+    }
+}
+
+extension FormattedText.Ref {
+    func with(_ firstArg: String, _ otherArgs: String...) -> String {
+        let allArgs = [firstArg] + otherArgs
+        return StringRefResolver.resolve(ref: self.ref, args: allArgs)
+    }
+    
+    func resolveString() -> String {
+        return with("")
+    }
+}
+
+extension FormattedText.WithString {
+    func resolveString() -> String {
+        return self.ref.asStringWithArg(self.arg)
+    }
+}
+
+extension FormattedText.WithRef {
+    func resolveString() -> String {
+        return self.ref.asStringWithArg(self.arg.asString())
+    }
+}
+
+extension FormattedText.SimpleText {
+    func resolveString() -> String {
+        return self.textRef.asString()
+    }
+}
 
 extension FormattedText {
     func asString() -> String {
-        switch self {
-        case let t as FormattedText.Ref: return t.ref.asStringWithArg("")
-        case let t as FormattedText.SimpleText: return t.textRef.asString()
-        case let t as FormattedText.WithString: return t.ref.asStringWithArg(t.arg)
-        case let t as FormattedText.WithRef: return t.ref.asStringWithArg(t.arg.asString())
-        default: return self.ref.ref.simpleName()
-        }
-    }
-    
-    func asString(arg: String) -> String {
-        switch self {
-        case let t as FormattedText.Ref: return t.ref.asStringWithArg(arg)
-        default: return self.ref.ref.simpleName()
-        }
+        if let t = self as? FormattedText.Ref { return t.resolveString() }
+        if let t = self as? FormattedText.WithString { return t.resolveString() }
+        if let t = self as? FormattedText.WithRef { return t.resolveString() }
+        if let t = self as? FormattedText.SimpleText { return t.resolveString() }
+        return self.ref.ref.simpleName()
     }
 }
