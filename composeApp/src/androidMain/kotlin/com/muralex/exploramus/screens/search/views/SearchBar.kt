@@ -124,7 +124,7 @@ fun SearchTextField(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                        contentDescription = "Back"
+                        contentDescription = Strings.commonBack
                     )
                 }
             },
@@ -164,7 +164,7 @@ fun SearchTextField(
                             ) {
                                 Icon(
                                     imageVector = Icons.Rounded.Close,
-                                    contentDescription = "Clear"
+                                    contentDescription = Strings.commonClear
                                 )
                             }
                         }

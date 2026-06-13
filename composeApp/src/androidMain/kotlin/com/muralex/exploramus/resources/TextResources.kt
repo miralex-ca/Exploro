@@ -44,6 +44,16 @@ object Strings {
     val detailLabelRegion @Composable get() = stringRes(R.string.detail_label_region)
 
     val listItemLabelCapital @Composable get() = stringRes(R.string.list_item_label_capital)
+    @Composable fun listItemLabelCapital(capital: String) = stringRes(R.string.list_item_label_capital_fmt, capital)
+
+    val commonView @Composable get() = stringRes(R.string.common_view)
+    val commonRemove @Composable get() = stringRes(R.string.common_remove)
+    val commonBack @Composable get() = stringRes(R.string.common_back)
+    val commonClear @Composable get() = stringRes(R.string.common_clear)
+    val commonSettings @Composable get() = stringRes(R.string.common_settings)
+    val commonMoreOptions @Composable get() = stringRes(R.string.common_more_options)
+    val openKeyboard @Composable get() = stringRes(R.string.open_keyboard)
+    val appLoadingMessage @Composable get() = stringRes(R.string.app_loading_message)
 
     val emptyTitleNoResults @Composable get() = stringRes(R.string.empty_title_no_results)
     val emptyMsgNoResults @Composable get() = stringRes(R.string.empty_msg_no_results)

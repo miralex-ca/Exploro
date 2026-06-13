@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.muralex.exploramus.resources.Strings
 import com.muralex.exploramus.ui.adaptive.FormFactor
 import com.muralex.exploramus.ui.adaptive.LocalFormFactor
 import com.muralex.exploramus.ui.adaptive.isCompactHeight
@@ -53,7 +54,7 @@ fun Level1TopBar(
                 IconButton( onClick = onSettingsClick ) {
                     Icon(
                         imageVector = Icons.Outlined.Settings,
-                        contentDescription = "Settings"
+                        contentDescription = Strings.commonSettings
                     )
                 }
             }
@@ -90,7 +91,7 @@ fun TopBar(
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = Strings.commonBack,
                 )
             }
         }

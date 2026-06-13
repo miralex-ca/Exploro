@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.muralex.exploramus.resources.Strings
 
 @Composable
 fun FavoriteDropdownMenu(
@@ -35,7 +36,7 @@ fun FavoriteDropdownMenu(
         ) {
             Icon(
                 imageVector = Icons.Default.MoreVert,
-                contentDescription = "More options",
+                contentDescription = Strings.commonMoreOptions,
                 modifier = Modifier.size(20.dp),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -49,7 +50,7 @@ fun FavoriteDropdownMenu(
             DropdownMenuItem(
                 contentPadding = PaddingValues(horizontal = 20.dp),
                 // modifier = Modifier.padding(horizontal = 10.dp),
-                text = { Text("View") },
+                text = { Text(Strings.commonView) },
                 leadingIcon = {
                     Icon(Icons.Outlined.RemoveRedEye, null)
                 },
@@ -63,7 +64,7 @@ fun FavoriteDropdownMenu(
                 contentPadding = PaddingValues(start = 20.dp, end = 25.dp),
                 text = {
                     Text(
-                        "Remove",
+                        Strings.commonRemove,
                         color = MaterialTheme.colorScheme.error
                     )
                 },

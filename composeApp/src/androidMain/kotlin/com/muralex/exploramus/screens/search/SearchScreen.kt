@@ -147,7 +147,7 @@ private fun BoxScope.SearchFab(
     ) {
         Icon(
             imageVector = Icons.Default.Search,
-            contentDescription = "Open keyboard"
+            contentDescription = Strings.openKeyboard
         )
     }
 }

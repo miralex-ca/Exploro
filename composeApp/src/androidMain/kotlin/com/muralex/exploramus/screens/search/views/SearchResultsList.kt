@@ -138,7 +138,7 @@ fun SearchListRow(
                 )
 
                 Text(
-                    text = "${Strings.listItemLabelCapital} ${item.capital}",
+                    text = Strings.listItemLabelCapital(item.capital),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,

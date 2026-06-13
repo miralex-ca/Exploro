@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
+import com.muralex.exploramus.resources.Strings
 import kotlinx.coroutines.delay
 
 @Composable
@@ -66,7 +67,7 @@ fun AppLoadingScreen() {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Preparing your data…",
+                        text = Strings.appLoadingMessage,
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.alpha(textAlpha)
