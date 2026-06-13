@@ -9,6 +9,7 @@ struct SearchScreen: View {
 
     @EnvironmentObject var appObj: AppObservableObject
     @Environment(\.appTheme) var theme
+    @Environment(\.appLayout) var appLayout
 
     @State private var query: String = ""
     @FocusState private var isFocused: Bool
@@ -33,8 +34,9 @@ struct SearchScreen: View {
                     isFocused = true
                 }
             )
-            .padding(.horizontal, 12)
             .padding(.vertical, 8)
+            .frame(maxWidth: Dimens.Search.searchFieldaxWidth.of(appLayout))
+            .padding(.horizontal, Dimens.Search.searchFieldPaddings.of(appLayout))
              
         }
         .simultaneousGesture(
@@ -146,6 +148,7 @@ struct SearchResultsList: View {
     var newVersionId: String? = nil
     let onItemClicked: (SearchListItem) -> Void
     @State private var cachedItems: [SearchListItem] = []
+    @Environment(\.appLayout) var appLayout
     
     var body: some View {
         ScrollView {
@@ -159,6 +162,7 @@ struct SearchResultsList: View {
                     )
                     .padding(.horizontal, 14)
                     .animation(nil, value: cachedItems)
+                    .frame(maxWidth: Dimens.Search.itemMaxWidth.of(appLayout))
                 }
             }
             .padding(.top, 70)
@@ -234,6 +238,7 @@ struct SearchListRow: View {
         }
         .buttonStyle(.plain)
         .padding(.vertical, 1)
+        
     }
 }
 

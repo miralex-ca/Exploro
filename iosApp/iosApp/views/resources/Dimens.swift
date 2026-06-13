@@ -49,8 +49,14 @@ struct Dimens {
         static let cardSpacing = adp(12, 18)
     }
     
+    struct Details {
+        static let infoPadding = adp(0, 12)
+    }
+    
     struct Search {
-        static let itemMaxWidth = AdaptiveValue<CGFloat>(compact: 600, medium: 700, expanded: 800)
+        static let itemMaxWidth = adp(500, 600)
+        static let searchFieldaxWidth = adp(600, 750, 900)
+        static let searchFieldPaddings = adp(12, 24, 40)
     }
 }
 

@@ -79,13 +79,15 @@ extension FormFactor {
         size: CGSize
     ) -> FormFactor {
         
-        print("horizontal: \(String(describing: horizontal)), vertical: \(String(describing: vertical))")
+        
         
         let widthType: WidthType = {
             if horizontal == .compact { return .compact }
             if horizontal == .regular && vertical == .regular { return .expanded }
             return .medium
         }()
+        print("horizontal: \(String(describing: horizontal)), vertical: \(String(describing: vertical))")
+        print("widthType: \(String(describing: widthType)) ")
 
         let orientation: ScreenOrientation = size.width > size.height ? .landscape : .portrait
 

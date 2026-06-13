@@ -26,22 +26,31 @@ struct DetailsScreenContent: View {
     let details: CountryDetailsState
     let onEvent: (DetailsUiEvent) -> Void
     
+    @Environment(\.appLayout) var appLayout
+    
     var body: some View {
         ScrollView {
-            ZStack (alignment: .top) {
-                Color.clear
-                VStack(spacing: 0) {
-                    DetailsHeaderCard(
-                        details: details,
-                        onFavoriteClick: { onEvent(.toggleFavorite(details.id)) }
-                    )
-                    DetailsInfoCard(details: details)
+            
+            if appLayout.isLandscape {
+                LargeDetailsContent(
+                    details: details,
+                    onEvent: onEvent
+                )
+            } else {
+                ZStack (alignment: .top) {
+                    Color.clear
+                    VStack(spacing: 0) {
+                        DetailsHeaderCard(
+                            details: details,
+                            onFavoriteClick: { onEvent(.toggleFavorite(details.id)) }
+                        )
+                        DetailsInfoCard(details: details)
+                    }
+                    .padding(16)
+                    .frame(maxWidth: 600)  // ← add this
                 }
-                .padding(16)
-                .frame(maxWidth: 600)  // ← add this
             }
             
-           
         }
     }
 }
@@ -68,6 +77,8 @@ struct DetailsHeaderCard: View {
                 region: details.continent
             )
             .padding(.bottom, 28)
+            .padding(.horizontal, 16)
+            
         }
         .padding(.horizontal, 10)
         .padding(.top, 10)
@@ -99,15 +110,10 @@ struct FlagContainer: View {
     let isFavorite: Bool
     let onFavoriteClick: () -> Void
     
+    @Environment(\.appLayout) var appLayout
+    
     var body: some View {
         ZStack {
-//            RemoteImage(url: flagUrl, size: CGSize(width: 400, height: 200))
-//                .scaledToFill()
-//                .frame(maxWidth: .infinity, maxHeight: 200)
-//                .clipped()
-//                .blur(radius: 30)
-//                .opacity(0.45)
-            
             Color.black
                 .opacity(0.15)
                 .background(
@@ -124,14 +130,20 @@ struct FlagContainer: View {
                 .shadow(radius: 8)
             
             VStack {
-                Spacer()
+                if appLayout.isPhone {
+                    Spacer()
+                }
                 HStack {
+                    
                     Spacer()
                     FavoriteButton(
                         isFavorite: isFavorite,
                         onClick: onFavoriteClick
                     )
                     .padding(6)
+                }
+                if !appLayout.isPhone {
+                    Spacer()
                 }
             }
         }
@@ -173,14 +185,21 @@ struct CountryHeaderTitle: View {
     let coatOfArmsUrl: String
     let capital: String
     let region: String
+    var isCentered: Bool = true
     
     var body: some View {
         VStack(spacing: 0) {
             Text(officialName)
-                .font(.title2)
-                .multilineTextAlignment(.center)
+                .font(.system(size: isCentered ? 26 : 24, weight: .medium))
+                .multilineTextAlignment(
+                    isCentered ? .center : .leading
+                )
                 .lineLimit(4)
-                .frame(maxWidth: .infinity)
+                .frame(
+                    maxWidth: .infinity,
+                    minHeight: isCentered ? 30 : 45,
+                    alignment: isCentered ? .center : .topLeading
+                )
                 .padding(.vertical, 6)
             
             Spacer().frame(height: 16)
@@ -199,6 +218,10 @@ struct CountryHeaderTitle: View {
                 .padding(.top, 4)
                 .padding(.trailing, 15)
             }
+            .frame(
+                maxWidth: .infinity,
+                alignment: isCentered ? .center : .leading
+            )
         }
         .padding(.top, 12)
     }
@@ -407,149 +430,3 @@ extension Int64 {
         }
     }
 }
-
-
-
-//struct DetailsScreen: View {
-//    let screenState: DetailsScreenState
-//    let onFavoriteClick: (String)-> Void
-//
-//    var body: some View {
-//
-//        if screenState.isLoading {
-//            ProgressView()
-//        } else if let details = screenState.details {
-//            DetailsContent(
-//                details: details,
-//                onFavoriteClick: {
-//                    onFavoriteClick(details.id)
-//                }
-//            )
-//        } else {
-//            ContentUnavailableView(
-//                "Country not found",
-//                systemImage: "globe"
-//            )
-//        }
-//    }
-//}
-//
-//struct DetailsContent: View {
-//    let details: CountryDetailsState
-//    let onFavoriteClick: () -> Void
-//
-//    var body: some View {
-//
-//        ScrollView {
-//
-//            VStack(spacing: 20) {
-//
-//                
-//                ZStack {
-////                    Rectangle()
-////                        .frame(height: 180)
-//                    
-//                    AsyncImage(
-//                        url: URL(string: details.flagUrl)
-//                    ) { image in
-//                        image
-//                            .resizable()
-//                            .scaledToFill()
-//                    } placeholder: {
-//                         EmptyView()
-//                    }
-//                    .frame(height: 180)
-//                    .blur(radius: 30)
-//                    .clipShape(
-//                        Rectangle()
-//                    )
-//                    
-//                    
-//                    AsyncImage(
-//                        url: URL(string: details.flagUrl)
-//                    ) { image in
-//                        image
-//                            .resizable()
-//                            .scaledToFit()
-//                    } placeholder: {
-//                        ProgressView()
-//                    }
-//                    .frame(width: 200, height: 120)
-//                    .clipShape(
-//                        RoundedRectangle(cornerRadius: 6)
-//                    )
-//                    .shadow(radius: 14)
-//                }
-//                
-//
-//                HStack {
-//
-//                    Text(details.officialName)
-//                        .font(.title2)
-//                        .fontWeight(.bold)
-//
-//                    Spacer()
-//
-//                    Button(action: onFavoriteClick) {
-//                        Image(
-//                            systemName: details.isFavorite
-//                            ? "star.fill"
-//                            : "star"
-//                        )
-//                    }
-//                }
-//
-//                DetailRow(
-//                    title: "Capital",
-//                    value: details.capital
-//                )
-//
-//                DetailRow(
-//                    title: "Region",
-//                    value: details.continent
-//                )
-//
-//                DetailRow(
-//                    title: "Population",
-//                    value: details.population.description
-//                )
-//
-//                DetailRow(
-//                    title: "Area",
-//                    value: "\(Int(details.area)) km²"
-//                )
-//
-//                DetailRow(
-//                    title: "Currency",
-//                    value: details.currency
-//                )
-//
-//                DetailRow(
-//                    title: "Languages",
-//                    value: details.languages.joined(separator: ", ")
-//                )
-//            }
-//            .padding()
-//        }
-//    }
-//}
-//
-//struct DetailRow: View {
-//
-//    let title: String
-//    let value: String
-//
-//    var body: some View {
-//
-//        VStack(alignment: .leading, spacing: 4) {
-//
-//            Text(title)
-//                .font(.caption)
-//                .foregroundStyle(.secondary)
-//
-//            Text(value)
-//        }
-//        .frame(maxWidth: .infinity, alignment: .leading)
-//    }
-//}
-
