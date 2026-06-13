@@ -31,7 +31,7 @@ struct TopTabBar: View {
                 }
 
                 TopTabButton(
-                    label: "Discover",
+                    label: Strings.navBrowse,
                     icon: "safari",
                     selectedIcon: "safari.fill",
                     selected: currentURI == Level1Navigation.home.screenIdentifier.URI,
@@ -46,7 +46,7 @@ struct TopTabBar: View {
                 }
 
                 TopTabButton(
-                    label: "Favorites",
+                    label: Strings.navFavorites,
                     icon: "star",
                     selectedIcon: "star.fill",
                     selected: currentURI == Level1Navigation.favorites.screenIdentifier.URI,
@@ -61,7 +61,7 @@ struct TopTabBar: View {
                 }
 
                 TopTabButton(
-                    label: "Search",
+                    label: Strings.searchTitle,
                     icon: "magnifyingglass",
                     selectedIcon: "magnifyingglass",
                     selected: false,

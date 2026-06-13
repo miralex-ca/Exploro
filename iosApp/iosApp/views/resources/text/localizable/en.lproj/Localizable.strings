@@ -1,0 +1,82 @@
+"app_name" = "Exploramus";
+"screen_home_title" = "Discover";
+"screen_favorites_title" = "Favorites";
+"screen_search_title" = "Search";
+"screen_settings_title" = "Settings";
+
+"nav_browse" = "Browse";
+"nav_favorites" = "Favourites";
+
+"settings_summary_current" = "Current: %@";
+"settings_theme_title" = "Theme";
+"settings_theme_option_light" = "Light";
+"settings_theme_option_dark" = "Dark";
+"settings_theme_option_system" = "Use device settings";
+"settings_theme_dialog_title" = "Choose theme";
+
+"settings_favorite_swipe_title" = "Swipe to delete favorites";
+"settings_favorite_swipe_summaryOn" = "Enabled";
+"settings_favorite_swipe_summaryOff" = "Disabled";
+
+"settings_sync_title" = "Content updates";
+"settings_sync_summary" = "Keep app content up to date";
+"settings_sync_dialog_title" = "Check for updates?";
+"settings_sync_dialog_message" = "We’ll refresh the app content with the latest available data.";
+
+"settings_sync_in_progress" = "Updating content…";
+"settings_sync_last" = "Last updated: %@";
+"settings_sync_success" = "Content updated successfully\nLast updated: %@";
+"settings_sync_failed" = "Update failed. Please try again.\nLast updated: %@";
+
+"settings_category_interface" = "Interface";
+"settings_category_data" = "App data";
+
+"settings_appversion_title" = "App version";
+"settings_appversion_summary" = "Current: %@";
+"settings_deviceinfo_title" = "Device";
+"settings_deviceinfo_summary" = "Current: %@";
+
+"app_startup_error_title" = "Something went wrong";
+"app_startup_error_sync_desc" = "We couldn’t load your data. Please check your connection and try again.";
+"app_startup_error_desc" = "We couldn’t load your data. Please try again later.";
+"app_error_try_again" = "Try again";
+
+"theme_mode_light" = "Light mode";
+"theme_mode_dark" = "Dark mode";
+"theme_mode_system" = "System mode";
+
+"search_placeholder" = "Search…";
+"start_search" = "Search by country name or capital";
+"no_search_result" = "No search results for the query";
+"details_coat_of_arms" = "Coat of Arms";
+"common_close" = "Close";
+"common_confirm" = "Confirm";
+"common_cancel" = "Cancel";
+"common_view" = "View";
+"common_remove" = "Remove";
+"common_back" = "Back";
+"common_clear" = "Clear";
+"common_settings" = "Settings";
+"common_more_options" = "More options";
+"open_keyboard" = "Open keyboard";
+"app_loading_message" = "Preparing your data…";
+
+"detail_label_location" = "Location";
+"detail_label_area" = "Area";
+"detail_label_population" = "Population";
+"detail_label_language" = "Official language";
+"detail_label_languages" = "Official languages";
+"detail_label_currency" = "Currency";
+"detail_label_timezones" = "Time zones";
+"detail_label_capital" = "Capital:";
+"detail_label_region" = "Region:";
+"list_item_label_capital" = "Capital:";
+"list_item_label_capital_fmt" = "Capital: %@";
+
+"settings_mode_summary" = "Current: %@";
+"empty_title_no_results" = "No results found";
+"empty_title_empty_list" = "Nothing here yet";
+"empty_title_not_found" = "Not found";
+"empty_msg_no_results" = "We couldn’t find anything matching your request.";
+"empty_msg_empty_list" = "There is nothing to show here yet.";
+"empty_msg_not_found" = "The requested content could not be found.";
