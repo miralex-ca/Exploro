@@ -77,7 +77,7 @@ struct SettingsView: View {
                 .padding()
                 
             }
-            .navigationTitle("Settings")
+            .navigationTitle(Strings.settingsTitle)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -325,7 +325,7 @@ struct ActionSettingView: View {
                 Button() {
                     onAction(.action(key: setting.key))
                 } label: {
-                    Text("Update")
+                    Text(Strings.commonConfirm)
                 }
                 .buttonStyle(.bordered)
             }
@@ -436,7 +436,7 @@ struct SettingsRootView: View {
                 AboutView()
             }
         }
-        .navigationTitle("Settings")
+        .navigationTitle(Strings.settingsTitle)
     }
 }
 

@@ -13,7 +13,7 @@ struct SettingsScreen: View {
             ProgressView()
         } else if screenState.categories.isEmpty {
             ContentUnavailableView(
-                "No Settings",
+                Strings.emptyTitleEmptyList,
                 systemImage: "gear"
             )
         } else {
@@ -123,7 +123,7 @@ struct SwitchPreference: View {
 
             PreferenceContent(
                 title: setting.title.asString(),
-                summary: "Swipe to delete favorites"//setting.summary?.asString()
+                summary: setting.summary?.asString()
             )
 
             Spacer()
@@ -166,10 +166,10 @@ struct ActionPreference: View {
             setting.dialogTitle?.asString() ?? setting.title.asString(),
             isPresented: $showDialog
         ) {
-            Button("Confirm") {
+            Button(Strings.commonConfirm) {
                 onAction(setting.onClick())
             }
-            Button("Cancel", role: .cancel) {}
+            Button(Strings.commonCancel, role: .cancel) {}
         } message: {
             if let message = setting.dialogMessage?.asString() ?? setting.summary?.asString() {
                 Text(message)
@@ -242,7 +242,7 @@ struct OptionsPreference: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
-                        Button("Cancel") { showSheet = false }
+                        Button(Strings.commonCancel) { showSheet = false }
                     }
                 }
             }

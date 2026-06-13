@@ -11,7 +11,7 @@ struct FavoritesScreen: View {
     var body: some View {
         
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
-        Level1ScreenContainer (screenTitle: "Favorites") {
+        Level1ScreenContainer (screenTitle: Strings.favoritesTitle) {
             ZStack {
                 Color.clear
                 if screenState.isLoading {
@@ -26,7 +26,7 @@ struct FavoritesScreen: View {
             
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text(isIpad ? "" : "Favorites")
+                    Text(isIpad ? "" : Strings.favoritesTitle)
                         .font(.title2)
                         .fontWeight(.semibold)
                 }

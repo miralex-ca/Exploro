@@ -30,7 +30,7 @@ struct SideDrawer: View {
             
             
             DrawerButton(
-                label: "Search",
+                label: Strings.searchTitle,
                 icon: "magnifyingglass",
                 selectedIcon: "magnifyingglass",
                 selected: false,
@@ -42,7 +42,7 @@ struct SideDrawer: View {
            
 
             DrawerButton(
-                label: "Discover",
+                label: Strings.homeTitle,
                 icon: "safari",
                 selectedIcon: "safari",
                 selected: currentURI == Level1Navigation.home.screenIdentifier.URI
@@ -52,7 +52,7 @@ struct SideDrawer: View {
             .padding(.bottom, 6)
 
             DrawerButton(
-                label: "Favorites",
+                label: Strings.favoritesTitle,
                 icon: "star",
                 selectedIcon: "star",
                 selected: currentURI == Level1Navigation.favorites.screenIdentifier.URI
@@ -63,7 +63,7 @@ struct SideDrawer: View {
             Spacer()
 
             DrawerButton(
-                label: "Settings",
+                label: Strings.settingsTitle,
                 icon: "gearshape",
                 selectedIcon: "gearshape.fill",
                 selected: false,

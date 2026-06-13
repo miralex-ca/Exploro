@@ -72,7 +72,7 @@ struct SearchTextField: View {
             Image(systemName: "magnifyingglass")
                 .foregroundStyle(.secondary)
 
-            TextField("Search...", text: $query)
+            TextField(Strings.searchPlaceholder, text: $query)
                 .focused(isFocused)
                 .submitLabel(.search)
                 .autocorrectionDisabled()
@@ -119,7 +119,7 @@ struct SearchInitialView: View {
     var body: some View {
         VStack {
             Spacer()
-            Text("Type to start searching")
+            Text(Strings.startSearch)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
             Spacer()
@@ -133,7 +133,7 @@ struct SearchEmptyView: View {
     var body: some View {
         VStack(spacing: 8) {
             Spacer()
-            Text("No results found")
+            Text(Strings.emptyTitleNoResults)
                 .foregroundStyle(.secondary)
             Text(query.trimmingCharacters(in: .whitespaces))
                 .fontWeight(.semibold)
@@ -218,7 +218,7 @@ struct SearchListRow: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
-                    Text("Capital: \(item.capital)")
+                    Text(Strings.listItemLabelCapital(item.capital))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)

@@ -211,9 +211,9 @@ struct CountryHeaderTitle: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     if !capital.isEmpty {
-                        InlineHeaderDetailRow(label: "Capital", value: capital.uppercased())
+                        InlineHeaderDetailRow(label: Strings.detailLabelCapital, value: capital.uppercased())
                     }
-                    InlineHeaderDetailRow(label: "Region", value: region)
+                    InlineHeaderDetailRow(label: Strings.detailLabelRegion, value: region)
                 }
                 .padding(.top, 4)
                 .padding(.trailing, 15)
@@ -250,12 +250,12 @@ struct CoatOfArmsImage: View {
         )
         .sheet(isPresented: $showDialog) {
             VStack(spacing: 20) {
-                Text("Coat of Arms")
+                Text(Strings.detailsCoatOfArms)
                     .font(.headline)
                 RemoteImage(url: url, size: CGSize(width: 180, height: 180))
                     .scaledToFit()
                     .frame(width: 180, height: 180)
-                Button("Close") { showDialog = false }
+                Button(Strings.commonClose) { showDialog = false }
             }
             .padding()
             .presentationDetents([.medium])
@@ -394,12 +394,12 @@ struct DetailsRowModel {
 
 func detailRows(_ details: CountryDetailsState) -> [DetailsRowModel] {
     [
-        DetailsRowModel(systemIcon: "map", label: "Location", value: details.subregion, url: details.mapsUrl.isEmpty ? nil : details.mapsUrl),
-        DetailsRowModel(systemIcon: "ruler", label: "Area", value: formatArea(details.area)),
-        DetailsRowModel(systemIcon: "person.2", label: "Population", value: details.population.toHumanReadable()),
-        DetailsRowModel(systemIcon: "character.bubble", label: details.languages.count == 1 ? "Language" : "Languages", value: details.languages.joined(separator: ", ")),
-        DetailsRowModel(systemIcon: "dollarsign.circle", label: "Currency", value: details.currency),
-        DetailsRowModel(systemIcon: "clock", label: "Timezones", value: formatTimezones(details.timezones)),
+        DetailsRowModel(systemIcon: "map", label: Strings.detailLabelLocation, value: details.subregion, url: details.mapsUrl.isEmpty ? nil : details.mapsUrl),
+        DetailsRowModel(systemIcon: "ruler", label: Strings.detailLabelArea, value: formatArea(details.area)),
+        DetailsRowModel(systemIcon: "person.2", label: Strings.detailLabelPopulation, value: details.population.toHumanReadable()),
+        DetailsRowModel(systemIcon: "character.bubble", label: Strings.detailLabelLanguage(count: Int(details.languages.count)), value: details.languages.joined(separator: ", ")),
+        DetailsRowModel(systemIcon: "dollarsign.circle", label: Strings.detailLabelCurrency, value: details.currency),
+        DetailsRowModel(systemIcon: "clock", label: Strings.detailLabelTimezones, value: formatTimezones(details.timezones)),
     ].filter { !$0.value.isEmpty }
 }
 

@@ -10,7 +10,7 @@ struct HomeScreen: View {
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         
         Level1ScreenContainer(
-            screenTitle: "Discover",
+            screenTitle: Strings.homeTitle,
             isAdjustedPadding: false
         ) {
             
@@ -25,7 +25,7 @@ struct HomeScreen: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(isIpad ? "" : "Discover")
+                Text(isIpad ? "" : Strings.homeTitle)
                     .font(.title2)
                     .fontWeight(.semibold)
             }
