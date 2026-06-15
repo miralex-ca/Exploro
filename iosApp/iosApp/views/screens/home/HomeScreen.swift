@@ -62,8 +62,6 @@ struct HomeScreenContent: View {
                         .scrollClipDisabled()
                     }
                 }
-                
-                
             }
             
         }
@@ -102,7 +100,7 @@ struct HomeSectionRow: View {
                                 .padding(.horizontal)
                         }
                     }
-                    .padding(.vertical, 4)
+                    .padding(.vertical, 5)
                 }
                 .tint(.primary)
             }

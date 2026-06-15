@@ -4,6 +4,7 @@ import com.muralex.data.repository.functions.getHomeSections
 import com.muralex.exploramus.viewmodel.core.StateManager
 import com.muralex.exploramus.viewmodel.core.CallOnInitValues
 import com.muralex.exploramus.viewmodel.core.ScreenInitSettings
+import kotlinx.coroutines.delay
 
 
 fun StateManager.initHomeScreen() = ScreenInitSettings(

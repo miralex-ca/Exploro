@@ -1,124 +1,83 @@
+
 import SwiftUI
 import Shared
 
 
-
-struct TopTabBar: View {
+struct FloatingTabBar: View {
     @EnvironmentObject var appObj: AppObservableObject
-    let screenNavActions: ScreenNavActions
-
-    @Environment(\.appLayout) var appLayout
-
+    var onSearch: () -> Void
+    @Environment(\.appTheme) var theme
+    
     @Namespace private var selectionAnimation
-
+    
     var body: some View {
-
         let currentURI = appObj.localNavigationState.currentLevel1ScreenIdentifier.URI
-
+        
+        let _ = print("theme: from bar: isLight \(theme.isLight)")
+        
         HStack(spacing: 12) {
-
-            HStack(spacing: 8) {
-                TopTabButton(
-                    label: "Sidebar",
-                    icon: "sidebar.left",
-                    selectedIcon: "sidebar.left",
-                    selected: false,
-                    isIcon: true,
-                    namespace: selectionAnimation
-                ) {
-                    appLayout.updateUseDrawer(true)
-                    AppSession.shared.showDrawerOnLandscape = true
-                }
-
-                TopTabButton(
-                    label: Strings.homeTitle,
+            HStack(spacing: 16) {
+                FloatingTabButton(
+                    label: Strings.navBrowse,
                     icon: "safari",
                     selectedIcon: "safari.fill",
                     selected: currentURI == Level1Navigation.home.screenIdentifier.URI,
                     namespace: selectionAnimation
                 ) {
-                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                        appObj.dkmpNav.navigateByLevel1Menu(
-                            appObj,
-                            level1Navigation: .home
-                        )
-                    }
+                    appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .home)
                 }
-
-                TopTabButton(
+                FloatingTabButton(
                     label: Strings.navFavorites,
                     icon: "star",
                     selectedIcon: "star.fill",
                     selected: currentURI == Level1Navigation.favorites.screenIdentifier.URI,
                     namespace: selectionAnimation
                 ) {
-                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                        appObj.dkmpNav.navigateByLevel1Menu(
-                            appObj,
-                            level1Navigation: .favorites
-                        )
-                    }
-                }
-
-                TopTabButton(
-                    label: Strings.searchTitle,
-                    icon: "magnifyingglass",
-                    selectedIcon: "magnifyingglass",
-                    selected: false,
-                    isIcon: true,
-                    namespace: selectionAnimation
-                ) {
-                    screenNavActions.toSearch()
+                    appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .favorites)
                 }
             }
-            .padding(.horizontal, 4)
-            .padding(.vertical, 4)
-            .topbarGlassCapsule()
+            .padding(.horizontal, 8)
+            .padding(.vertical, 6)
+            .bottomGlassCapsule()
+            
+            Button(action: onSearch) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 28))
+                    .foregroundColor(theme.navText)
+                    .padding(18)
+                    .bottomGlassCapsule()
+            }
+            .buttonStyle(.plain)
         }
-        .padding(.top, 6)
         .background(Color.black.opacity(0.001))
+        
     }
 }
 
-struct TopTabButton: View {
 
+struct FloatingTabButton: View {
     let label: String
     let icon: String
     let selectedIcon: String
     let selected: Bool
-    var isIcon: Bool = false
-
+    
     let namespace: Namespace.ID
     let onClick: () -> Void
-
+    
     @Environment(\.appTheme) var theme
 
     var body: some View {
-
         Button(action: onClick) {
-
-            VStack(spacing: 0) {
-                if isIcon {
-                    Image(
-                        systemName: selected
-                        ? selectedIcon
-                        : icon
-                    )
+            VStack(spacing: 3) {
+                Image(systemName: selected ? selectedIcon : icon)
                     .font(.system(size: 20))
-
-                } else {
-                    Text(label)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                }
+                
+                Text(label)
+                    .font(.system(size: 12, weight: .medium))
             }
-            .foregroundStyle(
-                selected
-                ? theme.navSelected
-                : theme.navText
-            )
-            .padding(.horizontal, isIcon ? 12 : 16)
-            .padding(.vertical, 10)
+            .foregroundStyle(selected ? theme.navSelected: theme.navText)
+            .padding(.horizontal, 24)
+            .padding(.vertical, 8)
             .background {
                 if selected {
                     Capsule()
@@ -141,16 +100,13 @@ struct TopTabButton: View {
                         )
                 }
             }
-            
         }
         .buttonStyle(.plain)
     }
 }
 
 
-
-
-struct TopbarGlassCapsuleModifier: ViewModifier {
+struct BottomGlassCapsuleModifier: ViewModifier {
     
     @Environment(\.appTheme) var theme
     
@@ -158,7 +114,11 @@ struct TopbarGlassCapsuleModifier: ViewModifier {
         if #available(iOS 26, *) {
             content
                 .glassEffect(.regular, in: Capsule())
-            
+                .background (
+                    Capsule()
+                        .fill(theme.bottomnNavTint.opacity(0.25))
+                )
+
         } else {
             content
                 .background(
@@ -179,10 +139,8 @@ struct TopbarGlassCapsuleModifier: ViewModifier {
 }
 
 extension View {
-    func topbarGlassCapsule() -> some View {
-        modifier(TopbarGlassCapsuleModifier())
+    func bottomGlassCapsule() -> some View {
+        modifier(BottomGlassCapsuleModifier())
     }
 }
-
-
 

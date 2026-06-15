@@ -14,6 +14,7 @@ struct Strings {
     static var navBrowse: String { stringRes("nav_browse") }
     static var navFavorites: String { stringRes("nav_favorites") }
 
+    static var appLoadingMessage: String { stringRes("app_loading_message") }
     static var appStartupErrorTitle: String { stringRes("app_startup_error_title") }
     static var appStartupErrorSyncDesc: String { stringRes("app_startup_error_sync_desc") }
     static var appStartupErrorDesc: String { stringRes("app_startup_error_desc") }
@@ -25,6 +26,7 @@ struct Strings {
     static var detailsCoatOfArms: String { stringRes("details_coat_of_arms") }
     static var commonClose: String { stringRes("common_close") }
     static var commonConfirm: String { stringRes("common_confirm") }
+    static var commonContinue: String { stringRes("common_continue") }
     static var commonCancel: String { stringRes("common_cancel") }
 
     static var detailLabelLocation: String { stringRes("detail_label_location") }
@@ -48,7 +50,7 @@ struct Strings {
     static var commonSettings: String { stringRes("common_settings") }
     static var commonMoreOptions: String { stringRes("common_more_options") }
     static var openKeyboard: String { stringRes("open_keyboard") }
-    static var appLoadingMessage: String { stringRes("app_loading_message") }
+
 
     static var emptyTitleNoResults: String { stringRes("empty_title_no_results") }
     static var emptyMsgNoResults: String { stringRes("empty_msg_no_results") }

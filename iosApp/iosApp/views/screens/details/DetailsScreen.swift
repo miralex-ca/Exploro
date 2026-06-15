@@ -30,26 +30,28 @@ struct DetailsScreenContent: View {
     
     var body: some View {
         ScrollView {
-            
-            if appLayout.isLandscape {
-                LargeDetailsContent(
-                    details: details,
-                    onEvent: onEvent
-                )
-            } else {
-                ZStack (alignment: .top) {
-                    Color.clear
-                    VStack(spacing: 0) {
-                        DetailsHeaderCard(
-                            details: details,
-                            onFavoriteClick: { onEvent(.toggleFavorite(details.id)) }
-                        )
-                        DetailsInfoCard(details: details)
+            Group() {
+                if appLayout.isLandscape {
+                    LargeDetailsContent(
+                        details: details,
+                        onEvent: onEvent
+                    )
+                } else {
+                    ZStack (alignment: .top) {
+                        Color.clear
+                        VStack(spacing: 0) {
+                            DetailsHeaderCard(
+                                details: details,
+                                onFavoriteClick: { onEvent(.toggleFavorite(details.id)) }
+                            )
+                            DetailsInfoCard(details: details)
+                        }
+                        .padding(.horizontal, 16)
+                        .frame(maxWidth: 600) 
                     }
-                    .padding(16)
-                    .frame(maxWidth: 600)  // ← add this
                 }
             }
+            .padding(.top, Dimens.Details.contentVPadding.of(appLayout))
             
         }
     }

@@ -24,14 +24,12 @@ struct SectionScreenContent: View {
     
     @Environment(\.appLayout) var appLayout
     
-    
-    
     var body: some View {
-        let spacing = Dimens.Favorites.cardSpacing.of(appLayout)
+        let spacing = Dimens.Section.cardSpacing.of(appLayout)
         
         let columns = [GridItem(
             .adaptive(
-                minimum: Dimens.Favorites.gridItemMinWidth.of(appLayout)),
+                minimum: Dimens.Section.gridItemMinWidth.of(appLayout)),
                 spacing: spacing
             )
         ]
@@ -39,17 +37,31 @@ struct SectionScreenContent: View {
         if screenState.countries.isEmpty {
             EmptyView()
         } else {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: spacing) {
-                    ForEach(screenState.countries, id: \.id) { item in
-                        CountryGridCard(
-                            item: item,
-                            onClick: { onListItemClick(item) }
-                        )
+            ScrollView(showsIndicators: false) {
+                
+                ZStack {
+                    ScrollView(showsIndicators: false) {
+                        LazyVGrid(columns: columns, spacing: spacing) {
+                            ForEach(screenState.countries, id: \.id) { item in
+                                CountryGridCard(
+                                    item: item,
+                                    onClick: { onListItemClick(item) }
+                                )
+                                
+                            }
+                        }
+                        .padding(.horizontal, Dimens.Section.gridHPadding.of(appLayout))
+                        .padding(.vertical, Dimens.Section.gridVPadding.of(appLayout))
+                        .frame(maxWidth: 1000)
                     }
+                
                 }
-                .padding(12)
+                .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity)
+            
+            
+            
         }
     }
 }
@@ -67,13 +79,13 @@ struct CountryGridCard: View {
                 GeometryReader { geo in
                     RemoteImage(
                         url: item.flagPngUrl,
-                        size: CGSize(width: geo.size.width, height: geo.size.width * 0.6)
+                        size: CGSize(width: geo.size.width, height: geo.size.width * 0.55)
                     )
                     .scaledToFill()
-                    .frame(width: geo.size.width, height: geo.size.width * 0.6)
+                    .frame(width: geo.size.width, height: geo.size.width * 0.55)
                     .clipped()
                 }
-                .aspectRatio(5/3, contentMode: .fit)  // ← fixed ratio, adapts to grid width
+                .aspectRatio(100/55, contentMode: .fit)  // ← fixed ratio, adapts to grid width
                 .clipShape(RoundedRectangle(cornerRadius: 6))
                 .overlay(
                     RoundedRectangle(cornerRadius: 6)

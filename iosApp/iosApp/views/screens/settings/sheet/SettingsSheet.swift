@@ -122,6 +122,8 @@ struct SettingsCategorySection: View {
                 Text(title.asString())
                     .font(.headline)
                     .padding(.horizontal, 8)
+            } else {
+                Spacer().frame(height: 6)
             }
             
             VStack(spacing: 2) {
@@ -325,7 +327,7 @@ struct ActionSettingView: View {
                 Button() {
                     onAction(.action(key: setting.key))
                 } label: {
-                    Text(Strings.commonConfirm)
+                    Text(setting.dialogActionText?.asString() ?? Strings.commonContinue)
                 }
                 .buttonStyle(.bordered)
             }

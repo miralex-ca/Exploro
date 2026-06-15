@@ -21,6 +21,7 @@ struct FavoritesScreen: View {
                         screenState: screenState,
                         onEvent: eventHandler.onEvent
                     )
+                    
                 }
             }
             

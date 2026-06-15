@@ -22,6 +22,7 @@
 "settings_sync_summary" = "Keep app content up to date";
 "settings_sync_dialog_title" = "Check for updates?";
 "settings_sync_dialog_message" = "We’ll refresh the app content with the latest available data.";
+"settings_sync_dialog_action_text" = "Update";
 
 "settings_sync_in_progress" = "Updating content…";
 "settings_sync_last" = "Last updated: %@";
@@ -36,6 +37,7 @@
 "settings_deviceinfo_title" = "Device";
 "settings_deviceinfo_summary" = "Current: %@";
 
+"app_loading_message" = "Preparing your data…";
 "app_startup_error_title" = "Something went wrong";
 "app_startup_error_sync_desc" = "We couldn’t load your data. Please check your connection and try again.";
 "app_startup_error_desc" = "We couldn’t load your data. Please try again later.";
@@ -51,6 +53,7 @@
 "details_coat_of_arms" = "Coat of Arms";
 "common_close" = "Close";
 "common_confirm" = "Confirm";
+"common_continue" = "Continue";
 "common_cancel" = "Cancel";
 "common_view" = "View";
 "common_remove" = "Remove";
@@ -59,7 +62,6 @@
 "common_settings" = "Settings";
 "common_more_options" = "More options";
 "open_keyboard" = "Open keyboard";
-"app_loading_message" = "Preparing your data…";
 
 "detail_label_location" = "Location";
 "detail_label_area" = "Area";

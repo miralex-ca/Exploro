@@ -80,6 +80,7 @@ class DataSettingsCategory(private val localSettings: MySettings) {
             summary = SharedRes.Strings.settings_sync_summary,
             dialogTitle = SharedRes.Strings.settings_sync_dialog_title,
             dialogMessage = SharedRes.Strings.settings_sync_dialog_message,
+            dialogActionText = SharedRes.Strings.settings_sync_dialog_action_text,
             formattedSummary = formattedSummary,
             onClick = { SettingAction.SyncData }
         )

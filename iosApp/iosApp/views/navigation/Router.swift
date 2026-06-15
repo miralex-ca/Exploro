@@ -6,9 +6,7 @@ import Shared
 struct Router: View {
     @EnvironmentObject var appObj: AppObservableObject
     @Environment(\.appTheme) var theme
-    
     @Environment(\.colorScheme) var systemScheme
-    
     @Environment(\.appLayout) var layout
     
     
@@ -17,8 +15,11 @@ struct Router: View {
         let level1ScreenIdentifiersWithState = appObj.dkmpNav.stateManager.verticalNavigationLevels
             .map { ($0.value as! Dictionary<Int, ScreenIdentifier>)[1]! }
         let isLevel1 = appObj.localNavigationState.topScreenIdentifier.screen.navigationLevel == 1
+        let showBottomBar = isLevel1 && layout.useBottomBar
         
         let screenNavActions = makeNavActions(navigate, navigateByLevel1)
+        
+        
         
         ZStack {
             Color.clear.ignoresSafeArea()
@@ -36,6 +37,15 @@ struct Router: View {
             
             NavScaffold(screenNavActions: screenNavActions)
             
+            if showBottomBar {
+                ZStack {
+                    bottomGradient
+                }
+                .safeAreaInset(edge: .bottom) {
+                    FloatingTabBar(onSearch: { screenNavActions.toSearch() })
+                        .padding(.bottom, 12)
+                }
+            }
         }
         .background(theme.background)
         .sheet(isPresented: $appObj.showSettings) {
@@ -48,12 +58,31 @@ struct Router: View {
         
     }
     
+    private var bottomGradient: some View {
+        VStack {
+            Spacer()
+            LinearGradient(
+                colors: [.clear, theme.bottomGradient],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .frame(height: 80 + safeAreaBottom)
+        }
+        .ignoresSafeArea(edges: .all)
+    }
+    
     func resolvedScheme(_ mode: ModelsThemeMode, system: ColorScheme) -> ColorScheme {
         switch mode {
         case .dark: return .dark
         case .light: return .light
         case .system: return system
         }
+    }
+    
+    private var safeAreaBottom: CGFloat {
+        UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first?.windows.first?.safeAreaInsets.bottom ?? 0
     }
     
     func navigate(_ screen: Screen, _ params: ScreenParams?) {
@@ -93,119 +122,10 @@ extension Navigation {
 }
 
 
-struct FloatingTabBar: View {
-    @EnvironmentObject var appObj: AppObservableObject
-    var onSearch: () -> Void
-    
-    @Environment(\.appTheme) var theme
-
-    var body: some View {
-        let currentURI = appObj.localNavigationState.currentLevel1ScreenIdentifier.URI
-
-        HStack(spacing: 12) {
-            HStack(spacing: 16) {
-                FloatingTabButton(
-                    label: "Browse",
-                    icon: "safari",
-                    selectedIcon: "safari.fill",
-                    selected: currentURI == Level1Navigation.home.screenIdentifier.URI
-                ) {
-                    appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .home)
-                }
-                FloatingTabButton(
-                    label: "Favorites",
-                    icon: "star",
-                    selectedIcon: "star.fill",
-                    selected: currentURI == Level1Navigation.favorites.screenIdentifier.URI
-                ) {
-                    appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .favorites)
-                }
-            }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 6)
-            .glassCapsule()
- 
-            Button(action: onSearch) {
-                Image(systemName: "magnifyingglass")
-                    .font(.system(size: 28))
-                    .foregroundColor(theme.navText)
-                    .padding(18)
-                    .glassCapsule()
-            }
-            .buttonStyle(.plain)
-        }
-        .padding(.bottom, 16)
-        .background(Color.black.opacity(0.001))
-    }
-}
 
 
-struct FloatingTabButton: View {
-    let label: String
-    let icon: String
-    let selectedIcon: String
-    let selected: Bool
-    let onClick: () -> Void
-    
-    @Environment(\.appTheme) var theme
-
-    var body: some View {
-        Button(action: onClick) {
-            VStack(spacing: 3) {
-                Image(systemName: selected ? selectedIcon : icon)
-                    .font(.system(size: 20))
-                Text(label)
-                    .font(.caption2)
-            }
-            .foregroundStyle(selected ? theme.navSelected: theme.navText)
-            .padding(.horizontal, 24)
-            .padding(.vertical, 8)
-            .background {
-                if selected {
-                    Capsule()
-                        .fill(theme.navSelectedContainer.opacity(0.3))
-                }
-            }
-        }
-        .buttonStyle(.plain)
-    }
-}
 
 
-struct GlassCapsuleModifier: ViewModifier {
-    
-    @Environment(\.appTheme) var theme
-    
-    func body(content: Content) -> some View {
-        if #available(iOS 26, *) {
-            content
-                .glassEffect(.regular, in: Capsule())
-                 
-            
-        } else {
-            content
-                .background(
-                    .ultraThinMaterial,
-                    in: Capsule()
-                )
-                .overlay {
-                    Capsule()
-                        .strokeBorder(.white.opacity(0.15))
-                }
-                .shadow(
-                    color: .black.opacity(0.12),
-                    radius: 12,
-                    y: 4
-                )
-        }
-    }
-}
-
-extension View {
-    func glassCapsule() -> some View {
-        modifier(GlassCapsuleModifier())
-    }
-}
 
 
 

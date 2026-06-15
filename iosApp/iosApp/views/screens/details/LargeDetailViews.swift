@@ -21,7 +21,7 @@ struct LargeDetailsContent: View {
                 details: details
             )
         }
-        .padding(16)
+        .padding(.horizontal, 16)
         .frame(maxWidth: 800)
     }
 }

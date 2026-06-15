@@ -9,11 +9,14 @@ struct FavoritesList: View {
     let onEvent: (FavoritesUiEvent) -> Void
 
     @EnvironmentObject var appObj: AppObservableObject
+    @Environment(\.appLayout) var appLayout
+    @Environment(\.appTheme) var theme
 
     var body: some View {
         let isSwipeEnabled: Bool = appObj.appEnvironment.favoriteSwipeEnabled
         
         List {
+            
             ForEach(items, id: \.id) { item in
                 FavoriteListRow(
                     item: item,
@@ -22,22 +25,36 @@ struct FavoritesList: View {
                     onRemove: { onEvent(.removeFavorite(item.id)) }
                 )
                 .if(isSwipeEnabled) { view in
-                    view.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    view.swipeActions(edge: .trailing, allowsFullSwipe: appLayout.isLandscape ? false : true) {
                         Button(role: .destructive) {
                             onEvent(.removeFavorite(item.id))
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }
+                        
                     }
                 }
- 
-                .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+                .listRowInsets(EdgeInsets(top: 4, leading: listHorizontalInset, bottom: 4, trailing: listHorizontalInset))
                 .listRowBackground(Color.clear)
-                .listRowSeparator(.hidden)
+                .listRowSeparator(.hidden) 
             }
+            
         }
+        .contentMargins(.top, Dimens.Favorites.topPadding.of(appLayout), for: .scrollContent)
+        .contentMargins(.bottom, 30, for: .scrollContent)
+        .scrollIndicators(.hidden)
+        .frame(maxWidth: .infinity)
         .listStyle(.plain)
+        .scrollClipDisabled()
     }
+    
+    private var listHorizontalInset: CGFloat {
+        let screenWidth = UIScreen.main.bounds.width
+        guard appLayout.isLandscape else { return 16 }
+        let maxWidth: CGFloat  = appLayout.formFactor.widthType == .compact ? 550 : 700
+        return max(16, (screenWidth - maxWidth) / 2)
+    }
+
 }
 
 struct FavoriteListRow: View {
@@ -47,6 +64,7 @@ struct FavoriteListRow: View {
     let onRemove: () -> Void
     
     @Environment(\.appTheme) var theme
+    @Environment(\.appLayout) var appLayout
     
     var body: some View {
         Button(action: onClick) {
@@ -78,7 +96,9 @@ struct FavoriteListRow: View {
                 Spacer()
             }
             .padding(10)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            
+                
+            //.frame(maxWidth: .infinity, alignment: .center)
             .contentShape(Rectangle())
             .if(!isSwipeEnabled) { view in
                 view.overlay(alignment: .bottomTrailing) {
@@ -105,6 +125,7 @@ struct FavoriteListRow: View {
         .buttonStyle(.plain)
         .background(theme.cardSurface)
         .clipShape(RoundedRectangle(cornerRadius: 12))
+       // .frame(maxWidth: 300)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.gray.opacity(0.2), lineWidth: 1)

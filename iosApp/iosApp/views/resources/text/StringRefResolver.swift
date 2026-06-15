@@ -21,6 +21,7 @@ struct StringRefResolver {
         case .settingsSyncSummary: return stringRes("settings_sync_summary")
         case .settingsSyncDialogTitle: return stringRes("settings_sync_dialog_title")
         case .settingsSyncDialogMessage: return stringRes("settings_sync_dialog_message")
+        case .settingsSyncDialogActionText: return stringRes("settings_sync_dialog_action_text")
         case .settingsCategoryInterface: return stringRes("settings_category_interface")
         case .settingsCategoryData: return stringRes("settings_category_data")
         case .settingsAppversionTitle: return stringRes("settings_appversion_title")

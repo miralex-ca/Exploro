@@ -27,6 +27,7 @@ object SharedRes {
         settings_sync_summary,
         settings_sync_dialog_title,
         settings_sync_dialog_message,
+        settings_sync_dialog_action_text,
         settings_category_interface,
         settings_category_data,
         settings_appversion_title,

@@ -4,6 +4,8 @@ import Shared
 struct FavoritesGrid: View {
     let items: [FavoriteListItem]
     let onEvent: (FavoritesUiEvent) -> Void
+    
+    @Environment(\.appLayout) var appLayout
 
     let columns = [GridItem(.adaptive(minimum: 280), spacing: 8)]
 
@@ -19,8 +21,9 @@ struct FavoritesGrid: View {
                 }
             }
             .padding(.horizontal, 36)
-            .padding(.vertical, 12)
+            .padding(.vertical, Dimens.Favorites.topPadding.of(appLayout))
         }
+        .scrollClipDisabled()
     }
 }
 

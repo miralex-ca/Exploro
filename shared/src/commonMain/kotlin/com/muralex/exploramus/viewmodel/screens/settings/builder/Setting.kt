@@ -38,6 +38,7 @@ sealed class Setting {
         val formattedSummary: FormattedText? = null,
         val dialogTitle: StringRef? = null,
         val dialogMessage: StringRef? = null,
+        val dialogActionText: StringRef? = null,
         val onClick: () -> SettingAction
     ) : Setting()
 

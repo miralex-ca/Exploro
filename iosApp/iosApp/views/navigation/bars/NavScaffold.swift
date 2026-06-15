@@ -19,6 +19,7 @@ struct NavScaffold: View {
  
     var body: some View {
         let isLevel1 = appObj.localNavigationState.topScreenIdentifier.screen.navigationLevel == 1
+        
         ZStack(alignment: .top) {
             Color.clear.ignoresSafeArea()
                 .onChange(of: layout.isLandscape) { _, isLandscape in
@@ -32,16 +33,8 @@ struct NavScaffold: View {
                     
                 }
             
-            if layout.useBottomBar && isLevel1 {
-                VStack {
-                    Spacer()
-                    FloatingTabBar(
-                        onSearch: { screenNavActions.toSearch() }
-                    )
-                }
-            }
             
-            if isLevel1 {
+            if isLevel1 { 
                 ZStack(alignment: .topLeading) {
                     Color.clear
                     if layout.useDrawer {
@@ -83,6 +76,7 @@ struct NavScaffold: View {
                     value: layout.useTopbar
                 )
             }
+            
         }
     }
 }

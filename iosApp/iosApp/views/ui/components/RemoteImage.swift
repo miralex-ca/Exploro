@@ -38,15 +38,16 @@ struct RemoteImage: View {
                     .resizable()
                     .scaledToFit()
             }
-            .onFailureImage(
-                UIImage(named: placeholderImage)
-            )
+            .onFailureView {
+                Image(placeholderImage)
+                    .resizable()
+                    .scaledToFit()
+            }
             .resizable()
             .fade(duration: 0.2)
             .setProcessor(
                 DownsamplingImageProcessor(size: size)
             )
-            .backgroundDecode()
             .scaleFactor(UIScreen.main.scale)
             .cacheOriginalImage()
     }

@@ -1,8 +1,9 @@
 
 import SwiftUI
 
-
+ 
 struct AppTheme {
+    let isLight: Bool
     let background: Color
     let onBackground: Color
 
@@ -34,13 +35,18 @@ struct AppTheme {
     let destructive: Color
     let caret: Color
     
+    let navigationBarText: Color
+    let navigationBarTextTint: Color
     let navBackground: Color
+    let bottomnNavGradient: Color
+    let bottomnNavTint: Color
 }
 
  
 
 extension AppTheme {
     static let light = AppTheme(
+        isLight: true,
         background: Color(hex: "#D8DFEC"),
         onBackground: Color(hex: "#001B3E"),
 
@@ -71,10 +77,16 @@ extension AppTheme {
         favorite: Color(hex: "#FFEB3B"),
         destructive: Color(hex: "#F85146"),
         caret: Color(hex: "#3C5BA9"),
-        navBackground: Color(hex: "#E6EAF2")
+        
+        navigationBarText: Color(hex: "#000"),
+        navigationBarTextTint: Color(hex: "#235FA6"),
+        navBackground: Color(hex: "#E6EAF2"),
+        bottomnNavGradient: Color.gray.opacity(0.4),
+        bottomnNavTint: Color(hex: "#E6EAF2")
     )
 
     static let dark = AppTheme(
+        isLight: false,
         background: Color(hex: "#202934"),
         onBackground: Color(hex: "#E6EAF2"),
 
@@ -105,15 +117,22 @@ extension AppTheme {
         favorite: Color(hex: "#FFEB3B"),
         destructive: Color(hex: "#F85146"),
         caret: Color(hex: "#7FA7FF"),
-        navBackground: Color(hex: "#060E18")
+        
+        navigationBarText: Color(hex: "#FFF"),
+        navigationBarTextTint: Color(hex: "#9CC2FC"),
+        navBackground: Color(hex: "#060E18"),
+        bottomnNavGradient: Color.black.opacity(0.4),
+        bottomnNavTint: Color(hex: "#364457")
     )
 }
 
 extension AppTheme {
     var cardSurface: Color { surfaceContainerHighest }
-    var navSelected: Color { surfaceTint }
-    var navText: Color { onSurfaceVariant }
+    var navSelected: Color { navigationBarTextTint }
+    var navText: Color { navigationBarText }
     var navSelectedContainer: Color { primaryContainer }
+    var bottomGradient: Color { bottomnNavGradient }
+
 }
 
 extension AppTheme {
