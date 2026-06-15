@@ -1,11 +1,13 @@
 package com.muralex.exploramus.viewmodel.screens.settings.builder
 
 import com.muralex.data.repository.Repository
+import kotlin.jvm.JvmName
 
 class SettingsBuilder(repository: Repository) {
     val localSettings = repository.localSettings
     val platformInfo = repository.platformInfo
 
+    @JvmName("buildCategoriesAll")
     fun buildCategories(): List<SettingsCategory> = listOf(
         InterfaceSettingsCategory(localSettings).build(),
         DataSettingsCategory(localSettings).build(),
@@ -21,6 +23,7 @@ class SettingsBuilder(repository: Repository) {
     }
 }
 
+@JvmName("filterSettingsExt")
 fun List<SettingsCategory>.filterSettings(blacklistedIds: List<String>): List<SettingsCategory> {
     return mapNotNull { category ->
         if (category.id in blacklistedIds) return@mapNotNull null
