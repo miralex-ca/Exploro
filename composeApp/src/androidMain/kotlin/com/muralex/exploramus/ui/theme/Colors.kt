@@ -4,7 +4,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-val AccentBlue = Color(0xFF90AEEE)
+val AccentBlue = Color(0xFF405FB0)
 val OnAccentBlue = Color.White
 
 //val BluePrimary = Color(0xFFEAF2FA)
@@ -15,7 +15,7 @@ val OnBlueBackground = Color(0xFF001B3E)
 
 val BlueSurface = Color(0xFFECF3FA) // bottom bar
 val onBlueSurface = Color(0xFF001B3E) //ripple effet on surface,
-val BlueSurfaceTint = Color(0xFF9CC2FC)
+val BlueSurfaceTint = Color(0xFF385BA9)
 
 val BlueSurfaceContainer = Color(0xFFECF3FA)
 val BlueSurfaceContainerHigh = Color(0xFFECF1F6) // dialog
@@ -49,7 +49,7 @@ val OnAccentBlueDark = Color.White
 val TopBarContainerDark = Color(0xFF2A3548) // top bar
 val OnTopBarContainerDark = Color(0xFFEAF0FF) // top bar text
 
-val DarkBackground = Color(0xFF060E18)
+val DarkBackground = Color(0xFF202934)
 val OnDarkBackground = Color(0xFFE6EAF2)
 
 val DarkSurface = Color(0xFF2F3C52)
