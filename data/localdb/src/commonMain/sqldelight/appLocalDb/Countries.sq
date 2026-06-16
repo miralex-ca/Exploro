@@ -90,3 +90,30 @@ ORDER BY name;
 
 countCountries:
 SELECT COUNT(*) FROM Countries;
+
+
+getAllCountriesWithDetails:
+SELECT
+    c.id,
+    c.name,
+    c.official_name,
+    c.capital,
+    c.continent,
+    c.subregion,
+    c.flag_png_url,
+    c.flag_alt,
+
+    d.population,
+    d.area,
+    d.coat_of_arms_png_url,
+    d.currency_code,
+    d.currency_name,
+    d.currency_symbol,
+    d.languages,
+    d.maps_google_url,
+    d.maps_osm_url,
+    d.timezones
+
+FROM Countries c
+LEFT JOIN CountryDetails d ON d.country_id = c.id
+ORDER BY c.name ASC;
