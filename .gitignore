@@ -17,3 +17,5 @@ captures
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 node_modules/
+/composeApp/src/main/assets/countries_fallback.json
+/iosApp/iosApp/Assets/countries_fallback.json

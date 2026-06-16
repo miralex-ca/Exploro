@@ -12,4 +12,5 @@ sealed interface DataError: AppError {
     }
 
     data object Database: DataError
+    data object ReadAsset: DataError
 }

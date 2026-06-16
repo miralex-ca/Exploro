@@ -35,6 +35,7 @@ kotlin {
                 implementation(project(":data:repository"))
                 implementation(project(":data:localdb"))
                 implementation(project(":data:network"))
+                implementation(project(":data:assets"))
                 implementation(libs.koin.core)
             }
         }

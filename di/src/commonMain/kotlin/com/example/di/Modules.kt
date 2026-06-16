@@ -13,6 +13,7 @@ import org.koin.dsl.module
 
 expect val localdbModule: Module
 expect val platformInfoModule: Module
+expect val assetsModule: Module
 
 val networkModule = module {
     single { ApiClient() }
@@ -34,6 +35,7 @@ val dataModule = module {
         Repository(
             localDb = get(),
             webservices = get(),
+            assetsDataSource = get(),
             platformInfo = get(),
             dispatchers = DispatchersProvider.Base()
         )
@@ -43,6 +45,7 @@ val dataModule = module {
 fun appModules() = listOf(
     localdbModule,
     networkModule,
+    assetsModule,
     platformInfoModule,
     dataModule,
 )
