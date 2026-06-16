@@ -19,23 +19,24 @@ class JsonAssetsDataSource(
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    private val countries: List<CountryAssetDto> by lazy {
+    private fun loadCountries(): List<CountryAssetDto> =
         runCatching {
             val raw = fileReader.readFile(FALLBACK_FILE)
-            json.decodeFromString<List<CountryAssetDto>>(raw)
+            val parsed = json.decodeFromString<List<CountryAssetDto>>(raw)
+            println("Asset file has been parsed: ${parsed.size} items")
+            parsed
         }.getOrElse { emptyList() }
-    }
 
     override suspend fun fetchAllCountries(): DataResult<List<Country>> =
         runCatching {
-            DataResult.Success(countries.map { it.toCountry() })
+            DataResult.Success(loadCountries().map { it.toCountry() })
         }.getOrElse {
             DataResult.Error(DataError.ReadAsset)
         }
 
     override suspend fun fetchAllCountryDetails(): DataResult<List<CountryDetails>> =
         runCatching {
-            DataResult.Success(countries.map { it.toCountryDetails() })
+            DataResult.Success(loadCountries().map { it.toCountryDetails() })
         }.getOrElse {
             DataResult.Error(DataError.ReadAsset)
         }

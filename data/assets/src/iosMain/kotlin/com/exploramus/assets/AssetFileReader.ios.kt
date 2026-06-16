@@ -7,11 +7,10 @@ import platform.Foundation.NSString
 import platform.Foundation.NSUTF8StringEncoding
 import platform.Foundation.stringWithContentsOfFile
 
-
 fun createIOSAssetFileReader(): AssetFileReader = IOSAssetFileReader()
 
+@OptIn(ExperimentalForeignApi::class)
 class IOSAssetFileReader : AssetFileReader {
-    @OptIn(ExperimentalForeignApi::class)
     override fun readFile(fileName: String): String {
         val name = fileName.substringBeforeLast(".")
         val ext = fileName.substringAfterLast(".")

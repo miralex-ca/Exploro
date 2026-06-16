@@ -16,8 +16,8 @@ suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): Da
         }
 
         coroutineScope {
-            val countriesDeferred = async { webservices.fetchAllCountries() }
-            val detailsDeferred = async { webservices.fetchAllCountryDetails() }
+            val countriesDeferred = async { assetsDataSource.fetchAllCountries() }
+            val detailsDeferred = async { assetsDataSource.fetchAllCountryDetails() }
 
             val countriesResult = countriesDeferred.await()
             val detailsResult = detailsDeferred.await()
