@@ -50,5 +50,6 @@ internal fun CountryAssetDto.toCountryDetails() = CountryDetails(
     languages = languages,
     mapsGoogleUrl = mapsGoogleUrl,
     mapsOsmUrl = mapsOsmUrl,
-    timezones = timezones
+    timezones = timezones,
+    wikipediaUrl = wikipediaUrl
 )

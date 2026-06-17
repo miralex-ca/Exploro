@@ -42,7 +42,8 @@ fun AppLocalDb.setCountriesDetailsList(list: List<CountryDetails>) {
                 mapsGoogleUrl = it.mapsGoogleUrl,
                 mapsOsmUrl = it.mapsOsmUrl,
 
-                timezones = it.timezones.joinToString(",")
+                timezones = it.timezones.joinToString(","),
+                wikipediaUrl = it.wikipediaUrl
             )
         }
     }
@@ -96,6 +97,10 @@ fun AppLocalDb.getCountriesCount(): Long {
     return countriesQueries.countCountries().executeAsOne()
 }
 
+fun AppLocalDb.getAllCountriesWithDetails() = countriesQueries
+    .getAllCountriesWithDetails()
+    .executeAsList()
+
 
 fun AppLocalDb.exportAllCountriesToJson(): String {
     val rows = countriesQueries
@@ -137,7 +142,7 @@ fun AppLocalDb.exportAllCountriesToJson(): String {
         sb.append("    \"maps_google_url\": ${row.maps_google_url.orEmpty().jsonString()},\n")
         sb.append("    \"maps_osm_url\": ${row.maps_osm_url.orEmpty().jsonString()},\n")
         sb.append("    \"timezones\": $timezones,\n")
-        sb.append("    \"wikipedia_url\": \"\"\n")
+        sb.append("    \"wikipedia_url\": ${row.wikipedia_url.orEmpty().jsonString()}\n")
         sb.append("  }")
 
         if (index < rows.lastIndex) sb.append(",")

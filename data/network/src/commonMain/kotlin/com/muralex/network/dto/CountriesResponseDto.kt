@@ -116,5 +116,6 @@ fun CountryRawDto.toCountryDetails() = CountryDetails(
     languages = languages.map { it.name },
     mapsGoogleUrl = links.googleMaps,
     mapsOsmUrl = links.openStreetMaps,
-    timezones = timezones
+    timezones = timezones,
+    wikipediaUrl = links.wikipedia
 )

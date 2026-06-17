@@ -9,7 +9,7 @@ import com.muralex.models.CountryWithDetails
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
-    const val VERSION = 2L
+    const val VERSION = 3L
 }
 
 internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {
@@ -45,6 +45,12 @@ internal class SQLDelightLocalDataSource(
     override suspend fun searchCountries(query: String): List<Country> {
         return database.searchCountries(query).toCountryList()
     }
+
+    override suspend fun getAllCountriesWithDetails(): List<CountryWithDetails> {
+        return database.getAllCountriesWithDetails().map { it.toCountryWithDetails() }
+    }
+
+    suspend fun exportAllCountriesToJson() = database.exportAllCountriesToJson()
 
     override suspend fun hasCountriesData(): Boolean {
         return database.getCountriesCount() > 0
