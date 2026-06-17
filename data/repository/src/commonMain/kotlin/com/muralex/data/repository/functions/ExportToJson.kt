@@ -36,7 +36,9 @@ private data class CountryExportDto(
     val maps_google_url: String,
     val maps_osm_url: String,
     val timezones: List<String>,
-    val wikipedia_url: String
+    val wikipedia_url: String,
+    val capitalLat: Double,
+    val capitalLng: Double
 )
 
 private fun CountryExportDto(
@@ -61,6 +63,8 @@ private fun CountryExportDto(
     maps_google_url = details.mapsGoogleUrl,
     maps_osm_url = details.mapsOsmUrl,
     timezones = details.timezones,
-    wikipedia_url = details.wikipediaUrl
+    wikipedia_url = details.wikipediaUrl,
+    capitalLat = details.capitalLat,
+    capitalLng = details.capitalLng
 )
 

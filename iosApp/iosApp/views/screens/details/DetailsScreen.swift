@@ -1,5 +1,6 @@
 
 import SwiftUI
+import MapKit
 import Shared
 
 
@@ -15,9 +16,78 @@ struct DetailsScreen: View {
                 details: details,
                 onEvent: eventHandler.onEvent
             )
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        if !details.mapsUrl.isEmpty {
+                            Button {
+                                openInMaps(
+                                    lat: details.capitalLat,
+                                    lng: details.capitalLng,
+                                    name: details.name,
+                                    fallbackUrl: details.mapsUrl
+                                )
+                            } label: {
+                                Label("Find on Map", systemImage: "map")
+                            }
+                        }
+                        
+                        if !details.wikiUrl.isEmpty {
+                            Button {
+                                openUrl(details.wikiUrl)
+                            } label: {
+                                Label("Wikipedia", systemImage: "book")
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                }
+            }
         } else {
             EmptyView()
         }
+    }
+}
+
+private func openUrl(_ urlString: String) {
+     guard let url = URL(string: urlString) else { return }
+     UIApplication.shared.open(url)
+ }
+
+func openInMapss(lat: Double, lng: Double, name: String, fallbackUrl: String) {
+    if lat != 0.0 || lng != 0.0 {
+        let encodedName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? name
+        let urlString = "maps://?q=\(encodedName)&ll=\(lat),\(lng)&z=5"
+        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+            return
+        }
+    }
+    if !fallbackUrl.isEmpty, let url = URL(string: fallbackUrl) {
+        UIApplication.shared.open(url)
+    }
+}
+
+func openInMaps(lat: Double, lng: Double, name: String, fallbackUrl: String) {
+    if lat != 0.0 || lng != 0.0 {
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        let placemark = MKPlacemark(coordinate: coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = name
+        
+        let span = MKCoordinateSpan(latitudeDelta: 8.0, longitudeDelta: 5.0)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        
+        mapItem.openInMaps(launchOptions: [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: region.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: span)
+        ])
+        return
+    }
+    
+    if !fallbackUrl.isEmpty, let url = URL(string: fallbackUrl) {
+        UIApplication.shared.open(url)
     }
 }
 

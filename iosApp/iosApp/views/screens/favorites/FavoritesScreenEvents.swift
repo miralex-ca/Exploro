@@ -24,6 +24,7 @@ struct FavoritesEventHandler {
         case .selectCountry(let item):
             events.selectFavoriteCountry(itemId: item.id)
         case .updateFavoriteDetails(let itemId):
+            
             events.updateDetailsInFavorites(code: itemId)
         }
     }

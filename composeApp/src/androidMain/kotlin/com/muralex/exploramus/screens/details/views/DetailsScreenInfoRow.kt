@@ -1,9 +1,7 @@
 package com.muralex.exploramus.screens.details.views
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -13,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import com.muralex.exploramus.resources.Strings
 import com.muralex.exploramus.ui.adaptive.layout
@@ -25,7 +22,6 @@ data class DetailsRowModel(
     val icon: ImageVector,
     val label: String,
     val value: String,
-    val url: String? = null
 )
 
 @Composable
@@ -34,7 +30,6 @@ fun detailRows(details: CountryDetailsState): List<DetailsRowModel> = listOf(
         icon = Icons.Outlined.Map,
         label = Strings.detailLabelLocation,
         value = details.subregion,
-        url = details.mapsUrl
     ),
     DetailsRowModel(
         icon = Icons.Outlined.Straighten,
@@ -68,22 +63,16 @@ fun DetailsScreenInfoRow(
     modifier: Modifier = Modifier,
     icon: ImageVector,
     label: String,
-    value: String,
-    url: String? = null,
+    value: String
 ) {
 
     if (value.isBlank()) return
 
-    val uriHandler = LocalUriHandler.current
     val layout = MaterialTheme.layout.details
 
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .then(
-                if (url != null) Modifier.clickable { uriHandler.openUri(url) }
-                else Modifier
-            )
             .padding(vertical = layout.infoRowVerticalPadding.value())
             .padding(end = 10.dp),
         verticalAlignment = Alignment.Top
@@ -115,16 +104,6 @@ fun DetailsScreenInfoRow(
                     text = value,
                     style = MaterialTheme.typography.bodyLarge,
                 )
-                if (url != null) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Outlined.OpenInNew,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .padding(start = 6.dp)
-                            .size(18.dp)
-                            .alpha(0.6f)
-                    )
-                }
             }
         }
     }

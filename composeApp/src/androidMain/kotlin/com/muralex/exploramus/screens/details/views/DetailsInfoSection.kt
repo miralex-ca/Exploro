@@ -25,7 +25,6 @@ fun DetailsInfoSection(
                 icon = row.icon,
                 label = row.label,
                 value = row.value,
-                url = row.url,
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -51,7 +50,6 @@ fun LargeDetailsInfoSection(details: CountryDetailsState) {
                         icon = item.icon,
                         label = item.label,
                         value = item.value,
-                        url = item.url,
                         modifier = Modifier.weight(1f)
                     )
                 }

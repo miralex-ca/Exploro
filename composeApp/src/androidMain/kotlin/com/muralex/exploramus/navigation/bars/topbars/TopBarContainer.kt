@@ -29,6 +29,7 @@ fun Navigation.TopBarContainer(
                 onSearchClick = screenNavActions::toSearch,
             )
         }
+        screenIdentifier.screen == Screen.CountryDetail -> {}
         else -> {
             TopBar(
                 title = screenTitle,

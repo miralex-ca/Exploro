@@ -22,7 +22,7 @@ class EventHandlers(
     }
 
     val details by lazy {
-        DetailsEventHandler(events)
+        DetailsEventHandler(events, navActions)
     }
 
     val favorites by lazy {

@@ -24,7 +24,9 @@
         "timezones": [
             "UTC+04:30"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Afghanistan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Afghanistan",
+        "capitalLat": 34.52,
+        "capitalLng": 69.18
     },
     {
         "id": "ALB",
@@ -49,7 +51,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Albania"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Albania",
+        "capitalLat": 41.32,
+        "capitalLng": 19.82
     },
     {
         "id": "DZA",
@@ -74,7 +78,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Algeria"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Algeria",
+        "capitalLat": 36.75,
+        "capitalLng": 3.05
     },
     {
         "id": "ASM",
@@ -100,7 +106,9 @@
         "timezones": [
             "UTC-11:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/American_Samoa"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/American_Samoa",
+        "capitalLat": -14.27,
+        "capitalLng": -170.7
     },
     {
         "id": "AND",
@@ -125,7 +133,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Andorra"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Andorra",
+        "capitalLat": 42.5,
+        "capitalLng": 1.52
     },
     {
         "id": "AGO",
@@ -150,7 +160,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Angola"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Angola",
+        "capitalLat": -8.83,
+        "capitalLng": 13.22
     },
     {
         "id": "AIA",
@@ -175,7 +187,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Anguilla"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Anguilla",
+        "capitalLat": 18.22,
+        "capitalLng": -63.05
     },
     {
         "id": "ATA",
@@ -205,7 +219,9 @@
             "UTC+10:00",
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Antarctica"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Antarctica",
+        "capitalLat": 0.0,
+        "capitalLng": 0.0
     },
     {
         "id": "ATG",
@@ -230,7 +246,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Antigua_and_Barbuda"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Antigua_and_Barbuda",
+        "capitalLat": 17.12,
+        "capitalLng": -61.85
     },
     {
         "id": "ARG",
@@ -256,7 +274,9 @@
         "timezones": [
             "UTC-03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Argentina"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Argentina",
+        "capitalLat": -34.58,
+        "capitalLng": -58.67
     },
     {
         "id": "ARM",
@@ -281,7 +301,9 @@
         "timezones": [
             "UTC+04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Armenia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Armenia",
+        "capitalLat": 40.17,
+        "capitalLng": 44.5
     },
     {
         "id": "ABW",
@@ -307,7 +329,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Aruba"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Aruba",
+        "capitalLat": 12.52,
+        "capitalLng": -70.03
     },
     {
         "id": "AUS",
@@ -339,7 +363,9 @@
             "UTC+10:30",
             "UTC+11:30"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Australia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Australia",
+        "capitalLat": -35.27,
+        "capitalLng": 149.13
     },
     {
         "id": "AUT",
@@ -364,7 +390,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Austria"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Austria",
+        "capitalLat": 48.2,
+        "capitalLng": 16.37
     },
     {
         "id": "AZE",
@@ -389,7 +417,9 @@
         "timezones": [
             "UTC+04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Azerbaijan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Azerbaijan",
+        "capitalLat": 40.38,
+        "capitalLng": 49.87
     },
     {
         "id": "BHS",
@@ -414,7 +444,9 @@
         "timezones": [
             "UTC-05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/The_Bahamas"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/The_Bahamas",
+        "capitalLat": 25.08,
+        "capitalLng": -77.35
     },
     {
         "id": "BHR",
@@ -439,7 +471,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Bahrain"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Bahrain",
+        "capitalLat": 26.23,
+        "capitalLng": 50.57
     },
     {
         "id": "BGD",
@@ -464,7 +498,9 @@
         "timezones": [
             "UTC+06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Bangladesh"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Bangladesh",
+        "capitalLat": 23.72,
+        "capitalLng": 90.4
     },
     {
         "id": "BRB",
@@ -489,7 +525,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Barbados"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Barbados",
+        "capitalLat": 13.1,
+        "capitalLng": -59.62
     },
     {
         "id": "BLR",
@@ -515,7 +553,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Belarus"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Belarus",
+        "capitalLat": 53.9,
+        "capitalLng": 27.57
     },
     {
         "id": "BEL",
@@ -542,7 +582,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Belgium"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Belgium",
+        "capitalLat": 50.83,
+        "capitalLng": 4.33
     },
     {
         "id": "BLZ",
@@ -569,7 +611,9 @@
         "timezones": [
             "UTC-06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Belize"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Belize",
+        "capitalLat": 17.25,
+        "capitalLng": -88.77
     },
     {
         "id": "BEN",
@@ -594,7 +638,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Benin"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Benin",
+        "capitalLat": 6.48,
+        "capitalLng": 2.62
     },
     {
         "id": "BMU",
@@ -619,7 +665,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Bermuda"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Bermuda",
+        "capitalLat": 32.28,
+        "capitalLng": -64.78
     },
     {
         "id": "BTN",
@@ -644,7 +692,9 @@
         "timezones": [
             "UTC+06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Bhutan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Bhutan",
+        "capitalLat": 27.47,
+        "capitalLng": 89.63
     },
     {
         "id": "BOL",
@@ -672,7 +722,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Bolivia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Bolivia",
+        "capitalLat": -19.04,
+        "capitalLng": -65.26
     },
     {
         "id": "BIH",
@@ -699,7 +751,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Bosnia_and_Herzegovina"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Bosnia_and_Herzegovina",
+        "capitalLat": 43.87,
+        "capitalLng": 18.42
     },
     {
         "id": "BWA",
@@ -725,7 +779,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Botswana"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Botswana",
+        "capitalLat": -24.63,
+        "capitalLng": 25.9
     },
     {
         "id": "BVT",
@@ -750,7 +806,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Bouvet_Island"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Bouvet_Island",
+        "capitalLat": 0.0,
+        "capitalLng": 0.0
     },
     {
         "id": "BRA",
@@ -778,7 +836,9 @@
             "UTC-03:00",
             "UTC-02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Brazil"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Brazil",
+        "capitalLat": -15.79,
+        "capitalLng": -47.88
     },
     {
         "id": "IOT",
@@ -803,7 +863,9 @@
         "timezones": [
             "UTC+06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/British_Indian_Ocean_Territory"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/British_Indian_Ocean_Territory",
+        "capitalLat": -7.3133,
+        "capitalLng": 72.4111
     },
     {
         "id": "VGB",
@@ -828,7 +890,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/British_Virgin_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/British_Virgin_Islands",
+        "capitalLat": 18.42,
+        "capitalLng": -64.62
     },
     {
         "id": "BRN",
@@ -853,7 +917,9 @@
         "timezones": [
             "UTC+08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Brunei"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Brunei",
+        "capitalLat": 4.88,
+        "capitalLng": 114.93
     },
     {
         "id": "BGR",
@@ -878,7 +944,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Bulgaria"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Bulgaria",
+        "capitalLat": 42.68,
+        "capitalLng": 23.32
     },
     {
         "id": "BFA",
@@ -903,7 +971,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Burkina_Faso"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Burkina_Faso",
+        "capitalLat": 12.37,
+        "capitalLng": -1.52
     },
     {
         "id": "BDI",
@@ -929,7 +999,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Burundi"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Burundi",
+        "capitalLat": -3.43,
+        "capitalLng": 29.93
     },
     {
         "id": "CPV",
@@ -954,7 +1026,9 @@
         "timezones": [
             "UTC-01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cape_Verde"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Cape_Verde",
+        "capitalLat": 14.92,
+        "capitalLng": -23.52
     },
     {
         "id": "KHM",
@@ -979,7 +1053,9 @@
         "timezones": [
             "UTC+07:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cambodia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Cambodia",
+        "capitalLat": 11.55,
+        "capitalLng": 104.92
     },
     {
         "id": "CMR",
@@ -1005,7 +1081,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cameroon"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Cameroon",
+        "capitalLat": 3.85,
+        "capitalLng": 11.5
     },
     {
         "id": "CAN",
@@ -1036,7 +1114,9 @@
             "UTC-04:00",
             "UTC-03:30"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Canada"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Canada",
+        "capitalLat": 45.42,
+        "capitalLng": -75.7
     },
     {
         "id": "BES",
@@ -1063,7 +1143,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Caribbean_Netherlands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Caribbean_Netherlands",
+        "capitalLat": 12.14,
+        "capitalLng": -68.27
     },
     {
         "id": "CYM",
@@ -1088,7 +1170,9 @@
         "timezones": [
             "UTC-05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cayman_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Cayman_Islands",
+        "capitalLat": 19.3,
+        "capitalLng": -81.38
     },
     {
         "id": "CAF",
@@ -1114,7 +1198,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Central_African_Republic"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Central_African_Republic",
+        "capitalLat": 4.37,
+        "capitalLng": 18.58
     },
     {
         "id": "TCD",
@@ -1140,7 +1226,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Chad"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Chad",
+        "capitalLat": 12.1,
+        "capitalLng": 15.03
     },
     {
         "id": "CHL",
@@ -1166,7 +1254,9 @@
             "UTC-06:00",
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Chile"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Chile",
+        "capitalLat": -33.45,
+        "capitalLng": -70.67
     },
     {
         "id": "CHN",
@@ -1191,7 +1281,9 @@
         "timezones": [
             "UTC+08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/China"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/China",
+        "capitalLat": 39.92,
+        "capitalLng": 116.38
     },
     {
         "id": "CXR",
@@ -1216,7 +1308,9 @@
         "timezones": [
             "UTC+07:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Christmas_Island"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Christmas_Island",
+        "capitalLat": -10.42,
+        "capitalLng": 105.68
     },
     {
         "id": "CCK",
@@ -1241,7 +1335,9 @@
         "timezones": [
             "UTC+06:30"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cocos_%28Keeling%29_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Cocos_%28Keeling%29_Islands",
+        "capitalLat": -12.17,
+        "capitalLng": 96.83
     },
     {
         "id": "COL",
@@ -1266,7 +1362,9 @@
         "timezones": [
             "UTC-05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Colombia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Colombia",
+        "capitalLat": 4.71,
+        "capitalLng": -74.07
     },
     {
         "id": "COM",
@@ -1293,7 +1391,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Comoros"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Comoros",
+        "capitalLat": -11.7,
+        "capitalLng": 43.23
     },
     {
         "id": "COG",
@@ -1320,7 +1420,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Republic_of_the_Congo"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Republic_of_the_Congo",
+        "capitalLat": -4.25,
+        "capitalLng": 15.28
     },
     {
         "id": "COK",
@@ -1346,7 +1448,9 @@
         "timezones": [
             "UTC-10:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cook_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Cook_Islands",
+        "capitalLat": -21.2,
+        "capitalLng": -159.77
     },
     {
         "id": "CRI",
@@ -1371,7 +1475,9 @@
         "timezones": [
             "UTC-06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Costa_Rica"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Costa_Rica",
+        "capitalLat": 9.93,
+        "capitalLng": -84.09
     },
     {
         "id": "HRV",
@@ -1396,7 +1502,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Croatia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Croatia",
+        "capitalLat": 45.815,
+        "capitalLng": 15.9819
     },
     {
         "id": "CUB",
@@ -1421,7 +1529,9 @@
         "timezones": [
             "UTC-05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cuba"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Cuba",
+        "capitalLat": 23.12,
+        "capitalLng": -82.35
     },
     {
         "id": "CUW",
@@ -1448,7 +1558,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cura%C3%A7ao"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Cura%C3%A7ao",
+        "capitalLat": 12.1,
+        "capitalLng": -68.92
     },
     {
         "id": "CYP",
@@ -1474,7 +1586,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cyprus"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Cyprus",
+        "capitalLat": 35.17,
+        "capitalLng": 33.37
     },
     {
         "id": "CZE",
@@ -1500,7 +1614,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Czechia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Czechia",
+        "capitalLat": 50.08,
+        "capitalLng": 14.47
     },
     {
         "id": "COD",
@@ -1530,7 +1646,9 @@
             "UTC+01:00",
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo",
+        "capitalLat": -4.32,
+        "capitalLng": 15.3
     },
     {
         "id": "DNK",
@@ -1559,7 +1677,9 @@
             "UTC",
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Denmark"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Denmark",
+        "capitalLat": 55.67,
+        "capitalLng": 12.58
     },
     {
         "id": "DJI",
@@ -1585,7 +1705,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Djibouti"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Djibouti",
+        "capitalLat": 11.58,
+        "capitalLng": 43.15
     },
     {
         "id": "DMA",
@@ -1610,7 +1732,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Dominica"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Dominica",
+        "capitalLat": 15.301,
+        "capitalLng": -61.3881
     },
     {
         "id": "DOM",
@@ -1635,7 +1759,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Dominican_Republic"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Dominican_Republic",
+        "capitalLat": 18.47,
+        "capitalLng": -69.9
     },
     {
         "id": "ECU",
@@ -1661,7 +1787,9 @@
             "UTC-06:00",
             "UTC-05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Ecuador"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Ecuador",
+        "capitalLat": -0.22,
+        "capitalLng": -78.5
     },
     {
         "id": "EGY",
@@ -1686,7 +1814,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Egypt"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Egypt",
+        "capitalLat": 30.05,
+        "capitalLng": 31.25
     },
     {
         "id": "SLV",
@@ -1711,7 +1841,9 @@
         "timezones": [
             "UTC-06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/El_Salvador"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/El_Salvador",
+        "capitalLat": 13.6929,
+        "capitalLng": -89.2182
     },
     {
         "id": "GNQ",
@@ -1738,7 +1870,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Equatorial_Guinea"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Equatorial_Guinea",
+        "capitalLat": 3.75,
+        "capitalLng": 8.78
     },
     {
         "id": "ERI",
@@ -1765,7 +1899,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Eritrea"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Eritrea",
+        "capitalLat": 15.33,
+        "capitalLng": 38.93
     },
     {
         "id": "EST",
@@ -1790,7 +1926,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Estonia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Estonia",
+        "capitalLat": 59.43,
+        "capitalLng": 24.72
     },
     {
         "id": "SWZ",
@@ -1816,7 +1954,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Eswatini"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Eswatini",
+        "capitalLat": -26.31,
+        "capitalLng": 31.13
     },
     {
         "id": "ETH",
@@ -1841,7 +1981,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Ethiopia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Ethiopia",
+        "capitalLat": 9.03,
+        "capitalLng": 38.7
     },
     {
         "id": "FLK",
@@ -1866,7 +2008,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Falkland_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Falkland_Islands",
+        "capitalLat": -51.7,
+        "capitalLng": -57.85
     },
     {
         "id": "FRO",
@@ -1892,7 +2036,9 @@
         "timezones": [
             "UTC+00:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Faroe_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Faroe_Islands",
+        "capitalLat": 62.01,
+        "capitalLng": -6.77
     },
     {
         "id": "FJI",
@@ -1919,7 +2065,9 @@
         "timezones": [
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Fiji"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Fiji",
+        "capitalLat": -18.13,
+        "capitalLng": 178.42
     },
     {
         "id": "FIN",
@@ -1945,7 +2093,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Finland"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Finland",
+        "capitalLat": 60.17,
+        "capitalLng": 24.93
     },
     {
         "id": "FRA",
@@ -1983,7 +2133,9 @@
             "UTC+11:00",
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/France"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/France",
+        "capitalLat": 48.87,
+        "capitalLng": 2.33
     },
     {
         "id": "GUF",
@@ -2008,7 +2160,9 @@
         "timezones": [
             "UTC-03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/French_Guiana"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/French_Guiana",
+        "capitalLat": 4.94,
+        "capitalLng": -52.33
     },
     {
         "id": "PYF",
@@ -2035,7 +2189,9 @@
             "UTC-09:30",
             "UTC-09:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/French_Polynesia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/French_Polynesia",
+        "capitalLat": -17.53,
+        "capitalLng": -149.56
     },
     {
         "id": "ATF",
@@ -2060,7 +2216,9 @@
         "timezones": [
             "UTC+05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/French_Southern_and_Antarctic_Lands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/French_Southern_and_Antarctic_Lands",
+        "capitalLat": -49.35,
+        "capitalLng": 70.2167
     },
     {
         "id": "GAB",
@@ -2085,7 +2243,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Gabon"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Gabon",
+        "capitalLat": 0.38,
+        "capitalLng": 9.45
     },
     {
         "id": "GMB",
@@ -2110,7 +2270,9 @@
         "timezones": [
             "UTC+00:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/The_Gambia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/The_Gambia",
+        "capitalLat": 13.45,
+        "capitalLng": -16.57
     },
     {
         "id": "GEO",
@@ -2135,7 +2297,9 @@
         "timezones": [
             "UTC+04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Georgia_(country)"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Georgia_(country)",
+        "capitalLat": 41.68,
+        "capitalLng": 44.83
     },
     {
         "id": "DEU",
@@ -2160,7 +2324,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Germany"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Germany",
+        "capitalLat": 52.52,
+        "capitalLng": 13.4
     },
     {
         "id": "GHA",
@@ -2185,7 +2351,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Ghana"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Ghana",
+        "capitalLat": 5.55,
+        "capitalLng": -0.22
     },
     {
         "id": "GIB",
@@ -2210,7 +2378,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Gibraltar"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Gibraltar",
+        "capitalLat": 36.13,
+        "capitalLng": -5.35
     },
     {
         "id": "GRC",
@@ -2235,7 +2405,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Greece"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Greece",
+        "capitalLat": 37.98,
+        "capitalLng": 23.73
     },
     {
         "id": "GRL",
@@ -2263,7 +2435,9 @@
             "UTC-01:00",
             "UTC+00:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Greenland"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Greenland",
+        "capitalLat": 64.18,
+        "capitalLng": -51.75
     },
     {
         "id": "GRD",
@@ -2288,7 +2462,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Grenada"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Grenada",
+        "capitalLat": 12.0529,
+        "capitalLng": -61.7523
     },
     {
         "id": "GLP",
@@ -2313,7 +2489,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Guadeloupe"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Guadeloupe",
+        "capitalLat": 16.03,
+        "capitalLng": -61.73
     },
     {
         "id": "GUM",
@@ -2340,7 +2518,9 @@
         "timezones": [
             "UTC+10:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Guam"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Guam",
+        "capitalLat": 13.48,
+        "capitalLng": 144.75
     },
     {
         "id": "GTM",
@@ -2365,7 +2545,9 @@
         "timezones": [
             "UTC-06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Guatemala"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Guatemala",
+        "capitalLat": 14.62,
+        "capitalLng": -90.52
     },
     {
         "id": "GGY",
@@ -2392,7 +2574,9 @@
         "timezones": [
             "UTC+00:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Guernsey"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Guernsey",
+        "capitalLat": 49.45,
+        "capitalLng": -2.54
     },
     {
         "id": "GIN",
@@ -2417,7 +2601,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Guinea"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Guinea",
+        "capitalLat": 9.6412,
+        "capitalLng": -13.5784
     },
     {
         "id": "GNB",
@@ -2443,7 +2629,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Guinea-Bissau"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Guinea-Bissau",
+        "capitalLat": 11.85,
+        "capitalLng": -15.58
     },
     {
         "id": "GUY",
@@ -2468,7 +2656,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Guyana"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Guyana",
+        "capitalLat": 6.8,
+        "capitalLng": -58.15
     },
     {
         "id": "HTI",
@@ -2494,7 +2684,9 @@
         "timezones": [
             "UTC-05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Haiti"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Haiti",
+        "capitalLat": 18.53,
+        "capitalLng": -72.33
     },
     {
         "id": "HMD",
@@ -2519,7 +2711,9 @@
         "timezones": [
             "UTC+05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Heard_Island_and_McDonald_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Heard_Island_and_McDonald_Islands",
+        "capitalLat": 0.0,
+        "capitalLng": 0.0
     },
     {
         "id": "HND",
@@ -2544,7 +2738,9 @@
         "timezones": [
             "UTC-06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Honduras"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Honduras",
+        "capitalLat": 14.1,
+        "capitalLng": -87.22
     },
     {
         "id": "HKG",
@@ -2570,7 +2766,9 @@
         "timezones": [
             "UTC+08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Hong_Kong"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Hong_Kong",
+        "capitalLat": 22.267,
+        "capitalLng": 114.188
     },
     {
         "id": "HUN",
@@ -2595,7 +2793,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Hungary"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Hungary",
+        "capitalLat": 47.5,
+        "capitalLng": 19.08
     },
     {
         "id": "ISL",
@@ -2620,7 +2820,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Iceland"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Iceland",
+        "capitalLat": 64.15,
+        "capitalLng": -21.95
     },
     {
         "id": "IND",
@@ -2647,7 +2849,9 @@
         "timezones": [
             "UTC+05:30"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/India"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/India",
+        "capitalLat": 28.6139,
+        "capitalLng": 77.209
     },
     {
         "id": "IDN",
@@ -2674,7 +2878,9 @@
             "UTC+08:00",
             "UTC+09:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Indonesia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Indonesia",
+        "capitalLat": -6.17,
+        "capitalLng": 106.82
     },
     {
         "id": "IRN",
@@ -2699,7 +2905,9 @@
         "timezones": [
             "UTC+03:30"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Iran"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Iran",
+        "capitalLat": 35.7,
+        "capitalLng": 51.42
     },
     {
         "id": "IRQ",
@@ -2726,7 +2934,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Iraq"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Iraq",
+        "capitalLat": 33.33,
+        "capitalLng": 44.4
     },
     {
         "id": "IRL",
@@ -2752,7 +2962,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Ireland"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Ireland",
+        "capitalLat": 53.32,
+        "capitalLng": -6.23
     },
     {
         "id": "IMN",
@@ -2778,7 +2990,9 @@
         "timezones": [
             "UTC+00:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Isle_of_Man"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Isle_of_Man",
+        "capitalLat": 54.15,
+        "capitalLng": -4.48
     },
     {
         "id": "ISR",
@@ -2804,7 +3018,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Israel"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Israel",
+        "capitalLat": 31.77,
+        "capitalLng": 35.23
     },
     {
         "id": "ITA",
@@ -2830,7 +3046,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Italy"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Italy",
+        "capitalLat": 41.9,
+        "capitalLng": 12.48
     },
     {
         "id": "CIV",
@@ -2855,7 +3073,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Ivory_Coast"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Ivory_Coast",
+        "capitalLat": 6.82,
+        "capitalLng": -5.27
     },
     {
         "id": "JAM",
@@ -2881,7 +3101,9 @@
         "timezones": [
             "UTC-05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Jamaica"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Jamaica",
+        "capitalLat": 17.99702,
+        "capitalLng": -76.79358
     },
     {
         "id": "JPN",
@@ -2906,7 +3128,9 @@
         "timezones": [
             "UTC+09:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Japan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Japan",
+        "capitalLat": 35.68,
+        "capitalLng": 139.75
     },
     {
         "id": "JEY",
@@ -2933,7 +3157,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Jersey"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Jersey",
+        "capitalLat": 49.18,
+        "capitalLng": -2.1
     },
     {
         "id": "JOR",
@@ -2958,7 +3184,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Jordan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Jordan",
+        "capitalLat": 31.95,
+        "capitalLng": 35.93
     },
     {
         "id": "KAZ",
@@ -2985,7 +3213,9 @@
             "UTC+05:00",
             "UTC+06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Kazakhstan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Kazakhstan",
+        "capitalLat": 51.16,
+        "capitalLng": 71.45
     },
     {
         "id": "KEN",
@@ -3011,7 +3241,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Kenya"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Kenya",
+        "capitalLat": -1.28,
+        "capitalLng": 36.82
     },
     {
         "id": "KIR",
@@ -3039,7 +3271,9 @@
             "UTC+13:00",
             "UTC+14:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Kiribati"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Kiribati",
+        "capitalLat": 1.33,
+        "capitalLng": 172.98
     },
     {
         "id": "UNK",
@@ -3065,7 +3299,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Kosovo"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Kosovo",
+        "capitalLat": 42.67,
+        "capitalLng": 21.17
     },
     {
         "id": "KWT",
@@ -3090,7 +3326,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Kuwait"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Kuwait",
+        "capitalLat": 29.37,
+        "capitalLng": 47.97
     },
     {
         "id": "KGZ",
@@ -3116,7 +3354,9 @@
         "timezones": [
             "UTC+06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Kyrgyzstan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Kyrgyzstan",
+        "capitalLat": 42.87,
+        "capitalLng": 74.6
     },
     {
         "id": "LAO",
@@ -3141,7 +3381,9 @@
         "timezones": [
             "UTC+07:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Laos"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Laos",
+        "capitalLat": 17.97,
+        "capitalLng": 102.6
     },
     {
         "id": "LVA",
@@ -3166,7 +3408,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Latvia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Latvia",
+        "capitalLat": 56.95,
+        "capitalLng": 24.1
     },
     {
         "id": "LBN",
@@ -3192,7 +3436,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Lebanon"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Lebanon",
+        "capitalLat": 33.87,
+        "capitalLng": 35.5
     },
     {
         "id": "LSO",
@@ -3218,7 +3464,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Lesotho"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Lesotho",
+        "capitalLat": -29.32,
+        "capitalLng": 27.48
     },
     {
         "id": "LBR",
@@ -3243,7 +3491,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Liberia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Liberia",
+        "capitalLat": 6.3156,
+        "capitalLng": -10.8074
     },
     {
         "id": "LBY",
@@ -3268,7 +3518,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Libya"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Libya",
+        "capitalLat": 32.88,
+        "capitalLng": 13.17
     },
     {
         "id": "LIE",
@@ -3293,7 +3545,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Liechtenstein"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Liechtenstein",
+        "capitalLat": 47.13,
+        "capitalLng": 9.52
     },
     {
         "id": "LTU",
@@ -3318,7 +3572,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Lithuania"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Lithuania",
+        "capitalLat": 54.68,
+        "capitalLng": 25.32
     },
     {
         "id": "LUX",
@@ -3345,7 +3601,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Luxembourg"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Luxembourg",
+        "capitalLat": 49.6,
+        "capitalLng": 6.12
     },
     {
         "id": "MAC",
@@ -3371,7 +3629,9 @@
         "timezones": [
             "UTC+08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Macau"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Macau",
+        "capitalLat": 0.0,
+        "capitalLng": 0.0
     },
     {
         "id": "MDG",
@@ -3397,7 +3657,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Madagascar"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Madagascar",
+        "capitalLat": -18.92,
+        "capitalLng": 47.52
     },
     {
         "id": "MWI",
@@ -3423,7 +3685,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Malawi"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Malawi",
+        "capitalLat": -13.97,
+        "capitalLng": 33.78
     },
     {
         "id": "MYS",
@@ -3449,7 +3713,9 @@
         "timezones": [
             "UTC+08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Malaysia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Malaysia",
+        "capitalLat": 3.17,
+        "capitalLng": 101.7
     },
     {
         "id": "MDV",
@@ -3474,7 +3740,9 @@
         "timezones": [
             "UTC+05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Maldives"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Maldives",
+        "capitalLat": 4.17,
+        "capitalLng": 73.51
     },
     {
         "id": "MLI",
@@ -3499,7 +3767,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Mali"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Mali",
+        "capitalLat": 12.65,
+        "capitalLng": -8.0
     },
     {
         "id": "MLT",
@@ -3525,7 +3795,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Malta"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Malta",
+        "capitalLat": 35.88,
+        "capitalLng": 14.5
     },
     {
         "id": "MHL",
@@ -3551,7 +3823,9 @@
         "timezones": [
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Marshall_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Marshall_Islands",
+        "capitalLat": 7.1,
+        "capitalLng": 171.38
     },
     {
         "id": "MTQ",
@@ -3576,7 +3850,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Martinique"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Martinique",
+        "capitalLat": 14.6,
+        "capitalLng": -61.08
     },
     {
         "id": "MRT",
@@ -3601,7 +3877,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Mauritania"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Mauritania",
+        "capitalLat": 18.07,
+        "capitalLng": -15.97
     },
     {
         "id": "MUS",
@@ -3628,7 +3906,9 @@
         "timezones": [
             "UTC+04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Mauritius"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Mauritius",
+        "capitalLat": -20.15,
+        "capitalLng": 57.48
     },
     {
         "id": "MYT",
@@ -3653,7 +3933,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Mayotte"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Mayotte",
+        "capitalLat": -12.78,
+        "capitalLng": 45.22
     },
     {
         "id": "MEX",
@@ -3680,7 +3962,9 @@
             "UTC-07:00",
             "UTC-06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Mexico"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Mexico",
+        "capitalLat": 19.43,
+        "capitalLng": -99.13
     },
     {
         "id": "FSM",
@@ -3706,7 +3990,9 @@
             "UTC+10:00",
             "UTC+11:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Federated_States_of_Micronesia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Federated_States_of_Micronesia",
+        "capitalLat": 6.92,
+        "capitalLng": 158.15
     },
     {
         "id": "MDA",
@@ -3731,7 +4017,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Moldova"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Moldova",
+        "capitalLat": 47.01,
+        "capitalLng": 28.9
     },
     {
         "id": "MCO",
@@ -3756,7 +4044,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Monaco"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Monaco",
+        "capitalLat": 43.73,
+        "capitalLng": 7.42
     },
     {
         "id": "MNG",
@@ -3782,7 +4072,9 @@
             "UTC+07:00",
             "UTC+08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Mongolia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Mongolia",
+        "capitalLat": 47.92,
+        "capitalLng": 106.91
     },
     {
         "id": "MNE",
@@ -3807,7 +4099,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Montenegro"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Montenegro",
+        "capitalLat": 42.43,
+        "capitalLng": 19.27
     },
     {
         "id": "MSR",
@@ -3832,7 +4126,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Montserrat"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Montserrat",
+        "capitalLat": 16.7,
+        "capitalLng": -62.22
     },
     {
         "id": "MAR",
@@ -3858,7 +4154,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Morocco"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Morocco",
+        "capitalLat": 34.02,
+        "capitalLng": -6.82
     },
     {
         "id": "MOZ",
@@ -3883,7 +4181,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Mozambique"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Mozambique",
+        "capitalLat": -25.95,
+        "capitalLng": 32.58
     },
     {
         "id": "MMR",
@@ -3908,7 +4208,9 @@
         "timezones": [
             "UTC+06:30"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Myanmar"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Myanmar",
+        "capitalLat": 19.76,
+        "capitalLng": 96.07
     },
     {
         "id": "NAM",
@@ -3941,7 +4243,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Namibia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Namibia",
+        "capitalLat": -22.57,
+        "capitalLng": 17.08
     },
     {
         "id": "NRU",
@@ -3967,7 +4271,9 @@
         "timezones": [
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Nauru"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Nauru",
+        "capitalLat": -0.55,
+        "capitalLng": 166.92
     },
     {
         "id": "NPL",
@@ -3992,7 +4298,9 @@
         "timezones": [
             "UTC+05:45"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Nepal"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Nepal",
+        "capitalLat": 27.72,
+        "capitalLng": 85.32
     },
     {
         "id": "NLD",
@@ -4017,7 +4325,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Netherlands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Netherlands",
+        "capitalLat": 52.35,
+        "capitalLng": 4.92
     },
     {
         "id": "NCL",
@@ -4042,7 +4352,9 @@
         "timezones": [
             "UTC+11:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/New_Caledonia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/New_Caledonia",
+        "capitalLat": -22.27,
+        "capitalLng": 166.45
     },
     {
         "id": "NZL",
@@ -4073,7 +4385,9 @@
             "UTC+12:45",
             "UTC+13:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/New_Zealand"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/New_Zealand",
+        "capitalLat": -41.3,
+        "capitalLng": 174.78
     },
     {
         "id": "NIC",
@@ -4098,7 +4412,9 @@
         "timezones": [
             "UTC-06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Nicaragua"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Nicaragua",
+        "capitalLat": 12.13,
+        "capitalLng": -86.25
     },
     {
         "id": "NER",
@@ -4123,7 +4439,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Niger"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Niger",
+        "capitalLat": 13.52,
+        "capitalLng": 2.12
     },
     {
         "id": "NGA",
@@ -4148,7 +4466,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Nigeria"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Nigeria",
+        "capitalLat": 9.08,
+        "capitalLng": 7.53
     },
     {
         "id": "NIU",
@@ -4174,7 +4494,9 @@
         "timezones": [
             "UTC-11:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Niue"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Niue",
+        "capitalLat": -19.02,
+        "capitalLng": -169.92
     },
     {
         "id": "NFK",
@@ -4200,7 +4522,9 @@
         "timezones": [
             "UTC+11:30"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Norfolk_Island"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Norfolk_Island",
+        "capitalLat": -29.05,
+        "capitalLng": 167.97
     },
     {
         "id": "PRK",
@@ -4225,7 +4549,9 @@
         "timezones": [
             "UTC+09:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/North_Korea"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/North_Korea",
+        "capitalLat": 39.02,
+        "capitalLng": 125.75
     },
     {
         "id": "MKD",
@@ -4250,7 +4576,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/North_Macedonia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/North_Macedonia",
+        "capitalLat": 42.0,
+        "capitalLng": 21.43
     },
     {
         "id": "MNP",
@@ -4277,7 +4605,9 @@
         "timezones": [
             "UTC+10:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Northern_Mariana_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Northern_Mariana_Islands",
+        "capitalLat": 15.2,
+        "capitalLng": 145.75
     },
     {
         "id": "NOR",
@@ -4306,7 +4636,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Norway"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Norway",
+        "capitalLat": 59.92,
+        "capitalLng": 10.75
     },
     {
         "id": "OMN",
@@ -4331,7 +4663,9 @@
         "timezones": [
             "UTC+04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Oman"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Oman",
+        "capitalLat": 23.62,
+        "capitalLng": 58.58
     },
     {
         "id": "PAK",
@@ -4357,7 +4691,9 @@
         "timezones": [
             "UTC+05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Pakistan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Pakistan",
+        "capitalLat": 33.68,
+        "capitalLng": 73.05
     },
     {
         "id": "PLW",
@@ -4383,7 +4719,9 @@
         "timezones": [
             "UTC+09:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Palau"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Palau",
+        "capitalLat": 7.5,
+        "capitalLng": 134.62
     },
     {
         "id": "PSE",
@@ -4408,7 +4746,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Palestine"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Palestine",
+        "capitalLat": 31.9038,
+        "capitalLng": 35.2034
     },
     {
         "id": "PAN",
@@ -4433,7 +4773,9 @@
         "timezones": [
             "UTC-05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Panama"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Panama",
+        "capitalLat": 8.97,
+        "capitalLng": -79.53
     },
     {
         "id": "PNG",
@@ -4460,7 +4802,9 @@
         "timezones": [
             "UTC+10:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Papua_New_Guinea"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Papua_New_Guinea",
+        "capitalLat": -9.45,
+        "capitalLng": 147.18
     },
     {
         "id": "PRY",
@@ -4486,7 +4830,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Paraguay"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Paraguay",
+        "capitalLat": -25.28,
+        "capitalLng": -57.57
     },
     {
         "id": "PER",
@@ -4513,7 +4859,9 @@
         "timezones": [
             "UTC-05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Peru"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Peru",
+        "capitalLat": -12.05,
+        "capitalLng": -77.05
     },
     {
         "id": "PHL",
@@ -4539,7 +4887,9 @@
         "timezones": [
             "UTC+08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Philippines"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Philippines",
+        "capitalLat": 14.6,
+        "capitalLng": 120.97
     },
     {
         "id": "PCN",
@@ -4564,7 +4914,9 @@
         "timezones": [
             "UTC-08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Pitcairn_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Pitcairn_Islands",
+        "capitalLat": -25.07,
+        "capitalLng": -130.08
     },
     {
         "id": "POL",
@@ -4589,7 +4941,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Poland"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Poland",
+        "capitalLat": 52.25,
+        "capitalLng": 21.0
     },
     {
         "id": "PRT",
@@ -4615,7 +4969,9 @@
             "UTC-01:00",
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Portugal"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Portugal",
+        "capitalLat": 38.72,
+        "capitalLng": -9.13
     },
     {
         "id": "PRI",
@@ -4641,7 +4997,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Puerto_Rico"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Puerto_Rico",
+        "capitalLat": 18.47,
+        "capitalLng": -66.12
     },
     {
         "id": "QAT",
@@ -4666,7 +5024,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Qatar"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Qatar",
+        "capitalLat": 25.28,
+        "capitalLng": 51.53
     },
     {
         "id": "ROU",
@@ -4691,7 +5051,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Romania"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Romania",
+        "capitalLat": 44.43,
+        "capitalLng": 26.1
     },
     {
         "id": "RUS",
@@ -4724,7 +5086,9 @@
             "UTC+11:00",
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Russia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Russia",
+        "capitalLat": 55.75,
+        "capitalLng": 37.6
     },
     {
         "id": "RWA",
@@ -4751,7 +5115,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Rwanda"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Rwanda",
+        "capitalLat": -1.95,
+        "capitalLng": 30.05
     },
     {
         "id": "REU",
@@ -4776,7 +5142,9 @@
         "timezones": [
             "UTC+04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/R%C3%A9union"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/R%C3%A9union",
+        "capitalLat": -20.88,
+        "capitalLng": 55.45
     },
     {
         "id": "BLM",
@@ -4801,7 +5169,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Barth%C3%A9lemy"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Barth%C3%A9lemy",
+        "capitalLat": 17.88,
+        "capitalLng": -62.85
     },
     {
         "id": "SHN",
@@ -4826,7 +5196,9 @@
         "timezones": [
             "UTC+00:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Helena%2C_Ascension_and_Tristan_da_Cunha"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Helena%2C_Ascension_and_Tristan_da_Cunha",
+        "capitalLat": -15.93,
+        "capitalLng": -5.72
     },
     {
         "id": "KNA",
@@ -4851,7 +5223,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Kitts_and_Nevis"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Kitts_and_Nevis",
+        "capitalLat": 17.3,
+        "capitalLng": -62.72
     },
     {
         "id": "LCA",
@@ -4876,7 +5250,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Lucia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Lucia",
+        "capitalLat": 13.9957,
+        "capitalLng": -61.0061
     },
     {
         "id": "MAF",
@@ -4901,7 +5277,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Martin"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Martin",
+        "capitalLat": 18.07,
+        "capitalLng": -63.08
     },
     {
         "id": "SPM",
@@ -4926,7 +5304,9 @@
         "timezones": [
             "UTC-03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Pierre_and_Miquelon"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Pierre_and_Miquelon",
+        "capitalLat": 46.77,
+        "capitalLng": -56.18
     },
     {
         "id": "VCT",
@@ -4951,7 +5331,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Vincent_and_the_Grenadines"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Saint_Vincent_and_the_Grenadines",
+        "capitalLat": 13.13,
+        "capitalLng": -61.22
     },
     {
         "id": "WSM",
@@ -4977,7 +5359,9 @@
         "timezones": [
             "UTC+13:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Samoa"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Samoa",
+        "capitalLat": -13.82,
+        "capitalLng": -171.77
     },
     {
         "id": "SMR",
@@ -5002,7 +5386,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/San_Marino"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/San_Marino",
+        "capitalLat": 43.94,
+        "capitalLng": 12.45
     },
     {
         "id": "SAU",
@@ -5027,7 +5413,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Saudi_Arabia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Saudi_Arabia",
+        "capitalLat": 24.65,
+        "capitalLng": 46.7
     },
     {
         "id": "SEN",
@@ -5052,7 +5440,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Senegal"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Senegal",
+        "capitalLat": 14.73,
+        "capitalLng": -17.63
     },
     {
         "id": "SRB",
@@ -5077,7 +5467,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Serbia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Serbia",
+        "capitalLat": 44.83,
+        "capitalLng": 20.5
     },
     {
         "id": "SYC",
@@ -5104,7 +5496,9 @@
         "timezones": [
             "UTC+04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Seychelles"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Seychelles",
+        "capitalLat": -4.62,
+        "capitalLng": 55.45
     },
     {
         "id": "SLE",
@@ -5129,7 +5523,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Sierra_Leone"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Sierra_Leone",
+        "capitalLat": 8.48,
+        "capitalLng": -13.23
     },
     {
         "id": "SGP",
@@ -5157,7 +5553,9 @@
         "timezones": [
             "UTC+08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Singapore"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Singapore",
+        "capitalLat": 1.28,
+        "capitalLng": 103.85
     },
     {
         "id": "SXM",
@@ -5184,7 +5582,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Sint_Maarten"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Sint_Maarten",
+        "capitalLat": 18.02,
+        "capitalLng": -63.03
     },
     {
         "id": "SVK",
@@ -5209,7 +5609,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Slovakia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Slovakia",
+        "capitalLat": 48.15,
+        "capitalLng": 17.12
     },
     {
         "id": "SVN",
@@ -5234,7 +5636,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Slovenia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Slovenia",
+        "capitalLat": 46.05,
+        "capitalLng": 14.52
     },
     {
         "id": "SLB",
@@ -5259,7 +5663,9 @@
         "timezones": [
             "UTC+11:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Solomon_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Solomon_Islands",
+        "capitalLat": -9.43,
+        "capitalLng": 159.95
     },
     {
         "id": "SOM",
@@ -5285,7 +5691,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Somalia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Somalia",
+        "capitalLat": 2.07,
+        "capitalLng": 45.33
     },
     {
         "id": "ZAF",
@@ -5320,7 +5728,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/South_Africa"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/South_Africa",
+        "capitalLat": -25.74,
+        "capitalLng": 28.19
     },
     {
         "id": "SGS",
@@ -5345,7 +5755,9 @@
         "timezones": [
             "UTC-02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/South_Georgia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/South_Georgia",
+        "capitalLat": -54.28,
+        "capitalLng": -36.5
     },
     {
         "id": "KOR",
@@ -5370,7 +5782,9 @@
         "timezones": [
             "UTC+09:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/South_Korea"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/South_Korea",
+        "capitalLat": 37.55,
+        "capitalLng": 126.98
     },
     {
         "id": "SSD",
@@ -5395,7 +5809,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/South_Sudan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/South_Sudan",
+        "capitalLat": 4.85,
+        "capitalLng": 31.62
     },
     {
         "id": "ESP",
@@ -5425,7 +5841,9 @@
             "UTC",
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Spain"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Spain",
+        "capitalLat": 40.4,
+        "capitalLng": -3.68
     },
     {
         "id": "LKA",
@@ -5451,7 +5869,9 @@
         "timezones": [
             "UTC+05:30"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Sri_Lanka"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Sri_Lanka",
+        "capitalLat": 6.89,
+        "capitalLng": 79.9
     },
     {
         "id": "SDN",
@@ -5477,7 +5897,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Sudan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Sudan",
+        "capitalLat": 15.6,
+        "capitalLng": 32.53
     },
     {
         "id": "SUR",
@@ -5502,7 +5924,9 @@
         "timezones": [
             "UTC-03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Suriname"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Suriname",
+        "capitalLat": 5.83,
+        "capitalLng": -55.17
     },
     {
         "id": "SJM",
@@ -5527,7 +5951,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Svalbard_and_Jan_Mayen"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Svalbard_and_Jan_Mayen",
+        "capitalLat": 78.22,
+        "capitalLng": 15.63
     },
     {
         "id": "SWE",
@@ -5552,7 +5978,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Sweden"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Sweden",
+        "capitalLat": 59.33,
+        "capitalLng": 18.05
     },
     {
         "id": "CHE",
@@ -5580,7 +6008,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Switzerland"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Switzerland",
+        "capitalLat": 46.92,
+        "capitalLng": 7.47
     },
     {
         "id": "SYR",
@@ -5605,7 +6035,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Syria"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Syria",
+        "capitalLat": 33.5138,
+        "capitalLng": 36.2765
     },
     {
         "id": "STP",
@@ -5630,7 +6062,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe",
+        "capitalLat": 0.34,
+        "capitalLng": 6.73
     },
     {
         "id": "TWN",
@@ -5655,7 +6089,9 @@
         "timezones": [
             "UTC+08:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Taiwan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Taiwan",
+        "capitalLat": 25.03,
+        "capitalLng": 121.52
     },
     {
         "id": "TJK",
@@ -5681,7 +6117,9 @@
         "timezones": [
             "UTC+05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Tajikistan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Tajikistan",
+        "capitalLat": 38.55,
+        "capitalLng": 68.77
     },
     {
         "id": "TZA",
@@ -5707,7 +6145,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Tanzania"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Tanzania",
+        "capitalLat": -6.16,
+        "capitalLng": 35.75
     },
     {
         "id": "THA",
@@ -5732,7 +6172,9 @@
         "timezones": [
             "UTC+07:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Thailand"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Thailand",
+        "capitalLat": 13.75,
+        "capitalLng": 100.52
     },
     {
         "id": "TLS",
@@ -5758,7 +6200,9 @@
         "timezones": [
             "UTC+09:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Timor-Leste"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Timor-Leste",
+        "capitalLat": -8.58,
+        "capitalLng": 125.6
     },
     {
         "id": "TGO",
@@ -5783,7 +6227,9 @@
         "timezones": [
             "UTC"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Togo"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Togo",
+        "capitalLat": 6.14,
+        "capitalLng": 1.21
     },
     {
         "id": "TKL",
@@ -5810,7 +6256,9 @@
         "timezones": [
             "UTC+13:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Tokelau"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Tokelau",
+        "capitalLat": -9.38,
+        "capitalLng": -171.22
     },
     {
         "id": "TON",
@@ -5836,7 +6284,9 @@
         "timezones": [
             "UTC+13:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Tonga"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Tonga",
+        "capitalLat": -21.13,
+        "capitalLng": -175.2
     },
     {
         "id": "TTO",
@@ -5861,7 +6311,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Trinidad_and_Tobago"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Trinidad_and_Tobago",
+        "capitalLat": 10.65,
+        "capitalLng": -61.52
     },
     {
         "id": "TUN",
@@ -5886,7 +6338,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Tunisia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Tunisia",
+        "capitalLat": 36.8,
+        "capitalLng": 10.18
     },
     {
         "id": "TUR",
@@ -5911,7 +6365,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Turkey"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Turkey",
+        "capitalLat": 39.93,
+        "capitalLng": 32.87
     },
     {
         "id": "TKM",
@@ -5937,7 +6393,9 @@
         "timezones": [
             "UTC+05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Turkmenistan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Turkmenistan",
+        "capitalLat": 37.95,
+        "capitalLng": 58.38
     },
     {
         "id": "TCA",
@@ -5962,7 +6420,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Turks_and_Caicos_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Turks_and_Caicos_Islands",
+        "capitalLat": 21.46,
+        "capitalLng": -71.14
     },
     {
         "id": "TUV",
@@ -5988,7 +6448,9 @@
         "timezones": [
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Tuvalu"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Tuvalu",
+        "capitalLat": -8.52,
+        "capitalLng": 179.22
     },
     {
         "id": "UGA",
@@ -6014,7 +6476,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Uganda"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Uganda",
+        "capitalLat": 0.32,
+        "capitalLng": 32.55
     },
     {
         "id": "UKR",
@@ -6039,7 +6503,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Ukraine"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Ukraine",
+        "capitalLat": 50.43,
+        "capitalLng": 30.52
     },
     {
         "id": "ARE",
@@ -6064,7 +6530,9 @@
         "timezones": [
             "UTC+04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/United_Arab_Emirates"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "capitalLat": 24.47,
+        "capitalLng": 54.37
     },
     {
         "id": "GBR",
@@ -6097,7 +6565,9 @@
             "UTC+02:00",
             "UTC+06:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/United_Kingdom"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/United_Kingdom",
+        "capitalLat": 51.5,
+        "capitalLng": -0.08
     },
     {
         "id": "USA",
@@ -6132,7 +6602,9 @@
             "UTC+10:00",
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/United_States"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/United_States",
+        "capitalLat": 38.89,
+        "capitalLng": -77.05
     },
     {
         "id": "UMI",
@@ -6159,7 +6631,9 @@
             "UTC-10:00",
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/United_States_Minor_Outlying_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/United_States_Minor_Outlying_Islands",
+        "capitalLat": 0.0,
+        "capitalLng": 0.0
     },
     {
         "id": "VIR",
@@ -6184,7 +6658,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/United_States_Virgin_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/United_States_Virgin_Islands",
+        "capitalLat": 18.35,
+        "capitalLng": -64.93
     },
     {
         "id": "URY",
@@ -6209,7 +6685,9 @@
         "timezones": [
             "UTC-03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Uruguay"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Uruguay",
+        "capitalLat": -34.85,
+        "capitalLng": -56.17
     },
     {
         "id": "UZB",
@@ -6235,7 +6713,9 @@
         "timezones": [
             "UTC+05:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Uzbekistan"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Uzbekistan",
+        "capitalLat": 41.32,
+        "capitalLng": 69.25
     },
     {
         "id": "VUT",
@@ -6262,7 +6742,9 @@
         "timezones": [
             "UTC+11:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Vanuatu"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Vanuatu",
+        "capitalLat": -17.73,
+        "capitalLng": 168.32
     },
     {
         "id": "VAT",
@@ -6288,7 +6770,9 @@
         "timezones": [
             "UTC+01:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Vatican_City"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Vatican_City",
+        "capitalLat": 41.9,
+        "capitalLng": 12.45
     },
     {
         "id": "VEN",
@@ -6313,7 +6797,9 @@
         "timezones": [
             "UTC-04:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Venezuela"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Venezuela",
+        "capitalLat": 10.48,
+        "capitalLng": -66.87
     },
     {
         "id": "VNM",
@@ -6338,7 +6824,9 @@
         "timezones": [
             "UTC+07:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Vietnam"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Vietnam",
+        "capitalLat": 21.03,
+        "capitalLng": 105.85
     },
     {
         "id": "WLF",
@@ -6363,7 +6851,9 @@
         "timezones": [
             "UTC+12:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Wallis_and_Futuna"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Wallis_and_Futuna",
+        "capitalLat": -13.95,
+        "capitalLng": -171.93
     },
     {
         "id": "ESH",
@@ -6389,7 +6879,9 @@
         "timezones": [
             "UTC+00:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Western_Sahara"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Western_Sahara",
+        "capitalLat": 27.1253,
+        "capitalLng": -13.1625
     },
     {
         "id": "YEM",
@@ -6414,7 +6906,9 @@
         "timezones": [
             "UTC+03:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Yemen"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Yemen",
+        "capitalLat": 15.37,
+        "capitalLng": 44.19
     },
     {
         "id": "ZMB",
@@ -6439,7 +6933,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Zambia"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Zambia",
+        "capitalLat": -15.42,
+        "capitalLng": 28.28
     },
     {
         "id": "ZWE",
@@ -6478,7 +6974,9 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Zimbabwe"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/Zimbabwe",
+        "capitalLat": -17.82,
+        "capitalLng": 31.03
     },
     {
         "id": "ALA",
@@ -6503,6 +7001,8 @@
         "timezones": [
             "UTC+02:00"
         ],
-        "wikipedia_url": "https://en.wikipedia.org/wiki/%C3%85land_Islands"
+        "wikipedia_url": "https://en.wikipedia.org/wiki/%C3%85land_Islands",
+        "capitalLat": 60.12,
+        "capitalLng": 19.9
     }
 ]

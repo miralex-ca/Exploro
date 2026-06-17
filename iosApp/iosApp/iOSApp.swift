@@ -5,9 +5,6 @@ import Shared
 struct iOSApp: App {
     init() {
         KoinInitKt.doInitKoin()
-       // UIView.appearance().backgroundColor = UIColor(named: "AppBackground")
-        
-  
     }
     
     @StateObject var appObj = AppObservableObject()

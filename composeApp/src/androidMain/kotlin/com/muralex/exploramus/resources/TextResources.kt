@@ -50,8 +50,12 @@ object Strings {
     val commonRemove @Composable get() = stringRes(R.string.common_remove)
     val commonBack @Composable get() = stringRes(R.string.common_back)
     val commonClear @Composable get() = stringRes(R.string.common_clear)
+    val commonSearch @Composable get() = stringRes(R.string.common_search)
     val commonSettings @Composable get() = stringRes(R.string.common_settings)
+    val commonMore @Composable get() = stringRes(R.string.common_more)
     val commonMoreOptions @Composable get() = stringRes(R.string.common_more_options)
+    val commonOpenInMaps @Composable get() = stringRes(R.string.common_open_in_maps)
+    val commonOpenInWikipedia @Composable get() = stringRes(R.string.common_open_in_wikipedia)
     val openKeyboard @Composable get() = stringRes(R.string.open_keyboard)
     val appLoadingMessage @Composable get() = stringRes(R.string.app_loading_message)
 

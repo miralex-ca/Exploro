@@ -28,7 +28,9 @@ data class CountryDetails(
     val mapsOsmUrl: String,
 
     val timezones: List<String>,
-    val wikipediaUrl: String = ""
+    val wikipediaUrl: String = "",
+    val capitalLat: Double = 0.0,
+    val capitalLng: Double = 0.0
 )
 
 

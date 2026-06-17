@@ -26,6 +26,8 @@ internal data class CountryAssetDto(
     @SerialName("maps_osm_url") val mapsOsmUrl: String = "",
     @SerialName("timezones") val timezones: List<String> = emptyList(),
     @SerialName("wikipedia_url") val wikipediaUrl: String = "",
+    @SerialName("capital_lat") val capitalLat: Double = 0.0,
+    @SerialName("capital_lng") val capitalLng: Double = 0.0
 )
 
 internal fun CountryAssetDto.toCountry() = Country(
@@ -51,5 +53,7 @@ internal fun CountryAssetDto.toCountryDetails() = CountryDetails(
     mapsGoogleUrl = mapsGoogleUrl,
     mapsOsmUrl = mapsOsmUrl,
     timezones = timezones,
-    wikipediaUrl = wikipediaUrl
+    wikipediaUrl = wikipediaUrl,
+    capitalLat = capitalLat,
+    capitalLng = capitalLng
 )

@@ -27,6 +27,9 @@ data class CountryDetailsState(
     val timezones: List<String> = emptyList(),
     val isFavorite: Boolean = false,
     val mapsUrl: String = "",
+    val wikiUrl: String = "",
+    val capitalLat: Double = 0.0,
+    val capitalLng: Double = 0.0
 )
 
 fun CountryWithDetails.toDetailsState() = CountryDetailsState(
@@ -46,6 +49,9 @@ fun CountryWithDetails.toDetailsState() = CountryDetailsState(
     timezones = details?.timezones ?: emptyList(),
     isFavorite = isFavorite,
     mapsUrl = details?.mapsGoogleUrl ?: "",
+    wikiUrl = details?.wikipediaUrl  ?: "",
+    capitalLat = details?.capitalLat ?: 0.0,
+    capitalLng = details?.capitalLng ?: 0.0
 )
 
 fun CountryWithDetails.formattedCurrency(): String? {

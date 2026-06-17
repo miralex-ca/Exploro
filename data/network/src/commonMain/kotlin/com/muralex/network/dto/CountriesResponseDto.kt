@@ -64,7 +64,14 @@ data class CountryFlagDto(
 
 @Serializable
 data class CountryCapitalDto(
-    @SerialName("name") val name: String = ""
+    @SerialName("name") val name: String = "",
+    @SerialName("coordinates") val coordinates: CountryCapitalCoordinatesDto = CountryCapitalCoordinatesDto()
+)
+
+@Serializable
+data class CountryCapitalCoordinatesDto(
+    @SerialName("lat") val lat: Double = 0.0,
+    @SerialName("lng") val lng: Double = 0.0
 )
 
 @Serializable
@@ -117,5 +124,7 @@ fun CountryRawDto.toCountryDetails() = CountryDetails(
     mapsGoogleUrl = links.googleMaps,
     mapsOsmUrl = links.openStreetMaps,
     timezones = timezones,
-    wikipediaUrl = links.wikipedia
+    wikipediaUrl = links.wikipedia,
+    capitalLat = capitals.firstOrNull()?.coordinates?.lat ?: 0.0,
+    capitalLng = capitals.firstOrNull()?.coordinates?.lng ?: 0.0
 )

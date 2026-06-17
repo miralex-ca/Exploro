@@ -56,6 +56,8 @@ SELECT
     d.maps_osm_url,
     d.timezones,
     d.wikipedia_url,
+    d.capital_lat,
+    d.capital_lng,
 
     CASE
         WHEN f.country_id IS NOT NULL THEN 1
@@ -114,7 +116,9 @@ SELECT
     d.maps_google_url,
     d.maps_osm_url,
     d.timezones,
-    d.wikipedia_url
+    d.wikipedia_url,
+    d.capital_lat,
+    d.capital_lng
 
 FROM Countries c
 LEFT JOIN CountryDetails d ON d.country_id = c.id

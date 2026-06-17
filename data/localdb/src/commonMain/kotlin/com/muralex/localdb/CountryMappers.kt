@@ -59,7 +59,9 @@ fun GetCountryDetailsById.toCountryWithDetails(): CountryWithDetails =
                     ?.split(",")
                     ?.filter { it.isNotBlank() }
                     ?: emptyList(),
-                wikipediaUrl = wikipedia_url.orEmpty()
+                wikipediaUrl = wikipedia_url.orEmpty(),
+                capitalLat = capital_lat ?: 0.0,
+                capitalLng = capital_lng ?: 0.0
             )
         } else {
             null
@@ -68,7 +70,7 @@ fun GetCountryDetailsById.toCountryWithDetails(): CountryWithDetails =
         isFavorite = isFavorite == 1L
     )
 
-fun GetAllCountriesWithDetails.toCountryWithDetails(): CountryWithDetails =
+    fun GetAllCountriesWithDetails.toCountryWithDetails(): CountryWithDetails =
     CountryWithDetails(
         country = Country(
             id = id,
@@ -93,7 +95,9 @@ fun GetAllCountriesWithDetails.toCountryWithDetails(): CountryWithDetails =
                 mapsGoogleUrl = maps_google_url.orEmpty(),
                 mapsOsmUrl = maps_osm_url.orEmpty(),
                 timezones = timezones?.split(",")?.filter { it.isNotBlank() } ?: emptyList(),
-                wikipediaUrl = wikipedia_url.orEmpty()
+                wikipediaUrl = wikipedia_url.orEmpty(),
+                capitalLat = capital_lat ?: 0.0,
+                capitalLng = capital_lng ?: 0.0
             )
         } else null,
         isFavorite = false // not needed

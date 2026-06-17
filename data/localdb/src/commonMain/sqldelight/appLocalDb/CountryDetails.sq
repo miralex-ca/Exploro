@@ -17,6 +17,8 @@ CREATE TABLE CountryDetails (
 
     timezones TEXT NOT NULL,
     wikipedia_url TEXT NOT NULL DEFAULT '',
+    capital_lat REAL NOT NULL DEFAULT 0.0,
+    capital_lng REAL NOT NULL DEFAULT 0.0,
 
     FOREIGN KEY (country_id) REFERENCES Countries(id)
 );
@@ -34,7 +36,9 @@ INSERT OR REPLACE INTO CountryDetails(
     maps_google_url,
     maps_osm_url,
     timezones,
-    wikipedia_url
+    wikipedia_url,
+    capital_lat,
+    capital_lng
 )
 VALUES(
     :countryId,
@@ -48,7 +52,9 @@ VALUES(
     :mapsGoogleUrl,
     :mapsOsmUrl,
     :timezones,
-    :wikipediaUrl
+    :wikipediaUrl,
+    :capitalLat,
+    :capitalLng
 );
 
 getCountryDetailsById:

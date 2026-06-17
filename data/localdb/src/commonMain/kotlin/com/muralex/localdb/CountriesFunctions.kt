@@ -43,7 +43,9 @@ fun AppLocalDb.setCountriesDetailsList(list: List<CountryDetails>) {
                 mapsOsmUrl = it.mapsOsmUrl,
 
                 timezones = it.timezones.joinToString(","),
-                wikipediaUrl = it.wikipediaUrl
+                wikipediaUrl = it.wikipediaUrl,
+                capitalLat = it.capitalLat,
+                capitalLng = it.capitalLng
             )
         }
     }

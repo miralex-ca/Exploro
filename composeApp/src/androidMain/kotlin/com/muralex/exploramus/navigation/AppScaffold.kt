@@ -26,6 +26,7 @@ import com.muralex.exploramus.ui.adaptive.LocalFormFactor
 import com.muralex.exploramus.ui.adaptive.useBottomBar
 import com.muralex.exploramus.ui.adaptive.useDrawer
 import com.muralex.exploramus.ui.adaptive.useNavRail
+import com.muralex.exploramus.utils.ExportFromDb
 import com.muralex.exploramus.viewmodel.core.Navigation
 import com.muralex.exploramus.viewmodel.core.NavigationState
 import com.muralex.exploramus.viewmodel.core.ScreenIdentifier
@@ -46,6 +47,8 @@ fun Navigation.AppScaffold(
 
     val formFactor = LocalFormFactor.current
     val isLevel1 = screenIdentifier.screen.navigationLevel == 1
+
+    ExportFromDb()
 
     val content = @Composable {
         Scaffold(contentWindowInsets = WindowInsets(0)) { contentPadding ->

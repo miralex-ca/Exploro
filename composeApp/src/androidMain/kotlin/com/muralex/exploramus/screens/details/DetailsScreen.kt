@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
+import com.muralex.exploramus.navigation.bars.topbars.DetailsTopBar
 import com.muralex.exploramus.screens.details.DetailsUiEvent.ToggleFavorite
 import com.muralex.exploramus.screens.details.views.DetailHeaderSection
 import com.muralex.exploramus.screens.details.views.DetailsInfoSection
@@ -65,31 +66,50 @@ fun DetailsScreenContent(
     val isLandscape = formFactor.isLandscape
     val layout = MaterialTheme.layout.details
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
+
+    Box(modifier = Modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier
-                .widthIn(max = layout.maxWidth.value())
-                .padding(horizontal = layout.horizontalPadding.value())
-                .padding(top = layout.topPadding.value(), bottom = layout.bottomPadding.value())
+            modifier = Modifier.fillMaxSize()
         ) {
-            if (isLandscape) {
-                LargeDetailsSections(
-                    details = details,
-                    onFavoriteClick = { onEvent(ToggleFavorite(details.id)) }
-                )
-            } else {
-                DetailsSections(
-                    details = details,
-                    onFavoriteClick = { onEvent(ToggleFavorite(details.id)) }
-                )
+
+            DetailsTopBar(
+                title = "Detail",
+                mapsUrl = details.mapsUrl,
+                wikiUrl = details.wikiUrl,
+                onBackClick = {  onEvent(DetailsUiEvent.OnBackClicked) }
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Column(
+                    modifier = Modifier
+                        .widthIn(max = layout.maxWidth.value())
+                        .padding(horizontal = layout.horizontalPadding.value())
+                        .padding(top = layout.topPadding.value(), bottom = layout.bottomPadding.value())
+                ) {
+                    if (isLandscape) {
+                        LargeDetailsSections(
+                            details = details,
+                            onFavoriteClick = { onEvent(ToggleFavorite(details.id)) }
+                        )
+                    } else {
+                        DetailsSections(
+                            details = details,
+                            onFavoriteClick = { onEvent(ToggleFavorite(details.id)) }
+                        )
+                    }
+                }
             }
         }
+
     }
+
+
+
 }
 
 @Composable
