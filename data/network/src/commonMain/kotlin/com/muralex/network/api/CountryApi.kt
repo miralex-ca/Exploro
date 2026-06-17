@@ -2,10 +2,13 @@ package com.muralex.network.api
 
 import com.muralex.network.ApiClient
 import com.muralex.network.NetworkResult
+import com.muralex.network.dto.CountriesResponseDto
 import com.muralex.network.dto.CountryDetailsDto
 import com.muralex.network.dto.CountryDto
+import com.muralex.network.dto.CountryRawDto
 import com.muralex.network.environment.EnvironmentProvider
 import io.ktor.http.HttpHeaders
+
 
 class CountryApi(
     private val client: ApiClient,
@@ -13,46 +16,48 @@ class CountryApi(
 ) {
 
     companion object {
-        private const val BASE_FIELDS = "cca3,name,capital,flags,flag,continents,subregion"
-        private const val DETAILS_FIELDS =
-            "cca3,area,coatOfArms,population,languages,currencies,maps,timezones"
+        private const val PAGE_SIZE = 100
+        private val OFFSETS = listOf(0, 100, 200)
 
-        private const val ALL = "/v3.1/all"
-
-        private const val NAME = "/v3.1/name"
-
-        private const val ALPHA = "/v3.1/alpha"
+        private val ALL_FIELDS = listOf(
+            "codes.alpha_3",
+            "names.common", "names.official",
+            "flag.url_png", "flag.url_svg", "flag.emoji",
+            "capitals", "continents", "subregion",
+            "area.kilometers", "population",
+            "languages", "currencies",
+            "links.google_maps", "links.open_street_maps", "links.wikipedia",
+            "timezones"
+        ).joinToString(",")
     }
+
+    private fun baseUrl() = environments.current().countriesBaseUrl
 
     private fun authHeaders() = mapOf(
         HttpHeaders.Authorization to "Bearer ${environments.current().apiKey}"
     )
 
-    suspend fun fetchAllCountries(): NetworkResult<List<CountryDto>> {
-        return client.get(
-            url = environments.current().countriesBaseUrl + "$ALL?fields=$BASE_FIELDS",
-            headers = authHeaders()
+    suspend fun fetchAllRaw(): NetworkResult<List<CountryRawDto>> {
+        val pages = OFFSETS.map { fetchPage(it) }
+        val error = pages.filterIsInstance<NetworkResult.Error>().firstOrNull()
+        if (error != null) return error
+        return NetworkResult.Success(
+            pages.filterIsInstance<NetworkResult.Success<List<CountryRawDto>>>()
+                .flatMap { it.data }
         )
     }
 
-    suspend fun fetchAllCountryDetails(): NetworkResult<List<CountryDetailsDto>> {
-        return client.get(
-            url = environments.current().countriesBaseUrl + "$ALL?fields=$DETAILS_FIELDS",
-            headers = authHeaders()
-        )
-    }
+    private fun pageUrl(offset: Int) =
+        "${baseUrl()}?limit=$PAGE_SIZE&offset=$offset&response_fields=$ALL_FIELDS"
 
-    suspend fun fetchCountryDetails(code: String): NetworkResult<CountryDto> {
-        return client.get(
-            url = environments.current().countriesBaseUrl + "$ALPHA/$code?fields=$DETAILS_FIELDS",
+    private suspend fun fetchPage(offset: Int): NetworkResult<List<CountryRawDto>> {
+        val result = client.get<CountriesResponseDto>(
+            url = pageUrl(offset),
             headers = authHeaders()
         )
-    }
-
-    suspend fun searchCountries(query: String): NetworkResult<List<CountryDto>> {
-        return client.get(
-            url = environments.current().countriesBaseUrl + "$NAME/$query?fields=$BASE_FIELDS",
-            headers = authHeaders()
-        )
+        return when (result) {
+            is NetworkResult.Success -> NetworkResult.Success(result.data.data.objects)
+            is NetworkResult.Error -> result
+        }
     }
 }

@@ -26,7 +26,7 @@
 
     <string name="settings_sync_in_progress">Updating content…</string>
     <string name="settings_sync_last">Last updated: %s</string>
-    <string name="settings_sync_success">Content updated successfully\nLast updated: %s</string>
+    <string name="settings_sync_success">Content is up to date.\nLast updated: %s</string>
     <string name="settings_sync_failed">Update failed. Please try again.\nLast updated: %s</string>
 
 

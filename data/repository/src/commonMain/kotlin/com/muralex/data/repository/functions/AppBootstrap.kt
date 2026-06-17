@@ -22,6 +22,7 @@ suspend fun Repository.migrateDbIfNeeded(): DataResult<Unit> = withRepoContext {
         localSettings.dbVersion = dbVersion
         localSettings.shouldForceDbUpdate = false
         localSettings.listCacheTimestamp = 0
+        localSettings.apiSyncTimestamp = 0
         Log.d("DB migration: Success")
     }.fold(
         onSuccess = {

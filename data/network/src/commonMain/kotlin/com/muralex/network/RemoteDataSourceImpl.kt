@@ -6,60 +6,35 @@ import com.muralex.models.Country
 import com.muralex.models.CountryDetails
 import com.muralex.network.api.CountryApi
 import com.muralex.network.dto.entity
+import com.muralex.network.dto.toCountry
+import com.muralex.network.dto.toCountryDetails
 
 class RemoteDataSourceImpl(
     private val countryApi: CountryApi
 ) : RemoteDataSource {
 
-    override suspend fun fetchAllCountries(): DataResult<List<Country>> {
-        return when (val result = countryApi.fetchAllCountries()) {
+    override suspend fun fetchAllCountriesData(): DataResult<Pair<List<Country>, List<CountryDetails>>> {
+        return when (val result = countryApi.fetchAllRaw()) {
             is NetworkResult.Success -> {
+                val raw = result.data
+                    .filter { it.codes.alpha3.isNotBlank() }
+                    .distinctBy { it.codes.alpha3 }
                 DataResult.Success(
-                    result.data.entity()
+                    Pair(
+                        raw.map { it.toCountry() },
+                        raw.map { it.toCountryDetails() }
+                    )
                 )
             }
-
-            is NetworkResult.Error -> {
-                DataResult.Error(result.error.toDataError())
-            }
+            is NetworkResult.Error -> DataResult.Error(result.error.toDataError())
         }
+    }
+
+    override suspend fun fetchAllCountries(): DataResult<List<Country>> {
+        return DataResult.Error(null)
     }
 
     override suspend fun fetchAllCountryDetails(): DataResult<List<CountryDetails>> {
-        return when (val result = countryApi.fetchAllCountryDetails()) {
-            is NetworkResult.Success -> {
-                DataResult.Success(
-                    result.data.entity()
-                )
-            }
-            is NetworkResult.Error -> {
-                DataResult.Error(result.error.toDataError())
-            }
-        }
-    }
-
-    override suspend fun fetchCountryDetails(code: String): DataResult<Country> {
-        return when (val result = countryApi.fetchCountryDetails(code)) {
-            is NetworkResult.Success -> {
-                DataResult.Success(result.data.entity)
-            }
-            is NetworkResult.Error -> {
-                DataResult.Error(result.error.toDataError())
-            }
-        }
-    }
-
-    override suspend fun searchCountries(query: String): DataResult<List<Country>> {
-        return when (val result = countryApi.searchCountries(query)) {
-            is NetworkResult.Success -> {
-                DataResult.Success(
-                    result.data.entity()
-                )
-            }
-
-            is NetworkResult.Error -> {
-                DataResult.Error(result.error.toDataError())
-            }
-        }
+        return DataResult.Error(null)
     }
 }
