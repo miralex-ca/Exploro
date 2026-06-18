@@ -15,7 +15,7 @@ struct HomeScreen: View {
         ) {
             
             if screenState.isLoading {
-                ScreenLoadingView()
+                LoadingScreen()
             } else {
                 HomeScreenContent(
                     screenState: screenState,
@@ -43,11 +43,10 @@ struct HomeScreenContent: View {
     var body: some View {
         ZStack {
             if screenState.homeSections.isEmpty {
-                //EmptyStateView()
-                EmptyView()
+                EmptyStateView(state: .emptyList)
             } else {
                 HStack(spacing: 0) {
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         LazyVStack(alignment: .leading, spacing: 0) {
                             ForEach(screenState.homeSections, id: \.sectionId) { section in
                                 HomeSectionRow(
@@ -63,7 +62,6 @@ struct HomeScreenContent: View {
                     }
                 }
             }
-            
         }
     }
 }

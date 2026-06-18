@@ -5,31 +5,28 @@ import Shared
 struct SettingsScreen: View {
     let screenState: SettingsScreenState
     let eventHandler: SettingsEventHandler
-
+    
     var body: some View {
         
         Level1ScreenContainer  {
-        if screenState.isLoading {
-            ProgressView()
-        } else if screenState.categories.isEmpty {
-            ContentUnavailableView(
-                Strings.emptyTitleEmptyList,
-                systemImage: "gear"
-            )
-        } else {
-            ScrollView {
-                VStack(spacing: 24) {
-                    ForEach(screenState.categories, id: \.id) { category in
-                        SettingsCategoryView(
-                            category: category,
-                            onAction: eventHandler.onSettingAction
-                        )
+            if screenState.isLoading {
+                ScreenLoadingView()
+            } else if screenState.categories.isEmpty {
+                EmptyStateView(state: .emptyList)
+            } else {
+                ScrollView {
+                    VStack(spacing: 24) {
+                        ForEach(screenState.categories, id: \.id) { category in
+                            SettingsCategoryView(
+                                category: category,
+                                onAction: eventHandler.onSettingAction
+                            )
+                        }
                     }
+                    .padding()
+                    .frame(maxWidth: 600)
                 }
-                .padding()
-                .frame(maxWidth: 600)
             }
-        }
         }
     }
 }

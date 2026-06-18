@@ -8,7 +8,7 @@ struct SectionScreen: View {
     
     var body: some View {
         if screenState.isLoading {
-            ScreenLoadingView()
+            LoadingScreen()
         } else {
             SectionScreenContent(
                 screenState: screenState,
@@ -35,7 +35,7 @@ struct SectionScreenContent: View {
         ]
         
         if screenState.countries.isEmpty {
-            EmptyView()
+            EmptyStateView(state: .emptyList)
         } else {
             ScrollView(showsIndicators: false) {
                 
@@ -47,21 +47,16 @@ struct SectionScreenContent: View {
                                     item: item,
                                     onClick: { onListItemClick(item) }
                                 )
-                                
                             }
                         }
                         .padding(.horizontal, Dimens.Section.gridHPadding.of(appLayout))
                         .padding(.vertical, Dimens.Section.gridVPadding.of(appLayout))
                         .frame(maxWidth: 1000)
                     }
-                
                 }
                 .frame(maxWidth: .infinity)
             }
             .frame(maxWidth: .infinity)
-            
-            
-            
         }
     }
 }
@@ -85,7 +80,7 @@ struct CountryGridCard: View {
                     .frame(width: geo.size.width, height: geo.size.width * 0.55)
                     .clipped()
                 }
-                .aspectRatio(100/55, contentMode: .fit)  // ← fixed ratio, adapts to grid width
+                .aspectRatio(100/55, contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
                 .overlay(
                     RoundedRectangle(cornerRadius: 6)

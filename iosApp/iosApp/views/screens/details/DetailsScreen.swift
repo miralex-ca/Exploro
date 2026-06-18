@@ -10,7 +10,7 @@ struct DetailsScreen: View {
     
     var body: some View {
         if screenState.isLoading {
-            ScreenLoadingView()
+            LoadingScreen()
         } else if let details = screenState.details {
             DetailsScreenContent(
                 details: details,
@@ -46,7 +46,7 @@ struct DetailsScreen: View {
                 }
             }
         } else {
-            EmptyView()
+            EmptyStateView(state: .notFound)
         }
     }
 }
@@ -187,13 +187,13 @@ struct FlagContainer: View {
     
     var body: some View {
         ZStack {
-            Color.black
+            Color.gray
                 .opacity(0.15)
                 .background(
                     RemoteImage(url: flagUrl, size: CGSize(width: 400, height: 200))
                         .scaledToFill()
                         .blur(radius: 20)
-                        .opacity(0.45)
+                        .opacity(0.55)
                 )
             
             RemoteImage(url: flagUrl, size: CGSize(width: 300, height: 140))
@@ -201,6 +201,7 @@ struct FlagContainer: View {
                 .frame(height: 140)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
                 .shadow(radius: 8)
+                .padding(.horizontal, 12)
             
             VStack {
                 if appLayout.isPhone {
@@ -220,9 +221,9 @@ struct FlagContainer: View {
                 }
             }
         }
+        
         .frame(maxWidth: .infinity)  // ← constrain ZStack, not the image
         .frame(height: 200)
-        
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .clipped()  // ← extra safety to prevent overflow
     }

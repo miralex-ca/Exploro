@@ -8,20 +8,21 @@ struct FavoritesScreen: View {
     @Environment(\.appLayout) var appLayout
 
     var body: some View {
-        let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         Level1ScreenContainer (screenTitle: Strings.favoritesTitle) {
             ZStack {
                 Color.clear
                 if screenState.isLoading {
-                    ScreenLoadingView()
+                    LoadingScreen()
+                        .transition(.opacity)
                 } else {
                     FavoritesScreenContent(
                         screenState: screenState,
                         onEvent: eventHandler.onEvent
                     )
-                    
+                    .transition(.opacity)
                 }
             }
+            .animation(.easeInOut(duration: 0.15), value: screenState.isLoading)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text(appLayout.isTablet ? "" : Strings.favoritesTitle)
@@ -42,19 +43,26 @@ struct FavoritesScreenContent: View {
     @Environment(\.appLayout) var appLayout
 
     var body: some View {
-        if screenState.favorites.isEmpty {
-            EmptyView()
-        } else if appLayout.isTablet {
-            FavoritesGrid(
-                items: screenState.favorites,
-                onEvent: onEvent
-            )
-        } else {
-            FavoritesList(
-                items: screenState.favorites,
-                onEvent: onEvent
-            )
+        ZStack {
+            if screenState.favorites.isEmpty {
+                EmptyStateView(state: .emptyList)
+                    .transition(.opacity)
+            } else if appLayout.isTablet {
+                FavoritesGrid(
+                    items: screenState.favorites,
+                    onEvent: onEvent
+                )
+                .transition(.opacity)
+            } else {
+                FavoritesList(
+                    items: screenState.favorites,
+                    onEvent: onEvent
+                )
+                .transition(.opacity)
+            }
         }
+        .animation(.easeInOut(duration: 0.15), value: screenState.favorites.isEmpty)
+        
     }
 }
 

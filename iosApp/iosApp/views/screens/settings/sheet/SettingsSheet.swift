@@ -31,16 +31,6 @@ class SettingsSheetEventHandler {
             events.triggerSettingAction(key: key)
         }
     }
- 
-//    func onSettingAction(_ action: SettingAction) {
-//        if let action = action as? SettingAction.SetFavoriteSwipe {
-//            events.setFavoriteSwipeEnabled(enabled: action.enabled)
-//        } else if let action = action as? SettingAction.SetThemeMode {
-//            events.saveThemeMode(name: action.value)
-//        } else if action is SettingAction.SyncData {
-//            events.syncDataFromSettings()
-//        }
-//    }
 }
 
 class SettingsConfig {
@@ -49,7 +39,6 @@ class SettingsConfig {
     
     let tabletBlacklistedSettings: [String] = [InterfaceSettingsCategory.companion.FAVORITE_SWIPE_SETTING_ID]
     
- 
 }
 
 

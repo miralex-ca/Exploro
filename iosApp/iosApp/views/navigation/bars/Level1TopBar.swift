@@ -81,7 +81,6 @@ struct TopTabBar: View {
 }
 
 struct TopTabButton: View {
-
     let label: String
     let icon: String
     let selectedIcon: String
