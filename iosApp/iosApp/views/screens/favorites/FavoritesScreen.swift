@@ -2,14 +2,12 @@
 import SwiftUI
 import Shared
 
-
-
 struct FavoritesScreen: View {
     let screenState: FavoritesScreenState
     let eventHandler: FavoritesEventHandler
+    @Environment(\.appLayout) var appLayout
 
     var body: some View {
-        
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         Level1ScreenContainer (screenTitle: Strings.favoritesTitle) {
             ZStack {
@@ -24,10 +22,9 @@ struct FavoritesScreen: View {
                     
                 }
             }
-            
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text(isIpad ? "" : Strings.favoritesTitle)
+                    Text(appLayout.isTablet ? "" : Strings.favoritesTitle)
                         .font(.title2)
                         .fontWeight(.semibold)
                 }
@@ -42,13 +39,12 @@ struct FavoritesScreen: View {
 struct FavoritesScreenContent: View {
     let screenState: FavoritesScreenState
     let onEvent: (FavoritesUiEvent) -> Void
-
-    var useGrid: Bool { UIDevice.current.userInterfaceIdiom == .pad }
+    @Environment(\.appLayout) var appLayout
 
     var body: some View {
         if screenState.favorites.isEmpty {
             EmptyView()
-        } else if useGrid {
+        } else if appLayout.isTablet {
             FavoritesGrid(
                 items: screenState.favorites,
                 onEvent: onEvent

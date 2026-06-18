@@ -96,9 +96,6 @@ struct FavoriteListRow: View {
                 Spacer()
             }
             .padding(10)
-            
-                
-            //.frame(maxWidth: .infinity, alignment: .center)
             .contentShape(Rectangle())
             .if(!isSwipeEnabled) { view in
                 view.overlay(alignment: .bottomTrailing) {

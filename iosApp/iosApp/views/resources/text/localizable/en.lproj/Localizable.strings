@@ -60,7 +60,11 @@
 "common_back" = "Back";
 "common_clear" = "Clear";
 "common_settings" = "Settings";
+"common_more" = "More";
 "common_more_options" = "More options";
+"common_search" = "Search";
+"common_open_in_maps" = "Open in Maps";
+"common_open_in_wikipedia" = "Wikipedia";
 "open_keyboard" = "Open keyboard";
 
 "detail_label_location" = "Location";

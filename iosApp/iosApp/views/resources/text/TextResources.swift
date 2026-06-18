@@ -48,7 +48,11 @@ struct Strings {
     static var commonBack: String { stringRes("common_back") }
     static var commonClear: String { stringRes("common_clear") }
     static var commonSettings: String { stringRes("common_settings") }
+    static var commonMore: String { stringRes("common_more") }
     static var commonMoreOptions: String { stringRes("common_more_options") }
+    static var commonSearch: String { stringRes("common_search") }
+    static var commonOpenInMaps: String { stringRes("common_open_in_maps") }
+    static var commonOpenInWikipedia: String { stringRes("common_open_in_wikipedia") }
     static var openKeyboard: String { stringRes("open_keyboard") }
 
 

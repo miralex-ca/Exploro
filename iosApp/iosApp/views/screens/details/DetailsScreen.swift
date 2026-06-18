@@ -28,7 +28,7 @@ struct DetailsScreen: View {
                                     fallbackUrl: details.mapsUrl
                                 )
                             } label: {
-                                Label("Find on Map", systemImage: "map")
+                                Label(Strings.commonOpenInMaps, systemImage: "map")
                             }
                         }
                         
@@ -36,11 +36,12 @@ struct DetailsScreen: View {
                             Button {
                                 openUrl(details.wikiUrl)
                             } label: {
-                                Label("Wikipedia", systemImage: "book")
+                                Label(Strings.commonOpenInWikipedia, systemImage: "book")
                             }
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
+                            .accessibilityLabel(Strings.commonMoreOptions)
                     }
                 }
             }
@@ -400,49 +401,29 @@ struct DetailsInfoRow: View {
     
     var body: some View {
         if !row.value.isEmpty {
-            Group {
-                if let url = row.url, let link = URL(string: url) {
-                    Link(destination: link) {
-                        rowContent
-                    }
-                    .tint(Color.primary)
-                    
-                } else {
-                    rowContent
-                }
-            }
-        }
-    }
-    
-    var rowContent: some View {
-        HStack(alignment: .top, spacing: 0) {
-            Image(systemName: row.systemIcon)
-                .frame(width: 28, height: 28)
-                .opacity(0.8)
-                .padding(.top, 6)
-            
-            Spacer().frame(width: 20)
-            
-            VStack(alignment: .leading, spacing: 2) {
-                Text(row.label)
-                    .font(.caption)
-                    .opacity(0.7)
+            HStack(alignment: .top, spacing: 0) {
+                Image(systemName: row.systemIcon)
+                    .frame(width: 28, height: 28)
+                    .opacity(0.8)
+                    .padding(.top, 6)
                 
-                HStack(spacing: 4) {
-                    Text(row.value)
-                        .font(.body)
+                Spacer().frame(width: 20)
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(row.label)
+                        .font(.caption)
+                        .opacity(0.7)
                     
-                    if row.url != nil {
-                        Image(systemName: "arrow.up.right")
-                            .font(.caption)
-                            .opacity(0.6)
+                    HStack(spacing: 4) {
+                        Text(row.value)
+                            .font(.body)
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 10)
+            .padding(.trailing, 10)
         }
-        .padding(.vertical, 10)
-        .padding(.trailing, 10)
     }
 }
 
