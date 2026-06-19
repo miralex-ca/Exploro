@@ -4,7 +4,6 @@ import SwiftUI
 
 
 struct Dimens {
-    
     struct Home {
         static let topPadding = adp(12)
         static let leadingPadding = adp(12, 28)

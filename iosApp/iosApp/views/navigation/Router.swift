@@ -9,7 +9,6 @@ struct Router: View {
     @Environment(\.colorScheme) var systemScheme
     @Environment(\.appLayout) var layout
     
-    
     var body: some View {
         let level1ScreenIdentifiers = getAllLevel1ScreenIdentifiers()
         let level1ScreenIdentifiersWithState = appObj.dkmpNav.stateManager.verticalNavigationLevels
@@ -18,8 +17,6 @@ struct Router: View {
         let showBottomBar = isLevel1 && layout.useBottomBar
         
         let screenNavActions = makeNavActions(navigate, navigateByLevel1)
-        
-        
         
         ZStack {
             Color.clear.ignoresSafeArea()
@@ -53,7 +50,6 @@ struct Router: View {
                 .preferredColorScheme(
                     resolvedScheme(appObj.appEnvironment.themeMode, system: systemScheme)
                 )
-                 
         }
         
     }
