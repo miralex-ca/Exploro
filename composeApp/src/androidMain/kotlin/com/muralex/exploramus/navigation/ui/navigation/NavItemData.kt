@@ -1,4 +1,4 @@
-package com.muralex.exploramus.navigation.bars.navigation
+package com.muralex.exploramus.navigation.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector

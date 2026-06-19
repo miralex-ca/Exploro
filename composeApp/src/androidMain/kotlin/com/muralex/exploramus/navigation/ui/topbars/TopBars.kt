@@ -1,4 +1,4 @@
-package com.muralex.exploramus.navigation.bars.topbars
+package com.muralex.exploramus.navigation.ui.topbars
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons

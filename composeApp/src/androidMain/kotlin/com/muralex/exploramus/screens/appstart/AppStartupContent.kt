@@ -1,4 +1,4 @@
-package com.muralex.exploramus.navigation.appstart
+package com.muralex.exploramus.screens.appstart
 
 import androidx.compose.runtime.Composable
 import com.muralex.exploramus.viewmodel.appstate.AppStartupState

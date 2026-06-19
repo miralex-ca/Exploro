@@ -1,4 +1,4 @@
-package com.muralex.exploramus.navigation.bars.navigation
+package com.muralex.exploramus.navigation.ui.navigation
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding

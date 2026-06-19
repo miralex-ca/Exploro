@@ -16,10 +16,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.zIndex
-import com.muralex.exploramus.navigation.bars.navigation.Level1BottomBar
-import com.muralex.exploramus.navigation.bars.navigation.Level1NavDrawer
-import com.muralex.exploramus.navigation.bars.navigation.Level1NavRail
-import com.muralex.exploramus.navigation.bars.topbars.TopBarContainer
+import com.muralex.exploramus.navigation.ui.navigation.Level1BottomBar
+import com.muralex.exploramus.navigation.ui.navigation.Level1NavDrawer
+import com.muralex.exploramus.navigation.ui.navigation.Level1NavRail
+import com.muralex.exploramus.navigation.ui.topbars.TopBarContainer
 import com.muralex.exploramus.navigation.controller.ScreenNavActions
 import com.muralex.exploramus.navigation.controller.createAppNavController
 import com.muralex.exploramus.ui.adaptive.LocalFormFactor

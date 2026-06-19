@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.muralex.exploramus.navigation.appstart.AppStartupContent
+import com.muralex.exploramus.screens.appstart.AppStartupContent
 import com.muralex.exploramus.viewmodel.core.Navigation
 import com.muralex.exploramus.viewmodel.core.NavigationState
 import com.muralex.exploramus.viewmodel.screens.home.retryBootstrapApp

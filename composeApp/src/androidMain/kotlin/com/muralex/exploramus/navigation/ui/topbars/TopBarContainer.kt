@@ -1,4 +1,4 @@
-package com.muralex.exploramus.navigation.bars.topbars
+package com.muralex.exploramus.navigation.ui.topbars
 
 import androidx.compose.runtime.Composable
 import com.muralex.exploramus.navigation.controller.ScreenNavActions

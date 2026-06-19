@@ -1,4 +1,4 @@
-package com.muralex.exploramus.navigation.appstart
+package com.muralex.exploramus.screens.appstart
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*

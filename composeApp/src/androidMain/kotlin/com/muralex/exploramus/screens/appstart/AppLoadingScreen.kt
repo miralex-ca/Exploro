@@ -1,4 +1,4 @@
-package com.muralex.exploramus.navigation.appstart
+package com.muralex.exploramus.screens.appstart
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState

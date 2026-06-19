@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
-import com.muralex.exploramus.navigation.bars.topbars.DetailsTopBar
+import com.muralex.exploramus.navigation.ui.topbars.DetailsTopBar
 import com.muralex.exploramus.screens.details.DetailsUiEvent.ToggleFavorite
 import com.muralex.exploramus.screens.details.views.DetailHeaderSection
 import com.muralex.exploramus.screens.details.views.DetailsInfoSection

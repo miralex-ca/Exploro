@@ -72,7 +72,7 @@ val syncAssetsToAndroid by tasks.registering(Copy::class) {
 
 val syncAssetsToIos by tasks.registering(Copy::class) {
     from("src/commonMain/resources/")
-    into("${rootProject.projectDir}/iosApp/iosApp/Resources/")
+    into("${rootProject.projectDir}/iosApp/iosApp/AppRawData/")
 }
 
 tasks.named("preBuild") {
