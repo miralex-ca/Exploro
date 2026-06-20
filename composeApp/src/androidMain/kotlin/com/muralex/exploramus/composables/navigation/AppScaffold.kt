@@ -48,8 +48,6 @@ fun Navigation.AppScaffold(
     val formFactor = LocalFormFactor.current
     val isLevel1 = screenIdentifier.screen.navigationLevel == 1
 
-    ExportFromDb()
-
     val content = @Composable {
         Scaffold(contentWindowInsets = WindowInsets(0)) { contentPadding ->
             Row(

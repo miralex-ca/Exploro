@@ -3,44 +3,40 @@ import SwiftUI
 import Shared
 
 
-struct FloatingTabBar: View {
+struct BottomNavBar: View {
+    let navigationActions: NavigationActions
     @EnvironmentObject var appObj: AppObservableObject
-    var onSearch: () -> Void
     @Environment(\.appTheme) var theme
     
     @Namespace private var selectionAnimation
     
     var body: some View {
         let currentURI = appObj.localNavigationState.currentLevel1ScreenIdentifier.URI
-        
-        let _ = print("theme: from bar: isLight \(theme.isLight)")
-        
+    
         HStack(spacing: 12) {
             HStack(spacing: 16) {
-                FloatingTabButton(
+                BottomNavButton(
                     label: Strings.navBrowse,
                     icon: "safari",
                     selectedIcon: "safari.fill",
                     selected: currentURI == Level1Navigation.home.screenIdentifier.URI,
-                    namespace: selectionAnimation
-                ) {
-                    appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .home)
-                }
-                FloatingTabButton(
+                    namespace: selectionAnimation,
+                    onClick: { navigationActions.toLevel1Screen(.home) }
+                )
+                BottomNavButton(
                     label: Strings.navFavorites,
                     icon: "star",
                     selectedIcon: "star.fill",
                     selected: currentURI == Level1Navigation.favorites.screenIdentifier.URI,
-                    namespace: selectionAnimation
-                ) {
-                    appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .favorites)
-                }
+                    namespace: selectionAnimation,
+                    onClick: { navigationActions.toLevel1Screen(.favorites) }
+                )
             }
             .padding(.horizontal, 8)
             .padding(.vertical, 6)
             .bottomGlassCapsule()
             
-            Button(action: onSearch) {
+            Button(action: navigationActions.toSearch) {
                 Image(systemName: "magnifyingglass")
                     .font(.system(size: 28))
                     .foregroundColor(theme.navText)
@@ -50,12 +46,11 @@ struct FloatingTabBar: View {
             .buttonStyle(.plain)
         }
         .background(Color.black.opacity(0.001))
-        
     }
 }
 
 
-struct FloatingTabButton: View {
+struct BottomNavButton: View {
     let label: String
     let icon: String
     let selectedIcon: String
@@ -95,7 +90,7 @@ struct FloatingTabButton: View {
                             value: selected
                         )
                         .matchedGeometryEffect(
-                            id: "TOP_TAB_SELECTION",
+                            id: "BOTTOM_TAB_SELECTION",
                             in: namespace
                         )
                 }

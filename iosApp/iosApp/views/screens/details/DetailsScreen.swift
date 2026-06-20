@@ -123,7 +123,6 @@ struct DetailsScreenContent: View {
                 }
             }
             .padding(.top, Dimens.Details.contentVPadding.of(appLayout))
-            
         }
     }
 }

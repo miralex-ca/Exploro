@@ -6,34 +6,44 @@ import Shared
 
 
 struct AppStartupContent<Content: View>: View {
-    let state: AppStartupState
+    @EnvironmentObject var appObj: AppObservableObject
     let onRetry: () -> Void
-    let content: Content
-   
-    init(
-        state: AppStartupState,
-        onRetry: @escaping () -> Void,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.state = state
-        self.onRetry = onRetry
-        self.content = content()
-    }
+    @ViewBuilder let content: () -> Content
 
     var body: some View {
-        switch state {
+        switch appObj.startupState {
         case is AppStartupStateLoading:
             AppLoadingScreen()
-            
         case let failure as AppStartupStateFailure:
             AppErrorScreen(
                 failedAfterSync: failure is AppStartupStateFailureAfterSync,
                 onRetry: onRetry
             )
-            
         case is AppStartupStateReady:
-            content
-            
+            content()
+        default:
+            AppLoadingScreen()
+        }
+    }
+}
+
+
+struct AppStartupGate<Content: View>: View {
+    @EnvironmentObject var appObj: AppObservableObject
+    let onRetry: () -> Void
+    @ViewBuilder let content: () -> Content
+
+    var body: some View {
+        switch appObj.startupState {
+        case is AppStartupStateLoading:
+            AppLoadingScreen()
+        case let failure as AppStartupStateFailure:
+            AppErrorScreen(
+                failedAfterSync: failure is AppStartupStateFailureAfterSync,
+                onRetry: onRetry
+            )
+        case is AppStartupStateReady:
+            content()
         default:
             AppLoadingScreen()
         }

@@ -9,7 +9,7 @@ enum SearchUiEvent {
 
 struct SearchEventHandler {
     let events: Events
-    let navActions: ScreenNavActions
+    let navActions: NavigationActions
     
     func onEvent(_ event: SearchUiEvent) {
         switch event {

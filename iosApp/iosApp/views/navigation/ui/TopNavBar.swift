@@ -3,9 +3,9 @@ import Shared
 
 
 
-struct TopTabBar: View {
+struct TopNavBar: View {
     @EnvironmentObject var appObj: AppObservableObject
-    let screenNavActions: ScreenNavActions
+    let screenNavActions: NavigationActions
 
     @Environment(\.appLayout) var appLayout
 
@@ -140,17 +140,13 @@ struct TopTabButton: View {
                         )
                 }
             }
-            
         }
         .buttonStyle(.plain)
     }
 }
 
 
-
-
 struct TopbarGlassCapsuleModifier: ViewModifier {
-    
     @Environment(\.appTheme) var theme
     
     func body(content: Content) -> some View {

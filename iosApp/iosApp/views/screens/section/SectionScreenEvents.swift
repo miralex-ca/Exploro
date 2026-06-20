@@ -8,7 +8,7 @@ enum SectionUiEvent {
 }
 
 struct SectionEventHandler {
-    let navActions: ScreenNavActions
+    let navActions: NavigationActions
     
     func onEvent(_ event: SectionUiEvent) {
         switch event {

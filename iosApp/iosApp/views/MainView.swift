@@ -10,14 +10,9 @@ struct MainView: View {
     
     var body: some View {
         GeometryReader { geo in
-            AppStartupContent(
-                state: appObj.startupState,
-                onRetry: { appObj.dkmpNav.events.retryBootstrapApp() }
-            ) {
-                Router()
-            }
+            Router()
             .environment(\.appTheme, AppTheme.from(colorScheme))
-            .preferredColorScheme(colorScheme(from: appObj.appEnvironment.themeMode))
+            .preferredColorScheme(resolveColorScheme(appObj.appEnvironment.themeMode))
             .onChange(of: geo.size, initial: true) { _, size in
                 appLayout.update(horizontal: horizontal, vertical: vertical, size: size)
             }
@@ -29,13 +24,12 @@ struct MainView: View {
             }
         }
     }
-    
- 
-    func colorScheme(from themeMode: ModelsThemeMode) -> ColorScheme? {
-        switch themeMode {
-        case .dark: return .dark
-        case .light: return .light
-        default: return nil
-        }
+}
+
+func resolveColorScheme(_ mode: ThemeMode, system: ColorScheme? = nil) -> ColorScheme? {
+    switch mode {
+    case .dark: return .dark
+    case .light: return .light
+    case .system: return system
     }
 }

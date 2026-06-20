@@ -4,16 +4,15 @@ import Shared
 
 struct SideDrawer: View {
     @EnvironmentObject var appObj: AppObservableObject
-    let screenNavActions: ScreenNavActions
-
+    let navigationActions: NavigationActions
+    
     @Environment(\.appTheme) var theme
     @Environment(\.appLayout) var appLayout
-
+    
     var body: some View {
         let currentURI = appObj.localNavigationState.currentLevel1ScreenIdentifier.URI
-
+        
         VStack(alignment: .leading, spacing: 0) {
-
             HStack {
                 Spacer()
                 
@@ -28,57 +27,50 @@ struct SideDrawer: View {
             }
             .padding(.bottom, 60)
             
-            
             DrawerButton(
                 label: Strings.searchTitle,
                 icon: "magnifyingglass",
                 selectedIcon: "magnifyingglass",
                 selected: false,
-                isIcon: false
-            ) {
-                screenNavActions.toSearch()
-            }
+                isIcon: false,
+                onClick: { navigationActions.toSearch() }
+            )
             .padding(.bottom, 6)
-           
-
+            
             DrawerButton(
                 label: Strings.homeTitle,
                 icon: "safari",
                 selectedIcon: "safari",
-                selected: currentURI == Level1Navigation.home.screenIdentifier.URI
-            ) {
-                appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .home)
-            }
+                selected: currentURI == Level1Navigation.home.screenIdentifier.URI,
+                onClick: { navigationActions.navigateByLevel1(.home) }
+            )
             .padding(.bottom, 6)
-
+            
             DrawerButton(
                 label: Strings.favoritesTitle,
                 icon: "star",
                 selectedIcon: "star",
-                selected: currentURI == Level1Navigation.favorites.screenIdentifier.URI
-            ) {
-                appObj.dkmpNav.navigateByLevel1Menu(appObj, level1Navigation: .favorites)
-            }
+                selected: currentURI == Level1Navigation.favorites.screenIdentifier.URI,
+                onClick: { navigationActions.navigateByLevel1(.favorites) }
+            )
             .padding(.bottom, 6)
+            
             Spacer()
-
+            
             DrawerButton(
                 label: Strings.settingsTitle,
                 icon: "gearshape",
                 selectedIcon: "gearshape.fill",
                 selected: false,
-                isIcon: false
-            ) {
-                //screenNavActions.toSettings()
-                appObj.showSettings = true
-            }
+                isIcon: false,
+                onClick: { navigationActions.showSettings() }
+            )
             .padding(.bottom, 8)
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .frame(width: 250)
         .contentShape(Rectangle())
-        
         .drawerGlass()
     }
 }
@@ -88,9 +80,9 @@ struct DrawerToogleButton: View {
     let label: String
     let icon: String
     let onClick: () -> Void
-
+    
     @Environment(\.appTheme) var theme
-
+    
     var body: some View {
         Button(action: onClick) {
             HStack(spacing: 12) {
@@ -98,9 +90,6 @@ struct DrawerToogleButton: View {
                     .font(.system(size: 20, weight: .light))
                     .frame(width: 24)
                     .opacity(0.8)
-
-                
- 
             }
             .foregroundStyle(theme.navText)
             
@@ -108,7 +97,7 @@ struct DrawerToogleButton: View {
             .padding(.trailing, 2)
             .padding(.leading, 20)
             .contentShape(Rectangle())
-             
+            
         }
         .buttonStyle(.plain)
     }
@@ -121,30 +110,30 @@ struct DrawerButton: View {
     let selected: Bool
     var isIcon: Bool = false
     let onClick: () -> Void
-
+    
     @Environment(\.appTheme) var theme
-
+    
     var body: some View {
         Button(action: onClick) {
             HStack(spacing: 16) {
                 Image(systemName: selected ? selectedIcon : icon)
                     .font(.system(size: 21))
                     .frame(width: 24)
-
+                
                 if !isIcon {
                     Text(label)
-                        //.font(.subheadline)
+                    //.font(.subheadline)
                         .fontWeight(.regular)
                         .font(.system(size: 18))
                 }
-
+                
                 Spacer()
             }
             .foregroundStyle(selected ? theme.navSelected : .primary)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
-            .frame(maxWidth: .infinity)  // add this
-             .contentShape(Rectangle())   // add this
+            .frame(maxWidth: .infinity)
+            .contentShape(Rectangle())
             .background {
                 if selected {
                     RoundedRectangle(cornerRadius: 16)

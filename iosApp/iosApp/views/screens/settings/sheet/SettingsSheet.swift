@@ -44,14 +44,12 @@ class SettingsConfig {
 
 struct SettingsView: View { 
     @EnvironmentObject var appObj: AppObservableObject
-    
-    @StateObject private var vm = SettingsViewModel()
-    
-    @State var settingsList: [SettingsCategory] = []
-    
     @Environment(\.appTheme) var theme
     @Environment(\.appLayout) var appLayout
-
+    
+    @StateObject private var vm = SettingsViewModel()
+    @State var settingsList: [SettingsCategory] = []
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -144,9 +142,6 @@ struct SettingsCategorySection: View {
 }
 
 
-
-
-
 @ViewBuilder
 func SettingsRow(
     setting: Setting,
@@ -222,14 +217,12 @@ struct OptionsSettingView: View {
                         if selectedValue == option.id {
                             Image(systemName: "checkmark")
                                 .foregroundStyle(theme.caret)
+                                .fontWeight(.bold)
                                 .padding(.trailing, 10)
                         }
                     }
                     .padding(.vertical, 6)
-                    //.contentShape(Rectangle())
                 }
-                
-                //.buttonStyle(SettingsRowButtonStyle())
                 .listRowBackground(theme.cardSurface)
                 .contentShape(Rectangle())
                 .foregroundStyle(.primary)

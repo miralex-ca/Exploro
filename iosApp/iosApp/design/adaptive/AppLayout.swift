@@ -8,6 +8,7 @@ class AppLayout {
     var formFactor: FormFactor = FormFactor.defaultValue()
     
     var useBottomBar: Bool { isPhone }
+    var useLargeScreenNav: Bool { isTablet }
     var useTopbar: Bool { isTablet && !useDrawer }
     var useDrawer: Bool = false
     

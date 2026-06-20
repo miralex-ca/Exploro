@@ -11,7 +11,6 @@ data class Country(
     val flagAlt: String,
 )
 
-
 data class CountryDetails(
     val id: String,
     val coatOfArmsPngUrl: String,

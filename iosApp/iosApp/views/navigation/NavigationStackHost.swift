@@ -2,9 +2,9 @@
 import SwiftUI
 import Shared
 
-struct OnePane: View {
+struct NavigationStackHost: View {
     var level1ScreenIdentifier : ScreenIdentifier
-    let screenNavActions: ScreenNavActions
+    let screenNavActions: NavigationActions
     
     @EnvironmentObject var appObj: AppObservableObject
     @Environment(\.appTheme) var theme
@@ -16,21 +16,19 @@ struct OnePane: View {
             ScreenPicker(
                 requestedSId: level1ScreenIdentifier,
                 level1ScreenIdentifier: level1ScreenIdentifier,
-                screenNavActions: screenNavActions
+                eventHandlers: appObj.dkmpNav.makeEventHandlers(screenNavActions)
             )
             .navigationDestination(for: ScreenIdentifier.self) { sId in
                 let _ = appObj.dkmpNav.navigateToScreenForIos(screenIdentifier: sId, level1ScreenIdentifier: level1ScreenIdentifier)
                 ScreenPicker(
                     requestedSId: sId,
                     level1ScreenIdentifier: level1ScreenIdentifier,
-                    screenNavActions: screenNavActions
+                    eventHandlers: appObj.dkmpNav.makeEventHandlers(screenNavActions)
                 )
             }
-            
         }
         .toolbar(isLevel1 ? .visible : .hidden, for: .tabBar)
     }
-    
 }
 
 
@@ -42,7 +40,7 @@ extension Binding where Value == KotlinMutableDictionary<NSString,NSMutableArray
         return Binding<[ScreenIdentifier]>(
             get: {
                 let dict = self.wrappedValue as! [String:[ScreenIdentifier]]
-                return dict[level1URI] ?? []  // safe fallback instead of force unwrap
+                return dict[level1URI] ?? []
             },
             set: {
                 var writableDict = self.wrappedValue as! [NSString:NSMutableArray]

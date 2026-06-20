@@ -22,11 +22,11 @@
 "settings_sync_summary" = "Keep app content up to date";
 "settings_sync_dialog_title" = "Check for updates?";
 "settings_sync_dialog_message" = "We’ll refresh the app content with the latest available data.";
-"settings_sync_dialog_action_text" = "Update";
+"settings_sync_dialog_action_text" = "Continue";
 
 "settings_sync_in_progress" = "Updating content…";
 "settings_sync_last" = "Last updated: %@";
-"settings_sync_success" = "Content updated successfully\nLast updated: %@";
+"settings_sync_success" = "Content is up to date.\nLast updated: %@";
 "settings_sync_failed" = "Update failed. Please try again.\nLast updated: %@";
 
 "settings_category_interface" = "Interface";

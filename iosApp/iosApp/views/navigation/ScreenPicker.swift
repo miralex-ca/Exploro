@@ -1,117 +1,92 @@
 import SwiftUI
 import Shared
 
-
 struct ScreenPicker: View {
     let requestedSId: ScreenIdentifier
     let level1ScreenIdentifier: ScreenIdentifier
-    let screenNavActions: ScreenNavActions
     
     @EnvironmentObject var appObj: AppObservableObject
     @Environment(\.appTheme) var theme
-    
     @Environment(\.appLayout) var appLayout
     
-
+    @StateObject private var eventHandlers: EventHandlers
+    
+    init(requestedSId: ScreenIdentifier, level1ScreenIdentifier: ScreenIdentifier, eventHandlers: EventHandlers) {
+        self.requestedSId = requestedSId
+        self.level1ScreenIdentifier = level1ScreenIdentifier
+        _eventHandlers = StateObject(wrappedValue: eventHandlers)
+    }
+    
     var body: some View {
         let state = appObj.getScreenState(sID: requestedSId)
-        let nav = appObj.dkmpNav
- 
+        let navigation = appObj.dkmpNav
         let isLevel1 = requestedSId.screen.navigationLevel == 1
-
+        
         ZStack {
             Color.clear.ignoresSafeArea()
             
             switch requestedSId.screen {
-
-            case .homeScreen:
                 
+            case .homeScreen:
                 HomeScreen(
                     screenState: state as! HomeScreenState,
-                    eventHandler: HomeEventHandler(navActions: screenNavActions)
+                    eventHandler: eventHandlers.home
                 )
-                
-            
                 
             case .sectionScreen:
                 SectionScreen(
                     screenState: state as! SectionScreenState,
-                    eventHandler: SectionEventHandler(navActions: screenNavActions)
+                    eventHandler: eventHandlers.section
                 )
-
+                
+                
             case .countryDetail:
                 DetailsScreen(
                     screenState: state as! DetailsScreenState,
-                    eventHandler: DetailsEventHandler(events: appObj.dkmpNav.events)
-                )
-                
-            case .settingsScreen:
-                SettingsScreen(
-                    screenState: state as! SettingsScreenState,
-                    eventHandler: .init(events: appObj.dkmpNav.events)
-                )
-                
-            case .lv1SettingsScreen:
-                SettingsScreen(
-                    screenState: state as! SettingsScreenState,
-                    eventHandler: .init(events: appObj.dkmpNav.events)
+                    eventHandler: eventHandlers.details
                 )
                 
             case .favoritesScreen:
                 FavoritesScreen(
                     screenState: state as! FavoritesScreenState,
-                    eventHandler: FavoritesEventHandler(events: appObj.dkmpNav.events, navActions: screenNavActions)
+                    eventHandler: eventHandlers.favorites
                 )
                 
             case .searchScreen:
                 SearchScreen(
                     screenState: state as! SearchScreenState,
-                    eventHandler: SearchEventHandler(events: appObj.dkmpNav.events, navActions: screenNavActions)
+                    eventHandler: eventHandlers.search
                 )
-
+                
             default: EmptyView()
                 
             }
         }
-        
         .background(theme.background)
         .safeAreaInset(edge: .bottom) {
             if isLevel1 {
                 Color.clear.frame(height: 80)
             }
         }
-        .navigationTitle(nav.getTitle(screenIdentifier: requestedSId))
+        .navigationTitle(navigation.getTitle(screenIdentifier: requestedSId))
         .navigationBarTitleDisplayMode(.inline)
         .onDisappear {
-            nav.exitScreenForIos(screenIdentifier: requestedSId)
+            navigation.exitScreenForIos(screenIdentifier: requestedSId)
         }
         .task {
             await appObj.collectScreenStateFlow(sID: requestedSId)
         }
         .toolbar {
-            if isLevel1 && !appLayout.useDrawer {
+            if isLevel1 && appLayout.useDrawer {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                       // screenNavActions.toSettings()
-                        appObj.showSettings = true
+                        eventHandlers.navActions.showSettings()
                     } label: {
                         Image(systemName: "gearshape")
                     }
                 }
             }
         }
-        .onChange(of: appLayout.isLandscape, initial: true) { oldValue, newValue in
-            print("forma factor changed - \(appLayout)")
-        }
-         
-   
-    }
-    
-    func navigate(_ screen: Screen, _ params: ScreenParams?) {
-        let sId = appObj.dkmpNav.navigate(screen, params)
-        $appObj.localNavigationState.paths
-            .getPath(level1URI: level1ScreenIdentifier.URI)
-            .wrappedValue.append(sId)
     }
 }
 

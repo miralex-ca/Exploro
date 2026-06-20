@@ -9,7 +9,7 @@ enum HomeUiEvent {
 }
 
 struct HomeEventHandler {
-    let navActions: ScreenNavActions
+    let navActions: NavigationActions
     
     func onEvent(_ event: HomeUiEvent) {
         switch event {
