@@ -1,39 +1,61 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# Exploramus
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+Exploramus is a discovery-focused application built with **Kotlin Multiplatform (KMP)**. It allows users to explore various entities (such as countries), search for information, manage favorites, and customize settings.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Architecture: DKMP
 
-* [/shared](./shared/src) is for the code that will be shared between all targets in the project.
-  The most important subfolder is [commonMain](./shared/src/commonMain/kotlin). If preferred, you
-  can add code to the platform-specific folders here too.
+The project follows the **DKMP (Declarative Kotlin Multiplatform)** architecture pattern, which emphasizes a shared, state-driven business logic layer and thin, declarative UI layers for each platform.
 
-### Build and Run Android Application
+### Key Components
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
-
-### Build and Run iOS Application
-
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+*   **Declarative UI**: Uses **Jetpack Compose** for Android and **SwiftUI** for iOS.
+*   **Kotlin Multiplatform**: All business logic, state management, and navigation are shared across platforms in the `:shared` module.
+*   **State-driven (MVI)**: The UI observes immutable state flows provided by a shared `DKMPViewModel`.
+*   **StateManager**: A centralized component in the shared module that manages screen states, navigation backstacks, and lifecycle-aware coroutine scopes.
+*   **Dependency Injection**: Powered by **Koin** for both shared and platform-specific dependencies.
 
 ---
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## Project Structure
+
+The project is organized into several modules to ensure a clean separation of concerns:
+
+### UI Layers
+*   **`composeApp`**: The Android application module, built entirely with Jetpack Compose.
+*   **`iosApp`**: The native iOS application, built with SwiftUI and consuming the shared KMP framework.
+
+### Shared Logic
+*   **`:shared`**: The core multiplatform module. It contains:
+    - **`DKMPViewModel`**: The primary interface between UI and logic.
+    - **Navigation**: Shared routing and backstack management.
+    - **Screen States**: Definitions for the data shown on each screen.
+*   **`:core`**:
+    - `:core:models`: Common data classes used across the project.
+    - `:core:common`: Utilities and logging.
+*   **`:data`**:
+    - `:data:repository`: The main entry point for data access, coordinating between local and remote sources.
+    - `:data:network`: API clients and remote data fetching.
+    - `:data:localdb`: Local persistence (e.g., SQLDelight).
+    - `:data:assets`: Handling of bundled assets and JSON data.
+*   **`:di`**: Global dependency injection configuration.
+
+---
+
+## Getting Started
+
+### Build and Run Android Application
+To build and run the Android app, use the run configuration in Android Studio or run:
+```shell
+./gradlew :composeApp:assembleDebug
+```
+
+### Build and Run iOS Application
+1. Open the `iosApp` directory in Xcode.
+2. Select a simulator or physical device.
+3. Build and Run (**Cmd + R**).
+
+Alternatively, you can run the iOS configuration directly from Android Studio if the KMP plugin is configured.
+
+---
+
+Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html).
