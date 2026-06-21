@@ -26,14 +26,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import com.muralex.exploramus.resources.Strings
+import com.muralex.exploramus.composables.components.RemoteImage
 import com.muralex.exploramus.design.adaptive.LocalFormFactor
 import com.muralex.exploramus.design.adaptive.isCompact
 import com.muralex.exploramus.design.adaptive.layout
 import com.muralex.exploramus.design.adaptive.value
-import com.muralex.exploramus.composables.components.RemoteImage
 import com.muralex.exploramus.design.theme.appColors
+import com.muralex.exploramus.resources.Strings
 import com.muralex.exploramus.viewmodel.screens.countrydetail.CountryDetailsState
 import java.util.Locale
 
@@ -146,6 +145,7 @@ fun FlagContainer(
                 .fillMaxWidth(0.85f)
                 .height(detailsLayout.imageHeight.value()),
             shape = RoundedCornerShape(6.dp),
+            usePlaceholder = false
         )
 
         FavoriteButton(
@@ -314,6 +314,7 @@ fun CoatOfArmsImage(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(6.dp),
+            usePlaceholder = false
         )
     }
 
@@ -333,11 +334,15 @@ fun CoatOfArmsImage(
                         .padding(top = 30.dp, bottom = 20.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    AsyncImage(
-                        model = url,
-                        contentDescription = Strings.detailsCoatOfArms,
+
+                    RemoteImage(
+                        imageUrl = url,
                         contentScale = ContentScale.Fit,
-                        modifier = Modifier.size(180.dp)
+                        contentDescription = Strings.detailsCoatOfArms,
+                        modifier = Modifier
+                             .size(180.dp)
+                            .padding(6.dp),
+                        usePlaceholder = false
                     )
                 }
             },

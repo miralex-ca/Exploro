@@ -1,20 +1,17 @@
 package com.muralex.exploramus.composables.components
 
-
-
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
-import com.muralex.exploramus.R
-
 
 @Composable
 fun RemoteImage(
@@ -24,12 +21,8 @@ fun RemoteImage(
     contentScale: ContentScale = ContentScale.Crop,
     alpha: Float = 1f,
     shape: Shape = RectangleShape,
+    usePlaceholder: Boolean = true
 ) {
-    val placeholderRes = when {
-        imageUrl?.lowercase()?.contains("taliban") == true  -> R.drawable.taliban_flag
-        else -> R.drawable.flag_placeholder
-    }
-
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(imageUrl)
@@ -38,7 +31,8 @@ fun RemoteImage(
             .diskCachePolicy(CachePolicy.ENABLED)
             .networkCachePolicy(CachePolicy.ENABLED)
             .build(),
-        error = painterResource(placeholderRes),
+        error = if (usePlaceholder) ColorPainter(Color.Gray.copy(alpha = 0.1f)) else null,
+        placeholder = if (usePlaceholder) ColorPainter(Color.Gray.copy(alpha = 0.1f)) else null,
         contentDescription = contentDescription,
         modifier = modifier
             .clip(shape),

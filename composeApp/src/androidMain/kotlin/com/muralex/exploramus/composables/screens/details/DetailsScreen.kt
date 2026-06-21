@@ -12,6 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
+import com.muralex.exploramus.composables.components.EmptyState
+import com.muralex.exploramus.composables.components.EmptyStateView
+import com.muralex.exploramus.composables.components.FadeInScreenContent
+import com.muralex.exploramus.composables.components.ScreenLoading
 import com.muralex.exploramus.composables.navigation.ui.topbars.DetailsTopBar
 import com.muralex.exploramus.composables.screens.details.DetailsUiEvent.ToggleFavorite
 import com.muralex.exploramus.composables.screens.details.views.DetailHeaderSection
@@ -22,10 +26,6 @@ import com.muralex.exploramus.design.adaptive.LocalFormFactor
 import com.muralex.exploramus.design.adaptive.isLandscape
 import com.muralex.exploramus.design.adaptive.layout
 import com.muralex.exploramus.design.adaptive.value
-import com.muralex.exploramus.composables.components.EmptyState
-import com.muralex.exploramus.composables.components.EmptyStateView
-import com.muralex.exploramus.composables.components.FadeInScreenContent
-import com.muralex.exploramus.composables.components.ScreenLoading
 import com.muralex.exploramus.design.theme.appColors
 import com.muralex.exploramus.viewmodel.screens.countrydetail.CountryDetailsState
 import com.muralex.exploramus.viewmodel.screens.countrydetail.DetailsScreenState
@@ -66,14 +66,13 @@ fun DetailsScreenContent(
     val isLandscape = formFactor.isLandscape
     val layout = MaterialTheme.layout.details
 
-
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
 
             DetailsTopBar(
-                title = "Detail",
+                title = details.name,
                 mapsUrl = details.mapsUrl,
                 wikiUrl = details.wikiUrl,
                 onBackClick = {  onEvent(DetailsUiEvent.OnBackClicked) }

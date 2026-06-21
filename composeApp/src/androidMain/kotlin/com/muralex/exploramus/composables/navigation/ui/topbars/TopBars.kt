@@ -1,13 +1,13 @@
 package com.muralex.exploramus.composables.navigation.ui.topbars
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.outlined.Place
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.rounded.MoreVert
-import androidx.compose.material.icons.rounded.Place
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -16,14 +16,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.muralex.exploramus.resources.Strings
+import com.muralex.exploramus.R
 import com.muralex.exploramus.design.adaptive.FormFactor
 import com.muralex.exploramus.design.adaptive.LocalFormFactor
 import com.muralex.exploramus.design.adaptive.isCompactHeight
 import com.muralex.exploramus.design.theme.appColors
+import com.muralex.exploramus.resources.Strings
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -165,7 +167,7 @@ fun DetailsTopBar(
                         DropdownMenuItem(
                             text = { Text(Strings.commonOpenInMaps) },
                             leadingIcon = {
-                                Icon(imageVector = Icons.Rounded.Place, contentDescription = null)
+                                Icon(imageVector = Icons.Outlined.Place, contentDescription = null)
                             },
                             onClick = {
                                 menuExpanded = false
@@ -177,7 +179,7 @@ fun DetailsTopBar(
                         DropdownMenuItem(
                             text = { Text(Strings.commonOpenInWikipedia) },
                             leadingIcon = {
-                                Icon(imageVector = Icons.AutoMirrored.Outlined.MenuBook, contentDescription = null)
+                                Image(painter = painterResource(R.drawable.wikipedia), contentDescription = Strings.commonOpenInWikipedia)
                             },
                             onClick = {
                                 menuExpanded = false
