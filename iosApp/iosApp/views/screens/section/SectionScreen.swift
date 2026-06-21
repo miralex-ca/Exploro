@@ -44,7 +44,9 @@ struct SectionScreenContent: View {
                         LazyVGrid(columns: columns, spacing: spacing) {
                             ForEach(screenState.countries, id: \.id) { item in
                                 CountryGridCard(
-                                    item: item,
+                                    name: item.name,
+                                    flagPngUrl: item.flagPngUrl,
+                                    subregion: item.subregion,
                                     onClick: { onListItemClick(item) }
                                 )
                             }
@@ -62,7 +64,9 @@ struct SectionScreenContent: View {
 }
 
 struct CountryGridCard: View {
-    let item: SectionListItem
+    let name: String
+    let flagPngUrl: String
+    let subregion: String
     let onClick: () -> Void
     
     @Environment(\.appTheme) var theme
@@ -73,7 +77,7 @@ struct CountryGridCard: View {
             VStack(alignment: .leading, spacing: 0) {
                 GeometryReader { geo in
                     RemoteImage(
-                        url: item.flagPngUrl,
+                        url: flagPngUrl,
                         size: CGSize(width: geo.size.width, height: geo.size.width * 0.55)
                     )
                     .scaledToFill()
@@ -89,12 +93,12 @@ struct CountryGridCard: View {
                 .padding(8)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(item.name)
-                        .font(.headline)
+                    Text(name)
+                        .font(.appHeadline)
                         .lineLimit(1)
 
-                    Text(item.subregion)
-                        .font(.caption)
+                    Text(subregion)
+                        .font(.appCaption)
                         .lineLimit(1)
                         .foregroundStyle(.secondary)
                 }

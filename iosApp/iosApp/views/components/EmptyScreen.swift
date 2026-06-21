@@ -24,7 +24,7 @@ struct EmptyStateView: View {
                         Spacer().frame(height: 8)
                         
                         Text(state.message)
-                            .font(.subheadline)
+                            .font(.appSubheadline)
                             .foregroundColor(theme.onSurface)
                             .multilineTextAlignment(.center)
                             .opacity(0.8)
@@ -71,4 +71,6 @@ enum EmptyState {
         }
     }
 }
+
+
 

@@ -15,7 +15,6 @@ struct FormFactor {
 
 extension FormFactor {
     static func defaultValue() -> FormFactor {
-       // let deviceType: DeviceType = UIDevice.current.userInterfaceIdiom == .pad ? .tablet : .phone
         return FormFactor(
             widthType: .compact,
             heightType: .medium,

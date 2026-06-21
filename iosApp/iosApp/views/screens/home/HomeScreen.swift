@@ -109,7 +109,8 @@ struct HomeSectionRow: View {
                 LazyHStack(spacing: Dimens.Home.cardSpacing.of(appLayout)) {
                     ForEach(section.sectionListItems, id: \.id) { item in
                         HomeSectionListCard(
-                            item: item,
+                            name: item.name,
+                            flagPngUrl: item.flagPngUrl,
                             onClick: { onListItemClick(item) }
                         )
                     }
@@ -125,7 +126,8 @@ struct HomeSectionRow: View {
 }
 
 struct HomeSectionListCard: View {
-    let item: HomeListItem
+    let name: String
+    let flagPngUrl: String
     let onClick: () -> Void
     
     @Environment(\.appTheme) var theme
@@ -135,7 +137,6 @@ struct HomeSectionListCard: View {
     private let imageHeight: CGFloat = 80
     
     var body: some View {
-        
         let cardWidth = Dimens.Home.cardWidth.of(appLayout)
         let imageHeight = Dimens.Home.imageHeight.of(appLayout)
         
@@ -144,7 +145,7 @@ struct HomeSectionListCard: View {
         Button(action: onClick) {
             VStack(alignment: .leading, spacing: 0) {
                 RemoteImage(
-                    url: item.flagPngUrl,
+                    url: flagPngUrl,
                     size: imageSize
                 )
                 .scaledToFill()
@@ -156,8 +157,8 @@ struct HomeSectionListCard: View {
                         .stroke(Color.gray.opacity(0.25), lineWidth: 1)
                 )
 
-                Text(item.name)
-                    .font(.subheadline)
+                Text(name)
+                    .font(.appSubheadline)
                     .lineLimit(1)
                     .padding(.horizontal, 4)
                     .padding(.top, 8)

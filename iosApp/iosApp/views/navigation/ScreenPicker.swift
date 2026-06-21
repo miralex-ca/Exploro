@@ -77,7 +77,7 @@ struct ScreenPicker: View {
             await appObj.collectScreenStateFlow(sID: requestedSId)
         }
         .toolbar {
-            if isLevel1 && appLayout.useDrawer {
+            if isLevel1 && !appLayout.useDrawer {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         eventHandlers.navActions.showSettings()

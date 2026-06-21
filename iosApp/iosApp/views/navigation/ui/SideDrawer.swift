@@ -122,7 +122,6 @@ struct DrawerButton: View {
                 
                 if !isIcon {
                     Text(label)
-                    //.font(.subheadline)
                         .fontWeight(.regular)
                         .font(.system(size: 18))
                 }

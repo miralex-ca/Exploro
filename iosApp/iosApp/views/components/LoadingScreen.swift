@@ -1,10 +1,10 @@
 
 import SwiftUI
-import Shared
 
 
 struct LoadingScreen: View {
     var showBackground: Bool = false
+    @Environment(\.appTheme) var theme
     var body: some View {
         ZStack {
             VStack {
@@ -13,6 +13,7 @@ struct LoadingScreen: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(showBackground ? theme.background : Color.clear)
         }
     }
 }
