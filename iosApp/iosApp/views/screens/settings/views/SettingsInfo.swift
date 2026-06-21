@@ -25,11 +25,11 @@ struct PreferenceContent: View {
             spacing: 4
         ) {
             Text(title)
-                .font(.body.weight(.medium))
+                .font(.appBody.weight(.medium))
 
             if let summary {
                 Text(summary)
-                    .font(.subheadline)
+                    .font(.appSubheadline)
                     .foregroundStyle(.secondary)
             }
         }

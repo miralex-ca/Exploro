@@ -211,7 +211,7 @@ struct SearchListRow: View {
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(item.name)
-                        .font(.body)
+                        .font(.appBody)
                         .fontWeight(.semibold)
                         .lineLimit(1)
                     Text(item.officialName)

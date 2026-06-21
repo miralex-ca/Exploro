@@ -50,10 +50,10 @@ struct FavoriteGridCell: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(item.name)
-                        .font(.headline)
+                        .font(.appHeadline)
                         .lineLimit(1)
                     Text(item.subregion)
-                        .font(.subheadline)
+                        .font(.appSubheadline)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
                 }
@@ -71,12 +71,12 @@ struct FavoriteGridCell: View {
                     Button {
                         onClick()
                     } label: {
-                        Label("View", systemImage: "eye")
+                        Label(Strings.commonView, systemImage: "eye")
                     }
                     Button(role: .destructive) {
                         onRemove()
                     } label: {
-                        Label("Remove", systemImage: "trash")
+                        Label(Strings.commonRemove, systemImage: "trash")
                     }
                 } label: {
                     Image(systemName: "ellipsis")

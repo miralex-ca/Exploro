@@ -50,14 +50,14 @@ struct SettingsCategorySection: View {
     let onAction: (SettingsAction) -> Void
     
     @Environment(\.appTheme) var theme
-
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: 8) {
-
+            
             if let title = category.title {
                 Text(title.asString())
-                    .font(.headline)
+                    .font(.appHeadline)
                     .padding(.horizontal, 8)
             } else {
                 Spacer().frame(height: 6)
@@ -67,24 +67,24 @@ struct SettingsCategorySection: View {
                 ForEach(Array(category.settings.enumerated()), id: \.offset) { index, setting in
                     let isFirst = index == 0
                     let isLast = index == category.settings.count - 1
-
+                    
                     let corners: UIRectCorner = {
                         if isFirst && isLast { return .allCorners }
                         if isFirst { return [.topLeft, .topRight] }
                         if isLast { return [.bottomLeft, .bottomRight] }
                         return []
                     }()
-
+                    
                     SettingsRow(
                         setting: setting,
                         onAction: onAction
                     )
-                        .background(theme.cardSurface)
-                        .clipShape(RoundedCornerShape(corners: corners, radius: 14))
-                        .overlay(
-                            RoundedCornerShape(corners: corners, radius: 14)
-                                .stroke(Color.gray.opacity(0.2), lineWidth: 0.5)
-                        )
+                    .background(theme.cardSurface)
+                    .clipShape(RoundedCornerShape(corners: corners, radius: 14))
+                    .overlay(
+                        RoundedCornerShape(corners: corners, radius: 14)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 0.5)
+                    )
                 }
             }
         }
@@ -98,13 +98,13 @@ func SettingsRow(
     onAction: @escaping (SettingsAction) -> Void
 ) -> some View {
     switch setting {
-
+        
     case let s as Setting.Switch:
         SettingsSwitchRow(setting: s, onAction: onAction)
-
+        
     case let s as Setting.Info:
         InfoRow(setting: s)
-
+        
     case let s as Setting.Options:
         NavigationLink {
             SettingsOptionsView(setting: s, onAction: onAction)
@@ -112,7 +112,7 @@ func SettingsRow(
             SetttingsWithOptionsRow(setting: s)
         }
         .buttonStyle(SettingsRowButtonStyle())
-
+        
     case let s as Setting.Action:
         NavigationLink {
             SettinsActionView(setting: s, onAction: onAction)
@@ -131,8 +131,8 @@ struct SettingsRowButtonStyle: ButtonStyle {
         configuration.label
             .background(
                 configuration.isPressed
-                    ? Color.primary.opacity(0.08)
-                    : Color.clear
+                ? Color.primary.opacity(0.08)
+                : Color.clear
             )
             .animation(.easeOut(duration: 0.12), value: configuration.isPressed)
     }

@@ -29,7 +29,7 @@ struct FavoritesList: View {
                         Button(role: .destructive) {
                             onEvent(.removeFavorite(item.id))
                         } label: {
-                            Label("Delete", systemImage: "trash")
+                            Label(Strings.commonRemove, systemImage: "trash")
                         }
                         
                     }
@@ -84,7 +84,7 @@ struct FavoriteListRow: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(item.name)
-                        .font(.headline)
+                        .font(.appHeadline)
                         .lineLimit(1)
                     
                     Text(item.subregion)
@@ -103,12 +103,12 @@ struct FavoriteListRow: View {
                         Button {
                             onClick()
                         } label: {
-                            Label("View", systemImage: "eye")
+                            Label(Strings.commonView, systemImage: "eye")
                         }
                         Button(role: .destructive) {
                             onRemove()
                         } label: {
-                            Label("Remove", systemImage: "trash")
+                            Label(Strings.commonRemove, systemImage: "trash")
                         }
                     } label: {
                         Image(systemName: "ellipsis")

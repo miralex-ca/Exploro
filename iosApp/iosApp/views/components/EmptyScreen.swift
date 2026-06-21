@@ -18,7 +18,7 @@ struct EmptyStateView: View {
                         Spacer().frame(height: 16)
                         
                         Text(state.title)
-                            .font(.headline)
+                            .font(.appHeadline)
                             .foregroundColor(theme.onSurface)
                         
                         Spacer().frame(height: 8)

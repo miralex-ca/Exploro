@@ -84,16 +84,6 @@ extension CountryDetailsState {
     )
 }
 
-extension NavigationActions {
-    static var preview: NavigationActions {
-        NavigationActions(
-            navigate: { _, _ in },
-            navigateByLevel1: { _ in },
-            openSettings: { }
-        )
-    }
-}
-
 
 extension AppLayout {
     static var previewPhone: AppLayout {

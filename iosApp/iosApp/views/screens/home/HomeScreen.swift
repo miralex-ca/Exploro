@@ -5,10 +5,9 @@ struct HomeScreen: View {
     let screenState: HomeScreenState
     let eventHandler: HomeEventHandler
     
+    @Environment(\.appLayout) var appLayout
+    
     var body: some View {
-        
-        let isIpad = UIDevice.current.userInterfaceIdiom == .pad
-        
         Level1ScreenContainer(
             screenTitle: Strings.homeTitle,
             isAdjustedPadding: false
@@ -25,8 +24,8 @@ struct HomeScreen: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(isIpad ? "" : Strings.homeTitle)
-                    .font(.title2)
+                Text(appLayout.isPhone ? Strings.homeTitle : "")
+                    .font(.appTitle2)
                     .fontWeight(.semibold)
             }
         }
@@ -78,7 +77,6 @@ struct HomeSectionRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-           
             ZStack {
                 Button(action: onSectionClick) {
                     HStack {
@@ -104,7 +102,6 @@ struct HomeSectionRow: View {
             }
             .padding(.leading, appLayout.hasSpaceForDrawer ? drawerSpace : 0)
             
-            
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: Dimens.Home.cardSpacing.of(appLayout)) {
                     ForEach(section.sectionListItems, id: \.id) { item in
@@ -116,7 +113,6 @@ struct HomeSectionRow: View {
                     }
                 }
                 .padding(.leading, appLayout.hasSpaceForDrawer ? drawerSpace : 0)
-               
             }
             .scrollClipDisabled()
         }

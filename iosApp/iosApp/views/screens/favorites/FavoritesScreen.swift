@@ -26,7 +26,7 @@ struct FavoritesScreen: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text(appLayout.isTablet ? "" : Strings.favoritesTitle)
-                        .font(.title2)
+                        .font(.appTitle2)
                         .fontWeight(.semibold)
                 }
             }

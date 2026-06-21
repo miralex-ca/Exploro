@@ -100,7 +100,7 @@ struct DetailsScreenContent: View {
     @Environment(\.appLayout) var appLayout
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             Group() {
                 if appLayout.isLandscape {
                     LargeDetailsContent(
@@ -195,7 +195,7 @@ struct FlagContainer: View {
                         .opacity(0.55)
                 )
             
-            RemoteImage(url: flagUrl, size: CGSize(width: 300, height: 140))
+            RemoteImage(url: flagUrl, size: CGSize(width: 300, height: 140), hasPlaceholder: false)
                 .scaledToFit()
                 .frame(height: 140)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
@@ -221,10 +221,10 @@ struct FlagContainer: View {
             }
         }
         
-        .frame(maxWidth: .infinity)  // ← constrain ZStack, not the image
+        .frame(maxWidth: .infinity)
         .frame(height: 200)
         .clipShape(RoundedRectangle(cornerRadius: 12))
-        .clipped()  // ← extra safety to prevent overflow
+        .clipped()
     }
 }
 
@@ -233,6 +233,7 @@ struct FlagContainer: View {
 struct FavoriteButton: View {
     let isFavorite: Bool
     let onClick: () -> Void
+    @Environment(\.appTheme) var theme
     
     var body: some View {
         Button(action: onClick) {
@@ -243,7 +244,7 @@ struct FavoriteButton: View {
                 
                 Image(systemName: isFavorite ? "star.fill" : "star")
                     .font(.system(size: 18))
-                    .foregroundColor(isFavorite ? .yellow : .white)
+                    .foregroundColor(isFavorite ? theme.favorite : .white)
             }
         }
         .frame(width: 48, height: 48)
@@ -309,7 +310,7 @@ struct CoatOfArmsImage: View {
     
     var body: some View {
         Button(action: { showDialog = true }) {
-            RemoteImage(url: url, size: CGSize(width: 52, height: 52))
+            RemoteImage(url: url, size: CGSize(width: 52, height: 52), hasPlaceholder: false)
                 .scaledToFit()
                 .frame(width: 40, height: 40)
                 .padding(6)
@@ -325,7 +326,7 @@ struct CoatOfArmsImage: View {
             VStack(spacing: 20) {
                 Text(Strings.detailsCoatOfArms)
                     .font(.headline)
-                RemoteImage(url: url, size: CGSize(width: 180, height: 180))
+                RemoteImage(url: url, size: CGSize(width: 180, height: 180), hasPlaceholder: false)
                     .scaledToFit()
                     .frame(width: 180, height: 180)
                 Button(Strings.commonClose) { showDialog = false }
@@ -347,10 +348,10 @@ struct InlineHeaderDetailRow: View {
         HStack(alignment: .top, spacing: 0) {
             Text(label)
                 .frame(width: 55, alignment: .leading)
-                .font(.subheadline)
+                .font(.appSubheadline)
             
             Text(value)
-                .font(.subheadline)
+                .font(.appSubheadline)
                 .fontWeight(.semibold)
                 .lineLimit(2)
         }
@@ -416,7 +417,7 @@ struct DetailsInfoRow: View {
                     
                     HStack(spacing: 4) {
                         Text(row.value)
-                            .font(.body)
+                            .font(.appBody)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

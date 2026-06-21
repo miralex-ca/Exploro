@@ -26,22 +26,3 @@ extension SearchListItem {
         DetailsNavParams(id: id, name: name)
     }
 }
-
- 
-
-
-//
-//extension SearchScreen {
-//    func onEvent(_ event: SearchUiEvent) {
-//        let navigation = appObj.dkmpNav
-//        let events = navigation.events
-//
-//        switch event {
-//        case .OnItemClicked(let item):
-//            print("")
-//            
-//        case .SearchByQuery(let query):
-//            events.searchCountriesByQuery(query: query)
-//        }
-//    }
-//}

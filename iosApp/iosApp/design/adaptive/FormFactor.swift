@@ -43,10 +43,7 @@ extension FormFactor {
             return .medium
         }()
 
-
         let orientation: ScreenOrientation = size.width > size.height ? .landscape : .portrait
-        
-        print("form factor: \(size) ")
 
         return FormFactor(
             widthType: widthType,

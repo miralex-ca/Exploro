@@ -19,7 +19,7 @@ struct AppLoadingScreen: View {
                 }
 
                 Text(Strings.appLoadingMessage)
-                    .font(.body)
+                    .font(.appBody)
                     .foregroundStyle(theme.onSurfaceVariant)
                     .opacity(textVisible ? 1 : 0)
                     .animation(.easeIn(duration: 0.3), value: textVisible)

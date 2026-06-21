@@ -27,7 +27,7 @@ struct AppErrorScreen: View {
                             Spacer().frame(height: 20)
                             
                             Text(Strings.appErrorTryAgain)
-                                .font(.title3.weight(.semibold))
+                                .font(.appTitle3.weight(.semibold))
                                 .multilineTextAlignment(.center)
                             
                             Spacer().frame(height: 28)
@@ -36,7 +36,7 @@ struct AppErrorScreen: View {
                                  ? Strings.appStartupErrorSyncDesc
                                  : Strings.appStartupErrorDesc
                             )
-                            .font(.body)
+                            .font(.appBody)
                             .foregroundStyle(theme.onSurfaceVariant)
                             .lineLimit(4)
                             .multilineTextAlignment(.center)

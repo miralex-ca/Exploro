@@ -132,7 +132,6 @@ extension AppTheme {
     var navText: Color { navigationBarText }
     var navSelectedContainer: Color { primaryContainer }
     var bottomGradient: Color { bottomnNavGradient }
-
 }
 
 extension AppTheme {

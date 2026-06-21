@@ -5,12 +5,13 @@ import Kingfisher
 struct RemoteImage: View {
     let url: String?
     let size: CGSize
+    var hasPlaceholder: Bool = true
     
     var body: some View {
         KFImage(URL(string: url ?? ""))
             .resizable()
             .placeholder {
-                Color.gray.opacity(0.1)
+                hasPlaceholder ? Color.gray.opacity(0.1) : Color.clear
             }
             .fade(duration: 0.2)
             .setProcessor(
