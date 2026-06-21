@@ -67,7 +67,7 @@ val localProperties = Properties().apply {
 }
 
 android {
-    namespace = "com.muralex.data.network"
+    namespace = "com.exploramus.data.network"
     compileSdk = 35
     defaultConfig {
         minSdk = 26
@@ -75,7 +75,7 @@ android {
 }
 
 buildkonfig {
-    packageName = "com.muralex.data.network"
+    packageName = "com.exploramus.data.network"
 
     defaultConfigs {
         buildConfigField(

@@ -59,7 +59,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.muralex.data.repository"
+    namespace = "com.exploramus.data.repository"
     compileSdk = 35
 
     defaultConfig {

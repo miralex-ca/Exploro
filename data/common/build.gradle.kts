@@ -45,7 +45,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.muralex.data.common"
+    namespace = "com.exploramus.data.common"
     compileSdk = 35
     defaultConfig {
         minSdk = 26

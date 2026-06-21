@@ -51,7 +51,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.muralex.data.assets"
+    namespace = "com.exploramus.data.assets"
     compileSdk = 35
 
     defaultConfig {

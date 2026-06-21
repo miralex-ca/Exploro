@@ -53,11 +53,11 @@ kotlin {
 }
 
 android {
-    namespace = "com.muralex.exploramus"
+    namespace = "com.exploramus.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.muralex.exploramus"
+        applicationId = "com.exploramus.app"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1

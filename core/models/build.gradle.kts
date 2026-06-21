@@ -42,7 +42,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.muralex.models"
+    namespace = "com.exploramus.core.models"
     compileSdk = 35
     defaultConfig {
         minSdk = 26

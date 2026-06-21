@@ -70,7 +70,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.muralex.exploramus.shared"
+    namespace = "com.exploramus.shared"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

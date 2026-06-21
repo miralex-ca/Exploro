@@ -73,7 +73,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.muralex.data.localdb"
+    namespace = "com.exploramus.data.localdb"
     compileSdk = 36
     defaultConfig {
         minSdk = 24
