@@ -106,9 +106,6 @@ fun DetailsScreenContent(
         }
 
     }
-
-
-
 }
 
 @Composable

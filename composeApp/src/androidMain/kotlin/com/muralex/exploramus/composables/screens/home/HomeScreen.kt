@@ -24,15 +24,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.muralex.exploramus.design.adaptive.LocalFormFactor
-import com.muralex.exploramus.design.adaptive.layout
-import com.muralex.exploramus.design.adaptive.useBottomBar
-import com.muralex.exploramus.design.adaptive.value
 import com.muralex.exploramus.composables.components.EmptyState
 import com.muralex.exploramus.composables.components.EmptyStateView
 import com.muralex.exploramus.composables.components.FadeInScreenContent
 import com.muralex.exploramus.composables.components.RemoteImage
 import com.muralex.exploramus.composables.components.ScreenLoading
+import com.muralex.exploramus.design.adaptive.LocalFormFactor
+import com.muralex.exploramus.design.adaptive.layout
+import com.muralex.exploramus.design.adaptive.useBottomBar
+import com.muralex.exploramus.design.adaptive.value
 import com.muralex.exploramus.design.theme.AppTypography
 import com.muralex.exploramus.design.theme.appColors
 import com.muralex.exploramus.viewmodel.screens.home.HomeListItem
@@ -158,7 +158,8 @@ fun HomeSectionRow(
                 key = { it.id }
             ) { item ->
                 HomeSectionListCard(
-                    item = item,
+                    name = item.name,
+                    flagPngUrl = item.flagPngUrl,
                     onClick = { onListItemClick(item) }
                 )
             }
@@ -168,7 +169,8 @@ fun HomeSectionRow(
 
 @Composable
 fun HomeSectionListCard(
-    item: HomeListItem,
+    name: String,
+    flagPngUrl: String,
     onClick: () -> Unit
 ) {
     val layout = MaterialTheme.layout
@@ -187,7 +189,7 @@ fun HomeSectionListCard(
             modifier = Modifier.padding(8.dp)
         ) {
             RemoteImage(
-                imageUrl = item.flagPngUrl,
+                imageUrl = flagPngUrl,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(layout.homeCard.imageHeight.value())
@@ -205,7 +207,7 @@ fun HomeSectionListCard(
                     .padding(horizontal = 4.dp)
             ) {
                 Text(
-                    text = item.name,
+                    text = name,
                     style = MaterialTheme.typography.titleSmall,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis

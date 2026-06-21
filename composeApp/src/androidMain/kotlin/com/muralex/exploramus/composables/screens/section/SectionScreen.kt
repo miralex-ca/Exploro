@@ -17,13 +17,13 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.muralex.exploramus.design.adaptive.layout
-import com.muralex.exploramus.design.adaptive.value
 import com.muralex.exploramus.composables.components.EmptyState
 import com.muralex.exploramus.composables.components.EmptyStateView
 import com.muralex.exploramus.composables.components.FadeInScreenContent
 import com.muralex.exploramus.composables.components.RemoteImage
 import com.muralex.exploramus.composables.components.ScreenLoading
+import com.muralex.exploramus.design.adaptive.layout
+import com.muralex.exploramus.design.adaptive.value
 import com.muralex.exploramus.design.theme.appColors
 import com.muralex.exploramus.viewmodel.screens.section.SectionListItem
 import com.muralex.exploramus.viewmodel.screens.section.SectionScreenState
@@ -69,7 +69,9 @@ fun SectionScreenContent(
         ) {
             items(screenState.countries) { item ->
                 CountryGridCard(
-                    item = item,
+                    name = item.name,
+                    flagPngUrl = item.flagPngUrl,
+                    subregion = item.subregion,
                     onClick = {
                         onListItemClick(item)
                     }
@@ -81,7 +83,9 @@ fun SectionScreenContent(
 
 @Composable
 fun CountryGridCard(
-    item: SectionListItem,
+    name: String,
+    flagPngUrl: String,
+    subregion: String,
     onClick: () -> Unit
 ) {
     val layout = MaterialTheme.layout
@@ -106,7 +110,7 @@ fun CountryGridCard(
             ) {
 
                 RemoteImage(
-                    imageUrl = item.flagPngUrl,
+                    imageUrl = flagPngUrl,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(layout.sectionCard.imageHeight.value())
@@ -127,14 +131,14 @@ fun CountryGridCard(
             ) {
 
                 Text(
-                    text = item.name,
+                    text = name,
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
 
                 Text(
-                    text = item.subregion,
+                    text = subregion,
                     style = MaterialTheme.typography.bodySmall,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
