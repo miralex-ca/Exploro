@@ -1,5 +1,4 @@
 
-
 import SwiftUI
 
 private let detailsUiState = DetailsUiState.france

@@ -1,16 +1,11 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-   // alias(libs.plugins.androidLint)
     alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
-//    androidLibrary {
-//        namespace = "com.muralex.data.localdb"
-//        compileSdk = 36
-//        minSdk = 24
-//    }
+
 
     androidTarget()
 
@@ -27,24 +22,6 @@ kotlin {
             linkerOpts("-lsqlite3")
         }
     }
-
-//    iosX64 {
-//        binaries.framework {
-//            baseName = xcfName
-//        }
-//    }
-//
-//    iosArm64 {
-//        binaries.framework {
-//            baseName = xcfName
-//        }
-//    }
-//
-//    iosSimulatorArm64 {
-//        binaries.framework {
-//            baseName = xcfName
-//        }
-//    }
 
     sourceSets {
         commonMain {
