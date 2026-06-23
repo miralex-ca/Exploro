@@ -15,28 +15,25 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
 
-class ApiClient {
-    val client = HttpClient {
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.INFO
+class ApiClient(
+    val client: HttpClient = defaultClient()
+) {
+    companion object {
+        fun defaultClient() = HttpClient {
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.INFO
+            }
+            install(ContentNegotiation) {
+                json(Json { ignoreUnknownKeys = true })
+            }
+            install(HttpTimeout) {
+                requestTimeoutMillis = 15_000
+                connectTimeoutMillis = 10_000
+                socketTimeoutMillis = 15_000
+            }
+            expectSuccess = true
         }
-
-        install(ContentNegotiation) {
-            json(
-                Json {
-                    ignoreUnknownKeys = true
-                }
-            )
-        }
-
-        install(HttpTimeout) {
-            requestTimeoutMillis = 15_000
-            connectTimeoutMillis = 10_000
-            socketTimeoutMillis = 15_000
-        }
-
-        expectSuccess = true
     }
 
     suspend inline fun <reified T> get(

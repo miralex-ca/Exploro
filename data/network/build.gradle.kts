@@ -47,6 +47,14 @@ kotlin {
             }
         }
 
+        commonTest {
+            dependencies {
+                implementation(libs.kotlin.test)
+                implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.ktor.mock)
+            }
+        }
+
         androidMain {
             dependencies {
                 implementation(libs.ktor.android)
