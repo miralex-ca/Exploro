@@ -5,12 +5,9 @@ plugins {
 }
 
 kotlin {
-
-
     androidTarget()
 
     val xcfName = "dataLocaldbKit"
-
 
     listOf(
         iosX64(),
@@ -30,7 +27,14 @@ kotlin {
                 api(project(":data:common"))
                 implementation(libs.sqldelight.common)
                 implementation(libs.koin.core)
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+                implementation(libs.kotlinx.coroutines.core)
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(libs.kotlin.test)
+                implementation(libs.kotlinx.coroutines.test)
             }
         }
 
@@ -38,6 +42,12 @@ kotlin {
             dependencies {
                 implementation(libs.sqldelight.android)
                 implementation(libs.koin.android)
+            }
+        }
+
+        androidUnitTest {
+            dependencies {
+                implementation(libs.sqldelight.jvm)
             }
         }
 
