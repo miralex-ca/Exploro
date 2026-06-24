@@ -2,11 +2,9 @@ package com.exploramus.data.repository.functions
 
 import com.exploramus.core.common.logging.Log
 import com.exploramus.core.common.result.DataResult
-import com.exploramus.data.repository.Repository
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
+import com.exploramus.data.repository.Repository
 import kotlinx.datetime.Clock
 
 
@@ -58,7 +56,7 @@ suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): Da
     }
 
 private suspend fun Repository.buildCoatOfArmsMap(): Map<String, String> {
-    val result = assetsDataSource.fetchAllCountryDetails()
+    val result = assetsDataSource.readAllCountryDetails()
     return if (result is DataResult.Success) {
         result.data.associate { it.id to it.coatOfArmsPngUrl }
     } else emptyMap()
@@ -78,8 +76,8 @@ private suspend fun Repository.storeCountries(
 }
 
 private suspend fun Repository.seedFromAssets(nowUnixTime: Long): DataResult<Unit> {
-    val countriesResult = assetsDataSource.fetchAllCountries()
-    val detailsResult = assetsDataSource.fetchAllCountryDetails()
+    val countriesResult = assetsDataSource.readAllCountries()
+    val detailsResult = assetsDataSource.readAllCountryDetails()
 
     val stored = if (countriesResult is DataResult.Success && detailsResult is DataResult.Success) {
         storeCountries(countriesResult.data, detailsResult.data)

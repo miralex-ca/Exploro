@@ -11,42 +11,42 @@ class JsonAssetsDataSourceTest {
     @Test
     fun `returns success when file is valid json array`() = runTest {
         val source = JsonAssetsDataSource(validJsonReader())
-        val result = source.fetchAllCountries()
+        val result = source.readAllCountries()
         assertTrue(result is DataResult.Success)
     }
 
     @Test
     fun `returns non empty list when file has entries`() = runTest {
         val source = JsonAssetsDataSource(validJsonReader())
-        val result = source.fetchAllCountries()
+        val result = source.readAllCountries()
         assertTrue((result as DataResult.Success).data.isNotEmpty())
     }
 
     @Test
     fun `returns error when file is missing`() = runTest {
         val source = JsonAssetsDataSource(missingFileReader())
-        val result = source.fetchAllCountries()
+        val result = source.readAllCountries()
         assertTrue(result is DataResult.Error)
     }
 
     @Test
     fun `returns error when file is malformed json`() = runTest {
         val source = JsonAssetsDataSource(malformedJsonReader())
-        val result = source.fetchAllCountries()
+        val result = source.readAllCountries()
         assertTrue(result is DataResult.Error)
     }
 
     @Test
     fun `returns empty list when json array is empty`() = runTest {
         val source = JsonAssetsDataSource(emptyArrayReader())
-        val result = source.fetchAllCountries()
+        val result = source.readAllCountries()
         assertTrue((result as DataResult.Success).data.isEmpty())
     }
 
     @Test
     fun `details list is not empty when file is valid`() = runTest {
         val source = JsonAssetsDataSource(validJsonReader())
-        val result = source.fetchAllCountryDetails()
+        val result = source.readAllCountryDetails()
         assertTrue((result as DataResult.Success).data.isNotEmpty())
     }
 

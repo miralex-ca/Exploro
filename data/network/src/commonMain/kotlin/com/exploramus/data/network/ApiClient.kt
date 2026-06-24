@@ -16,9 +16,13 @@ import kotlinx.serialization.json.Json
 import kotlin.coroutines.cancellation.CancellationException
 
 class ApiClient(
-    val client: HttpClient = defaultClient()
+   val client: HttpClient = defaultClient()
 ) {
     companion object {
+        fun create(): ApiClient = ApiClient(defaultClient())
+
+        internal fun withEngine(client: HttpClient): ApiClient = ApiClient(client)
+
         fun defaultClient() = HttpClient {
             install(Logging) {
                 logger = Logger.DEFAULT

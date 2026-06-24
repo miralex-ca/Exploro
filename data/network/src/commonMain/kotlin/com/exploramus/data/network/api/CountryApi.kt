@@ -3,17 +3,18 @@ package com.exploramus.data.network.api
 import com.exploramus.data.network.ApiClient
 import com.exploramus.data.network.NetworkResult
 import com.exploramus.data.network.dto.CountriesResponseDto
-import com.exploramus.data.network.dto.CountryDetailsDto
-import com.exploramus.data.network.dto.CountryDto
 import com.exploramus.data.network.dto.CountryRawDto
 import com.exploramus.data.network.environment.EnvironmentProvider
 import io.ktor.http.HttpHeaders
 
+interface CountryApi {
+    suspend fun fetchAllRaw(): NetworkResult<List<CountryRawDto>>
+}
 
-class CountryApi(
+class CountryApiImpl(
     private val client: ApiClient,
     private val environments: EnvironmentProvider
-) {
+) : CountryApi  {
 
     companion object {
         private const val PAGE_SIZE = 100
@@ -37,7 +38,7 @@ class CountryApi(
         HttpHeaders.Authorization to "Bearer ${environments.current().apiKey}"
     )
 
-    suspend fun fetchAllRaw(): NetworkResult<List<CountryRawDto>> {
+    override suspend fun fetchAllRaw(): NetworkResult<List<CountryRawDto>> {
         val pages = OFFSETS.map { fetchPage(it) }
         val error = pages.filterIsInstance<NetworkResult.Error>().firstOrNull()
         if (error != null) return error

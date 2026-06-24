@@ -18,7 +18,7 @@ class JsonAssetsDataSource(
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    override suspend fun fetchAllCountries(): DataResult<List<Country>> =
+    override suspend fun readAllCountries(): DataResult<List<Country>> =
         runCatching {
             val raw = fileReader.readFile(FALLBACK_FILE)
             val parsed = json.decodeFromString<List<CountryAssetDto>>(raw)
@@ -27,7 +27,7 @@ class JsonAssetsDataSource(
             DataResult.Error(error = null)
         }
 
-    override suspend fun fetchAllCountryDetails(): DataResult<List<CountryDetails>> =
+    override suspend fun readAllCountryDetails(): DataResult<List<CountryDetails>> =
         runCatching {
             val raw = fileReader.readFile(FALLBACK_FILE)
             val parsed = json.decodeFromString<List<CountryAssetDto>>(raw)

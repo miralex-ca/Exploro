@@ -5,8 +5,8 @@ import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 
 interface AssetsDataSource {
-    suspend fun fetchAllCountries(): DataResult<List<Country>>
-    suspend fun fetchAllCountryDetails(): DataResult<List<CountryDetails>>
+    suspend fun readAllCountries(): DataResult<List<Country>>
+    suspend fun readAllCountryDetails(): DataResult<List<CountryDetails>>
 }
 
 interface AssetFileReader {
