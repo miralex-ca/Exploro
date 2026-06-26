@@ -1,7 +1,5 @@
-package com.exploramus.data.repository
+package com.exploramus.data.repository.functions
 
-import com.exploramus.data.repository.functions.getHomeSections
-import com.exploramus.data.repository.functions.searchCountries
 import com.exploramus.data.repository.utils.TestFakes
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test

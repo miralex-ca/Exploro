@@ -1,10 +1,10 @@
-package com.exploramus.data.repository
+package com.exploramus.data.repository.functions
 
 import com.exploramus.core.common.result.DataResult
 import com.exploramus.data.common.AssetsDataSource
 import com.exploramus.data.common.LocalDataSource
 import com.exploramus.data.common.RemoteDataSource
-import com.exploramus.data.repository.functions.updateCountriesListData
+import com.exploramus.data.repository.Repository
 import com.exploramus.data.repository.utils.TestFakes
 import com.russhwolf.settings.MapSettings
 import kotlinx.coroutines.test.runTest

@@ -1,9 +1,5 @@
-package com.exploramus.data.network
+package com.exploramus.data.network.dto
 
-import com.exploramus.data.network.dto.CountriesResponseDto
-import com.exploramus.data.network.dto.CountryRawDto
-import com.exploramus.data.network.dto.toCountry
-import com.exploramus.data.network.dto.toCountryDetails
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
 import kotlin.test.assertEquals

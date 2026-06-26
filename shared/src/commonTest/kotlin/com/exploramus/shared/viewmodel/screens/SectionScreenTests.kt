@@ -1,10 +1,9 @@
-package viewmodeltests
+package com.exploramus.shared.viewmodel.screens
 
 import com.exploramus.data.common.LocalDataSource
 import com.exploramus.shared.TestFakes
 import com.exploramus.shared.viewmodel.core.DKMPViewModel
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
-import com.exploramus.shared.viewmodel.screens.Screen
 import com.exploramus.shared.viewmodel.screens.section.SectionParams
 import com.exploramus.shared.viewmodel.screens.section.SectionScreenState
 import kotlinx.coroutines.Dispatchers

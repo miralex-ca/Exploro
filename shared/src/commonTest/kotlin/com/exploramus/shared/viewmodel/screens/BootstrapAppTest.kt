@@ -1,4 +1,4 @@
-package viewmodeltests
+package com.exploramus.shared.viewmodel.screens
 
 import com.exploramus.core.common.result.DataResult
 import com.exploramus.shared.TestFakes

@@ -1,6 +1,7 @@
-package com.exploramus.data.network
+package com.exploramus.data.network.api
 
-import com.exploramus.data.network.api.CountryApi
+import com.exploramus.data.network.NetworkResult
+import com.exploramus.data.network.ApiClient
 import com.exploramus.data.network.api.CountryApiImpl
 import com.exploramus.data.network.environment.EnvironmentProvider
 import com.exploramus.data.network.environment.NetworkEnvironments

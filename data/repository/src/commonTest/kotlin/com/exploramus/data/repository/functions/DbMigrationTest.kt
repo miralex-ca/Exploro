@@ -1,8 +1,7 @@
-package com.exploramus.data.repository
+package com.exploramus.data.repository.functions
 
 import com.exploramus.core.common.result.DataError
 import com.exploramus.core.common.result.DataResult
-import com.exploramus.data.repository.functions.migrateDbIfNeeded
 import com.exploramus.data.repository.utils.TestFakes
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
