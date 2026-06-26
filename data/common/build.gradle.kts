@@ -46,8 +46,8 @@ kotlin {
 
 android {
     namespace = "com.exploramus.data.common"
-    compileSdk = 35
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = 26
+        minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }
