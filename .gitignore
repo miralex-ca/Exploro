@@ -19,3 +19,7 @@ captures
 node_modules/
 /composeApp/src/main/assets/countries_fallback.json
 /iosApp/iosApp/Resources/countries_fallback.json
+/composeApp/src/main/assets/countries_detail_data.json
+/composeApp/src/main/assets/countries_data.json
+/iosApp/iosApp/AppRawData/countries_detail_data.json
+/iosApp/iosApp/AppRawData/countries_data.json

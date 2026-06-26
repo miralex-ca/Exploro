@@ -1,7 +1,7 @@
 package com.exploramus.data.network.environment
 
 class EnvironmentProvider {
-    private var environment = NetworkEnvironments.PROD
+    private var environment = NetworkEnvironments.TEST
 
     fun current(): NetworkEnvironment {
         return environment

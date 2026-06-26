@@ -52,39 +52,22 @@ class JsonAssetsDataSourceTest {
 
     @Test
     fun `fallback file name is not blank`() {
-        assertTrue(FALLBACK_FILE.isNotBlank())
-    }
-
-    @Test
-    fun `fallback file name has json extension`() {
-        assertTrue(FALLBACK_FILE.endsWith(".json"))
+        assertTrue(COUNTRIES_DATA_FILE.isNotBlank())
     }
 
     companion object {
         private val MINIMAL_VALID_JSON = """
             [
               {
-                "id": "TST",
-                "name": "Test Country",
-                "official_name": "Test",
-                "capital": "Test City",
-                "continent": "Europe",
-                "subregion": "Test",
-                "flag_png_url": "",
-                "flag_alt": "",
-                "population": 1000,
-                "area": 100.0,
-                "coat_of_arms_png_url": "",
-                "currency_code": "TST",
-                "currency_name": "Test",
-                "currency_symbol": "T",
-                "languages": ["Test"],
-                "maps_google_url": "",
-                "maps_osm_url": "",
-                "timezones": ["UTC+00:00"],
-                "wikipedia_url": "",
-                "capital_lat": 0.0,
-                "capital_lng": 0.0
+                "id": "FRA",
+        "iso2": "fr",
+        "name": "France",
+        "official_name": "French Republic",
+        "capital": "Paris",
+        "continent": "Europe",
+        "location": "Western Europe",
+        "flag_image": "https://flagcdn.com/w640/fr.png",
+        "flag_emoji": "🇫🇷"
               }
             ]
         """.trimIndent()

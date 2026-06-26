@@ -2,15 +2,14 @@ package com.exploramus.data.localdb
 
 import app.cash.sqldelight.db.SqlDriver
 import appLocalDb.AppLocalDb
-import appLocalDb.Countries
-import com.exploramus.data.common.LocalDataSource
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 import com.exploramus.core.models.CountryWithDetails
+import com.exploramus.data.common.LocalDataSource
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
-    const val VERSION = 4L
+    const val VERSION = 5L
 }
 
 internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {

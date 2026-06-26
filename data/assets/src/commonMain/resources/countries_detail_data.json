@@ -1,0 +1,5008 @@
+[
+    {
+        "id": "AFG",
+        "population": 35000000,
+        "total_area": 652200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/af.png",
+        "currency_name": "Afghan afghani",
+        "currency_symbol": "؋",
+        "currency_code": "AFN",
+        "languages": [
+            "Dari",
+            "Pashto"
+        ],
+        "latitude": 34.52,
+        "longitude": 69.18,
+        "timezones": [
+            "UTC+04:30"
+        ],
+        "maps_url": "https://goo.gl/maps/BXBGw7yUUFknCfva9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Afghanistan"
+    },
+    {
+        "id": "ALB",
+        "population": 2400000,
+        "total_area": 28700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/al.png",
+        "currency_name": "Albanian lek",
+        "currency_symbol": "L",
+        "currency_code": "ALL",
+        "languages": [
+            "Albanian"
+        ],
+        "latitude": 41.32,
+        "longitude": 19.82,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/BzN9cTuj68ZA8SyZ8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Albania"
+    },
+    {
+        "id": "DZA",
+        "population": 47400000,
+        "total_area": 2400000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/dz.png",
+        "currency_name": "Algerian dinar",
+        "currency_symbol": "د.ج",
+        "currency_code": "DZD",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 36.75,
+        "longitude": 3.05,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/RsAyAfyaiNVb8DpW8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Algeria"
+    },
+    {
+        "id": "ASM",
+        "population": 43300,
+        "total_area": 199.0,
+        "coat_of_arms_url": "",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English",
+            "Samoan"
+        ],
+        "latitude": -14.27,
+        "longitude": -170.7,
+        "timezones": [
+            "UTC-11:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Re9ePMjwP1sFCBFA6",
+        "wiki_url": "https://en.wikipedia.org/wiki/American_Samoa"
+    },
+    {
+        "id": "AND",
+        "population": 89400,
+        "total_area": 468.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ad.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Catalan"
+        ],
+        "latitude": 42.5,
+        "longitude": 1.52,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/JqAnacWE2qEznKgw7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Andorra"
+    },
+    {
+        "id": "AGO",
+        "population": 36600000,
+        "total_area": 1200000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ao.png",
+        "currency_name": "Angolan kwanza",
+        "currency_symbol": "Kz",
+        "currency_code": "AOA",
+        "languages": [
+            "Portuguese"
+        ],
+        "latitude": -8.83,
+        "longitude": 13.22,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/q42Qbf1BmQL3fuZg9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Angola"
+    },
+    {
+        "id": "AIA",
+        "population": 16000,
+        "total_area": 91.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ai.png",
+        "currency_name": "Eastern Caribbean dollar",
+        "currency_symbol": "$",
+        "currency_code": "XCD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 18.22,
+        "longitude": -63.05,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/3KgLnEyN7amdno2p9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Anguilla"
+    },
+    {
+        "id": "ATA",
+        "population": 1300,
+        "total_area": 1.4E7,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/aq.png",
+        "currency_name": "",
+        "currency_symbol": "",
+        "currency_code": "",
+        "languages": [],
+        "latitude": 0.0,
+        "longitude": 0.0,
+        "timezones": [
+            "UTC-03:00",
+            "UTC+03:00",
+            "UTC+05:00",
+            "UTC+06:00",
+            "UTC+07:00",
+            "UTC+08:00",
+            "UTC+10:00",
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/kyBuJriu4itiXank7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Antarctica"
+    },
+    {
+        "id": "ATG",
+        "population": 106400,
+        "total_area": 442.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ag.png",
+        "currency_name": "Eastern Caribbean dollar",
+        "currency_symbol": "$",
+        "currency_code": "XCD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 17.12,
+        "longitude": -61.85,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/fnye4wGJ1RzC9jpX9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Antigua_and_Barbuda"
+    },
+    {
+        "id": "ARG",
+        "population": 46700000,
+        "total_area": 2800000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ar.png",
+        "currency_name": "Argentine peso",
+        "currency_symbol": "$",
+        "currency_code": "ARS",
+        "languages": [
+            "Guarani",
+            "Spanish"
+        ],
+        "latitude": -34.58,
+        "longitude": -58.67,
+        "timezones": [
+            "UTC-03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Z9DXNxhf2o93kvyc6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Argentina"
+    },
+    {
+        "id": "ARM",
+        "population": 3100000,
+        "total_area": 29700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/am.png",
+        "currency_name": "Armenian dram",
+        "currency_symbol": "֏",
+        "currency_code": "AMD",
+        "languages": [
+            "Armenian"
+        ],
+        "latitude": 40.17,
+        "longitude": 44.5,
+        "timezones": [
+            "UTC+04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/azWUtK9bUQYEyccbA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Armenia"
+    },
+    {
+        "id": "ABW",
+        "population": 108900,
+        "total_area": 180.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/aw.png",
+        "currency_name": "Aruban florin",
+        "currency_symbol": "ƒ",
+        "currency_code": "AWG",
+        "languages": [
+            "Dutch",
+            "Papiamento"
+        ],
+        "latitude": 12.52,
+        "longitude": -70.03,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/8hopbQqifHAgyZyg8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Aruba"
+    },
+    {
+        "id": "AUS",
+        "population": 27700000,
+        "total_area": 7700000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/au.png",
+        "currency_name": "Australian dollar",
+        "currency_symbol": "$",
+        "currency_code": "AUD",
+        "languages": [
+            "English"
+        ],
+        "latitude": -35.27,
+        "longitude": 149.13,
+        "timezones": [
+            "UTC+05:00",
+            "UTC+06:30",
+            "UTC+07:00",
+            "UTC+08:00",
+            "UTC+09:30",
+            "UTC+10:00",
+            "UTC+10:30",
+            "UTC+11:30"
+        ],
+        "maps_url": "https://goo.gl/maps/DcjaDa7UbhnZTndH6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Australia"
+    },
+    {
+        "id": "AUT",
+        "population": 9200000,
+        "total_area": 83900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/at.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "German"
+        ],
+        "latitude": 48.2,
+        "longitude": 16.37,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/pCWpWQhznHyRzQcu9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Austria"
+    },
+    {
+        "id": "AZE",
+        "population": 10400000,
+        "total_area": 86600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/az.png",
+        "currency_name": "Azerbaijani manat",
+        "currency_symbol": "₼",
+        "currency_code": "AZN",
+        "languages": [
+            "Azerbaijani"
+        ],
+        "latitude": 40.38,
+        "longitude": 49.87,
+        "timezones": [
+            "UTC+04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/az3Zz7ar2aoB9AUc6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Azerbaijan"
+    },
+    {
+        "id": "BHS",
+        "population": 398200,
+        "total_area": 13900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bs.png",
+        "currency_name": "Bahamian dollar",
+        "currency_symbol": "$",
+        "currency_code": "BSD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 25.08,
+        "longitude": -77.35,
+        "timezones": [
+            "UTC-05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/1YzRs1BZrG8p8pmVA",
+        "wiki_url": "https://en.wikipedia.org/wiki/The_Bahamas"
+    },
+    {
+        "id": "BHR",
+        "population": 1500000,
+        "total_area": 765.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bh.png",
+        "currency_name": "Bahraini dinar",
+        "currency_symbol": ".د.ب",
+        "currency_code": "BHD",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 26.23,
+        "longitude": 50.57,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/5Zue99Zc6vFBHxzJ7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Bahrain"
+    },
+    {
+        "id": "BGD",
+        "population": 175400000,
+        "total_area": 147600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bd.png",
+        "currency_name": "Bangladeshi taka",
+        "currency_symbol": "৳",
+        "currency_code": "BDT",
+        "languages": [
+            "Bengali"
+        ],
+        "latitude": 23.72,
+        "longitude": 90.4,
+        "timezones": [
+            "UTC+06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/op6gmLbHcvv6rLhH6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Bangladesh"
+    },
+    {
+        "id": "BRB",
+        "population": 282000,
+        "total_area": 430.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bb.png",
+        "currency_name": "Barbadian dollar",
+        "currency_symbol": "$",
+        "currency_code": "BBD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 13.1,
+        "longitude": -59.62,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/2m36v8STvbGAWd9c7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Barbados"
+    },
+    {
+        "id": "BLR",
+        "population": 9100000,
+        "total_area": 207600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/by.png",
+        "currency_name": "Belarusian ruble",
+        "currency_symbol": "Br",
+        "currency_code": "BYN",
+        "languages": [
+            "Belarusian",
+            "Russian"
+        ],
+        "latitude": 53.9,
+        "longitude": 27.57,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/PJUDU3EBPSszCQcu6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Belarus"
+    },
+    {
+        "id": "BEL",
+        "population": 11900000,
+        "total_area": 30500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/be.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "German",
+            "French",
+            "Dutch"
+        ],
+        "latitude": 50.83,
+        "longitude": 4.33,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/UQQzat85TCtPRXAL8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Belgium"
+    },
+    {
+        "id": "BLZ",
+        "population": 397500,
+        "total_area": 23000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bz.png",
+        "currency_name": "Belize dollar",
+        "currency_symbol": "$",
+        "currency_code": "BZD",
+        "languages": [
+            "Belize Kriol",
+            "English",
+            "Spanish"
+        ],
+        "latitude": 17.25,
+        "longitude": -88.77,
+        "timezones": [
+            "UTC-06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/jdCccpdLodm1uTmo9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Belize"
+    },
+    {
+        "id": "BEN",
+        "population": 13800000,
+        "total_area": 112600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bj.png",
+        "currency_name": "West African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XOF",
+        "languages": [
+            "French"
+        ],
+        "latitude": 6.48,
+        "longitude": 2.62,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/uMw1BsHEXQYgVFFu6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Benin"
+    },
+    {
+        "id": "BMU",
+        "population": 63900,
+        "total_area": 54.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bm.png",
+        "currency_name": "Bermudian dollar",
+        "currency_symbol": "$",
+        "currency_code": "BMD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 32.28,
+        "longitude": -64.78,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/NLsRGNjTzDghTtAJA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Bermuda"
+    },
+    {
+        "id": "BTN",
+        "population": 727100,
+        "total_area": 38400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bt.png",
+        "currency_name": "Bhutanese ngultrum",
+        "currency_symbol": "Nu.",
+        "currency_code": "BTN",
+        "languages": [
+            "Dzongkha"
+        ],
+        "latitude": 27.47,
+        "longitude": 89.63,
+        "timezones": [
+            "UTC+06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/VEfXXBftTFLUpNgp8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Bhutan"
+    },
+    {
+        "id": "BOL",
+        "population": 11400000,
+        "total_area": 1100000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bo.png",
+        "currency_name": "Bolivian boliviano",
+        "currency_symbol": "Bs.",
+        "currency_code": "BOB",
+        "languages": [
+            "Aymara",
+            "Guarani",
+            "Quechua",
+            "Spanish"
+        ],
+        "latitude": -19.04,
+        "longitude": -65.26,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/9DfnyfbxNM2g5U9b9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Bolivia"
+    },
+    {
+        "id": "BIH",
+        "population": 3400000,
+        "total_area": 51200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ba.png",
+        "currency_name": "Bosnia and Herzegovina convertible mark",
+        "currency_symbol": "KM",
+        "currency_code": "BAM",
+        "languages": [
+            "Bosnian",
+            "Croatian",
+            "Serbian"
+        ],
+        "latitude": 43.87,
+        "longitude": 18.42,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://www.google.com/maps/place/Bosnia+and+Herzegovina",
+        "wiki_url": "https://en.wikipedia.org/wiki/Bosnia_and_Herzegovina"
+    },
+    {
+        "id": "BWA",
+        "population": 2400000,
+        "total_area": 582000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bw.png",
+        "currency_name": "Botswana pula",
+        "currency_symbol": "P",
+        "currency_code": "BWP",
+        "languages": [
+            "English",
+            "Tswana"
+        ],
+        "latitude": -24.63,
+        "longitude": 25.9,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/E364KeLy6N4JwxwQ8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Botswana"
+    },
+    {
+        "id": "BVT",
+        "population": 0,
+        "total_area": 49.0,
+        "coat_of_arms_url": "",
+        "currency_name": "",
+        "currency_symbol": "",
+        "currency_code": "",
+        "languages": [
+            "Norwegian"
+        ],
+        "latitude": 0.0,
+        "longitude": 0.0,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/7WRQAEKZb4uK36yi9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Bouvet_Island"
+    },
+    {
+        "id": "BRA",
+        "population": 213400000,
+        "total_area": 8500000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/br.png",
+        "currency_name": "Brazilian real",
+        "currency_symbol": "R$",
+        "currency_code": "BRL",
+        "languages": [
+            "Portuguese"
+        ],
+        "latitude": -15.79,
+        "longitude": -47.88,
+        "timezones": [
+            "UTC-05:00",
+            "UTC-04:00",
+            "UTC-03:00",
+            "UTC-02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/waCKk21HeeqFzkNC9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Brazil"
+    },
+    {
+        "id": "IOT",
+        "population": 2000,
+        "total_area": 60.0,
+        "coat_of_arms_url": "",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English"
+        ],
+        "latitude": -7.3133,
+        "longitude": 72.4111,
+        "timezones": [
+            "UTC+06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/bheNucgekVEYozoi6",
+        "wiki_url": "https://en.wikipedia.org/wiki/British_Indian_Ocean_Territory"
+    },
+    {
+        "id": "VGB",
+        "population": 38300,
+        "total_area": 151.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/vg.png",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 18.42,
+        "longitude": -64.62,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/49C9cSesNVAR9DQk8",
+        "wiki_url": "https://en.wikipedia.org/wiki/British_Virgin_Islands"
+    },
+    {
+        "id": "BRN",
+        "population": 458600,
+        "total_area": 5800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bn.png",
+        "currency_name": "Brunei dollar",
+        "currency_symbol": "$",
+        "currency_code": "BND",
+        "languages": [
+            "Malay"
+        ],
+        "latitude": 4.88,
+        "longitude": 114.93,
+        "timezones": [
+            "UTC+08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/4jb4CqBXhr8vNh579",
+        "wiki_url": "https://en.wikipedia.org/wiki/Brunei"
+    },
+    {
+        "id": "BGR",
+        "population": 6400000,
+        "total_area": 110900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bg.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Bulgarian"
+        ],
+        "latitude": 42.68,
+        "longitude": 23.32,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/F5uAhDGWzc3BrHfm9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Bulgaria"
+    },
+    {
+        "id": "BFA",
+        "population": 22500000,
+        "total_area": 273000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bf.png",
+        "currency_name": "West African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XOF",
+        "languages": [
+            "French"
+        ],
+        "latitude": 12.37,
+        "longitude": -1.52,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/rKRmpcMbFher2ozb7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Burkina_Faso"
+    },
+    {
+        "id": "BDI",
+        "population": 14200000,
+        "total_area": 27800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bi.png",
+        "currency_name": "Burundian franc",
+        "currency_symbol": "Fr",
+        "currency_code": "BIF",
+        "languages": [
+            "French",
+            "Rundi"
+        ],
+        "latitude": -3.43,
+        "longitude": 29.93,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/RXPWoRrB9tfrJpUG7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Burundi"
+    },
+    {
+        "id": "CPV",
+        "population": 491200,
+        "total_area": 4000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cv.png",
+        "currency_name": "Cape Verdean escudo",
+        "currency_symbol": "Esc",
+        "currency_code": "CVE",
+        "languages": [
+            "Portuguese"
+        ],
+        "latitude": 14.92,
+        "longitude": -23.52,
+        "timezones": [
+            "UTC-01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Kc9vy5ChjuiAgMfXA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Cape_Verde"
+    },
+    {
+        "id": "KHM",
+        "population": 17600000,
+        "total_area": 181000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/kh.png",
+        "currency_name": "Cambodian riel",
+        "currency_symbol": "៛",
+        "currency_code": "KHR",
+        "languages": [
+            "Khmer"
+        ],
+        "latitude": 11.55,
+        "longitude": 104.92,
+        "timezones": [
+            "UTC+07:00"
+        ],
+        "maps_url": "https://goo.gl/maps/nztQtFSrUXZymJaW8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Cambodia"
+    },
+    {
+        "id": "CMR",
+        "population": 31000000,
+        "total_area": 475400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cm.png",
+        "currency_name": "Central African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XAF",
+        "languages": [
+            "English",
+            "French"
+        ],
+        "latitude": 3.85,
+        "longitude": 11.5,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/JqiipHgFboG3rBJh9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Cameroon"
+    },
+    {
+        "id": "CAN",
+        "population": 41600000,
+        "total_area": 1.0E7,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ca.png",
+        "currency_name": "Canadian dollar",
+        "currency_symbol": "$",
+        "currency_code": "CAD",
+        "languages": [
+            "English",
+            "French"
+        ],
+        "latitude": 45.42,
+        "longitude": -75.7,
+        "timezones": [
+            "UTC-08:00",
+            "UTC-07:00",
+            "UTC-06:00",
+            "UTC-05:00",
+            "UTC-04:00",
+            "UTC-03:30"
+        ],
+        "maps_url": "https://goo.gl/maps/jmEVLugreeqiZXxbA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Canada"
+    },
+    {
+        "id": "BES",
+        "population": 32000,
+        "total_area": 328.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/bq.png",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English",
+            "Dutch",
+            "Papiamento"
+        ],
+        "latitude": 12.14,
+        "longitude": -68.27,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/4XVes1P6uEDTz77WA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Caribbean_Netherlands"
+    },
+    {
+        "id": "CYM",
+        "population": 90600,
+        "total_area": 264.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ky.png",
+        "currency_name": "Cayman Islands dollar",
+        "currency_symbol": "$",
+        "currency_code": "KYD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 19.3,
+        "longitude": -81.38,
+        "timezones": [
+            "UTC-05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/P3ZVXX3LH63t91hL8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Cayman_Islands"
+    },
+    {
+        "id": "CAF",
+        "population": 5500000,
+        "total_area": 623000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cf.png",
+        "currency_name": "Central African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XAF",
+        "languages": [
+            "French",
+            "Sango"
+        ],
+        "latitude": 4.37,
+        "longitude": 18.58,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/51V8dsi2rGYC9n3c9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Central_African_Republic"
+    },
+    {
+        "id": "TCD",
+        "population": 19100000,
+        "total_area": 1300000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/td.png",
+        "currency_name": "Central African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XAF",
+        "languages": [
+            "Arabic",
+            "French"
+        ],
+        "latitude": 12.1,
+        "longitude": 15.03,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/ziUdAZ8skuNfx5Hx7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Chad"
+    },
+    {
+        "id": "CHL",
+        "population": 19600000,
+        "total_area": 756100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cl.png",
+        "currency_name": "Chilean peso",
+        "currency_symbol": "$",
+        "currency_code": "CLP",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": -33.45,
+        "longitude": -70.67,
+        "timezones": [
+            "UTC-06:00",
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/XboxyNHh2fAjCPNn9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Chile"
+    },
+    {
+        "id": "CHN",
+        "population": 1400000000,
+        "total_area": 9700000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cn.png",
+        "currency_name": "Chinese yuan",
+        "currency_symbol": "¥",
+        "currency_code": "CNY",
+        "languages": [
+            "Chinese"
+        ],
+        "latitude": 39.92,
+        "longitude": 116.38,
+        "timezones": [
+            "UTC+08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/p9qC6vgiFRRXzvGi7",
+        "wiki_url": "https://en.wikipedia.org/wiki/China"
+    },
+    {
+        "id": "CXR",
+        "population": 1700,
+        "total_area": 135.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cx.png",
+        "currency_name": "Australian dollar",
+        "currency_symbol": "$",
+        "currency_code": "AUD",
+        "languages": [
+            "English"
+        ],
+        "latitude": -10.42,
+        "longitude": 105.68,
+        "timezones": [
+            "UTC+07:00"
+        ],
+        "maps_url": "https://goo.gl/maps/ZC17hHsQZpShN5wk9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Christmas_Island"
+    },
+    {
+        "id": "CCK",
+        "population": 593,
+        "total_area": 14.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Australian dollar",
+        "currency_symbol": "$",
+        "currency_code": "AUD",
+        "languages": [
+            "English"
+        ],
+        "latitude": -12.17,
+        "longitude": 96.83,
+        "timezones": [
+            "UTC+06:30"
+        ],
+        "maps_url": "https://goo.gl/maps/3eCdKVpVfMcZyKcK6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Cocos_%28Keeling%29_Islands"
+    },
+    {
+        "id": "COL",
+        "population": 52700000,
+        "total_area": 1100000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/co.png",
+        "currency_name": "Colombian peso",
+        "currency_symbol": "$",
+        "currency_code": "COP",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 4.71,
+        "longitude": -74.07,
+        "timezones": [
+            "UTC-05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/zix9qNFX69E9yZ2M6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Colombia"
+    },
+    {
+        "id": "COM",
+        "population": 944400,
+        "total_area": 1900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/km.png",
+        "currency_name": "Comorian franc",
+        "currency_symbol": "Fr",
+        "currency_code": "KMF",
+        "languages": [
+            "Arabic",
+            "French",
+            "Ngazidja Comorian"
+        ],
+        "latitude": -11.7,
+        "longitude": 43.23,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/eas4GP28C1GyStnu6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Comoros"
+    },
+    {
+        "id": "COG",
+        "population": 6200000,
+        "total_area": 342000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cd.png",
+        "currency_name": "Central African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XAF",
+        "languages": [
+            "French",
+            "Kongo",
+            "Lingala"
+        ],
+        "latitude": -4.25,
+        "longitude": 15.28,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Phf5dDDKdfCtuBTb6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Republic_of_the_Congo"
+    },
+    {
+        "id": "COK",
+        "population": 15000,
+        "total_area": 236.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ck.png",
+        "currency_name": "Cook Islands dollar",
+        "currency_symbol": "$",
+        "currency_code": "CKD",
+        "languages": [
+            "English",
+            "Cook Islands Maori"
+        ],
+        "latitude": -21.2,
+        "longitude": -159.77,
+        "timezones": [
+            "UTC-10:00"
+        ],
+        "maps_url": "https://goo.gl/maps/nrGZrvWRGB4WHgDC9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Cook_Islands"
+    },
+    {
+        "id": "CRI",
+        "population": 5200000,
+        "total_area": 51100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cr.png",
+        "currency_name": "Costa Rican colón",
+        "currency_symbol": "₡",
+        "currency_code": "CRC",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 9.93,
+        "longitude": -84.09,
+        "timezones": [
+            "UTC-06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/RFiwytjvNrpfKN7k6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Costa_Rica"
+    },
+    {
+        "id": "HRV",
+        "population": 3900000,
+        "total_area": 56600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/hr.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Croatian"
+        ],
+        "latitude": 45.815,
+        "longitude": 15.9819,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/qSG6xTKUmrYpwmGQ6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Croatia"
+    },
+    {
+        "id": "CUB",
+        "population": 9700000,
+        "total_area": 109900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cu.png",
+        "currency_name": "Cuban convertible peso",
+        "currency_symbol": "$",
+        "currency_code": "CUC",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 23.12,
+        "longitude": -82.35,
+        "timezones": [
+            "UTC-05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/1dDw1QfZspfMUTm99",
+        "wiki_url": "https://en.wikipedia.org/wiki/Cuba"
+    },
+    {
+        "id": "CUW",
+        "population": 155800,
+        "total_area": 444.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cw.png",
+        "currency_name": "Netherlands Antillean guilder",
+        "currency_symbol": "ƒ",
+        "currency_code": "ANG",
+        "languages": [
+            "English",
+            "Dutch",
+            "Papiamento"
+        ],
+        "latitude": 12.1,
+        "longitude": -68.92,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/9D3hTeA3qKaRT7S16",
+        "wiki_url": "https://en.wikipedia.org/wiki/Cura%C3%A7ao"
+    },
+    {
+        "id": "CYP",
+        "population": 923300,
+        "total_area": 9300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cy.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Greek",
+            "Turkish"
+        ],
+        "latitude": 35.17,
+        "longitude": 33.37,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/77hPBRdLid8yD5Bm7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Cyprus"
+    },
+    {
+        "id": "CZE",
+        "population": 10900000,
+        "total_area": 78900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/cz.png",
+        "currency_name": "Czech koruna",
+        "currency_symbol": "Kč",
+        "currency_code": "CZK",
+        "languages": [
+            "Czech",
+            "Slovak"
+        ],
+        "latitude": 50.08,
+        "longitude": 14.47,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/47dmgeXMZyhDHyQW8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Czechia"
+    },
+    {
+        "id": "COD",
+        "population": 124400000,
+        "total_area": 2300000.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Congolese franc",
+        "currency_symbol": "FC",
+        "currency_code": "CDF",
+        "languages": [
+            "French",
+            "Kongo",
+            "Lingala",
+            "Luba-Lulua",
+            "Swahili"
+        ],
+        "latitude": -4.32,
+        "longitude": 15.3,
+        "timezones": [
+            "UTC+01:00",
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/KfhNVn6VqdZXWu8n9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo"
+    },
+    {
+        "id": "DNK",
+        "population": 6000000,
+        "total_area": 43100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/dk.png",
+        "currency_name": "Danish krone",
+        "currency_symbol": "kr",
+        "currency_code": "DKK",
+        "languages": [
+            "Danish"
+        ],
+        "latitude": 55.67,
+        "longitude": 12.58,
+        "timezones": [
+            "UTC-04:00",
+            "UTC-03:00",
+            "UTC-01:00",
+            "UTC",
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/UddGPN7hAyrtpFiT6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Denmark"
+    },
+    {
+        "id": "DJI",
+        "population": 1100000,
+        "total_area": 23200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/dj.png",
+        "currency_name": "Djiboutian franc",
+        "currency_symbol": "Fr",
+        "currency_code": "DJF",
+        "languages": [
+            "Arabic",
+            "French"
+        ],
+        "latitude": 11.58,
+        "longitude": 43.15,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/V1HWfzN3bS1kwf4C6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Djibouti"
+    },
+    {
+        "id": "DMA",
+        "population": 71300,
+        "total_area": 751.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/dm.png",
+        "currency_name": "Eastern Caribbean dollar",
+        "currency_symbol": "$",
+        "currency_code": "XCD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 15.301,
+        "longitude": -61.3881,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/HSKdHYpFC8oHHuyV7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Dominica"
+    },
+    {
+        "id": "DOM",
+        "population": 11500000,
+        "total_area": 48700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/do.png",
+        "currency_name": "Dominican peso",
+        "currency_symbol": "$",
+        "currency_code": "DOP",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 18.47,
+        "longitude": -69.9,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/soxooTHxEeiAbn3UA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Dominican_Republic"
+    },
+    {
+        "id": "ECU",
+        "population": 17500000,
+        "total_area": 276800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ec.png",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": -0.22,
+        "longitude": -78.5,
+        "timezones": [
+            "UTC-06:00",
+            "UTC-05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/TbX8hUW4gcbRPZiK7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Ecuador"
+    },
+    {
+        "id": "EGY",
+        "population": 107900000,
+        "total_area": 1000000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/eg.png",
+        "currency_name": "Egyptian pound",
+        "currency_symbol": "£",
+        "currency_code": "EGP",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 30.05,
+        "longitude": 31.25,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/uoDRhXbsqjG6L7VG7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Egypt"
+    },
+    {
+        "id": "SLV",
+        "population": 6000000,
+        "total_area": 21000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sv.png",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 13.6929,
+        "longitude": -89.2182,
+        "timezones": [
+            "UTC-06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/cZnCEi5sEMQtKKcB7",
+        "wiki_url": "https://en.wikipedia.org/wiki/El_Salvador"
+    },
+    {
+        "id": "GNQ",
+        "population": 1800000,
+        "total_area": 28100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gq.png",
+        "currency_name": "Central African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XAF",
+        "languages": [
+            "French",
+            "Portuguese",
+            "Spanish"
+        ],
+        "latitude": 3.75,
+        "longitude": 8.78,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/ucWfFd8aW1FbGMva9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Equatorial_Guinea"
+    },
+    {
+        "id": "ERI",
+        "population": 3500000,
+        "total_area": 117600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/er.png",
+        "currency_name": "Eritrean nakfa",
+        "currency_symbol": "Nfk",
+        "currency_code": "ERN",
+        "languages": [
+            "Arabic",
+            "English",
+            "Tigrinya"
+        ],
+        "latitude": 15.33,
+        "longitude": 38.93,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/HRyqUpnPwwG6jY5j6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Eritrea"
+    },
+    {
+        "id": "EST",
+        "population": 1400000,
+        "total_area": 45200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ee.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Estonian"
+        ],
+        "latitude": 59.43,
+        "longitude": 24.72,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/6SsynwGUodL1sDvq8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Estonia"
+    },
+    {
+        "id": "SWZ",
+        "population": 1200000,
+        "total_area": 17400.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Swazi lilangeni",
+        "currency_symbol": "L",
+        "currency_code": "SZL",
+        "languages": [
+            "English",
+            "Swazi"
+        ],
+        "latitude": -26.31,
+        "longitude": 31.13,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/cUY79eqQihFSE8hV6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Eswatini"
+    },
+    {
+        "id": "ETH",
+        "population": 135500000,
+        "total_area": 1100000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/et.png",
+        "currency_name": "Ethiopian birr",
+        "currency_symbol": "Br",
+        "currency_code": "ETB",
+        "languages": [
+            "Amharic"
+        ],
+        "latitude": 9.03,
+        "longitude": 38.7,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/2Q4hQWCbhuZLj3fG6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Ethiopia"
+    },
+    {
+        "id": "FLK",
+        "population": 3700,
+        "total_area": 12200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/fk.png",
+        "currency_name": "Falkland Islands pound",
+        "currency_symbol": "£",
+        "currency_code": "FKP",
+        "languages": [
+            "English"
+        ],
+        "latitude": -51.7,
+        "longitude": -57.85,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/TZH1x7AGanQKifNk7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Falkland_Islands"
+    },
+    {
+        "id": "FRO",
+        "population": 56200,
+        "total_area": 1400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/fo.png",
+        "currency_name": "Danish krone",
+        "currency_symbol": "kr",
+        "currency_code": "DKK",
+        "languages": [
+            "Danish",
+            "Faroese"
+        ],
+        "latitude": 62.01,
+        "longitude": -6.77,
+        "timezones": [
+            "UTC+00:00"
+        ],
+        "maps_url": "https://goo.gl/maps/6sTru4SmHdEVcNkM6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Faroe_Islands"
+    },
+    {
+        "id": "FJI",
+        "population": 926300,
+        "total_area": 18300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/fj.png",
+        "currency_name": "Fijian dollar",
+        "currency_symbol": "$",
+        "currency_code": "FJD",
+        "languages": [
+            "English",
+            "Fijian",
+            "Fiji Hindi"
+        ],
+        "latitude": -18.13,
+        "longitude": 178.42,
+        "timezones": [
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/r9fhDqoLZdg1zmE99",
+        "wiki_url": "https://en.wikipedia.org/wiki/Fiji"
+    },
+    {
+        "id": "FIN",
+        "population": 5700000,
+        "total_area": 338400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/fi.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Finnish",
+            "Swedish"
+        ],
+        "latitude": 60.17,
+        "longitude": 24.93,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/HjgWDCNKRAYHrkMn8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Finland"
+    },
+    {
+        "id": "FRA",
+        "population": 69100000,
+        "total_area": 551700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/fr.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": 48.87,
+        "longitude": 2.33,
+        "timezones": [
+            "UTC-10:00",
+            "UTC-09:30",
+            "UTC-09:00",
+            "UTC-08:00",
+            "UTC-04:00",
+            "UTC-03:00",
+            "UTC+01:00",
+            "UTC+02:00",
+            "UTC+03:00",
+            "UTC+04:00",
+            "UTC+05:00",
+            "UTC+10:00",
+            "UTC+11:00",
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/g7QxxSFsWyTPKuzd7",
+        "wiki_url": "https://en.wikipedia.org/wiki/France"
+    },
+    {
+        "id": "GUF",
+        "population": 254500,
+        "total_area": 83500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gf.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": 4.94,
+        "longitude": -52.33,
+        "timezones": [
+            "UTC-03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/NJawFwMzG7YtCrVP7",
+        "wiki_url": "https://en.wikipedia.org/wiki/French_Guiana"
+    },
+    {
+        "id": "PYF",
+        "population": 278800,
+        "total_area": 4200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/pf.png",
+        "currency_name": "CFP franc",
+        "currency_symbol": "₣",
+        "currency_code": "XPF",
+        "languages": [
+            "French"
+        ],
+        "latitude": -17.53,
+        "longitude": -149.56,
+        "timezones": [
+            "UTC-10:00",
+            "UTC-09:30",
+            "UTC-09:00"
+        ],
+        "maps_url": "https://goo.gl/maps/xgg6BQTRyeQg4e1m6",
+        "wiki_url": "https://en.wikipedia.org/wiki/French_Polynesia"
+    },
+    {
+        "id": "ATF",
+        "population": 400,
+        "total_area": 7700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tf.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": -49.35,
+        "longitude": 70.2167,
+        "timezones": [
+            "UTC+05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/6ua6CX1m4w1xF2Em7",
+        "wiki_url": "https://en.wikipedia.org/wiki/French_Southern_and_Antarctic_Lands"
+    },
+    {
+        "id": "GAB",
+        "population": 2400000,
+        "total_area": 267700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ga.png",
+        "currency_name": "Central African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XAF",
+        "languages": [
+            "French"
+        ],
+        "latitude": 0.38,
+        "longitude": 9.45,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/vyRSkqw1H1fnq4ry6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Gabon"
+    },
+    {
+        "id": "GMB",
+        "population": 2400000,
+        "total_area": 10700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gm.png",
+        "currency_name": "dalasi",
+        "currency_symbol": "D",
+        "currency_code": "GMD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 13.45,
+        "longitude": -16.57,
+        "timezones": [
+            "UTC+00:00"
+        ],
+        "maps_url": "https://goo.gl/maps/bbGBCxxtfD2A9Z4m6",
+        "wiki_url": "https://en.wikipedia.org/wiki/The_Gambia"
+    },
+    {
+        "id": "GEO",
+        "population": 3700000,
+        "total_area": 69700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ge.png",
+        "currency_name": "lari",
+        "currency_symbol": "₾",
+        "currency_code": "GEL",
+        "languages": [
+            "Georgian"
+        ],
+        "latitude": 41.68,
+        "longitude": 44.83,
+        "timezones": [
+            "UTC+04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/bvCaGBePR1ZEDK5cA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Georgia_(country)"
+    },
+    {
+        "id": "DEU",
+        "population": 83500000,
+        "total_area": 357100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/de.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "German"
+        ],
+        "latitude": 52.52,
+        "longitude": 13.4,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/mD9FBMq1nvXUBrkv6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Germany"
+    },
+    {
+        "id": "GHA",
+        "population": 35000000,
+        "total_area": 238500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gh.png",
+        "currency_name": "Ghanaian cedi",
+        "currency_symbol": "₵",
+        "currency_code": "GHS",
+        "languages": [
+            "English"
+        ],
+        "latitude": 5.55,
+        "longitude": -0.22,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/Avy5RSmdsXFBaiXq8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Ghana"
+    },
+    {
+        "id": "GIB",
+        "population": 37900,
+        "total_area": 6.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gi.png",
+        "currency_name": "Gibraltar pound",
+        "currency_symbol": "£",
+        "currency_code": "GIP",
+        "languages": [
+            "English"
+        ],
+        "latitude": 36.13,
+        "longitude": -5.35,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/CEoHAs1t6byCBhHFA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Gibraltar"
+    },
+    {
+        "id": "GRC",
+        "population": 10700000,
+        "total_area": 132000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gr.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Greek"
+        ],
+        "latitude": 37.98,
+        "longitude": 23.73,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/LHGcAvuRyD2iKECC6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Greece"
+    },
+    {
+        "id": "GRL",
+        "population": 56800,
+        "total_area": 2200000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gl.png",
+        "currency_name": "krone",
+        "currency_symbol": "kr.",
+        "currency_code": "DKK",
+        "languages": [
+            "Greenlandic"
+        ],
+        "latitude": 64.18,
+        "longitude": -51.75,
+        "timezones": [
+            "UTC-04:00",
+            "UTC-03:00",
+            "UTC-01:00",
+            "UTC+00:00"
+        ],
+        "maps_url": "https://goo.gl/maps/j3289UPEQXt1ceSy8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Greenland"
+    },
+    {
+        "id": "GRD",
+        "population": 114600,
+        "total_area": 344.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gd.png",
+        "currency_name": "Eastern Caribbean dollar",
+        "currency_symbol": "$",
+        "currency_code": "XCD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 12.0529,
+        "longitude": -61.7523,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/rqWyfUAt4xhvk1Zy9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Grenada"
+    },
+    {
+        "id": "GLP",
+        "population": 400100,
+        "total_area": 1600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gp.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": 16.03,
+        "longitude": -61.73,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Dy9R2EufJtoWm8UN9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Guadeloupe"
+    },
+    {
+        "id": "GUM",
+        "population": 165200,
+        "total_area": 549.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gu.png",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "Chamorro",
+            "English",
+            "Spanish"
+        ],
+        "latitude": 13.48,
+        "longitude": 144.75,
+        "timezones": [
+            "UTC+10:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Xfnq2i279b18cH3C9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Guam"
+    },
+    {
+        "id": "GTM",
+        "population": 18600000,
+        "total_area": 108900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gt.png",
+        "currency_name": "Guatemalan quetzal",
+        "currency_symbol": "Q",
+        "currency_code": "GTQ",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 14.62,
+        "longitude": -90.52,
+        "timezones": [
+            "UTC-06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/JoRAbem4Hxb9FYbVA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Guatemala"
+    },
+    {
+        "id": "GGY",
+        "population": 64000,
+        "total_area": 78.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gg.png",
+        "currency_name": "British pound",
+        "currency_symbol": "£",
+        "currency_code": "GBP",
+        "languages": [
+            "English",
+            "French",
+            "Norman"
+        ],
+        "latitude": 49.45,
+        "longitude": -2.54,
+        "timezones": [
+            "UTC+00:00"
+        ],
+        "maps_url": "https://goo.gl/maps/6kXnQU5QvEZMD9VB7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Guernsey"
+    },
+    {
+        "id": "GIN",
+        "population": 17500000,
+        "total_area": 245900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gn.png",
+        "currency_name": "Guinean franc",
+        "currency_symbol": "Fr",
+        "currency_code": "GNF",
+        "languages": [
+            "French"
+        ],
+        "latitude": 9.6412,
+        "longitude": -13.5784,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/8J5oM5sA4Ayr1ZYGA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Guinea"
+    },
+    {
+        "id": "GNB",
+        "population": 2100000,
+        "total_area": 36100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gw.png",
+        "currency_name": "West African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XOF",
+        "languages": [
+            "Portuguese",
+            "Upper Guinea Crioulo"
+        ],
+        "latitude": 11.85,
+        "longitude": -15.58,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/5Wyaz17miUc1zLc67",
+        "wiki_url": "https://en.wikipedia.org/wiki/Guinea-Bissau"
+    },
+    {
+        "id": "GUY",
+        "population": 951000,
+        "total_area": 215000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gy.png",
+        "currency_name": "Guyanese dollar",
+        "currency_symbol": "$",
+        "currency_code": "GYD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 6.8,
+        "longitude": -58.15,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/DFsme2xEeugUAsCx5",
+        "wiki_url": "https://en.wikipedia.org/wiki/Guyana"
+    },
+    {
+        "id": "HTI",
+        "population": 11500000,
+        "total_area": 27800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ht.png",
+        "currency_name": "Haitian gourde",
+        "currency_symbol": "G",
+        "currency_code": "HTG",
+        "languages": [
+            "French",
+            "Haitian Creole"
+        ],
+        "latitude": 18.53,
+        "longitude": -72.33,
+        "timezones": [
+            "UTC-05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/9o13xtjuUdqFnHbn9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Haiti"
+    },
+    {
+        "id": "HMD",
+        "population": 0,
+        "total_area": 412.0,
+        "coat_of_arms_url": "",
+        "currency_name": "",
+        "currency_symbol": "",
+        "currency_code": "",
+        "languages": [
+            "English"
+        ],
+        "latitude": 0.0,
+        "longitude": 0.0,
+        "timezones": [
+            "UTC+05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/k5FBAiVaVyozuYeA7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Heard_Island_and_McDonald_Islands"
+    },
+    {
+        "id": "HND",
+        "population": 9600000,
+        "total_area": 112500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/hn.png",
+        "currency_name": "Honduran lempira",
+        "currency_symbol": "L",
+        "currency_code": "HNL",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 14.1,
+        "longitude": -87.22,
+        "timezones": [
+            "UTC-06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/BbeJK8Sk2VkMHbdF8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Honduras"
+    },
+    {
+        "id": "HKG",
+        "population": 7500000,
+        "total_area": 1100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/hk.png",
+        "currency_name": "Hong Kong dollar",
+        "currency_symbol": "$",
+        "currency_code": "HKD",
+        "languages": [
+            "English",
+            "Chinese"
+        ],
+        "latitude": 22.267,
+        "longitude": 114.188,
+        "timezones": [
+            "UTC+08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/1sEnNmT47ffrC8MU8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Hong_Kong"
+    },
+    {
+        "id": "HUN",
+        "population": 9500000,
+        "total_area": 93000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/hu.png",
+        "currency_name": "Hungarian forint",
+        "currency_symbol": "Ft",
+        "currency_code": "HUF",
+        "languages": [
+            "Hungarian"
+        ],
+        "latitude": 47.5,
+        "longitude": 19.08,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/9gfPupm5bffixiFJ6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Hungary"
+    },
+    {
+        "id": "ISL",
+        "population": 394300,
+        "total_area": 103000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/is.png",
+        "currency_name": "Icelandic króna",
+        "currency_symbol": "kr",
+        "currency_code": "ISK",
+        "languages": [
+            "Icelandic"
+        ],
+        "latitude": 64.15,
+        "longitude": -21.95,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/WxFWSQuc3oamNxoE6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Iceland"
+    },
+    {
+        "id": "IND",
+        "population": 1400000000,
+        "total_area": 3300000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/in.png",
+        "currency_name": "Indian rupee",
+        "currency_symbol": "₹",
+        "currency_code": "INR",
+        "languages": [
+            "English",
+            "Hindi",
+            "Tamil"
+        ],
+        "latitude": 28.6139,
+        "longitude": 77.209,
+        "timezones": [
+            "UTC+05:30"
+        ],
+        "maps_url": "https://goo.gl/maps/WSk3fLwG4vtPQetp7",
+        "wiki_url": "https://en.wikipedia.org/wiki/India"
+    },
+    {
+        "id": "IDN",
+        "population": 288300000,
+        "total_area": 1900000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/id.png",
+        "currency_name": "Indonesian rupiah",
+        "currency_symbol": "Rp",
+        "currency_code": "IDR",
+        "languages": [
+            "Indonesian"
+        ],
+        "latitude": -6.17,
+        "longitude": 106.82,
+        "timezones": [
+            "UTC+07:00",
+            "UTC+08:00",
+            "UTC+09:00"
+        ],
+        "maps_url": "https://goo.gl/maps/9gfPupm5bffixiFJ6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Indonesia"
+    },
+    {
+        "id": "IRN",
+        "population": 92400000,
+        "total_area": 1600000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ir.png",
+        "currency_name": "Iranian rial",
+        "currency_symbol": "﷼",
+        "currency_code": "IRR",
+        "languages": [
+            "Persian"
+        ],
+        "latitude": 35.7,
+        "longitude": 51.42,
+        "timezones": [
+            "UTC+03:30"
+        ],
+        "maps_url": "https://goo.gl/maps/dMgEGuacBPGYQnjY7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Iran"
+    },
+    {
+        "id": "IRQ",
+        "population": 46100000,
+        "total_area": 438300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/iq.png",
+        "currency_name": "Iraqi dinar",
+        "currency_symbol": "ع.د",
+        "currency_code": "IQD",
+        "languages": [
+            "Arabic",
+            "Aramaic",
+            "Central Kurdish"
+        ],
+        "latitude": 33.33,
+        "longitude": 44.4,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/iL8Bmy1sUCW9fUk18",
+        "wiki_url": "https://en.wikipedia.org/wiki/Iraq"
+    },
+    {
+        "id": "IRL",
+        "population": 7200000,
+        "total_area": 70300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ie.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "English",
+            "Irish"
+        ],
+        "latitude": 53.32,
+        "longitude": -6.23,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/hxd1BKxgpchStzQC6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Ireland"
+    },
+    {
+        "id": "IMN",
+        "population": 84500,
+        "total_area": 572.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/im.png",
+        "currency_name": "British pound",
+        "currency_symbol": "£",
+        "currency_code": "GBP",
+        "languages": [
+            "English",
+            "Manx"
+        ],
+        "latitude": 54.15,
+        "longitude": -4.48,
+        "timezones": [
+            "UTC+00:00"
+        ],
+        "maps_url": "https://goo.gl/maps/4DqVHDgVaFgnh8ZV8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Isle_of_Man"
+    },
+    {
+        "id": "ISR",
+        "population": 10100000,
+        "total_area": 20800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/il.png",
+        "currency_name": "Israeli new shekel",
+        "currency_symbol": "₪",
+        "currency_code": "ILS",
+        "languages": [
+            "Arabic",
+            "Hebrew"
+        ],
+        "latitude": 31.77,
+        "longitude": 35.23,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/6UY1AH8XeafVwdC97",
+        "wiki_url": "https://en.wikipedia.org/wiki/Israel"
+    },
+    {
+        "id": "ITA",
+        "population": 58900000,
+        "total_area": 301300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/it.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Italian",
+            "Catalan"
+        ],
+        "latitude": 41.9,
+        "longitude": 12.48,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/8M1K27TDj7StTRTq8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Italy"
+    },
+    {
+        "id": "CIV",
+        "population": 31500000,
+        "total_area": 322500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ci.png",
+        "currency_name": "West African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XOF",
+        "languages": [
+            "French"
+        ],
+        "latitude": 6.82,
+        "longitude": -5.27,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/wKsmN7f5qAeNtGjP6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Ivory_Coast"
+    },
+    {
+        "id": "JAM",
+        "population": 2800000,
+        "total_area": 11000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/jm.png",
+        "currency_name": "Jamaican dollar",
+        "currency_symbol": "$",
+        "currency_code": "JMD",
+        "languages": [
+            "English",
+            "Jamaican Patois"
+        ],
+        "latitude": 17.99702,
+        "longitude": -76.79358,
+        "timezones": [
+            "UTC-05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Z8mQ6jxnRQKFwJy9A",
+        "wiki_url": "https://en.wikipedia.org/wiki/Jamaica"
+    },
+    {
+        "id": "JPN",
+        "population": 123000000,
+        "total_area": 377900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/jp.png",
+        "currency_name": "Japanese yen",
+        "currency_symbol": "¥",
+        "currency_code": "JPY",
+        "languages": [
+            "Japanese"
+        ],
+        "latitude": 35.68,
+        "longitude": 139.75,
+        "timezones": [
+            "UTC+09:00"
+        ],
+        "maps_url": "https://goo.gl/maps/NGTLSCSrA8bMrvnX9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Japan"
+    },
+    {
+        "id": "JEY",
+        "population": 104500,
+        "total_area": 116.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/je.png",
+        "currency_name": "British pound",
+        "currency_symbol": "£",
+        "currency_code": "GBP",
+        "languages": [
+            "English",
+            "French",
+            "Norman"
+        ],
+        "latitude": 49.18,
+        "longitude": -2.1,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/rXG8GZZtsqK92kTCA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Jersey"
+    },
+    {
+        "id": "JOR",
+        "population": 11500000,
+        "total_area": 89300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/jo.png",
+        "currency_name": "Jordanian dinar",
+        "currency_symbol": "د.ا",
+        "currency_code": "JOD",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 31.95,
+        "longitude": 35.93,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/ko1dzSDKg8Gsi9A98",
+        "wiki_url": "https://en.wikipedia.org/wiki/Jordan"
+    },
+    {
+        "id": "KAZ",
+        "population": 20500000,
+        "total_area": 2700000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/kz.png",
+        "currency_name": "Kazakhstani tenge",
+        "currency_symbol": "₸",
+        "currency_code": "KZT",
+        "languages": [
+            "Kazakh",
+            "Russian"
+        ],
+        "latitude": 51.16,
+        "longitude": 71.45,
+        "timezones": [
+            "UTC+05:00",
+            "UTC+06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/8VohJGu7ShuzZYyeA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Kazakhstan"
+    },
+    {
+        "id": "KEN",
+        "population": 53300000,
+        "total_area": 580400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ke.png",
+        "currency_name": "Kenyan shilling",
+        "currency_symbol": "Sh",
+        "currency_code": "KES",
+        "languages": [
+            "English",
+            "Swahili"
+        ],
+        "latitude": -1.28,
+        "longitude": 36.82,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Ni9M7wcCxf8bJHLX8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Kenya"
+    },
+    {
+        "id": "KIR",
+        "population": 138000,
+        "total_area": 811.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ki.png",
+        "currency_name": "Australian dollar",
+        "currency_symbol": "$",
+        "currency_code": "AUD",
+        "languages": [
+            "English",
+            "Gilbertese"
+        ],
+        "latitude": 1.33,
+        "longitude": 172.98,
+        "timezones": [
+            "UTC+12:00",
+            "UTC+13:00",
+            "UTC+14:00"
+        ],
+        "maps_url": "https://goo.gl/maps/NBfYvrndW4skAimw9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Kiribati"
+    },
+    {
+        "id": "UNK",
+        "population": 1600000,
+        "total_area": 10900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/xk.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Albanian",
+            "Serbian"
+        ],
+        "latitude": 42.67,
+        "longitude": 21.17,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/CSC4Yc8SWPgburuD9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Kosovo"
+    },
+    {
+        "id": "KWT",
+        "population": 5000000,
+        "total_area": 17800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/kw.png",
+        "currency_name": "Kuwaiti dinar",
+        "currency_symbol": "د.ك",
+        "currency_code": "KWD",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 29.37,
+        "longitude": 47.97,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/aqr3aNQjS1BAvksJ7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Kuwait"
+    },
+    {
+        "id": "KGZ",
+        "population": 7400000,
+        "total_area": 200000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/kg.png",
+        "currency_name": "Kyrgyzstani som",
+        "currency_symbol": "с",
+        "currency_code": "KGS",
+        "languages": [
+            "Kyrgyz",
+            "Russian"
+        ],
+        "latitude": 42.87,
+        "longitude": 74.6,
+        "timezones": [
+            "UTC+06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/SKG8BSMMQVvxkRkB7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Kyrgyzstan"
+    },
+    {
+        "id": "LAO",
+        "population": 6700000,
+        "total_area": 236800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/la.png",
+        "currency_name": "Lao kip",
+        "currency_symbol": "₭",
+        "currency_code": "LAK",
+        "languages": [
+            "Lao"
+        ],
+        "latitude": 17.97,
+        "longitude": 102.6,
+        "timezones": [
+            "UTC+07:00"
+        ],
+        "maps_url": "https://goo.gl/maps/F3asVB7sRKgSnwbE7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Laos"
+    },
+    {
+        "id": "LVA",
+        "population": 1800000,
+        "total_area": 64599.99999999999,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/lv.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Latvian"
+        ],
+        "latitude": 56.95,
+        "longitude": 24.1,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/iQpUkH7ghq31ZtXe9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Latvia"
+    },
+    {
+        "id": "LBN",
+        "population": 5400000,
+        "total_area": 10500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/lb.png",
+        "currency_name": "Lebanese pound",
+        "currency_symbol": "ل.ل",
+        "currency_code": "LBP",
+        "languages": [
+            "Arabic",
+            "French"
+        ],
+        "latitude": 33.87,
+        "longitude": 35.5,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Sz5VCU8UFBqMyTdc9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Lebanon"
+    },
+    {
+        "id": "LSO",
+        "population": 2100000,
+        "total_area": 30400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ls.png",
+        "currency_name": "Lesotho loti",
+        "currency_symbol": "L",
+        "currency_code": "LSL",
+        "languages": [
+            "English",
+            "Sotho"
+        ],
+        "latitude": -29.32,
+        "longitude": 27.48,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/H8gJi5mL4Cmd1SF28",
+        "wiki_url": "https://en.wikipedia.org/wiki/Lesotho"
+    },
+    {
+        "id": "LBR",
+        "population": 5400000,
+        "total_area": 111400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/lr.png",
+        "currency_name": "Liberian dollar",
+        "currency_symbol": "$",
+        "currency_code": "LRD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 6.3156,
+        "longitude": -10.8074,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/4VsHsc2oeGeRL3wg6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Liberia"
+    },
+    {
+        "id": "LBY",
+        "population": 7400000,
+        "total_area": 1800000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ly.png",
+        "currency_name": "Libyan dinar",
+        "currency_symbol": "ل.د",
+        "currency_code": "LYD",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 32.88,
+        "longitude": 13.17,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/eLgGnaQWcJEdYRMy5",
+        "wiki_url": "https://en.wikipedia.org/wiki/Libya"
+    },
+    {
+        "id": "LIE",
+        "population": 41200,
+        "total_area": 160.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/li.png",
+        "currency_name": "Swiss franc",
+        "currency_symbol": "Fr",
+        "currency_code": "CHF",
+        "languages": [
+            "German"
+        ],
+        "latitude": 47.13,
+        "longitude": 9.52,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/KNuHeiJzAPodwM7y6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Liechtenstein"
+    },
+    {
+        "id": "LTU",
+        "population": 2900000,
+        "total_area": 65300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/lt.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Lithuanian"
+        ],
+        "latitude": 54.68,
+        "longitude": 25.32,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/dd1s9rrLjrK2G8yY6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Lithuania"
+    },
+    {
+        "id": "LUX",
+        "population": 692400,
+        "total_area": 2600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/lu.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "German",
+            "French",
+            "Luxembourgish"
+        ],
+        "latitude": 49.6,
+        "longitude": 6.12,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/L6b2AgndgHprt2Ko9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Luxembourg"
+    },
+    {
+        "id": "MAC",
+        "population": 712700,
+        "total_area": 30.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mo.png",
+        "currency_name": "Macanese pataca",
+        "currency_symbol": "P",
+        "currency_code": "MOP",
+        "languages": [
+            "Portuguese",
+            "Chinese"
+        ],
+        "latitude": 0.0,
+        "longitude": 0.0,
+        "timezones": [
+            "UTC+08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/whymRdk3dZFfAAs4A",
+        "wiki_url": "https://en.wikipedia.org/wiki/Macau"
+    },
+    {
+        "id": "MDG",
+        "population": 32000000,
+        "total_area": 587000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mg.png",
+        "currency_name": "Malagasy ariary",
+        "currency_symbol": "Ar",
+        "currency_code": "MGA",
+        "languages": [
+            "French",
+            "Malagasy"
+        ],
+        "latitude": -18.92,
+        "longitude": 47.52,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/AHQh2ABBaFW6Ngj26",
+        "wiki_url": "https://en.wikipedia.org/wiki/Madagascar"
+    },
+    {
+        "id": "MWI",
+        "population": 21200000,
+        "total_area": 118500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mw.png",
+        "currency_name": "Malawian kwacha",
+        "currency_symbol": "MK",
+        "currency_code": "MWK",
+        "languages": [
+            "English",
+            "Chichewa"
+        ],
+        "latitude": -13.97,
+        "longitude": 33.78,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/mc6z83pW9m98X2Ef6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Malawi"
+    },
+    {
+        "id": "MYS",
+        "population": 34600000,
+        "total_area": 330800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/my.png",
+        "currency_name": "Malaysian ringgit",
+        "currency_symbol": "RM",
+        "currency_code": "MYR",
+        "languages": [
+            "English",
+            "Malay"
+        ],
+        "latitude": 3.17,
+        "longitude": 101.7,
+        "timezones": [
+            "UTC+08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/qrY1PNeUXGyXDcPy6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Malaysia"
+    },
+    {
+        "id": "MDV",
+        "population": 601300,
+        "total_area": 300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mv.png",
+        "currency_name": "Maldivian rufiyaa",
+        "currency_symbol": ".ރ",
+        "currency_code": "MVR",
+        "languages": [
+            "Divehi"
+        ],
+        "latitude": 4.17,
+        "longitude": 73.51,
+        "timezones": [
+            "UTC+05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/MNAWGq9vEdbZ9vUV7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Maldives"
+    },
+    {
+        "id": "MLI",
+        "population": 25200000,
+        "total_area": 1200000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ml.png",
+        "currency_name": "West African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XOF",
+        "languages": [
+            "French"
+        ],
+        "latitude": 12.65,
+        "longitude": -8.0,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/u9mYJkCB19wyuzh27",
+        "wiki_url": "https://en.wikipedia.org/wiki/Mali"
+    },
+    {
+        "id": "MLT",
+        "population": 519600,
+        "total_area": 316.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mt.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "English",
+            "Maltese"
+        ],
+        "latitude": 35.88,
+        "longitude": 14.5,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/skXCqguxDxxEKVk47",
+        "wiki_url": "https://en.wikipedia.org/wiki/Malta"
+    },
+    {
+        "id": "MHL",
+        "population": 37500,
+        "total_area": 181.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mh.png",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English",
+            "Marshallese"
+        ],
+        "latitude": 7.1,
+        "longitude": 171.38,
+        "timezones": [
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/A4xLi1XvcX88gi3W8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Marshall_Islands"
+    },
+    {
+        "id": "MTQ",
+        "population": 378200,
+        "total_area": 1100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mq.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": 14.6,
+        "longitude": -61.08,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/87ER7sDAFU7JjcvR6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Martinique"
+    },
+    {
+        "id": "MRT",
+        "population": 5500000,
+        "total_area": 1000000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mr.png",
+        "currency_name": "Mauritanian ouguiya",
+        "currency_symbol": "UM",
+        "currency_code": "MRU",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 18.07,
+        "longitude": -15.97,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/im2MmQ5jFjzxWBks5",
+        "wiki_url": "https://en.wikipedia.org/wiki/Mauritania"
+    },
+    {
+        "id": "MUS",
+        "population": 1200000,
+        "total_area": 2000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mu.png",
+        "currency_name": "Mauritian rupee",
+        "currency_symbol": "₨",
+        "currency_code": "MUR",
+        "languages": [
+            "English",
+            "French",
+            "Mauritian Creole"
+        ],
+        "latitude": -20.15,
+        "longitude": 57.48,
+        "timezones": [
+            "UTC+04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/PpKtZ4W3tir5iGrz7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Mauritius"
+    },
+    {
+        "id": "MYT",
+        "population": 226900,
+        "total_area": 374.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": -12.78,
+        "longitude": 45.22,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/1e7MXmfBwQv3TQGF7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Mayotte"
+    },
+    {
+        "id": "MEX",
+        "population": 134400000,
+        "total_area": 2000000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mx.png",
+        "currency_name": "Mexican peso",
+        "currency_symbol": "$",
+        "currency_code": "MXN",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 19.43,
+        "longitude": -99.13,
+        "timezones": [
+            "UTC-08:00",
+            "UTC-07:00",
+            "UTC-06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/s5g7imNPMDEePxzbA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Mexico"
+    },
+    {
+        "id": "FSM",
+        "population": 75800,
+        "total_area": 702.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/fm.png",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 6.92,
+        "longitude": 158.15,
+        "timezones": [
+            "UTC+10:00",
+            "UTC+11:00"
+        ],
+        "maps_url": "https://goo.gl/maps/LLcnofC5LxZsJXTo8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Federated_States_of_Micronesia"
+    },
+    {
+        "id": "MDA",
+        "population": 2400000,
+        "total_area": 33800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/md.png",
+        "currency_name": "Moldovan leu",
+        "currency_symbol": "L",
+        "currency_code": "MDL",
+        "languages": [
+            "Romanian"
+        ],
+        "latitude": 47.01,
+        "longitude": 28.9,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/JjmyUuULujnDeFPf7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Moldova"
+    },
+    {
+        "id": "MCO",
+        "population": 38900,
+        "total_area": 2.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mc.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": 43.73,
+        "longitude": 7.42,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/DGpndDot28bYdXYn7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Monaco"
+    },
+    {
+        "id": "MNG",
+        "population": 3600000,
+        "total_area": 1600000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mn.png",
+        "currency_name": "Mongolian tögrög",
+        "currency_symbol": "₮",
+        "currency_code": "MNT",
+        "languages": [
+            "Mongolian"
+        ],
+        "latitude": 47.92,
+        "longitude": 106.91,
+        "timezones": [
+            "UTC+07:00",
+            "UTC+08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/A1X7bMCKThBDNjzH6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Mongolia"
+    },
+    {
+        "id": "MNE",
+        "population": 622900,
+        "total_area": 13800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/me.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Montenegrin"
+        ],
+        "latitude": 42.43,
+        "longitude": 19.27,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/4THX1fM7WqANuPbB8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Montenegro"
+    },
+    {
+        "id": "MSR",
+        "population": 4400,
+        "total_area": 102.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ms.png",
+        "currency_name": "Eastern Caribbean dollar",
+        "currency_symbol": "$",
+        "currency_code": "XCD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 16.7,
+        "longitude": -62.22,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/CSbe7UmxPmiwQB7GA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Montserrat"
+    },
+    {
+        "id": "MAR",
+        "population": 36800000,
+        "total_area": 446600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ma.png",
+        "currency_name": "Moroccan dirham",
+        "currency_symbol": "د.م.",
+        "currency_code": "MAD",
+        "languages": [
+            "Arabic",
+            "Standard Moroccan Tamazight"
+        ],
+        "latitude": 34.02,
+        "longitude": -6.82,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/6oMv3dyBZg3iaXQ5A",
+        "wiki_url": "https://en.wikipedia.org/wiki/Morocco"
+    },
+    {
+        "id": "MOZ",
+        "population": 34900000,
+        "total_area": 801600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mz.png",
+        "currency_name": "Mozambican metical",
+        "currency_symbol": "MT",
+        "currency_code": "MZN",
+        "languages": [
+            "Portuguese"
+        ],
+        "latitude": -25.95,
+        "longitude": 32.58,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/xCLcY9fzU6x4Pueu5",
+        "wiki_url": "https://en.wikipedia.org/wiki/Mozambique"
+    },
+    {
+        "id": "MMR",
+        "population": 55800000,
+        "total_area": 676600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mm.png",
+        "currency_name": "Burmese kyat",
+        "currency_symbol": "Ks",
+        "currency_code": "MMK",
+        "languages": [
+            "Burmese"
+        ],
+        "latitude": 19.76,
+        "longitude": 96.07,
+        "timezones": [
+            "UTC+06:30"
+        ],
+        "maps_url": "https://goo.gl/maps/4jrZyJkDERUfHyp26",
+        "wiki_url": "https://en.wikipedia.org/wiki/Myanmar"
+    },
+    {
+        "id": "NAM",
+        "population": 3000000,
+        "total_area": 825600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/na.png",
+        "currency_name": "Namibian dollar",
+        "currency_symbol": "$",
+        "currency_code": "NAD",
+        "languages": [
+            "Afrikaans",
+            "German",
+            "English",
+            "Herero",
+            "Hai‖om",
+            "Kwangali",
+            "Lozi",
+            "Ndonga",
+            "Tswana"
+        ],
+        "latitude": -22.57,
+        "longitude": 17.08,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/oR1i8BFEYX3EY83WA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Namibia"
+    },
+    {
+        "id": "NRU",
+        "population": 12000,
+        "total_area": 21.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/nr.png",
+        "currency_name": "Australian dollar",
+        "currency_symbol": "$",
+        "currency_code": "AUD",
+        "languages": [
+            "English",
+            "Nauruan"
+        ],
+        "latitude": -0.55,
+        "longitude": 166.92,
+        "timezones": [
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/kyAGw6XEJgjSMsTK7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Nauru"
+    },
+    {
+        "id": "NPL",
+        "population": 31100000,
+        "total_area": 147200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/np.png",
+        "currency_name": "Nepalese rupee",
+        "currency_symbol": "₨",
+        "currency_code": "NPR",
+        "languages": [
+            "Nepali"
+        ],
+        "latitude": 27.72,
+        "longitude": 85.32,
+        "timezones": [
+            "UTC+05:45"
+        ],
+        "maps_url": "https://goo.gl/maps/UMj2zpbQp7B5c3yT7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Nepal"
+    },
+    {
+        "id": "NLD",
+        "population": 18000000,
+        "total_area": 41800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/nl.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Dutch"
+        ],
+        "latitude": 52.35,
+        "longitude": 4.92,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Hv6zQswGhFxoVVBm6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Netherlands"
+    },
+    {
+        "id": "NCL",
+        "population": 264600,
+        "total_area": 18600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/nc.png",
+        "currency_name": "CFP franc",
+        "currency_symbol": "₣",
+        "currency_code": "XPF",
+        "languages": [
+            "French"
+        ],
+        "latitude": -22.27,
+        "longitude": 166.45,
+        "timezones": [
+            "UTC+11:00"
+        ],
+        "maps_url": "https://goo.gl/maps/cBhtCeMdob4U7FRU9",
+        "wiki_url": "https://en.wikipedia.org/wiki/New_Caledonia"
+    },
+    {
+        "id": "NZL",
+        "population": 5000000,
+        "total_area": 270500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/nz.png",
+        "currency_name": "New Zealand dollar",
+        "currency_symbol": "$",
+        "currency_code": "NZD",
+        "languages": [
+            "English",
+            "Maori",
+            "New Zealand Sign Language"
+        ],
+        "latitude": -41.3,
+        "longitude": 174.78,
+        "timezones": [
+            "UTC-11:00",
+            "UTC-10:00",
+            "UTC+12:00",
+            "UTC+12:45",
+            "UTC+13:00"
+        ],
+        "maps_url": "https://goo.gl/maps/xXiDQo65dwdpw9iu8",
+        "wiki_url": "https://en.wikipedia.org/wiki/New_Zealand"
+    },
+    {
+        "id": "NIC",
+        "population": 6700000,
+        "total_area": 130400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ni.png",
+        "currency_name": "Nicaraguan córdoba",
+        "currency_symbol": "C$",
+        "currency_code": "NIO",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 12.13,
+        "longitude": -86.25,
+        "timezones": [
+            "UTC-06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/P77LaEVkKJKXneRC6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Nicaragua"
+    },
+    {
+        "id": "NER",
+        "population": 26300000,
+        "total_area": 1300000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ne.png",
+        "currency_name": "West African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XOF",
+        "languages": [
+            "French"
+        ],
+        "latitude": 13.52,
+        "longitude": 2.12,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/VKNU2TLsZcgxM49c8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Niger"
+    },
+    {
+        "id": "NGA",
+        "population": 242700000,
+        "total_area": 923800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ng.png",
+        "currency_name": "Nigerian naira",
+        "currency_symbol": "₦",
+        "currency_code": "NGN",
+        "languages": [
+            "English"
+        ],
+        "latitude": 9.08,
+        "longitude": 7.53,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/LTn417qWwBPFszuV9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Nigeria"
+    },
+    {
+        "id": "NIU",
+        "population": 1700,
+        "total_area": 260.0,
+        "coat_of_arms_url": "",
+        "currency_name": "New Zealand dollar",
+        "currency_symbol": "$",
+        "currency_code": "NZD",
+        "languages": [
+            "English",
+            "Niuean"
+        ],
+        "latitude": -19.02,
+        "longitude": -169.92,
+        "timezones": [
+            "UTC-11:00"
+        ],
+        "maps_url": "https://goo.gl/maps/xFgdzs3E55Rk1y8P9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Niue"
+    },
+    {
+        "id": "NFK",
+        "population": 2200,
+        "total_area": 36.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Australian dollar",
+        "currency_symbol": "$",
+        "currency_code": "AUD",
+        "languages": [
+            "English",
+            "Norfuk"
+        ],
+        "latitude": -29.05,
+        "longitude": 167.97,
+        "timezones": [
+            "UTC+11:30"
+        ],
+        "maps_url": "https://goo.gl/maps/pbvtm6XYd1iZbjky5",
+        "wiki_url": "https://en.wikipedia.org/wiki/Norfolk_Island"
+    },
+    {
+        "id": "PRK",
+        "population": 26000000,
+        "total_area": 120500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/kp.png",
+        "currency_name": "North Korean won",
+        "currency_symbol": "₩",
+        "currency_code": "KPW",
+        "languages": [
+            "Korean"
+        ],
+        "latitude": 39.02,
+        "longitude": 125.75,
+        "timezones": [
+            "UTC+09:00"
+        ],
+        "maps_url": "https://goo.gl/maps/9q5T2DMeH5JL7Tky6",
+        "wiki_url": "https://en.wikipedia.org/wiki/North_Korea"
+    },
+    {
+        "id": "MKD",
+        "population": 1800000,
+        "total_area": 25700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/mk.png",
+        "currency_name": "denar",
+        "currency_symbol": "den",
+        "currency_code": "MKD",
+        "languages": [
+            "Macedonian"
+        ],
+        "latitude": 42.0,
+        "longitude": 21.43,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/55Q8MEnF6ACdu3q79",
+        "wiki_url": "https://en.wikipedia.org/wiki/North_Macedonia"
+    },
+    {
+        "id": "MNP",
+        "population": 46100,
+        "total_area": 464.0,
+        "coat_of_arms_url": "",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "Carolinian",
+            "Chamorro",
+            "English"
+        ],
+        "latitude": 15.2,
+        "longitude": 145.75,
+        "timezones": [
+            "UTC+10:00"
+        ],
+        "maps_url": "https://goo.gl/maps/cpZ67knoRAcfu1417",
+        "wiki_url": "https://en.wikipedia.org/wiki/Northern_Mariana_Islands"
+    },
+    {
+        "id": "NOR",
+        "population": 5600000,
+        "total_area": 323800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/no.png",
+        "currency_name": "Norwegian krone",
+        "currency_symbol": "kr",
+        "currency_code": "NOK",
+        "languages": [
+            "Norwegian Nynorsk",
+            "Norwegian Bokmål",
+            "Northern Sami",
+            "Lule Sami",
+            "Southern Sami"
+        ],
+        "latitude": 59.92,
+        "longitude": 10.75,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/htWRrphA7vNgQNdSA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Norway"
+    },
+    {
+        "id": "OMN",
+        "population": 5500000,
+        "total_area": 309500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/om.png",
+        "currency_name": "Omani rial",
+        "currency_symbol": "ر.ع.",
+        "currency_code": "OMR",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 23.62,
+        "longitude": 58.58,
+        "timezones": [
+            "UTC+04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/L2BoXoAwDDwWecnw5",
+        "wiki_url": "https://en.wikipedia.org/wiki/Oman"
+    },
+    {
+        "id": "PAK",
+        "population": 241500000,
+        "total_area": 881900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/pk.png",
+        "currency_name": "Pakistani rupee",
+        "currency_symbol": "₨",
+        "currency_code": "PKR",
+        "languages": [
+            "English",
+            "Urdu"
+        ],
+        "latitude": 33.68,
+        "longitude": 73.05,
+        "timezones": [
+            "UTC+05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/5LYujdfR5yLUXoERA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Pakistan"
+    },
+    {
+        "id": "PLW",
+        "population": 17700,
+        "total_area": 459.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/pw.png",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English",
+            "Palauan"
+        ],
+        "latitude": 7.5,
+        "longitude": 134.62,
+        "timezones": [
+            "UTC+09:00"
+        ],
+        "maps_url": "https://goo.gl/maps/MVasQBbUkQP7qQDR9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Palau"
+    },
+    {
+        "id": "PSE",
+        "population": 5500000,
+        "total_area": 6200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ps.png",
+        "currency_name": "Egyptian pound",
+        "currency_symbol": "E£",
+        "currency_code": "EGP",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 31.9038,
+        "longitude": 35.2034,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/QvTbkRdmdWEoYAmt5",
+        "wiki_url": "https://en.wikipedia.org/wiki/Palestine"
+    },
+    {
+        "id": "PAN",
+        "population": 4300000,
+        "total_area": 75400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/pa.png",
+        "currency_name": "Panamanian balboa",
+        "currency_symbol": "B/.",
+        "currency_code": "PAB",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 8.97,
+        "longitude": -79.53,
+        "timezones": [
+            "UTC-05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/sEN7sKqeawa5oPNLA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Panama"
+    },
+    {
+        "id": "PNG",
+        "population": 11800000,
+        "total_area": 462800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/pg.png",
+        "currency_name": "Papua New Guinean kina",
+        "currency_symbol": "K",
+        "currency_code": "PGK",
+        "languages": [
+            "English",
+            "Hiri Motu",
+            "Tok Pisin"
+        ],
+        "latitude": -9.45,
+        "longitude": 147.18,
+        "timezones": [
+            "UTC+10:00"
+        ],
+        "maps_url": "https://goo.gl/maps/ChGmzZBjZ3vnBwR2A",
+        "wiki_url": "https://en.wikipedia.org/wiki/Papua_New_Guinea"
+    },
+    {
+        "id": "PRY",
+        "population": 6500000,
+        "total_area": 406800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/py.png",
+        "currency_name": "Paraguayan guaraní",
+        "currency_symbol": "₲",
+        "currency_code": "PYG",
+        "languages": [
+            "Guarani",
+            "Spanish"
+        ],
+        "latitude": -25.28,
+        "longitude": -57.57,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/JtnqG73WJn1Gx6mz6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Paraguay"
+    },
+    {
+        "id": "PER",
+        "population": 34400000,
+        "total_area": 1300000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/pe.png",
+        "currency_name": "Peruvian sol",
+        "currency_symbol": "S/ ",
+        "currency_code": "PEN",
+        "languages": [
+            "Aymara",
+            "Quechua",
+            "Spanish"
+        ],
+        "latitude": -12.05,
+        "longitude": -77.05,
+        "timezones": [
+            "UTC-05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/uDWEUaXNcZTng1fP6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Peru"
+    },
+    {
+        "id": "PHL",
+        "population": 112700000,
+        "total_area": 342400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ph.png",
+        "currency_name": "Philippine peso",
+        "currency_symbol": "₱",
+        "currency_code": "PHP",
+        "languages": [
+            "English",
+            "Filipino"
+        ],
+        "latitude": 14.6,
+        "longitude": 120.97,
+        "timezones": [
+            "UTC+08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/k8T2fb5VMUfsWFX6A",
+        "wiki_url": "https://en.wikipedia.org/wiki/Philippines"
+    },
+    {
+        "id": "PCN",
+        "population": 35,
+        "total_area": 47.0,
+        "coat_of_arms_url": "",
+        "currency_name": "New Zealand dollar",
+        "currency_symbol": "$",
+        "currency_code": "NZD",
+        "languages": [
+            "English"
+        ],
+        "latitude": -25.07,
+        "longitude": -130.08,
+        "timezones": [
+            "UTC-08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/XGJMnMAigXjXcxSa7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Pitcairn_Islands"
+    },
+    {
+        "id": "POL",
+        "population": 37300000,
+        "total_area": 312700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/pl.png",
+        "currency_name": "Polish złoty",
+        "currency_symbol": "zł",
+        "currency_code": "PLN",
+        "languages": [
+            "Polish"
+        ],
+        "latitude": 52.25,
+        "longitude": 21.0,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/gY9Xw4Sf4415P4949",
+        "wiki_url": "https://en.wikipedia.org/wiki/Poland"
+    },
+    {
+        "id": "PRT",
+        "population": 10700000,
+        "total_area": 92100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/pt.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Portuguese"
+        ],
+        "latitude": 38.72,
+        "longitude": -9.13,
+        "timezones": [
+            "UTC-01:00",
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/BaTBSyc4GWMmbAKB8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Portugal"
+    },
+    {
+        "id": "PRI",
+        "population": 3200000,
+        "total_area": 8900.0,
+        "coat_of_arms_url": "",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English",
+            "Spanish"
+        ],
+        "latitude": 18.47,
+        "longitude": -66.12,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/sygfDbtwn389wu8x5",
+        "wiki_url": "https://en.wikipedia.org/wiki/Puerto_Rico"
+    },
+    {
+        "id": "QAT",
+        "population": 3200000,
+        "total_area": 11600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/qa.png",
+        "currency_name": "Qatari riyal",
+        "currency_symbol": "ر.ق",
+        "currency_code": "QAR",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 25.28,
+        "longitude": 51.53,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/ZV76Y49z7LLUZ2KQ6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Qatar"
+    },
+    {
+        "id": "ROU",
+        "population": 19000000,
+        "total_area": 238400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ro.png",
+        "currency_name": "Romanian leu",
+        "currency_symbol": "lei",
+        "currency_code": "RON",
+        "languages": [
+            "Romanian"
+        ],
+        "latitude": 44.43,
+        "longitude": 26.1,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/845hAgCf1mDkN3vr7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Romania"
+    },
+    {
+        "id": "RUS",
+        "population": 146000000,
+        "total_area": 1.71E7,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ru.png",
+        "currency_name": "Russian ruble",
+        "currency_symbol": "₽",
+        "currency_code": "RUB",
+        "languages": [
+            "Russian"
+        ],
+        "latitude": 55.75,
+        "longitude": 37.6,
+        "timezones": [
+            "UTC+03:00",
+            "UTC+04:00",
+            "UTC+06:00",
+            "UTC+07:00",
+            "UTC+08:00",
+            "UTC+09:00",
+            "UTC+10:00",
+            "UTC+11:00",
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/4F4PpDhGJgVvLby57",
+        "wiki_url": "https://en.wikipedia.org/wiki/Russia"
+    },
+    {
+        "id": "RWA",
+        "population": 14100000,
+        "total_area": 26300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/rw.png",
+        "currency_name": "Rwandan franc",
+        "currency_symbol": "Fr",
+        "currency_code": "RWF",
+        "languages": [
+            "English",
+            "French",
+            "Kinyarwanda"
+        ],
+        "latitude": -1.95,
+        "longitude": 30.05,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/j5xb5r7CLqjYbyP86",
+        "wiki_url": "https://en.wikipedia.org/wiki/Rwanda"
+    },
+    {
+        "id": "REU",
+        "population": 841000,
+        "total_area": 2500.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": -20.88,
+        "longitude": 55.45,
+        "timezones": [
+            "UTC+04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/wWpBrXsp8UHVbah29",
+        "wiki_url": "https://en.wikipedia.org/wiki/R%C3%A9union"
+    },
+    {
+        "id": "BLM",
+        "population": 4300,
+        "total_area": 21.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": 17.88,
+        "longitude": -62.85,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Mc7GqH466S7AAk297",
+        "wiki_url": "https://en.wikipedia.org/wiki/Saint_Barth%C3%A9lemy"
+    },
+    {
+        "id": "SHN",
+        "population": 53200,
+        "total_area": 394.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Pound sterling",
+        "currency_symbol": "£",
+        "currency_code": "GBP",
+        "languages": [
+            "English"
+        ],
+        "latitude": -15.93,
+        "longitude": -5.72,
+        "timezones": [
+            "UTC+00:00"
+        ],
+        "maps_url": "https://goo.gl/maps/iv4VxnPzHkjLCJuc6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Saint_Helena%2C_Ascension_and_Tristan_da_Cunha"
+    },
+    {
+        "id": "KNA",
+        "population": 54300,
+        "total_area": 261.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/kn.png",
+        "currency_name": "Eastern Caribbean dollar",
+        "currency_symbol": "$",
+        "currency_code": "XCD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 17.3,
+        "longitude": -62.72,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/qiaVwcLVTXX3eoTNA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Saint_Kitts_and_Nevis"
+    },
+    {
+        "id": "LCA",
+        "population": 184100,
+        "total_area": 616.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/lc.png",
+        "currency_name": "Eastern Caribbean dollar",
+        "currency_symbol": "$",
+        "currency_code": "XCD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 13.9957,
+        "longitude": -61.0061,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/4HhJ2jkPdSL9BPRcA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Saint_Lucia"
+    },
+    {
+        "id": "MAF",
+        "population": 38700,
+        "total_area": 53.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": 18.07,
+        "longitude": -63.08,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/P9ho9QuJ9EAR28JEA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Saint_Martin"
+    },
+    {
+        "id": "SPM",
+        "population": 5800,
+        "total_area": 242.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "French"
+        ],
+        "latitude": 46.77,
+        "longitude": -56.18,
+        "timezones": [
+            "UTC-03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/bUM8Yc8pA8ghyhmt6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Saint_Pierre_and_Miquelon"
+    },
+    {
+        "id": "VCT",
+        "population": 110900,
+        "total_area": 389.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/vc.png",
+        "currency_name": "Eastern Caribbean dollar",
+        "currency_symbol": "$",
+        "currency_code": "XCD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 13.13,
+        "longitude": -61.22,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/wMbnMqjG37FMnrwf7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Saint_Vincent_and_the_Grenadines"
+    },
+    {
+        "id": "WSM",
+        "population": 205600,
+        "total_area": 2800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ws.png",
+        "currency_name": "Samoan tālā",
+        "currency_symbol": "T",
+        "currency_code": "WST",
+        "languages": [
+            "English",
+            "Samoan"
+        ],
+        "latitude": -13.82,
+        "longitude": -171.77,
+        "timezones": [
+            "UTC+13:00"
+        ],
+        "maps_url": "https://goo.gl/maps/CFC9fEFP9cfkYUBF9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Samoa"
+    },
+    {
+        "id": "SMR",
+        "population": 34200,
+        "total_area": 61.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sm.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Italian"
+        ],
+        "latitude": 43.94,
+        "longitude": 12.45,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/rxCVJjm8dVY93RPY8",
+        "wiki_url": "https://en.wikipedia.org/wiki/San_Marino"
+    },
+    {
+        "id": "SAU",
+        "population": 33700000,
+        "total_area": 2100000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sa.png",
+        "currency_name": "Saudi riyal",
+        "currency_symbol": "ر.س",
+        "currency_code": "SAR",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 24.65,
+        "longitude": 46.7,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/5PSjvdJ1AyaLFRrG9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Saudi_Arabia"
+    },
+    {
+        "id": "SEN",
+        "population": 18800000,
+        "total_area": 196700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sn.png",
+        "currency_name": "West African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XOF",
+        "languages": [
+            "French"
+        ],
+        "latitude": 14.73,
+        "longitude": -17.63,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/o5f1uD5nyihCL3HCA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Senegal"
+    },
+    {
+        "id": "SRB",
+        "population": 6600000,
+        "total_area": 88400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/rs.png",
+        "currency_name": "Serbian dinar",
+        "currency_symbol": "дин.",
+        "currency_code": "RSD",
+        "languages": [
+            "Serbian"
+        ],
+        "latitude": 44.83,
+        "longitude": 20.5,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/2Aqof7aV2Naq8YEK8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Serbia"
+    },
+    {
+        "id": "SYC",
+        "population": 121400,
+        "total_area": 452.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sc.png",
+        "currency_name": "Seychellois rupee",
+        "currency_symbol": "₨",
+        "currency_code": "SCR",
+        "languages": [
+            "Seychellois Creole",
+            "English",
+            "French"
+        ],
+        "latitude": -4.62,
+        "longitude": 55.45,
+        "timezones": [
+            "UTC+04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/aqCcy2TKh5TV5MAX8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Seychelles"
+    },
+    {
+        "id": "SLE",
+        "population": 8500000,
+        "total_area": 71700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sl.png",
+        "currency_name": "Leone",
+        "currency_symbol": "Le",
+        "currency_code": "SLE",
+        "languages": [
+            "English"
+        ],
+        "latitude": 8.48,
+        "longitude": -13.23,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/jhacar85oq9QaeKB7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Sierra_Leone"
+    },
+    {
+        "id": "SGP",
+        "population": 6100000,
+        "total_area": 710.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sg.png",
+        "currency_name": "Singapore dollar",
+        "currency_symbol": "$",
+        "currency_code": "SGD",
+        "languages": [
+            "English",
+            "Chinese",
+            "Malay",
+            "Tamil"
+        ],
+        "latitude": 1.28,
+        "longitude": 103.85,
+        "timezones": [
+            "UTC+08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/QbQt9Y9b5KFzsahV6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Singapore"
+    },
+    {
+        "id": "SXM",
+        "population": 58500,
+        "total_area": 34.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Netherlands Antillean guilder",
+        "currency_symbol": "ƒ",
+        "currency_code": "ANG",
+        "languages": [
+            "English",
+            "French",
+            "Dutch"
+        ],
+        "latitude": 18.02,
+        "longitude": -63.03,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/DjvcESy1a1oGEZuNA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Sint_Maarten"
+    },
+    {
+        "id": "SVK",
+        "population": 5400000,
+        "total_area": 49000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sk.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Slovak"
+        ],
+        "latitude": 48.15,
+        "longitude": 17.12,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/uNSH2wW4bLoZVYJj7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Slovakia"
+    },
+    {
+        "id": "SVN",
+        "population": 2100000,
+        "total_area": 20300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/si.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Slovenian"
+        ],
+        "latitude": 46.05,
+        "longitude": 14.52,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/7zgFmswcCJh5L5D49",
+        "wiki_url": "https://en.wikipedia.org/wiki/Slovenia"
+    },
+    {
+        "id": "SLB",
+        "population": 828900,
+        "total_area": 28900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sb.png",
+        "currency_name": "Solomon Islands dollar",
+        "currency_symbol": "$",
+        "currency_code": "SBD",
+        "languages": [
+            "English"
+        ],
+        "latitude": -9.43,
+        "longitude": 159.95,
+        "timezones": [
+            "UTC+11:00"
+        ],
+        "maps_url": "https://goo.gl/maps/JbPkx86Ywjv8C1n8A",
+        "wiki_url": "https://en.wikipedia.org/wiki/Solomon_Islands"
+    },
+    {
+        "id": "SOM",
+        "population": 19300000,
+        "total_area": 637700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/so.png",
+        "currency_name": "Somali shilling",
+        "currency_symbol": "Sh",
+        "currency_code": "SOS",
+        "languages": [
+            "Arabic",
+            "Somali"
+        ],
+        "latitude": 2.07,
+        "longitude": 45.33,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/8of8q7D1a8p7R6Fc9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Somalia"
+    },
+    {
+        "id": "ZAF",
+        "population": 63000000,
+        "total_area": 1200000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/za.png",
+        "currency_name": "South African rand",
+        "currency_symbol": "R",
+        "currency_code": "ZAR",
+        "languages": [
+            "Afrikaans",
+            "English",
+            "Southern Ndebele",
+            "Northern Sotho",
+            "Sotho",
+            "Swazi",
+            "Tswana",
+            "Tsonga",
+            "Venda",
+            "Xhosa",
+            "Zulu"
+        ],
+        "latitude": -25.74,
+        "longitude": 28.19,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/CLCZ1R8Uz1KpYhRv6",
+        "wiki_url": "https://en.wikipedia.org/wiki/South_Africa"
+    },
+    {
+        "id": "SGS",
+        "population": 32,
+        "total_area": 3900.0,
+        "coat_of_arms_url": "",
+        "currency_name": "British pound",
+        "currency_symbol": "£",
+        "currency_code": "GBP",
+        "languages": [
+            "English"
+        ],
+        "latitude": -54.28,
+        "longitude": -36.5,
+        "timezones": [
+            "UTC-02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/mJzdaBwKBbm2B81q9",
+        "wiki_url": "https://en.wikipedia.org/wiki/South_Georgia"
+    },
+    {
+        "id": "KOR",
+        "population": 51100000,
+        "total_area": 100200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/kr.png",
+        "currency_name": "South Korean won",
+        "currency_symbol": "₩",
+        "currency_code": "KRW",
+        "languages": [
+            "Korean"
+        ],
+        "latitude": 37.55,
+        "longitude": 126.98,
+        "timezones": [
+            "UTC+09:00"
+        ],
+        "maps_url": "https://goo.gl/maps/7ecjaJXefjAQhxjGA",
+        "wiki_url": "https://en.wikipedia.org/wiki/South_Korea"
+    },
+    {
+        "id": "SSD",
+        "population": 12700000,
+        "total_area": 619700.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ss.png",
+        "currency_name": "South Sudanese pound",
+        "currency_symbol": "£",
+        "currency_code": "SSP",
+        "languages": [
+            "English"
+        ],
+        "latitude": 4.85,
+        "longitude": 31.62,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Zm1AYCXb9HSNF1P27",
+        "wiki_url": "https://en.wikipedia.org/wiki/South_Sudan"
+    },
+    {
+        "id": "ESP",
+        "population": 49700000,
+        "total_area": 506000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/es.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Spanish",
+            "Catalan",
+            "Basque",
+            "Galician",
+            "Aranese"
+        ],
+        "latitude": 40.4,
+        "longitude": -3.68,
+        "timezones": [
+            "UTC",
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/138JaXW8EZzRVitY9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Spain"
+    },
+    {
+        "id": "LKA",
+        "population": 21800000,
+        "total_area": 65600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/lk.png",
+        "currency_name": "Sri Lankan rupee",
+        "currency_symbol": "Rs  රු",
+        "currency_code": "LKR",
+        "languages": [
+            "Sinhala",
+            "Tamil"
+        ],
+        "latitude": 6.89,
+        "longitude": 79.9,
+        "timezones": [
+            "UTC+05:30"
+        ],
+        "maps_url": "https://goo.gl/maps/VkPHoeFSfgzRQCDv8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Sri_Lanka"
+    },
+    {
+        "id": "SDN",
+        "population": 51800000,
+        "total_area": 1900000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sd.png",
+        "currency_name": "Sudanese pound",
+        "currency_symbol": "ج.س",
+        "currency_code": "SDG",
+        "languages": [
+            "Arabic",
+            "English"
+        ],
+        "latitude": 15.6,
+        "longitude": 32.53,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/bNW7YUJCaqR8zcXn7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Sudan"
+    },
+    {
+        "id": "SUR",
+        "population": 632600,
+        "total_area": 163800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sr.png",
+        "currency_name": "Surinamese dollar",
+        "currency_symbol": "$",
+        "currency_code": "SRD",
+        "languages": [
+            "Dutch"
+        ],
+        "latitude": 5.83,
+        "longitude": -55.17,
+        "timezones": [
+            "UTC-03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/iy7TuQLSi4qgoBoG7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Suriname"
+    },
+    {
+        "id": "SJM",
+        "population": 2600,
+        "total_area": 61400.0,
+        "coat_of_arms_url": "",
+        "currency_name": "krone",
+        "currency_symbol": "kr",
+        "currency_code": "NOK",
+        "languages": [
+            "Norwegian"
+        ],
+        "latitude": 78.22,
+        "longitude": 15.63,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/L2wyyn3cQ16PzQ5J8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Svalbard_and_Jan_Mayen"
+    },
+    {
+        "id": "SWE",
+        "population": 10600000,
+        "total_area": 450300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/se.png",
+        "currency_name": "Swedish krona",
+        "currency_symbol": "kr",
+        "currency_code": "SEK",
+        "languages": [
+            "Swedish"
+        ],
+        "latitude": 59.33,
+        "longitude": 18.05,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/iqygE491ADVgnBW39",
+        "wiki_url": "https://en.wikipedia.org/wiki/Sweden"
+    },
+    {
+        "id": "CHE",
+        "population": 9200000,
+        "total_area": 41300.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ch.png",
+        "currency_name": "Swiss franc",
+        "currency_symbol": "Fr.",
+        "currency_code": "CHF",
+        "languages": [
+            "French",
+            "Swiss German",
+            "Italian",
+            "Romansh"
+        ],
+        "latitude": 46.92,
+        "longitude": 7.47,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/uVuZcXaxSx5jLyEC9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Switzerland"
+    },
+    {
+        "id": "SYR",
+        "population": 26000000,
+        "total_area": 185200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/sy.png",
+        "currency_name": "Syrian pound",
+        "currency_symbol": "£",
+        "currency_code": "SYP",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 33.5138,
+        "longitude": 36.2765,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Xe3VnFbwdb4nv2SM9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Syria"
+    },
+    {
+        "id": "STP",
+        "population": 220400,
+        "total_area": 964.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/st.png",
+        "currency_name": "São Tomé and Príncipe dobra",
+        "currency_symbol": "Db",
+        "currency_code": "STN",
+        "languages": [
+            "Portuguese"
+        ],
+        "latitude": 0.34,
+        "longitude": 6.73,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/9EUppm13RtPX9oF46",
+        "wiki_url": "https://en.wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
+    },
+    {
+        "id": "TWN",
+        "population": 23300000,
+        "total_area": 36200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tw.png",
+        "currency_name": "New Taiwan dollar",
+        "currency_symbol": "$",
+        "currency_code": "TWD",
+        "languages": [
+            "Chinese"
+        ],
+        "latitude": 25.03,
+        "longitude": 121.52,
+        "timezones": [
+            "UTC+08:00"
+        ],
+        "maps_url": "https://goo.gl/maps/HgMKFQjNadF3Wa6B6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Taiwan"
+    },
+    {
+        "id": "TJK",
+        "population": 10800000,
+        "total_area": 143100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tj.png",
+        "currency_name": "Tajikistani somoni",
+        "currency_symbol": "ЅМ",
+        "currency_code": "TJS",
+        "languages": [
+            "Russian",
+            "Tajik"
+        ],
+        "latitude": 38.55,
+        "longitude": 68.77,
+        "timezones": [
+            "UTC+05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/8rQgW88jEXijhVb58",
+        "wiki_url": "https://en.wikipedia.org/wiki/Tajikistan"
+    },
+    {
+        "id": "TZA",
+        "population": 67500000,
+        "total_area": 945100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tz.png",
+        "currency_name": "Tanzanian shilling",
+        "currency_symbol": "Sh",
+        "currency_code": "TZS",
+        "languages": [
+            "English",
+            "Swahili"
+        ],
+        "latitude": -6.16,
+        "longitude": 35.75,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/NWYMqZYXte4zGZ2Q8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Tanzania"
+    },
+    {
+        "id": "THA",
+        "population": 66000000,
+        "total_area": 513100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/th.png",
+        "currency_name": "Thai baht",
+        "currency_symbol": "฿",
+        "currency_code": "THB",
+        "languages": [
+            "Thai"
+        ],
+        "latitude": 13.75,
+        "longitude": 100.52,
+        "timezones": [
+            "UTC+07:00"
+        ],
+        "maps_url": "https://goo.gl/maps/qeU6uqsfW4nCCwzw9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Thailand"
+    },
+    {
+        "id": "TLS",
+        "population": 1400000,
+        "total_area": 14900.0,
+        "coat_of_arms_url": "",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "Portuguese",
+            "Tetum"
+        ],
+        "latitude": -8.58,
+        "longitude": 125.6,
+        "timezones": [
+            "UTC+09:00"
+        ],
+        "maps_url": "https://goo.gl/maps/sFqBC9zjgUXPR1iTA",
+        "wiki_url": "https://en.wikipedia.org/wiki/Timor-Leste"
+    },
+    {
+        "id": "TGO",
+        "population": 9600000,
+        "total_area": 56800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tg.png",
+        "currency_name": "West African CFA franc",
+        "currency_symbol": "Fr",
+        "currency_code": "XOF",
+        "languages": [
+            "French"
+        ],
+        "latitude": 6.14,
+        "longitude": 1.21,
+        "timezones": [
+            "UTC"
+        ],
+        "maps_url": "https://goo.gl/maps/jzAa9feXuXPrKVb89",
+        "wiki_url": "https://en.wikipedia.org/wiki/Togo"
+    },
+    {
+        "id": "TKL",
+        "population": 1400,
+        "total_area": 12.0,
+        "coat_of_arms_url": "",
+        "currency_name": "New Zealand dollar",
+        "currency_symbol": "$",
+        "currency_code": "NZD",
+        "languages": [
+            "English",
+            "Samoan",
+            "Tokelauan"
+        ],
+        "latitude": -9.38,
+        "longitude": -171.22,
+        "timezones": [
+            "UTC+13:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Ap5qN8qien6pT9UN6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Tokelau"
+    },
+    {
+        "id": "TON",
+        "population": 100200,
+        "total_area": 747.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/to.png",
+        "currency_name": "Tongan paʻanga",
+        "currency_symbol": "T$",
+        "currency_code": "TOP",
+        "languages": [
+            "English",
+            "Tongan"
+        ],
+        "latitude": -21.13,
+        "longitude": -175.2,
+        "timezones": [
+            "UTC+13:00"
+        ],
+        "maps_url": "https://goo.gl/maps/p5YALBY2QdEzswRo7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Tonga"
+    },
+    {
+        "id": "TTO",
+        "population": 1500000,
+        "total_area": 5100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tt.png",
+        "currency_name": "Trinidad and Tobago dollar",
+        "currency_symbol": "$",
+        "currency_code": "TTD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 10.65,
+        "longitude": -61.52,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/NrRfDEWoG8FGZqWY7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Trinidad_and_Tobago"
+    },
+    {
+        "id": "TUN",
+        "population": 12000000,
+        "total_area": 163600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tn.png",
+        "currency_name": "Tunisian dinar",
+        "currency_symbol": "د.ت",
+        "currency_code": "TND",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 36.8,
+        "longitude": 10.18,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/KgUmpZdUuNRaougs8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Tunisia"
+    },
+    {
+        "id": "TUR",
+        "population": 86100000,
+        "total_area": 783600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tr.png",
+        "currency_name": "Turkish lira",
+        "currency_symbol": "₺",
+        "currency_code": "TRY",
+        "languages": [
+            "Turkish"
+        ],
+        "latitude": 39.93,
+        "longitude": 32.87,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/dXFFraiUDfcB6Quk6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Turkey"
+    },
+    {
+        "id": "TKM",
+        "population": 7100000,
+        "total_area": 488100.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tm.png",
+        "currency_name": "Turkmenistan manat",
+        "currency_symbol": "m",
+        "currency_code": "TMT",
+        "languages": [
+            "Russian",
+            "Turkmen"
+        ],
+        "latitude": 37.95,
+        "longitude": 58.38,
+        "timezones": [
+            "UTC+05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/cgfUcaQHSWKuqeKk9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Turkmenistan"
+    },
+    {
+        "id": "TCA",
+        "population": 50800,
+        "total_area": 948.0,
+        "coat_of_arms_url": "",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 21.46,
+        "longitude": -71.14,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/R8VUDQfwZiFtvmyn8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Turks_and_Caicos_Islands"
+    },
+    {
+        "id": "TUV",
+        "population": 10600,
+        "total_area": 26.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/tv.png",
+        "currency_name": "Australian dollar",
+        "currency_symbol": "$",
+        "currency_code": "AUD",
+        "languages": [
+            "English",
+            "Tuvaluan"
+        ],
+        "latitude": -8.52,
+        "longitude": 179.22,
+        "timezones": [
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/LbuUxtkgm1dfN1Pn6",
+        "wiki_url": "https://en.wikipedia.org/wiki/Tuvalu"
+    },
+    {
+        "id": "UGA",
+        "population": 45900000,
+        "total_area": 241600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ug.png",
+        "currency_name": "Ugandan shilling",
+        "currency_symbol": "Sh",
+        "currency_code": "UGX",
+        "languages": [
+            "English",
+            "Swahili"
+        ],
+        "latitude": 0.32,
+        "longitude": 32.55,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/Y7812hFiGa8LD9N68",
+        "wiki_url": "https://en.wikipedia.org/wiki/Uganda"
+    },
+    {
+        "id": "UKR",
+        "population": 32299999,
+        "total_area": 603500.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ua.png",
+        "currency_name": "Ukrainian hryvnia",
+        "currency_symbol": "₴",
+        "currency_code": "UAH",
+        "languages": [
+            "Ukrainian"
+        ],
+        "latitude": 50.43,
+        "longitude": 30.52,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/DvgJMiPJ7aozKFZv7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Ukraine"
+    },
+    {
+        "id": "ARE",
+        "population": 11000000,
+        "total_area": 83600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ae.png",
+        "currency_name": "United Arab Emirates dirham",
+        "currency_symbol": "د.إ",
+        "currency_code": "AED",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 24.47,
+        "longitude": 54.37,
+        "timezones": [
+            "UTC+04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/AZZTDA6GzVAnKMVd8",
+        "wiki_url": "https://en.wikipedia.org/wiki/United_Arab_Emirates"
+    },
+    {
+        "id": "GBR",
+        "population": 66900000,
+        "total_area": 242900.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/gb.png",
+        "currency_name": "British pound",
+        "currency_symbol": "£",
+        "currency_code": "GBP",
+        "languages": [
+            "English"
+        ],
+        "latitude": 51.5,
+        "longitude": -0.08,
+        "timezones": [
+            "UTC-08:00",
+            "UTC-05:00",
+            "UTC-04:00",
+            "UTC-03:00",
+            "UTC-02:00",
+            "UTC",
+            "UTC+01:00",
+            "UTC+02:00",
+            "UTC+06:00"
+        ],
+        "maps_url": "https://goo.gl/maps/FoDtc3UKMkFsXAjHA",
+        "wiki_url": "https://en.wikipedia.org/wiki/United_Kingdom"
+    },
+    {
+        "id": "USA",
+        "population": 341800000,
+        "total_area": 9400000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/us.png",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 38.89,
+        "longitude": -77.05,
+        "timezones": [
+            "UTC-12:00",
+            "UTC-11:00",
+            "UTC-10:00",
+            "UTC-09:00",
+            "UTC-08:00",
+            "UTC-07:00",
+            "UTC-06:00",
+            "UTC-05:00",
+            "UTC-04:00",
+            "UTC+10:00",
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/e8M246zY4BSjkjAv6",
+        "wiki_url": "https://en.wikipedia.org/wiki/United_States"
+    },
+    {
+        "id": "UMI",
+        "population": 300,
+        "total_area": 34.0,
+        "coat_of_arms_url": "",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 0.0,
+        "longitude": 0.0,
+        "timezones": [
+            "UTC-11:00",
+            "UTC-10:00",
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/hZKnrzgeK69dDyPF8",
+        "wiki_url": "https://en.wikipedia.org/wiki/United_States_Minor_Outlying_Islands"
+    },
+    {
+        "id": "VIR",
+        "population": 87100,
+        "total_area": 347.0,
+        "coat_of_arms_url": "",
+        "currency_name": "United States dollar",
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "languages": [
+            "English"
+        ],
+        "latitude": 18.35,
+        "longitude": -64.93,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/mBfreywj8dor6q4m9",
+        "wiki_url": "https://en.wikipedia.org/wiki/United_States_Virgin_Islands"
+    },
+    {
+        "id": "URY",
+        "population": 3500000,
+        "total_area": 181000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/uy.png",
+        "currency_name": "Uruguayan peso",
+        "currency_symbol": "$",
+        "currency_code": "UYU",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": -34.85,
+        "longitude": -56.17,
+        "timezones": [
+            "UTC-03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/tiQ9Baekb1jQtDSD9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Uruguay"
+    },
+    {
+        "id": "UZB",
+        "population": 38200000,
+        "total_area": 447400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/uz.png",
+        "currency_name": "Uzbekistani soʻm",
+        "currency_symbol": "so'm",
+        "currency_code": "UZS",
+        "languages": [
+            "Russian",
+            "Uzbek"
+        ],
+        "latitude": 41.32,
+        "longitude": 69.25,
+        "timezones": [
+            "UTC+05:00"
+        ],
+        "maps_url": "https://goo.gl/maps/AJpo6MjMx23qSWCz8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Uzbekistan"
+    },
+    {
+        "id": "VUT",
+        "population": 335900,
+        "total_area": 12200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/vu.png",
+        "currency_name": "Vanuatu vatu",
+        "currency_symbol": "Vt",
+        "currency_code": "VUV",
+        "languages": [
+            "Bislama",
+            "English",
+            "French"
+        ],
+        "latitude": -17.73,
+        "longitude": 168.32,
+        "timezones": [
+            "UTC+11:00"
+        ],
+        "maps_url": "https://goo.gl/maps/hwAjehcT7VfvP5zJ8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Vanuatu"
+    },
+    {
+        "id": "VAT",
+        "population": 882,
+        "total_area": 0.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/va.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Italian",
+            "Latin"
+        ],
+        "latitude": 41.9,
+        "longitude": 12.45,
+        "timezones": [
+            "UTC+01:00"
+        ],
+        "maps_url": "https://goo.gl/maps/DTKvw5Bd1QZaDZmE8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Vatican_City"
+    },
+    {
+        "id": "VEN",
+        "population": 31800000,
+        "total_area": 916400.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ve.png",
+        "currency_name": "Venezuelan bolívar soberano",
+        "currency_symbol": "Bs.S.",
+        "currency_code": "VES",
+        "languages": [
+            "Spanish"
+        ],
+        "latitude": 10.48,
+        "longitude": -66.87,
+        "timezones": [
+            "UTC-04:00"
+        ],
+        "maps_url": "https://goo.gl/maps/KLCwDN8sec7z2kse9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Venezuela"
+    },
+    {
+        "id": "VNM",
+        "population": 102300000,
+        "total_area": 331200.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/vn.png",
+        "currency_name": "Vietnamese đồng",
+        "currency_symbol": "₫",
+        "currency_code": "VND",
+        "languages": [
+            "Vietnamese"
+        ],
+        "latitude": 21.03,
+        "longitude": 105.85,
+        "timezones": [
+            "UTC+07:00"
+        ],
+        "maps_url": "https://goo.gl/maps/PCpVt9WzdJ9A9nEZ9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Vietnam"
+    },
+    {
+        "id": "WLF",
+        "population": 11200,
+        "total_area": 142.0,
+        "coat_of_arms_url": "",
+        "currency_name": "CFP franc",
+        "currency_symbol": "₣",
+        "currency_code": "XPF",
+        "languages": [
+            "French"
+        ],
+        "latitude": -13.95,
+        "longitude": -171.93,
+        "timezones": [
+            "UTC+12:00"
+        ],
+        "maps_url": "https://goo.gl/maps/CzVqK74QYtbHv65r5",
+        "wiki_url": "https://en.wikipedia.org/wiki/Wallis_and_Futuna"
+    },
+    {
+        "id": "ESH",
+        "population": 510700,
+        "total_area": 266000.0,
+        "coat_of_arms_url": "",
+        "currency_name": "Algerian dinar",
+        "currency_symbol": "دج",
+        "currency_code": "DZD",
+        "languages": [
+            "Hassaniya Arabic",
+            "Spanish"
+        ],
+        "latitude": 27.1253,
+        "longitude": -13.1625,
+        "timezones": [
+            "UTC+00:00"
+        ],
+        "maps_url": "https://goo.gl/maps/7nU3mB69vP6zQp7A8",
+        "wiki_url": "https://en.wikipedia.org/wiki/Western_Sahara"
+    },
+    {
+        "id": "YEM",
+        "population": 32700000,
+        "total_area": 528000.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ye.png",
+        "currency_name": "Yemeni rial",
+        "currency_symbol": "﷼",
+        "currency_code": "YER",
+        "languages": [
+            "Arabic"
+        ],
+        "latitude": 15.37,
+        "longitude": 44.19,
+        "timezones": [
+            "UTC+03:00"
+        ],
+        "maps_url": "https://goo.gl/maps/WCmE76HKcLideQQw7",
+        "wiki_url": "https://en.wikipedia.org/wiki/Yemen"
+    },
+    {
+        "id": "ZMB",
+        "population": 20200000,
+        "total_area": 752600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/zm.png",
+        "currency_name": "Zambian kwacha",
+        "currency_symbol": "ZK",
+        "currency_code": "ZMW",
+        "languages": [
+            "English"
+        ],
+        "latitude": -15.42,
+        "longitude": 28.28,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/mweBcqvW8TppZW6q9",
+        "wiki_url": "https://en.wikipedia.org/wiki/Zambia"
+    },
+    {
+        "id": "ZWE",
+        "population": 17200000,
+        "total_area": 390800.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/zw.png",
+        "currency_name": "Zimbabwe Gold",
+        "currency_symbol": "ZiG",
+        "currency_code": "ZWG",
+        "languages": [
+            "Chewa",
+            "Chibarwe",
+            "English",
+            "Kalanga",
+            "Khoisan",
+            "Nambya",
+            "Ndau",
+            "Ndebele",
+            "Shangani",
+            "Shona",
+            "Sotho",
+            "Tonga",
+            "Tswana",
+            "Venda",
+            "Xhosa",
+            "Zimbabwean Sign Language"
+        ],
+        "latitude": -17.82,
+        "longitude": 31.03,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/M26BqdwQctqxXS65A",
+        "wiki_url": "https://en.wikipedia.org/wiki/Zimbabwe"
+    },
+    {
+        "id": "ALA",
+        "population": 30700,
+        "total_area": 1600.0,
+        "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ax.png",
+        "currency_name": "Euro",
+        "currency_symbol": "€",
+        "currency_code": "EUR",
+        "languages": [
+            "Swedish"
+        ],
+        "latitude": 60.12,
+        "longitude": 19.9,
+        "timezones": [
+            "UTC+02:00"
+        ],
+        "maps_url": "https://goo.gl/maps/ewFb3vYsfUmVCoSb8",
+        "wiki_url": "https://en.wikipedia.org/wiki/%C3%85land_Islands"
+    }
+]
