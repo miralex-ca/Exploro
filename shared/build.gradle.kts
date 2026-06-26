@@ -56,6 +56,12 @@ kotlin {
             implementation(libs.koin.core)
         }
 
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.multiplatform.settings.test)
+        }
+
         androidMain.dependencies {
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.slf4j)

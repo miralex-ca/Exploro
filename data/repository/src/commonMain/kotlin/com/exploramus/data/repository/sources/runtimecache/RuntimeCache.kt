@@ -1,6 +1,6 @@
 package com.exploramus.data.repository.sources.runtimecache
 
 
-object CacheObjects {
+class RuntimeCache {
     var isBootstrapped = false
 }
