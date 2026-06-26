@@ -40,6 +40,7 @@ object TestFakes {
         val countriesBySection = mutableMapOf<String, List<Country>>()
         var lastSearchQuery: String? = null
         var searchResult: List<Country> = emptyList()
+        var favoritesList: MutableList<Country> = mutableListOf()
         var migrationCalled = false
 
         fun addFakeSections(vararg sectionIds: String) {
@@ -75,10 +76,10 @@ object TestFakes {
             return searchResult
         }
         override suspend fun getAllCountriesWithDetails() = emptyList<CountryWithDetails>()
-        override suspend fun isFavorite(id: String) = false
-        override suspend fun addFavorite(id: String) {}
-        override suspend fun removeFavorite(id: String) {}
-        override suspend fun getFavorites() = emptyList<Country>()
+        override suspend fun isFavorite(id: String) = favoritesList.any { it.id == id }
+        override suspend fun addFavorite(id: String) { favoritesList.add(favoritesList.first { it.id == id }) }
+        override suspend fun removeFavorite(id: String) { favoritesList.removeAll { it.id == id } }
+        override suspend fun getFavorites() = favoritesList.toList()
         override suspend fun resetAndMigrate() {
             migrationCalled = true
         }
@@ -146,4 +147,10 @@ object TestFakes {
             id = id,
             name = id
         )
+}
+
+class FailingLocalDataSource(dbVersion: Long = 1) : TestFakes.FakeLocalDataSource(dbVersion = dbVersion) {
+    override suspend fun resetAndMigrate() {
+        throw RuntimeException("DB crash")
+    }
 }

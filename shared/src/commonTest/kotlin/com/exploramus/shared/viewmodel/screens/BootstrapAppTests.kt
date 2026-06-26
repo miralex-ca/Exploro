@@ -1,6 +1,7 @@
 package com.exploramus.shared.viewmodel.screens
 
 import com.exploramus.core.common.result.DataResult
+import com.exploramus.shared.FailingLocalDataSource
 import com.exploramus.shared.TestFakes
 import com.exploramus.shared.viewmodel.appstate.AppStartupState
 import com.exploramus.shared.viewmodel.core.StateManager
@@ -18,7 +19,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class BootstrapAppTest {
+class BootstrapAppTests {
 
     private val testDispatcher = UnconfinedTestDispatcher()
 
@@ -34,8 +35,7 @@ class BootstrapAppTest {
 
     @Test
     fun `bootstrap fails when migration fails`() = runTest {
-
-        val localDb =  FailingLocalDataSource(dbVersion = 2)
+        val localDb = FailingLocalDataSource(dbVersion = 2)
         val repo = TestFakes.createRepository(localDb = localDb)
 
         repo.localSettings.apply {
@@ -94,9 +94,3 @@ class BootstrapAppTest {
         )
     }
  }
-
-class FailingLocalDataSource(dbVersion: Long = 1) : TestFakes.FakeLocalDataSource(dbVersion = dbVersion) {
-    override suspend fun resetAndMigrate() {
-        throw RuntimeException("DB crash")
-    }
-}

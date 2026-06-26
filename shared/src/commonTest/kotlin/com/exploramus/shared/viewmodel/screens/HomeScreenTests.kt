@@ -1,6 +1,7 @@
 package com.exploramus.shared.viewmodel.screens
 
 import com.exploramus.data.common.LocalDataSource
+import com.exploramus.shared.FailingLocalDataSource
 import com.exploramus.shared.TestFakes
 import com.exploramus.shared.viewmodel.core.DKMPViewModel
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
@@ -25,7 +26,6 @@ class HomeScreenTests {
     @BeforeTest
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
-
     }
 
     @AfterTest

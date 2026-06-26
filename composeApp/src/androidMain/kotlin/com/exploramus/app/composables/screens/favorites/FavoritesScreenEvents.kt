@@ -4,7 +4,7 @@ import com.exploramus.app.composables.navigation.controller.DetailsNavParams
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.shared.viewmodel.core.Events
 import com.exploramus.shared.viewmodel.screens.favorites.FavoriteListItem
-import com.exploramus.shared.viewmodel.screens.favorites.removeFavoriteBySwipe
+import com.exploramus.shared.viewmodel.screens.favorites.removeFromFavorites
 
 sealed class FavoritesUiEvent {
     data class RemoveFavorite(val countryId: String) : FavoritesUiEvent()
@@ -18,7 +18,7 @@ class FavoritesEventHandler(
     fun onEvent(event: FavoritesUiEvent) {
         when (event) {
             is FavoritesUiEvent.OnItemClicked -> navActions.toDetailFromList(event.item.toDetailsNavParams())
-            is FavoritesUiEvent.RemoveFavorite -> events.removeFavoriteBySwipe(event.countryId)
+            is FavoritesUiEvent.RemoveFavorite -> events.removeFromFavorites(event.countryId)
         }
     }
 }

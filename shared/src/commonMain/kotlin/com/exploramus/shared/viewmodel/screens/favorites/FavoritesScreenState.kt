@@ -7,7 +7,6 @@ import com.exploramus.core.models.Country
 data class FavoritesScreenState (
     val isLoading : Boolean = false,
     val favorites : List<FavoriteListItem> = emptyList(),
-    val selectedCountry: CountryDetailsState? = null,
 ): ScreenState
 
 

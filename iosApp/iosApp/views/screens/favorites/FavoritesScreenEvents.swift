@@ -6,9 +6,6 @@ import Shared
 enum FavoritesUiEvent {
     case onItemClicked(FavoriteListItem)
     case removeFavorite(String)
-    case selectCountry(FavoriteListItem)
-    case updateFavoriteDetails(String)
-    
 }
 
 struct FavoritesEventHandler {
@@ -20,12 +17,7 @@ struct FavoritesEventHandler {
         case .onItemClicked(let item):
             navActions.toDetailFromList(item.toDetailsNavParams())
         case .removeFavorite(let id):
-            events.removeFavoriteBySwipe(code: id)
-        case .selectCountry(let item):
-            events.selectFavoriteCountry(itemId: item.id)
-        case .updateFavoriteDetails(let itemId):
-            
-            events.updateDetailsInFavorites(code: itemId)
+            events.removeFromFavorites(code: id)
         }
     }
 }
