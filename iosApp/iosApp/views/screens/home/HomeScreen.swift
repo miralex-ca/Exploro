@@ -107,7 +107,7 @@ struct HomeSectionRow: View {
                     ForEach(section.sectionListItems, id: \.id) { item in
                         HomeSectionListCard(
                             name: item.name,
-                            flagPngUrl: item.flagPngUrl,
+                            flagPngUrl: item.flagImage,
                             onClick: { onListItemClick(item) }
                         )
                     }

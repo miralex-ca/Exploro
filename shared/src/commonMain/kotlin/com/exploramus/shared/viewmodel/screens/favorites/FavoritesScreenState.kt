@@ -12,15 +12,15 @@ data class FavoritesScreenState (
 data class FavoriteListItem(
     val id: String,
     val name: String,
-    val subregion: String,
-    val flagPngUrl: String,
+    val location: String,
+    val flagImage: String,
 )
 
 fun Country.toFavoriteListItem() = FavoriteListItem(
     id = id,
     name = name,
-    subregion = location,
-    flagPngUrl = flagImage
+    location = location,
+    flagImage = flagImage
 )
 
 fun List<Country>.toFavoriteItems() = map { it.toFavoriteListItem() }

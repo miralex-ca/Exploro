@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.exploramus.app.resources.Strings
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.resources.Strings
 import com.exploramus.shared.viewmodel.screens.countrydetail.CountryDetailsState
 import java.util.Locale
 
@@ -29,7 +29,7 @@ fun detailRows(details: CountryDetailsState): List<DetailsRowModel> = listOf(
     DetailsRowModel(
         icon = Icons.Outlined.Map,
         label = Strings.detailLabelLocation,
-        value = details.subregion,
+        value = details.location,
     ),
     DetailsRowModel(
         icon = Icons.Outlined.Straighten,

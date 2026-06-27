@@ -14,12 +14,12 @@ data class CountryDetailsState(
     val id: String = "",
     val name: String = "",
     val officialName: String = "",
-    val flagUrl: String = "",
-    val flagAlt: String = "",
+    val flagImage: String = "",
+    val flagEmoji: String = "",
     val coatOfArmsUrl: String = "",
     val capital: String = "",
     val continent: String = "",
-    val subregion: String = "",
+    val location: String = "",
     val languages: List<String> = emptyList(),
     val area: Double = 0.0,
     val population: Long = 0L,
@@ -28,20 +28,20 @@ data class CountryDetailsState(
     val isFavorite: Boolean = false,
     val mapsUrl: String = "",
     val wikiUrl: String = "",
-    val capitalLat: Double = 0.0,
-    val capitalLng: Double = 0.0
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
 )
 
 fun CountryWithDetails.toDetailsState() = CountryDetailsState(
     id = country.id,
     name = country.name,
     officialName = country.officialName,
-    flagUrl = country.flagImage,
-    flagAlt = country.flagEmoji,
+    flagImage = country.flagImage,
+    flagEmoji = country.flagEmoji,
     coatOfArmsUrl = details?.coatOfArmsUrl ?: "",
     capital = country.capital,
     continent = country.continent,
-    subregion = validatedLocation(),
+    location = validatedLocation(),
     languages = details?.languages ?: emptyList(),
     area = details?.totalArea ?: 0.0,
     population = details?.population ?: 0L,
@@ -50,8 +50,8 @@ fun CountryWithDetails.toDetailsState() = CountryDetailsState(
     isFavorite = isFavorite,
     mapsUrl = details?.mapsUrl ?: "",
     wikiUrl = details?.wikiUrl  ?: "",
-    capitalLat = details?.latitude ?: 0.0,
-    capitalLng = details?.longitude ?: 0.0
+    latitude = details?.latitude ?: 0.0,
+    longitude = details?.longitude ?: 0.0
 )
 
 fun CountryWithDetails.formattedCurrency(): String? {

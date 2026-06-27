@@ -48,8 +48,8 @@ fun DetailHeaderSection(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         FlagContainer(
-            flagUrl = details.flagUrl,
-            flagAlt = details.flagAlt,
+            flagUrl = details.flagImage,
+            flagAlt = details.flagEmoji,
             isFavorite = details.isFavorite,
             onFavoriteClick = onFavoriteClick
         )
@@ -94,8 +94,8 @@ fun LargeDetailsHeaderSection(
             modifier = Modifier.weight(0.85f)
         ) {
             FlagContainer(
-                flagUrl = details.flagUrl,
-                flagAlt = details.flagAlt,
+                flagUrl = details.flagImage,
+                flagAlt = details.flagEmoji,
                 isFavorite = details.isFavorite,
                 onFavoriteClick = onFavoriteClick
             )

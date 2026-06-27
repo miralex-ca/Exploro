@@ -19,6 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.composables.screens.favorites.FavoritesUiEvent
 import com.exploramus.app.composables.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.exploramus.app.composables.screens.favorites.FavoritesUiEvent.RemoveFavorite
@@ -26,7 +27,6 @@ import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
-import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.favorites.FavoriteListItem
 
@@ -105,7 +105,7 @@ fun FavoriteGridCell(
             ) {
 
                 RemoteImage(
-                    imageUrl = item.flagPngUrl,
+                    imageUrl = item.flagImage,
                     modifier = Modifier
                         .height(layout.itemGridImageHeight.value())
                         .width(120.dp)
@@ -134,7 +134,7 @@ fun FavoriteGridCell(
                     )
 
                     Text(
-                        text = item.subregion,
+                        text = item.location,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,

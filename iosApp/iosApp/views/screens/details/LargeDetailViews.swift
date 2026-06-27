@@ -49,8 +49,8 @@ struct LargeDetailsHeaderCard: View {
             .frame(maxWidth: .infinity)
 
             FlagContainer(
-                flagUrl: details.flagUrl,
-                flagAlt: details.flagAlt,
+                flagUrl: details.flagImage,
+                flagAlt: details.flagEmoji,
                 isFavorite: details.isFavorite,
                 onFavoriteClick: onFavoriteClick
             )

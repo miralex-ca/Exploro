@@ -19,11 +19,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.exploramus.app.resources.Strings
+import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
-import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.design.theme.appColors
+import com.exploramus.app.resources.Strings
 import com.exploramus.shared.viewmodel.screens.search.SearchListItem
 import com.exploramus.shared.viewmodel.screens.search.SearchResult
 
@@ -102,7 +102,7 @@ fun SearchListRow(
         ) {
 
             RemoteImage(
-                imageUrl = item.flagPngUrl,
+                imageUrl = item.flagImage,
                 modifier = Modifier
                     .height(58.dp)
                     .width(layout.itemImageWidth.value())

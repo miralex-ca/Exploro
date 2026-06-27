@@ -199,7 +199,7 @@ struct SearchListRow: View {
         Button(action: onClick) {
             HStack(spacing: 12) {
                 
-                RemoteImage(url: item.flagPngUrl, size: CGSize(width: 80, height: 58))
+                RemoteImage(url: item.flagImage, size: CGSize(width: 80, height: 58))
                     .scaledToFill()
                     .frame(width: 80, height: 58)
                     .clipped()

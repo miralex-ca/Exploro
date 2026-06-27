@@ -48,12 +48,12 @@ object PreviewCountryDetailsState {
         id = "FRA",
         name = "France",
         officialName = "French Republic",
-        flagUrl = "https://flags.restcountries.com/v5/w640/fr.png",
-        flagAlt = "🇫🇷",
+        flagImage = "https://flags.restcountries.com/v5/w640/fr.png",
+        flagEmoji = "🇫🇷",
         coatOfArmsUrl = "https://mainfacts.com/media/images/coats_of_arms/fr.png",
         capital = "Paris",
         continent = "Europe",
-        subregion = "Western Europe",
+        location = "Western Europe",
         languages = listOf("French"),
         area = 551695.0,
         population = 69081996,
@@ -62,20 +62,20 @@ object PreviewCountryDetailsState {
         isFavorite = false,
         mapsUrl = "https://goo.gl/maps/g7QxxSFsWyTPKuzd7",
         wikiUrl = "https://en.wikipedia.org/wiki/France",
-        capitalLat = 48.87,
-        capitalLng = 2.33
+        latitude = 48.87,
+        longitude = 2.33
     )
 
     val empty = CountryDetailsState(
         id = "",
         name = "",
         officialName = "",
-        flagUrl = "",
-        flagAlt = "",
+        flagImage = "",
+        flagEmoji = "",
         coatOfArmsUrl = "",
         capital = "",
         continent = "",
-        subregion = "",
+        location = "",
         languages = emptyList(),
         area = 0.0,
         population = 0,
@@ -84,7 +84,7 @@ object PreviewCountryDetailsState {
         isFavorite = false,
         mapsUrl = "",
         wikiUrl = "",
-        capitalLat = 0.0,
-        capitalLng = 0.0
+        latitude = 0.0,
+        longitude = 0.0
     )
 }

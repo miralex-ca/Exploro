@@ -2,7 +2,7 @@ import SwiftUI
 
 
 private let name = Country.france.name
-private let flagPngUrl = Country.france.flagPngUrl
+private let flagPngUrl = Country.france.flagImage
 
 #Preview("Card - Light", traits: .sizeThatFitsLayout) {
     PreviewCard(dark: false) {

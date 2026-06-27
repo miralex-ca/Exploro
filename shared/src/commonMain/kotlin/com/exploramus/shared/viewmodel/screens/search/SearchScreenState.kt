@@ -24,7 +24,7 @@ data class SearchListItem(
     val name: String,
     val officialName: String,
     val capital: String,
-    val flagPngUrl: String,
+    val flagImage: String,
 )
 
 fun Country.toSearchListItem() = SearchListItem(
@@ -32,7 +32,7 @@ fun Country.toSearchListItem() = SearchListItem(
     name = name,
     officialName = officialName,
     capital = capital,
-    flagPngUrl = flagImage
+    flagImage = flagImage
 )
 
 fun List<Country>.toSearchItems() = map { it.toSearchListItem() }

@@ -70,8 +70,8 @@ fun SectionScreenContent(
             items(screenState.countries) { item ->
                 CountryGridCard(
                     name = item.name,
-                    flagPngUrl = item.flagPngUrl,
-                    subregion = item.subregion,
+                    flagPngUrl = item.flagImage,
+                    subregion = item.location,
                     onClick = {
                         onListItemClick(item)
                     }

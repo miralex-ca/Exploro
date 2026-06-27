@@ -159,7 +159,7 @@ fun HomeSectionRow(
             ) { item ->
                 HomeSectionListCard(
                     name = item.name,
-                    flagPngUrl = item.flagPngUrl,
+                    flagPngUrl = item.flagImage,
                     onClick = { onListItemClick(item) }
                 )
             }

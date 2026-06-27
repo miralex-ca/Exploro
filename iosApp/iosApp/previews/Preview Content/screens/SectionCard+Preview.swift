@@ -1,15 +1,15 @@
 import SwiftUI
 
 private let name = Country.france.name
-private let flagPngUrl = Country.france.flagPngUrl
-private let subregion = Country.france.subregion
+private let flagPngUrl = Country.france.flagImage
+private let subregion = Country.france.location
 
 #Preview("Card - Light", traits: .sizeThatFitsLayout) {
     PreviewCard(dark: false) {
         CountryGridCard(
             name: name,
-            flagPngUrl: flagPngUrl,
-            subregion: subregion,
+            flagImage: flagPngUrl,
+            location: subregion,
             onClick: {}
         )
     }
@@ -20,8 +20,8 @@ private let subregion = Country.france.subregion
     PreviewCard(dark: true) {
         CountryGridCard(
             name: name,
-            flagPngUrl: flagPngUrl,
-            subregion: subregion,
+            flagImage: flagPngUrl,
+            location: subregion,
             onClick: {}
         )
         
@@ -33,8 +33,8 @@ private let subregion = Country.france.subregion
     PreviewCard(dark: false) {
         CountryGridCard(
             name: name,
-            flagPngUrl: "",
-            subregion: subregion,
+            flagImage: "",
+            location: subregion,
             onClick: {}
         )
     }

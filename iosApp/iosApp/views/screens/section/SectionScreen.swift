@@ -45,8 +45,8 @@ struct SectionScreenContent: View {
                             ForEach(screenState.countries, id: \.id) { item in
                                 CountryGridCard(
                                     name: item.name,
-                                    flagPngUrl: item.flagPngUrl,
-                                    subregion: item.subregion,
+                                    flagImage: item.flagImage,
+                                    location: item.location,
                                     onClick: { onListItemClick(item) }
                                 )
                             }
@@ -65,8 +65,8 @@ struct SectionScreenContent: View {
 
 struct CountryGridCard: View {
     let name: String
-    let flagPngUrl: String
-    let subregion: String
+    let flagImage: String
+    let location: String
     let onClick: () -> Void
     
     @Environment(\.appTheme) var theme
@@ -77,7 +77,7 @@ struct CountryGridCard: View {
             VStack(alignment: .leading, spacing: 0) {
                 GeometryReader { geo in
                     RemoteImage(
-                        url: flagPngUrl,
+                        url: flagImage,
                         size: CGSize(width: geo.size.width, height: geo.size.width * 0.55)
                     )
                     .scaledToFill()
@@ -97,7 +97,7 @@ struct CountryGridCard: View {
                         .font(.appHeadline)
                         .lineLimit(1)
 
-                    Text(subregion)
+                    Text(location)
                         .font(.appCaption)
                         .lineLimit(1)
                         .foregroundStyle(.secondary)

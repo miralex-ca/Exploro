@@ -38,7 +38,7 @@ struct FavoriteGridCell: View {
         Button(action: onClick) {
             
             HStack(spacing: 12) {
-                RemoteImage(url: item.flagPngUrl, size: CGSize(width: 120, height: 70))
+                RemoteImage(url: item.flagImage, size: CGSize(width: 120, height: 70))
                     .scaledToFill()
                     .frame(width: 120, height: 70)
                     .clipped()
@@ -52,7 +52,7 @@ struct FavoriteGridCell: View {
                     Text(item.name)
                         .font(.appHeadline)
                         .lineLimit(1)
-                    Text(item.subregion)
+                    Text(item.location)
                         .font(.appSubheadline)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)

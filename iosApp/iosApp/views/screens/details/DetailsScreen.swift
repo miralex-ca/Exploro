@@ -22,8 +22,8 @@ struct DetailsScreen: View {
                         if !details.mapsUrl.isEmpty {
                             Button {
                                 openInMaps(
-                                    lat: details.capitalLat,
-                                    lng: details.capitalLng,
+                                    lat: details.latitude,
+                                    lng: details.longitude,
                                     name: details.name,
                                     fallbackUrl: details.mapsUrl
                                 )
@@ -136,8 +136,8 @@ struct DetailsHeaderCard: View {
     var body: some View {
         VStack(spacing: 0) {
             FlagContainer(
-                flagUrl: details.flagUrl,
-                flagAlt: details.flagAlt,
+                flagUrl: details.flagImage,
+                flagAlt: details.flagEmoji,
                 isFavorite: details.isFavorite,
                 onFavoriteClick: onFavoriteClick
             )
@@ -448,7 +448,7 @@ struct DetailsRowModel {
 
 func detailRows(_ details: CountryDetailsState) -> [DetailsRowModel] {
     [
-        DetailsRowModel(systemIcon: "map", label: Strings.detailLabelLocation, value: details.subregion, url: details.mapsUrl.isEmpty ? nil : details.mapsUrl),
+        DetailsRowModel(systemIcon: "map", label: Strings.detailLabelLocation, value: details.location, url: details.mapsUrl.isEmpty ? nil : details.mapsUrl),
         DetailsRowModel(systemIcon: "ruler", label: Strings.detailLabelArea, value: formatArea(details.area)),
         DetailsRowModel(systemIcon: "person.2", label: Strings.detailLabelPopulation, value: details.population.toHumanReadable()),
         DetailsRowModel(systemIcon: "character.bubble", label: Strings.detailLabelLanguage(count: Int(details.languages.count)), value: details.languages.joined(separator: ", ")),

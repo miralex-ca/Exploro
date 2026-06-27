@@ -70,7 +70,7 @@ struct FavoriteListRow: View {
         Button(action: onClick) {
             HStack(spacing: 16) {
                 RemoteImage(
-                    url: item.flagPngUrl,
+                    url: item.flagImage,
                     size: CGSize(width: 90, height: 55)
                 )
                 .scaledToFill()
@@ -87,7 +87,7 @@ struct FavoriteListRow: View {
                         .font(.appHeadline)
                         .lineLimit(1)
                     
-                    Text(item.subregion)
+                    Text(item.location)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
@@ -122,7 +122,6 @@ struct FavoriteListRow: View {
         .buttonStyle(.plain)
         .background(theme.cardSurface)
         .clipShape(RoundedRectangle(cornerRadius: 12))
-       // .frame(maxWidth: 300)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.gray.opacity(0.2), lineWidth: 1)
