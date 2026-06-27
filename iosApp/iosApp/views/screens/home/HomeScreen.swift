@@ -99,6 +99,7 @@ struct HomeSectionRow: View {
                     .padding(.vertical, 5)
                 }
                 .tint(.primary)
+                .accessibilityIdentifier("See more")
             }
             .padding(.leading, appLayout.hasSpaceForDrawer ? drawerSpace : 0)
             

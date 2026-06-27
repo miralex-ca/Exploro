@@ -84,6 +84,7 @@ struct ScreenPicker: View {
                     } label: {
                         Image(systemName: "gearshape")
                     }
+                    .accessibilityIdentifier("Settings")
                 }
             }
         }

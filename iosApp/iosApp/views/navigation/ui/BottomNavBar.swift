@@ -44,6 +44,7 @@ struct BottomNavBar: View {
                     .bottomGlassCapsule()
             }
             .buttonStyle(.plain)
+            .accessibilityIdentifier("Search")
         }
         .background(Color.black.opacity(0.001))
     }
@@ -97,6 +98,7 @@ struct BottomNavButton: View {
             }
         }
         .buttonStyle(.plain)
+        .accessibilityIdentifier(label)
     }
 }
 
