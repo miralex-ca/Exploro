@@ -55,30 +55,30 @@ private data class CountryDetailsDto(
 
 private fun CountryDto(country: Country) = CountryDto(
     id = country.id,
-    iso2 =  iso3ToIso2[country.id]?.lowercase() ?: "",
+    iso2 =  country.iso2.ifBlank { iso3ToIso2[country.id]?.lowercase() ?: "" },
     name = country.name,
     official_name = country.officialName,
     capital = country.capital,
     continent = country.continent,
-    location = country.subregion,
-    flag_image = country.flagPngUrl,
-    flag_emoji = country.flagAlt,
+    location = country.location,
+    flag_image = country.flagImage,
+    flag_emoji = country.flagEmoji,
 )
 
 private fun CountryDetailsDto(id: String, details: CountryDetails) = CountryDetailsDto(
     id = id,
     population = details.population.toHumanReadableRoundedValue(),
-    total_area = details.area.toFormattedAreaRoundedValue(),
-    coat_of_arms_url = details.coatOfArmsPngUrl,
+    total_area = details.totalArea.toFormattedAreaRoundedValue(),
+    coat_of_arms_url = details.coatOfArmsUrl,
     currency_code = details.currencyCode,
     currency_name = details.currencyName,
     currency_symbol = details.currencySymbol,
     languages = details.languages,
-    maps_url = details.mapsGoogleUrl,
+    maps_url = details.mapsUrl,
     timezones = details.timezones,
-    wiki_url = details.wikipediaUrl,
-    latitude = details.capitalLat,
-    longitude = details.capitalLng
+    wiki_url = details.wikiUrl,
+    latitude = details.latitude,
+    longitude = details.longitude
 )
 
 private fun Double.roundTo1Decimal() =
@@ -391,4 +391,3 @@ val iso3ToIso2 = mapOf(
     "ZMB" to "ZM",
     "ZWE" to "ZW"
 )
-

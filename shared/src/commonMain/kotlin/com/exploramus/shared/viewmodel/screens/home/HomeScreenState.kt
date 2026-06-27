@@ -1,8 +1,8 @@
 package com.exploramus.shared.viewmodel.screens.home
 
-import com.exploramus.shared.viewmodel.core.ScreenState
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.HomeSection
+import com.exploramus.shared.viewmodel.core.ScreenState
 
 data class HomeScreenState(
     val isLoading: Boolean = false,
@@ -32,7 +32,7 @@ data class HomeListItem(
 fun Country.toHomeListItem() = HomeListItem(
     id = id,
     name = name,
-    flagPngUrl = flagPngUrl
+    flagPngUrl = flagImage
 )
 
 fun List<Country>.toHomeItems() = map { it.toHomeListItem() }

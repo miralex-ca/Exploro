@@ -8,7 +8,7 @@ import com.exploramus.app.previews.PreviewCountry
 
 
 private val previewName = PreviewCountry.france.name
-private val previewFlagUrl = PreviewCountry.france.flagPngUrl
+private val previewFlagUrl = PreviewCountry.france.flagImage
 
 @Preview(name = "Card - Light")
 @Composable

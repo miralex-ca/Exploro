@@ -113,30 +113,30 @@ class LocalDataSourceTest {
 
     private val testCountry = Country(
         id = "FRA",
+        iso2 = "FR",
         name = "France",
         officialName = "French Republic",
         capital = "Paris",
         continent = "Europe",
-        subregion = "Western Europe",
-        flagPngUrl = "https://flag.png",
-        flagAlt = "🇫🇷"
+        location = "Western Europe",
+        flagImage = "https://flag.png",
+        flagEmoji = "🇫🇷"
     )
 
     private val testDetails = CountryDetails(
         id = "FRA",
-        coatOfArmsPngUrl = "https://coat.png",
-        area = 551695.0,
         population = 69081996,
-        currencyCode = "EUR",
+        totalArea = 551695.0,
+        coatOfArmsUrl = "https://coat.png",
         currencyName = "Euro",
         currencySymbol = "€",
+        currencyCode = "EUR",
         languages = listOf("French"),
-        mapsGoogleUrl = "https://maps.google.com",
-        mapsOsmUrl = "https://osm.org",
+        latitude = 48.87,
+        longitude = 2.33,
         timezones = listOf("UTC+01:00"),
-        wikipediaUrl = "https://en.wikipedia.org/wiki/France",
-        capitalLat = 48.87,
-        capitalLng = 2.33
+        mapsUrl = "https://maps.google.com",
+        wikiUrl = "https://en.wikipedia.org/wiki/France"
     )
 
 }

@@ -21,8 +21,10 @@ class CountryMappingTest {
     }
 
     @Test
-    fun `dto maps to country with correct id`() {
-        assertEquals("FRA", parseResponse().toCountry().id)
+    fun `dto maps to country with correct id and iso2`() {
+        val country = parseResponse().toCountry()
+        assertEquals("FRA", country.id)
+        assertEquals("FR", country.iso2)
     }
 
     @Test
@@ -43,7 +45,7 @@ class CountryMappingTest {
             "data": {
                 "objects": [
                     {
-                        "codes": { "alpha_3": "FRA" },
+                        "codes": { "alpha_2": "FR", "alpha_3": "FRA" },
                         "names": { "common": "France", "official": "French Republic" },
                         "flag": { "emoji": "🇫🇷", "url_png": "https://flag.png", "url_svg": "" },
                         "capitals": [{ "name": "Paris", "coordinates": { "lat": 48.87, "lng": 2.33 } }],

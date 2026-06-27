@@ -2,34 +2,30 @@ package com.exploramus.core.models
 
 data class Country(
     val id: String,
+    val iso2: String,
     val name: String,
     val officialName: String,
     val capital: String,
     val continent: String,
-    val subregion: String,
-    val flagPngUrl: String,
-    val flagAlt: String,
+    val location: String,
+    val flagImage: String,
+    val flagEmoji: String,
 )
 
 data class CountryDetails(
     val id: String,
-    val coatOfArmsPngUrl: String,
-    val area: Double,
     val population: Long,
-
-    val currencyCode: String,
+    val totalArea: Double,
+    val coatOfArmsUrl: String,
     val currencyName: String,
     val currencySymbol: String,
-
+    val currencyCode: String,
     val languages: List<String>,
-
-    val mapsGoogleUrl: String,
-    val mapsOsmUrl: String,
-
+    val latitude: Double,
+    val longitude: Double,
     val timezones: List<String>,
-    val wikipediaUrl: String = "",
-    val capitalLat: Double = 0.0,
-    val capitalLng: Double = 0.0
+    val mapsUrl: String,
+    val wikiUrl: String,
 )
 
 

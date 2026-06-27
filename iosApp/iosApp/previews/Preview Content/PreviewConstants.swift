@@ -4,36 +4,39 @@ import Shared
 extension Country {
     static let france = Country(
         id: "FRA",
+        iso2: "FR",
         name: "France",
         officialName: "French Republic",
         capital: "Paris",
         continent: "Europe",
-        subregion: "Western Europe",
-        flagPngUrl: "https://flags.restcountries.com/v5/w640/fr.png",
-        flagAlt: "🇫🇷"
+        location: "Western Europe",
+        flagImage: "https://flags.restcountries.com/v5/w640/fr.png",
+        flagEmoji: "🇫🇷"
     )
     
     static let mockList: [Country] = [
         .france,
         Country(
             id: "DEU",
+            iso2: "DE",
             name: "Germany",
             officialName: "Federal Republic of Germany",
             capital: "Berlin",
             continent: "Europe",
-            subregion: "Western Europe",
-            flagPngUrl: "https://flags.restcountries.com/v5/w640/de.png",
-            flagAlt: "🇩🇪"
+            location: "Western Europe",
+            flagImage: "https://flags.restcountries.com/v5/w640/de.png",
+            flagEmoji: "🇩🇪"
         ),
         Country(
             id: "ITA",
+            iso2: "IT",
             name: "Italy",
             officialName: "Italian Republic",
             capital: "Rome",
             continent: "Europe",
-            subregion: "Southern Europe",
-            flagPngUrl: "https://flags.restcountries.com/v5/w640/it.png",
-            flagAlt: "🇮🇹"
+            location: "Southern Europe",
+            flagImage: "https://flags.restcountries.com/v5/w640/it.png",
+            flagEmoji: "🇮🇹"
         )
     ]
 }
@@ -130,4 +133,3 @@ extension AppLayout {
         return layout
     }
 }
-

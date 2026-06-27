@@ -35,8 +35,8 @@ suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): Da
             val (countries, details) = apiResult.data
             val coatOfArmsMap = buildCoatOfArmsMap()
             val detailsWithCoats = details.map { detail ->
-                if (detail.coatOfArmsPngUrl.isBlank()) {
-                    detail.copy(coatOfArmsPngUrl = coatOfArmsMap[detail.id].orEmpty())
+                if (detail.coatOfArmsUrl.isBlank()) {
+                    detail.copy(coatOfArmsUrl = coatOfArmsMap[detail.id].orEmpty())
                 } else detail
             }
             storeCountries(countries, detailsWithCoats)
@@ -58,7 +58,7 @@ suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): Da
 private suspend fun Repository.buildCoatOfArmsMap(): Map<String, String> {
     val result = assetsDataSource.readAllCountryDetails()
     return if (result is DataResult.Success) {
-        result.data.associate { it.id to it.coatOfArmsPngUrl }
+        result.data.associate { it.id to it.coatOfArmsUrl }
     } else emptyMap()
 }
 

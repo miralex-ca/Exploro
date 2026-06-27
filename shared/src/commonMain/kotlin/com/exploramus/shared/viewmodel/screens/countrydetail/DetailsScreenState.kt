@@ -1,7 +1,7 @@
 package com.exploramus.shared.viewmodel.screens.countrydetail
 
-import com.exploramus.shared.viewmodel.core.ScreenState
 import com.exploramus.core.models.CountryWithDetails
+import com.exploramus.shared.viewmodel.core.ScreenState
 
 data class DetailsScreenState (
     val isLoading: Boolean = false,
@@ -36,22 +36,22 @@ fun CountryWithDetails.toDetailsState() = CountryDetailsState(
     id = country.id,
     name = country.name,
     officialName = country.officialName,
-    flagUrl = country.flagPngUrl,
-    flagAlt = country.flagAlt,
-    coatOfArmsUrl = details?.coatOfArmsPngUrl ?: "",
+    flagUrl = country.flagImage,
+    flagAlt = country.flagEmoji,
+    coatOfArmsUrl = details?.coatOfArmsUrl ?: "",
     capital = country.capital,
     continent = country.continent,
     subregion = validatedLocation(),
     languages = details?.languages ?: emptyList(),
-    area = details?.area ?: 0.0,
+    area = details?.totalArea ?: 0.0,
     population = details?.population ?: 0L,
     currency = formattedCurrency() ?: "",
     timezones = details?.timezones ?: emptyList(),
     isFavorite = isFavorite,
-    mapsUrl = details?.mapsGoogleUrl ?: "",
-    wikiUrl = details?.wikipediaUrl  ?: "",
-    capitalLat = details?.capitalLat ?: 0.0,
-    capitalLng = details?.capitalLng ?: 0.0
+    mapsUrl = details?.mapsUrl ?: "",
+    wikiUrl = details?.wikiUrl  ?: "",
+    capitalLat = details?.latitude ?: 0.0,
+    capitalLng = details?.longitude ?: 0.0
 )
 
 fun CountryWithDetails.formattedCurrency(): String? {
@@ -66,5 +66,5 @@ fun CountryWithDetails.formattedCurrency(): String? {
 }
 
 fun CountryWithDetails.validatedLocation(): String {
-    return country.subregion.takeIf { it.isNotBlank() } ?: country.name.takeIf { details?.mapsGoogleUrl != null } ?: ""
+    return country.location.takeIf { it.isNotBlank() } ?: country.name.takeIf { details?.mapsUrl != null } ?: ""
 }

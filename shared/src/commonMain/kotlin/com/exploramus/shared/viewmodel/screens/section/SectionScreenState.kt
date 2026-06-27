@@ -1,7 +1,7 @@
 package com.exploramus.shared.viewmodel.screens.section
 
-import com.exploramus.shared.viewmodel.core.ScreenState
 import com.exploramus.core.models.Country
+import com.exploramus.shared.viewmodel.core.ScreenState
 
 data class SectionScreenState(
     val isLoading: Boolean = false,
@@ -19,8 +19,8 @@ data class SectionListItem(
 fun Country.toSectionListItem() = SectionListItem(
     id = id,
     name = name,
-    subregion = subregion,
-    flagPngUrl = flagPngUrl
+    subregion = location,
+    flagPngUrl = flagImage
 )
 
 fun List<Country>.toSectionItems() = map { it.toSectionListItem() }

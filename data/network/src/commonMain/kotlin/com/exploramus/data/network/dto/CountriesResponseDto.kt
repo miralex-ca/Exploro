@@ -46,6 +46,7 @@ data class CountryRawDto(
 
 @Serializable
 data class CountryCodesDto(
+    @SerialName("alpha_2") val alpha2: String = "",
     @SerialName("alpha_3") val alpha3: String = ""
 )
 
@@ -103,28 +104,28 @@ data class CountryLinksDto(
 
 fun CountryRawDto.toCountry() = Country(
     id = codes.alpha3,
+    iso2 = codes.alpha2,
     name = names.common,
     officialName = names.official,
     capital = capitals.firstOrNull()?.name.orEmpty(),
     continent = continents.firstOrNull().orEmpty(),
-    subregion = subregion,
-    flagPngUrl = flag.urlPng,
-    flagAlt = flag.emoji
+    location = subregion,
+    flagImage = flag.urlPng,
+    flagEmoji = flag.emoji
 )
 
 fun CountryRawDto.toCountryDetails() = CountryDetails(
     id = codes.alpha3,
-    coatOfArmsPngUrl = "",  // not in v5 — filled from assets later
-    area = area.kilometers,
     population = population,
-    currencyCode = currencies.firstOrNull()?.code.orEmpty(),
+    totalArea = area.kilometers,
+    coatOfArmsUrl = "",  // not in v5 — filled from assets later
     currencyName = currencies.firstOrNull()?.name.orEmpty(),
     currencySymbol = currencies.firstOrNull()?.symbol.orEmpty(),
+    currencyCode = currencies.firstOrNull()?.code.orEmpty(),
     languages = languages.map { it.name },
-    mapsGoogleUrl = links.googleMaps,
-    mapsOsmUrl = links.openStreetMaps,
+    latitude = capitals.firstOrNull()?.coordinates?.lat ?: 0.0,
+    longitude = capitals.firstOrNull()?.coordinates?.lng ?: 0.0,
     timezones = timezones,
-    wikipediaUrl = links.wikipedia,
-    capitalLat = capitals.firstOrNull()?.coordinates?.lat ?: 0.0,
-    capitalLng = capitals.firstOrNull()?.coordinates?.lng ?: 0.0
+    mapsUrl = links.googleMaps,
+    wikiUrl = links.wikipedia
 )

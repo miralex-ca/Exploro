@@ -10,13 +10,14 @@ import com.exploramus.core.models.CountryWithDetails
 private fun Countries.toCountry(): Country =
     Country(
         id = id,
+        iso2 = iso2,
         name = name,
         officialName = official_name,
         capital = capital,
         continent = continent,
-        subregion = subregion,
-        flagPngUrl = flag_png_url,
-        flagAlt = flag_alt
+        location = location,
+        flagImage = flag_image,
+        flagEmoji = flag_emoji
     )
 
 fun List<Countries>.toCountryList() = map { it.toCountry() }
@@ -25,22 +26,23 @@ fun GetCountryDetailsById.toCountryWithDetails(): CountryWithDetails =
     CountryWithDetails(
         country = Country(
             id = id,
+            iso2 = iso2,
             name = name,
             officialName = official_name,
             capital = capital,
             continent = continent,
-            subregion = subregion,
-            flagPngUrl = flag_png_url,
-            flagAlt = flag_alt
+            location = location,
+            flagImage = flag_image,
+            flagEmoji = flag_emoji
         ),
 
         details = if (population != null) {
             CountryDetails(
                 id = id,
 
-                coatOfArmsPngUrl = coat_of_arms_png_url.orEmpty(),
+                coatOfArmsUrl = coat_of_arms_url.orEmpty(),
 
-                area = area ?: 0.0,
+                totalArea = total_area ?: 0.0,
                 population = population,
 
                 currencyCode = currency_code.orEmpty(),
@@ -52,16 +54,15 @@ fun GetCountryDetailsById.toCountryWithDetails(): CountryWithDetails =
                     ?.filter { it.isNotBlank() }
                     ?: emptyList(),
 
-                mapsGoogleUrl = maps_google_url.orEmpty(),
-                mapsOsmUrl = maps_osm_url.orEmpty(),
+                mapsUrl = maps_url.orEmpty(),
 
                 timezones = timezones
                     ?.split(",")
                     ?.filter { it.isNotBlank() }
                     ?: emptyList(),
-                wikipediaUrl = wikipedia_url.orEmpty(),
-                capitalLat = capital_lat ?: 0.0,
-                capitalLng = capital_lng ?: 0.0
+                wikiUrl = wiki_url.orEmpty(),
+                latitude = latitude ?: 0.0,
+                longitude = longitude ?: 0.0
             )
         } else {
             null
@@ -70,34 +71,34 @@ fun GetCountryDetailsById.toCountryWithDetails(): CountryWithDetails =
         isFavorite = isFavorite == 1L
     )
 
-    fun GetAllCountriesWithDetails.toCountryWithDetails(): CountryWithDetails =
+fun GetAllCountriesWithDetails.toCountryWithDetails(): CountryWithDetails =
     CountryWithDetails(
         country = Country(
             id = id,
+            iso2 = iso2,
             name = name,
             officialName = official_name,
             capital = capital,
             continent = continent,
-            subregion = subregion,
-            flagPngUrl = flag_png_url,
-            flagAlt = flag_alt
+            location = location,
+            flagImage = flag_image,
+            flagEmoji = flag_emoji
         ),
         details = if (population != null) {
             CountryDetails(
                 id = id,
-                coatOfArmsPngUrl = coat_of_arms_png_url.orEmpty(),
-                area = area ?: 0.0,
+                coatOfArmsUrl = coat_of_arms_url.orEmpty(),
+                totalArea = total_area ?: 0.0,
                 population = population,
                 currencyCode = currency_code.orEmpty(),
                 currencyName = currency_name.orEmpty(),
                 currencySymbol = currency_symbol.orEmpty(),
                 languages = languages?.split(",")?.filter { it.isNotBlank() } ?: emptyList(),
-                mapsGoogleUrl = maps_google_url.orEmpty(),
-                mapsOsmUrl = maps_osm_url.orEmpty(),
+                mapsUrl = maps_url.orEmpty(),
                 timezones = timezones?.split(",")?.filter { it.isNotBlank() } ?: emptyList(),
-                wikipediaUrl = wikipedia_url.orEmpty(),
-                capitalLat = capital_lat ?: 0.0,
-                capitalLng = capital_lng ?: 0.0
+                wikiUrl = wiki_url.orEmpty(),
+                latitude = latitude ?: 0.0,
+                longitude = longitude ?: 0.0
             )
         } else null,
         isFavorite = false // not needed

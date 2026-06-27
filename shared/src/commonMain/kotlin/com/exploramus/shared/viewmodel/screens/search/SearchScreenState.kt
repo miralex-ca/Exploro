@@ -1,8 +1,8 @@
 package com.exploramus.shared.viewmodel.screens.search
 
+import com.exploramus.core.models.Country
 import com.exploramus.shared.viewmodel.core.ScreenState
 import com.exploramus.shared.viewmodel.utils.SingleEffect
-import com.exploramus.core.models.Country
 import kotlin.uuid.Uuid
 
 data class SearchScreenState(
@@ -32,7 +32,7 @@ fun Country.toSearchListItem() = SearchListItem(
     name = name,
     officialName = officialName,
     capital = capital,
-    flagPngUrl = flagPngUrl
+    flagPngUrl = flagImage
 )
 
 fun List<Country>.toSearchItems() = map { it.toSearchListItem() }

@@ -22,13 +22,14 @@ class DatabaseManagerTest {
 
     private val testCountry = Country(
         id = "FRA",
+        iso2 = "FR",
         name = "France",
         officialName = "French Republic",
         capital = "Paris",
         continent = "Europe",
-        subregion = "Western Europe",
-        flagPngUrl = "",
-        flagAlt = ""
+        location = "Western Europe",
+        flagImage = "",
+        flagEmoji = ""
     )
 
     @Test

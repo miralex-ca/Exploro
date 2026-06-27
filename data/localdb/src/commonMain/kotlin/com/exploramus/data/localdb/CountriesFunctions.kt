@@ -10,13 +10,14 @@ fun AppLocalDb.setCountriesList(list: List<Country>) {
         list.forEach {
             countriesQueries.upsertCountry(
                 id = it.id,
+                iso2 = it.iso2,
                 name = it.name,
                 officialName = it.officialName,
                 capital = it.capital,
                 continent = it.continent,
-                subregion = it.subregion,
-                flagPngUrl = it.flagPngUrl,
-                flagAlt = it.flagAlt
+                location = it.location,
+                flagImage = it.flagImage,
+                flagEmoji = it.flagEmoji
             )
         }
     }
@@ -29,9 +30,9 @@ fun AppLocalDb.setCountriesDetailsList(list: List<CountryDetails>) {
                 countryId = it.id,
 
                 population = it.population,
-                area = it.area,
+                totalArea = it.totalArea,
 
-                coatOfArmsPngUrl = it.coatOfArmsPngUrl,
+                coatOfArmsUrl = it.coatOfArmsUrl,
 
                 currencyCode = it.currencyCode,
                 currencyName = it.currencyName,
@@ -39,13 +40,12 @@ fun AppLocalDb.setCountriesDetailsList(list: List<CountryDetails>) {
 
                 languages = it.languages.joinToString(","),
 
-                mapsGoogleUrl = it.mapsGoogleUrl,
-                mapsOsmUrl = it.mapsOsmUrl,
+                mapsUrl = it.mapsUrl,
 
                 timezones = it.timezones.joinToString(","),
-                wikipediaUrl = it.wikipediaUrl,
-                capitalLat = it.capitalLat,
-                capitalLng = it.capitalLng
+                wikiUrl = it.wikiUrl,
+                latitude = it.latitude,
+                longitude = it.longitude
             )
         }
     }
@@ -102,7 +102,3 @@ fun AppLocalDb.getCountriesCount(): Long {
 fun AppLocalDb.getAllCountriesWithDetails() = countriesQueries
     .getAllCountriesWithDetails()
     .executeAsList()
-
-
-
-

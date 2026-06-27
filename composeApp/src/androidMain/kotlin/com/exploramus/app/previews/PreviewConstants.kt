@@ -1,41 +1,44 @@
 package com.exploramus.app.previews
 
-import com.exploramus.shared.viewmodel.screens.countrydetail.CountryDetailsState
 import com.exploramus.core.models.Country
+import com.exploramus.shared.viewmodel.screens.countrydetail.CountryDetailsState
 
 object PreviewCountry {
     val france = Country(
         id = "FRA",
+        iso2 = "FR",
         name = "France",
         officialName = "French Republic",
         capital = "Paris",
         continent = "Europe",
-        subregion = "Western Europe",
-        flagPngUrl = "https://flags.restcountries.com/v5/w640/fr.png",
-        flagAlt = "🇫🇷"
+        location = "Western Europe",
+        flagImage = "https://flags.restcountries.com/v5/w640/fr.png",
+        flagEmoji = "🇫🇷"
     )
 
     val mockList = listOf(
         france,
         Country(
             id = "DEU",
+            iso2 = "DE",
             name = "Germany",
             officialName = "Federal Republic of Germany",
             capital = "Berlin",
             continent = "Europe",
-            subregion = "Western Europe",
-            flagPngUrl = "https://flags.restcountries.com/v5/w640/de.png",
-            flagAlt = "🇩🇪"
+            location = "Western Europe",
+            flagImage = "https://flags.restcountries.com/v5/w640/de.png",
+            flagEmoji = "🇩🇪"
         ),
         Country(
             id = "ITA",
+            iso2 = "IT",
             name = "Italy",
             officialName = "Italian Republic",
             capital = "Rome",
             continent = "Europe",
-            subregion = "Southern Europe",
-            flagPngUrl = "https://flags.restcountries.com/v5/w640/it.png",
-            flagAlt = "🇮🇹"
+            location = "Southern Europe",
+            flagImage = "https://flags.restcountries.com/v5/w640/it.png",
+            flagEmoji = "🇮🇹"
         )
     )
 }

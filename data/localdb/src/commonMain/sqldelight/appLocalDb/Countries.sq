@@ -1,12 +1,13 @@
 CREATE TABLE Countries (
     id TEXT NOT NULL PRIMARY KEY,
+    iso2 TEXT NOT NULL,
     name TEXT NOT NULL,
     official_name TEXT NOT NULL,
     capital TEXT NOT NULL,
     continent TEXT NOT NULL,
-    subregion TEXT NOT NULL,
-    flag_png_url TEXT NOT NULL,
-    flag_alt TEXT NOT NULL
+    location TEXT NOT NULL,
+    flag_image TEXT NOT NULL,
+    flag_emoji TEXT NOT NULL
 );
 
 CREATE INDEX idx_countries_continent
@@ -15,49 +16,51 @@ ON Countries(continent);
 upsertCountry:
 INSERT OR REPLACE INTO Countries(
     id,
+    iso2,
     name,
     official_name,
     capital,
     continent,
-    subregion,
-    flag_png_url,
-    flag_alt
+    location,
+    flag_image,
+    flag_emoji
 )
 VALUES(
     :id,
+    :iso2,
     :name,
     :officialName,
     :capital,
     :continent,
-    :subregion,
-    :flagPngUrl,
-    :flagAlt
+    :location,
+    :flagImage,
+    :flagEmoji
 );
 
 getCountryDetailsById:
 SELECT
     c.id,
+    c.iso2,
     c.name,
     c.official_name,
     c.capital,
     c.continent,
-    c.subregion,
-    c.flag_png_url,
-    c.flag_alt,
+    c.location,
+    c.flag_image,
+    c.flag_emoji,
 
     d.population,
-    d.area,
-    d.coat_of_arms_png_url,
+    d.total_area,
+    d.coat_of_arms_url,
     d.currency_code,
     d.currency_name,
     d.currency_symbol,
     d.languages,
-    d.maps_google_url,
-    d.maps_osm_url,
+    d.maps_url,
     d.timezones,
-    d.wikipedia_url,
-    d.capital_lat,
-    d.capital_lng,
+    d.wiki_url,
+    d.latitude,
+    d.longitude,
 
     CASE
         WHEN f.country_id IS NOT NULL THEN 1
@@ -98,27 +101,27 @@ SELECT COUNT(*) FROM Countries;
 getAllCountriesWithDetails:
 SELECT
     c.id,
+    c.iso2,
     c.name,
     c.official_name,
     c.capital,
     c.continent,
-    c.subregion,
-    c.flag_png_url,
-    c.flag_alt,
+    c.location,
+    c.flag_image,
+    c.flag_emoji,
 
     d.population,
-    d.area,
-    d.coat_of_arms_png_url,
+    d.total_area,
+    d.coat_of_arms_url,
     d.currency_code,
     d.currency_name,
     d.currency_symbol,
     d.languages,
-    d.maps_google_url,
-    d.maps_osm_url,
+    d.maps_url,
     d.timezones,
-    d.wikipedia_url,
-    d.capital_lat,
-    d.capital_lng
+    d.wiki_url,
+    d.latitude,
+    d.longitude
 
 FROM Countries c
 LEFT JOIN CountryDetails d ON d.country_id = c.id

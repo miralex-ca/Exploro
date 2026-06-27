@@ -2,9 +2,9 @@ CREATE TABLE CountryDetails (
     country_id TEXT NOT NULL PRIMARY KEY,
 
     population INTEGER NOT NULL,
-    area REAL NOT NULL,
+    total_area REAL NOT NULL,
 
-    coat_of_arms_png_url TEXT NOT NULL,
+    coat_of_arms_url TEXT NOT NULL,
 
     currency_code TEXT NOT NULL,
     currency_name TEXT NOT NULL,
@@ -12,13 +12,12 @@ CREATE TABLE CountryDetails (
 
     languages TEXT NOT NULL,
 
-    maps_google_url TEXT NOT NULL,
-    maps_osm_url TEXT NOT NULL,
+    maps_url TEXT NOT NULL,
 
     timezones TEXT NOT NULL,
-    wikipedia_url TEXT NOT NULL DEFAULT '',
-    capital_lat REAL NOT NULL DEFAULT 0.0,
-    capital_lng REAL NOT NULL DEFAULT 0.0,
+    wiki_url TEXT NOT NULL DEFAULT '',
+    latitude REAL NOT NULL DEFAULT 0.0,
+    longitude REAL NOT NULL DEFAULT 0.0,
 
     FOREIGN KEY (country_id) REFERENCES Countries(id)
 );
@@ -27,34 +26,32 @@ upsertCountryDetails:
 INSERT OR REPLACE INTO CountryDetails(
     country_id,
     population,
-    area,
-    coat_of_arms_png_url,
+    total_area,
+    coat_of_arms_url,
     currency_code,
     currency_name,
     currency_symbol,
     languages,
-    maps_google_url,
-    maps_osm_url,
+    maps_url,
     timezones,
-    wikipedia_url,
-    capital_lat,
-    capital_lng
+    wiki_url,
+    latitude,
+    longitude
 )
 VALUES(
     :countryId,
     :population,
-    :area,
-    :coatOfArmsPngUrl,
+    :totalArea,
+    :coatOfArmsUrl,
     :currencyCode,
     :currencyName,
     :currencySymbol,
     :languages,
-    :mapsGoogleUrl,
-    :mapsOsmUrl,
+    :mapsUrl,
     :timezones,
-    :wikipediaUrl,
-    :capitalLat,
-    :capitalLng
+    :wikiUrl,
+    :latitude,
+    :longitude
 );
 
 getCountryDetailsById:

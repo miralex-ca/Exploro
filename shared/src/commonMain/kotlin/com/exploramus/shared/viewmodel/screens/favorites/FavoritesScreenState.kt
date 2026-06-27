@@ -1,8 +1,7 @@
 package com.exploramus.shared.viewmodel.screens.favorites
 
-import com.exploramus.shared.viewmodel.core.ScreenState
-import com.exploramus.shared.viewmodel.screens.countrydetail.CountryDetailsState
 import com.exploramus.core.models.Country
+import com.exploramus.shared.viewmodel.core.ScreenState
 
 data class FavoritesScreenState (
     val isLoading : Boolean = false,
@@ -20,8 +19,8 @@ data class FavoriteListItem(
 fun Country.toFavoriteListItem() = FavoriteListItem(
     id = id,
     name = name,
-    subregion = subregion,
-    flagPngUrl = flagPngUrl
+    subregion = location,
+    flagPngUrl = flagImage
 )
 
 fun List<Country>.toFavoriteItems() = map { it.toFavoriteListItem() }

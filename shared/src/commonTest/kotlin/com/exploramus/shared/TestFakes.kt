@@ -17,16 +17,16 @@ import kotlinx.coroutines.Dispatchers
 object TestFakes {
 
     val country = Country(
-        id = "FRA", name = "France", officialName = "French Republic",
-        capital = "Paris", continent = "Europe", subregion = "Western Europe",
-        flagPngUrl = "", flagAlt = ""
+        id = "FRA", iso2 = "FR", name = "France", officialName = "French Republic",
+        capital = "Paris", continent = "Europe", location = "Western Europe",
+        flagImage = "", flagEmoji = ""
     )
 
     val details = CountryDetails(
-        id = "FRA", coatOfArmsPngUrl = "", area = 551695.0, population = 69081996,
+        id = "FRA", coatOfArmsUrl = "", totalArea = 551695.0, population = 69081996,
         currencyCode = "EUR", currencyName = "Euro", currencySymbol = "€",
-        languages = listOf("French"), mapsGoogleUrl = "", mapsOsmUrl = "",
-        timezones = listOf("UTC+01:00"), wikipediaUrl = "", capitalLat = 48.87, capitalLng = 2.33
+        languages = listOf("French"), mapsUrl = "",
+        timezones = listOf("UTC+01:00"), wikiUrl = "", latitude = 48.87, longitude = 2.33
     )
 
     val successApiResult = DataResult.Success(Pair(listOf(country), listOf(details)))
@@ -100,7 +100,7 @@ object TestFakes {
     ) : AssetsDataSource {
         private fun testAllCountries() = DataResult.Success(listOf(country))
         private fun testAllCountryDetails() = DataResult.Success(
-            listOf(details.copy(coatOfArmsPngUrl = coatOfArmsUrl))
+            listOf(details.copy(coatOfArmsUrl = coatOfArmsUrl))
         )
         override suspend fun readAllCountries() = testAllCountries()
         override suspend fun readAllCountryDetails() = testAllCountryDetails()
