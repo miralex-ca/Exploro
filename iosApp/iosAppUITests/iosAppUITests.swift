@@ -15,15 +15,11 @@ final class AppNavigationTests: XCTestCase {
         app = nil
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────
-
     private func waitForHomeScreen() {
         let browse = app.buttons["Browse"]
         XCTAssertTrue(browse.waitForExistence(timeout: 10))
         browse.tap()
     }
-
-    // ── Tests ─────────────────────────────────────────────────────────────
 
     @MainActor
     func test1_appLaunchesAndShowsHomeScreen() throws {
@@ -64,7 +60,6 @@ final class AppNavigationTests: XCTestCase {
         XCTAssertTrue(seeMore.waitForExistence(timeout: 5))
         seeMore.tap()
 
-        // wait for section screen
         let europeTitle = app.staticTexts["Europe"]
         XCTAssertTrue(europeTitle.waitForExistence(timeout: 3))
         XCTAssertTrue(europeTitle.exists)
