@@ -5,6 +5,7 @@ import com.exploramus.core.common.result.DataResult
 import com.exploramus.core.models.AppInfo
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
+import com.exploramus.core.models.CountryInfo
 import com.exploramus.core.models.CountryWithDetails
 import com.exploramus.data.common.AssetsDataSource
 import com.exploramus.data.common.LocalDataSource
@@ -29,8 +30,10 @@ object TestFakes {
         timezones = listOf("UTC+01:00"), wikiUrl = "", latitude = 48.87, longitude = 2.33
     )
 
-    val successApiResult = DataResult.Success(Pair(listOf(country), listOf(details)))
-    val errorApiResult: DataResult<Pair<List<Country>, List<CountryDetails>>> = DataResult.Error(null)
+    val countryInfo = CountryInfo(id = "FRA", languages = listOf("French"))
+
+    val successApiResult: DataResult<List<CountryInfo>> = DataResult.Success(listOf(countryInfo))
+    val errorApiResult: DataResult<List<CountryInfo>> = DataResult.Error(null)
 
     open class FakeLocalDataSource(hasData: Boolean = false, dbVersion: Long = 1) : LocalDataSource {
         override val databaseVersion: Long = dbVersion
@@ -74,10 +77,10 @@ object TestFakes {
     }
 
     class FakeRemoteDataSource(
-        private val result: DataResult<Pair<List<Country>, List<CountryDetails>>> = successApiResult
+        private val result: DataResult<List<CountryInfo>> = successApiResult
     ) : RemoteDataSource {
         var callCount = 0
-        override suspend fun fetchAllCountriesData(): DataResult<Pair<List<Country>, List<CountryDetails>>> {
+        override suspend fun fetchAllCountriesData(): DataResult<List<CountryInfo>> {
             callCount++
             return result
         }

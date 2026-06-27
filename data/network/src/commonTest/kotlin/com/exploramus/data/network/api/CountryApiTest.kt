@@ -1,8 +1,7 @@
 package com.exploramus.data.network.api
 
-import com.exploramus.data.network.NetworkResult
 import com.exploramus.data.network.ApiClient
-import com.exploramus.data.network.api.CountryApiImpl
+import com.exploramus.data.network.NetworkResult
 import com.exploramus.data.network.environment.EnvironmentProvider
 import com.exploramus.data.network.environment.NetworkEnvironments
 import io.ktor.client.HttpClient
@@ -21,8 +20,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class CountryApiTest {
+
     @Test
-    fun `fetchAllRaw returns success with valid responses`() = runTest {
+    fun `fetchAllRaw returns success with valid response`() = runTest {
         val api = makeApi {
             respond(
                 content = validPageResponse,
@@ -35,7 +35,7 @@ class CountryApiTest {
     }
 
     @Test
-    fun `fetchAllRaw merges all pages`() = runTest {
+    fun `fetchAllRaw returns correct number of items`() = runTest {
         val api = makeApi {
             respond(
                 content = validPageResponse,
@@ -44,8 +44,7 @@ class CountryApiTest {
             )
         }
         val result = api.fetchAllRaw()
-        // 3 pages x 1 country each = 3
-        assertEquals(3, (result as NetworkResult.Success).data.size)
+        assertEquals(1, (result as NetworkResult.Success).data.size)
     }
 
     @Test
@@ -61,7 +60,7 @@ class CountryApiTest {
     }
 
     @Test
-    fun `fetchAllRaw returns correctly mapped countries on success`() = runTest {
+    fun `fetchAllRaw returns correctly mapped data`() = runTest {
         val api = makeApi {
             respond(
                 content = validPageResponse,
@@ -72,37 +71,21 @@ class CountryApiTest {
         val result = api.fetchAllRaw()
         val countries = (result as NetworkResult.Success).data
         val first = countries.first()
-        assertEquals("FRA", first.codes.alpha3)
-        assertEquals("France", first.names.common)
-        assertEquals("Paris", first.capitals.first().name)
+        assertEquals("FRA", first.id)
+        assertEquals(listOf("French"), first.languages)
     }
-
 
     private val validPageResponse = """
         {
             "data": {
                 "objects": [
                     {
-                        "codes": { "alpha_3": "FRA" },
-                        "names": { "common": "France", "official": "French Republic" },
-                        "flag": { "emoji": "🇫🇷", "url_png": "", "url_svg": "" },
-                        "capitals": [{ "name": "Paris", "coordinates": { "lat": 48.87, "lng": 2.33 } }],
-                        "continents": ["Europe"],
-                        "subregion": "Western Europe",
-                        "area": { "kilometers": 551695.0 },
-                        "population": 69081996,
-                        "languages": [{ "iso639_3": "fra", "name": "French", "native_name": "Français" }],
-                        "currencies": [{ "code": "EUR", "name": "Euro", "symbol": "€" }],
-                        "links": { "google_maps": "", "open_street_maps": "", "wikipedia": "" },
-                        "timezones": ["UTC+01:00"]
+                        "id": "FRA",
+                        "languages": ["French"]
                     }
                 ],
                 "meta": {
-                    "total": 1,
-                    "count": 1,
-                    "limit": 100,
-                    "offset": 0,
-                    "more": false
+                    "total": 1
                 }
             }
         }

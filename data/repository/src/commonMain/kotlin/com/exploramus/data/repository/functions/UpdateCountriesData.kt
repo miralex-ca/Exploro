@@ -11,8 +11,8 @@ import kotlinx.datetime.Clock
 suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): DataResult<Unit> =
     withRepoContext {
         val nowUnixTime = Clock.System.now().epochSeconds
-        val tenDays = 10 * 24 * 3600L
-        val apiSyncExpired = nowUnixTime - localSettings.apiSyncTimestamp > tenDays
+        val apiDataExpireTime = 3 * 24 * 3600L
+        val apiSyncExpired = nowUnixTime - localSettings.apiSyncTimestamp > apiDataExpireTime
         val dbEmpty = !localDb.hasCountriesData()
 
         if (!dbEmpty && !apiSyncExpired && !forceUpdate) {
@@ -20,47 +20,48 @@ suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): Da
             return@withRepoContext DataResult.Success(Unit)
         }
 
-        if (forceUpdate && !apiSyncExpired && !dbEmpty) {
-            Log.d("Skipping force update")
-            return@withRepoContext DataResult.Success(Unit)
+        // remove this if force sync from settings is required
+//        if (forceUpdate && !apiSyncExpired && !dbEmpty) {
+//            Log.d("Skipping force update")
+//            return@withRepoContext DataResult.Success(Unit)
+//        }
+
+        val countriesResult = assetsDataSource.readAllCountries()
+        val detailsResult = assetsDataSource.readAllCountryDetails()
+
+        if (countriesResult !is DataResult.Success || detailsResult !is DataResult.Success) {
+            Log.d("Assets failed — cannot proceed")
+            return@withRepoContext DataResult.Error(error = null)
         }
 
-        Log.d("Updating app data: forceUpdate - $forceUpdate , apiSyncExpired - $apiSyncExpired, dbEmpty - $dbEmpty")
+        val countries = countriesResult.data
+        var details = detailsResult.data
 
-        val apiResult = if (apiSyncExpired || dbEmpty) {
-            webservices.fetchAllCountriesData()
-        } else null
-
-        if (apiResult is DataResult.Success) {
-            val (countries, details) = apiResult.data
-            val coatOfArmsMap = buildCoatOfArmsMap()
-            val detailsWithCoats = details.map { detail ->
-                if (detail.coatOfArmsUrl.isBlank()) {
-                    detail.copy(coatOfArmsUrl = coatOfArmsMap[detail.id].orEmpty())
-                } else detail
+        if (apiSyncExpired || forceUpdate) {
+            val apiResult = webservices.fetchAllCountriesData()
+            if (apiResult is DataResult.Success) {
+                val languagesMap = apiResult.data.associate { it.id to it.languages }
+                details = details.map { detail ->
+                    val languages = languagesMap[detail.id]
+                    if (!languages.isNullOrEmpty()) detail.copy(languages = languages) else detail
+                }
+                localSettings.apiSyncTimestamp = nowUnixTime
+                Log.d("Languages merged from API")
+            } else {
+                Log.d("API failed — storing assets as-is")
             }
-            storeCountries(countries, detailsWithCoats)
-            localSettings.apiSyncTimestamp = nowUnixTime
-            localSettings.listCacheTimestamp = nowUnixTime
-            Log.d("App data has beed successfully updated from API")
-            return@withRepoContext DataResult.Success(Unit)
         }
 
-        if (dbEmpty) {
-            Log.d("API failed or was skipped — use assets only if DB is empty")
-            return@withRepoContext seedFromAssets(nowUnixTime)
+        val stored = storeCountries(countries, details)
+        return@withRepoContext if (stored) {
+            localSettings.dataCacheTimestamp = nowUnixTime
+            Log.d("App data successfully updated")
+            DataResult.Success(Unit)
+        } else {
+            DataResult.Error(error = null)
         }
-
-        Log.d("DB has data, API failed — return success, use existing DB data")
-        return@withRepoContext DataResult.Success(Unit)
     }
 
-private suspend fun Repository.buildCoatOfArmsMap(): Map<String, String> {
-    val result = assetsDataSource.readAllCountryDetails()
-    return if (result is DataResult.Success) {
-        result.data.associate { it.id to it.coatOfArmsUrl }
-    } else emptyMap()
-}
 
 private suspend fun Repository.storeCountries(
     countries: List<Country>,
@@ -75,19 +76,19 @@ private suspend fun Repository.storeCountries(
     return countriesStored && detailsStored
 }
 
-private suspend fun Repository.seedFromAssets(nowUnixTime: Long): DataResult<Unit> {
-    val countriesResult = assetsDataSource.readAllCountries()
-    val detailsResult = assetsDataSource.readAllCountryDetails()
-
-    val stored = if (countriesResult is DataResult.Success && detailsResult is DataResult.Success) {
-        storeCountries(countriesResult.data, detailsResult.data)
-    } else false
-
-    return if (stored) {
-        localSettings.listCacheTimestamp = nowUnixTime
-        // intentionally NOT setting apiSyncTimestamp — assets don't count as API sync
-        DataResult.Success(Unit)
-    } else {
-        DataResult.Error(error = null)
-    }
-}
+//private suspend fun Repository.seedFromAssets(nowUnixTime: Long): DataResult<Unit> {
+//    val countriesResult = assetsDataSource.readAllCountries()
+//    val detailsResult = assetsDataSource.readAllCountryDetails()
+//
+//    val stored = if (countriesResult is DataResult.Success && detailsResult is DataResult.Success) {
+//        storeCountries(countriesResult.data, detailsResult.data)
+//    } else false
+//
+//    return if (stored) {
+//        localSettings.dataCacheTimestamp = nowUnixTime
+//        // intentionally NOT setting apiSyncTimestamp — assets don't count as API sync
+//        DataResult.Success(Unit)
+//    } else {
+//        DataResult.Error(error = null)
+//    }
+//}

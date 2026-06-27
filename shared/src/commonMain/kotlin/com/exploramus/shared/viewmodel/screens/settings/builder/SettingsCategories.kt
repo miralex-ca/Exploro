@@ -1,12 +1,12 @@
 package com.exploramus.shared.viewmodel.screens.settings.builder
 
 import com.exploramus.core.common.result.DataResult
+import com.exploramus.core.models.ThemeMode
 import com.exploramus.data.common.PlatformInfoProvider
 import com.exploramus.data.repository.sources.localsettings.MySettings
 import com.exploramus.shared.resources.FormattedText
 import com.exploramus.shared.resources.SharedRes
 import com.exploramus.shared.viewmodel.utils.toFormattedDate
-import com.exploramus.core.models.ThemeMode
 
 
 class InterfaceSettingsCategory(private val localSettings: MySettings) {
@@ -70,7 +70,7 @@ class DataSettingsCategory(private val localSettings: MySettings) {
     )
 
     private fun addSync(): Setting {
-        val lastUpdate = localSettings.listCacheTimestamp
+        val lastUpdate = localSettings.dataCacheTimestamp
         val timeLabel = lastUpdate.toFormattedDate()
         val formattedSummary = buildSyncSummary(timeLabel)
 

@@ -47,7 +47,7 @@ class DbMigrationTest {
         assertEquals(2, repository.localSettings.dbVersion)
         assertFalse(repository.localSettings.shouldForceDbUpdate)
         assertEquals(0, repository.localSettings.apiSyncTimestamp)
-        assertEquals(0, repository.localSettings.listCacheTimestamp)
+        assertEquals(0, repository.localSettings.dataCacheTimestamp)
     }
 
     @Test

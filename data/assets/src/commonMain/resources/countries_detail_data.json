@@ -11,8 +11,8 @@
             "Dari",
             "Pashto"
         ],
-        "latitude": 34.52,
-        "longitude": 69.18,
+        "latitude": 33,
+        "longitude": 66,
         "timezones": [
             "UTC+04:30"
         ],
@@ -399,15 +399,15 @@
     {
         "id": "BEL",
         "population": 11900000,
-        "total_area": 30500.0,
+        "total_area": 30689.0,
         "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/be.png",
         "currency_name": "Euro",
         "currency_symbol": "€",
         "currency_code": "EUR",
         "languages": [
-            "German",
+            "Dutch",
             "French",
-            "Dutch"
+            "German"
         ],
         "latitude": 50.83,
         "longitude": 4.33,
@@ -4278,8 +4278,8 @@
         "currency_symbol": "Fr.",
         "currency_code": "CHF",
         "languages": [
+            "German",
             "French",
-            "Swiss German",
             "Italian",
             "Romansh"
         ],
@@ -4452,12 +4452,11 @@
         "total_area": 12.0,
         "coat_of_arms_url": "",
         "currency_name": "New Zealand dollar",
-        "currency_symbol": "$",
+        "currency_symbol": "NZ$",
         "currency_code": "NZD",
         "languages": [
-            "English",
-            "Samoan",
-            "Tokelauan"
+            "Tokelauan",
+            "English"
         ],
         "latitude": -9.38,
         "longitude": -171.22,
@@ -4470,17 +4469,17 @@
     {
         "id": "TON",
         "population": 100200,
-        "total_area": 747.0,
+        "total_area": 748.0,
         "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/to.png",
         "currency_name": "Tongan paʻanga",
         "currency_symbol": "T$",
         "currency_code": "TOP",
         "languages": [
-            "English",
-            "Tongan"
+            "Tongan",
+            "English"
         ],
-        "latitude": -21.13,
-        "longitude": -175.2,
+        "latitude": -21,
+        "longitude": -175,
         "timezones": [
             "UTC+13:00"
         ],

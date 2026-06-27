@@ -6,7 +6,6 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class CountryMappingTest {
-
     @Test
     fun `json parses to response dto without error`() {
         val response = json.decodeFromString<CountriesResponseDto>(validPageResponse)
@@ -14,29 +13,18 @@ class CountryMappingTest {
     }
 
     @Test
-    fun `json parses correct alpha3 and name`() {
+    fun `json parses correct id and languages`() {
         val dto = parseResponse()
-        assertEquals("FRA", dto.codes.alpha3)
-        assertEquals("France", dto.names.common)
+        assertEquals("FRA", dto.id)
+        assertEquals(listOf("French"), dto.languages)
     }
 
     @Test
-    fun `dto maps to country with correct id and iso2`() {
-        val country = parseResponse().toCountry()
-        assertEquals("FRA", country.id)
-        assertEquals("FR", country.iso2)
+    fun `dto maps to country info with correct id and languages`() {
+        val info = parseResponse().toCountryInfo()
+        assertEquals("FRA", info.id)
+        assertEquals(listOf("French"), info.languages)
     }
-
-    @Test
-    fun `dto maps to details with correct id`() {
-        assertEquals("FRA", parseResponse().toCountryDetails().id)
-    }
-
-    @Test
-    fun `dto maps to details with correct population`() {
-        assertEquals(69081996, parseResponse().toCountryDetails().population)
-    }
-
 
     private val json = Json { ignoreUnknownKeys = true }
 
@@ -45,21 +33,13 @@ class CountryMappingTest {
             "data": {
                 "objects": [
                     {
-                        "codes": { "alpha_2": "FR", "alpha_3": "FRA" },
-                        "names": { "common": "France", "official": "French Republic" },
-                        "flag": { "emoji": "🇫🇷", "url_png": "https://flag.png", "url_svg": "" },
-                        "capitals": [{ "name": "Paris", "coordinates": { "lat": 48.87, "lng": 2.33 } }],
-                        "continents": ["Europe"],
-                        "subregion": "Western Europe",
-                        "area": { "kilometers": 551695.0 },
-                        "population": 69081996,
-                        "languages": [{ "iso639_3": "fra", "name": "French", "native_name": "Français" }],
-                        "currencies": [{ "code": "EUR", "name": "Euro", "symbol": "€" }],
-                        "links": { "google_maps": "", "open_street_maps": "", "wikipedia": "https://en.wikipedia.org/wiki/France" },
-                        "timezones": ["UTC+01:00"]
+                        "id": "FRA",
+                        "languages": ["French"]
                     }
                 ],
-                "meta": { "total": 1, "count": 1, "limit": 100, "offset": 0, "more": false }
+                "meta": {
+                    "total": 1
+                }
             }
         }
     """.trimIndent()
@@ -68,5 +48,4 @@ class CountryMappingTest {
         val response = json.decodeFromString<CountriesResponseDto>(validPageResponse)
         return response.data.objects.first()
     }
-
 }

@@ -1,10 +1,8 @@
 package com.exploramus.data.assets
 
-import com.exploramus.core.common.logging.Log
 import com.exploramus.core.common.result.DataResult
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
-import com.exploramus.data.assets.data.iso3ToIso2
 import com.exploramus.data.assets.dto.CountryDataAssetDto
 import com.exploramus.data.assets.dto.CountryDetailAssetDto
 import com.exploramus.data.assets.dto.toCountry
@@ -26,8 +24,6 @@ class JsonAssetsDataSource(
         runCatching {
             val raw = fileReader.readFile(COUNTRIES_DATA_FILE)
             val parsed = json.decodeFromString<List<CountryDataAssetDto>>(raw)
-            Log.d("iso map ${iso3ToIso2.size}, parsed: ${parsed.size}")
-            Log.d(" parsed: ${parsed.firstOrNull()}")
             DataResult.Success(parsed.map { it.toCountry() })
         }.getOrElse {
             DataResult.Error(error = null)

@@ -2,6 +2,7 @@ package com.exploramus.shared.viewmodel.screens.settings
 
 
 import com.exploramus.core.common.result.isSuccess
+import com.exploramus.core.models.ThemeMode
 import com.exploramus.data.repository.functions.getFavoriteSwipeEnabled
 import com.exploramus.data.repository.functions.getThemeMode
 import com.exploramus.data.repository.functions.saveThemeMode
@@ -18,7 +19,6 @@ import com.exploramus.shared.viewmodel.screens.settings.builder.Setting
 import com.exploramus.shared.viewmodel.screens.settings.builder.SettingsCategory
 import com.exploramus.shared.viewmodel.screens.settings.builder.updateSetting
 import com.exploramus.shared.viewmodel.utils.toFormattedDate
-import com.exploramus.core.models.ThemeMode
 
 fun Events.setFavoriteSwipeEnabled(enabled: Boolean) = screenCoroutine {
     dataRepository.setFavoriteSwipeEnabled(enabled)
@@ -55,7 +55,7 @@ fun Events.syncDataFromSettings() = screenCoroutine {
     if (result.isSuccess()) {
         stateManager.reinitLevel1Screens()
     }
-    val timeLabel = dataRepository.localSettings.listCacheTimestamp.toFormattedDate()
+    val timeLabel = dataRepository.localSettings.dataCacheTimestamp.toFormattedDate()
 
     stateManager.updateSyncSummary(
         DataSettingsCategory.buildSyncResultSummary(result, timeLabel)

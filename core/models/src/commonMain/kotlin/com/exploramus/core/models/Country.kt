@@ -34,3 +34,8 @@ data class CountryWithDetails(
     val details: CountryDetails?,
     val isFavorite: Boolean = false
 )
+
+data class CountryInfo(
+    val id: String,
+    val languages: List<String>,
+)

@@ -7,7 +7,7 @@ import com.russhwolf.settings.long
 import com.russhwolf.settings.string
 
 class MySettings (s : Settings) {
-    var listCacheTimestamp by s.long(defaultValue = 0)
+    var dataCacheTimestamp by s.long(defaultValue = 0)
     var apiSyncTimestamp by s.long(defaultValue = 0)
     var savedLevel1URI by s.string(defaultValue = "home:nul")
     var dbVersion by s.long(defaultValue = 1)
