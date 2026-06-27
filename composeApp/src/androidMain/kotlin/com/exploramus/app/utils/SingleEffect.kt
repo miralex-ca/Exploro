@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.retain.retain
 import androidx.compose.ui.platform.LocalContext
 import com.exploramus.data.repository.functions.exportDataToJson
-import com.exploramus.data.repository.functions.exportToJson
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.utils.SingleEffect
 import java.io.File
@@ -42,17 +41,6 @@ fun OnAppear(action: suspend () -> Unit) {
             appeared.value = true
             action()
         }
-    }
-}
-
-@Composable
-fun Navigation.ExportFromDb() {
-    val context = LocalContext.current
-    LaunchedEffect(Unit) {
-        val json = events.dataRepository.exportToJson()
-        val file = File(context.getExternalFilesDir(null), "countries_fallback.json")
-        file.writeText(json)
-        println("Export done: ${file.absolutePath}")
     }
 }
 
