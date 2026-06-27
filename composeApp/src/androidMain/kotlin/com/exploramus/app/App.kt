@@ -6,13 +6,12 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.exploramus.di.appModules
-import com.exploramus.shared.viewmodel.core.DKMPViewModel
 import com.exploramus.shared.getAndroidInstance
+import com.exploramus.shared.viewmodel.core.DKMPViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class App : Application() {
-
     lateinit var model: DKMPViewModel
 
     override fun onCreate() {

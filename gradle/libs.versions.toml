@@ -76,6 +76,12 @@ coil3 = { module = "com.github.skydoves:landscapist-coil3", version.ref = "lands
 androidx-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "uiGraphics" }
 
+androidx-test-runner = { group = "androidx.test", name = "runner", version = "1.6.2" }
+androidx-test-espresso = { group = "androidx.test.espresso", name = "espresso-core", version = "3.6.1" }
+androidx-test-junit = { group = "androidx.test.ext", name = "junit", version = "1.2.1" }
+androidx-compose-uitest-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "compose" }
+androidx-compose-uitest-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "compose" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 androidLibrary = { id = "com.android.library", version.ref = "android-gradle-plugin" }
