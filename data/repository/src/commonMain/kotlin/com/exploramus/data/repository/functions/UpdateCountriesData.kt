@@ -5,7 +5,7 @@ import com.exploramus.core.common.result.DataResult
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 import com.exploramus.data.repository.Repository
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 
 
 suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): DataResult<Unit> =

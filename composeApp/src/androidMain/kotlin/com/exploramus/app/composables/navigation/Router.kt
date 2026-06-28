@@ -10,7 +10,6 @@ import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.exploramus.app.composables.screens.appstart.AppStartupContent
-import com.exploramus.app.utils.ExportDataFromDb
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.NavigationState
 import com.exploramus.shared.viewmodel.screens.home.retryBootstrapApp
@@ -21,7 +20,6 @@ fun Navigation.Router() {
     val localNavigationState = remember { mutableStateOf( navigationState ) }
     val startupState by stateProvider.getAppStartupStateFlow().collectAsStateWithLifecycle()
 
-    ExportDataFromDb()
     AppStartupContent(
         state = startupState,
         onRetry = { events.retryBootstrapApp() }
