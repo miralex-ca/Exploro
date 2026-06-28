@@ -98,17 +98,24 @@ class StateManager(repo: Repository) {
         update: (T) -> T,
     ) {
         Log.d("updateScreen: "+stateClass.simpleName)
-        //debugLogger.log("currentVerticalNavigationLevelsMap: "+currentVerticalNavigationLevelsMap.values.map { it.URI } )
-
-        lateinit var screenIdentifier : ScreenIdentifier
         var screenState : T?
         for(i in currentVerticalNavigationLevelsMap.keys.sortedDescending()) {
             screenState = screenStatesMap[currentVerticalNavigationLevelsMap[i]?.URI]?.value as? T
             if (screenState != null) {
-                screenIdentifier = currentVerticalNavigationLevelsMap[i]!!
+                val screenIdentifier = currentVerticalNavigationLevelsMap[i]!!
                 screenStatesMap[screenIdentifier.URI]!!.value = update(screenState)
                 Log.d("state updated @ /${screenIdentifier.URI}")
                 return
+            }
+        }
+
+        // if not found in current stack, update all screens in the states map that match the state class
+        // this is useful for updating level 1 screens when they are not in the current stack
+        screenStatesMap.forEach { (uri, stateFlow) ->
+            screenState = stateFlow.value as? T
+            if (screenState != null) {
+                stateFlow.value = update(screenState)
+                Log.d("state updated (fallback) @ /$uri")
             }
         }
     }

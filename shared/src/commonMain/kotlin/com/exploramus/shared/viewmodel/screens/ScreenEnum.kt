@@ -20,11 +20,11 @@ enum class Screen(
     }),
 
     CountryDetail("country", 3, {
-        initCountryDetail(it.params())
+        initCountryDetail(it.screenParams())
     }),
 
     SectionScreen("section", 2, {
-        initSectionScreen(params = it.params())
+        initSectionScreen(params = it.screenParams())
     }),
 
     SearchScreen("search", 2, {

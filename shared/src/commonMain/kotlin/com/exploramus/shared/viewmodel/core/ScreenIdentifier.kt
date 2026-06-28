@@ -28,7 +28,6 @@ class ScreenIdentifier private constructor(
             }
             return null
         }
-
     }
 
     private fun returnURI() : String {
@@ -42,7 +41,7 @@ class ScreenIdentifier private constructor(
     }
 
     // unlike the "params" property, this reified function returns the specific type and not the generic "ScreenParams" interface type
-    inline fun <reified T: ScreenParams> params() : T {
+    inline fun <reified T: ScreenParams> screenParams() : T {
         if (params == null && paramsAsString != null) {
             val jsonValues = paramsStrToJson(paramsAsString!!)
             params = Json.decodeFromString<T>("""{$jsonValues}""")
