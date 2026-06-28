@@ -37,7 +37,6 @@ import com.exploramus.app.resources.with
 import com.exploramus.shared.viewmodel.screens.settings.SettingsScreenState
 import com.exploramus.shared.viewmodel.screens.settings.builder.InterfaceSettingsCategory
 import com.exploramus.shared.viewmodel.screens.settings.builder.Setting
-import com.exploramus.shared.viewmodel.screens.settings.builder.SettingAction
 import com.exploramus.shared.viewmodel.screens.settings.builder.SettingsCategory
 import com.exploramus.shared.viewmodel.screens.settings.builder.filterSettings
 
@@ -55,7 +54,7 @@ fun SettingsScreen(
 @Composable
 fun SettingsScreenContent(
     screenState: SettingsScreenState,
-    onSettingAction: (SettingAction) -> Unit,
+    onSettingAction: (SettingsUiAction) -> Unit,
 ) {
     val formFactor = LocalFormFactor.current
 
@@ -83,7 +82,7 @@ fun SettingsScreenContent(
 @Composable
 fun SettingsCategoriesList(
     settingsCategories: List<SettingsCategory>,
-    onSettingAction: (SettingAction) -> Unit,
+    onSettingAction: (SettingsUiAction) -> Unit,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -107,7 +106,7 @@ fun SettingsCategoriesList(
 @Composable
 fun SettingsCategory(
     category: SettingsCategory,
-    onAction: (SettingAction) -> Unit,
+    onAction: (SettingsUiAction) -> Unit,
 ) {
 
     val layout = MaterialTheme.layout.settings
@@ -155,7 +154,7 @@ fun SettingsCategory(
 @Composable
 fun SettingItem(
     setting: Setting,
-    onAction: (SettingAction) -> Unit
+    onAction: (SettingsUiAction) -> Unit
 ) {
     when (setting) {
         is Setting.Options -> ListPreference(setting, onAction)
@@ -168,12 +167,12 @@ fun SettingItem(
 @Composable
 fun SwitchPreference(
     setting: Setting.Switch,
-    onAction: (SettingAction) -> Unit
+    onAction: (SettingsUiAction) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = { onAction(setting.onToggle()) })
+            .clickable(onClick = { onAction(SettingsUiAction.Toggle(setting.key, !setting.value)) })
             .padding(14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -193,7 +192,7 @@ fun SwitchPreference(
 
         Switch(
             checked = setting.value,
-            onCheckedChange = { onAction(setting.onToggle()) }
+            onCheckedChange = { onAction(SettingsUiAction.Toggle(setting.key, it)) }
         )
     }
 }
@@ -201,7 +200,7 @@ fun SwitchPreference(
 @Composable
 fun ListPreference(
     setting: Setting.Options,
-    onAction: (SettingAction) -> Unit
+    onAction: (SettingsUiAction) -> Unit
 ) {
     var isDialogVisible by remember { mutableStateOf(false) }
     val selectedOption = setting.options.find { it.value == setting.selectedValue }
@@ -232,7 +231,7 @@ fun ListPreference(
         options = setting.options.map { it.label.asString() },
         selectedIndex = setting.options.indexOfFirst { it.value == setting.selectedValue },
         onOptionSelected = { index ->
-            onAction(setting.onSelect(setting.options[index].value))
+            onAction(SettingsUiAction.Select(setting.key, setting.options[index].value))
         },
         onDismiss = { isDialogVisible = false }
     )
@@ -241,7 +240,7 @@ fun ListPreference(
 @Composable
 fun PreferenceWithAction(
     setting: Setting.Action,
-    onAction: (SettingAction) -> Unit
+    onAction: (SettingsUiAction) -> Unit
 ) {
     var isDialogVisible by remember { mutableStateOf(false) }
 
@@ -267,7 +266,7 @@ fun PreferenceWithAction(
         title = dialogTitleRes.asString(),
         message = dialogMessageRes?.asString() ?: "",
         onConfirm = {
-            onAction(setting.onClick())
+            onAction(SettingsUiAction.Trigger(setting.key))
         },
         onDismiss = {
             isDialogVisible = false

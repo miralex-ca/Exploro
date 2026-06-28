@@ -18,6 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,6 +36,7 @@ import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.AppTypography
 import com.exploramus.app.design.theme.appColors
+import com.exploramus.core.common.logging.Log
 import com.exploramus.shared.viewmodel.screens.home.HomeListItem
 import com.exploramus.shared.viewmodel.screens.home.HomeScreenState
 import com.exploramus.shared.viewmodel.screens.home.HomeSectionState
@@ -64,6 +66,14 @@ fun HomeScreenContent(
     screenState: HomeScreenState,
     onEvent: (HomeUiEvent) -> Unit,
 ) {
+
+    Log.d("screen list ${screenState.homeSections.firstOrNull()?.sectionListItems?.map { it.name }}")
+
+
+    LaunchedEffect(Unit) {
+        Log.d("home screen appeared")
+    }
+
     val formFactor = LocalFormFactor.current
     val layout = MaterialTheme.layout
     val bottomPadding = layout.home.bottomPadding.value() +

@@ -3,7 +3,7 @@ import SwiftUI
 import Shared
 
 
-struct SetttingsWithOptionsRow: View {
+struct SettingsWithOptionsRow: View {
     let setting: Setting.Options
     
     private var selectedLabel: String {
@@ -36,7 +36,7 @@ struct SetttingsWithOptionsRow: View {
 
 struct SettingsOptionsView: View {
     let setting: Setting.Options
-    let onAction: (SettingsAction) -> Void
+    let onAction: (SettingsUiAction) -> Void
     @Environment(\.appTheme) var theme
 
     var body: some View {

@@ -28,7 +28,7 @@ final class SettingsViewModel: ObservableObject {
         }
     }
     
-    func send(_ action: SettingsAction) {
+    func send(_ action: SettingsUiAction) {
         handler?.onSettingAction(action)
     }
 

@@ -1,7 +1,7 @@
 import SwiftUI
 import Shared
 
-enum SettingsAction {
+enum SettingsUiAction {
     case toggle(key: String, value: Bool)
     case select(key: String, value: String)
     case action(key: String)
@@ -15,7 +15,7 @@ class SettingsSheetEventHandler {
         self.events = events
     }
     
-    func onSettingAction(_ action: SettingsAction) {
+    func onSettingAction(_ action: SettingsUiAction) {
 
         switch action {
 

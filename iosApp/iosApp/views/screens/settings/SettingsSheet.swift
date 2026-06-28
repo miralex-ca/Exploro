@@ -47,7 +47,7 @@ struct SettingsView: View {
 
 struct SettingsCategorySection: View {
     let category: SettingsCategory
-    let onAction: (SettingsAction) -> Void
+    let onAction: (SettingsUiAction) -> Void
     
     @Environment(\.appTheme) var theme
     
@@ -95,7 +95,7 @@ struct SettingsCategorySection: View {
 @ViewBuilder
 func SettingsRow(
     setting: Setting,
-    onAction: @escaping (SettingsAction) -> Void
+    onAction: @escaping (SettingsUiAction) -> Void
 ) -> some View {
     switch setting {
         
@@ -109,7 +109,7 @@ func SettingsRow(
         NavigationLink {
             SettingsOptionsView(setting: s, onAction: onAction)
         } label: {
-            SetttingsWithOptionsRow(setting: s)
+            SettingsWithOptionsRow(setting: s)
         }
         .buttonStyle(SettingsRowButtonStyle())
         

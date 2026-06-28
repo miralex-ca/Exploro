@@ -1,6 +1,7 @@
 package com.exploramus.shared.viewmodel.screens.settings
 
 
+import com.exploramus.core.common.logging.Log
 import com.exploramus.core.common.result.isSuccess
 import com.exploramus.core.models.ThemeMode
 import com.exploramus.data.repository.functions.getFavoriteSwipeEnabled
@@ -29,7 +30,7 @@ fun Events.setFavoriteSwipeEnabled(enabled: Boolean) = screenCoroutine {
             favoriteSwipeEnabled = isFavoriteSwipeEnabled
         )
     )
-    stateManager.rebuildSettings()
+    //stateManager.refresheSettingsScreen()
 }
 
 fun Events.saveThemeMode(name: String) = screenCoroutine {
@@ -42,7 +43,7 @@ fun Events.saveThemeMode(name: String) = screenCoroutine {
             themeMode = current
         )
     )
-    stateManager.rebuildSettings()
+
 }
 
 fun Events.syncDataFromSettings() = screenCoroutine {
@@ -74,13 +75,14 @@ private fun StateManager.updateSyncSummary(summary: FormattedText?) {
     }
 }
 
-private fun StateManager.rebuildSettings() {
-    updateScreen(SettingsScreenState::class) {
-        it.copy(categories = settingsManager.getCategories())
+fun StateManager.refreshSettingsScreen() {
+     updateScreen(SettingsScreenState::class) {
+        it.copy(categories = settingsManager.settings.value)
     }
 }
 
 private suspend fun StateManager.reinitLevel1Screens() {
+    Log.d("reinit screens lv1")
     Level1Navigation.Home.screenIdentifier.getScreenInitSettings(this).callOnInit(this)
     Level1Navigation.Favorites.screenIdentifier.getScreenInitSettings(this).callOnInit(this)
 }
@@ -102,6 +104,7 @@ fun Events.updateSetting(key: String, value: String) {
             updateThemeMode(name = value)
         }
     }
+
 }
 
 fun Events.updateSetting(key: String, value: Boolean) {
@@ -118,6 +121,7 @@ fun Events.triggerSettingAction(key: String) {
             syncDataFromSettings()
         }
     }
+
 }
 
 
@@ -133,6 +137,7 @@ fun Events.updateThemeMode(name: String) = appCoroutine {
     )
 
     stateManager.settingsManager.updateSettingsState()
+    stateManager.refreshSettingsScreen()
 }
 
 fun Events.updateFavoriteSwipeEnabled(enabled: Boolean) = appCoroutine {
@@ -145,6 +150,7 @@ fun Events.updateFavoriteSwipeEnabled(enabled: Boolean) = appCoroutine {
         )
     )
     stateManager.settingsManager.updateSettingsState()
+    stateManager.refreshSettingsScreen()
 }
 
 private fun StateManager.updateSettingsSyncSummary(summary: FormattedText?) {
@@ -155,4 +161,5 @@ private fun StateManager.updateSettingsSyncSummary(summary: FormattedText?) {
     }
 
     settingsManager.setSettingsState(updatedSettings)
+    refreshSettingsScreen()
 }

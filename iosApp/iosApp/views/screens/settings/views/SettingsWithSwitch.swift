@@ -5,7 +5,7 @@ import Shared
 
 struct SettingsSwitchRow: View {
     let setting: Setting.Switch
-    let onAction: (SettingsAction) -> Void
+    let onAction: (SettingsUiAction) -> Void
     
     private var summary: String? {
             if setting.value, let summaryOn = setting.summaryOn {

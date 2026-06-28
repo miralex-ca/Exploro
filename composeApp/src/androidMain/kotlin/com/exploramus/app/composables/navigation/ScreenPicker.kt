@@ -1,9 +1,9 @@
 package com.exploramus.app.composables.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.app.composables.navigation.handlers.EventHandlers
 import com.exploramus.app.composables.screens.details.DetailsScreen
@@ -27,7 +27,7 @@ fun Navigation.ScreenPicker(
     screenIdentifier: ScreenIdentifier,
     screenNavActions: ScreenNavActions,
 ) {
-    val state by stateProvider.getScreenStateFlow(screenIdentifier).collectAsState()
+    val state by stateProvider.getScreenStateFlow(screenIdentifier).collectAsStateWithLifecycle()
 
     val eventHandlers = remember {
         EventHandlers(events = events, navActions = screenNavActions)
@@ -80,7 +80,5 @@ fun Navigation.ScreenPicker(
                 screenState = state as SearchScreenState,
                 eventHandler = eventHandlers.search,
             )
-
-        else -> {}
     }
 }

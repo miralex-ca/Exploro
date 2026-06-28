@@ -27,7 +27,7 @@ struct SettingsWithActionRow: View {
 
 struct SettinsActionView: View {
     let setting: Setting.Action
-    let onAction: (SettingsAction) -> Void
+    let onAction: (SettingsUiAction) -> Void
     @Environment(\.appTheme) var theme
 
     var body: some View {
