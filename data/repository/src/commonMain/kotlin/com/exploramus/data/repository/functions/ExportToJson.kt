@@ -4,6 +4,7 @@ import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 import com.exploramus.data.repository.Repository
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 
 suspend fun Repository.exportDataToJson(): Pair<String, String> = withRepoContext {
@@ -11,13 +12,13 @@ suspend fun Repository.exportDataToJson(): Pair<String, String> = withRepoContex
     val json = Json { prettyPrint = true }
 
     val countriesJson = json.encodeToString(
-        countries.map { (country, _) -> CountryDto(country) }
+        ListSerializer(CountryDto.serializer()),
+        countries.map { CountryDto(it.country) }
     )
 
     val detailsJson = json.encodeToString(
-        countries.mapNotNull { (country, details) ->
-            details?.let { CountryDetailsDto(country.id, it) }
-        }
+        ListSerializer(CountryDetailsDto.serializer()),
+        countries.mapNotNull { it.details?.let { details -> CountryDetailsDto(it.country.id, details) } }
     )
 
     Pair(countriesJson, detailsJson)

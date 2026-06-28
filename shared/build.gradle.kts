@@ -12,13 +12,17 @@ dependencies {
 }
 
 kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
             freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -28,16 +32,6 @@ kotlin {
             baseName = "Shared"
             isStatic = false
             linkerOpts("-lsqlite3")
-        }
-    }
-
-    targets.configureEach {
-        compilations.configureEach {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    freeCompilerArgs.add("-Xexpect-actual-classes")
-                }
-            }
         }
     }
     

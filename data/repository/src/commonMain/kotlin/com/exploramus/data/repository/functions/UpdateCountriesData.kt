@@ -10,9 +10,9 @@ import kotlinx.datetime.Clock
 
 suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): DataResult<Unit> =
     withRepoContext {
-        val nowUnixTime = Clock.System.now().epochSeconds
-        val apiDataExpireTime = 3 * 24 * 3600L
-        val apiSyncExpired = nowUnixTime - localSettings.apiSyncTimestamp > apiDataExpireTime
+        val nowUnixTime: Long = Clock.System.now().epochSeconds
+        val apiDataExpireTime: Long = 3 * 24 * 3600L
+        val apiSyncExpired = (nowUnixTime - localSettings.apiSyncTimestamp) > apiDataExpireTime
         val dbEmpty = !localDb.hasCountriesData()
 
         if (!dbEmpty && !apiSyncExpired && !forceUpdate) {
