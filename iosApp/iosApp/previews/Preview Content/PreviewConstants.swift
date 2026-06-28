@@ -10,7 +10,7 @@ extension Country {
         capital: "Paris",
         continent: "Europe",
         location: "Western Europe",
-        flagImage: "https://flags.restcountries.com/v5/w640/fr.png",
+        flagImage: "https://flagcdn.com/w640/fr.png",
         flagEmoji: "🇫🇷"
     )
     
@@ -24,7 +24,7 @@ extension Country {
             capital: "Berlin",
             continent: "Europe",
             location: "Western Europe",
-            flagImage: "https://flags.restcountries.com/v5/w640/de.png",
+            flagImage: "https://flagcdn.com/w640/de.png",
             flagEmoji: "🇩🇪"
         ),
         Country(
@@ -35,7 +35,7 @@ extension Country {
             capital: "Rome",
             continent: "Europe",
             location: "Southern Europe",
-            flagImage: "https://flags.restcountries.com/v5/w640/it.png",
+            flagImage: "https://flagcdn.com/w640/it.png",
             flagEmoji: "🇮🇹"
         )
     ]
@@ -46,7 +46,7 @@ extension CountryDetailsState {
         id: "FRA",
         name: "France",
         officialName: "French Republic",
-        flagImage: "https://flags.restcountries.com/v5/w640/fr.png",
+        flagImage: "https://flagcdn.com/w640/fr.png",
         flagEmoji: "🇫🇷",
         coatOfArmsUrl: "https://mainfacts.com/media/images/coats_of_arms/fr.png",
         capital: "Paris",

@@ -5,8 +5,8 @@ import com.exploramus.data.network.BuildKonfig
 object NetworkEnvironments {
     val PROD = NetworkEnvironment(
         name = "Production",
-        countriesBaseUrl = "https://api.restcountries.com/countries/v5",
-        apiKey = BuildKonfig.RESTCOUNTRIES_API_KEY
+        countriesBaseUrl = "https://api.example.com/",
+        apiKey = BuildKonfig.API_KEY
     )
 
     val TEST = NetworkEnvironment(

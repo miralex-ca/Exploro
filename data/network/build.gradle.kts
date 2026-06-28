@@ -88,8 +88,8 @@ buildkonfig {
     defaultConfigs {
         buildConfigField(
             STRING,
-            "RESTCOUNTRIES_API_KEY",
-            localProperties.getProperty("RESTCOUNTRIES_API_KEY", "")
+            "API_KEY",
+            localProperties.getProperty("API_KEY", "")
         )
     }
 }
