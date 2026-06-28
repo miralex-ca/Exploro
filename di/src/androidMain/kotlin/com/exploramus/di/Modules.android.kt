@@ -6,8 +6,8 @@ import com.exploramus.data.common.AssetFileReader
 import com.exploramus.data.common.AssetsDataSource
 import com.exploramus.data.common.LocalDataSource
 import com.exploramus.data.common.PlatformInfoProvider
-import com.exploramus.data.repository.createAndroidPlatformInfoProvider
 import com.exploramus.data.localdb.createAndroidLocalDataSource
+import com.exploramus.data.repository.createAndroidPlatformInfoProvider
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

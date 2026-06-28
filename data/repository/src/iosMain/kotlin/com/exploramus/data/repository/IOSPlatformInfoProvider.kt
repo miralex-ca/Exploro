@@ -1,7 +1,7 @@
 package com.exploramus.data.repository
 
-import com.exploramus.data.common.PlatformInfoProvider
 import com.exploramus.core.models.AppInfo
+import com.exploramus.data.common.PlatformInfoProvider
 import platform.Foundation.NSBundle
 import platform.UIKit.UIDevice
 

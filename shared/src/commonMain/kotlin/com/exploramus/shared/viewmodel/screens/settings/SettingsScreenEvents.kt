@@ -86,11 +86,10 @@ private suspend fun StateManager.reinitLevel1Screens() {
 }
 
 
-fun Events.buildSettingsCategories(callback: (List<SettingsCategory>) -> Unit ) = appCoroutine {
+fun Events.buildSettingsCategories(callback: (List<SettingsCategory>) -> Unit) = appCoroutine {
     val categories = stateManager.settingsManager.getCategories()
     callback.invoke(categories)
 }
-
 
 
 fun Events.updateSettingsState() = appCoroutine {
@@ -120,8 +119,6 @@ fun Events.triggerSettingAction(key: String) {
         }
     }
 }
-
-
 
 
 fun Events.updateThemeMode(name: String) = appCoroutine {

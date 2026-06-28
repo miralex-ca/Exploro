@@ -1,13 +1,13 @@
 package com.exploramus.app.composables.screens.favorites
 
 import androidx.compose.runtime.Composable
+import com.exploramus.app.composables.components.EmptyState
+import com.exploramus.app.composables.components.EmptyStateView
+import com.exploramus.app.composables.components.FadeLoadingContent
 import com.exploramus.app.composables.screens.favorites.views.FavoritesGrid
 import com.exploramus.app.composables.screens.favorites.views.FavoritesList
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isCompact
-import com.exploramus.app.composables.components.EmptyState
-import com.exploramus.app.composables.components.EmptyStateView
-import com.exploramus.app.composables.components.FadeLoadingContent
 import com.exploramus.shared.viewmodel.screens.favorites.FavoritesScreenState
 
 

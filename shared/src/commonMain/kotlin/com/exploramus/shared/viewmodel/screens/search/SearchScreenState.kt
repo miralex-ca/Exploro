@@ -15,7 +15,11 @@ data class SearchScreenState(
 
 sealed class SearchResult {
     data object Idle : SearchResult()
-    data class Success(val items: List<SearchListItem>, val newVersion: String = Uuid.random().toString()) : SearchResult()
+    data class Success(
+        val items: List<SearchListItem>,
+        val newVersion: String = Uuid.random().toString()
+    ) : SearchResult()
+
     data object NotFound : SearchResult()
 }
 

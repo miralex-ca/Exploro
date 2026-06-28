@@ -1,7 +1,7 @@
 package com.exploramus.data.repository.functions
 
-import com.exploramus.data.repository.Repository
 import com.exploramus.core.models.ThemeMode
+import com.exploramus.data.repository.Repository
 
 fun Repository.getThemeMode(): ThemeMode {
     return ThemeMode.fromId(localSettings.themeModeId)

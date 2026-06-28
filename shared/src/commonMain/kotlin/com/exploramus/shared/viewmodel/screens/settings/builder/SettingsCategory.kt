@@ -8,7 +8,10 @@ data class SettingsCategory(
     val settings: List<Setting>
 )
 
-fun List<SettingsCategory>.updateSetting(key: String, update: (Setting) -> Setting): List<SettingsCategory> {
+fun List<SettingsCategory>.updateSetting(
+    key: String,
+    update: (Setting) -> Setting
+): List<SettingsCategory> {
     return map { category ->
         category.copy(
             settings = category.settings.map { setting ->

@@ -25,7 +25,6 @@ import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.exploramus.app.resources.Strings
 import com.exploramus.app.composables.screens.search.views.SearchBar
 import com.exploramus.app.composables.screens.search.views.SearchResultsList
 import com.exploramus.app.composables.screens.search.views.rememberSearchInputController
@@ -33,6 +32,7 @@ import com.exploramus.app.composables.screens.search.views.rememberSearchKeyboar
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.AppTypography
+import com.exploramus.app.resources.Strings
 import com.exploramus.app.utils.SingleEffect
 import com.exploramus.shared.viewmodel.screens.search.SearchListItem
 import com.exploramus.shared.viewmodel.screens.search.SearchResult

@@ -2,9 +2,9 @@ package com.exploramus.app.resources
 
 import androidx.compose.runtime.Composable
 import com.exploramus.app.R
+import com.exploramus.shared.resources.SharedRes
 import com.exploramus.shared.resources.StringRef
 import com.exploramus.shared.resources.StringRefWithArgs
-import com.exploramus.shared.resources.SharedRes
 
 object StringRefResolver {
     @Composable

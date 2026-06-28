@@ -75,20 +75,3 @@ private suspend fun Repository.storeCountries(
     }.isSuccess
     return countriesStored && detailsStored
 }
-
-//private suspend fun Repository.seedFromAssets(nowUnixTime: Long): DataResult<Unit> {
-//    val countriesResult = assetsDataSource.readAllCountries()
-//    val detailsResult = assetsDataSource.readAllCountryDetails()
-//
-//    val stored = if (countriesResult is DataResult.Success && detailsResult is DataResult.Success) {
-//        storeCountries(countriesResult.data, detailsResult.data)
-//    } else false
-//
-//    return if (stored) {
-//        localSettings.dataCacheTimestamp = nowUnixTime
-//        // intentionally NOT setting apiSyncTimestamp — assets don't count as API sync
-//        DataResult.Success(Unit)
-//    } else {
-//        DataResult.Error(error = null)
-//    }
-//}

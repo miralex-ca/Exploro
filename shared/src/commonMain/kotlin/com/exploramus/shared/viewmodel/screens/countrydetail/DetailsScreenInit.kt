@@ -2,9 +2,9 @@ package com.exploramus.shared.viewmodel.screens.countrydetail
 
 import com.exploramus.data.repository.functions.getCountryDetails
 import com.exploramus.data.repository.functions.isFavorite
+import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
-import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import kotlinx.serialization.Serializable
 
 @Serializable

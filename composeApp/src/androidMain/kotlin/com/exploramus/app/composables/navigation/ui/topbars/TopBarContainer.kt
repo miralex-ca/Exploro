@@ -2,9 +2,9 @@ package com.exploramus.app.composables.navigation.ui.topbars
 
 import androidx.compose.runtime.Composable
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
-import com.exploramus.app.resources.Strings
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.useBottomBar
+import com.exploramus.app.resources.Strings
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 import com.exploramus.shared.viewmodel.screens.Screen

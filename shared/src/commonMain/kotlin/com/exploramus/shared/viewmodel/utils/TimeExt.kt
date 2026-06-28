@@ -19,7 +19,7 @@ fun Long.toFormattedDate(): String? {
             it
         },
         onFailure = { _ ->
-           null
+            null
         }
     )
 }

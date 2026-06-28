@@ -39,23 +39,17 @@ fun GetCountryDetailsById.toCountryWithDetails(): CountryWithDetails =
         details = if (population != null) {
             CountryDetails(
                 id = id,
-
                 coatOfArmsUrl = coat_of_arms_url.orEmpty(),
-
                 totalArea = total_area ?: 0.0,
                 population = population,
-
                 currencyCode = currency_code.orEmpty(),
                 currencyName = currency_name.orEmpty(),
                 currencySymbol = currency_symbol.orEmpty(),
-
                 languages = languages
                     ?.split(",")
                     ?.filter { it.isNotBlank() }
                     ?: emptyList(),
-
                 mapsUrl = maps_url.orEmpty(),
-
                 timezones = timezones
                     ?.split(",")
                     ?.filter { it.isNotBlank() }
@@ -101,5 +95,5 @@ fun GetAllCountriesWithDetails.toCountryWithDetails(): CountryWithDetails =
                 longitude = longitude ?: 0.0
             )
         } else null,
-        isFavorite = false // not needed
+        isFavorite = false // not needed. here
     )

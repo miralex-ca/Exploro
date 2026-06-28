@@ -33,7 +33,10 @@ fun List<SettingsCategory>.filterSettings(blacklistedIds: List<String>): List<Se
     }
 }
 
-fun filterSettings(settings: List<SettingsCategory>, blacklistedIds: List<String>): List<SettingsCategory> {
+fun filterSettings(
+    settings: List<SettingsCategory>,
+    blacklistedIds: List<String>
+): List<SettingsCategory> {
     return settings.mapNotNull { category ->
         if (category.id in blacklistedIds) return@mapNotNull null
         val filteredSettings = category.settings.filter { it.key !in blacklistedIds }

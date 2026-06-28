@@ -1,10 +1,9 @@
 package com.exploramus.shared.viewmodel.screens.home
 
 import com.exploramus.data.repository.functions.getHomeSections
-import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
-import kotlinx.coroutines.delay
+import com.exploramus.shared.viewmodel.core.StateManager
 
 
 fun StateManager.initHomeScreen() = ScreenInitSettings(
@@ -24,7 +23,7 @@ fun StateManager.initHomeScreen() = ScreenInitSettings(
 
         val sections = dataRepository.getHomeSections().toHomeSectionStates()
 
-         updateScreen(HomeScreenState::class) {
+        updateScreen(HomeScreenState::class) {
             it.copy(
                 isLoading = false,
                 homeSections = sections

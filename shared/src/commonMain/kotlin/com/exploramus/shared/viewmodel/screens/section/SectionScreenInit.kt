@@ -1,10 +1,10 @@
 package com.exploramus.shared.viewmodel.screens.section
 
 import com.exploramus.data.repository.functions.getCountriesBySectionId
-import com.exploramus.shared.viewmodel.core.ScreenParams
-import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
+import com.exploramus.shared.viewmodel.core.ScreenParams
+import com.exploramus.shared.viewmodel.core.StateManager
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -16,7 +16,7 @@ fun StateManager.initSectionScreen(params: SectionParams) = ScreenInitSettings(
     callOnInit = {
         val countries = dataRepository.getCountriesBySectionId(params.continent)
 
-         updateScreen(SectionScreenState::class) {
+        updateScreen(SectionScreenState::class) {
             it.copy(
                 isLoading = false,
                 countries = countries.toSectionItems()
@@ -24,5 +24,4 @@ fun StateManager.initSectionScreen(params: SectionParams) = ScreenInitSettings(
         }
     },
     callOnInitAtEachNavigation = CallOnInitValues.DONT_CALL
-
 )

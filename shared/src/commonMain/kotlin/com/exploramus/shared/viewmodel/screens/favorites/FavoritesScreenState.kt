@@ -3,10 +3,10 @@ package com.exploramus.shared.viewmodel.screens.favorites
 import com.exploramus.core.models.Country
 import com.exploramus.shared.viewmodel.core.ScreenState
 
-data class FavoritesScreenState (
-    val isLoading : Boolean = false,
-    val favorites : List<FavoriteListItem> = emptyList(),
-): ScreenState
+data class FavoritesScreenState(
+    val isLoading: Boolean = false,
+    val favorites: List<FavoriteListItem> = emptyList(),
+) : ScreenState
 
 
 data class FavoriteListItem(

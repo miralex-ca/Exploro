@@ -1,9 +1,9 @@
 package com.exploramus.app.resources
 
 import androidx.compose.runtime.Composable
+import com.exploramus.shared.resources.FormattedText
 import com.exploramus.shared.resources.StringRef
 import com.exploramus.shared.resources.StringRefWithArgs
-import com.exploramus.shared.resources.FormattedText
 
 @Composable
 fun StringRef.asString(): String = StringRefResolver.resolve(this)

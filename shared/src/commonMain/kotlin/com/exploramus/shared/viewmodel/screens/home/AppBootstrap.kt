@@ -3,8 +3,8 @@ package com.exploramus.shared.viewmodel.screens.home
 import com.exploramus.core.common.result.DataResult
 import com.exploramus.core.common.result.isSuccess
 import com.exploramus.data.repository.functions.hasCountriesData
-import com.exploramus.data.repository.functions.updateCountriesListData
 import com.exploramus.data.repository.functions.migrateDbIfNeeded
+import com.exploramus.data.repository.functions.updateCountriesListData
 import com.exploramus.shared.viewmodel.appstate.AppStartupState
 import com.exploramus.shared.viewmodel.core.StateManager
 

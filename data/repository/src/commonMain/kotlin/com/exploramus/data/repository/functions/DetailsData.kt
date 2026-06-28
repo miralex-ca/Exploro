@@ -1,7 +1,7 @@
 package com.exploramus.data.repository.functions
 
-import com.exploramus.data.repository.Repository
 import com.exploramus.core.models.CountryWithDetails
+import com.exploramus.data.repository.Repository
 
 
 suspend fun Repository.getCountryDetails(code: String):  CountryWithDetails? = withRepoContext {

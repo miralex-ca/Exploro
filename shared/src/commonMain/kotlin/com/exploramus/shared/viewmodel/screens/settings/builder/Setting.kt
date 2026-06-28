@@ -58,5 +58,5 @@ data class SettingOption(
 sealed class SettingAction {
     data class SetThemeMode(val value: String) : SettingAction()
     data class SetFavoriteSwipe(val enabled: Boolean) : SettingAction()
-    data object SyncData: SettingAction()
+    data object SyncData : SettingAction()
 }

@@ -19,7 +19,6 @@ class Repository(
     val platformInfo: PlatformInfoProvider,
     val dispatchers: DispatchersProvider,
 ) {
-
     val localSettings by lazy { MySettings(settings) }
     val runtimeCache = RuntimeCache()
 

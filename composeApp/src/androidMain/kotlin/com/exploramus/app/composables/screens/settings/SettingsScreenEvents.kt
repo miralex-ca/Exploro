@@ -5,7 +5,6 @@ import com.exploramus.shared.viewmodel.screens.settings.builder.SettingAction
 import com.exploramus.shared.viewmodel.screens.settings.saveThemeMode
 import com.exploramus.shared.viewmodel.screens.settings.setFavoriteSwipeEnabled
 import com.exploramus.shared.viewmodel.screens.settings.syncDataFromSettings
-import com.exploramus.core.models.ThemeMode
 
 sealed class SettingsUiEvent
 

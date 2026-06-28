@@ -1,9 +1,9 @@
 package com.exploramus.shared.viewmodel.screens.favorites
 
 import com.exploramus.data.repository.functions.getFavorites
-import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
+import com.exploramus.shared.viewmodel.core.StateManager
 
 fun StateManager.initFavoritesScreen() = ScreenInitSettings(
     title = "Favorites",

@@ -1,8 +1,8 @@
 package com.exploramus.shared.viewmodel.screens.search
 
-import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
+import com.exploramus.shared.viewmodel.core.StateManager
 
 fun StateManager.initSearchScreen() = ScreenInitSettings(
     title = "Search",

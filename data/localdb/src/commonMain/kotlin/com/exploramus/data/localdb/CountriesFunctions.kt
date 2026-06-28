@@ -28,20 +28,14 @@ fun AppLocalDb.setCountriesDetailsList(list: List<CountryDetails>) {
         list.forEach {
             countryDetailsQueries.upsertCountryDetails(
                 countryId = it.id,
-
                 population = it.population,
                 totalArea = it.totalArea,
-
                 coatOfArmsUrl = it.coatOfArmsUrl,
-
                 currencyCode = it.currencyCode,
                 currencyName = it.currencyName,
                 currencySymbol = it.currencySymbol,
-
                 languages = it.languages.joinToString(","),
-
                 mapsUrl = it.mapsUrl,
-
                 timezones = it.timezones.joinToString(","),
                 wikiUrl = it.wikiUrl,
                 latitude = it.latitude,
