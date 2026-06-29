@@ -14,8 +14,8 @@ dependencies {
 kotlin {
     android {
         namespace = "com.exploramus.shared"
-        compileSdk = 37
-        minSdk = 26
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
         withHostTest { }
 
         compilerOptions {

@@ -65,8 +65,7 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.viewmodel)
 
-    implementation("io.coil-kt:coil-compose:2.6.0")
-    implementation("io.coil-kt:coil-svg:2.6.0")
+    implementation(libs.coil.compose)
 
     debugImplementation(libs.composeUiTooling)
     debugImplementation(libs.androidx.compose.uitest.manifest)

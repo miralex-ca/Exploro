@@ -6,8 +6,8 @@ plugins {
 kotlin {
     android {
         namespace = "com.exploramus.core.models"
-        compileSdk = 37
-        minSdk = 26
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
         withHostTest { }
     }
 
