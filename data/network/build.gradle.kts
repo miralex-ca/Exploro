@@ -4,11 +4,11 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.buildKonfig)
+    alias(libs.plugins.gmazzoBuildconfig)
 }
 
 kotlin {
-    androidLibrary {
+    android {
         namespace = "com.exploramus.data.network"
         compileSdk = 37
         minSdk = 26
@@ -69,14 +69,13 @@ val localProperties = Properties().apply {
     if (file.exists()) load(file.inputStream())
 }
 
-buildkonfig {
+buildConfig {
     packageName = "com.exploramus.data.network"
+    className = "BuildKonfig"
 
-    defaultConfigs {
-        buildConfigField(
-            com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
-            "API_KEY",
-            localProperties.getProperty("API_KEY", "")
-        )
-    }
+    buildConfigField(
+        "String",
+        "API_KEY",
+        "\"${localProperties.getProperty("API_KEY", "")}\""
+    )
 }

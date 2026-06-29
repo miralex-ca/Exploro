@@ -33,7 +33,7 @@ android-desugar-jdk = "2.1.5"
 skie = "0.10.11"
 slf4j = "2.0.9"
 logback = "1.4.14"
-buildKonfig = "0.15.2"
+gmazzo-buildconfig = "6.0.10"
 
 # Test
 androidx-test-runner = "1.7.0"
@@ -117,4 +117,4 @@ skie = { id = "co.touchlab.skie", version.ref = "skie" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "android-gradle-plugin" }
 androidLint = { id = "com.android.lint", version.ref = "android-gradle-plugin" }
-buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildKonfig" }
+gmazzoBuildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "gmazzo-buildconfig" }

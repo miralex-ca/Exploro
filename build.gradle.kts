@@ -19,4 +19,5 @@ plugins {
     alias(libs.plugins.sqlDelight) apply false
     alias(libs.plugins.skie) apply false
     alias(libs.plugins.androidLint) apply false
+    alias(libs.plugins.gmazzoBuildconfig) apply false
 }
