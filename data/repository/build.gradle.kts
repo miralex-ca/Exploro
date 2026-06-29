@@ -27,6 +27,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = xcfName
             linkerOpts("-lsqlite3")
+            binaryOption("bundleId", "com.exploramus.data.repository")
         }
     }
 

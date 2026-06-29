@@ -37,6 +37,7 @@ kotlin {
             baseName = "Shared"
             isStatic = false
             linkerOpts("-lsqlite3")
+            binaryOption("bundleId", "com.exploramus.shared")
         }
     }
     

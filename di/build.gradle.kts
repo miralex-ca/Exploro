@@ -20,6 +20,7 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = xcfName
+            binaryOption("bundleId", "com.exploramus.di")
         }
     }
 
