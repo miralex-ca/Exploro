@@ -1,33 +1,28 @@
-import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import java.util.Properties
-
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.buildKonfig)
 }
 
 kotlin {
-    androidTarget()
+    androidLibrary {
+        namespace = "com.exploramus.data.network"
+        compileSdk = 37
+        minSdk = 26
+        withHostTest { }
+    }
 
     val xcfName = "dataNetworkKit"
 
-    iosX64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosSimulatorArm64 {
-        binaries.framework {
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
             baseName = xcfName
         }
     }
@@ -74,20 +69,12 @@ val localProperties = Properties().apply {
     if (file.exists()) load(file.inputStream())
 }
 
-android {
-    namespace = "com.exploramus.data.network"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-}
-
 buildkonfig {
     packageName = "com.exploramus.data.network"
 
     defaultConfigs {
         buildConfigField(
-            STRING,
+            com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
             "API_KEY",
             localProperties.getProperty("API_KEY", "")
         )

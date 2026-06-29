@@ -1,11 +1,16 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
-    androidTarget()
+    android {
+        namespace = "com.exploramus.data.localdb"
+        compileSdk = 37
+        minSdk = 26
+        withHostTest { }
+    }
 
     val xcfName = "dataLocaldbKit"
 
@@ -45,7 +50,7 @@ kotlin {
             }
         }
 
-        androidUnitTest {
+        getByName("androidHostTest") {
             dependencies {
                 implementation(libs.sqldelight.jvm)
             }
@@ -56,14 +61,6 @@ kotlin {
                 implementation(libs.sqldelight.ios)
             }
         }
-    }
-}
-
-android {
-    namespace = "com.exploramus.data.localdb"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }
 

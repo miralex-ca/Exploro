@@ -4,7 +4,7 @@ import com.exploramus.core.common.result.DataResult
 import com.exploramus.data.common.AssetsDataSource
 import com.exploramus.data.repository.utils.TestFakes
 import kotlinx.coroutines.test.runTest
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

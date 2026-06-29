@@ -1,17 +1,19 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.skie)
 }
 
 kotlin {
+    android {
+        namespace = "com.exploramus.data.repository"
+        compileSdk = 37
+        minSdk = 26
+        withHostTest { }
 
-    androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
         }
     }
 
@@ -35,7 +37,6 @@ kotlin {
                 implementation(project(":core:common"))
                 api(project(":data:common"))
                 api(project(":data:localdb"))
-
 
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.coroutines.core)
@@ -63,19 +64,5 @@ kotlin {
         iosMain {
             dependencies {}
         }
-    }
-}
-
-android {
-    namespace = "com.exploramus.data.repository"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
 }

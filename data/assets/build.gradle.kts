@@ -1,16 +1,18 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
+    android {
+        namespace = "com.exploramus.data.assets"
+        compileSdk = 37
+        minSdk = 26
+        withHostTest { }
 
-    androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
         }
     }
 
@@ -57,20 +59,6 @@ kotlin {
     }
 }
 
-android {
-    namespace = "com.exploramus.data.assets"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-}
-
 // Sync assets to platform targets
 val syncAssetsToAndroid by tasks.registering(Copy::class) {
     from("src/commonMain/resources/")
@@ -82,6 +70,7 @@ val syncAssetsToIos by tasks.registering(Copy::class) {
     into("${rootProject.projectDir}/iosApp/iosApp/AppRawData/")
 }
 
-tasks.named("preBuild") {
+// In AGP 9.x KMP, we hook into the compile tasks directly if preBuild is missing
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     dependsOn(syncAssetsToAndroid, syncAssetsToIos)
 }

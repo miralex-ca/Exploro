@@ -1,27 +1,24 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
 }
 
 kotlin {
-    androidTarget()
+    android {
+        namespace = "com.exploramus.data.common"
+        compileSdk = 37
+        minSdk = 26
+        withHostTest { }
+    }
 
     val xcfName = "dataCommonKit"
 
-    iosX64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosSimulatorArm64 {
-        binaries.framework {
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
             baseName = xcfName
         }
     }
@@ -41,13 +38,5 @@ kotlin {
         iosMain {
             dependencies {}
         }
-    }
-}
-
-android {
-    namespace = "com.exploramus.data.common"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
     }
 }
