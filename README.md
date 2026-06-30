@@ -1,4 +1,4 @@
-# <img src="docs/screenshots/app_icon.png" width="28" align="bottom" /> Exploramus
+# <img src="docs/screenshots/app_icon.png" width="26" align="middle" /> Exploramus
 
 **Exploramus** is a discovery-focused application built with **Kotlin Multiplatform (KMP)**. It allows users to explore data, search for information, and manage personal favorites using a shared codebase for core logic and state management.
 
@@ -12,7 +12,7 @@ The project is built using the **[D-KMP architecture](https://github.com/dbaronc
 *   **Total Platform Independence**: Core logic—including navigation, data orchestration, and state—is isolated from the UI, allowing for native-quality views with zero logic duplication.
 
 ### Core Capabilities
-*   **Declarative & Adaptive UI**: Uses **Jetpack Compose** (Android) and **SwiftUI** (iOS) to build native-quality, form-factor aware layouts for phones, tablets, and foldables.
+*   **Declarative & Adaptive UI**: Uses **Jetpack Compose** (Android) and **SwiftUI** (iOS) to build native-quality, form-factor aware layouts for phones and tablets.
 *   **Native Dark Mode**: Full support for system-wide light and dark themes across both platforms.
 *   **Offline-First Resilience**: Data is persisted locally using **SQLDelight**, ensuring functionality without an active network connection.
 *   **Data Orchestration**: Unified repository pattern that seamlessly manages data from Remote APIs (**Ktor**), Local Databases, and Static Assets.
@@ -49,6 +49,7 @@ The project is architected into clean, decoupled modules to maximize maintainabi
 | Android Tablet | iPad |
 |:---:|:---:|
 | <img src="docs/screenshots/android_tablet.png" width="450" /> | <img src="docs/screenshots/ios_tablet.png" width="450" /> |
+| <img src="docs/screenshots/android_tablet_detail.png" width="450" /> | <img src="docs/screenshots/ios_tablet_detail.png" width="450" /> |
 
 ## Tech Stack & Adaptive UI
 
