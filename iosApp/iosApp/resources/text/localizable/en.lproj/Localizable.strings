@@ -5,7 +5,7 @@
 "screen_settings_title" = "Settings";
 
 "nav_browse" = "Browse";
-"nav_favorites" = "Favourites";
+"nav_favorites" = "Favorites";
 
 "settings_summary_current" = "Current: %@";
 "settings_theme_title" = "Theme";

@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Exploramus</string>
     <string name="screen_home_title">Discover</string>
-    <string name="screen_favorites_title">Favorites</string>
+    <string name="screen_favorites_title">Favorites countries</string>
     <string name="screen_search_title">Search</string>
     <string name="screen_settings_title">Settings</string>
 
     <string name="nav_browse">Browse</string>
-    <string name="nav_favorites">Favourites</string>
+    <string name="nav_favorites">Favorites</string>
 
     <string name="settings_summary_current">Current: %s</string>
     <string name="settings_theme_title">Theme</string>

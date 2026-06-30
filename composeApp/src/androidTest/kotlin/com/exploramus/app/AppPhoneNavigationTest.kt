@@ -1,7 +1,7 @@
 package com.exploramus.app
 
 import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.test.espresso.Espresso
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Before
@@ -13,7 +13,7 @@ import org.junit.runners.MethodSorters
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(AndroidJUnit4::class)
-class AppNavigationTest {
+class AppPhoneNavigationTest {
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
@@ -48,21 +48,21 @@ class AppNavigationTest {
     }
 
     @Test
-    fun test2_navigateToFavourites() {
+    fun test2_navigateToFavorites() {
         waitForAppReady()
         composeTestRule
-            .onNodeWithText("Favourites")
+            .onNodeWithText("Favorites")
             .performClick()
         composeTestRule
-            .onNodeWithText("Favourites")
+            .onNodeWithText("Favorites")
             .assertIsSelected()
     }
 
     @Test
-    fun test3_navigateBackToHomeFromFavourites() {
+    fun test3_navigateBackToHomeFromFavorites() {
         waitForAppReady()
         composeTestRule
-            .onNodeWithText("Favourites")
+            .onNodeWithText("Favorites")
             .performClick()
         composeTestRule
             .onNodeWithText("Browse")

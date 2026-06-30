@@ -14,6 +14,9 @@ android {
             res.directories.add("src/androidMain/res")
             manifest.srcFile("src/androidMain/AndroidManifest.xml")
         }
+        getByName("androidTest") {
+            kotlin.directories.add("src/androidTest/kotlin")
+        }
     }
 
     defaultConfig {
@@ -79,5 +82,12 @@ dependencies {
 tasks.configureEach {
     if (name.contains("merge") && name.contains("Assets")) {
         dependsOn(":data:assets:syncAssetsToAndroid")
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("androidx.concurrent:concurrent-futures:1.2.0")
+        force("com.google.errorprone:error_prone_annotations:2.26.0")
     }
 }

@@ -27,14 +27,14 @@ final class AppNavigationTests: XCTestCase {
     }
 
     @MainActor
-    func test2_navigateToFavourites() throws {
-        app.buttons["Favourites"].tap()
-        XCTAssertTrue(app.buttons["Favourites"].exists)
+    func test2_navigateToFavorites() throws {
+        app.buttons["Favorites"].tap()
+        XCTAssertTrue(app.buttons["Favorites"].exists)
     }
 
     @MainActor
-    func test3_navigateBackToHomeFromFavourites() throws {
-        app.buttons["Favourites"].tap()
+    func test3_navigateBackToHomeFromFavorites() throws {
+        app.buttons["Favorites"].tap()
         app.buttons["Browse"].tap()
         XCTAssertTrue(app.buttons["Browse"].exists)
     }

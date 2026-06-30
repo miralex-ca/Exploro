@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -181,7 +182,11 @@ fun DetailsTopBar(
                         DropdownMenuItem(
                             text = { Text(Strings.commonOpenInWikipedia) },
                             leadingIcon = {
-                                Image(painter = painterResource(R.drawable.wikipedia), contentDescription = Strings.commonOpenInWikipedia)
+                                Image(
+                                    painter = painterResource(R.drawable.wikipedia),
+                                    contentDescription = Strings.commonOpenInWikipedia,
+                                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
+                                )
                             },
                             onClick = {
                                 menuExpanded = false

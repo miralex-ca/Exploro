@@ -14,5 +14,4 @@ object NetworkEnvironments {
         countriesBaseUrl = "https://www.example.com/",
         apiKey = "APY_KEY"
     )
-
 }
