@@ -1,4 +1,4 @@
-# <img src="docs/screenshots/app_icon.png" width="30" style="vertical-align: middle" />  Exploramus
+# <img src="docs/screenshots/app_icon.png" width="26" align="middle" /> Exploramus
 
 **Exploramus** is a discovery-focused application built with **Kotlin Multiplatform (KMP)**. It allows users to explore data, search for information, and manage personal favorites using a shared codebase for core logic and state management.
 
@@ -12,9 +12,10 @@ The project is built using the **[D-KMP architecture](https://github.com/dbaronc
 *   **Total Platform Independence**: Core logic—including navigation, data orchestration, and state—is isolated from the UI, allowing for native-quality views with zero logic duplication.
 
 ### Core Capabilities
-*   **Adaptive Design**: Custom-built adaptive UI layers for both **Android (Jetpack Compose)** and **iOS (SwiftUI)**, supporting phones, tablets, and foldable devices.
-*   **Swift Interop**: Leverages **SKIE** to generate native-feeling Swift APIs for sealed classes, flows, and enums.
-*   **Shared Resources**: Type-safe string resource handling with formatting arguments across platforms.
+*   **Declarative & Adaptive UI**: Uses **Jetpack Compose** (Android) and **SwiftUI** (iOS) to build native-quality, form-factor aware layouts for phones, tablets, and foldables.
+*   **Native Dark Mode**: Full support for system-wide light and dark themes across both platforms.
+*   **Offline-First Resilience**: Data is persisted locally using **SQLDelight**, ensuring functionality without an active network connection.
+*   **Data Orchestration**: Unified repository pattern that seamlessly manages data from Remote APIs (**Ktor**), Local Databases, and Static Assets.
 *   **Comprehensive Testing**:
     *   **Unit Tests**: Coverage for shared ViewModels, repositories, and business logic.
     *   **UI Tests**: Native automation for both platforms (Compose UI Tests & XCTest).
