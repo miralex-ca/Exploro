@@ -60,12 +60,7 @@ kotlin {
     }
 }
 
-// Sync assets to platform targets
-val syncAssetsToAndroid by tasks.registering(Copy::class) {
-    from("src/commonMain/resources/")
-    into("${rootProject.projectDir}/composeApp/src/main/assets/")
-}
-
+// Sync assets to iOS (Android now points directly to commonMain/resources)
 val syncAssetsToIos by tasks.registering(Copy::class) {
     from("src/commonMain/resources/")
     into("${rootProject.projectDir}/iosApp/iosApp/AppRawData/")
@@ -73,5 +68,5 @@ val syncAssetsToIos by tasks.registering(Copy::class) {
 
 // In AGP 9.x KMP, we hook into the compile tasks directly if preBuild is missing
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    dependsOn(syncAssetsToAndroid, syncAssetsToIos)
+    dependsOn(syncAssetsToIos)
 }

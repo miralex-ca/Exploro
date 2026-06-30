@@ -10,6 +10,7 @@ android {
 
     sourceSets {
         getByName("main") {
+            assets.directories.add("../data/assets/src/commonMain/resources")
             kotlin.directories.add("src/androidMain/kotlin")
             res.directories.add("src/androidMain/res")
             manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -77,12 +78,6 @@ dependencies {
     androidTestImplementation(libs.androidx.test.espresso)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.compose.uitest.junit4)
-}
-
-tasks.configureEach {
-    if (name.contains("merge") && name.contains("Assets")) {
-        dependsOn(":data:assets:syncAssetsToAndroid")
-    }
 }
 
 configurations.all {
