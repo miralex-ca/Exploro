@@ -1,4 +1,4 @@
-# <img src="docs/screenshots/app_icon.png" width="42" style="vertical-align: middle" /> Exploramus
+# <img src="docs/screenshots/app_icon.png" width="30" style="vertical-align: middle" />  Exploramus
 
 **Exploramus** is a discovery-focused application built with **Kotlin Multiplatform (KMP)**. It allows users to explore data, search for information, and manage personal favorites using a shared codebase for core logic and state management.
 
