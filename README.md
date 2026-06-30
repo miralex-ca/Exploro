@@ -7,10 +7,11 @@
 ## 🚀 Architecture & Key Features
 
 ### ⚡️ DKMP Architecture
-The project follows a reactive, state-driven (MVI-inspired) architecture that provides:
-*   **Shared ViewModel**: Centralized `DKMPViewModel` that handles state for both platforms.
-*   **Immutable State Flows**: Predictable UI behavior through consistent state updates.
-*   **Platform Independence**: Navigation, state management, and data handling are 100% shared.
+The project is built using the **[D-KMP architecture](https://github.com/dbaroncelli/D-KMP-sample)**, a powerful pattern for Kotlin Multiplatform that enables 100% shared business logic and state management.
+
+*   **Shared ViewModel**: A centralized `DKMPViewModel` acts as the single entry point for the UI, handling state for both Android and iOS.
+*   **Reactive State Management**: Uses immutable state flows (MVI pattern) to ensure predictable and consistent UI updates across platforms.
+*   **Total Platform Independence**: Core logic—including navigation, data orchestration, and state—is isolated from the UI, allowing for native-quality views with zero logic duplication.
 
 ### 🛠️ Core Capabilities
 *   **📱 Adaptive Design**: Custom-built adaptive UI layers for both **Android (Jetpack Compose)** and **iOS (SwiftUI)**, supporting phones, tablets, and foldable devices.
@@ -26,9 +27,13 @@ The project follows a reactive, state-driven (MVI-inspired) architecture that pr
 
 The project is architected into clean, decoupled modules to maximize maintainability:
 
-- **`:shared`**: The "brain" of the app. Contains the `DKMPViewModel`, state management, and navigation routing.
-- **`:data`**: A multi-layered data module featuring **SQLDelight** for local persistence, **Ktor** for networking, and repository patterns for data orchestration.
-- **`:core`**: Pure Kotlin models and common utilities shared across all layers.
+- **`:shared`**: The core "brain" of the application. It houses the `DKMPViewModel`, global state management, and the shared navigation routing engine.
+- **`:data`**: A structured data layer divided into specialized sub-modules:
+    - **`:data:repository`**: The coordinator that implements the repository pattern, managing data flow between local and remote sources.
+    - **`:data:network`**: API clients and data transfer objects, powered by **Ktor**.
+    - **`:data:localdb`**: Local persistence layer utilizing **SQLDelight** for type-safe database operations.
+    - **`:data:assets`**: Specialized handling for bundled static data and application assets.
+- **`:core`**: Contains pure Kotlin models, domain entities, and common utilities used throughout the entire project.
 - **`:di`**: Global dependency injection powered by **Koin**.
 
 ---
