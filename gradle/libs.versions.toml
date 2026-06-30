@@ -3,6 +3,7 @@
 android-gradle-plugin = "9.2.1"
 kotlin = "2.4.0"
 compose = "1.11.1"
+androidx-compose = "1.11.3"
 android-compileSdk = "37"
 android-targetSdk = "37"
 android-minSdk = "26"
@@ -97,8 +98,8 @@ slf4j = { module = "org.slf4j:slf4j-nop", version.ref = "slf4j" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidx-test-runner" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
 androidx-test-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-test-espresso" }
-androidx-compose-uitest-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "compose" }
-androidx-compose-uitest-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "compose" }
+androidx-compose-uitest-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidx-compose" }
+androidx-compose-uitest-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidx-compose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "android-gradle-plugin" }
