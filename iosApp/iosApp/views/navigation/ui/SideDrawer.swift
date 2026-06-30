@@ -38,7 +38,7 @@ struct SideDrawer: View {
             .padding(.bottom, 6)
             
             DrawerButton(
-                label: Strings.homeTitle,
+                label: Strings.navBrowse,
                 icon: "safari",
                 selectedIcon: "safari",
                 selected: currentURI == Level1Navigation.home.screenIdentifier.URI,
