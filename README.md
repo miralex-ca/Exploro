@@ -16,7 +16,6 @@ The project is built using the **[D-KMP architecture](https://github.com/dbaronc
 ### 🛠️ Core Capabilities
 *   **📱 Adaptive Design**: Custom-built adaptive UI layers for both **Android (Jetpack Compose)** and **iOS (SwiftUI)**, supporting phones, tablets, and foldable devices.
 *   **🔗 Swift Interop**: Leverages **SKIE** to generate native-feeling Swift APIs for sealed classes, flows, and enums.
-*   **🔡 Shared Resources**: Type-safe string resource handling with formatting arguments across platforms.
 *   **🧪 Comprehensive Testing**:
     *   **Unit Tests**: Coverage for shared ViewModels, repositories, and business logic.
     *   **UI Tests**: Native automation for both platforms (Compose UI Tests & XCTest).
