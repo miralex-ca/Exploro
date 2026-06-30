@@ -58,11 +58,11 @@ dependencies {
     implementation(libs.adaptive.layout)
     implementation(libs.adaptive.navigation)
 
-    implementation(compose.runtime)
-    implementation(compose.foundation)
-    implementation(compose.ui)
-    implementation(compose.material3)
-    implementation(compose.materialIconsExtended)
+    implementation(libs.jetbrains.compose.runtime)
+    implementation(libs.jetbrains.compose.foundation)
+    implementation(libs.jetbrains.compose.ui)
+    implementation(libs.jetbrains.compose.material3)
+    implementation(libs.jetbrains.compose.materialIconsExtended)
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
