@@ -1,8 +1,6 @@
-# <img src="docs/screenshots/app_icon.png" width="48" /> Exploramus
+# <img src="docs/screenshots/app_icon.png" width="42" style="vertical-align: middle" /> Exploramus
 
 **Exploramus** is a discovery-focused application built with **Kotlin Multiplatform (KMP)**. It allows users to explore data, search for information, and manage personal favorites using a shared codebase for core logic and state management.
-
----
 
 ## Architecture & Key Features
 
@@ -21,8 +19,6 @@ The project is built using the **[D-KMP architecture](https://github.com/dbaronc
     *   **Unit Tests**: Coverage for shared ViewModels, repositories, and business logic.
     *   **UI Tests**: Native automation for both platforms (Compose UI Tests & XCTest).
 
----
-
 ## Modular Structure
 
 The project is architected into clean, decoupled modules to maximize maintainability:
@@ -35,8 +31,6 @@ The project is architected into clean, decoupled modules to maximize maintainabi
     - **`:data:assets`**: Specialized handling for bundled static data and application assets.
 - **`:core`**: Contains pure Kotlin models, domain entities, and common utilities used throughout the entire project.
 - **`:di`**: Global dependency injection powered by **Koin**.
-
----
 
 ## Visual Showcase
 
@@ -54,8 +48,6 @@ The project is architected into clean, decoupled modules to maximize maintainabi
 | Android Tablet | iPad |
 |:---:|:---:|
 | <img src="docs/screenshots/android_tablet.png" width="450" /> | <img src="docs/screenshots/ios_tablet.png" width="450" /> |
-
----
 
 ## Tech Stack & Adaptive UI
 
