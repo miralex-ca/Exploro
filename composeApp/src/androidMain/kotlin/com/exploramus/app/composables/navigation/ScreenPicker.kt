@@ -15,7 +15,7 @@ import com.exploramus.app.composables.screens.settings.SettingsScreen
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 import com.exploramus.shared.viewmodel.screens.Screen
-import com.exploramus.shared.viewmodel.screens.countrydetail.DetailsScreenState
+import com.exploramus.shared.viewmodel.screens.details.singledetail.DetailsScreenState
 import com.exploramus.shared.viewmodel.screens.favorites.FavoritesScreenState
 import com.exploramus.shared.viewmodel.screens.home.HomeScreenState
 import com.exploramus.shared.viewmodel.screens.search.SearchScreenState

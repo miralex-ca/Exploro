@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.resources.Strings
-import com.exploramus.shared.viewmodel.screens.countrydetail.CountryDetailsState
+import com.exploramus.shared.viewmodel.screens.details.CountryDetailsState
 import java.util.Locale
 
 data class DetailsRowModel(

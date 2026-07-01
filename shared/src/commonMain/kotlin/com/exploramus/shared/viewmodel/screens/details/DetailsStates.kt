@@ -1,14 +1,6 @@
-package com.exploramus.shared.viewmodel.screens.countrydetail
+package com.exploramus.shared.viewmodel.screens.details
 
 import com.exploramus.core.models.CountryWithDetails
-import com.exploramus.shared.viewmodel.core.ScreenState
-
-data class DetailsScreenState (
-    val isLoading: Boolean = false,
-    val details: CountryDetailsState? = null,
-    val isFavorite: Boolean = false
-): ScreenState
-
 
 data class CountryDetailsState(
     val id: String = "",

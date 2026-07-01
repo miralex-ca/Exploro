@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
-import com.exploramus.shared.viewmodel.screens.countrydetail.CountryDetailsState
+import com.exploramus.shared.viewmodel.screens.details.CountryDetailsState
 
 @Composable
 fun DetailsInfoSection(

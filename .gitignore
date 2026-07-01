@@ -20,3 +20,4 @@ node_modules/
 /iosApp/iosApp/Resources/countries_fallback.json
 /iosApp/iosApp/AppRawData/countries_detail_data.json
 /iosApp/iosApp/AppRawData/countries_data.json
+/gradle/gradle-daemon-jvm.properties

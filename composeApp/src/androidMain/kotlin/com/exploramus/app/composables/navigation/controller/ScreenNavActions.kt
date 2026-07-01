@@ -2,7 +2,7 @@ package com.exploramus.app.composables.navigation.controller
 
 import com.exploramus.shared.viewmodel.screens.Level1Navigation
 import com.exploramus.shared.viewmodel.screens.Screen
-import com.exploramus.shared.viewmodel.screens.countrydetail.DetailsScreenParams
+import com.exploramus.shared.viewmodel.screens.details.singledetail.DetailsScreenParams
 import com.exploramus.shared.viewmodel.screens.section.SectionParams
 
 interface ScreenNavActions {
