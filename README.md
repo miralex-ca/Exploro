@@ -62,6 +62,6 @@ Exploramus is fully form-factor aware:
 - **Android**: Uses `Material3 Adaptive` components and custom `AdoptiveValue` utilities for Compact, Medium, and Expanded sizes.
 - **iOS**: Custom adaptive logic in SwiftUI for tailored iPhone and iPad experiences.
 
----
+## Data Sources & Attribution
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html).
+This project utilizes various third-party data sources for country information, flags, and maps. For detailed information on these sources and their respective licenses, please refer to the [Third-Party Data Sources](THIRD_PARTY_DATA_SOURCES.md) document.
