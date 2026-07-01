@@ -1,6 +1,5 @@
 package com.exploramus.shared.viewmodel.screens.home
 
-import com.exploramus.core.common.logging.Log
 import com.exploramus.data.repository.functions.getHomeSections
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
