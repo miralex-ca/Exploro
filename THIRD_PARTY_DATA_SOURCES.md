@@ -9,15 +9,15 @@ The country dataset is based on information from the following publicly availabl
 - ISO 3166 country codes
 - Wikipedia (country names, official names, capitals, geographical information)
 - OpenStreetMap (map references)
-- Flagpedia (country flag images)
-- MainFacts (coat of arms images)
+- [Flagpedia](https://flagpedia.net/)
+- [MainFacts](https://mainfacts.com/)
 
 ## Attribution
 
 - **OpenStreetMap®** data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright). More information: [OpenStreetMap About](https://www.openstreetmap.org/about).
 - **Wikipedia** content is available under the [Creative Commons Attribution-ShareAlike (CC BY-SA)](https://creativecommons.org/licenses/by-sa/4.0/) license.
-- **Country flag images** are provided by Flagpedia and remain subject to the terms and licensing of their respective source.
-- **Coat of arms images** are provided by MainFacts and remain subject to the terms and licensing of their respective source.
+- Content provided by **[Flagpedia](https://flagpedia.net/)** remains subject to the terms and licensing of the source.
+- Content provided by **[MainFacts](https://mainfacts.com/)** remains subject to the terms and licensing of the source.
 
 ## Dataset Generation
 
@@ -32,3 +32,5 @@ Users who redistribute or reuse this data are responsible for ensuring complianc
 Official License Links:
 - [OpenStreetMap (About & License)](https://www.openstreetmap.org/about)
 - [Wikipedia (CC BY-SA)](https://creativecommons.org/licenses/by-sa/4.0/)
+- [Flagpedia](https://flagpedia.net/)
+- [MainFacts](https://mainfacts.com/)
