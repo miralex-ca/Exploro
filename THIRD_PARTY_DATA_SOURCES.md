@@ -11,6 +11,7 @@ The country dataset is based on information from the following publicly availabl
 - OpenStreetMap (map references)
 - [Flagpedia](https://flagpedia.net/)
 - [MainFacts](https://mainfacts.com/)
+- [The World Factbook](https://www.worldfactbook.co/about.php)
 
 ## Attribution
 
@@ -18,6 +19,7 @@ The country dataset is based on information from the following publicly availabl
 - **Wikipedia** content is available under the [Creative Commons Attribution-ShareAlike (CC BY-SA)](https://creativecommons.org/licenses/by-sa/4.0/) license.
 - Content provided by **[Flagpedia](https://flagpedia.net/)** remains subject to the terms and licensing of the source.
 - Content provided by **[MainFacts](https://mainfacts.com/)** remains subject to the terms and licensing of the source.
+- Content provided by **[The World Factbook](https://www.worldfactbook.co/about.php)** remains subject to the terms and licensing of the source.
 
 ## Dataset Generation
 
@@ -34,3 +36,4 @@ Official License Links:
 - [Wikipedia (CC BY-SA)](https://creativecommons.org/licenses/by-sa/4.0/)
 - [Flagpedia](https://flagpedia.net/)
 - [MainFacts](https://mainfacts.com/)
+- [The World Factbook](https://www.worldfactbook.co/about.php)
