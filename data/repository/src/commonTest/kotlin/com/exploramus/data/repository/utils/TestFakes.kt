@@ -7,6 +7,7 @@ import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 import com.exploramus.core.models.CountryInfo
 import com.exploramus.core.models.CountryWithDetails
+import com.exploramus.core.models.Section
 import com.exploramus.data.common.AssetsDataSource
 import com.exploramus.data.common.LocalDataSource
 import com.exploramus.data.common.PlatformInfoProvider
@@ -44,6 +45,7 @@ object TestFakes {
         var lastSearchQuery: String? = null
         var searchResult: List<Country> = emptyList()
         var migrationCalled = false
+        var storedSections: List<Section> = emptyList()
 
         override suspend fun hasCountriesData() = _hasData
         override suspend fun setCountriesList(list: List<Country>) {
@@ -74,6 +76,12 @@ object TestFakes {
         override suspend fun resetAndMigrate() {
             migrationCalled = true
         }
+
+        override suspend fun setSections(sections: List<Section>) {
+            storedSections = sections
+        }
+
+        override suspend fun getSections(): List<Section> = storedSections
     }
 
     class FakeRemoteDataSource(
@@ -95,6 +103,9 @@ object TestFakes {
         )
         override suspend fun readAllCountries() = testAllCountries()
         override suspend fun readAllCountryDetails() = testAllCountryDetails()
+        override suspend fun readAllSections() = DataResult.Success(
+            listOf(Section("EU", "Europe"))
+        )
     }
 
     class FakePlatformInfoProvider : PlatformInfoProvider {

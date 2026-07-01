@@ -37,7 +37,7 @@ class HomeScreenTests {
     @Test
     fun `initHomeScreen first run loads sections and sets isLoading false`() = runTest {
         val localDb = TestFakes.FakeLocalDataSource().apply {
-            addFakeSections("Europe", "Asia")
+            addFakeSections("EU", "AS")
         }
 
         val vm = buildViewModel(localDb)
@@ -66,7 +66,7 @@ class HomeScreenTests {
         val vm = buildViewModel(localDb)
         val id = vm.navigateToHome()
 
-        localDb.addFakeSections("Europe", "Asia")
+        localDb.addFakeSections("EU", "AS")
 
         vm.navigation.events.retryBootstrapApp()
 

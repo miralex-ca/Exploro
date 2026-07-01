@@ -3,6 +3,7 @@ package com.exploramus.data.common
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 import com.exploramus.core.models.CountryWithDetails
+import com.exploramus.core.models.Section
 
 interface LocalDataSource {
     val databaseVersion: Long
@@ -19,4 +20,6 @@ interface LocalDataSource {
     suspend fun searchCountries(query: String): List<Country>
     suspend fun getAllCountriesWithDetails(): List<CountryWithDetails>
     suspend fun hasCountriesData(): Boolean
+    suspend fun setSections(sections: List<Section>)
+    suspend fun getSections(): List<Section>
 }

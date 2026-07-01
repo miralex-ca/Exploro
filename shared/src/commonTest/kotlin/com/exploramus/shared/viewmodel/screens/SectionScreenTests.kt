@@ -32,10 +32,10 @@ class SectionScreenTests {
     @Test
     fun `initSectionScreen sets isLoading false after load`() = runTest {
         val localDb = TestFakes.FakeLocalDataSource().apply {
-            addFakeSections("Europe", "Asia")
+            addFakeSections("EU", "AS")
         }
         val vm = buildViewModel(localDb)
-        val id = vm.navigateToSection("Europe")
+        val id = vm.navigateToSection("EU")
 
         assertFalse(vm.sectionState(id).isLoading)
     }
@@ -43,13 +43,13 @@ class SectionScreenTests {
     @Test
     fun `initSectionScreen loads countries for the given continent`() = runTest {
         val localDb = TestFakes.FakeLocalDataSource().apply {
-            countriesBySection["Europe"] = listOf(
+            countriesBySection["EU"] = listOf(
                 TestFakes.country("FRA"),
                 TestFakes.country("GER"),
             )
         }
         val vm = buildViewModel(localDb)
-        val id = vm.navigateToSection("Europe")
+        val id = vm.navigateToSection("EU")
 
         val countries = vm.sectionState(id).countries
         assertEquals(2, countries.size)
@@ -61,7 +61,7 @@ class SectionScreenTests {
     @Test
     fun `initSectionScreen with empty section loads no countries`() = runTest {
         val vm = buildViewModel()
-        val id = vm.navigateToSection("Europe")
+        val id = vm.navigateToSection("EU")
 
         assertTrue(vm.sectionState(id).countries.isEmpty())
         assertFalse(vm.sectionState(id).isLoading)

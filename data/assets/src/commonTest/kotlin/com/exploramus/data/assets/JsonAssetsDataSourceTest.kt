@@ -51,6 +51,22 @@ class JsonAssetsDataSourceTest {
     }
 
     @Test
+    fun `sections list is not empty when file is valid`() = runTest {
+        val reader = object : AssetFileReader {
+            override fun readFile(fileName: String): String {
+                return if (fileName == SECTIONS_DATA_FILE) {
+                    """[{"id": "EU", "name": "Europe"}]"""
+                } else {
+                    MINIMAL_VALID_JSON
+                }
+            }
+        }
+        val source = JsonAssetsDataSource(reader)
+        val result = source.readAllSections()
+        assertTrue((result as DataResult.Success).data.isNotEmpty())
+    }
+
+    @Test
     fun `fallback file name is not blank`() {
         assertTrue(COUNTRIES_DATA_FILE.isNotBlank())
     }

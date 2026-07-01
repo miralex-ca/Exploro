@@ -28,14 +28,16 @@ suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): Da
 
         val countriesResult = assetsDataSource.readAllCountries()
         val detailsResult = assetsDataSource.readAllCountryDetails()
+        val sectionsResult = assetsDataSource.readAllSections()
 
-        if (countriesResult !is DataResult.Success || detailsResult !is DataResult.Success) {
+        if (countriesResult !is DataResult.Success || detailsResult !is DataResult.Success || sectionsResult !is DataResult.Success) {
             Log.d("Assets failed — cannot proceed")
             return@withRepoContext DataResult.Error(error = null)
         }
 
         val countries = countriesResult.data
         var details = detailsResult.data
+        val sections = sectionsResult.data
 
         if (apiSyncExpired || forceUpdate) {
             val apiResult = webservices.fetchAllCountriesData()
@@ -52,7 +54,7 @@ suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): Da
             }
         }
 
-        val stored = storeCountries(countries, details)
+        val stored = storeCountries(countries, details, sections)
         return@withRepoContext if (stored) {
             localSettings.dataCacheTimestamp = nowUnixTime
             Log.d("App data successfully updated")
@@ -65,7 +67,8 @@ suspend fun Repository.updateCountriesListData(forceUpdate: Boolean = false): Da
 
 private suspend fun Repository.storeCountries(
     countries: List<Country>,
-    details: List<CountryDetails>
+    details: List<CountryDetails>,
+    sections: List<com.exploramus.core.models.Section>
 ): Boolean {
     val countriesStored = runCatching {
         localDb.setCountriesList(countries.sortedBy { it.name })
@@ -73,5 +76,8 @@ private suspend fun Repository.storeCountries(
     val detailsStored = runCatching {
         localDb.setCountryDetailsList(details)
     }.isSuccess
-    return countriesStored && detailsStored
+    val sectionsStored = runCatching {
+        localDb.setSections(sections)
+    }.isSuccess
+    return countriesStored && detailsStored && sectionsStored
 }

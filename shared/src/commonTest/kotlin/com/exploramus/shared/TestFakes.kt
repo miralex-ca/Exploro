@@ -7,6 +7,7 @@ import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 import com.exploramus.core.models.CountryInfo
 import com.exploramus.core.models.CountryWithDetails
+import com.exploramus.core.models.Section
 import com.exploramus.data.common.AssetsDataSource
 import com.exploramus.data.common.LocalDataSource
 import com.exploramus.data.common.PlatformInfoProvider
@@ -45,8 +46,10 @@ object TestFakes {
         var searchResult: List<Country> = emptyList()
         var favoritesList: MutableList<Country> = mutableListOf()
         var migrationCalled = false
+        var storedSections: List<Section> = emptyList()
 
         fun addFakeSections(vararg sectionIds: String) {
+            storedSections = sectionIds.map { Section(it, it) }
             sectionIds.forEach { id ->
                 countriesBySection[id] = listOf(
                     country("${id}_1"),
@@ -86,6 +89,12 @@ object TestFakes {
         override suspend fun resetAndMigrate() {
             migrationCalled = true
         }
+
+        override suspend fun setSections(sections: List<Section>) {
+            storedSections = sections
+        }
+
+        override suspend fun getSections(): List<Section> = storedSections
     }
 
     class FakeRemoteDataSource(
@@ -107,6 +116,16 @@ object TestFakes {
         )
         override suspend fun readAllCountries() = testAllCountries()
         override suspend fun readAllCountryDetails() = testAllCountryDetails()
+        override suspend fun readAllSections() = DataResult.Success(
+            listOf(
+                Section("EU", "Europe"),
+                Section("AS", "Asia"),
+                Section("AF", "Africa"),
+                Section("NA", "North America"),
+                Section("SA", "South America"),
+                Section("OC", "Oceania")
+            )
+        )
     }
 
     class FakePlatformInfoProvider : PlatformInfoProvider {

@@ -17,11 +17,13 @@ interface DatabaseManager {
             const val COUNTRIES = "Countries"
             const val FAVORITES = "Favorites"
             const val COUNTRY_DETAILS = "CountryDetails"
+            const val SECTIONS = "Sections"
 
             val all = listOf(
                 COUNTRIES,
                 FAVORITES,
                 COUNTRY_DETAILS,
+                SECTIONS
             )
         }
 

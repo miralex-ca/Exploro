@@ -59,6 +59,7 @@ class UpdateCountriesListDataTest {
             assets = object : AssetsDataSource {
                 override suspend fun readAllCountries() = DataResult.Error(null)
                 override suspend fun readAllCountryDetails() = DataResult.Error(null)
+                override suspend fun readAllSections() = DataResult.Error(null)
             }
         )
         assertTrue(repo.updateCountriesListData() is DataResult.Error)

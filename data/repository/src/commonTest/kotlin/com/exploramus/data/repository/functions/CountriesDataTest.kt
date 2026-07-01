@@ -1,5 +1,6 @@
 package com.exploramus.data.repository.functions
 
+import com.exploramus.core.models.Section
 import com.exploramus.data.repository.utils.TestFakes
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
@@ -16,14 +17,18 @@ class CountriesDataTest {
     @Test
     fun `getHomeSections returns all valid sections`() = runTest {
         val localDb = TestFakes.FakeLocalDataSource()
+        localDb.storedSections = listOf(
+            Section("EU", "Europe"),
+            Section("AS", "Asia")
+        )
 
-        localDb.countriesBySection["Europe"] = listOf(
+        localDb.countriesBySection["EU"] = listOf(
             country("FRA"),
             country("GER"),
             country("ITA")
         )
 
-        localDb.countriesBySection["Asia"] = listOf(
+        localDb.countriesBySection["AS"] = listOf(
             country("JPN"),
             country("CHN"),
             country("KOR")
@@ -32,8 +37,8 @@ class CountriesDataTest {
         val repository = TestFakes.createRepository(localDb = localDb)
         val result = repository.getHomeSections()
         assertEquals(2, result.size)
-        assertEquals("Europe", result[0].sectionId)
-        assertEquals("Asia", result[1].sectionId)
+        assertEquals("EU", result[0].sectionId)
+        assertEquals("AS", result[1].sectionId)
 
     }
 
@@ -41,14 +46,18 @@ class CountriesDataTest {
     fun `getHomeSections returns only sections with at least 3 countries`() = runTest {
 
         val localDb = TestFakes.FakeLocalDataSource()
+        localDb.storedSections = listOf(
+            Section("EU", "Europe"),
+            Section("AS", "Asia")
+        )
 
-        localDb.countriesBySection["Europe"] = listOf(
+        localDb.countriesBySection["EU"] = listOf(
             country("FRA"),
             country("GER"),
             country("ITA")
         )
 
-        localDb.countriesBySection["Asia"] = listOf(
+        localDb.countriesBySection["AS"] = listOf(
             country("JPN"),
             country("CHN")
         )
@@ -61,15 +70,18 @@ class CountriesDataTest {
 
         val europe = result.first()
 
-        assertEquals("Europe", europe.sectionId)
+        assertEquals("EU", europe.sectionId)
         assertEquals(3, europe.countries.size)
     }
 
     @Test
     fun `getHomeSections returns empty when no sections have enough countries`() = runTest {
         val localDb = TestFakes.FakeLocalDataSource()
+        localDb.storedSections = listOf(
+            Section("EU", "Europe")
+        )
 
-        localDb.countriesBySection["Europe"] = listOf(
+        localDb.countriesBySection["EU"] = listOf(
             country("FRA"),
             country("GER")
         )

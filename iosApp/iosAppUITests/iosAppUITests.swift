@@ -1,6 +1,6 @@
 import XCTest
 
-final class AppNavigationTests: XCTestCase {
+final class AppPhoneNavigationTests: XCTestCase {
 
     var app: XCUIApplication!
 

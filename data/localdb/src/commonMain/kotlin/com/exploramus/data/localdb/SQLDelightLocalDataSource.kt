@@ -5,11 +5,12 @@ import appLocalDb.AppLocalDb
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 import com.exploramus.core.models.CountryWithDetails
+import com.exploramus.core.models.Section
 import com.exploramus.data.common.LocalDataSource
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
-    const val VERSION = 7L
+    const val VERSION = 8L
 }
 
 internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {
@@ -39,7 +40,8 @@ internal class SQLDelightLocalDataSource(
     }
 
     override suspend fun getAllCountriesBySectionId(sectionId: String): List<Country> {
-        return database.getAllCountriesBySection(sectionId).toCountryList()
+        val sectionName = database.sectionsQueries.getSectionNameById(sectionId).executeAsOneOrNull() ?: sectionId
+        return database.getAllCountriesBySection(sectionName).toCountryList()
     }
 
     override suspend fun searchCountries(query: String): List<Country> {
@@ -55,7 +57,8 @@ internal class SQLDelightLocalDataSource(
     }
 
     override suspend fun getCountriesBySection(sectionId: String, limit: Long) : List<Country> {
-        return database.getCountriesByContinent(sectionId, limit).toCountryList()
+        val sectionName = database.sectionsQueries.getSectionNameById(sectionId).executeAsOneOrNull() ?: sectionId
+        return database.getCountriesByContinent(sectionName, limit).toCountryList()
     }
 
     override suspend fun isFavorite(id: String): Boolean {
@@ -82,5 +85,13 @@ internal class SQLDelightLocalDataSource(
 
     override suspend fun getCountryDetailsById(id: String): CountryWithDetails? {
         return database.getCountryDetailsById(id)?.toCountryWithDetails()
+    }
+
+    override suspend fun setSections(sections: List<Section>) {
+        database.setSections(sections)
+    }
+
+    override suspend fun getSections(): List<Section> {
+        return database.getSections()
     }
 }

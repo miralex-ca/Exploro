@@ -1,0 +1,18 @@
+CREATE TABLE Sections (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    order_index INTEGER NOT NULL
+);
+
+insertSection:
+INSERT INTO Sections(id, name, order_index)
+VALUES (?, ?, ?);
+
+getAllSections:
+SELECT * FROM Sections ORDER BY order_index ASC;
+
+getSectionNameById:
+SELECT name FROM Sections WHERE id = ?;
+
+deleteAllSections:
+DELETE FROM Sections;
