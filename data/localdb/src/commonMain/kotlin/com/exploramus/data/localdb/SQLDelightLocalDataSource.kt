@@ -10,7 +10,7 @@ import com.exploramus.data.common.LocalDataSource
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
-    const val VERSION = 8L
+    const val VERSION = 9L
 }
 
 internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {

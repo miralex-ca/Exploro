@@ -60,8 +60,8 @@ kotlin {
     }
 }
 
-// Sync assets to iOS (Android now points directly to commonMain/resources)
 val syncAssetsToIos by tasks.registering(Copy::class) {
+    description = "Sync assets to iOS (Android points directly to commonMain/resources)"
     from("src/commonMain/resources/")
     into("${rootProject.projectDir}/iosApp/iosApp/AppRawData/")
 }

@@ -11,8 +11,8 @@
             "Dari",
             "Pashto"
         ],
-        "latitude": 33,
-        "longitude": 66,
+        "latitude": 33.0,
+        "longitude": 66.0,
         "timezones": [
             "UTC+04:30"
         ],
@@ -30,8 +30,8 @@
         "languages": [
             "Albanian"
         ],
-        "latitude": 41.32,
-        "longitude": 19.82,
+        "latitude": 41.3,
+        "longitude": 19.8,
         "timezones": [
             "UTC+01:00"
         ],
@@ -49,8 +49,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 36.75,
-        "longitude": 3.05,
+        "latitude": 36.8,
+        "longitude": 3.0,
         "timezones": [
             "UTC+01:00"
         ],
@@ -69,7 +69,7 @@
             "English",
             "Samoan"
         ],
-        "latitude": -14.27,
+        "latitude": -14.3,
         "longitude": -170.7,
         "timezones": [
             "UTC-11:00"
@@ -89,7 +89,7 @@
             "Catalan"
         ],
         "latitude": 42.5,
-        "longitude": 1.52,
+        "longitude": 1.5,
         "timezones": [
             "UTC+01:00"
         ],
@@ -107,8 +107,8 @@
         "languages": [
             "Portuguese"
         ],
-        "latitude": -8.83,
-        "longitude": 13.22,
+        "latitude": -8.8,
+        "longitude": 13.2,
         "timezones": [
             "UTC+01:00"
         ],
@@ -126,8 +126,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 18.22,
-        "longitude": -63.05,
+        "latitude": 18.2,
+        "longitude": -63.0,
         "timezones": [
             "UTC-04:00"
         ],
@@ -137,7 +137,7 @@
     {
         "id": "ATA",
         "population": 1300,
-        "total_area": 1.4E7,
+        "total_area": 14000000.0,
         "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/aq.png",
         "currency_name": "",
         "currency_symbol": "",
@@ -169,8 +169,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 17.12,
-        "longitude": -61.85,
+        "latitude": 17.1,
+        "longitude": -61.9,
         "timezones": [
             "UTC-04:00"
         ],
@@ -189,8 +189,8 @@
             "Guarani",
             "Spanish"
         ],
-        "latitude": -34.58,
-        "longitude": -58.67,
+        "latitude": -34.6,
+        "longitude": -58.7,
         "timezones": [
             "UTC-03:00"
         ],
@@ -208,7 +208,7 @@
         "languages": [
             "Armenian"
         ],
-        "latitude": 40.17,
+        "latitude": 40.2,
         "longitude": 44.5,
         "timezones": [
             "UTC+04:00"
@@ -228,8 +228,8 @@
             "Dutch",
             "Papiamento"
         ],
-        "latitude": 12.52,
-        "longitude": -70.03,
+        "latitude": 12.5,
+        "longitude": -70.0,
         "timezones": [
             "UTC-04:00"
         ],
@@ -247,8 +247,8 @@
         "languages": [
             "English"
         ],
-        "latitude": -35.27,
-        "longitude": 149.13,
+        "latitude": -35.3,
+        "longitude": 149.1,
         "timezones": [
             "UTC+05:00",
             "UTC+06:30",
@@ -274,7 +274,7 @@
             "German"
         ],
         "latitude": 48.2,
-        "longitude": 16.37,
+        "longitude": 16.4,
         "timezones": [
             "UTC+01:00"
         ],
@@ -292,8 +292,8 @@
         "languages": [
             "Azerbaijani"
         ],
-        "latitude": 40.38,
-        "longitude": 49.87,
+        "latitude": 40.4,
+        "longitude": 49.9,
         "timezones": [
             "UTC+04:00"
         ],
@@ -311,8 +311,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 25.08,
-        "longitude": -77.35,
+        "latitude": 25.1,
+        "longitude": -77.3,
         "timezones": [
             "UTC-05:00"
         ],
@@ -330,8 +330,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 26.23,
-        "longitude": 50.57,
+        "latitude": 26.2,
+        "longitude": 50.6,
         "timezones": [
             "UTC+03:00"
         ],
@@ -349,7 +349,7 @@
         "languages": [
             "Bengali"
         ],
-        "latitude": 23.72,
+        "latitude": 23.7,
         "longitude": 90.4,
         "timezones": [
             "UTC+06:00"
@@ -369,7 +369,7 @@
             "English"
         ],
         "latitude": 13.1,
-        "longitude": -59.62,
+        "longitude": -59.6,
         "timezones": [
             "UTC-04:00"
         ],
@@ -389,7 +389,7 @@
             "Russian"
         ],
         "latitude": 53.9,
-        "longitude": 27.57,
+        "longitude": 27.6,
         "timezones": [
             "UTC+03:00"
         ],
@@ -409,8 +409,8 @@
             "French",
             "German"
         ],
-        "latitude": 50.83,
-        "longitude": 4.33,
+        "latitude": 50.8,
+        "longitude": 4.3,
         "timezones": [
             "UTC+01:00"
         ],
@@ -430,8 +430,8 @@
             "English",
             "Spanish"
         ],
-        "latitude": 17.25,
-        "longitude": -88.77,
+        "latitude": 17.2,
+        "longitude": -88.8,
         "timezones": [
             "UTC-06:00"
         ],
@@ -449,8 +449,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 6.48,
-        "longitude": 2.62,
+        "latitude": 6.5,
+        "longitude": 2.6,
         "timezones": [
             "UTC+01:00"
         ],
@@ -468,8 +468,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 32.28,
-        "longitude": -64.78,
+        "latitude": 32.3,
+        "longitude": -64.8,
         "timezones": [
             "UTC-04:00"
         ],
@@ -487,8 +487,8 @@
         "languages": [
             "Dzongkha"
         ],
-        "latitude": 27.47,
-        "longitude": 89.63,
+        "latitude": 27.5,
+        "longitude": 89.6,
         "timezones": [
             "UTC+06:00"
         ],
@@ -509,8 +509,8 @@
             "Quechua",
             "Spanish"
         ],
-        "latitude": -19.04,
-        "longitude": -65.26,
+        "latitude": -19.0,
+        "longitude": -65.3,
         "timezones": [
             "UTC-04:00"
         ],
@@ -530,8 +530,8 @@
             "Croatian",
             "Serbian"
         ],
-        "latitude": 43.87,
-        "longitude": 18.42,
+        "latitude": 43.9,
+        "longitude": 18.4,
         "timezones": [
             "UTC+01:00"
         ],
@@ -550,7 +550,7 @@
             "English",
             "Tswana"
         ],
-        "latitude": -24.63,
+        "latitude": -24.6,
         "longitude": 25.9,
         "timezones": [
             "UTC+02:00"
@@ -588,8 +588,8 @@
         "languages": [
             "Portuguese"
         ],
-        "latitude": -15.79,
-        "longitude": -47.88,
+        "latitude": -15.8,
+        "longitude": -47.9,
         "timezones": [
             "UTC-05:00",
             "UTC-04:00",
@@ -610,8 +610,8 @@
         "languages": [
             "English"
         ],
-        "latitude": -7.3133,
-        "longitude": 72.4111,
+        "latitude": -7.3,
+        "longitude": 72.4,
         "timezones": [
             "UTC+06:00"
         ],
@@ -629,8 +629,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 18.42,
-        "longitude": -64.62,
+        "latitude": 18.4,
+        "longitude": -64.6,
         "timezones": [
             "UTC-04:00"
         ],
@@ -648,8 +648,8 @@
         "languages": [
             "Malay"
         ],
-        "latitude": 4.88,
-        "longitude": 114.93,
+        "latitude": 4.9,
+        "longitude": 114.9,
         "timezones": [
             "UTC+08:00"
         ],
@@ -667,8 +667,8 @@
         "languages": [
             "Bulgarian"
         ],
-        "latitude": 42.68,
-        "longitude": 23.32,
+        "latitude": 42.7,
+        "longitude": 23.3,
         "timezones": [
             "UTC+02:00"
         ],
@@ -686,8 +686,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 12.37,
-        "longitude": -1.52,
+        "latitude": 12.4,
+        "longitude": -1.5,
         "timezones": [
             "UTC"
         ],
@@ -706,8 +706,8 @@
             "French",
             "Rundi"
         ],
-        "latitude": -3.43,
-        "longitude": 29.93,
+        "latitude": -3.4,
+        "longitude": 29.9,
         "timezones": [
             "UTC+02:00"
         ],
@@ -725,8 +725,8 @@
         "languages": [
             "Portuguese"
         ],
-        "latitude": 14.92,
-        "longitude": -23.52,
+        "latitude": 14.9,
+        "longitude": -23.5,
         "timezones": [
             "UTC-01:00"
         ],
@@ -744,8 +744,8 @@
         "languages": [
             "Khmer"
         ],
-        "latitude": 11.55,
-        "longitude": 104.92,
+        "latitude": 11.6,
+        "longitude": 104.9,
         "timezones": [
             "UTC+07:00"
         ],
@@ -764,7 +764,7 @@
             "English",
             "French"
         ],
-        "latitude": 3.85,
+        "latitude": 3.9,
         "longitude": 11.5,
         "timezones": [
             "UTC+01:00"
@@ -775,7 +775,7 @@
     {
         "id": "CAN",
         "population": 41600000,
-        "total_area": 1.0E7,
+        "total_area": 10000000.0,
         "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ca.png",
         "currency_name": "Canadian dollar",
         "currency_symbol": "$",
@@ -784,7 +784,7 @@
             "English",
             "French"
         ],
-        "latitude": 45.42,
+        "latitude": 45.4,
         "longitude": -75.7,
         "timezones": [
             "UTC-08:00",
@@ -810,8 +810,8 @@
             "Dutch",
             "Papiamento"
         ],
-        "latitude": 12.14,
-        "longitude": -68.27,
+        "latitude": 12.1,
+        "longitude": -68.3,
         "timezones": [
             "UTC-04:00"
         ],
@@ -830,7 +830,7 @@
             "English"
         ],
         "latitude": 19.3,
-        "longitude": -81.38,
+        "longitude": -81.4,
         "timezones": [
             "UTC-05:00"
         ],
@@ -849,8 +849,8 @@
             "French",
             "Sango"
         ],
-        "latitude": 4.37,
-        "longitude": 18.58,
+        "latitude": 4.4,
+        "longitude": 18.6,
         "timezones": [
             "UTC+01:00"
         ],
@@ -870,7 +870,7 @@
             "French"
         ],
         "latitude": 12.1,
-        "longitude": 15.03,
+        "longitude": 15.0,
         "timezones": [
             "UTC+01:00"
         ],
@@ -888,8 +888,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": -33.45,
-        "longitude": -70.67,
+        "latitude": -33.5,
+        "longitude": -70.7,
         "timezones": [
             "UTC-06:00",
             "UTC-04:00"
@@ -908,8 +908,8 @@
         "languages": [
             "Chinese"
         ],
-        "latitude": 39.92,
-        "longitude": 116.38,
+        "latitude": 39.9,
+        "longitude": 116.4,
         "timezones": [
             "UTC+08:00"
         ],
@@ -927,8 +927,8 @@
         "languages": [
             "English"
         ],
-        "latitude": -10.42,
-        "longitude": 105.68,
+        "latitude": -10.4,
+        "longitude": 105.7,
         "timezones": [
             "UTC+07:00"
         ],
@@ -946,8 +946,8 @@
         "languages": [
             "English"
         ],
-        "latitude": -12.17,
-        "longitude": 96.83,
+        "latitude": -12.2,
+        "longitude": 96.8,
         "timezones": [
             "UTC+06:30"
         ],
@@ -965,8 +965,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 4.71,
-        "longitude": -74.07,
+        "latitude": 4.7,
+        "longitude": -74.1,
         "timezones": [
             "UTC-05:00"
         ],
@@ -987,7 +987,7 @@
             "Ngazidja Comorian"
         ],
         "latitude": -11.7,
-        "longitude": 43.23,
+        "longitude": 43.2,
         "timezones": [
             "UTC+03:00"
         ],
@@ -1007,8 +1007,8 @@
             "Kongo",
             "Lingala"
         ],
-        "latitude": -4.25,
-        "longitude": 15.28,
+        "latitude": -4.2,
+        "longitude": 15.3,
         "timezones": [
             "UTC+01:00"
         ],
@@ -1028,7 +1028,7 @@
             "Cook Islands Maori"
         ],
         "latitude": -21.2,
-        "longitude": -159.77,
+        "longitude": -159.8,
         "timezones": [
             "UTC-10:00"
         ],
@@ -1046,8 +1046,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 9.93,
-        "longitude": -84.09,
+        "latitude": 9.9,
+        "longitude": -84.1,
         "timezones": [
             "UTC-06:00"
         ],
@@ -1065,8 +1065,8 @@
         "languages": [
             "Croatian"
         ],
-        "latitude": 45.815,
-        "longitude": 15.9819,
+        "latitude": 45.8,
+        "longitude": 16.0,
         "timezones": [
             "UTC+01:00"
         ],
@@ -1084,8 +1084,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 23.12,
-        "longitude": -82.35,
+        "latitude": 23.1,
+        "longitude": -82.3,
         "timezones": [
             "UTC-05:00"
         ],
@@ -1106,7 +1106,7 @@
             "Papiamento"
         ],
         "latitude": 12.1,
-        "longitude": -68.92,
+        "longitude": -68.9,
         "timezones": [
             "UTC-04:00"
         ],
@@ -1125,8 +1125,8 @@
             "Greek",
             "Turkish"
         ],
-        "latitude": 35.17,
-        "longitude": 33.37,
+        "latitude": 35.2,
+        "longitude": 33.4,
         "timezones": [
             "UTC+02:00"
         ],
@@ -1145,8 +1145,8 @@
             "Czech",
             "Slovak"
         ],
-        "latitude": 50.08,
-        "longitude": 14.47,
+        "latitude": 50.1,
+        "longitude": 14.5,
         "timezones": [
             "UTC+01:00"
         ],
@@ -1168,7 +1168,7 @@
             "Luba-Lulua",
             "Swahili"
         ],
-        "latitude": -4.32,
+        "latitude": -4.3,
         "longitude": 15.3,
         "timezones": [
             "UTC+01:00",
@@ -1188,8 +1188,8 @@
         "languages": [
             "Danish"
         ],
-        "latitude": 55.67,
-        "longitude": 12.58,
+        "latitude": 55.7,
+        "longitude": 12.6,
         "timezones": [
             "UTC-04:00",
             "UTC-03:00",
@@ -1212,8 +1212,8 @@
             "Arabic",
             "French"
         ],
-        "latitude": 11.58,
-        "longitude": 43.15,
+        "latitude": 11.6,
+        "longitude": 43.1,
         "timezones": [
             "UTC+03:00"
         ],
@@ -1231,8 +1231,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 15.301,
-        "longitude": -61.3881,
+        "latitude": 15.3,
+        "longitude": -61.4,
         "timezones": [
             "UTC-04:00"
         ],
@@ -1250,7 +1250,7 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 18.47,
+        "latitude": 18.5,
         "longitude": -69.9,
         "timezones": [
             "UTC-04:00"
@@ -1269,7 +1269,7 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": -0.22,
+        "latitude": -0.2,
         "longitude": -78.5,
         "timezones": [
             "UTC-06:00",
@@ -1289,8 +1289,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 30.05,
-        "longitude": 31.25,
+        "latitude": 30.1,
+        "longitude": 31.2,
         "timezones": [
             "UTC+02:00"
         ],
@@ -1308,8 +1308,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 13.6929,
-        "longitude": -89.2182,
+        "latitude": 13.7,
+        "longitude": -89.2,
         "timezones": [
             "UTC-06:00"
         ],
@@ -1329,8 +1329,8 @@
             "Portuguese",
             "Spanish"
         ],
-        "latitude": 3.75,
-        "longitude": 8.78,
+        "latitude": 3.8,
+        "longitude": 8.8,
         "timezones": [
             "UTC+01:00"
         ],
@@ -1350,8 +1350,8 @@
             "English",
             "Tigrinya"
         ],
-        "latitude": 15.33,
-        "longitude": 38.93,
+        "latitude": 15.3,
+        "longitude": 38.9,
         "timezones": [
             "UTC+03:00"
         ],
@@ -1369,8 +1369,8 @@
         "languages": [
             "Estonian"
         ],
-        "latitude": 59.43,
-        "longitude": 24.72,
+        "latitude": 59.4,
+        "longitude": 24.7,
         "timezones": [
             "UTC+02:00"
         ],
@@ -1389,8 +1389,8 @@
             "English",
             "Swazi"
         ],
-        "latitude": -26.31,
-        "longitude": 31.13,
+        "latitude": -26.3,
+        "longitude": 31.1,
         "timezones": [
             "UTC+02:00"
         ],
@@ -1408,7 +1408,7 @@
         "languages": [
             "Amharic"
         ],
-        "latitude": 9.03,
+        "latitude": 9.0,
         "longitude": 38.7,
         "timezones": [
             "UTC+03:00"
@@ -1428,7 +1428,7 @@
             "English"
         ],
         "latitude": -51.7,
-        "longitude": -57.85,
+        "longitude": -57.9,
         "timezones": [
             "UTC-04:00"
         ],
@@ -1447,8 +1447,8 @@
             "Danish",
             "Faroese"
         ],
-        "latitude": 62.01,
-        "longitude": -6.77,
+        "latitude": 62.0,
+        "longitude": -6.8,
         "timezones": [
             "UTC+00:00"
         ],
@@ -1468,8 +1468,8 @@
             "Fijian",
             "Fiji Hindi"
         ],
-        "latitude": -18.13,
-        "longitude": 178.42,
+        "latitude": -18.1,
+        "longitude": 178.4,
         "timezones": [
             "UTC+12:00"
         ],
@@ -1488,8 +1488,8 @@
             "Finnish",
             "Swedish"
         ],
-        "latitude": 60.17,
-        "longitude": 24.93,
+        "latitude": 60.2,
+        "longitude": 24.9,
         "timezones": [
             "UTC+02:00"
         ],
@@ -1507,8 +1507,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 48.87,
-        "longitude": 2.33,
+        "latitude": 48.9,
+        "longitude": 2.3,
         "timezones": [
             "UTC-10:00",
             "UTC-09:30",
@@ -1539,8 +1539,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 4.94,
-        "longitude": -52.33,
+        "latitude": 4.9,
+        "longitude": -52.3,
         "timezones": [
             "UTC-03:00"
         ],
@@ -1558,8 +1558,8 @@
         "languages": [
             "French"
         ],
-        "latitude": -17.53,
-        "longitude": -149.56,
+        "latitude": -17.5,
+        "longitude": -149.6,
         "timezones": [
             "UTC-10:00",
             "UTC-09:30",
@@ -1579,8 +1579,8 @@
         "languages": [
             "French"
         ],
-        "latitude": -49.35,
-        "longitude": 70.2167,
+        "latitude": -49.4,
+        "longitude": 70.2,
         "timezones": [
             "UTC+05:00"
         ],
@@ -1598,8 +1598,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 0.38,
-        "longitude": 9.45,
+        "latitude": 0.4,
+        "longitude": 9.4,
         "timezones": [
             "UTC+01:00"
         ],
@@ -1617,8 +1617,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 13.45,
-        "longitude": -16.57,
+        "latitude": 13.4,
+        "longitude": -16.6,
         "timezones": [
             "UTC+00:00"
         ],
@@ -1636,8 +1636,8 @@
         "languages": [
             "Georgian"
         ],
-        "latitude": 41.68,
-        "longitude": 44.83,
+        "latitude": 41.7,
+        "longitude": 44.8,
         "timezones": [
             "UTC+04:00"
         ],
@@ -1655,7 +1655,7 @@
         "languages": [
             "German"
         ],
-        "latitude": 52.52,
+        "latitude": 52.5,
         "longitude": 13.4,
         "timezones": [
             "UTC+01:00"
@@ -1674,8 +1674,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 5.55,
-        "longitude": -0.22,
+        "latitude": 5.5,
+        "longitude": -0.2,
         "timezones": [
             "UTC"
         ],
@@ -1693,8 +1693,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 36.13,
-        "longitude": -5.35,
+        "latitude": 36.1,
+        "longitude": -5.3,
         "timezones": [
             "UTC+01:00"
         ],
@@ -1712,8 +1712,8 @@
         "languages": [
             "Greek"
         ],
-        "latitude": 37.98,
-        "longitude": 23.73,
+        "latitude": 38.0,
+        "longitude": 23.7,
         "timezones": [
             "UTC+02:00"
         ],
@@ -1731,8 +1731,8 @@
         "languages": [
             "Greenlandic"
         ],
-        "latitude": 64.18,
-        "longitude": -51.75,
+        "latitude": 64.2,
+        "longitude": -51.8,
         "timezones": [
             "UTC-04:00",
             "UTC-03:00",
@@ -1753,8 +1753,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 12.0529,
-        "longitude": -61.7523,
+        "latitude": 12.1,
+        "longitude": -61.8,
         "timezones": [
             "UTC-04:00"
         ],
@@ -1772,8 +1772,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 16.03,
-        "longitude": -61.73,
+        "latitude": 16.0,
+        "longitude": -61.7,
         "timezones": [
             "UTC-04:00"
         ],
@@ -1793,8 +1793,8 @@
             "English",
             "Spanish"
         ],
-        "latitude": 13.48,
-        "longitude": 144.75,
+        "latitude": 13.5,
+        "longitude": 144.8,
         "timezones": [
             "UTC+10:00"
         ],
@@ -1812,8 +1812,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 14.62,
-        "longitude": -90.52,
+        "latitude": 14.6,
+        "longitude": -90.5,
         "timezones": [
             "UTC-06:00"
         ],
@@ -1833,8 +1833,8 @@
             "French",
             "Norman"
         ],
-        "latitude": 49.45,
-        "longitude": -2.54,
+        "latitude": 49.5,
+        "longitude": -2.5,
         "timezones": [
             "UTC+00:00"
         ],
@@ -1852,8 +1852,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 9.6412,
-        "longitude": -13.5784,
+        "latitude": 9.6,
+        "longitude": -13.6,
         "timezones": [
             "UTC"
         ],
@@ -1872,8 +1872,8 @@
             "Portuguese",
             "Upper Guinea Crioulo"
         ],
-        "latitude": 11.85,
-        "longitude": -15.58,
+        "latitude": 11.8,
+        "longitude": -15.6,
         "timezones": [
             "UTC"
         ],
@@ -1892,7 +1892,7 @@
             "English"
         ],
         "latitude": 6.8,
-        "longitude": -58.15,
+        "longitude": -58.1,
         "timezones": [
             "UTC-04:00"
         ],
@@ -1911,8 +1911,8 @@
             "French",
             "Haitian Creole"
         ],
-        "latitude": 18.53,
-        "longitude": -72.33,
+        "latitude": 18.5,
+        "longitude": -72.3,
         "timezones": [
             "UTC-05:00"
         ],
@@ -1950,7 +1950,7 @@
             "Spanish"
         ],
         "latitude": 14.1,
-        "longitude": -87.22,
+        "longitude": -87.2,
         "timezones": [
             "UTC-06:00"
         ],
@@ -1969,8 +1969,8 @@
             "English",
             "Chinese"
         ],
-        "latitude": 22.267,
-        "longitude": 114.188,
+        "latitude": 22.3,
+        "longitude": 114.2,
         "timezones": [
             "UTC+08:00"
         ],
@@ -1989,7 +1989,7 @@
             "Hungarian"
         ],
         "latitude": 47.5,
-        "longitude": 19.08,
+        "longitude": 19.1,
         "timezones": [
             "UTC+01:00"
         ],
@@ -2007,8 +2007,8 @@
         "languages": [
             "Icelandic"
         ],
-        "latitude": 64.15,
-        "longitude": -21.95,
+        "latitude": 64.2,
+        "longitude": -21.9,
         "timezones": [
             "UTC"
         ],
@@ -2028,8 +2028,8 @@
             "Hindi",
             "Tamil"
         ],
-        "latitude": 28.6139,
-        "longitude": 77.209,
+        "latitude": 28.6,
+        "longitude": 77.2,
         "timezones": [
             "UTC+05:30"
         ],
@@ -2047,8 +2047,8 @@
         "languages": [
             "Indonesian"
         ],
-        "latitude": -6.17,
-        "longitude": 106.82,
+        "latitude": -6.2,
+        "longitude": 106.8,
         "timezones": [
             "UTC+07:00",
             "UTC+08:00",
@@ -2069,7 +2069,7 @@
             "Persian"
         ],
         "latitude": 35.7,
-        "longitude": 51.42,
+        "longitude": 51.4,
         "timezones": [
             "UTC+03:30"
         ],
@@ -2089,7 +2089,7 @@
             "Aramaic",
             "Central Kurdish"
         ],
-        "latitude": 33.33,
+        "latitude": 33.3,
         "longitude": 44.4,
         "timezones": [
             "UTC+03:00"
@@ -2109,8 +2109,8 @@
             "English",
             "Irish"
         ],
-        "latitude": 53.32,
-        "longitude": -6.23,
+        "latitude": 53.3,
+        "longitude": -6.2,
         "timezones": [
             "UTC"
         ],
@@ -2129,8 +2129,8 @@
             "English",
             "Manx"
         ],
-        "latitude": 54.15,
-        "longitude": -4.48,
+        "latitude": 54.1,
+        "longitude": -4.5,
         "timezones": [
             "UTC+00:00"
         ],
@@ -2149,8 +2149,8 @@
             "Arabic",
             "Hebrew"
         ],
-        "latitude": 31.77,
-        "longitude": 35.23,
+        "latitude": 31.8,
+        "longitude": 35.2,
         "timezones": [
             "UTC+02:00"
         ],
@@ -2170,7 +2170,7 @@
             "Catalan"
         ],
         "latitude": 41.9,
-        "longitude": 12.48,
+        "longitude": 12.5,
         "timezones": [
             "UTC+01:00"
         ],
@@ -2188,8 +2188,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 6.82,
-        "longitude": -5.27,
+        "latitude": 6.8,
+        "longitude": -5.3,
         "timezones": [
             "UTC"
         ],
@@ -2208,8 +2208,8 @@
             "English",
             "Jamaican Patois"
         ],
-        "latitude": 17.99702,
-        "longitude": -76.79358,
+        "latitude": 18.0,
+        "longitude": -76.8,
         "timezones": [
             "UTC-05:00"
         ],
@@ -2227,8 +2227,8 @@
         "languages": [
             "Japanese"
         ],
-        "latitude": 35.68,
-        "longitude": 139.75,
+        "latitude": 35.7,
+        "longitude": 139.8,
         "timezones": [
             "UTC+09:00"
         ],
@@ -2248,7 +2248,7 @@
             "French",
             "Norman"
         ],
-        "latitude": 49.18,
+        "latitude": 49.2,
         "longitude": -2.1,
         "timezones": [
             "UTC+01:00"
@@ -2267,8 +2267,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 31.95,
-        "longitude": 35.93,
+        "latitude": 31.9,
+        "longitude": 35.9,
         "timezones": [
             "UTC+03:00"
         ],
@@ -2287,8 +2287,8 @@
             "Kazakh",
             "Russian"
         ],
-        "latitude": 51.16,
-        "longitude": 71.45,
+        "latitude": 51.2,
+        "longitude": 71.5,
         "timezones": [
             "UTC+05:00",
             "UTC+06:00"
@@ -2308,8 +2308,8 @@
             "English",
             "Swahili"
         ],
-        "latitude": -1.28,
-        "longitude": 36.82,
+        "latitude": -1.3,
+        "longitude": 36.8,
         "timezones": [
             "UTC+03:00"
         ],
@@ -2328,8 +2328,8 @@
             "English",
             "Gilbertese"
         ],
-        "latitude": 1.33,
-        "longitude": 172.98,
+        "latitude": 1.3,
+        "longitude": 173.0,
         "timezones": [
             "UTC+12:00",
             "UTC+13:00",
@@ -2350,8 +2350,8 @@
             "Albanian",
             "Serbian"
         ],
-        "latitude": 42.67,
-        "longitude": 21.17,
+        "latitude": 42.7,
+        "longitude": 21.2,
         "timezones": [
             "UTC+01:00"
         ],
@@ -2369,8 +2369,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 29.37,
-        "longitude": 47.97,
+        "latitude": 29.4,
+        "longitude": 48.0,
         "timezones": [
             "UTC+03:00"
         ],
@@ -2389,7 +2389,7 @@
             "Kyrgyz",
             "Russian"
         ],
-        "latitude": 42.87,
+        "latitude": 42.9,
         "longitude": 74.6,
         "timezones": [
             "UTC+06:00"
@@ -2408,7 +2408,7 @@
         "languages": [
             "Lao"
         ],
-        "latitude": 17.97,
+        "latitude": 18.0,
         "longitude": 102.6,
         "timezones": [
             "UTC+07:00"
@@ -2427,7 +2427,7 @@
         "languages": [
             "Latvian"
         ],
-        "latitude": 56.95,
+        "latitude": 57.0,
         "longitude": 24.1,
         "timezones": [
             "UTC+02:00"
@@ -2447,7 +2447,7 @@
             "Arabic",
             "French"
         ],
-        "latitude": 33.87,
+        "latitude": 33.9,
         "longitude": 35.5,
         "timezones": [
             "UTC+02:00"
@@ -2467,8 +2467,8 @@
             "English",
             "Sotho"
         ],
-        "latitude": -29.32,
-        "longitude": 27.48,
+        "latitude": -29.3,
+        "longitude": 27.5,
         "timezones": [
             "UTC+02:00"
         ],
@@ -2486,8 +2486,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 6.3156,
-        "longitude": -10.8074,
+        "latitude": 6.3,
+        "longitude": -10.8,
         "timezones": [
             "UTC"
         ],
@@ -2505,8 +2505,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 32.88,
-        "longitude": 13.17,
+        "latitude": 32.9,
+        "longitude": 13.2,
         "timezones": [
             "UTC+01:00"
         ],
@@ -2524,8 +2524,8 @@
         "languages": [
             "German"
         ],
-        "latitude": 47.13,
-        "longitude": 9.52,
+        "latitude": 47.1,
+        "longitude": 9.5,
         "timezones": [
             "UTC+01:00"
         ],
@@ -2543,8 +2543,8 @@
         "languages": [
             "Lithuanian"
         ],
-        "latitude": 54.68,
-        "longitude": 25.32,
+        "latitude": 54.7,
+        "longitude": 25.3,
         "timezones": [
             "UTC+02:00"
         ],
@@ -2565,7 +2565,7 @@
             "Luxembourgish"
         ],
         "latitude": 49.6,
-        "longitude": 6.12,
+        "longitude": 6.1,
         "timezones": [
             "UTC+01:00"
         ],
@@ -2604,8 +2604,8 @@
             "French",
             "Malagasy"
         ],
-        "latitude": -18.92,
-        "longitude": 47.52,
+        "latitude": -18.9,
+        "longitude": 47.5,
         "timezones": [
             "UTC+03:00"
         ],
@@ -2624,8 +2624,8 @@
             "English",
             "Chichewa"
         ],
-        "latitude": -13.97,
-        "longitude": 33.78,
+        "latitude": -14.0,
+        "longitude": 33.8,
         "timezones": [
             "UTC+02:00"
         ],
@@ -2644,7 +2644,7 @@
             "English",
             "Malay"
         ],
-        "latitude": 3.17,
+        "latitude": 3.2,
         "longitude": 101.7,
         "timezones": [
             "UTC+08:00"
@@ -2663,8 +2663,8 @@
         "languages": [
             "Divehi"
         ],
-        "latitude": 4.17,
-        "longitude": 73.51,
+        "latitude": 4.2,
+        "longitude": 73.5,
         "timezones": [
             "UTC+05:00"
         ],
@@ -2682,7 +2682,7 @@
         "languages": [
             "French"
         ],
-        "latitude": 12.65,
+        "latitude": 12.7,
         "longitude": -8.0,
         "timezones": [
             "UTC"
@@ -2702,7 +2702,7 @@
             "English",
             "Maltese"
         ],
-        "latitude": 35.88,
+        "latitude": 35.9,
         "longitude": 14.5,
         "timezones": [
             "UTC+01:00"
@@ -2723,7 +2723,7 @@
             "Marshallese"
         ],
         "latitude": 7.1,
-        "longitude": 171.38,
+        "longitude": 171.4,
         "timezones": [
             "UTC+12:00"
         ],
@@ -2742,7 +2742,7 @@
             "French"
         ],
         "latitude": 14.6,
-        "longitude": -61.08,
+        "longitude": -61.1,
         "timezones": [
             "UTC-04:00"
         ],
@@ -2760,8 +2760,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 18.07,
-        "longitude": -15.97,
+        "latitude": 18.1,
+        "longitude": -16.0,
         "timezones": [
             "UTC"
         ],
@@ -2781,8 +2781,8 @@
             "French",
             "Mauritian Creole"
         ],
-        "latitude": -20.15,
-        "longitude": 57.48,
+        "latitude": -20.1,
+        "longitude": 57.5,
         "timezones": [
             "UTC+04:00"
         ],
@@ -2800,8 +2800,8 @@
         "languages": [
             "French"
         ],
-        "latitude": -12.78,
-        "longitude": 45.22,
+        "latitude": -12.8,
+        "longitude": 45.2,
         "timezones": [
             "UTC+03:00"
         ],
@@ -2819,8 +2819,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 19.43,
-        "longitude": -99.13,
+        "latitude": 19.4,
+        "longitude": -99.1,
         "timezones": [
             "UTC-08:00",
             "UTC-07:00",
@@ -2840,8 +2840,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 6.92,
-        "longitude": 158.15,
+        "latitude": 6.9,
+        "longitude": 158.2,
         "timezones": [
             "UTC+10:00",
             "UTC+11:00"
@@ -2860,7 +2860,7 @@
         "languages": [
             "Romanian"
         ],
-        "latitude": 47.01,
+        "latitude": 47.0,
         "longitude": 28.9,
         "timezones": [
             "UTC+02:00"
@@ -2879,8 +2879,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 43.73,
-        "longitude": 7.42,
+        "latitude": 43.7,
+        "longitude": 7.4,
         "timezones": [
             "UTC+01:00"
         ],
@@ -2898,8 +2898,8 @@
         "languages": [
             "Mongolian"
         ],
-        "latitude": 47.92,
-        "longitude": 106.91,
+        "latitude": 47.9,
+        "longitude": 106.9,
         "timezones": [
             "UTC+07:00",
             "UTC+08:00"
@@ -2918,8 +2918,8 @@
         "languages": [
             "Montenegrin"
         ],
-        "latitude": 42.43,
-        "longitude": 19.27,
+        "latitude": 42.4,
+        "longitude": 19.3,
         "timezones": [
             "UTC+01:00"
         ],
@@ -2938,7 +2938,7 @@
             "English"
         ],
         "latitude": 16.7,
-        "longitude": -62.22,
+        "longitude": -62.2,
         "timezones": [
             "UTC-04:00"
         ],
@@ -2957,8 +2957,8 @@
             "Arabic",
             "Standard Moroccan Tamazight"
         ],
-        "latitude": 34.02,
-        "longitude": -6.82,
+        "latitude": 34.0,
+        "longitude": -6.8,
         "timezones": [
             "UTC"
         ],
@@ -2976,8 +2976,8 @@
         "languages": [
             "Portuguese"
         ],
-        "latitude": -25.95,
-        "longitude": 32.58,
+        "latitude": -25.9,
+        "longitude": 32.6,
         "timezones": [
             "UTC+02:00"
         ],
@@ -2995,8 +2995,8 @@
         "languages": [
             "Burmese"
         ],
-        "latitude": 19.76,
-        "longitude": 96.07,
+        "latitude": 19.8,
+        "longitude": 96.1,
         "timezones": [
             "UTC+06:30"
         ],
@@ -3022,8 +3022,8 @@
             "Ndonga",
             "Tswana"
         ],
-        "latitude": -22.57,
-        "longitude": 17.08,
+        "latitude": -22.6,
+        "longitude": 17.1,
         "timezones": [
             "UTC+01:00"
         ],
@@ -3042,8 +3042,8 @@
             "English",
             "Nauruan"
         ],
-        "latitude": -0.55,
-        "longitude": 166.92,
+        "latitude": -0.6,
+        "longitude": 166.9,
         "timezones": [
             "UTC+12:00"
         ],
@@ -3061,8 +3061,8 @@
         "languages": [
             "Nepali"
         ],
-        "latitude": 27.72,
-        "longitude": 85.32,
+        "latitude": 27.7,
+        "longitude": 85.3,
         "timezones": [
             "UTC+05:45"
         ],
@@ -3080,8 +3080,8 @@
         "languages": [
             "Dutch"
         ],
-        "latitude": 52.35,
-        "longitude": 4.92,
+        "latitude": 52.4,
+        "longitude": 4.9,
         "timezones": [
             "UTC+01:00"
         ],
@@ -3099,8 +3099,8 @@
         "languages": [
             "French"
         ],
-        "latitude": -22.27,
-        "longitude": 166.45,
+        "latitude": -22.3,
+        "longitude": 166.4,
         "timezones": [
             "UTC+11:00"
         ],
@@ -3121,7 +3121,7 @@
             "New Zealand Sign Language"
         ],
         "latitude": -41.3,
-        "longitude": 174.78,
+        "longitude": 174.8,
         "timezones": [
             "UTC-11:00",
             "UTC-10:00",
@@ -3143,8 +3143,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 12.13,
-        "longitude": -86.25,
+        "latitude": 12.1,
+        "longitude": -86.2,
         "timezones": [
             "UTC-06:00"
         ],
@@ -3162,8 +3162,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 13.52,
-        "longitude": 2.12,
+        "latitude": 13.5,
+        "longitude": 2.1,
         "timezones": [
             "UTC+01:00"
         ],
@@ -3181,8 +3181,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 9.08,
-        "longitude": 7.53,
+        "latitude": 9.1,
+        "longitude": 7.5,
         "timezones": [
             "UTC+01:00"
         ],
@@ -3201,8 +3201,8 @@
             "English",
             "Niuean"
         ],
-        "latitude": -19.02,
-        "longitude": -169.92,
+        "latitude": -19.0,
+        "longitude": -169.9,
         "timezones": [
             "UTC-11:00"
         ],
@@ -3221,8 +3221,8 @@
             "English",
             "Norfuk"
         ],
-        "latitude": -29.05,
-        "longitude": 167.97,
+        "latitude": -29.1,
+        "longitude": 168.0,
         "timezones": [
             "UTC+11:30"
         ],
@@ -3240,8 +3240,8 @@
         "languages": [
             "Korean"
         ],
-        "latitude": 39.02,
-        "longitude": 125.75,
+        "latitude": 39.0,
+        "longitude": 125.8,
         "timezones": [
             "UTC+09:00"
         ],
@@ -3260,7 +3260,7 @@
             "Macedonian"
         ],
         "latitude": 42.0,
-        "longitude": 21.43,
+        "longitude": 21.4,
         "timezones": [
             "UTC+01:00"
         ],
@@ -3281,7 +3281,7 @@
             "English"
         ],
         "latitude": 15.2,
-        "longitude": 145.75,
+        "longitude": 145.8,
         "timezones": [
             "UTC+10:00"
         ],
@@ -3303,8 +3303,8 @@
             "Lule Sami",
             "Southern Sami"
         ],
-        "latitude": 59.92,
-        "longitude": 10.75,
+        "latitude": 59.9,
+        "longitude": 10.8,
         "timezones": [
             "UTC+01:00"
         ],
@@ -3322,8 +3322,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 23.62,
-        "longitude": 58.58,
+        "latitude": 23.6,
+        "longitude": 58.6,
         "timezones": [
             "UTC+04:00"
         ],
@@ -3342,8 +3342,8 @@
             "English",
             "Urdu"
         ],
-        "latitude": 33.68,
-        "longitude": 73.05,
+        "latitude": 33.7,
+        "longitude": 73.0,
         "timezones": [
             "UTC+05:00"
         ],
@@ -3363,7 +3363,7 @@
             "Palauan"
         ],
         "latitude": 7.5,
-        "longitude": 134.62,
+        "longitude": 134.6,
         "timezones": [
             "UTC+09:00"
         ],
@@ -3381,8 +3381,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 31.9038,
-        "longitude": 35.2034,
+        "latitude": 31.9,
+        "longitude": 35.2,
         "timezones": [
             "UTC+02:00"
         ],
@@ -3400,8 +3400,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 8.97,
-        "longitude": -79.53,
+        "latitude": 9.0,
+        "longitude": -79.5,
         "timezones": [
             "UTC-05:00"
         ],
@@ -3421,8 +3421,8 @@
             "Hiri Motu",
             "Tok Pisin"
         ],
-        "latitude": -9.45,
-        "longitude": 147.18,
+        "latitude": -9.4,
+        "longitude": 147.2,
         "timezones": [
             "UTC+10:00"
         ],
@@ -3441,8 +3441,8 @@
             "Guarani",
             "Spanish"
         ],
-        "latitude": -25.28,
-        "longitude": -57.57,
+        "latitude": -25.3,
+        "longitude": -57.6,
         "timezones": [
             "UTC-04:00"
         ],
@@ -3462,8 +3462,8 @@
             "Quechua",
             "Spanish"
         ],
-        "latitude": -12.05,
-        "longitude": -77.05,
+        "latitude": -12.1,
+        "longitude": -77.0,
         "timezones": [
             "UTC-05:00"
         ],
@@ -3483,7 +3483,7 @@
             "Filipino"
         ],
         "latitude": 14.6,
-        "longitude": 120.97,
+        "longitude": 121.0,
         "timezones": [
             "UTC+08:00"
         ],
@@ -3501,8 +3501,8 @@
         "languages": [
             "English"
         ],
-        "latitude": -25.07,
-        "longitude": -130.08,
+        "latitude": -25.1,
+        "longitude": -130.1,
         "timezones": [
             "UTC-08:00"
         ],
@@ -3520,7 +3520,7 @@
         "languages": [
             "Polish"
         ],
-        "latitude": 52.25,
+        "latitude": 52.2,
         "longitude": 21.0,
         "timezones": [
             "UTC+01:00"
@@ -3539,8 +3539,8 @@
         "languages": [
             "Portuguese"
         ],
-        "latitude": 38.72,
-        "longitude": -9.13,
+        "latitude": 38.7,
+        "longitude": -9.1,
         "timezones": [
             "UTC-01:00",
             "UTC"
@@ -3560,8 +3560,8 @@
             "English",
             "Spanish"
         ],
-        "latitude": 18.47,
-        "longitude": -66.12,
+        "latitude": 18.5,
+        "longitude": -66.1,
         "timezones": [
             "UTC-04:00"
         ],
@@ -3579,8 +3579,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 25.28,
-        "longitude": 51.53,
+        "latitude": 25.3,
+        "longitude": 51.5,
         "timezones": [
             "UTC+03:00"
         ],
@@ -3598,7 +3598,7 @@
         "languages": [
             "Romanian"
         ],
-        "latitude": 44.43,
+        "latitude": 44.4,
         "longitude": 26.1,
         "timezones": [
             "UTC+02:00"
@@ -3609,7 +3609,7 @@
     {
         "id": "RUS",
         "population": 146000000,
-        "total_area": 1.71E7,
+        "total_area": 17100000.0,
         "coat_of_arms_url": "https://mainfacts.com/media/images/coats_of_arms/ru.png",
         "currency_name": "Russian ruble",
         "currency_symbol": "₽",
@@ -3617,7 +3617,7 @@
         "languages": [
             "Russian"
         ],
-        "latitude": 55.75,
+        "latitude": 55.8,
         "longitude": 37.6,
         "timezones": [
             "UTC+03:00",
@@ -3646,8 +3646,8 @@
             "French",
             "Kinyarwanda"
         ],
-        "latitude": -1.95,
-        "longitude": 30.05,
+        "latitude": -1.9,
+        "longitude": 30.1,
         "timezones": [
             "UTC+02:00"
         ],
@@ -3665,8 +3665,8 @@
         "languages": [
             "French"
         ],
-        "latitude": -20.88,
-        "longitude": 55.45,
+        "latitude": -20.9,
+        "longitude": 55.5,
         "timezones": [
             "UTC+04:00"
         ],
@@ -3684,8 +3684,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 17.88,
-        "longitude": -62.85,
+        "latitude": 17.9,
+        "longitude": -62.9,
         "timezones": [
             "UTC-04:00"
         ],
@@ -3703,8 +3703,8 @@
         "languages": [
             "English"
         ],
-        "latitude": -15.93,
-        "longitude": -5.72,
+        "latitude": -15.9,
+        "longitude": -5.7,
         "timezones": [
             "UTC+00:00"
         ],
@@ -3723,7 +3723,7 @@
             "English"
         ],
         "latitude": 17.3,
-        "longitude": -62.72,
+        "longitude": -62.7,
         "timezones": [
             "UTC-04:00"
         ],
@@ -3741,8 +3741,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 13.9957,
-        "longitude": -61.0061,
+        "latitude": 14.0,
+        "longitude": -61.0,
         "timezones": [
             "UTC-04:00"
         ],
@@ -3760,8 +3760,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 18.07,
-        "longitude": -63.08,
+        "latitude": 18.1,
+        "longitude": -63.1,
         "timezones": [
             "UTC-04:00"
         ],
@@ -3779,8 +3779,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 46.77,
-        "longitude": -56.18,
+        "latitude": 46.8,
+        "longitude": -56.2,
         "timezones": [
             "UTC-03:00"
         ],
@@ -3798,8 +3798,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 13.13,
-        "longitude": -61.22,
+        "latitude": 13.1,
+        "longitude": -61.2,
         "timezones": [
             "UTC-04:00"
         ],
@@ -3818,8 +3818,8 @@
             "English",
             "Samoan"
         ],
-        "latitude": -13.82,
-        "longitude": -171.77,
+        "latitude": -13.8,
+        "longitude": -171.8,
         "timezones": [
             "UTC+13:00"
         ],
@@ -3837,8 +3837,8 @@
         "languages": [
             "Italian"
         ],
-        "latitude": 43.94,
-        "longitude": 12.45,
+        "latitude": 43.9,
+        "longitude": 12.4,
         "timezones": [
             "UTC+01:00"
         ],
@@ -3856,7 +3856,7 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 24.65,
+        "latitude": 24.6,
         "longitude": 46.7,
         "timezones": [
             "UTC+03:00"
@@ -3875,8 +3875,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 14.73,
-        "longitude": -17.63,
+        "latitude": 14.7,
+        "longitude": -17.6,
         "timezones": [
             "UTC"
         ],
@@ -3894,7 +3894,7 @@
         "languages": [
             "Serbian"
         ],
-        "latitude": 44.83,
+        "latitude": 44.8,
         "longitude": 20.5,
         "timezones": [
             "UTC+01:00"
@@ -3915,8 +3915,8 @@
             "English",
             "French"
         ],
-        "latitude": -4.62,
-        "longitude": 55.45,
+        "latitude": -4.6,
+        "longitude": 55.5,
         "timezones": [
             "UTC+04:00"
         ],
@@ -3934,8 +3934,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 8.48,
-        "longitude": -13.23,
+        "latitude": 8.5,
+        "longitude": -13.2,
         "timezones": [
             "UTC"
         ],
@@ -3956,8 +3956,8 @@
             "Malay",
             "Tamil"
         ],
-        "latitude": 1.28,
-        "longitude": 103.85,
+        "latitude": 1.3,
+        "longitude": 103.8,
         "timezones": [
             "UTC+08:00"
         ],
@@ -3977,8 +3977,8 @@
             "French",
             "Dutch"
         ],
-        "latitude": 18.02,
-        "longitude": -63.03,
+        "latitude": 18.0,
+        "longitude": -63.0,
         "timezones": [
             "UTC-04:00"
         ],
@@ -3996,8 +3996,8 @@
         "languages": [
             "Slovak"
         ],
-        "latitude": 48.15,
-        "longitude": 17.12,
+        "latitude": 48.1,
+        "longitude": 17.1,
         "timezones": [
             "UTC+01:00"
         ],
@@ -4015,8 +4015,8 @@
         "languages": [
             "Slovenian"
         ],
-        "latitude": 46.05,
-        "longitude": 14.52,
+        "latitude": 46.0,
+        "longitude": 14.5,
         "timezones": [
             "UTC+01:00"
         ],
@@ -4034,8 +4034,8 @@
         "languages": [
             "English"
         ],
-        "latitude": -9.43,
-        "longitude": 159.95,
+        "latitude": -9.4,
+        "longitude": 159.9,
         "timezones": [
             "UTC+11:00"
         ],
@@ -4054,8 +4054,8 @@
             "Arabic",
             "Somali"
         ],
-        "latitude": 2.07,
-        "longitude": 45.33,
+        "latitude": 2.1,
+        "longitude": 45.3,
         "timezones": [
             "UTC+03:00"
         ],
@@ -4083,8 +4083,8 @@
             "Xhosa",
             "Zulu"
         ],
-        "latitude": -25.74,
-        "longitude": 28.19,
+        "latitude": -25.7,
+        "longitude": 28.2,
         "timezones": [
             "UTC+02:00"
         ],
@@ -4102,7 +4102,7 @@
         "languages": [
             "English"
         ],
-        "latitude": -54.28,
+        "latitude": -54.3,
         "longitude": -36.5,
         "timezones": [
             "UTC-02:00"
@@ -4121,8 +4121,8 @@
         "languages": [
             "Korean"
         ],
-        "latitude": 37.55,
-        "longitude": 126.98,
+        "latitude": 37.5,
+        "longitude": 127.0,
         "timezones": [
             "UTC+09:00"
         ],
@@ -4140,8 +4140,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 4.85,
-        "longitude": 31.62,
+        "latitude": 4.8,
+        "longitude": 31.6,
         "timezones": [
             "UTC+03:00"
         ],
@@ -4164,7 +4164,7 @@
             "Aranese"
         ],
         "latitude": 40.4,
-        "longitude": -3.68,
+        "longitude": -3.7,
         "timezones": [
             "UTC",
             "UTC+01:00"
@@ -4184,7 +4184,7 @@
             "Sinhala",
             "Tamil"
         ],
-        "latitude": 6.89,
+        "latitude": 6.9,
         "longitude": 79.9,
         "timezones": [
             "UTC+05:30"
@@ -4205,7 +4205,7 @@
             "English"
         ],
         "latitude": 15.6,
-        "longitude": 32.53,
+        "longitude": 32.5,
         "timezones": [
             "UTC+03:00"
         ],
@@ -4223,8 +4223,8 @@
         "languages": [
             "Dutch"
         ],
-        "latitude": 5.83,
-        "longitude": -55.17,
+        "latitude": 5.8,
+        "longitude": -55.2,
         "timezones": [
             "UTC-03:00"
         ],
@@ -4242,8 +4242,8 @@
         "languages": [
             "Norwegian"
         ],
-        "latitude": 78.22,
-        "longitude": 15.63,
+        "latitude": 78.2,
+        "longitude": 15.6,
         "timezones": [
             "UTC+01:00"
         ],
@@ -4261,8 +4261,8 @@
         "languages": [
             "Swedish"
         ],
-        "latitude": 59.33,
-        "longitude": 18.05,
+        "latitude": 59.3,
+        "longitude": 18.1,
         "timezones": [
             "UTC+01:00"
         ],
@@ -4283,8 +4283,8 @@
             "Italian",
             "Romansh"
         ],
-        "latitude": 46.92,
-        "longitude": 7.47,
+        "latitude": 46.9,
+        "longitude": 7.5,
         "timezones": [
             "UTC+01:00"
         ],
@@ -4302,8 +4302,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 33.5138,
-        "longitude": 36.2765,
+        "latitude": 33.5,
+        "longitude": 36.3,
         "timezones": [
             "UTC+02:00"
         ],
@@ -4321,8 +4321,8 @@
         "languages": [
             "Portuguese"
         ],
-        "latitude": 0.34,
-        "longitude": 6.73,
+        "latitude": 0.3,
+        "longitude": 6.7,
         "timezones": [
             "UTC"
         ],
@@ -4340,8 +4340,8 @@
         "languages": [
             "Chinese"
         ],
-        "latitude": 25.03,
-        "longitude": 121.52,
+        "latitude": 25.0,
+        "longitude": 121.5,
         "timezones": [
             "UTC+08:00"
         ],
@@ -4360,8 +4360,8 @@
             "Russian",
             "Tajik"
         ],
-        "latitude": 38.55,
-        "longitude": 68.77,
+        "latitude": 38.5,
+        "longitude": 68.8,
         "timezones": [
             "UTC+05:00"
         ],
@@ -4380,8 +4380,8 @@
             "English",
             "Swahili"
         ],
-        "latitude": -6.16,
-        "longitude": 35.75,
+        "latitude": -6.2,
+        "longitude": 35.8,
         "timezones": [
             "UTC+03:00"
         ],
@@ -4399,8 +4399,8 @@
         "languages": [
             "Thai"
         ],
-        "latitude": 13.75,
-        "longitude": 100.52,
+        "latitude": 13.8,
+        "longitude": 100.5,
         "timezones": [
             "UTC+07:00"
         ],
@@ -4419,7 +4419,7 @@
             "Portuguese",
             "Tetum"
         ],
-        "latitude": -8.58,
+        "latitude": -8.6,
         "longitude": 125.6,
         "timezones": [
             "UTC+09:00"
@@ -4438,8 +4438,8 @@
         "languages": [
             "French"
         ],
-        "latitude": 6.14,
-        "longitude": 1.21,
+        "latitude": 6.1,
+        "longitude": 1.2,
         "timezones": [
             "UTC"
         ],
@@ -4458,8 +4458,8 @@
             "Tokelauan",
             "English"
         ],
-        "latitude": -9.38,
-        "longitude": -171.22,
+        "latitude": -9.4,
+        "longitude": -171.2,
         "timezones": [
             "UTC+13:00"
         ],
@@ -4478,8 +4478,8 @@
             "Tongan",
             "English"
         ],
-        "latitude": -21,
-        "longitude": -175,
+        "latitude": -21.0,
+        "longitude": -175.0,
         "timezones": [
             "UTC+13:00"
         ],
@@ -4497,8 +4497,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 10.65,
-        "longitude": -61.52,
+        "latitude": 10.7,
+        "longitude": -61.5,
         "timezones": [
             "UTC-04:00"
         ],
@@ -4517,7 +4517,7 @@
             "Arabic"
         ],
         "latitude": 36.8,
-        "longitude": 10.18,
+        "longitude": 10.2,
         "timezones": [
             "UTC+01:00"
         ],
@@ -4535,8 +4535,8 @@
         "languages": [
             "Turkish"
         ],
-        "latitude": 39.93,
-        "longitude": 32.87,
+        "latitude": 39.9,
+        "longitude": 32.9,
         "timezones": [
             "UTC+03:00"
         ],
@@ -4555,8 +4555,8 @@
             "Russian",
             "Turkmen"
         ],
-        "latitude": 37.95,
-        "longitude": 58.38,
+        "latitude": 38.0,
+        "longitude": 58.4,
         "timezones": [
             "UTC+05:00"
         ],
@@ -4574,8 +4574,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 21.46,
-        "longitude": -71.14,
+        "latitude": 21.5,
+        "longitude": -71.1,
         "timezones": [
             "UTC-04:00"
         ],
@@ -4594,8 +4594,8 @@
             "English",
             "Tuvaluan"
         ],
-        "latitude": -8.52,
-        "longitude": 179.22,
+        "latitude": -8.5,
+        "longitude": 179.2,
         "timezones": [
             "UTC+12:00"
         ],
@@ -4614,8 +4614,8 @@
             "English",
             "Swahili"
         ],
-        "latitude": 0.32,
-        "longitude": 32.55,
+        "latitude": 0.3,
+        "longitude": 32.5,
         "timezones": [
             "UTC+03:00"
         ],
@@ -4633,8 +4633,8 @@
         "languages": [
             "Ukrainian"
         ],
-        "latitude": 50.43,
-        "longitude": 30.52,
+        "latitude": 50.4,
+        "longitude": 30.5,
         "timezones": [
             "UTC+02:00"
         ],
@@ -4652,8 +4652,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 24.47,
-        "longitude": 54.37,
+        "latitude": 24.5,
+        "longitude": 54.4,
         "timezones": [
             "UTC+04:00"
         ],
@@ -4672,7 +4672,7 @@
             "English"
         ],
         "latitude": 51.5,
-        "longitude": -0.08,
+        "longitude": -0.1,
         "timezones": [
             "UTC-08:00",
             "UTC-05:00",
@@ -4698,8 +4698,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 38.89,
-        "longitude": -77.05,
+        "latitude": 38.9,
+        "longitude": -77.0,
         "timezones": [
             "UTC-12:00",
             "UTC-11:00",
@@ -4748,8 +4748,8 @@
         "languages": [
             "English"
         ],
-        "latitude": 18.35,
-        "longitude": -64.93,
+        "latitude": 18.4,
+        "longitude": -64.9,
         "timezones": [
             "UTC-04:00"
         ],
@@ -4767,8 +4767,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": -34.85,
-        "longitude": -56.17,
+        "latitude": -34.9,
+        "longitude": -56.2,
         "timezones": [
             "UTC-03:00"
         ],
@@ -4787,8 +4787,8 @@
             "Russian",
             "Uzbek"
         ],
-        "latitude": 41.32,
-        "longitude": 69.25,
+        "latitude": 41.3,
+        "longitude": 69.2,
         "timezones": [
             "UTC+05:00"
         ],
@@ -4808,8 +4808,8 @@
             "English",
             "French"
         ],
-        "latitude": -17.73,
-        "longitude": 168.32,
+        "latitude": -17.7,
+        "longitude": 168.3,
         "timezones": [
             "UTC+11:00"
         ],
@@ -4829,7 +4829,7 @@
             "Latin"
         ],
         "latitude": 41.9,
-        "longitude": 12.45,
+        "longitude": 12.4,
         "timezones": [
             "UTC+01:00"
         ],
@@ -4847,8 +4847,8 @@
         "languages": [
             "Spanish"
         ],
-        "latitude": 10.48,
-        "longitude": -66.87,
+        "latitude": 10.5,
+        "longitude": -66.9,
         "timezones": [
             "UTC-04:00"
         ],
@@ -4866,8 +4866,8 @@
         "languages": [
             "Vietnamese"
         ],
-        "latitude": 21.03,
-        "longitude": 105.85,
+        "latitude": 21.0,
+        "longitude": 105.8,
         "timezones": [
             "UTC+07:00"
         ],
@@ -4885,8 +4885,8 @@
         "languages": [
             "French"
         ],
-        "latitude": -13.95,
-        "longitude": -171.93,
+        "latitude": -13.9,
+        "longitude": -171.9,
         "timezones": [
             "UTC+12:00"
         ],
@@ -4905,8 +4905,8 @@
             "Hassaniya Arabic",
             "Spanish"
         ],
-        "latitude": 27.1253,
-        "longitude": -13.1625,
+        "latitude": 27.1,
+        "longitude": -13.2,
         "timezones": [
             "UTC+00:00"
         ],
@@ -4924,8 +4924,8 @@
         "languages": [
             "Arabic"
         ],
-        "latitude": 15.37,
-        "longitude": 44.19,
+        "latitude": 15.4,
+        "longitude": 44.2,
         "timezones": [
             "UTC+03:00"
         ],
@@ -4943,8 +4943,8 @@
         "languages": [
             "English"
         ],
-        "latitude": -15.42,
-        "longitude": 28.28,
+        "latitude": -15.4,
+        "longitude": 28.3,
         "timezones": [
             "UTC+02:00"
         ],
@@ -4977,8 +4977,8 @@
             "Xhosa",
             "Zimbabwean Sign Language"
         ],
-        "latitude": -17.82,
-        "longitude": 31.03,
+        "latitude": -17.8,
+        "longitude": 31.0,
         "timezones": [
             "UTC+02:00"
         ],
@@ -4996,7 +4996,7 @@
         "languages": [
             "Swedish"
         ],
-        "latitude": 60.12,
+        "latitude": 60.1,
         "longitude": 19.9,
         "timezones": [
             "UTC+02:00"
