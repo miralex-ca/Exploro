@@ -26,6 +26,7 @@ sealed class DetailsPagerUiEvent {
     object OnBackClicked : DetailsPagerUiEvent()
     object OnPreviousClicked : DetailsPagerUiEvent()
     object OnNextClicked : DetailsPagerUiEvent()
+    data class OnPageChanged(val index: Int) : DetailsPagerUiEvent()
 }
 
 class DetailsPagerEventHandler(
@@ -38,6 +39,7 @@ class DetailsPagerEventHandler(
             is DetailsPagerUiEvent.OnBackClicked -> navActions.navigateBack()
             DetailsPagerUiEvent.OnNextClicked -> {}
             DetailsPagerUiEvent.OnPreviousClicked -> {}
+            is DetailsPagerUiEvent.OnPageChanged -> {}
         }
     }
 }

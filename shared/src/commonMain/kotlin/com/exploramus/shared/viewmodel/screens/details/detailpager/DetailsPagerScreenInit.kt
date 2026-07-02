@@ -20,6 +20,7 @@ fun StateManager.initDetailsPager(params: DetailsPagerScreenParams) = ScreenInit
         val continentCode = params.continent ?: return@ScreenInitSettings
 
         val countries = dataRepository.getCountriesBySectionId(continentCode)
+        val initialIndex = countries.indexOfFirst { it.id == countryCode }.coerceAtLeast(0)
 
         val countryDetailsState = dataRepository.getCountryDetails(countryCode)?.toDetailsState()
 
@@ -34,6 +35,11 @@ fun StateManager.initDetailsPager(params: DetailsPagerScreenParams) = ScreenInit
                 details = details,
                 hasNext = true,
                 hasPrevious = true,
+
+                pagerController = DetailsPagerController(
+                    initialIndex = initialIndex,
+                    totalCount = countries.size,
+                ),
             )
         }
     },
