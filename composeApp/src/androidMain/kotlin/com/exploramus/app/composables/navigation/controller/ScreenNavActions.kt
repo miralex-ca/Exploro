@@ -57,7 +57,7 @@ interface ScreenNavActions {
                 Screen.DetailsPagerScreen,
                 DetailsPagerScreenParams(
                     countryCode = item.id,
-                    continent = item.section,
+                    sectionId = item.section,
                     screenTitle = item.name
                 )
             )

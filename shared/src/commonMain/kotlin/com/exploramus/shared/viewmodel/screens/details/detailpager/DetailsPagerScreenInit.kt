@@ -9,16 +9,16 @@ import kotlinx.serialization.Serializable
 import kotlin.uuid.Uuid
 
 @Serializable
-data class DetailsPagerScreenParams(val countryCode: String? = null, val continent: String? = null, val screenTitle: String? = null) : ScreenParams
+data class DetailsPagerScreenParams(val countryCode: String? = null, val sectionId: String? = null, val screenTitle: String? = null) : ScreenParams
 
 fun StateManager.initDetailsPager(params: DetailsPagerScreenParams) = ScreenInitSettings(
     title = params.screenTitle ?: "",
     initState = { DetailsPagerScreenState(isLoading = true, resetKey = Uuid.random().toString()) },
     callOnInit = {
         val countryCode = params.countryCode ?: return@ScreenInitSettings
-        val continentCode = params.continent ?: return@ScreenInitSettings
+        val sectionId = params.sectionId ?: return@ScreenInitSettings
 
-        val detailsList = dataRepository.getCountriesWithDetailsBySection(continentCode).toDetailsState()
+        val detailsList = dataRepository.getCountriesWithDetailsBySection(sectionId).toDetailsState()
         val initialIndex = detailsList.indexOfFirst { it.id == countryCode }.coerceAtLeast(0)
 
         updateScreen(DetailsPagerScreenState::class) {
