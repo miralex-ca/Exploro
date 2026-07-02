@@ -20,3 +20,24 @@ class DetailsEventHandler(
         }
     }
 }
+
+sealed class DetailsPagerUiEvent {
+    data class ToggleFavorite(val countryId: String) : DetailsPagerUiEvent()
+    object OnBackClicked : DetailsPagerUiEvent()
+    object OnPreviousClicked : DetailsPagerUiEvent()
+    object OnNextClicked : DetailsPagerUiEvent()
+}
+
+class DetailsPagerEventHandler(
+    val events: Events,
+    val navActions: ScreenNavActions,
+) {
+    fun onEvent(event: DetailsPagerUiEvent) {
+        when (event) {
+            is DetailsPagerUiEvent.ToggleFavorite -> events.toggleFavorite(event.countryId)
+            is DetailsPagerUiEvent.OnBackClicked -> navActions.navigateBack()
+            DetailsPagerUiEvent.OnNextClicked -> {}
+            DetailsPagerUiEvent.OnPreviousClicked -> {}
+        }
+    }
+}

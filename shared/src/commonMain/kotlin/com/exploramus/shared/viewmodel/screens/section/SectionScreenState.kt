@@ -5,6 +5,7 @@ import com.exploramus.shared.viewmodel.core.ScreenState
 
 data class SectionScreenState(
     val isLoading: Boolean = false,
+    val sectionId: String = "",
     val countries: List<SectionListItem> = emptyList(),
 ) : ScreenState
 

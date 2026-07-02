@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.app.composables.navigation.handlers.EventHandlers
+import com.exploramus.app.composables.screens.details.DetailsPagerScreen
 import com.exploramus.app.composables.screens.details.DetailsScreen
 import com.exploramus.app.composables.screens.favorites.FavoritesScreen
 import com.exploramus.app.composables.screens.home.HomeScreen
@@ -15,6 +16,7 @@ import com.exploramus.app.composables.screens.settings.SettingsScreen
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 import com.exploramus.shared.viewmodel.screens.Screen
+import com.exploramus.shared.viewmodel.screens.details.detailpager.DetailsPagerScreenState
 import com.exploramus.shared.viewmodel.screens.details.singledetail.DetailsScreenState
 import com.exploramus.shared.viewmodel.screens.favorites.FavoritesScreenState
 import com.exploramus.shared.viewmodel.screens.home.HomeScreenState
@@ -55,6 +57,12 @@ fun Navigation.ScreenPicker(
             DetailsScreen(
                 screenState = state as DetailsScreenState,
                 eventHandler = eventHandlers.details,
+            )
+
+        Screen.DetailsPagerScreen ->
+            DetailsPagerScreen(
+                screenState = state as DetailsPagerScreenState,
+                eventHandler = eventHandlers.detailsPager,
             )
 
         Screen.SearchScreen ->

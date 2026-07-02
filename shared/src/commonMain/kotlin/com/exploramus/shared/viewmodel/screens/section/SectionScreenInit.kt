@@ -14,11 +14,13 @@ fun StateManager.initSectionScreen(params: SectionParams) = ScreenInitSettings(
     title = params.screenTitle ?: "",
     initState = { SectionScreenState(isLoading = true) },
     callOnInit = {
+        val sectionId = params.continent
         val countries = dataRepository.getCountriesBySectionId(params.continent)
 
         updateScreen(SectionScreenState::class) {
             it.copy(
                 isLoading = false,
+                sectionId = sectionId,
                 countries = countries.toSectionItems()
             )
         }

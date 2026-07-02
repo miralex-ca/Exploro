@@ -30,6 +30,7 @@ fun Navigation.TopBarContainer(
             )
         }
         screenIdentifier.screen == Screen.CountryDetail -> {}
+        screenIdentifier.screen == Screen.DetailsPagerScreen -> {}
         else -> {
             TopBar(
                 title = screenTitle,
