@@ -74,6 +74,12 @@ fun AppLocalDb.getAllCountriesBySection(
         .executeAsList()
 }
 
+fun AppLocalDb.getAllCountriesWithDetailsBySection(
+    continent: String
+) = countriesQueries
+    .getAllCountriesWithDetailsByContinent(continent)
+    .executeAsList()
+
 
 fun AppLocalDb.getFavorites(): List<Countries> {
     return favoritesQueries

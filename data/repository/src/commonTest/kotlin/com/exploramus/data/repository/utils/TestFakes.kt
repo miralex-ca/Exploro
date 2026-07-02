@@ -59,6 +59,7 @@ object TestFakes {
             countriesBySection[sectionId].orEmpty()
 
         override suspend fun getAllCountriesBySectionId(sectionId: String) = emptyList<Country>()
+        override suspend fun getAllCountriesWithDetailsBySectionId(sectionId: String) = emptyList<CountryWithDetails>()
         override suspend fun searchCountries(query: String): List<Country> {
             lastSearchQuery = query
             return searchResult

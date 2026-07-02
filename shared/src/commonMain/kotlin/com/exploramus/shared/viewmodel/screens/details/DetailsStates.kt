@@ -24,6 +24,8 @@ data class CountryDetailsState(
     val longitude: Double = 0.0
 )
 
+fun List<CountryWithDetails>.toDetailsState() = map { it.toDetailsState() }
+
 fun CountryWithDetails.toDetailsState() = CountryDetailsState(
     id = country.id,
     name = country.name,

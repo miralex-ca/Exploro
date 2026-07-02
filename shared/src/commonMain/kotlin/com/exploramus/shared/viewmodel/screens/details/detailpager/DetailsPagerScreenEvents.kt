@@ -5,7 +5,7 @@ import com.exploramus.data.repository.functions.isFavorite
 import com.exploramus.data.repository.functions.removeFavorite
 import com.exploramus.shared.viewmodel.core.Events
 
-fun Events.toggleDetailsPagerFavorite(code: String) = screenCoroutine {
+fun Events.toggleFavoritePager(code: String) = screenCoroutine {
     val newValue = !dataRepository.isFavorite(code)
 
     if (newValue) {
@@ -15,8 +15,9 @@ fun Events.toggleDetailsPagerFavorite(code: String) = screenCoroutine {
     }
 
     stateManager.updateScreen(DetailsPagerScreenState::class) {
-        it.copy(
-            details = it.details?.copy(isFavorite = newValue),
-        )
+        val updatedList = it.detailsList.map { details ->
+            if (details.id == code) details.copy(isFavorite = newValue) else details
+        }
+        it.copy(detailsList = updatedList)
     }
 }

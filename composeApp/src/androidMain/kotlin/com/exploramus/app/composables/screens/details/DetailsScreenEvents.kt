@@ -2,6 +2,7 @@ package com.exploramus.app.composables.screens.details
 
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.shared.viewmodel.core.Events
+import com.exploramus.shared.viewmodel.screens.details.detailpager.toggleFavoritePager
 import com.exploramus.shared.viewmodel.screens.details.singledetail.toggleFavorite
 
 sealed class DetailsUiEvent {
@@ -24,9 +25,6 @@ class DetailsEventHandler(
 sealed class DetailsPagerUiEvent {
     data class ToggleFavorite(val countryId: String) : DetailsPagerUiEvent()
     object OnBackClicked : DetailsPagerUiEvent()
-    object OnPreviousClicked : DetailsPagerUiEvent()
-    object OnNextClicked : DetailsPagerUiEvent()
-    data class OnPageChanged(val index: Int) : DetailsPagerUiEvent()
 }
 
 class DetailsPagerEventHandler(
@@ -35,11 +33,10 @@ class DetailsPagerEventHandler(
 ) {
     fun onEvent(event: DetailsPagerUiEvent) {
         when (event) {
-            is DetailsPagerUiEvent.ToggleFavorite -> events.toggleFavorite(event.countryId)
+            is DetailsPagerUiEvent.ToggleFavorite -> {
+                events.toggleFavoritePager(event.countryId)
+            }
             is DetailsPagerUiEvent.OnBackClicked -> navActions.navigateBack()
-            DetailsPagerUiEvent.OnNextClicked -> {}
-            DetailsPagerUiEvent.OnPreviousClicked -> {}
-            is DetailsPagerUiEvent.OnPageChanged -> {}
         }
     }
 }
