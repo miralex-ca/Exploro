@@ -11,3 +11,7 @@ suspend fun Repository.getCountryDetails(code: String):  CountryWithDetails? = w
 suspend fun Repository.getCountriesWithDetailsBySection(section: String) = withRepoContext {
      localDb.getAllCountriesWithDetailsBySectionId(section)
 }
+
+suspend fun Repository.getFavoritesWithDetails() = withRepoContext {
+     localDb.getFavoritesWithDetails()
+}

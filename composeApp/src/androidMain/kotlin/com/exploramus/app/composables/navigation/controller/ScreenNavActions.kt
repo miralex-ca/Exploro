@@ -3,6 +3,7 @@ package com.exploramus.app.composables.navigation.controller
 import com.exploramus.shared.viewmodel.screens.Level1Navigation
 import com.exploramus.shared.viewmodel.screens.Screen
 import com.exploramus.shared.viewmodel.screens.details.detailpager.DetailsPagerScreenParams
+import com.exploramus.shared.viewmodel.screens.details.detailpager.FavoritesPagerScreenParams
 import com.exploramus.shared.viewmodel.screens.details.singledetail.DetailsScreenParams
 import com.exploramus.shared.viewmodel.screens.section.SectionParams
 
@@ -18,6 +19,8 @@ interface ScreenNavActions {
     fun toDetailFromList(item: DetailsNavParams)
 
     fun toDetailsPagerFromList(item: DetailsPagerNavParams)
+
+    fun toFavoritesPagerFromList(item: FavoritesPagerNavParams)
 
     fun toSection(section: SectionNavParams)
 
@@ -63,6 +66,16 @@ interface ScreenNavActions {
             )
         }
 
+        override fun toFavoritesPagerFromList(item: FavoritesPagerNavParams) {
+            appNavController.navigate(
+                Screen.FavoritesPagerScreen,
+                FavoritesPagerScreenParams(
+                    countryCode = item.id,
+                    screenTitle = item.name
+                )
+            )
+        }
+
         override fun toSection(section: SectionNavParams) {
             appNavController.navigate(
                 Screen.SectionScreen,
@@ -84,6 +97,11 @@ data class DetailsNavParams(
 data class DetailsPagerNavParams(
     val id: String,
     val section: String,
+    val name: String,
+)
+
+data class FavoritesPagerNavParams(
+    val id: String,
     val name: String,
 )
 

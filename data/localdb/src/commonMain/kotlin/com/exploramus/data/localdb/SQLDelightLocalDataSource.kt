@@ -84,6 +84,10 @@ internal class SQLDelightLocalDataSource(
         return database.getFavorites().toCountryList()
     }
 
+    override suspend fun getFavoritesWithDetails(): List<CountryWithDetails> {
+        return database.getFavoritesWithDetails().map { it.toCountryWithDetails() }
+    }
+
     override suspend fun resetAndMigrate() {
         dbManager.rebuildDatabase()
     }

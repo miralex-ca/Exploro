@@ -87,6 +87,10 @@ fun AppLocalDb.getFavorites(): List<Countries> {
         .executeAsList()
 }
 
+fun AppLocalDb.getFavoritesWithDetails() = countriesQueries
+    .getFavoritesWithDetails()
+    .executeAsList()
+
 fun AppLocalDb.searchCountries(query: String): List<Countries> {
     val q = query.trim()
     if (q.isBlank()) return emptyList()

@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.exploramus.app.composables.components.EmptyState
+import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.app.composables.navigation.handlers.EventHandlers
 import com.exploramus.app.composables.screens.details.DetailsPagerScreen
@@ -65,16 +67,16 @@ fun Navigation.ScreenPicker(
                 eventHandler = eventHandlers.detailsPager,
             )
 
+        Screen.FavoritesPagerScreen ->
+            DetailsPagerScreen(
+                screenState = state as DetailsPagerScreenState,
+                eventHandler = eventHandlers.detailsPager,
+            )
+
         Screen.SearchScreen ->
             SearchScreen(
                 screenState = state as SearchScreenState,
                 eventHandler = eventHandlers.search,
-            )
-
-        Screen.SettingsScreen ->
-            SettingsScreen(
-                screenState = state as SettingsScreenState,
-                eventHandler = eventHandlers.settings,
             )
 
         Screen.Lv1SettingsScreen ->
@@ -88,5 +90,9 @@ fun Navigation.ScreenPicker(
                 screenState = state as SearchScreenState,
                 eventHandler = eventHandlers.search,
             )
+
+        else -> {
+            EmptyStateView(state = EmptyState.NotFound)
+        }
     }
 }

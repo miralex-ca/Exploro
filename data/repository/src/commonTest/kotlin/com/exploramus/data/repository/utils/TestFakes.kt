@@ -69,6 +69,7 @@ object TestFakes {
         override suspend fun addFavorite(id: String) {}
         override suspend fun removeFavorite(id: String) {}
         override suspend fun getFavorites() = emptyList<Country>()
+        override suspend fun getFavoritesWithDetails() = emptyList<CountryWithDetails>()
         override suspend fun resetAndMigrate() {
             migrationCalled = true
         }
