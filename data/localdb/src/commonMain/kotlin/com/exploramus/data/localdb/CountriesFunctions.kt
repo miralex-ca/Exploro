@@ -103,6 +103,14 @@ fun AppLocalDb.getCountriesCount(): Long {
     return countriesQueries.countCountries().executeAsOne()
 }
 
+fun AppLocalDb.getCountriesCountByContinent(continent: String): Long {
+    return countriesQueries.countCountriesByContinent(continent).executeAsOne()
+}
+
+fun AppLocalDb.getFavoritesCount(): Long {
+    return favoritesQueries.countFavorites().executeAsOne()
+}
+
 fun AppLocalDb.getAllCountriesWithDetails() = countriesQueries
     .getAllCountriesWithDetails()
     .executeAsList()

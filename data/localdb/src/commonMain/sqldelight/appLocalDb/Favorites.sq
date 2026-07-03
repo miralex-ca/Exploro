@@ -47,3 +47,6 @@ INSERT OR IGNORE INTO Favorites(
     added_at
 )
 VALUES (?, ?);
+
+countFavorites:
+SELECT COUNT(*) FROM Favorites;

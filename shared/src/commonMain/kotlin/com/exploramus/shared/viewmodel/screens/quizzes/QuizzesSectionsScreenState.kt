@@ -7,9 +7,30 @@ data class QuizzesSectionsScreenState(
     val quizzesSections: List<QuizzesSectionState> = emptyList(),
 ) : ScreenState
 
-data class QuizzesSectionState(
-    val sectionId: String,
-    val sectionName: String,
+
+
+sealed class QuizzesSectionState {
+    abstract val sectionId: String
+
+    data class Favorites(
+        override val sectionId: String = "favorites",
+        val itemsCount: Int,
+    ) : QuizzesSectionState()
+
+    data class AllCountries(
+        override val sectionId: String = "all_countries",
+        val itemsCount: Int,
+    ) : QuizzesSectionState()
+
+    data class Continents(
+        override val sectionId: String = "continents",
+        val continents: List<ContinentSectionState>,
+    ) : QuizzesSectionState()
+}
+
+data class ContinentSectionState(
+    val continentId: String,
+    val continentName: String,
     val itemsCount: Int,
 )
 

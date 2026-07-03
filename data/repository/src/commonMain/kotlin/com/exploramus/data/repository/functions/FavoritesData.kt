@@ -19,3 +19,7 @@ suspend fun Repository.addFavorite(code: String) = withRepoContext {
     localDb.addFavorite(code)
 }
 
+suspend fun Repository.getFavoritesCount() = withRepoContext {
+    localDb.getFavoritesCount()
+}
+

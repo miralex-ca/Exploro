@@ -97,6 +97,9 @@ ORDER BY name;
 countCountries:
 SELECT COUNT(*) FROM Countries;
 
+countCountriesByContinent:
+SELECT COUNT(*) FROM Countries WHERE continent = :continent;
+
 
 getAllCountriesWithDetails:
 SELECT

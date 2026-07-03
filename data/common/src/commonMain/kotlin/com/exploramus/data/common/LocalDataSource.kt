@@ -24,4 +24,7 @@ interface LocalDataSource {
     suspend fun hasCountriesData(): Boolean
     suspend fun setSections(sections: List<Section>)
     suspend fun getSections(): List<Section>
+    suspend fun getFavoritesCount(): Long
+    suspend fun getAllCountriesCount(): Long
+    suspend fun getCountriesCountBySection(sectionId: String): Long
 }

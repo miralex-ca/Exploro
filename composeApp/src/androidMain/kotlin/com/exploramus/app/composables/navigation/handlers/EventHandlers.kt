@@ -5,10 +5,12 @@ import com.exploramus.app.composables.screens.details.DetailsEventHandler
 import com.exploramus.app.composables.screens.details.DetailsPagerEventHandler
 import com.exploramus.app.composables.screens.favorites.FavoritesEventHandler
 import com.exploramus.app.composables.screens.home.HomeEventHandler
+import com.exploramus.app.composables.screens.quizzes.QuizzesSectionsEventHandler
 import com.exploramus.app.composables.screens.search.SearchEventHandler
 import com.exploramus.app.composables.screens.section.SectionEventHandler
 import com.exploramus.app.composables.screens.settings.SettingsEventHandler
 import com.exploramus.shared.viewmodel.core.Events
+import kotlin.getValue
 
 class EventHandlers(
     private val events: Events,
@@ -16,6 +18,14 @@ class EventHandlers(
 ) {
     val home by lazy {
         HomeEventHandler(navActions)
+    }
+
+    val favorites by lazy {
+        FavoritesEventHandler(navActions, events)
+    }
+
+    val quizzesSections by lazy {
+        QuizzesSectionsEventHandler(navActions)
     }
 
     val section by lazy {
@@ -30,9 +40,7 @@ class EventHandlers(
         DetailsPagerEventHandler(events, navActions)
     }
 
-    val favorites by lazy {
-        FavoritesEventHandler(navActions, events)
-    }
+
 
     val search by lazy {
         SearchEventHandler(navActions, events)

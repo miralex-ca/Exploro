@@ -103,4 +103,17 @@ internal class SQLDelightLocalDataSource(
     override suspend fun getSections(): List<Section> {
         return database.getSections()
     }
+
+    override suspend fun getFavoritesCount(): Long {
+        return database.getFavoritesCount()
+    }
+
+    override suspend fun getAllCountriesCount(): Long {
+        return database.getCountriesCount()
+    }
+
+    override suspend fun getCountriesCountBySection(sectionId: String): Long {
+        val sectionName = database.sectionsQueries.getSectionNameById(sectionId).executeAsOneOrNull() ?: sectionId
+        return database.getCountriesCountByContinent(sectionName)
+    }
 }

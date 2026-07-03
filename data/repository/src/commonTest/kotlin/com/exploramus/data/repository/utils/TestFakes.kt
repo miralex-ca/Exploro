@@ -79,6 +79,11 @@ object TestFakes {
         }
 
         override suspend fun getSections(): List<Section> = storedSections
+
+        override suspend fun getFavoritesCount(): Long = 0
+        override suspend fun getAllCountriesCount(): Long = storedCountries.size.toLong()
+        override suspend fun getCountriesCountBySection(sectionId: String): Long =
+            countriesBySection[sectionId]?.size?.toLong() ?: 0
     }
 
     class FakeRemoteDataSource(

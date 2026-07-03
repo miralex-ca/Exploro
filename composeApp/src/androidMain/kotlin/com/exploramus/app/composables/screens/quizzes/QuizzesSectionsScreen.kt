@@ -1,0 +1,370 @@
+package com.exploramus.app.composables.screens.quizzes
+
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowForward
+import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.Public
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import com.exploramus.app.composables.components.EmptyState
+import com.exploramus.app.composables.components.EmptyStateView
+import com.exploramus.app.composables.components.FadeInScreenContent
+import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ScreenLoading
+import com.exploramus.app.composables.screens.home.HomeEventHandler
+import com.exploramus.app.composables.screens.home.HomeUiEvent
+import com.exploramus.app.design.adaptive.LocalFormFactor
+import com.exploramus.app.design.adaptive.layout
+import com.exploramus.app.design.adaptive.useBottomBar
+import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.theme.AppTypography
+import com.exploramus.app.design.theme.appColors
+import com.exploramus.core.common.logging.Log
+import com.exploramus.shared.viewmodel.screens.home.HomeListItem
+import com.exploramus.shared.viewmodel.screens.home.HomeScreenState
+import com.exploramus.shared.viewmodel.screens.home.HomeSectionState
+import com.exploramus.shared.viewmodel.screens.quizzes.ContinentSectionState
+import com.exploramus.shared.viewmodel.screens.quizzes.QuizzesSectionState
+import com.exploramus.shared.viewmodel.screens.quizzes.QuizzesSectionsScreenState
+
+@Composable
+fun QuizzesSectionsScreen(
+    screenState: QuizzesSectionsScreenState,
+    eventHandler: QuizzesSectionsEventHandler
+) {
+    if (screenState.isLoading) {
+        ScreenLoading()
+    } else {
+        FadeInScreenContent(
+            durationMillis = 200
+        ) {
+
+            QuizzesSectionsContent(
+                screenState = screenState,
+                onEvent = eventHandler::onEvent,
+            )
+        }
+    }
+}
+
+@Composable
+fun QuizzesSectionsContent(
+    screenState: QuizzesSectionsScreenState,
+    onEvent: (QuizzesSectionsUiEvent) -> Unit,
+) {
+    val formFactor = LocalFormFactor.current
+    val layout = MaterialTheme.layout.quizzesSection
+    val bottomPadding = layout.bottomPadding.value() +
+            if (formFactor.useBottomBar) 60.dp else 0.dp
+
+    Log.d("QuizzesSectionsContent: ${screenState.quizzesSections}")
+
+    if (screenState.quizzesSections.isEmpty()) {
+        EmptyStateView(EmptyState.EmptyList)
+    } else {
+        LazyColumn(
+            contentPadding = PaddingValues(
+                top = layout.topPadding.value(),
+                bottom = bottomPadding,
+            ),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = layout.horizontalPadding.value()),
+            ) {
+            items(
+                items = screenState.quizzesSections,
+                key = { it.sectionId },
+            ) { section ->
+                Box(
+                    modifier = Modifier.widthIn(max = layout.itemMaxWidth.value())
+                ) {
+                    when (section) {
+                        is QuizzesSectionState.Favorites -> FavoritesSectionCard(
+                            itemsCount = section.itemsCount,
+                            onClick = { onEvent(QuizzesSectionsUiEvent.OnFavoritesClicked) },
+                        )
+                        is QuizzesSectionState.AllCountries -> AllCountriesSectionCard(
+                            itemsCount = section.itemsCount,
+                            onClick = { onEvent(QuizzesSectionsUiEvent.OnAllCountriesClicked) },
+                        )
+                        is QuizzesSectionState.Continents -> ContinentsSectionGroup(
+                            section = section,
+                            onContinentClick = { id ->
+                                onEvent(QuizzesSectionsUiEvent.OnContinentClicked(id))
+                            },
+                        )
+                    }
+                }
+
+            }
+        }
+
+    }
+}
+
+@Composable
+fun FavoritesSectionCard(
+    itemsCount: Int,
+    onClick: () -> Unit,
+) {
+    QuizSectionCard(
+        title = "Favorites",
+        subtitle = "$itemsCount countries",
+        onClick = onClick,
+        iconContent = {
+            SectionIconBox(color = Color(0xFFFFF8E1).copy(alpha = 0.7f)) {
+                Icon(
+                    imageVector = Icons.Default.Star,
+                    contentDescription = null,
+                    tint = Color(0xFFF9A825),
+                    modifier = Modifier.size(24.dp),
+                )
+            }
+        },
+    )
+}
+
+@Composable
+fun AllCountriesSectionCard(
+    itemsCount: Int,
+    onClick: () -> Unit,
+) {
+    QuizSectionCard(
+        title = "All Countries",
+        subtitle = "$itemsCount countries",
+        onClick = onClick,
+        iconContent = {
+            SectionIconBox(color = Color(0xFFC5E4FC).copy(alpha = 0.6F)) {  // light blue
+                Icon(
+                    imageVector = Icons.Default.Public,
+                    contentDescription = null,
+                    tint = Color(0xFF1E88E5),             // blue
+                    modifier = Modifier.size(24.dp),
+                )
+            }
+        },
+    )
+}
+
+@Composable
+fun ContinentsSectionGroup(
+    section: QuizzesSectionState.Continents,
+    onContinentClick: (String) -> Unit,
+) {
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        modifier = Modifier.fillMaxWidth(),
+        border = BorderStroke(
+            width = 1.dp,
+            color = MaterialTheme.appColors.cardBorder
+        ),
+    ) {
+        Column {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
+            ) {
+                SectionIconBox(color = Color(0xFFFCE4EC)) {
+                    Icon(
+                        imageVector = Icons.Default.Map,
+                        contentDescription = null,
+                        tint = Color(0xFFE91E63),
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+                Spacer(modifier = Modifier.width(14.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Continents",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                    )
+                    Text(
+                        text = "Browse quizzes for each continent",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
+                    )
+                }
+            }
+
+            HorizontalDivider(
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f),
+                thickness = 1.dp,
+                modifier = Modifier.padding(horizontal = 16.dp),
+            )
+
+            section.continents.forEachIndexed { index, continent ->
+                ContinentRow(
+                    continent = continent,
+                    onClick = { onContinentClick(continent.continentId) },
+                )
+
+            }
+        }
+    }
+}
+
+@Composable
+fun ContinentRow(
+    continent: ContinentSectionState,
+    onClick: () -> Unit,
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(
+                interactionSource = interactionSource,
+                indication = ripple(),
+                onClick = onClick,
+            )
+            .padding(start = 24.dp, end = 16.dp)
+            .padding(vertical = 12.dp),
+    ) {
+
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .size(35.dp)
+                .clip(CircleShape)
+                .background(continent.continentId.toContinentColor()),
+        ) {
+            Text(
+                text = continent.continentName.take(1),
+                style = MaterialTheme.typography.titleSmall,
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+            )
+        }
+        Spacer(modifier = Modifier.width(20.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = continent.continentName,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Normal,
+            )
+            Text(
+                text = "${continent.itemsCount} countries",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
+            )
+        }
+        Icon(
+            imageVector = Icons.Default.ChevronRight,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+        )
+    }
+}
+
+// ─── Shared Card Shell ────────────────────────────────────────────────────────
+
+/**
+ * Base card used by every section row.
+ * [onClick] null = non-interactive (used for the continents group header).
+ */
+@Composable
+fun QuizSectionCard(
+    title: String,
+    subtitle: String,
+    onClick: () -> Unit,
+    iconContent: @Composable () -> Unit,
+) {
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        modifier = Modifier.fillMaxWidth() ,
+        border = BorderStroke(
+            width = 1.dp,
+            color = MaterialTheme.appColors.cardBorder
+        ),
+        onClick = onClick,
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
+        ) {
+            iconContent()
+            Spacer(modifier = Modifier.width(14.dp))
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                )
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
+                )
+            }
+
+            Icon(
+                imageVector = Icons.Default.ChevronRight,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
+            )
+        }
+    }
+}
+
+// ─── Icon Box (rounded square bg) ────────────────────────────────────────────
+
+@Composable
+fun SectionIconBox(
+    color: Color,
+    content: @Composable BoxScope.() -> Unit,
+) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .size(44.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .background(color),
+        content = content,
+    )
+}
+
+
+private fun String.toContinentColor(): Color = when (this.lowercase()) {
+    "af" -> Color(0xFF66BB6A)
+    "eu" -> Color(0xFF42A5F5)
+    "as" -> Color(0xFFFF7043)
+    "na" -> Color(0xFFAB47BC)
+    "sa" -> Color(0xFFFFCA28)
+    "oc" -> Color(0xFF26C6DA)
+    else -> Color(0xFF9E9E9E)
+}
+
+

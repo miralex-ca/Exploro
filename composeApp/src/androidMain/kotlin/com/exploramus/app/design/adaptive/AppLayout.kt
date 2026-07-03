@@ -21,6 +21,7 @@ data class AppLayout(
     val details: Details,
     val search: Search,
     val settings: Settings,
+    val quizzesSection: QuizzesSection,
     var showSearchFab: AdBool,
     val homeCard: HomeCard,
     val sectionCard: SectionCard,
@@ -55,6 +56,13 @@ data class AppLayout(
         val infoCardVerticalPadding: Adp,
         val infoCardIconEndSpace: Adp,
         val infoRowVerticalPadding: Adp,
+    )
+
+    data class QuizzesSection(
+        val itemMaxWidth: Adp,
+        val horizontalPadding:Adp,
+        val topPadding: Adp,
+        val bottomPadding: Adp,
     )
 
     data class HomeCard(
@@ -157,6 +165,12 @@ object AppLayouts {
             width = adp(140.dp, 180.dp),
             imageHeight = adp(70.dp, 100.dp),
         ),
+        quizzesSection = AppLayout.QuizzesSection(
+            itemMaxWidth = adp(420.dp, 580.dp),
+            horizontalPadding = adp(16.dp, 28.dp, 50.dp),
+            topPadding = adp(12.dp, 16.dp),
+            bottomPadding = adp(60.dp),
+        )
     )
 
     fun compactLandscape(base: AppLayout = default()): AppLayout {
@@ -170,7 +184,11 @@ object AppLayouts {
             homeCard = base.homeCard.copy(
                 width = adp(140.dp, 140.dp, 160.dp),
                 imageHeight = adp(70.dp, 70.dp,80.dp),
-            )
+            ),
+            quizzesSection =  base.quizzesSection.copy(
+                itemMaxWidth = adp(420.dp, 500.dp),
+            ),
+
         )
     }
 }
