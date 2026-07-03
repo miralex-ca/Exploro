@@ -13,6 +13,7 @@ import com.exploramus.app.composables.screens.details.DetailsScreen
 import com.exploramus.app.composables.screens.favorites.FavoritesScreen
 import com.exploramus.app.composables.screens.home.HomeScreen
 import com.exploramus.app.composables.screens.quizzes.quizsections.QuizzesSectionsScreen
+import com.exploramus.app.composables.screens.quizzes.quizzeslist.QuizzesListScreen
 import com.exploramus.app.composables.screens.search.SearchScreen
 import com.exploramus.app.composables.screens.section.SectionScreen
 import com.exploramus.app.composables.screens.settings.SettingsScreen
@@ -23,7 +24,8 @@ import com.exploramus.shared.viewmodel.screens.details.detailpager.DetailsPagerS
 import com.exploramus.shared.viewmodel.screens.details.singledetail.DetailsScreenState
 import com.exploramus.shared.viewmodel.screens.favorites.FavoritesScreenState
 import com.exploramus.shared.viewmodel.screens.home.HomeScreenState
-import com.exploramus.shared.viewmodel.screens.quizzes.QuizzesSectionsScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionsScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenState
 import com.exploramus.shared.viewmodel.screens.search.SearchScreenState
 import com.exploramus.shared.viewmodel.screens.section.SectionScreenState
 import com.exploramus.shared.viewmodel.screens.settings.SettingsScreenState
@@ -54,8 +56,14 @@ fun Navigation.ScreenPicker(
 
         Screen.QuizzesSectionsScreen ->
             QuizzesSectionsScreen(
-                screenState = state as QuizzesSectionsScreenState,
+                screenState = state as QuizSectionsScreenState,
                 eventHandler = eventHandlers.quizzesSections,
+            )
+
+        Screen.QuizzesListScreen ->
+            QuizzesListScreen(
+                screenState = state as QuizzesListScreenState,
+                eventHandler = eventHandlers.quizzesList,
             )
 
         Screen.SectionScreen ->

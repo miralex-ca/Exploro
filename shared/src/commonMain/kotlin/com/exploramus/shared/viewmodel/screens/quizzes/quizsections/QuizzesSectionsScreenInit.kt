@@ -1,4 +1,4 @@
-package com.exploramus.shared.viewmodel.screens.quizzes
+package com.exploramus.shared.viewmodel.screens.quizzes.quizsections
 
 import com.exploramus.data.repository.functions.getAllCountriesCount
 import com.exploramus.data.repository.functions.getCountriesCountBySection
@@ -11,7 +11,7 @@ import com.exploramus.shared.viewmodel.core.StateManager
 
 fun StateManager.initQuizzesSectionsScreen() = ScreenInitSettings(
     title = "Quizzes",
-    initState = { QuizzesSectionsScreenState(isLoading = true) },
+    initState = { QuizSectionsScreenState(isLoading = true) },
     callOnInit = {
         val favoritesCount = dataRepository.getFavoritesCount()
         val allCountriesCount = dataRepository.getAllCountriesCount()
@@ -36,7 +36,7 @@ fun StateManager.initQuizzesSectionsScreen() = ScreenInitSettings(
             }
         }
 
-        updateScreen(QuizzesSectionsScreenState::class) {
+        updateScreen(QuizSectionsScreenState::class) {
             it.copy(
                 isLoading = false,
                 quizzesSections = quizzesSections

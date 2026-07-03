@@ -33,13 +33,13 @@ import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.core.common.logging.Log
-import com.exploramus.shared.viewmodel.screens.quizzes.ContinentSectionState
-import com.exploramus.shared.viewmodel.screens.quizzes.QuizzesSectionState
-import com.exploramus.shared.viewmodel.screens.quizzes.QuizzesSectionsScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.ContinentSectionState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionsScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizzesSectionState
 
 @Composable
 fun QuizzesSectionsScreen(
-    screenState: QuizzesSectionsScreenState,
+    screenState: QuizSectionsScreenState,
     eventHandler: QuizzesSectionsEventHandler
 ) {
     if (screenState.isLoading) {
@@ -59,7 +59,7 @@ fun QuizzesSectionsScreen(
 
 @Composable
 fun QuizzesSectionsContent(
-    screenState: QuizzesSectionsScreenState,
+    screenState: QuizSectionsScreenState,
     onEvent: (QuizzesSectionsUiEvent) -> Unit,
 ) {
     val formFactor = LocalFormFactor.current

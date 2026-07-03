@@ -1,8 +1,8 @@
-package com.exploramus.shared.viewmodel.screens.quizzes
+package com.exploramus.shared.viewmodel.screens.quizzes.quizsections
 
 import com.exploramus.shared.viewmodel.core.ScreenState
 
-data class QuizzesSectionsScreenState(
+data class QuizSectionsScreenState(
     val isLoading: Boolean = false,
     val quizzesSections: List<QuizzesSectionState> = emptyList(),
 ) : ScreenState
