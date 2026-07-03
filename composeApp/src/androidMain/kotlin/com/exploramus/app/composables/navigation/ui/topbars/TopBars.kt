@@ -250,7 +250,7 @@ fun DetailsPagerTopBar(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowLeft,
-                        contentDescription = "Previous", //Strings.commonPrevious
+                        contentDescription = Strings.commonPrevious,
                     )
                 }
                 IconButton(
@@ -259,7 +259,7 @@ fun DetailsPagerTopBar(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
-                        contentDescription = "Next", // Strings.commonNext
+                        contentDescription = Strings.commonNext,
                     )
                 }
             }

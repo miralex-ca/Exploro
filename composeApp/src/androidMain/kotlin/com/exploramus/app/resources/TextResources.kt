@@ -50,6 +50,8 @@ object Strings {
     val commonRemove @Composable get() = stringRes(R.string.common_remove)
     val commonBack @Composable get() = stringRes(R.string.common_back)
     val commonClear @Composable get() = stringRes(R.string.common_clear)
+    val commonPrevious @Composable get() = stringRes(R.string.common_previous)
+    val commonNext @Composable get() = stringRes(R.string.common_next)
     val commonSearch @Composable get() = stringRes(R.string.common_search)
     val commonSettings @Composable get() = stringRes(R.string.common_settings)
     val commonMore @Composable get() = stringRes(R.string.common_more)
