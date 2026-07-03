@@ -12,7 +12,7 @@ import com.exploramus.app.composables.screens.details.DetailsPagerScreen
 import com.exploramus.app.composables.screens.details.DetailsScreen
 import com.exploramus.app.composables.screens.favorites.FavoritesScreen
 import com.exploramus.app.composables.screens.home.HomeScreen
-import com.exploramus.app.composables.screens.quizzes.quizsections.QuizzesSectionsScreen
+import com.exploramus.app.composables.screens.quizzes.quizsections.QuizSectionsScreen
 import com.exploramus.app.composables.screens.quizzes.quizzeslist.QuizzesListScreen
 import com.exploramus.app.composables.screens.search.SearchScreen
 import com.exploramus.app.composables.screens.section.SectionScreen
@@ -55,7 +55,7 @@ fun Navigation.ScreenPicker(
             )
 
         Screen.QuizzesSectionsScreen ->
-            QuizzesSectionsScreen(
+            QuizSectionsScreen(
                 screenState = state as QuizSectionsScreenState,
                 eventHandler = eventHandlers.quizzesSections,
             )

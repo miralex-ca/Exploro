@@ -34,13 +34,13 @@ import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.core.common.logging.Log
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.ContinentSectionState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionsScreenState
-import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizzesSectionState
 
 @Composable
-fun QuizzesSectionsScreen(
+fun QuizSectionsScreen(
     screenState: QuizSectionsScreenState,
-    eventHandler: QuizzesSectionsEventHandler
+    eventHandler: QuizSectionsEventHandler
 ) {
     if (screenState.isLoading) {
         ScreenLoading()
@@ -60,7 +60,7 @@ fun QuizzesSectionsScreen(
 @Composable
 fun QuizzesSectionsContent(
     screenState: QuizSectionsScreenState,
-    onEvent: (QuizzesSectionsUiEvent) -> Unit,
+    onEvent: (QuizSectionsUiEvent) -> Unit,
 ) {
     val formFactor = LocalFormFactor.current
     val layout = MaterialTheme.layout.quizzesSection
@@ -91,18 +91,18 @@ fun QuizzesSectionsContent(
                     modifier = Modifier.widthIn(max = layout.itemMaxWidth.value())
                 ) {
                     when (section) {
-                        is QuizzesSectionState.Favorites -> FavoritesSectionCard(
+                        is QuizSectionState.Favorites -> FavoritesSectionCard(
                             itemsCount = section.itemsCount,
-                            onClick = { onEvent(QuizzesSectionsUiEvent.OnFavoritesClicked) },
+                            onClick = { onEvent(QuizSectionsUiEvent.OnFavoritesClicked) },
                         )
-                        is QuizzesSectionState.AllCountries -> AllCountriesSectionCard(
+                        is QuizSectionState.AllCountries -> AllCountriesSectionCard(
                             itemsCount = section.itemsCount,
-                            onClick = { onEvent(QuizzesSectionsUiEvent.OnAllCountriesClicked) },
+                            onClick = { onEvent(QuizSectionsUiEvent.OnAllCountriesClicked) },
                         )
-                        is QuizzesSectionState.Continents -> ContinentsSectionGroup(
+                        is QuizSectionState.Continents -> ContinentsSectionGroup(
                             section = section,
                             onContinentClick = { id ->
-                                onEvent(QuizzesSectionsUiEvent.OnContinentClicked(id))
+                                onEvent(QuizSectionsUiEvent.OnContinentClicked(id))
                             },
                         )
                     }
@@ -160,7 +160,7 @@ fun AllCountriesSectionCard(
 
 @Composable
 fun ContinentsSectionGroup(
-    section: QuizzesSectionState.Continents,
+    section: QuizSectionState.Continents,
     onContinentClick: (String) -> Unit,
 ) {
     Card(

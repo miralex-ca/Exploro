@@ -4,18 +4,18 @@ import com.exploramus.app.composables.navigation.controller.QuizListNavParams
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 
-sealed class QuizzesSectionsUiEvent {
-    data object OnFavoritesClicked : QuizzesSectionsUiEvent()
-    data object OnAllCountriesClicked : QuizzesSectionsUiEvent()
-    data class OnContinentClicked(val continentId: String) : QuizzesSectionsUiEvent()
+sealed class QuizSectionsUiEvent {
+    data object OnFavoritesClicked : QuizSectionsUiEvent()
+    data object OnAllCountriesClicked : QuizSectionsUiEvent()
+    data class OnContinentClicked(val continentId: String) : QuizSectionsUiEvent()
 }
 
-class QuizzesSectionsEventHandler(
+class QuizSectionsEventHandler(
     val navActions: ScreenNavActions
 ) {
-    fun onEvent(event: QuizzesSectionsUiEvent) {
+    fun onEvent(event: QuizSectionsUiEvent) {
         when (event) {
-            is QuizzesSectionsUiEvent.OnFavoritesClicked -> {
+            is QuizSectionsUiEvent.OnFavoritesClicked -> {
                 navActions.toQuizList(
                     QuizListNavParams(
                         sectionId = "favorites",
@@ -24,7 +24,7 @@ class QuizzesSectionsEventHandler(
                     )
                 )
             }
-            QuizzesSectionsUiEvent.OnAllCountriesClicked -> {
+            QuizSectionsUiEvent.OnAllCountriesClicked -> {
                 navActions.toQuizList(
                     QuizListNavParams(
                         sectionId = "all",
@@ -32,10 +32,8 @@ class QuizzesSectionsEventHandler(
                         name = "All countries"
                     )
                 )
-
             }
-            is QuizzesSectionsUiEvent.OnContinentClicked -> {
-
+            is QuizSectionsUiEvent.OnContinentClicked -> {
                 navActions.toQuizList(
                     QuizListNavParams(
                         sectionId = event.continentId,

@@ -4,28 +4,28 @@ import com.exploramus.shared.viewmodel.core.ScreenState
 
 data class QuizSectionsScreenState(
     val isLoading: Boolean = false,
-    val quizzesSections: List<QuizzesSectionState> = emptyList(),
+    val quizzesSections: List<QuizSectionState> = emptyList(),
 ) : ScreenState
 
 
 
-sealed class QuizzesSectionState {
+sealed class QuizSectionState {
     abstract val sectionId: String
 
     data class Favorites(
         override val sectionId: String = "favorites",
         val itemsCount: Int,
-    ) : QuizzesSectionState()
+    ) : QuizSectionState()
 
     data class AllCountries(
         override val sectionId: String = "all_countries",
         val itemsCount: Int,
-    ) : QuizzesSectionState()
+    ) : QuizSectionState()
 
     data class Continents(
         override val sectionId: String = "continents",
         val continents: List<ContinentSectionState>,
-    ) : QuizzesSectionState()
+    ) : QuizSectionState()
 }
 
 data class ContinentSectionState(

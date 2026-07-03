@@ -9,7 +9,7 @@ import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.StateManager
 
 
-fun StateManager.initQuizzesSectionsScreen() = ScreenInitSettings(
+fun StateManager.initQuizSectionsScreen() = ScreenInitSettings(
     title = "Quizzes",
     initState = { QuizSectionsScreenState(isLoading = true) },
     callOnInit = {
@@ -27,12 +27,12 @@ fun StateManager.initQuizzesSectionsScreen() = ScreenInitSettings(
 
         val quizzesSections = buildList {
             if (favoritesCount > 0) {
-                add(QuizzesSectionState.Favorites(itemsCount = favoritesCount.toInt()))
+                add(QuizSectionState.Favorites(itemsCount = favoritesCount.toInt()))
             }
-            add(QuizzesSectionState.AllCountries(itemsCount = allCountriesCount.toInt()))
+            add(QuizSectionState.AllCountries(itemsCount = allCountriesCount.toInt()))
 
             if (continentSections .isNotEmpty()) {
-                add(QuizzesSectionState.Continents(continents = continentSections))
+                add(QuizSectionState.Continents(continents = continentSections))
             }
         }
 
