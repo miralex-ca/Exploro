@@ -1,4 +1,4 @@
-package com.exploramus.app.composables.screens.quizzes
+package com.exploramus.app.composables.screens.quizzes.quizsections
 
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 

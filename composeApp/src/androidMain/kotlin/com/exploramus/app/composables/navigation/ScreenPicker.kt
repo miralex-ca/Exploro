@@ -12,7 +12,7 @@ import com.exploramus.app.composables.screens.details.DetailsPagerScreen
 import com.exploramus.app.composables.screens.details.DetailsScreen
 import com.exploramus.app.composables.screens.favorites.FavoritesScreen
 import com.exploramus.app.composables.screens.home.HomeScreen
-import com.exploramus.app.composables.screens.quizzes.QuizzesSectionsScreen
+import com.exploramus.app.composables.screens.quizzes.quizsections.QuizzesSectionsScreen
 import com.exploramus.app.composables.screens.search.SearchScreen
 import com.exploramus.app.composables.screens.section.SectionScreen
 import com.exploramus.app.composables.screens.settings.SettingsScreen

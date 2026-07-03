@@ -1,4 +1,4 @@
-package com.exploramus.app.composables.screens.quizzes
+package com.exploramus.app.composables.screens.quizzes.quizsections
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
