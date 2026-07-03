@@ -21,4 +21,5 @@ enum class Level1Navigation(
     Favorites(ScreenIdentifier.get(Screen.FavoritesScreen, null), true),
     Lv1Settings(ScreenIdentifier.get(Screen.Lv1SettingsScreen, null), true),
     Lv1Search(ScreenIdentifier.get(Screen.Lv1SearchScreen, null), true),
+    QuizzesSections(ScreenIdentifier.get(Screen.QuizzesSectionsScreen, null), true),
 }
