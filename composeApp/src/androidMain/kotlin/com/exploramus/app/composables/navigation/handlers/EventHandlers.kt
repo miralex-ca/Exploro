@@ -10,7 +10,6 @@ import com.exploramus.app.composables.screens.search.SearchEventHandler
 import com.exploramus.app.composables.screens.section.SectionEventHandler
 import com.exploramus.app.composables.screens.settings.SettingsEventHandler
 import com.exploramus.shared.viewmodel.core.Events
-import kotlin.getValue
 
 class EventHandlers(
     private val events: Events,

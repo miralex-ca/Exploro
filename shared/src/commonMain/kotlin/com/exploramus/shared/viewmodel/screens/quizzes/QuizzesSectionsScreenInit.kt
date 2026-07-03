@@ -1,9 +1,12 @@
 package com.exploramus.shared.viewmodel.screens.quizzes
 
+import com.exploramus.data.repository.functions.getAllCountriesCount
+import com.exploramus.data.repository.functions.getCountriesCountBySection
+import com.exploramus.data.repository.functions.getFavoritesCount
+import com.exploramus.data.repository.functions.getSections
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.StateManager
-import com.exploramus.data.repository.functions.*
 
 
 fun StateManager.initQuizzesSectionsScreen() = ScreenInitSettings(
