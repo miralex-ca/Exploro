@@ -15,7 +15,8 @@ data class AppColors(
     val detailHederWrapper: Color,
     val favorite: Color,
     val destructive: Color,
-    val cardBorder: Color
+    val cardBorder: Color,
+    val pagerIndicatorBorder: Color
 )
 
 val LightAppColors = AppColors(
@@ -26,6 +27,7 @@ val LightAppColors = AppColors(
     cardBorder = CardBorderLight,
     favorite = FavoriteColor,
     destructive = DestructiveColor,
+    pagerIndicatorBorder = CardBorderLight.copy(alpha = 0.0f),
 )
 
 val DarkAppColors = AppColors(
@@ -35,5 +37,6 @@ val DarkAppColors = AppColors(
     caretColor = DarkCaretColor,
     favorite = FavoriteColor,
     destructive = DestructiveColor,
-    cardBorder = CardBorderDark
+    cardBorder = CardBorderDark,
+    pagerIndicatorBorder = CardBorderDark
 )

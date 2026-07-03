@@ -1,4 +1,4 @@
-package com.exploramus.shared.viewmodel.screens.countrydetail
+package com.exploramus.shared.viewmodel.screens.details.singledetail
 
 import com.exploramus.data.repository.functions.addFavorite
 import com.exploramus.data.repository.functions.isFavorite

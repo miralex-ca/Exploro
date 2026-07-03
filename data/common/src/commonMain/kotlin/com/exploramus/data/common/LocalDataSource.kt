@@ -12,11 +12,13 @@ interface LocalDataSource {
     suspend fun addFavorite(id: String)
     suspend fun removeFavorite(id: String)
     suspend fun getFavorites(): List<Country>
+    suspend fun getFavoritesWithDetails(): List<CountryWithDetails>
     suspend fun resetAndMigrate()
     suspend fun getCountryDetailsById(id: String):  CountryWithDetails?
     suspend fun setCountryDetailsList(list: List<CountryDetails>)
     suspend fun getCountriesBySection(sectionId: String, limit: Long = 12): List<Country>
     suspend fun getAllCountriesBySectionId(sectionId: String): List<Country>
+    suspend fun getAllCountriesWithDetailsBySectionId(sectionId: String): List<CountryWithDetails>
     suspend fun searchCountries(query: String): List<Country>
     suspend fun getAllCountriesWithDetails(): List<CountryWithDetails>
     suspend fun hasCountriesData(): Boolean

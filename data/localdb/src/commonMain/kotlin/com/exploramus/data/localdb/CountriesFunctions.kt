@@ -74,12 +74,22 @@ fun AppLocalDb.getAllCountriesBySection(
         .executeAsList()
 }
 
+fun AppLocalDb.getAllCountriesWithDetailsBySection(
+    continent: String
+) = countriesQueries
+    .getAllCountriesWithDetailsByContinent(continent)
+    .executeAsList()
+
 
 fun AppLocalDb.getFavorites(): List<Countries> {
     return favoritesQueries
         .getFavorites()
         .executeAsList()
 }
+
+fun AppLocalDb.getFavoritesWithDetails() = countriesQueries
+    .getFavoritesWithDetails()
+    .executeAsList()
 
 fun AppLocalDb.searchCountries(query: String): List<Countries> {
     val q = query.trim()

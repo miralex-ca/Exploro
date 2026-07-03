@@ -1,7 +1,7 @@
 package com.exploramus.app.previews
 
 import com.exploramus.core.models.Country
-import com.exploramus.shared.viewmodel.screens.countrydetail.CountryDetailsState
+import com.exploramus.shared.viewmodel.screens.details.CountryDetailsState
 
 object PreviewCountry {
     val france = Country(

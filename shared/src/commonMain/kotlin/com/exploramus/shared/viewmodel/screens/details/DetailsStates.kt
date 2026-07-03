@@ -1,14 +1,6 @@
-package com.exploramus.shared.viewmodel.screens.countrydetail
+package com.exploramus.shared.viewmodel.screens.details
 
 import com.exploramus.core.models.CountryWithDetails
-import com.exploramus.shared.viewmodel.core.ScreenState
-
-data class DetailsScreenState (
-    val isLoading: Boolean = false,
-    val details: CountryDetailsState? = null,
-    val isFavorite: Boolean = false
-): ScreenState
-
 
 data class CountryDetailsState(
     val id: String = "",
@@ -31,6 +23,8 @@ data class CountryDetailsState(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0
 )
+
+fun List<CountryWithDetails>.toDetailsState() = map { it.toDetailsState() }
 
 fun CountryWithDetails.toDetailsState() = CountryDetailsState(
     id = country.id,

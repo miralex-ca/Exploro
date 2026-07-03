@@ -40,7 +40,9 @@ fun SectionScreen(
         } else {
             SectionScreenContent(
                 screenState = screenState,
-                onListItemClick = { eventHandler.onEvent(SectionUiEvent.OnItemClicked(it)) },
+                onListItemClick = {
+                    eventHandler.onEvent(SectionUiEvent.OnItemClicked(it, screenState.sectionId))
+                                  },
             )
         }
     }

@@ -33,7 +33,7 @@ import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
-import com.exploramus.shared.viewmodel.screens.countrydetail.CountryDetailsState
+import com.exploramus.shared.viewmodel.screens.details.CountryDetailsState
 import java.util.Locale
 
 @Composable

@@ -131,7 +131,7 @@ object AppLayouts {
         details = AppLayout.Details(
             maxWidth = adp(420.dp, 580.dp, 750.dp),
             horizontalPadding = adp(16.dp),
-            topPadding = adp(16.dp, 28.dp),
+            topPadding = adp(26.dp, 60.dp, 50.dp),
             bottomPadding = adp(36.dp),
             cardCorner = adp(16.dp, 20.dp),
             imageHeight = adp(140.dp),
@@ -162,6 +162,7 @@ object AppLayouts {
     fun compactLandscape(base: AppLayout = default()): AppLayout {
         return base.copy(
             details = base.details.copy(
+                topPadding = adp(26.dp),
                 maxWidth = adp(700.dp),
                 titleFontSize = AdSp( 26.sp),
                 infoCardIconEndSpace = adp(20.dp),

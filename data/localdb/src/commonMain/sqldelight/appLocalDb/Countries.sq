@@ -121,8 +121,82 @@ SELECT
     d.timezones,
     d.wiki_url,
     d.latitude,
-    d.longitude
+    d.longitude,
+
+    CASE
+        WHEN f.country_id IS NOT NULL THEN 1
+        ELSE 0
+    END AS isFavorite
 
 FROM Countries c
 LEFT JOIN CountryDetails d ON d.country_id = c.id
+LEFT JOIN Favorites f ON f.country_id = c.id
 ORDER BY c.name ASC;
+
+getAllCountriesWithDetailsByContinent:
+SELECT
+    c.id,
+    c.iso2,
+    c.name,
+    c.official_name,
+    c.capital,
+    c.continent,
+    c.location,
+    c.flag_image,
+    c.flag_emoji,
+
+    d.population,
+    d.total_area,
+    d.coat_of_arms_url,
+    d.currency_code,
+    d.currency_name,
+    d.currency_symbol,
+    d.languages,
+    d.maps_url,
+    d.timezones,
+    d.wiki_url,
+    d.latitude,
+    d.longitude,
+
+    CASE
+        WHEN f.country_id IS NOT NULL THEN 1
+        ELSE 0
+    END AS isFavorite
+
+FROM Countries c
+LEFT JOIN CountryDetails d ON d.country_id = c.id
+LEFT JOIN Favorites f ON f.country_id = c.id
+WHERE c.continent = :continent
+ORDER BY c.name ASC;
+
+getFavoritesWithDetails:
+SELECT
+    c.id,
+    c.iso2,
+    c.name,
+    c.official_name,
+    c.capital,
+    c.continent,
+    c.location,
+    c.flag_image,
+    c.flag_emoji,
+
+    d.population,
+    d.total_area,
+    d.coat_of_arms_url,
+    d.currency_code,
+    d.currency_name,
+    d.currency_symbol,
+    d.languages,
+    d.maps_url,
+    d.timezones,
+    d.wiki_url,
+    d.latitude,
+    d.longitude,
+
+    1 AS isFavorite
+
+FROM Countries c
+INNER JOIN Favorites f ON f.country_id = c.id
+LEFT JOIN CountryDetails d ON d.country_id = c.id
+ORDER BY f.added_at DESC;

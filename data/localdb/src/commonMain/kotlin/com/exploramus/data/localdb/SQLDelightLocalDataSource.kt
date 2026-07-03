@@ -44,6 +44,11 @@ internal class SQLDelightLocalDataSource(
         return database.getAllCountriesBySection(sectionName).toCountryList()
     }
 
+    override suspend fun getAllCountriesWithDetailsBySectionId(sectionId: String): List<CountryWithDetails> {
+        val sectionName = database.sectionsQueries.getSectionNameById(sectionId).executeAsOneOrNull() ?: sectionId
+        return database.getAllCountriesWithDetailsBySection(sectionName).map { it.toCountryWithDetails() }
+    }
+
     override suspend fun searchCountries(query: String): List<Country> {
         return database.searchCountries(query).toCountryList()
     }
@@ -77,6 +82,10 @@ internal class SQLDelightLocalDataSource(
 
     override suspend fun getFavorites(): List<Country> {
         return database.getFavorites().toCountryList()
+    }
+
+    override suspend fun getFavoritesWithDetails(): List<CountryWithDetails> {
+        return database.getFavoritesWithDetails().map { it.toCountryWithDetails() }
     }
 
     override suspend fun resetAndMigrate() {

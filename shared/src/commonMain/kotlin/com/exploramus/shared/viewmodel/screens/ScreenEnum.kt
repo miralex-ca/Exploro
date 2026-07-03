@@ -3,7 +3,9 @@ package com.exploramus.shared.viewmodel.screens
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.StateManager
-import com.exploramus.shared.viewmodel.screens.countrydetail.initCountryDetail
+import com.exploramus.shared.viewmodel.screens.details.detailpager.initDetailsPager
+import com.exploramus.shared.viewmodel.screens.details.detailpager.initFavoritesDetailsPager
+import com.exploramus.shared.viewmodel.screens.details.singledetail.initCountryDetail
 import com.exploramus.shared.viewmodel.screens.favorites.initFavoritesScreen
 import com.exploramus.shared.viewmodel.screens.home.initHomeScreen
 import com.exploramus.shared.viewmodel.screens.search.initSearchScreen
@@ -19,8 +21,16 @@ enum class Screen(
         initHomeScreen()
     }),
 
-    CountryDetail("country", 3, {
+    CountryDetail("detail", 3, {
         initCountryDetail(it.screenParams())
+    }),
+
+    DetailsPagerScreen("detailspager", 3, {
+        initDetailsPager(it.screenParams())
+    }),
+
+    FavoritesPagerScreen("favoritesspager", 3, {
+        initFavoritesDetailsPager(it.screenParams())
     }),
 
     SectionScreen("section", 2, {

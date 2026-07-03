@@ -1,6 +1,7 @@
 package com.exploramus.app.composables.screens.favorites
 
 import com.exploramus.app.composables.navigation.controller.DetailsNavParams
+import com.exploramus.app.composables.navigation.controller.FavoritesPagerNavParams
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.shared.viewmodel.core.Events
 import com.exploramus.shared.viewmodel.screens.favorites.FavoriteListItem
@@ -17,11 +18,14 @@ class FavoritesEventHandler(
 ) {
     fun onEvent(event: FavoritesUiEvent) {
         when (event) {
-            is FavoritesUiEvent.OnItemClicked -> navActions.toDetailFromList(event.item.toDetailsNavParams())
+            is FavoritesUiEvent.OnItemClicked -> {
+                navActions.toFavoritesPagerFromList(event.item.toPagerNavParams())
+            }
             is FavoritesUiEvent.RemoveFavorite -> events.removeFromFavorites(event.countryId)
         }
     }
 }
 
 fun FavoriteListItem.toDetailsNavParams() = DetailsNavParams(id, name)
+fun FavoriteListItem.toPagerNavParams() = FavoritesPagerNavParams(id, name)
 

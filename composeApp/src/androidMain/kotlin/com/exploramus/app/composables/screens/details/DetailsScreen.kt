@@ -27,8 +27,8 @@ import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
-import com.exploramus.shared.viewmodel.screens.countrydetail.CountryDetailsState
-import com.exploramus.shared.viewmodel.screens.countrydetail.DetailsScreenState
+import com.exploramus.shared.viewmodel.screens.details.CountryDetailsState
+import com.exploramus.shared.viewmodel.screens.details.singledetail.DetailsScreenState
 
 @Composable
 fun DetailsScreen(

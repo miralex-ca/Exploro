@@ -72,6 +72,8 @@ object TestFakes {
 
         override suspend fun getAllCountriesBySectionId(sectionId: String) = countriesBySection[sectionId].orEmpty()
 
+        override suspend fun getAllCountriesWithDetailsBySectionId(sectionId: String) = emptyList<CountryWithDetails>()
+
         override suspend fun searchCountries(query: String): List<Country> {
             lastSearchQuery = query
             return searchResult
@@ -81,6 +83,7 @@ object TestFakes {
         override suspend fun addFavorite(id: String) { favoritesList.add(favoritesList.first { it.id == id }) }
         override suspend fun removeFavorite(id: String) { favoritesList.removeAll { it.id == id } }
         override suspend fun getFavorites() = favoritesList.toList()
+        override suspend fun getFavoritesWithDetails() = emptyList<CountryWithDetails>()
         override suspend fun resetAndMigrate() {
             migrationCalled = true
         }

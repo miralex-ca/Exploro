@@ -36,6 +36,11 @@ object AppTypography {
         fontWeight = FontWeight.Normal,
     )
 
+    val pagerIndicatorText = TextStyle(
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Medium,
+    )
+
     val searchText = TextStyle(
         fontSize = 15.sp,
         fontWeight = FontWeight.Normal,

@@ -21,6 +21,9 @@ fun Navigation.TopBarContainer(
     when {
         screenIdentifier.screen == Screen.SearchScreen -> {}
         screenIdentifier.screen == Screen.Lv1SearchScreen -> {}
+        screenIdentifier.screen == Screen.CountryDetail -> {}
+        screenIdentifier.screen == Screen.DetailsPagerScreen -> {}
+        screenIdentifier.screen == Screen.FavoritesPagerScreen -> {}
         isLevel1 -> {
             Level1TopBar(
                 title = screenTitle,
@@ -29,7 +32,7 @@ fun Navigation.TopBarContainer(
                 onSearchClick = screenNavActions::toSearch,
             )
         }
-        screenIdentifier.screen == Screen.CountryDetail -> {}
+
         else -> {
             TopBar(
                 title = screenTitle,

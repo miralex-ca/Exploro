@@ -62,6 +62,8 @@
     <string name="common_more">More</string>
     <string name="common_more_options">More options</string>
     <string name="common_search">Search</string>
+    <string name="common_previous">Previous</string>
+    <string name="common_next">Next</string>
     <string name="common_open_in_maps">Open in Maps</string>
     <string name="common_open_in_wikipedia">Wikipedia</string>
     <string name="open_keyboard">Open keyboard</string>
