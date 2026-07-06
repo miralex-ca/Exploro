@@ -1,6 +1,8 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist
 
+import com.exploramus.data.repository.functions.getAllCountriesCount
 import com.exploramus.data.repository.functions.getCountriesCountBySection
+import com.exploramus.data.repository.functions.getFavoritesCount
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
@@ -8,29 +10,37 @@ import com.exploramus.shared.viewmodel.core.StateManager
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class QuizzesListScreenParams(val sectionId: String, val sectionType: QuizzesSectionType, val screenTitle: String? = null) : ScreenParams
+data class QuizzesListScreenParams(
+    val sectionId: String,
+    val sectionType: QuizzesSectionType,
+    val screenTitle: String? = null
+) : ScreenParams
 
-fun StateManager.initQuizzesListScreen(
-    params: QuizzesListScreenParams
-//    sectionId: String,
-//    sectionType: QuizzesSectionType,
-//    sectionTitle: String,
-) = ScreenInitSettings(
+fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = ScreenInitSettings(
     title = "Quizzes list" ,
     initState = { QuizzesListScreenState(isLoading = true) },
     callOnInit = {
 
-        val itemsCount = dataRepository.getCountriesCountBySection(params.sectionId)
+        val itemsCount = when (params.sectionType) {
+            QuizzesSectionType.FAVORITES -> dataRepository.getFavoritesCount()
+            QuizzesSectionType.ALL_COUNTRIES -> dataRepository.getAllCountriesCount()
+            QuizzesSectionType.CONTINENT -> dataRepository.getCountriesCountBySection(params.sectionId)
+        }
+
+        val sectionInfo = QuizzesSectionHeaderState(
+            title = params.screenTitle ?: "",
+            itemsCount = itemsCount.toInt(),
+            sectionType = params.sectionType,
+            continentId = params.sectionId.takeIf { params.sectionType == QuizzesSectionType.CONTINENT },
+        )
+
+        val quizzes = defaultQuizzes()
 
         updateScreen(QuizzesListScreenState::class) {
             it.copy(
                 isLoading = false,
-                sectionInfo = QuizzesSectionHeaderState(
-                    title = params.screenTitle ?: "",
-                    itemsCount = itemsCount.toInt(),
-                    sectionType = params.sectionType,
-                ),
-                quizzes = defaultQuizzes(),
+                sectionInfo = sectionInfo,
+                quizzes = quizzes,
             )
         }
     },

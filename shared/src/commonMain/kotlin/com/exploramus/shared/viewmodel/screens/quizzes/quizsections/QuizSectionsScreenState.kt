@@ -29,8 +29,8 @@ sealed class QuizSectionState {
 }
 
 data class ContinentSectionState(
-    val continentId: String,
-    val continentName: String,
+    val sectionId: String,
+    val sectionName: String,
     val itemsCount: Int,
 )
 

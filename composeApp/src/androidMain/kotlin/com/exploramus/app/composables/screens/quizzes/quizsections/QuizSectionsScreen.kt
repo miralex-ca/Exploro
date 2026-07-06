@@ -101,8 +101,11 @@ fun QuizzesSectionsContent(
                         )
                         is QuizSectionState.Continents -> ContinentsSectionGroup(
                             section = section,
-                            onContinentClick = { id ->
-                                onEvent(QuizSectionsUiEvent.OnContinentClicked(id))
+                            onContinentClick = { id, name ->
+                                onEvent(
+                                    QuizSectionsUiEvent.OnContinentClicked(
+                                        id, name)
+                                )
                             },
                         )
                     }
@@ -161,7 +164,7 @@ fun AllCountriesSectionCard(
 @Composable
 fun ContinentsSectionGroup(
     section: QuizSectionState.Continents,
-    onContinentClick: (String) -> Unit,
+    onContinentClick: (String, String) -> Unit,
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -205,10 +208,10 @@ fun ContinentsSectionGroup(
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
 
-            section.continents.forEachIndexed { index, continent ->
+            section.continents.forEachIndexed { _, section ->
                 ContinentRow(
-                    continent = continent,
-                    onClick = { onContinentClick(continent.continentId) },
+                    continent = section,
+                    onClick = { onContinentClick(section.sectionId, section.sectionName) },
                 )
 
             }
@@ -241,10 +244,10 @@ fun ContinentRow(
             modifier = Modifier
                 .size(35.dp)
                 .clip(CircleShape)
-                .background(continent.continentId.toContinentColor()),
+                .background(continent.sectionId.toContinentColor()),
         ) {
             Text(
-                text = continent.continentName.take(1),
+                text = continent.sectionName.take(1),
                 style = MaterialTheme.typography.titleSmall,
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
@@ -253,7 +256,7 @@ fun ContinentRow(
         Spacer(modifier = Modifier.width(20.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = continent.continentName,
+                text = continent.sectionName,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Normal,
             )

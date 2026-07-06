@@ -19,8 +19,8 @@ fun StateManager.initQuizSectionsScreen() = ScreenInitSettings(
 
         val continentSections = sections.map { section ->
             ContinentSectionState(
-                continentId = section.id,
-                continentName = section.name,
+                sectionId = section.id,
+                sectionName = section.name,
                 itemsCount = dataRepository.getCountriesCountBySection(section.id).toInt()
             )
         }

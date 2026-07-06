@@ -44,8 +44,6 @@ class EventHandlers(
         DetailsPagerEventHandler(events, navActions)
     }
 
-
-
     val search by lazy {
         SearchEventHandler(navActions, events)
     }
