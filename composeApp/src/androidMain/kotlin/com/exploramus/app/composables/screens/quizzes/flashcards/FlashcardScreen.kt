@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronLeft
@@ -121,6 +122,9 @@ fun FlashcardContent(
         FlashcardNavBar(
             total = screenState.cards.size,
             pagerState = pagerState,
+            modifier = Modifier
+                .navigationBarsPadding()
+                .padding(bottom = 16.dp)
         )
     }
 }
@@ -371,64 +375,71 @@ fun FlashcardRevealedContent(
 fun FlashcardNavBar(
     total: Int,
     pagerState: PagerState,
+    modifier: Modifier = Modifier,
 ) {
     val scope = rememberCoroutineScope()
-    val currentPage = pagerState.currentPage  // observed directly — recomposes on every page change
+    val currentPage = pagerState.currentPage
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp, vertical = 16.dp),
+    Surface(
+        shape = CircleShape,
+        color = MaterialTheme.colorScheme.surfaceContainerHigh,
+        tonalElevation = 3.dp,
+        shadowElevation = 6.dp,
+        modifier = modifier
     ) {
-        IconButton(
-            onClick = {
-                scope.launch {
-                    pagerState.animateScrollToPage((currentPage - 1).coerceAtLeast(0))
-                }
-            },
-            enabled = currentPage > 0,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
         ) {
-            Icon(
-                imageVector = Icons.Default.ChevronLeft,
-                contentDescription = "Previous",
-                tint = if (currentPage > 0)
-                    MaterialTheme.colorScheme.onSurface
-                else
-                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.25f),
-                modifier = Modifier.size(28.dp),
+            IconButton(
+                onClick = {
+                    scope.launch {
+                        pagerState.animateScrollToPage((currentPage - 1).coerceAtLeast(0))
+                    }
+                },
+                enabled = currentPage > 0,
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ChevronLeft,
+                    contentDescription = "Previous",
+                    tint = if (currentPage > 0)
+                        MaterialTheme.colorScheme.onSurface
+                    else
+                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.25f),
+                    modifier = Modifier.size(28.dp),
+                )
+            }
+
+            Text(
+                text = "${currentPage + 1} / $total",
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .widthIn(min = 120.dp)
+                    .padding(horizontal = 8.dp)
             )
-        }
 
-        Spacer(modifier = Modifier.width(16.dp))
-
-        Text(
-            text = "${currentPage + 1} / $total",
-            style = MaterialTheme.typography.bodyLarge,
-            fontWeight = FontWeight.Medium,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-        )
-
-        Spacer(modifier = Modifier.width(16.dp))
-
-        IconButton(
-            onClick = {
-                scope.launch {
-                    pagerState.animateScrollToPage((currentPage + 1).coerceAtMost(total - 1))
-                }
-            },
-            enabled = currentPage < total - 1,
-        ) {
-            Icon(
-                imageVector = Icons.Default.ChevronRight,
-                contentDescription = "Next",
-                tint = if (currentPage < total - 1)
-                    MaterialTheme.colorScheme.onSurface
-                else
-                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.25f),
-                modifier = Modifier.size(28.dp),
-            )
+            IconButton(
+                onClick = {
+                    scope.launch {
+                        pagerState.animateScrollToPage((currentPage + 1).coerceAtMost(total - 1))
+                    }
+                },
+                enabled = currentPage < total - 1,
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ChevronRight,
+                    contentDescription = "Next",
+                    tint = if (currentPage < total - 1)
+                        MaterialTheme.colorScheme.onSurface
+                    else
+                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.25f),
+                    modifier = Modifier.size(28.dp),
+                )
+            }
         }
     }
 }
