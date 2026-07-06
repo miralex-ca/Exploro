@@ -2,7 +2,6 @@ package com.exploramus.app.composables.screens.quizzes.quizzeslist
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,7 +9,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -25,7 +27,6 @@ import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.ScreenLoading
-import com.exploramus.app.composables.screens.quizzes.quizsections.SectionIconBox
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
@@ -98,7 +99,12 @@ fun QuizzesListContent(
                 ) {
                     QuizCard(
                         quiz = quiz,
-                        onClick = { onEvent(QuizzesListUiEvent.OnQuizClicked(quiz.quizId)) },
+                        onClick = {
+                            onEvent(QuizzesListUiEvent.OnQuizClicked(
+                                screenState.sectionInfo.continentId ?: "",
+                                screenState.sectionInfo.sectionType,
+                            ))
+                                  },
                         onSettingsClick = { onEvent(QuizzesListUiEvent.OnQuizSettingsClicked(quiz.quizId)) },
                     )
                 }

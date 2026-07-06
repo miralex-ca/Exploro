@@ -8,6 +8,7 @@ import com.exploramus.shared.viewmodel.screens.details.detailpager.initFavorites
 import com.exploramus.shared.viewmodel.screens.details.singledetail.initCountryDetail
 import com.exploramus.shared.viewmodel.screens.favorites.initFavoritesScreen
 import com.exploramus.shared.viewmodel.screens.home.initHomeScreen
+import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.initFlashcardScreen
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.initQuizSectionsScreen
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.initQuizzesListScreen
 import com.exploramus.shared.viewmodel.screens.search.initSearchScreen
@@ -33,6 +34,10 @@ enum class Screen(
 
     QuizzesListScreen("quizzeslist", 2, {
         initQuizzesListScreen(it.screenParams())
+    }),
+
+    FlashcardsScreen("flashcards", 3, {
+        initFlashcardScreen(it.screenParams())
     }),
 
     CountryDetail("detail", 3, {

@@ -64,6 +64,10 @@ fun AppLocalDb.getCountriesByContinent(
         .executeAsList()
 }
 
+fun AppLocalDb.getAllCountries(): List<Countries> {
+    return countriesQueries.getAllCountries().executeAsList()
+}
+
 fun AppLocalDb.getAllCountriesBySection(
     continent: String
 ): List<Countries> {

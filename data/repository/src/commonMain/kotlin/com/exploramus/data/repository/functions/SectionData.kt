@@ -7,6 +7,10 @@ suspend fun Repository.getCountriesBySectionId(sectionId: String): List<Country>
     localDb.getAllCountriesBySectionId(sectionId)
 }
 
+suspend fun Repository.getAllCountries(): List<Country> = withRepoContext {
+    localDb.getAllCountries()
+}
+
 suspend fun Repository.getAllCountriesCount(): Long = withRepoContext {
     localDb.getAllCountriesCount()
 }

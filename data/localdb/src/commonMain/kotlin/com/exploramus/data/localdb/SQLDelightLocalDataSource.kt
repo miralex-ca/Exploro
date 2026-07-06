@@ -39,6 +39,10 @@ internal class SQLDelightLocalDataSource(
         database.setCountriesDetailsList(list)
     }
 
+    override suspend fun getAllCountries(): List<Country> {
+        return database.getAllCountries().toCountryList()
+    }
+
     override suspend fun getAllCountriesBySectionId(sectionId: String): List<Country> {
         val sectionName = database.sectionsQueries.getSectionNameById(sectionId).executeAsOneOrNull() ?: sectionId
         return database.getAllCountriesBySection(sectionName).toCountryList()
