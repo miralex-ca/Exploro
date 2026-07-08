@@ -1,21 +1,20 @@
 package com.exploramus.app.composables.navigation
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.zIndex
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.ui.NavDisplay
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.app.composables.navigation.controller.createAppNavController
 import com.exploramus.app.composables.navigation.ui.navigation.Level1BottomBar
@@ -27,20 +26,20 @@ import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.useDrawer
 import com.exploramus.app.design.adaptive.useNavRail
 import com.exploramus.shared.viewmodel.core.Navigation
-import com.exploramus.shared.viewmodel.core.NavigationState
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Navigation.AppScaffold(
-    saveableStateHolder: SaveableStateHolder,
-    localNavigationState: MutableState<NavigationState>
+    backStacks: Map<String, NavBackStack<Nav3Key>>,
+    currentLevel1: MutableState<ScreenIdentifier>,
 ) {
-    val screenIdentifier = localNavigationState.value.topScreenIdentifier
+    val activeBackStack = backStacks.getValue(currentLevel1.value.URI)
+    val screenIdentifier = activeBackStack.lastOrNull()?.screenIdentifier ?: currentLevel1.value
 
     val screenNavActions = remember {
         ScreenNavActions.Default(
-            appNavController = createAppNavController(localNavigationState, saveableStateHolder)
+            appNavController = createAppNavController(backStacks, currentLevel1)
         )
     }
 
@@ -68,17 +67,27 @@ fun Navigation.AppScaffold(
                     .fillMaxSize()
                     .clipToBounds()
                 ) {
-                     
-                   TopBarContainer(
-                       screenIdentifier = screenIdentifier,
-                       screenNavActions = screenNavActions
-                   )
+
+                    TopBarContainer(
+                        screenIdentifier = screenIdentifier,
+                        screenNavActions = screenNavActions
+                    )
 
                     Box(modifier = Modifier.weight(1f)) {
-                        ScreenHost(
-                            screenIdentifier = screenIdentifier,
-                            saveableStateHolder = saveableStateHolder,
-                            screenNavActions = screenNavActions
+                        NavDisplay(
+                            backStack = activeBackStack,
+                            onBack = { screenNavActions.navigateBack() },
+                            transitionSpec = { fadeTransition(100) },   // push
+                            popTransitionSpec = { fadeTransition(0) }, // pop, can differ from push
+                            predictivePopTransitionSpec = { fadeTransition() },
+                            entryProvider = { key ->
+                                NavEntry(key) {
+                                    ScreenPicker(
+                                        screenIdentifier = key.screenIdentifier,
+                                        screenNavActions = screenNavActions,
+                                    )
+                                }
+                            }
                         )
 
                         if (formFactor.useBottomBar) {
@@ -120,18 +129,11 @@ fun Navigation.AppScaffold(
     }
 }
 
-@Composable
-private fun Navigation.ScreenHost(
-    screenIdentifier: ScreenIdentifier,
-    saveableStateHolder: SaveableStateHolder,
-    screenNavActions: ScreenNavActions,
-) {
-    saveableStateHolder.SaveableStateProvider(screenIdentifier.URI) {
-        ScreenPicker(
-            screenIdentifier = screenIdentifier,
-            screenNavActions = screenNavActions,
-        )
-    }
+private const val NAV_TRANSITION_DURATION_MS = 220
+
+private fun fadeTransition(durationMs: Int = NAV_TRANSITION_DURATION_MS): ContentTransform {
+    return fadeIn(animationSpec = tween(durationMs))
+        .togetherWith(fadeOut(animationSpec = tween(durationMs)))
 }
 
 
