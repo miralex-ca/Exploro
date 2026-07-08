@@ -1,7 +1,9 @@
 package com.exploramus.app.composables.screens.quizzes.flashcards
 
-import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -13,25 +15,32 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.exploramus.app.R
 import com.exploramus.app.composables.components.FadeInScreenContent
+import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.composables.components.ScreenLoading
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.isLarge
 import com.exploramus.app.design.adaptive.isPhone
-import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardRevealField
+import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
+import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardStudyTarget
 import kotlinx.coroutines.launch
 
 @Composable
@@ -52,7 +61,7 @@ fun FlashcardScreen(
 
     if (screenState.isSettingsDialogVisible) {
         FlashcardSettingsDialog(
-            currentField = screenState.revealField,
+            currentField = screenState.studyTarget,
             onFieldSelected = { eventHandler.onEvent(FlashcardUiEvent.OnRevealFieldChanged(it)) },
             onDismiss = { eventHandler.onEvent(FlashcardUiEvent.OnSettingsDismissed) },
         )
@@ -106,7 +115,7 @@ fun FlashcardContent(
 
             FlashcardItem(
                 card = card,
-                revealField = screenState.revealField,
+                revealField = screenState.studyTarget,
                 isRevealed = isRevealed,
                 isLandscape = isLandscape,
                 onRevealToggle = { isRevealed = !isRevealed },
@@ -134,72 +143,69 @@ fun FlashcardContent(
 @Composable
 fun FlashcardItem(
     card: FlashcardState,
-    revealField: FlashcardRevealField,
+    revealField: FlashcardStudyTarget,
     isRevealed: Boolean,
     isLandscape: Boolean,
     onRevealToggle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // Cap width on tablets / landscape so card never stretches absurdly wide
+    // Container for both cards
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxWidth(),
     ) {
-        Card(
-            shape = RoundedCornerShape(24.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface,
-            ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-            modifier = Modifier
-                .widthIn(max = 520.dp)
-                .fillMaxHeight(),
-        ) {
-            if (isLandscape) {
-                // ── Landscape: side-by-side ──
-                Row(modifier = Modifier.fillMaxSize()) {
-                    FlashcardOpenHalf(
-                        card = card,
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight(),
-                    )
-                    VerticalDivider(
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f),
-                        modifier = Modifier.fillMaxHeight(),
-                    )
-                    FlashcardHiddenHalf(
-                        card = card,
-                        revealField = revealField,
-                        isRevealed = isRevealed,
-                        onToggle = onRevealToggle,
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight(),
-                    )
-                }
-            } else {
-                // ── Portrait: stacked ──
-                Column(modifier = Modifier.fillMaxSize()) {
-                    FlashcardOpenHalf(
-                        card = card,
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth(),
-                    )
-                    HorizontalDivider(
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f),
-                    )
-                    FlashcardHiddenHalf(
-                        card = card,
-                        revealField = revealField,
-                        isRevealed = isRevealed,
-                        onToggle = onRevealToggle,
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth(),
-                    )
-                }
+        val layoutModifier = Modifier
+            .widthIn(max = 520.dp)
+            .fillMaxHeight()
+
+        if (isLandscape) {
+            Row(
+                modifier = layoutModifier,
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                FlashcardOpenHalf(
+                    card = card,
+                    studyTarget = revealField,
+                    shape = RoundedCornerShape(topStart = 24.dp, bottomStart = 24.dp),
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                )
+                FlashcardHiddenHalf(
+                    card = card,
+                    revealField = revealField,
+                    isRevealed = isRevealed,
+                    shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
+                    onToggle = onRevealToggle,
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight(),
+                )
+            }
+        } else {
+            Column(
+                modifier = layoutModifier,
+                verticalArrangement = Arrangement.spacedBy(2.dp)
+            ) {
+                FlashcardOpenHalf(
+                    card = card,
+                    shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+                    modifier = Modifier
+                        .weight(2f)
+                        .fillMaxWidth(),
+                    studyTarget = revealField,
+                )
+                FlashcardHiddenHalf(
+                    card = card,
+                    revealField = revealField,
+                    isRevealed = isRevealed,
+                    shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
+                    onToggle = onRevealToggle,
+                    modifier = Modifier
+                        .padding(bottom = 20.dp)
+                        .weight(3f)
+                        .fillMaxWidth(),
+                )
             }
         }
     }
@@ -210,19 +216,70 @@ fun FlashcardItem(
 @Composable
 fun FlashcardOpenHalf(
     card: FlashcardState,
+    studyTarget: FlashcardStudyTarget,
+    shape: Shape,
     modifier: Modifier = Modifier,
 ) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier.padding(24.dp),
+    Card(
+        shape = shape,
+        border = BorderStroke(
+            width = 1.dp,
+            color = MaterialTheme.appColors.cardBorder,
+        ),
+        modifier = modifier,
     ) {
-        Text(
-            text = card.countryName,
-            style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSurface,
-        )
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            when (studyTarget) {
+                FlashcardStudyTarget.PRIMARY -> {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(24.dp),
+                    ) {
+                        Text(
+                            text = card.itemName,
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            color = MaterialTheme.colorScheme.onSurface,
+                        )
+                    }
+                }
+                FlashcardStudyTarget.SECONDARY -> {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(24.dp),
+                    ) {
+                        Text(
+                            text = card.capital,
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            color = MaterialTheme.colorScheme.onSurface,
+                        )
+                    }
+                }
+                FlashcardStudyTarget.IMAGE -> {
+                    RemoteImage(
+                        imageUrl = card.flagImage,
+                        contentDescription = card.itemName,
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .fillMaxWidth(0.75f)
+                            .fillMaxHeight(0.6f),
+                        shape = RoundedCornerShape(8.dp),
+                        usePlaceholder = false,
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -231,57 +288,94 @@ fun FlashcardOpenHalf(
 @Composable
 fun FlashcardHiddenHalf(
     card: FlashcardState,
-    revealField: FlashcardRevealField,
+    revealField: FlashcardStudyTarget,
     isRevealed: Boolean,
+    shape: Shape,
     onToggle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val revealColor = MaterialTheme.colorScheme.primary
+    val rotation by animateFloatAsState(
+        targetValue = if (isRevealed) 180f else 0f,
+        animationSpec = tween(durationMillis = 500),
+        label = "flip_rotation",
+    )
 
-    Box(
-        contentAlignment = Alignment.Center,
+    Card(
+        shape = shape,
+        border = BorderStroke(
+            width = 1.dp,
+            color = MaterialTheme.appColors.cardBorder
+        ),
+        onClick = onToggle,
         modifier = modifier
-            .clickable(
-                interactionSource = remember { MutableInteractionSource() },
-                indication = ripple(),
-                onClick = onToggle,
-            )
-            .padding(24.dp),
+            .graphicsLayer {
+                rotationY = rotation
+                cameraDistance = 16f * density
+            }
     ) {
-        // Crossfade between hidden hint and revealed content
-        Crossfade(
-            targetState = isRevealed,
-            animationSpec = tween(durationMillis = 250),
-            label = "reveal_crossfade",
-        ) { revealed ->
-            if (!revealed) {
-                // Hidden state — subtle prompt
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            if (rotation <= 90f) {
+                // Front side (Hidden hint)
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.VisibilityOff,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.25f),
-                        modifier = Modifier.size(28.dp),
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.size(140.dp),
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(140.dp)
+                                .border(
+                                    width = 1.dp,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
+                                    shape = CircleShape,
+                                )
+                        )
+                        Box(
+                            modifier = Modifier
+                                .size(110.dp)
+                                .border(
+                                    width = 1.dp,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
+                                    shape = CircleShape,
+                                )
+                        )
+                        Icon(
+                            painter = painterResource(id = R.drawable.cards),
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.25f),
+                            modifier = Modifier.size(70.dp),
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
                     Text(
                         text = revealField.hintLabel(),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.35f),
                         textAlign = TextAlign.Center,
                     )
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
             } else {
-                // Revealed state
-                FlashcardRevealedContent(
-                    card = card,
-                    revealField = revealField,
-                    accentColor = revealColor,
-                )
+                // Back side (Revealed content)
+                Box(
+                    Modifier
+                        .fillMaxSize()
+                        .graphicsLayer { rotationY = 180f }
+                        .padding(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    FlashcardRevealedContent(
+                        card = card,
+                        revealField = revealField,
+                    )
+                }
             }
         }
     }
@@ -292,79 +386,107 @@ fun FlashcardHiddenHalf(
 @Composable
 fun FlashcardRevealedContent(
     card: FlashcardState,
-    revealField: FlashcardRevealField,
-    accentColor: Color,
+    revealField: FlashcardStudyTarget,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterVertically),
         modifier = Modifier.fillMaxSize(),
     ) {
-        when (revealField) {
-            FlashcardRevealField.CAPITAL -> {
+        // Table of aligned information
+        FlashcardTable(
+            items = mutableListOf<Pair<String, String>>().apply {
+                add("Official" to card.officialName)
+                if (revealField != FlashcardStudyTarget.SECONDARY) {
+                    add("Capital" to card.capital)
+                }
+                add("Location" to card.region)
+            }
+        )
+
+        // Larger Flag Image
+        if (revealField != FlashcardStudyTarget.IMAGE) {
+            RemoteImage(
+                imageUrl = card.flagImage,
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .height(110.dp)
+                    .fillMaxWidth(0.8f),
+                shape = RoundedCornerShape(8.dp),
+                usePlaceholder = false
+            )
+        }
+    }
+}
+
+@Composable
+private fun FlashcardTable(items: List<Pair<String, String>>) {
+    Layout(
+        content = {
+            items.forEach { (label, value) ->
                 Text(
-                    text = card.capital,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.Center,
-                    color = accentColor,
+                    text = label.uppercase(),
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Light,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.layoutId("label")
                 )
-                Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = card.flagEmoji,
-                    style = MaterialTheme.typography.displaySmall,
-                    textAlign = TextAlign.Center,
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = card.region,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
-                    textAlign = TextAlign.Center,
+                    text = value,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.layoutId("value")
                 )
             }
-            FlashcardRevealField.FLAG -> {
-                Text(
-                    text = card.flagEmoji,
-                    style = MaterialTheme.typography.displayMedium,
-                    textAlign = TextAlign.Center,
+        }
+    ) { measurables, constraints ->
+        val labelMeasurables = measurables.filter { it.layoutId == "label" }
+        val valueMeasurables = measurables.filter { it.layoutId == "value" }
+
+        // 1. Measure labels to find the widest one
+        val labelPlaceables = labelMeasurables.map { it.measure(constraints.copy(minWidth = 0)) }
+        val maxLabelWidth = labelPlaceables.maxOfOrNull { it.width } ?: 0
+
+        // 2. Measure values with remaining width
+        val spacing = 16.dp.roundToPx()
+        val valueConstraints = constraints.copy(
+            minWidth = 0,
+            maxWidth = (constraints.maxWidth - maxLabelWidth - spacing).coerceAtLeast(0)
+        )
+        val valuePlaceables = valueMeasurables.map { it.measure(valueConstraints) }
+
+        // 3. Calculate row heights and total dimensions
+        val rowHeights = labelPlaceables.zip(valuePlaceables).map { (l, v) -> maxOf(l.height, v.height) }
+        val maxValueWidth = valuePlaceables.maxOfOrNull { it.width } ?: 0
+        
+        val totalWidth = maxLabelWidth + spacing + maxValueWidth
+        val verticalSpacing = 12.dp.roundToPx()
+        val totalHeight = rowHeights.sum() + (verticalSpacing * (items.size - 1))
+
+        // 4. Place everything
+        layout(totalWidth, totalHeight) {
+            var yPosition = 0
+            labelPlaceables.forEachIndexed { index, labelPlaceable ->
+                val valuePlaceable = valuePlaceables[index]
+                val rowHeight = rowHeights[index]
+
+                // Align label to the end of the first column
+                labelPlaceable.placeRelative(
+                    x = maxLabelWidth - labelPlaceable.width,
+                    y = yPosition + (rowHeight - labelPlaceable.height) / 2
                 )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = card.capital,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                    textAlign = TextAlign.Center,
+
+                // Align value to the start of the second column
+                valuePlaceable.placeRelative(
+                    x = maxLabelWidth + spacing,
+                    y = yPosition + (rowHeight - valuePlaceable.height) / 2
                 )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = card.region,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f),
-                    textAlign = TextAlign.Center,
-                )
-            }
-            FlashcardRevealField.REGION -> {
-                Text(
-                    text = card.region,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.SemiBold,
-                    textAlign = TextAlign.Center,
-                    color = accentColor,
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = card.flagEmoji,
-                    style = MaterialTheme.typography.displaySmall,
-                    textAlign = TextAlign.Center,
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = card.capital,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
-                    textAlign = TextAlign.Center,
-                )
+
+                yPosition += rowHeight + verticalSpacing
             }
         }
     }
@@ -383,8 +505,8 @@ fun FlashcardNavBar(
     Surface(
         shape = CircleShape,
         color = MaterialTheme.colorScheme.surfaceContainerHigh,
-        tonalElevation = 3.dp,
-        shadowElevation = 6.dp,
+        tonalElevation = 2.dp,
+        shadowElevation = 1.dp,
         modifier = modifier
     ) {
         Row(
@@ -448,8 +570,8 @@ fun FlashcardNavBar(
 
 @Composable
 fun FlashcardSettingsDialog(
-    currentField: FlashcardRevealField,
-    onFieldSelected: (FlashcardRevealField) -> Unit,
+    currentField: FlashcardStudyTarget,
+    onFieldSelected: (FlashcardStudyTarget) -> Unit,
     onDismiss: () -> Unit,
 ) {
     AlertDialog(
@@ -468,7 +590,7 @@ fun FlashcardSettingsDialog(
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                FlashcardRevealField.entries.forEach { field ->
+                FlashcardStudyTarget.entries.forEach { field ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
@@ -509,14 +631,14 @@ fun FlashcardSettingsDialog(
 
 // ─── FlashcardRevealField helpers ─────────────────────────────────────────────
 
-private fun FlashcardRevealField.displayLabel(): String = when (this) {
-    FlashcardRevealField.CAPITAL -> "Capital city"
-    FlashcardRevealField.FLAG    -> "Flag"
-    FlashcardRevealField.REGION  -> "Region"
+private fun FlashcardStudyTarget.displayLabel(): String = when (this) {
+    FlashcardStudyTarget.PRIMARY -> "Capital city"
+    FlashcardStudyTarget.SECONDARY    -> "Flag"
+    FlashcardStudyTarget.IMAGE  -> "Region"
 }
 
-private fun FlashcardRevealField.hintLabel(): String = when (this) {
-    FlashcardRevealField.CAPITAL -> "Tap to reveal capital"
-    FlashcardRevealField.FLAG    -> "Tap to reveal flag"
-    FlashcardRevealField.REGION  -> "Tap to reveal region"
+private fun FlashcardStudyTarget.hintLabel(): String = when (this) {
+    FlashcardStudyTarget.PRIMARY -> "Tap to reveal"
+    FlashcardStudyTarget.SECONDARY    -> "Tap to reveal"
+    FlashcardStudyTarget.IMAGE  -> "Tap to reveal"
 }

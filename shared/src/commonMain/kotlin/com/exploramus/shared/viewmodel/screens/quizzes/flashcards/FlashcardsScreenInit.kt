@@ -1,6 +1,5 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.flashcards
 
-import com.exploramus.core.common.logging.Log
 import com.exploramus.data.repository.functions.getAllCountries
 import com.exploramus.data.repository.functions.getCountriesBySectionId
 import com.exploramus.data.repository.functions.getFavorites
@@ -28,18 +27,17 @@ fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInit
             QuizzesSectionType.CONTINENT -> dataRepository.getCountriesBySectionId(params.sectionId)
         }
 
-        Log.d("section ${params.sectionId}, size: ${countries.size}")
-
         updateScreen(FlashcardScreenState::class) {
             it.copy(
                 isLoading = false,
-                cards = countries.map { c ->
+                cards = countries.map { item ->
                     FlashcardState(
-                        countryId = c.id,
-                        countryName = c.name,
-                        capital = c.capital,
-                        flagEmoji = c.flagEmoji,
-                        region = c.location,
+                        itemId = item.id,
+                        itemName = item.name,
+                        officialName = item.officialName,
+                        capital = item.capital,
+                        flagImage = item.flagImage,
+                        region = item.location,
                     )
                 },
                 currentIndex = 0,
