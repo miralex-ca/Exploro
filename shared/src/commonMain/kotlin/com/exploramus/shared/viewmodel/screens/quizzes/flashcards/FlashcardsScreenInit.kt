@@ -27,9 +27,16 @@ fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInit
             QuizzesSectionType.CONTINENT -> dataRepository.getCountriesBySectionId(params.sectionId)
         }
 
+        val studyTarget = when (params.sectionType) {
+            QuizzesSectionType.FAVORITES -> FlashcardStudyTarget.PRIMARY
+            QuizzesSectionType.ALL_COUNTRIES -> FlashcardStudyTarget.SECONDARY
+            QuizzesSectionType.CONTINENT -> FlashcardStudyTarget.IMAGE
+        }
+
         updateScreen(FlashcardScreenState::class) {
             it.copy(
                 isLoading = false,
+                studyTarget = studyTarget,
                 cards = countries.map { item ->
                     FlashcardState(
                         itemId = item.id,

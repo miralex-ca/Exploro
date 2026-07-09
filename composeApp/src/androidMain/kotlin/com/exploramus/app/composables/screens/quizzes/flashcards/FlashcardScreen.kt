@@ -22,13 +22,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.exploramus.app.R
 import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.RemoteImage
@@ -191,7 +193,7 @@ fun FlashcardItem(
                     card = card,
                     shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
                     modifier = Modifier
-                        .weight(2f)
+                        .weight(3f)
                         .fillMaxWidth(),
                     studyTarget = revealField,
                 )
@@ -203,7 +205,7 @@ fun FlashcardItem(
                     onToggle = onRevealToggle,
                     modifier = Modifier
                         .padding(bottom = 20.dp)
-                        .weight(3f)
+                        .weight(5f)
                         .fillMaxWidth(),
                 )
             }
@@ -390,107 +392,198 @@ fun FlashcardRevealedContent(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterVertically),
+        verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize(),
     ) {
-        // Table of aligned information
-        FlashcardTable(
-            items = mutableListOf<Pair<String, String>>().apply {
-                add("Official" to card.officialName)
-                if (revealField != FlashcardStudyTarget.SECONDARY) {
-                    add("Capital" to card.capital)
-                }
-                add("Location" to card.region)
+        when (revealField) {
+            FlashcardStudyTarget.PRIMARY -> {
+                RevealPrimaryText(text = card.officialName)
+                Spacer(modifier = Modifier.height(16.dp))
+                RevealLabeledField(label = "Capital", value = card.capital)
+                Spacer(modifier = Modifier.height(12.dp))
+                RevealTextField(value = card.region)
+                Spacer(modifier = Modifier.height(16.dp))
+                FlashcardFlagImage(card = card)
             }
-        )
-
-        // Larger Flag Image
-        if (revealField != FlashcardStudyTarget.IMAGE) {
-            RemoteImage(
-                imageUrl = card.flagImage,
-                contentDescription = null,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .height(110.dp)
-                    .fillMaxWidth(0.8f),
-                shape = RoundedCornerShape(8.dp),
-                usePlaceholder = false
-            )
+            FlashcardStudyTarget.SECONDARY -> {
+                RevealPrimaryText(text = card.officialName)
+                Spacer(modifier = Modifier.height(12.dp))
+                RevealTextField(value = card.region)
+                Spacer(modifier = Modifier.height(16.dp))
+                FlashcardFlagImage(card = card)
+            }
+            FlashcardStudyTarget.IMAGE -> {
+                RevealPrimaryText(text = card.officialName)
+                Spacer(modifier = Modifier.height(16.dp))
+                RevealLabeledField(label = "Capital", value = card.capital)
+                Spacer(modifier = Modifier.height(16.dp))
+                RevealTextField(value = card.region)
+            }
         }
     }
 }
 
 @Composable
-private fun FlashcardTable(items: List<Pair<String, String>>) {
-    Layout(
-        content = {
-            items.forEach { (label, value) ->
-                Text(
-                    text = label.uppercase(),
-                    style = MaterialTheme.typography.labelSmall,
-                    fontWeight = FontWeight.Light,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    textAlign = TextAlign.End,
-                    modifier = Modifier.layoutId("label")
-                )
-                Text(
-                    text = value,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier.layoutId("value")
-                )
-            }
-        }
-    ) { measurables, constraints ->
-        val labelMeasurables = measurables.filter { it.layoutId == "label" }
-        val valueMeasurables = measurables.filter { it.layoutId == "value" }
-
-        // 1. Measure labels to find the widest one
-        val labelPlaceables = labelMeasurables.map { it.measure(constraints.copy(minWidth = 0)) }
-        val maxLabelWidth = labelPlaceables.maxOfOrNull { it.width } ?: 0
-
-        // 2. Measure values with remaining width
-        val spacing = 16.dp.roundToPx()
-        val valueConstraints = constraints.copy(
-            minWidth = 0,
-            maxWidth = (constraints.maxWidth - maxLabelWidth - spacing).coerceAtLeast(0)
-        )
-        val valuePlaceables = valueMeasurables.map { it.measure(valueConstraints) }
-
-        // 3. Calculate row heights and total dimensions
-        val rowHeights = labelPlaceables.zip(valuePlaceables).map { (l, v) -> maxOf(l.height, v.height) }
-        val maxValueWidth = valuePlaceables.maxOfOrNull { it.width } ?: 0
-        
-        val totalWidth = maxLabelWidth + spacing + maxValueWidth
-        val verticalSpacing = 12.dp.roundToPx()
-        val totalHeight = rowHeights.sum() + (verticalSpacing * (items.size - 1))
-
-        // 4. Place everything
-        layout(totalWidth, totalHeight) {
-            var yPosition = 0
-            labelPlaceables.forEachIndexed { index, labelPlaceable ->
-                val valuePlaceable = valuePlaceables[index]
-                val rowHeight = rowHeights[index]
-
-                // Align label to the end of the first column
-                labelPlaceable.placeRelative(
-                    x = maxLabelWidth - labelPlaceable.width,
-                    y = yPosition + (rowHeight - labelPlaceable.height) / 2
-                )
-
-                // Align value to the start of the second column
-                valuePlaceable.placeRelative(
-                    x = maxLabelWidth + spacing,
-                    y = yPosition + (rowHeight - valuePlaceable.height) / 2
-                )
-
-                yPosition += rowHeight + verticalSpacing
-            }
-        }
-    }
+fun RevealPrimaryText(text: String) {
+    Text(
+        text = text,
+        fontSize = 22.sp,
+        fontWeight = FontWeight.SemiBold,
+        textAlign = TextAlign.Center,
+        color = MaterialTheme.colorScheme.onSurface,
+    )
 }
+
+@Composable
+fun RevealLabeledField(label: String, value: String) {
+    Text(
+        text = buildAnnotatedString {
+            withStyle(SpanStyle(fontWeight = FontWeight.Normal)) {
+                append("$label: ")
+            }
+            withStyle(SpanStyle(fontWeight = FontWeight.Medium)) {
+                append(value)
+            }
+        },
+        fontSize = 18.sp,
+        textAlign = TextAlign.Center,
+        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.95f),
+    )
+}
+
+@Composable
+fun RevealTextField(value: String) {
+    Text(
+        text = value,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Normal,
+        textAlign = TextAlign.Center,
+        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f),
+    )
+}
+
+@Composable
+fun FlashcardFlagImage(card: FlashcardState) {
+    RemoteImage(
+        imageUrl = card.flagImage,
+        contentDescription = card.itemName,
+        contentScale = ContentScale.Fit,
+        modifier = Modifier
+            .fillMaxWidth(0.75f)
+            .fillMaxHeight(0.6f),
+        shape = RoundedCornerShape(8.dp),
+        usePlaceholder = false,
+    )
+}
+
+//@Composable
+//fun FlashcardRevealedContent(
+//    card: FlashcardState,
+//    revealField: FlashcardStudyTarget,
+//) {
+//    Column(
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//        verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterVertically),
+//        modifier = Modifier.fillMaxSize(),
+//    ) {
+//        // Table of aligned information
+//        FlashcardTable(
+//            items = mutableListOf<Pair<String, String>>().apply {
+//                add("Official" to card.officialName)
+//                if (revealField != FlashcardStudyTarget.SECONDARY) {
+//                    add("Capital" to card.capital)
+//                }
+//                add("Location" to card.region)
+//            }
+//        )
+//
+//        // Larger Flag Image
+//        if (revealField != FlashcardStudyTarget.IMAGE) {
+//            RemoteImage(
+//                imageUrl = card.flagImage,
+//                contentDescription = null,
+//                contentScale = ContentScale.Fit,
+//                modifier = Modifier
+//                    .height(110.dp)
+//                    .fillMaxWidth(0.8f),
+//                shape = RoundedCornerShape(8.dp),
+//                usePlaceholder = false
+//            )
+//        }
+//    }
+//}
+//
+//@Composable
+//private fun FlashcardTable(items: List<Pair<String, String>>) {
+//    Layout(
+//        content = {
+//            items.forEach { (label, value) ->
+//                Text(
+//                    text = label.uppercase(),
+//                    style = MaterialTheme.typography.labelSmall,
+//                    fontWeight = FontWeight.Light,
+//                    color = MaterialTheme.colorScheme.onSurface,
+//                    textAlign = TextAlign.End,
+//                    modifier = Modifier.layoutId("label")
+//                )
+//                Text(
+//                    text = value,
+//                    style = MaterialTheme.typography.titleMedium,
+//                    fontWeight = FontWeight.Bold,
+//                    color = MaterialTheme.colorScheme.onSurface,
+//                    textAlign = TextAlign.Start,
+//                    modifier = Modifier.layoutId("value")
+//                )
+//            }
+//        }
+//    ) { measurables, constraints ->
+//        val labelMeasurables = measurables.filter { it.layoutId == "label" }
+//        val valueMeasurables = measurables.filter { it.layoutId == "value" }
+//
+//        // 1. Measure labels to find the widest one
+//        val labelPlaceables = labelMeasurables.map { it.measure(constraints.copy(minWidth = 0)) }
+//        val maxLabelWidth = labelPlaceables.maxOfOrNull { it.width } ?: 0
+//
+//        // 2. Measure values with remaining width
+//        val spacing = 16.dp.roundToPx()
+//        val valueConstraints = constraints.copy(
+//            minWidth = 0,
+//            maxWidth = (constraints.maxWidth - maxLabelWidth - spacing).coerceAtLeast(0)
+//        )
+//        val valuePlaceables = valueMeasurables.map { it.measure(valueConstraints) }
+//
+//        // 3. Calculate row heights and total dimensions
+//        val rowHeights = labelPlaceables.zip(valuePlaceables).map { (l, v) -> maxOf(l.height, v.height) }
+//        val maxValueWidth = valuePlaceables.maxOfOrNull { it.width } ?: 0
+//
+//        val totalWidth = maxLabelWidth + spacing + maxValueWidth
+//        val verticalSpacing = 12.dp.roundToPx()
+//        val totalHeight = rowHeights.sum() + (verticalSpacing * (items.size - 1))
+//
+//        // 4. Place everything
+//        layout(totalWidth, totalHeight) {
+//            var yPosition = 0
+//            labelPlaceables.forEachIndexed { index, labelPlaceable ->
+//                val valuePlaceable = valuePlaceables[index]
+//                val rowHeight = rowHeights[index]
+//
+//                // Align label to the end of the first column
+//                labelPlaceable.placeRelative(
+//                    x = maxLabelWidth - labelPlaceable.width,
+//                    y = yPosition + (rowHeight - labelPlaceable.height) / 2
+//                )
+//
+//                // Align value to the start of the second column
+//                valuePlaceable.placeRelative(
+//                    x = maxLabelWidth + spacing,
+//                    y = yPosition + (rowHeight - valuePlaceable.height) / 2
+//                )
+//
+//                yPosition += rowHeight + verticalSpacing
+//            }
+//        }
+//    }
+//}
 
 
 @Composable
