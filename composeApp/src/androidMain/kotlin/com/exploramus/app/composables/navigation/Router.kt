@@ -57,12 +57,15 @@ private fun getAllLevel1ScreenIdentifiers(): List<ScreenIdentifier> {
 }
 
 @Composable
-private fun rememberLevel1BackStacks(
+private fun Navigation.rememberLevel1BackStacks(
     level1Screens: List<ScreenIdentifier>
 ): Map<String, NavBackStack<ScreenNavKey>> {
     return remember(level1Screens) {
         level1Screens.associate { level1 ->
-            level1.URI to NavBackStack(ScreenNavKey(level1))
+            val pushedScreens = navigationState.paths[level1.URI].orEmpty()
+            val keys = listOf(ScreenNavKey(level1)) + pushedScreens.map { ScreenNavKey(it) }
+
+            level1.URI to NavBackStack<ScreenNavKey>().apply { addAll(keys) }
         }
     }
 }
