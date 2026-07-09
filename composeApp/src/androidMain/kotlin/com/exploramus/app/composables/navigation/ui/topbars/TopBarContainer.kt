@@ -32,7 +32,6 @@ fun Navigation.TopBarContainer(
                 onSearchClick = screenNavActions::toSearch,
             )
         }
-
         else -> {
             TopBar(
                 title = screenTitle,
