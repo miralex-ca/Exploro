@@ -2,7 +2,6 @@ package com.exploramus.app.composables.navigation.controller
 
 import androidx.compose.runtime.MutableState
 import androidx.navigation3.runtime.NavBackStack
-import com.exploramus.app.composables.navigation.ScreenNavKey
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 import com.exploramus.shared.viewmodel.core.ScreenParams

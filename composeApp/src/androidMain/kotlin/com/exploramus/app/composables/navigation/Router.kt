@@ -8,7 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavBackStack
-import androidx.navigation3.runtime.NavKey
+import com.exploramus.app.composables.navigation.controller.ScreenNavKey
 import com.exploramus.app.composables.screens.appstart.AppStartupContent
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
@@ -52,7 +52,7 @@ private fun Navigation.HandleBackButton(
     }
 }
 
-fun getAllLevel1ScreenIdentifiers(): List<ScreenIdentifier> {
+private fun getAllLevel1ScreenIdentifiers(): List<ScreenIdentifier> {
     return Level1Navigation.entries.map { it.screenIdentifier }
 }
 
@@ -65,12 +65,5 @@ private fun rememberLevel1BackStacks(
             level1.URI to NavBackStack(ScreenNavKey(level1))
         }
     }
-}
-
-data class ScreenNavKey(val screenIdentifier: ScreenIdentifier) : NavKey {
-    override fun equals(other: Any?): Boolean =
-        other is ScreenNavKey && other.screenIdentifier.URI == screenIdentifier.URI
-
-    override fun hashCode(): Int = screenIdentifier.URI.hashCode()
 }
 
