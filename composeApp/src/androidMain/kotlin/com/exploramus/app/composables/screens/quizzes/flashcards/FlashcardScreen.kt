@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -31,19 +30,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.util.lerp
 import com.exploramus.app.R
 import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.composables.components.ScreenLoading
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
-import com.exploramus.app.design.adaptive.isLarge
 import com.exploramus.app.design.adaptive.isPhone
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardStudyTarget
 import kotlinx.coroutines.launch
+import kotlin.math.absoluteValue
 
 @Composable
 fun FlashcardScreen(
@@ -77,11 +77,8 @@ fun FlashcardContent(
     screenState: FlashcardScreenState,
     onEvent: (FlashcardUiEvent) -> Unit,
 ) {
-    val configuration = LocalConfiguration.current
-
     val formFactor = LocalFormFactor.current
     val isLandscape = formFactor.isLandscape
-    val isTablet = formFactor.isLarge
 
 
     // How much of neighbouring cards to peek
@@ -126,7 +123,26 @@ fun FlashcardContent(
                     .then(
                         if (peekAmount > 0.dp) Modifier.padding(vertical = 16.dp)
                         else Modifier
-                    ),
+                    )
+                    .graphicsLayer {
+                        val pageOffset = (
+                                (pagerState.currentPage - page) + pagerState
+                                    .currentPageOffsetFraction
+                                ).absoluteValue
+
+                        val scale = lerp(
+                            start = 0.94f,
+                            stop = 1f,
+                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                        )
+                        scaleX = scale
+                        scaleY = scale
+                        alpha = lerp(
+                            start = 0.8f,
+                            stop = 1f,
+                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                        )
+                    },
             )
         }
 
