@@ -40,7 +40,7 @@ fun Navigation.Router() {
 @Composable
 private fun Navigation.HandleBackButton(
     currentLevel1: MutableState<ScreenIdentifier>,
-    backStacks: Map<String, NavBackStack<Nav3Key>>,
+    backStacks: Map<String, NavBackStack<ScreenNavKey>>,
 ) {
     val activeBackStack = backStacks.getValue(currentLevel1.value.URI)
     val isAtLevel1Root = activeBackStack.size <= 1
@@ -59,17 +59,17 @@ fun getAllLevel1ScreenIdentifiers(): List<ScreenIdentifier> {
 @Composable
 private fun rememberLevel1BackStacks(
     level1Screens: List<ScreenIdentifier>
-): Map<String, NavBackStack<Nav3Key>> {
+): Map<String, NavBackStack<ScreenNavKey>> {
     return remember(level1Screens) {
         level1Screens.associate { level1 ->
-            level1.URI to NavBackStack(Nav3Key(level1))
+            level1.URI to NavBackStack(ScreenNavKey(level1))
         }
     }
 }
 
-data class Nav3Key(val screenIdentifier: ScreenIdentifier) : NavKey {
+data class ScreenNavKey(val screenIdentifier: ScreenIdentifier) : NavKey {
     override fun equals(other: Any?): Boolean =
-        other is Nav3Key && other.screenIdentifier.URI == screenIdentifier.URI
+        other is ScreenNavKey && other.screenIdentifier.URI == screenIdentifier.URI
 
     override fun hashCode(): Int = screenIdentifier.URI.hashCode()
 }

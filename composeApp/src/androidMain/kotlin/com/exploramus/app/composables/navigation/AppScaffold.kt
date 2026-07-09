@@ -32,11 +32,14 @@ import com.exploramus.app.design.adaptive.useNavRail
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 
+private const val NAV_TRANSITION_DURATION_MS = 350
+private const val NAV_RAIL_APPEAR_DELAY_MS = 120
+private const val NAV_RAIL_APPEAR_DURATION_MS = 220
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Navigation.AppScaffold(
-    backStacks: Map<String, NavBackStack<Nav3Key>>,
+    backStacks: Map<String, NavBackStack<ScreenNavKey>>,
     currentLevel1: MutableState<ScreenIdentifier>,
 ) {
     val activeBackStack = backStacks.getValue(currentLevel1.value.URI)
@@ -60,14 +63,12 @@ fun Navigation.AppScaffold(
                     .padding(contentPadding)
             ) {
 
-
                 Column(modifier = Modifier
                     .fillMaxSize()
                     .clipToBounds()
                 ) {
                     Box(modifier = Modifier.fillMaxSize().padding(contentPadding)) {
                         if (formFactor.useNavRail) {
-
                             Row(
                                 Modifier.align(Alignment.CenterStart).zIndex(1f)
                             ) {
@@ -196,8 +197,5 @@ private fun popTransition(durationMs: Int = NAV_TRANSITION_DURATION_MS): Content
 }
 
 
-private const val NAV_TRANSITION_DURATION_MS = 350
 
-private const val NAV_RAIL_APPEAR_DELAY_MS = 120
-private const val NAV_RAIL_APPEAR_DURATION_MS = 220
 

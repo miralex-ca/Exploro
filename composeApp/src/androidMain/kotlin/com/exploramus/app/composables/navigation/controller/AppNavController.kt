@@ -2,7 +2,7 @@ package com.exploramus.app.composables.navigation.controller
 
 import androidx.compose.runtime.MutableState
 import androidx.navigation3.runtime.NavBackStack
-import com.exploramus.app.composables.navigation.Nav3Key
+import com.exploramus.app.composables.navigation.ScreenNavKey
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 import com.exploramus.shared.viewmodel.core.ScreenParams
@@ -16,7 +16,7 @@ interface AppNavController {
 
     class Base(
         private val navigation: Navigation,
-        private val backStacks: Map<String, NavBackStack<Nav3Key>>,
+        private val backStacks: Map<String, NavBackStack<ScreenNavKey>>,
         private val currentLevel1: MutableState<ScreenIdentifier>,
     ) : AppNavController {
 
@@ -32,7 +32,7 @@ interface AppNavController {
         override fun navigate(screen: Screen, screenParams: ScreenParams?) {
             val screenIdentifier = ScreenIdentifier.get(screen, screenParams)
             navigation.navigateToScreen(screenIdentifier)
-            activeBackStack().add(Nav3Key(screenIdentifier))
+            activeBackStack().add(ScreenNavKey(screenIdentifier))
         }
 
         override fun navigateByLevel1(level1Navigation: Level1Navigation) {
@@ -43,7 +43,7 @@ interface AppNavController {
 }
 
 fun Navigation.createAppNavController(
-    backStacks: Map<String, NavBackStack<Nav3Key>>,
+    backStacks: Map<String, NavBackStack<ScreenNavKey>>,
     currentLevel1: MutableState<ScreenIdentifier>,
 ): AppNavController {
     return AppNavController.Base(
