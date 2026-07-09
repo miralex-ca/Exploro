@@ -1,9 +1,8 @@
 package com.exploramus.app.composables.navigation.controller
 
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.saveable.SaveableStateHolder
+import androidx.navigation3.runtime.NavBackStack
 import com.exploramus.shared.viewmodel.core.Navigation
-import com.exploramus.shared.viewmodel.core.NavigationState
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.screens.Level1Navigation
@@ -16,55 +15,39 @@ interface AppNavController {
 
     class Base(
         private val navigation: Navigation,
-        private val localNavigationState: MutableState<NavigationState>,
-        private val saveableStateHolder: SaveableStateHolder,
+        private val backStacks: Map<String, NavBackStack<ScreenNavKey>>,
+        private val currentLevel1: MutableState<ScreenIdentifier>,
     ) : AppNavController {
-        private val navigateFn = navigation.navigationProcessor(localNavigationState)
-        private val navigateLevel1Fn = navigation.level1NavigationProcessor(localNavigationState)
 
-        override fun navigateBack() =
-            navigation.navigateBack(localNavigationState, saveableStateHolder)
+        private fun activeBackStack() = backStacks.getValue(currentLevel1.value.URI)
 
-        override fun navigate(screen: Screen, screenParams: ScreenParams?) =
-            navigateFn(screen, screenParams)
+        override fun navigateBack() {
+            val stack = activeBackStack()
+            val originScreenIdentifier = stack.lastOrNull()?.screenIdentifier ?: return
+            navigation.exitScreen(originScreenIdentifier)
+            stack.removeLastOrNull()
+        }
 
-        override fun navigateByLevel1(level1Navigation: Level1Navigation) =
-            navigateLevel1Fn(level1Navigation)
+        override fun navigate(screen: Screen, screenParams: ScreenParams?) {
+            val screenIdentifier = ScreenIdentifier.get(screen, screenParams)
+            navigation.navigateToScreen(screenIdentifier)
+            activeBackStack().add(ScreenNavKey(screenIdentifier))
+        }
+
+        override fun navigateByLevel1(level1Navigation: Level1Navigation) {
+            navigation.selectLevel1Navigation(level1Navigation.screenIdentifier)
+            currentLevel1.value = level1Navigation.screenIdentifier
+        }
     }
 }
 
 fun Navigation.createAppNavController(
-    localNavigationState: MutableState<NavigationState>,
-    saveableStateHolder: SaveableStateHolder
+    backStacks: Map<String, NavBackStack<ScreenNavKey>>,
+    currentLevel1: MutableState<ScreenIdentifier>,
 ): AppNavController {
     return AppNavController.Base(
         navigation = this,
-        localNavigationState = localNavigationState,
-        saveableStateHolder = saveableStateHolder
+        backStacks = backStacks,
+        currentLevel1 = currentLevel1,
     )
-}
-
-fun Navigation.navigationProcessor(localNavigationState: MutableState<NavigationState>) : (Screen, ScreenParams?) -> Unit {
-    return { screen, screenParams ->
-        val screenIdentifier = ScreenIdentifier.get(screen, screenParams)
-        navigateToScreen(screenIdentifier) // shared navigationState is updated
-        localNavigationState.value = navigationState // update localNavigationState
-    }
-}
-
-fun Navigation.level1NavigationProcessor(localNavigationState: MutableState<NavigationState>) : (Level1Navigation) -> Unit {
-    return {
-        selectLevel1Navigation(it.screenIdentifier) // shared navigationState is updated
-        localNavigationState.value = navigationState // update localNavigationState
-    }
-}
-
-private fun Navigation.navigateBack(
-    localNavigationState: MutableState<NavigationState>,
-    saveableStateHolder: SaveableStateHolder
-) {
-    val originScreenIdentifier = localNavigationState.value.topScreenIdentifier
-    exitScreen(originScreenIdentifier)
-    localNavigationState.value = navigationState
-    saveableStateHolder.removeState(originScreenIdentifier)
 }

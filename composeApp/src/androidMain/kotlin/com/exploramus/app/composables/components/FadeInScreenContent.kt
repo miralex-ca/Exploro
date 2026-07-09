@@ -1,18 +1,14 @@
 package com.exploramus.app.composables.components
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.*
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 
 @Composable
 fun FadeInScreenContent(
-    durationMillis: Int = 320,
+    durationMillis: Int = 10,
     content: @Composable () -> Unit
 ) {
     val state = remember {
@@ -20,7 +16,7 @@ fun FadeInScreenContent(
     }
     AnimatedVisibility(
         visibleState = state,
-        enter = fadeIn(animationSpec = tween(durationMillis)),
+        enter =  EnterTransition.None, // fadeIn(animationSpec = tween(durationMillis)),
         exit = fadeOut(),
     ) {
         content()
