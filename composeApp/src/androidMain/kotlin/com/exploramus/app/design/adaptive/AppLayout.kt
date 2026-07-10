@@ -3,6 +3,7 @@ package com.exploramus.app.design.adaptive
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -25,6 +26,7 @@ data class AppLayout(
     var showSearchFab: AdBool,
     val homeCard: HomeCard,
     val sectionCard: SectionCard,
+    val flashcard: Flashcard,
 ) {
 
 
@@ -57,6 +59,16 @@ data class AppLayout(
         val infoCardIconEndSpace: Adp,
         val infoRowVerticalPadding: Adp,
     )
+
+    data class Flashcard(
+        val horizontalPadding: Adp,
+        val topPadding: Adp,
+        val cardMaxWidth: AdaptiveSizeValue<Dp>,
+        val maxHeight: AdpH,
+        val cardBottomPadding: AdpH,
+        val bottomBarPadding: AdpH,
+
+        )
 
     data class QuizzesSection(
         val itemMaxWidth: Adp,
@@ -170,6 +182,14 @@ object AppLayouts {
             horizontalPadding = adp(16.dp, 28.dp, 50.dp),
             topPadding = adp(12.dp, 16.dp),
             bottomPadding = adp(60.dp),
+        ),
+        flashcard = AppLayout.Flashcard(
+            horizontalPadding = adp(16.dp, 28.dp, 50.dp),
+            topPadding = adp(26.dp, 50.dp, 60.dp),
+            cardMaxWidth = adpSize(350.dp, 460.dp, 520.dp),
+            maxHeight = adph(800.dp, 850.dp, 950.dp),
+            cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
+            bottomBarPadding = adph(16.dp, expandedInCompact = 20.dp),
         )
     )
 
@@ -187,6 +207,9 @@ object AppLayouts {
             ),
             quizzesSection =  base.quizzesSection.copy(
                 itemMaxWidth = adp(420.dp, 500.dp),
+            ),
+            flashcard = base.flashcard.copy(
+                topPadding = adp(26.dp),
             ),
 
         )

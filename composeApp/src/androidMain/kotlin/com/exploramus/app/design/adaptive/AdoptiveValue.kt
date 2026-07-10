@@ -21,6 +21,7 @@ data class AdaptiveValue<T>(
 data class AdaptiveHeightValue<T>(
     val compact: T,
     val medium: T = compact,
+    val expandedInCompact: T = medium,
     val expanded: T = medium
 )
 
@@ -33,8 +34,9 @@ fun adp(
 fun adph(
     compact: Dp,
     medium: Dp = compact,
-    expanded: Dp = medium
-): AdpH = AdaptiveHeightValue(compact, medium, expanded)
+    expandedInCompact: Dp = medium,
+    expanded: Dp = expandedInCompact
+): AdpH = AdaptiveHeightValue(compact, medium, expandedInCompact, expanded)
 
 
 @Composable
@@ -48,10 +50,65 @@ fun <T> AdaptiveValue<T>.value(): T {
 
 @Composable
 fun <T> AdaptiveHeightValue<T>.value(): T {
-    return when (LocalFormFactor.current.heightType) {
+    val formFactor = LocalFormFactor.current
+    return when (formFactor.heightType) {
         HeightType.COMPACT -> compact
         HeightType.MEDIUM -> medium
+        HeightType.EXPANDED if formFactor.isCompact -> expandedInCompact
         HeightType.EXPANDED -> expanded
     }
 }
 
+data class AdaptiveSizeValue<T>(
+    val compactCompact: T, // small screen
+    val compactMedium: T = compactCompact, // small phone
+    val compactExpanded: T = compactCompact, // phone portrait
+
+    val mediumCompact: T = compactMedium, // small phone landscape
+    val mediumMedium: T = compactMedium, // foldable
+    val mediumExpanded: T = mediumMedium, // tablet portrait
+
+    val expandedCompact: T = mediumMedium, // phone landscape
+    val expandedMedium: T = mediumExpanded, // tablet landscape
+    val expandedExpanded: T = expandedMedium // largest tablet, desktop
+)
+
+@Composable
+fun <T> AdaptiveSizeValue<T>.value(): T {
+    return when (LocalFormFactor.current.sizeBucket) {
+        SizeBucket.CompactCompact -> compactCompact
+        SizeBucket.CompactMedium -> compactMedium
+        SizeBucket.CompactExpanded -> compactExpanded
+        SizeBucket.MediumCompact -> mediumCompact
+        SizeBucket.MediumMedium -> mediumMedium
+        SizeBucket.MediumExpanded -> mediumExpanded
+        SizeBucket.ExpandedCompact -> expandedCompact
+        SizeBucket.ExpandedMedium -> expandedMedium
+        SizeBucket.ExpandedExpanded -> expandedExpanded
+    }
+}
+
+fun adpSize(
+    compact: Dp,
+    medium: Dp = compact,
+    expanded: Dp = medium,
+) = AdaptiveSizeValue( compactCompact = compact, mediumMedium = medium, mediumExpanded = expanded)
+
+fun adpSizeForHeight(
+    compact: Dp,
+    medium: Dp = compact,
+    expanded: Dp = medium,
+): AdaptiveSizeValue<Dp> =
+    AdaptiveSizeValue(
+        compactCompact = compact,
+        compactMedium = medium,
+        compactExpanded = expanded,
+
+        mediumCompact = compact,
+        mediumMedium = medium,
+        mediumExpanded = expanded,
+
+        expandedCompact = compact,
+        expandedMedium = medium,
+        expandedExpanded = expanded
+    )

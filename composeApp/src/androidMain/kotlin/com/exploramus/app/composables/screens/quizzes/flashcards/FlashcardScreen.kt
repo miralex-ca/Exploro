@@ -38,6 +38,8 @@ import com.exploramus.app.composables.components.ScreenLoading
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.isPhone
+import com.exploramus.app.design.adaptive.layout
+import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
@@ -80,11 +82,13 @@ fun FlashcardContent(
     val formFactor = LocalFormFactor.current
     val isLandscape = formFactor.isLandscape
 
+    val layout = MaterialTheme.layout.flashcard
+
 
     // How much of neighbouring cards to peek
     val peekAmount = when {
+        isLandscape && formFactor.isPhone -> 48.dp   // phone landscape: moderate peek
         formFactor.isPhone -> 20.dp   // phone portrait: no peek
-       // isLandscape && !isTablet -> 48.dp   // phone landscape: moderate peek
         else -> 30.dp                        // tablet any orientation: wide peek
     }
 
@@ -98,16 +102,24 @@ fun FlashcardContent(
     }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = layout.maxHeight.value())
+            // .widthIn(max = 600.dp)
+            .padding(top = layout.topPadding.value()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
+        val pageSpacing = 12.dp
+
         HorizontalPager(
             state = pagerState,
-            contentPadding = PaddingValues(horizontal = peekAmount),
-            pageSpacing = 12.dp,
+            contentPadding = PaddingValues(horizontal = 16.dp),
+            pageSpacing = pageSpacing,
             beyondViewportPageCount = 2,
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
         ) { page ->
             val card = screenState.cards[page]
             var isRevealed by remember(page) { mutableStateOf(false) }
@@ -120,10 +132,13 @@ fun FlashcardContent(
                 onRevealToggle = { isRevealed = !isRevealed },
                 modifier = Modifier
                     .fillMaxHeight()
-                    .then(
-                        if (peekAmount > 0.dp) Modifier.padding(vertical = 16.dp)
-                        else Modifier
-                    )
+                    .padding(bottom = 30.dp)
+                   // .border(1.dp, Color.Blue)
+                    //.padding(horizontal = 130.dp)
+//                    .then(
+//                        if (peekAmount > 0.dp) Modifier.padding(vertical = 16.dp)
+//                        else Modifier
+//                    )
                     .graphicsLayer {
                         val pageOffset = (
                                 (pagerState.currentPage - page) + pagerState
@@ -146,15 +161,18 @@ fun FlashcardContent(
             )
         }
 
+
         FlashcardNavBar(
             total = screenState.cards.size,
             pagerState = pagerState,
             modifier = Modifier
                 .navigationBarsPadding()
-                .padding(bottom = 16.dp)
+                .padding(bottom = layout.bottomBarPadding.value())
         )
     }
 }
+
+
 
 
 @Composable
@@ -166,13 +184,17 @@ fun FlashcardItem(
     onRevealToggle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // Container for both cards
+    val layout = MaterialTheme.layout.flashcard
+
+    val openCardRatio = if (revealField == FlashcardStudyTarget.IMAGE) 0.65f else 0.4f
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxWidth(),
     ) {
         val layoutModifier = Modifier
-            .widthIn(max = 520.dp)
+            .widthIn(max = 150.dp)
+            //.heightIn(max = 300.dp)
             .fillMaxHeight()
 
         if (isLandscape) {
@@ -201,14 +223,16 @@ fun FlashcardItem(
             }
         } else {
             Column(
-                modifier = layoutModifier,
+                modifier = Modifier
+                    .widthIn(max = layout.cardMaxWidth.value())
+                    .fillMaxHeight(),
                 verticalArrangement = Arrangement.spacedBy(2.dp)
             ) {
                 FlashcardOpenHalf(
                     card = card,
                     shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
                     modifier = Modifier
-                        .weight(3f)
+                        .weight(openCardRatio)
                         .fillMaxWidth(),
                     studyTarget = revealField,
                 )
@@ -219,8 +243,8 @@ fun FlashcardItem(
                     shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
                     onToggle = onRevealToggle,
                     modifier = Modifier
-                        .padding(bottom = 20.dp)
-                        .weight(5f)
+                        .padding(bottom = layout.cardBottomPadding.value())
+                        .weight(1f)
                         .fillMaxWidth(),
                 )
             }
@@ -300,7 +324,6 @@ fun FlashcardOpenHalf(
     }
 }
 
-// ─── Hidden half (tap to reveal) ─────────────────────────────────────────────
 
 @Composable
 fun FlashcardHiddenHalf(
@@ -380,7 +403,7 @@ fun FlashcardHiddenHalf(
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             } else {
-                // Back side (Revealed content)
+
                 Box(
                     Modifier
                         .fillMaxSize()
@@ -398,7 +421,6 @@ fun FlashcardHiddenHalf(
     }
 }
 
-// ─── Revealed content ─────────────────────────────────────────────────────────
 
 @Composable
 fun FlashcardRevealedContent(
@@ -424,7 +446,7 @@ fun FlashcardRevealedContent(
                 RevealPrimaryText(text = card.officialName)
                 Spacer(modifier = Modifier.height(12.dp))
                 RevealTextField(value = card.region)
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(30.dp))
                 FlashcardFlagImage(card = card)
             }
             FlashcardStudyTarget.IMAGE -> {
@@ -442,7 +464,7 @@ fun FlashcardRevealedContent(
 fun RevealPrimaryText(text: String) {
     Text(
         text = text,
-        fontSize = 22.sp,
+        fontSize = 24.sp,
         fontWeight = FontWeight.SemiBold,
         textAlign = TextAlign.Center,
         color = MaterialTheme.colorScheme.onSurface,

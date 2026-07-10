@@ -8,6 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.window.core.layout.WindowSizeClass
+import com.exploramus.core.common.logging.Log
 
 val LocalFormFactor = staticCompositionLocalOf<FormFactor> {
     error("LocalFormFactor not provided — wrap with CompositionLocalProvider at root")
@@ -37,6 +38,20 @@ enum class ScreenOrientation {
     LANDSCAPE
 }
 
+enum class SizeBucket {
+    CompactCompact,
+    CompactMedium,
+    CompactExpanded,
+
+    MediumCompact,
+    MediumMedium,
+    MediumExpanded,
+
+    ExpandedCompact,
+    ExpandedMedium,
+    ExpandedExpanded
+}
+
 val FormFactor.isPhone get() = this.widthType == WidthType.COMPACT
 val FormFactor.isLarge get() = this.widthType != WidthType.COMPACT && this.heightType != HeightType.COMPACT
 val FormFactor.isCompact get() = this.widthType == WidthType.COMPACT || this.heightType == HeightType.COMPACT
@@ -46,6 +61,26 @@ val FormFactor.useBottomBar get() = this.widthType == WidthType.COMPACT
 val FormFactor.useNavRail get() = widthType == WidthType.MEDIUM || (widthType == WidthType.EXPANDED && isCompactHeight)
 val FormFactor.useDrawer get() = this.widthType == WidthType.EXPANDED && !isCompactHeight
 val FormFactor.isCompactHeight get() = this.heightType == HeightType.COMPACT
+val FormFactor.sizeBucket: SizeBucket
+    get() = when (widthType) {
+        WidthType.COMPACT -> when (heightType) {
+            HeightType.COMPACT -> SizeBucket.CompactCompact
+            HeightType.MEDIUM -> SizeBucket.CompactMedium
+            HeightType.EXPANDED -> SizeBucket.CompactExpanded
+        }
+
+        WidthType.MEDIUM -> when (heightType) {
+            HeightType.COMPACT -> SizeBucket.MediumCompact
+            HeightType.MEDIUM -> SizeBucket.MediumMedium
+            HeightType.EXPANDED -> SizeBucket.MediumExpanded
+        }
+
+        WidthType.EXPANDED -> when (heightType) {
+            HeightType.COMPACT -> SizeBucket.ExpandedCompact
+            HeightType.MEDIUM -> SizeBucket.ExpandedMedium
+            HeightType.EXPANDED -> SizeBucket.ExpandedExpanded
+        }
+    }
 
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
@@ -89,7 +124,7 @@ fun rememberFormFactor(): FormFactor {
             heightType = heightType,
             orientation = screenOrientation
         ).also{
-            println("Formfactor: $it , width ${ configuration.screenWidthDp}, height ${configuration.screenHeightDp} ")
+            Log.d("Formfactor: $it , width ${ configuration.screenWidthDp}, height ${configuration.screenHeightDp} ")
         }
     }
 }
