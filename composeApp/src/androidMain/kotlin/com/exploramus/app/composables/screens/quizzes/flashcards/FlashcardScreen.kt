@@ -156,7 +156,6 @@ fun FlashcardContent(
     }
 }
 
-// ─── Flashcard Item ───────────────────────────────────────────────────────────
 
 @Composable
 fun FlashcardItem(

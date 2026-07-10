@@ -10,6 +10,9 @@ val OnAccentBlue = Color.White
 //val BluePrimary = Color(0xFFEAF2FA)
 //val OnBluePrimary = Color(0xFF001946)
 
+val lightThemeRippleColor = Color(0xFF6D789F)
+val darkThemeRippleColor = Color.White
+
 val BlueBackground = Color(0xFFD8DFEC) // background of screen
 val OnBlueBackground = Color(0xFF001B3E)
 
