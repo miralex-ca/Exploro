@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.retain.retain
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
@@ -35,9 +36,9 @@ import com.exploramus.app.R
 import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.composables.components.ScreenLoading
+import com.exploramus.app.design.adaptive.HeightType
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
-import com.exploramus.app.design.adaptive.isPhone
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
@@ -84,14 +85,6 @@ fun FlashcardContent(
 
     val layout = MaterialTheme.layout.flashcard
 
-
-    // How much of neighbouring cards to peek
-    val peekAmount = when {
-        isLandscape && formFactor.isPhone -> 48.dp   // phone landscape: moderate peek
-        formFactor.isPhone -> 20.dp   // phone portrait: no peek
-        else -> 30.dp                        // tablet any orientation: wide peek
-    }
-
     val pagerState = rememberPagerState(
         initialPage = screenState.currentIndex,
         pageCount = { screenState.cards.size },
@@ -105,7 +98,6 @@ fun FlashcardContent(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(max = layout.maxHeight.value())
-            // .widthIn(max = 600.dp)
             .padding(top = layout.topPadding.value()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -122,7 +114,7 @@ fun FlashcardContent(
                 .fillMaxWidth(),
         ) { page ->
             val card = screenState.cards[page]
-            var isRevealed by remember(page) { mutableStateOf(false) }
+            var isRevealed by retain(page) { mutableStateOf(false) }
 
             FlashcardItem(
                 card = card,
@@ -133,12 +125,6 @@ fun FlashcardContent(
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(bottom = 30.dp)
-                   // .border(1.dp, Color.Blue)
-                    //.padding(horizontal = 130.dp)
-//                    .then(
-//                        if (peekAmount > 0.dp) Modifier.padding(vertical = 16.dp)
-//                        else Modifier
-//                    )
                     .graphicsLayer {
                         val pageOffset = (
                                 (pagerState.currentPage - page) + pagerState
@@ -161,18 +147,17 @@ fun FlashcardContent(
             )
         }
 
-
-        FlashcardNavBar(
-            total = screenState.cards.size,
-            pagerState = pagerState,
-            modifier = Modifier
-                .navigationBarsPadding()
-                .padding(bottom = layout.bottomBarPadding.value())
-        )
+        if (formFactor.heightType != HeightType.COMPACT) {
+            FlashcardNavBar(
+                total = screenState.cards.size,
+                pagerState = pagerState,
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .padding(bottom = layout.bottomBarPadding.value())
+            )
+        }
     }
 }
-
-
 
 
 @Composable
@@ -186,8 +171,6 @@ fun FlashcardItem(
 ) {
     val layout = MaterialTheme.layout.flashcard
 
-    val openCardRatio = if (revealField == FlashcardStudyTarget.IMAGE) 0.65f else 0.4f
-
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxWidth(),
@@ -198,22 +181,26 @@ fun FlashcardItem(
             .fillMaxHeight()
 
         if (isLandscape) {
+            val openCardRatio = if (revealField == FlashcardStudyTarget.IMAGE) 0.8f else 0.65f
             Row(
-                modifier = layoutModifier,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                modifier = Modifier
+                    .widthIn(max = layout.landScapeCardMaxWidth.value())
+                    .fillMaxHeight(),
+                horizontalArrangement = Arrangement.spacedBy(2.dp)
             ) {
                 FlashcardOpenHalf(
                     card = card,
                     studyTarget = revealField,
                     shape = RoundedCornerShape(topStart = 24.dp, bottomStart = 24.dp),
                     modifier = Modifier
-                        .weight(1f)
+                        .weight(openCardRatio)
                         .fillMaxHeight()
                 )
                 FlashcardHiddenHalf(
                     card = card,
                     revealField = revealField,
                     isRevealed = isRevealed,
+                    isLandscape = isLandscape,
                     shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
                     onToggle = onRevealToggle,
                     modifier = Modifier
@@ -228,6 +215,7 @@ fun FlashcardItem(
                     .fillMaxHeight(),
                 verticalArrangement = Arrangement.spacedBy(2.dp)
             ) {
+                val openCardRatio = if (revealField == FlashcardStudyTarget.IMAGE) 0.65f else 0.4f
                 FlashcardOpenHalf(
                     card = card,
                     shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
@@ -240,6 +228,7 @@ fun FlashcardItem(
                     card = card,
                     revealField = revealField,
                     isRevealed = isRevealed,
+                    isLandscape = isLandscape,
                     shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
                     onToggle = onRevealToggle,
                     modifier = Modifier
@@ -251,8 +240,6 @@ fun FlashcardItem(
         }
     }
 }
-
-// ─── Open half (always visible) ───────────────────────────────────────────────
 
 @Composable
 fun FlashcardOpenHalf(
@@ -330,6 +317,7 @@ fun FlashcardHiddenHalf(
     card: FlashcardState,
     revealField: FlashcardStudyTarget,
     isRevealed: Boolean,
+    isLandscape: Boolean = false,
     shape: Shape,
     onToggle: () -> Unit,
     modifier: Modifier = Modifier,
@@ -349,7 +337,11 @@ fun FlashcardHiddenHalf(
         onClick = onToggle,
         modifier = modifier
             .graphicsLayer {
-                rotationY = rotation
+                if (isLandscape) {
+                    rotationX = rotation
+                } else {
+                    rotationY = rotation
+                }
                 cameraDistance = 16f * density
             }
     ) {
@@ -358,7 +350,6 @@ fun FlashcardHiddenHalf(
             modifier = Modifier.fillMaxSize()
         ) {
             if (rotation <= 90f) {
-                // Front side (Hidden hint)
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
@@ -407,7 +398,9 @@ fun FlashcardHiddenHalf(
                 Box(
                     Modifier
                         .fillMaxSize()
-                        .graphicsLayer { rotationY = 180f }
+                        .graphicsLayer {
+                            if (isLandscape) rotationX = 180f else rotationY = 180f
+                        }
                         .padding(24.dp),
                     contentAlignment = Alignment.Center
                 ) {

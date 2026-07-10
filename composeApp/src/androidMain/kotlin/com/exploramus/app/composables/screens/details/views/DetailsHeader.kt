@@ -34,7 +34,6 @@ import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
 import com.exploramus.shared.viewmodel.screens.details.CountryDetailsState
-import java.util.Locale
 
 @Composable
 fun DetailHeaderSection(
@@ -243,7 +242,7 @@ fun CountryHeaderTitle(
                     if (capital.isNotBlank()) {
                         InlineHeaderDetailRow(
                             label = Strings.detailLabelCapital,
-                            value = capital.uppercase(Locale.getDefault())
+                            value = capital.uppercase()
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                     }
@@ -263,7 +262,7 @@ fun InlineHeaderDetailRow(
     label: String,
     value: String,
     modifier: Modifier = Modifier,
-    labelWidth: Dp = 55.dp
+    labelWidth: Dp = 65.dp
 ) {
     Row(
         modifier = modifier,
@@ -272,6 +271,8 @@ fun InlineHeaderDetailRow(
         Text(
             text = label,
             modifier = Modifier.width(labelWidth),
+            maxLines = 1,
+            overflow = TextOverflow.Clip,
             style = MaterialTheme.typography.bodyMedium
         )
 
