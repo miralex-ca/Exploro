@@ -14,8 +14,10 @@ fun Events.updateFlashcardConfig(config: FlashcardConfig) = screenCoroutine {
     dataRepository.updateFlashcardConfig(config)
     stateManager.updateScreen(FlashcardScreenState::class) {
         it.copy(
-            config = config,
-            cards = if (config.shuffleEnabled) it.originalCards.shuffled() else it.originalCards,
+            deck = it.deck.copy(
+                config = config,
+                cards = if (config.shuffleEnabled) it.originalCards.shuffled() else it.originalCards
+            ),
             revision = it.revision + 1
         )
     }
@@ -24,9 +26,10 @@ fun Events.updateFlashcardConfig(config: FlashcardConfig) = screenCoroutine {
 fun Events.restartFlashcards() = screenCoroutine {
     stateManager.updateScreen(FlashcardScreenState::class) {
         it.copy(
-            cards = if (it.config.shuffleEnabled) it.originalCards.shuffled() else it.originalCards,
+            deck = it.deck.copy(
+                cards = if (it.deck.config.shuffleEnabled) it.originalCards.shuffled() else it.originalCards
+            ),
             revision = it.revision + 1
         )
     }
 }
-

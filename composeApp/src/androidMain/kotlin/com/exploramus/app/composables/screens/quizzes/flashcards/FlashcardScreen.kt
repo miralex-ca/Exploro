@@ -35,6 +35,7 @@ import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.resources.Strings
 import com.exploramus.core.models.FlashcardStudyTarget
+import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardDeckState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
 import kotlinx.coroutines.launch
@@ -59,7 +60,7 @@ fun FlashcardScreen(
             key(screenState.revision) {
                 val pagerState = rememberPagerState(
                     initialPage = 0,
-                    pageCount = { screenState.cards.size },
+                    pageCount = { screenState.deck.cards.size },
                 )
                 FlashcardsTopBar(
                     title = screenState.screenTitle,
@@ -68,7 +69,7 @@ fun FlashcardScreen(
                     pagerState = pagerState
                 )
                 FlashcardContent(
-                    screenState = screenState,
+                    deckState = screenState.deck,
                     onEvent = eventHandler::onEvent,
                     pagerState = pagerState
                 )
@@ -78,7 +79,7 @@ fun FlashcardScreen(
 
     if (screenState.isSettingsDialogVisible) {
         FlashcardSettingsDialog(
-            currentConfig = screenState.config,
+            currentConfig = screenState.deck.config,
             onConfigChanged = { eventHandler.onEvent(FlashcardUiEvent.OnConfigChanged(it)) },
             onDismiss = { eventHandler.onEvent(FlashcardUiEvent.OnSettingsDismissed) },
         )
@@ -87,7 +88,7 @@ fun FlashcardScreen(
 
 @Composable
 fun FlashcardContent(
-    screenState: FlashcardScreenState,
+    deckState: FlashcardDeckState,
     onEvent: (FlashcardUiEvent) -> Unit,
     pagerState: PagerState,
 ) {
@@ -116,12 +117,12 @@ fun FlashcardContent(
                 .weight(1f)
                 .fillMaxWidth(),
         ) { page ->
-            val card = screenState.cards[page]
-            var isRevealed by retain(page) { mutableStateOf(screenState.config.revealEnabled) }
+            val card = deckState.cards[page]
+            var isRevealed by retain(page) { mutableStateOf(deckState.config.revealEnabled) }
 
             FlashcardItem(
                 card = card,
-                studyTarget = screenState.config.studyTarget,
+                studyTarget = deckState.config.studyTarget,
                 isRevealed = isRevealed,
                 isLandscape = isLandscape,
                 onRevealToggle = { isRevealed = !isRevealed },
@@ -152,7 +153,7 @@ fun FlashcardContent(
 
         if (formFactor.heightType != HeightType.COMPACT) {
             FlashcardNavBar(
-                total = screenState.cards.size,
+                total = deckState.cards.size,
                 pagerState = pagerState,
                 modifier = Modifier
                     .navigationBarsPadding()

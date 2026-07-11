@@ -45,8 +45,10 @@ fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInit
             it.copy(
                 isLoading = false,
                 screenTitle = params.screenTitle,
-                config = config,
-                cards = if (config.shuffleEnabled) flashcards.shuffled() else flashcards,
+                deck = FlashcardDeckState(
+                    config = config,
+                    cards = if (config.shuffleEnabled) flashcards.shuffled() else flashcards,
+                ),
                 originalCards = flashcards,
             )
         }
