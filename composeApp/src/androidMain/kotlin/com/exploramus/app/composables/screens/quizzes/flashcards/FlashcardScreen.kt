@@ -4,23 +4,15 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Tune
-import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.retain.retain
@@ -34,7 +26,6 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,15 +33,14 @@ import androidx.compose.ui.util.lerp
 import com.exploramus.app.R
 import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.composables.components.ScreenLoading
-import com.exploramus.app.composables.navigation.ui.topbars.topBarAdaptiveHeight
+import com.exploramus.app.composables.screens.quizzes.flashcards.views.FlashcardSettingsDialog
+import com.exploramus.app.composables.screens.quizzes.flashcards.views.FlashcardsTopBar
 import com.exploramus.app.design.adaptive.HeightType
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
-import com.exploramus.app.resources.Strings
-import com.exploramus.core.models.FlashcardConfig
 import com.exploramus.core.models.FlashcardStudyTarget
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
@@ -62,7 +52,6 @@ fun FlashcardScreen(
     screenState: FlashcardScreenState,
     eventHandler: FlashcardEventHandler,
 ) {
-
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -94,7 +83,6 @@ fun FlashcardScreen(
         }
     }
 
-
     if (screenState.isSettingsDialogVisible) {
         FlashcardSettingsDialog(
             currentConfig = screenState.config,
@@ -103,8 +91,6 @@ fun FlashcardScreen(
         )
     }
 }
-
-// ─── Content ──────────────────────────────────────────────────────────────────
 
 @Composable
 fun FlashcardContent(
@@ -128,13 +114,10 @@ fun FlashcardContent(
             .padding(top = layout.topPadding.value()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
-        val pageSpacing = 32.dp
-
         HorizontalPager(
             state = pagerState,
             contentPadding = PaddingValues(horizontal = layout.cardHorizontalPadding.value()),
-            pageSpacing = pageSpacing,
+            pageSpacing = 32.dp,
             beyondViewportPageCount = 2,
             modifier = Modifier
                 .weight(1f)
@@ -145,7 +128,7 @@ fun FlashcardContent(
 
             FlashcardItem(
                 card = card,
-                revealField = screenState.config.studyTarget,
+                studyTarget = screenState.config.studyTarget,
                 isRevealed = isRevealed,
                 isLandscape = isLandscape,
                 onRevealToggle = { isRevealed = !isRevealed },
@@ -190,7 +173,7 @@ fun FlashcardContent(
 @Composable
 fun FlashcardItem(
     card: FlashcardState,
-    revealField: FlashcardStudyTarget,
+    studyTarget: FlashcardStudyTarget,
     isRevealed: Boolean,
     isLandscape: Boolean,
     onRevealToggle: () -> Unit,
@@ -203,7 +186,7 @@ fun FlashcardItem(
         modifier = modifier.fillMaxWidth(),
     ) {
         if (isLandscape) {
-            val openCardRatio = if (revealField == FlashcardStudyTarget.IMAGE) 0.8f else 0.65f
+            val openCardRatio = if (studyTarget == FlashcardStudyTarget.IMAGE) 0.8f else 0.65f
             Row(
                 modifier = Modifier
                     .widthIn(max = layout.landScapeCardMaxWidth.value())
@@ -212,7 +195,7 @@ fun FlashcardItem(
             ) {
                 FlashcardOpenHalf(
                     card = card,
-                    studyTarget = revealField,
+                    studyTarget = studyTarget,
                     shape = RoundedCornerShape(topStart = 24.dp, bottomStart = 24.dp),
                     modifier = Modifier
                         .weight(openCardRatio)
@@ -220,7 +203,7 @@ fun FlashcardItem(
                 )
                 FlashcardHiddenHalf(
                     card = card,
-                    revealField = revealField,
+                    revealField = studyTarget,
                     isRevealed = isRevealed,
                     isLandscape = isLandscape,
                     shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
@@ -237,18 +220,18 @@ fun FlashcardItem(
                     .fillMaxHeight(),
                 verticalArrangement = Arrangement.spacedBy(2.dp)
             ) {
-                val openCardRatio = if (revealField == FlashcardStudyTarget.IMAGE) 0.65f else 0.4f
+                val openCardRatio = if (studyTarget == FlashcardStudyTarget.IMAGE) 0.65f else 0.4f
                 FlashcardOpenHalf(
                     card = card,
                     shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
                     modifier = Modifier
                         .weight(openCardRatio)
                         .fillMaxWidth(),
-                    studyTarget = revealField,
+                    studyTarget = studyTarget,
                 )
                 FlashcardHiddenHalf(
                     card = card,
-                    revealField = revealField,
+                    revealField = studyTarget,
                     isRevealed = isRevealed,
                     isLandscape = isLandscape,
                     shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
@@ -416,7 +399,6 @@ fun FlashcardHiddenHalf(
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             } else {
-
                 Box(
                     Modifier
                         .fillMaxSize()
@@ -476,7 +458,7 @@ fun FlashcardRevealedContent(
 }
 
 @Composable
-fun RevealPrimaryText(text: String) {
+private fun RevealPrimaryText(text: String) {
     Text(
         text = text,
         fontSize = 24.sp,
@@ -487,7 +469,7 @@ fun RevealPrimaryText(text: String) {
 }
 
 @Composable
-fun RevealLabeledField(label: String, value: String) {
+private fun RevealLabeledField(label: String, value: String) {
     Text(
         text = buildAnnotatedString {
             withStyle(SpanStyle(fontWeight = FontWeight.Normal)) {
@@ -504,7 +486,7 @@ fun RevealLabeledField(label: String, value: String) {
 }
 
 @Composable
-fun RevealTextField(value: String) {
+private fun RevealTextField(value: String) {
     Text(
         text = value,
         fontSize = 18.sp,
@@ -515,7 +497,7 @@ fun RevealTextField(value: String) {
 }
 
 @Composable
-fun FlashcardFlagImage(card: FlashcardState) {
+private fun FlashcardFlagImage(card: FlashcardState) {
     RemoteImage(
         imageUrl = card.flagImage,
         contentDescription = card.itemName,
@@ -602,287 +584,8 @@ fun FlashcardNavBar(
     }
 }
 
-// ─── Settings dialog ──────────────────────────────────────────────────────────
-
-@Composable
-fun FlashcardSettingsDialog(
-    currentConfig: FlashcardConfig,
-    onConfigChanged: (FlashcardConfig) -> Unit,
-    onDismiss: () -> Unit,
-) {
-    var tempConfig by remember { mutableStateOf(currentConfig) }
-    val isChanged = tempConfig != currentConfig
-    var expanded by remember { mutableStateOf(false) }
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = {
-            Text(
-                text = "Flashcard Settings",
-                style = MaterialTheme.typography.titleLarge,
-            )
-        },
-        text = {
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { expanded = true }
-                            .padding(vertical = 8.dp),
-                        verticalArrangement = Arrangement.spacedBy(6.dp)
-                    ) {
-                        Text(
-                            text = "Visible clue",
-                            style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = FontWeight.Normal,
-                        )
-                        Box {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                            ) {
-                                Text(
-                                    text = tempConfig.studyTarget.displayLabel(),
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    fontWeight = FontWeight.SemiBold,
-                                    maxLines = 1,
-                                    modifier = Modifier.widthIn(min = 100.dp)
-                                )
-                                Icon(
-                                    imageVector = Icons.Default.ArrowDropDown,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(24.dp)
-                                )
-                            }
-                            DropdownMenu(
-                                expanded = expanded,
-                                onDismissRequest = { expanded = false }
-                            ) {
-                                FlashcardStudyTarget.entries.forEach { field ->
-                                    DropdownMenuItem(
-                                        text = { Text(field.displayLabel()) },
-                                        onClick = {
-                                            tempConfig = tempConfig.copy(studyTarget = field)
-                                            expanded = false
-                                        }
-                                    )
-                                }
-                            }
-                        }
-                    }
-                    Text(
-                        text = "Choose which information is displayed on the visible part of the card.",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
-                    )
-                }
-
-                HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
-                            tempConfig = tempConfig.copy(shuffleEnabled = !tempConfig.shuffleEnabled)
-                        }
-                        .padding(vertical = 8.dp),
-                ) {
-                    Text(
-                        text = "Shuffle cards",
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Normal,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Switch(
-                        checked = tempConfig.shuffleEnabled,
-                        onCheckedChange = {
-                            tempConfig = tempConfig.copy(shuffleEnabled = it)
-                        }
-                    )
-                }
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
-                            tempConfig = tempConfig.copy(revealEnabled = !tempConfig.revealEnabled)
-                        }
-                        .padding(vertical = 8.dp),
-                ) {
-                    Text(
-                        text = "Reveal details",
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Normal,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Switch(
-                        checked = tempConfig.revealEnabled,
-                        onCheckedChange = {
-                            tempConfig = tempConfig.copy(revealEnabled = it)
-                        }
-                    )
-                }
-            }
-        },
-        dismissButton = {
-            if (isChanged) {
-                TextButton(onClick = onDismiss) {
-                    Text("Cancel")
-                }
-            }
-        },
-        confirmButton = {
-            if (isChanged) {
-                Button(
-                    onClick = {
-                        onConfigChanged(tempConfig)
-                        onDismiss()
-                    }
-                ) {
-                    Text("Restart")
-                }
-            } else {
-                TextButton(onClick = onDismiss) {
-                    Text("Done")
-                }
-            }
-        },
-    )
-}
-
-// ─── FlashcardRevealField helpers ─────────────────────────────────────────────
-
-private fun FlashcardStudyTarget.displayLabel(): String = when (this) {
-    FlashcardStudyTarget.PRIMARY -> "Country name"
-    FlashcardStudyTarget.SECONDARY    -> "Capital city"
-    FlashcardStudyTarget.IMAGE  -> "Country Flag"
-}
-
 private fun FlashcardStudyTarget.hintLabel(): String = when (this) {
     FlashcardStudyTarget.PRIMARY -> "Tap to reveal"
     FlashcardStudyTarget.SECONDARY    -> "Tap to reveal"
     FlashcardStudyTarget.IMAGE  -> "Tap to reveal"
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FlashcardsTopBar(
-    title: String,
-    onBackClick: () -> Unit,
-    onEvent: (FlashcardUiEvent) -> Unit,
-    pagerState: PagerState? = null,
-) {
-    val formFactor = LocalFormFactor.current
-    val scope = rememberCoroutineScope()
-    var showMenu by remember { mutableStateOf(false) }
-
-    TopAppBar(
-        title = {
-            Text(
-                text = title,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        },
-        expandedHeight = topBarAdaptiveHeight(formFactor),
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.appColors.topBarContainer,
-            titleContentColor = MaterialTheme.appColors.onTopBarContainer,
-            navigationIconContentColor = MaterialTheme.appColors.onTopBarContainer,
-            actionIconContentColor = MaterialTheme.appColors.onTopBarContainer,
-        ),
-        navigationIcon = {
-            IconButton(
-                onClick = onBackClick
-            ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                    contentDescription = Strings.commonBack,
-                )
-            }
-        },
-        actions = {
-            if (formFactor.heightType == HeightType.COMPACT && pagerState != null) {
-                val currentPage = pagerState.currentPage
-                val pageCount = pagerState.pageCount
-
-                IconButton(
-                    onClick = {
-                        scope.launch {
-                            pagerState.animateScrollToPage((currentPage - 1).coerceAtLeast(0))
-                        }
-                    },
-                    enabled = currentPage > 0,
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.ChevronLeft,
-                        contentDescription = "Previous",
-                    )
-                }
-
-                IconButton(
-                    onClick = {
-                        scope.launch {
-                            pagerState.animateScrollToPage((currentPage + 1).coerceAtMost(pageCount - 1))
-                        }
-                    },
-                    enabled = currentPage < pageCount - 1,
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.ChevronRight,
-                        contentDescription = "Next",
-                    )
-                }
-            }
-
-            IconButton(onClick = { showMenu = !showMenu }) {
-                Icon(
-                    imageVector = Icons.Default.MoreVert,
-                    contentDescription = "More"
-                )
-            }
-            DropdownMenu(
-                expanded = showMenu,
-                onDismissRequest = { showMenu = false }
-            ) {
-                DropdownMenuItem(
-                    text = { Text("Cards settings") },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Default.Tune,
-                            contentDescription = null
-                        )
-                    },
-                    onClick = {
-                        onEvent(FlashcardUiEvent.OnSettingsClicked)
-                        showMenu = false
-                    }
-                )
-                DropdownMenuItem(
-                    text = { Text("Restart") },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Refresh,
-                            contentDescription = null
-                        )
-                    },
-                    onClick = {
-                        onEvent(FlashcardUiEvent.OnRestartClicked)
-                        showMenu = false
-                    }
-                )
-            }
-        }
-    )
 }
