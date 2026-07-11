@@ -101,8 +101,9 @@ fun QuizzesListContent(
                         quiz = quiz,
                         onClick = {
                             onEvent(QuizzesListUiEvent.OnQuizClicked(
-                                screenState.sectionInfo.continentId ?: "",
-                                screenState.sectionInfo.sectionType,
+                                sectionId = screenState.sectionInfo.continentId ?: "",
+                                sectionType = screenState.sectionInfo.sectionType,
+                                title = "Flashcards: ${screenState.sectionInfo.title}"
                             ))
                                   },
                         onSettingsClick = { onEvent(QuizzesListUiEvent.OnQuizSettingsClicked(quiz.quizId)) },

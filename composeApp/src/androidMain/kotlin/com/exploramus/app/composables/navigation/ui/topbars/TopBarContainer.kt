@@ -24,6 +24,7 @@ fun Navigation.TopBarContainer(
         screenIdentifier.screen == Screen.CountryDetail -> {}
         screenIdentifier.screen == Screen.DetailsPagerScreen -> {}
         screenIdentifier.screen == Screen.FavoritesPagerScreen -> {}
+        screenIdentifier.screen == Screen.FlashcardsScreen -> {}
         isLevel1 -> {
             Level1TopBar(
                 title = screenTitle,

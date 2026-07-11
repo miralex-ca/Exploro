@@ -13,6 +13,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material3.*
@@ -28,20 +29,22 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import com.exploramus.app.R
-import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.composables.components.ScreenLoading
+import com.exploramus.app.composables.navigation.ui.topbars.topBarAdaptiveHeight
 import com.exploramus.app.design.adaptive.HeightType
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
+import com.exploramus.app.resources.Strings
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardStudyTarget
@@ -53,16 +56,26 @@ fun FlashcardScreen(
     screenState: FlashcardScreenState,
     eventHandler: FlashcardEventHandler,
 ) {
-    if (screenState.isLoading) {
-        ScreenLoading()
-    } else {
-        FadeInScreenContent(durationMillis = 200) {
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        FlashcardsTopBar(
+            title = screenState.screenTitle,
+            onBackClick = {  eventHandler.onEvent(FlashcardUiEvent.OnBackClicked) }
+        )
+
+        if (screenState.isLoading) {
+            ScreenLoading()
+        } else {
             FlashcardContent(
                 screenState = screenState,
                 onEvent = eventHandler::onEvent,
             )
         }
     }
+
+
 
     if (screenState.isSettingsDialogVisible) {
         FlashcardSettingsDialog(
@@ -102,11 +115,11 @@ fun FlashcardContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
-        val pageSpacing = 12.dp
+        val pageSpacing = 32.dp
 
         HorizontalPager(
             state = pagerState,
-            contentPadding = PaddingValues(horizontal = 16.dp),
+            contentPadding = PaddingValues(horizontal = layout.cardHorizontalPadding.value()),
             pageSpacing = pageSpacing,
             beyondViewportPageCount = 2,
             modifier = Modifier
@@ -175,11 +188,6 @@ fun FlashcardItem(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxWidth(),
     ) {
-        val layoutModifier = Modifier
-            .widthIn(max = 150.dp)
-            //.heightIn(max = 300.dp)
-            .fillMaxHeight()
-
         if (isLandscape) {
             val openCardRatio = if (revealField == FlashcardStudyTarget.IMAGE) 0.8f else 0.65f
             Row(
@@ -314,13 +322,13 @@ fun FlashcardOpenHalf(
 
 @Composable
 fun FlashcardHiddenHalf(
+    modifier: Modifier = Modifier,
     card: FlashcardState,
     revealField: FlashcardStudyTarget,
     isRevealed: Boolean,
     isLandscape: Boolean = false,
     shape: Shape,
     onToggle: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     val rotation by animateFloatAsState(
         targetValue = if (isRevealed) 180f else 0f,
@@ -764,4 +772,40 @@ private fun FlashcardStudyTarget.hintLabel(): String = when (this) {
     FlashcardStudyTarget.PRIMARY -> "Tap to reveal"
     FlashcardStudyTarget.SECONDARY    -> "Tap to reveal"
     FlashcardStudyTarget.IMAGE  -> "Tap to reveal"
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FlashcardsTopBar(
+    title: String,
+    onBackClick: () -> Unit
+) {
+    val formFactor = LocalFormFactor.current
+
+    TopAppBar(
+        title = {
+            Text(
+                text = title,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        },
+        expandedHeight = topBarAdaptiveHeight(formFactor),
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.appColors.topBarContainer,
+            titleContentColor = MaterialTheme.appColors.onTopBarContainer,
+            navigationIconContentColor = MaterialTheme.appColors.onTopBarContainer,
+            actionIconContentColor = MaterialTheme.appColors.onTopBarContainer,
+        ),
+        navigationIcon = {
+            IconButton(
+                onClick = onBackClick
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                    contentDescription = Strings.commonBack,
+                )
+            }
+        }
+    )
 }

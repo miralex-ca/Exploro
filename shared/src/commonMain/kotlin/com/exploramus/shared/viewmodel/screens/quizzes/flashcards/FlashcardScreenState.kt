@@ -7,6 +7,7 @@ enum class FlashcardStudyTarget { PRIMARY, SECONDARY, IMAGE }
 
 data class FlashcardScreenState(
     val isLoading: Boolean = false,
+    val screenTitle: String = "",
     val cards: List<FlashcardState> = emptyList(),
     val currentIndex: Int = 0,
     val studyTarget: FlashcardStudyTarget = FlashcardStudyTarget.IMAGE,

@@ -14,6 +14,7 @@ import kotlinx.serialization.Serializable
 data class FlashcardScreenParams(
     val sectionId: String,
     val sectionType: QuizzesSectionType,
+    val screenTitle: String,
 ) : ScreenParams
 
 fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInitSettings(
@@ -36,6 +37,7 @@ fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInit
         updateScreen(FlashcardScreenState::class) {
             it.copy(
                 isLoading = false,
+                screenTitle = params.screenTitle,
                 studyTarget = studyTarget,
                 cards = countries.map { item ->
                     FlashcardState(

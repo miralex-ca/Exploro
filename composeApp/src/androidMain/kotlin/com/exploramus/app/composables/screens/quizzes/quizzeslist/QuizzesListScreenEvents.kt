@@ -6,7 +6,12 @@ import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScree
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 
 sealed class QuizzesListUiEvent {
-    data class OnQuizClicked(val sectionId: String, val sectionType: QuizzesSectionType) : QuizzesListUiEvent()
+    data class OnQuizClicked(
+        val sectionId: String,
+        val sectionType: QuizzesSectionType,
+        val title: String
+    ) : QuizzesListUiEvent()
+
     data class OnQuizSettingsClicked(val quizId: String) : QuizzesListUiEvent()
 }
 
@@ -21,6 +26,7 @@ class QuizzesListEventHandler(
                     FlashcardScreenParams(
                         sectionId = event.sectionId,
                         sectionType = event.sectionType,
+                        screenTitle = event.title
                     )
                 )
             }

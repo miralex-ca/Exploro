@@ -68,6 +68,7 @@ data class AppLayout(
         val maxHeight: AdpH,
         val cardBottomPadding: AdpH,
         val bottomBarPadding: AdpH,
+        val cardHorizontalPadding: Adp,
 
         )
 
@@ -187,11 +188,12 @@ object AppLayouts {
         flashcard = AppLayout.Flashcard(
             horizontalPadding = adp(16.dp, 28.dp, 50.dp),
             topPadding = adp(26.dp, 50.dp, 60.dp),
-            cardMaxWidth = adpSize(350.dp, 460.dp, 520.dp),
+            cardMaxWidth = adpSize(440.dp, 460.dp, 520.dp),
             landScapeCardMaxWidth = adpSize(450.dp, 700.dp, 860.dp),
             maxHeight = adph(800.dp, 850.dp, 950.dp),
             cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
             bottomBarPadding = adph(16.dp, expandedInCompact = 20.dp),
+            cardHorizontalPadding = adp(16.dp, 24.dp, 48.dp),
 
         )
     )

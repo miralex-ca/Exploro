@@ -113,7 +113,7 @@ fun TopBar(
 }
 
 @Composable
-private fun topBarAdaptiveHeight(formFactor: FormFactor): Dp =
+fun topBarAdaptiveHeight(formFactor: FormFactor): Dp =
     if (formFactor.isCompactHeight) {
         46.dp
     } else {

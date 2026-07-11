@@ -70,7 +70,6 @@ fun DetailsScreenContent(
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-
             DetailsTopBar(
                 title = details.name,
                 mapsUrl = details.mapsUrl,

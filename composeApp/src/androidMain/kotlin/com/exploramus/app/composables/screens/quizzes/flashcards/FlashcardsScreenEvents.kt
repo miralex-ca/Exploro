@@ -4,7 +4,7 @@ import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardStudyTarget
 
 sealed class FlashcardUiEvent  {
-    // pager page change — to keep currentIndex in sync for the "4 / 32" counter
+    object OnBackClicked : FlashcardUiEvent()
     data class OnPageChanged(val index: Int) : FlashcardUiEvent()
     data object OnSettingsClicked : FlashcardUiEvent()
     data object OnSettingsDismissed : FlashcardUiEvent()
@@ -20,6 +20,7 @@ class FlashcardEventHandler(
             is FlashcardUiEvent.OnRevealFieldChanged -> {}
             FlashcardUiEvent.OnSettingsClicked -> {}
             FlashcardUiEvent.OnSettingsDismissed -> {}
+            FlashcardUiEvent.OnBackClicked -> navActions.navigateBack()
         }
     }
 }
