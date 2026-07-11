@@ -9,6 +9,9 @@ sealed class FlashcardUiEvent  {
     data object OnSettingsClicked : FlashcardUiEvent()
     data object OnSettingsDismissed : FlashcardUiEvent()
     data class OnRevealFieldChanged(val field: FlashcardStudyTarget) : FlashcardUiEvent()
+    data object OnShuffleClicked : FlashcardUiEvent()
+    data object OnRestartClicked : FlashcardUiEvent()
+    data object OnRevealDetailsClicked : FlashcardUiEvent()
 }
 
 class FlashcardEventHandler(
@@ -20,6 +23,9 @@ class FlashcardEventHandler(
             is FlashcardUiEvent.OnRevealFieldChanged -> {}
             FlashcardUiEvent.OnSettingsClicked -> {}
             FlashcardUiEvent.OnSettingsDismissed -> {}
+            FlashcardUiEvent.OnShuffleClicked -> {}
+            FlashcardUiEvent.OnRestartClicked -> {}
+            FlashcardUiEvent.OnRevealDetailsClicked -> {}
             FlashcardUiEvent.OnBackClicked -> navActions.navigateBack()
         }
     }
