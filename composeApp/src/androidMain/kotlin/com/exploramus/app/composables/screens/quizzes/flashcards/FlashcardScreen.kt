@@ -1,5 +1,8 @@
 package com.exploramus.app.composables.screens.quizzes.flashcards
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -46,33 +49,69 @@ fun FlashcardScreen(
     screenState: FlashcardScreenState,
     eventHandler: FlashcardEventHandler,
 ) {
+    var activePagerState by remember { mutableStateOf<PagerState?>(null) }
+
+    val rotation by animateFloatAsState(
+        targetValue = screenState.revision * 180f,
+        animationSpec = tween(durationMillis = 800),
+        label = "FlashcardRotation"
+    )
+
+    val isLandscape = LocalFormFactor.current.isLandscape
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
+        FlashcardsTopBar(
+            title = screenState.screenTitle,
+            onBackClick = { eventHandler.onEvent(FlashcardUiEvent.OnBackClicked) },
+            onEvent = eventHandler::onEvent,
+            pagerState = if (screenState.isLoading) null else activePagerState
+        )
+
         if (screenState.isLoading) {
-            FlashcardsTopBar(
-                title = screenState.screenTitle,
-                onBackClick = { eventHandler.onEvent(FlashcardUiEvent.OnBackClicked) },
-                onEvent = eventHandler::onEvent,
-            )
             ScreenLoading()
         } else {
-            key(screenState.revision) {
+            AnimatedContent(
+                targetState = screenState.deck to screenState.revision,
+                transitionSpec = {
+                    fadeIn(animationSpec = tween(800)) togetherWith
+                            fadeOut(animationSpec = tween(800))
+                },
+                label = "FlashcardRestart",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .graphicsLayer {
+                        if (isLandscape) {
+                            rotationX = rotation
+                        } else {
+                            rotationY = rotation
+                        }
+                        cameraDistance = 12f * density
+                    }
+            ) { (deck, revision) ->
                 val pagerState = rememberPagerState(
                     initialPage = 0,
-                    pageCount = { screenState.deck.cards.size },
+                    pageCount = { deck.cards.size },
                 )
-                FlashcardsTopBar(
-                    title = screenState.screenTitle,
-                    onBackClick = { eventHandler.onEvent(FlashcardUiEvent.OnBackClicked) },
-                    onEvent = eventHandler::onEvent,
-                    pagerState = pagerState
-                )
-                FlashcardContent(
-                    deckState = screenState.deck,
-                    onEvent = eventHandler::onEvent,
-                    pagerState = pagerState
-                )
+                LaunchedEffect(pagerState) {
+                    activePagerState = pagerState
+                }
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer {
+                            if (revision % 2 != 0) {
+                                if (isLandscape) rotationX = 180f else rotationY = 180f
+                            }
+                        }
+                ) {
+                    FlashcardContent(
+                        deckState = deck,
+                        onEvent = eventHandler::onEvent,
+                        pagerState = pagerState
+                    )
+                }
             }
         }
     }
