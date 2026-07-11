@@ -1,9 +1,9 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.flashcards
 
-import com.exploramus.core.models.FlashcardStudyTarget
 import com.exploramus.data.repository.functions.getAllCountries
 import com.exploramus.data.repository.functions.getCountriesBySectionId
 import com.exploramus.data.repository.functions.getFavorites
+import com.exploramus.data.repository.functions.getFlashcardConfig
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
@@ -29,28 +29,25 @@ fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInit
             QuizzesSectionType.CONTINENT -> dataRepository.getCountriesBySectionId(params.sectionId)
         }
 
-        val studyTarget = when (params.sectionType) {
-            QuizzesSectionType.FAVORITES -> FlashcardStudyTarget.PRIMARY
-            QuizzesSectionType.ALL_COUNTRIES -> FlashcardStudyTarget.SECONDARY
-            QuizzesSectionType.CONTINENT -> FlashcardStudyTarget.IMAGE
+        val config = dataRepository.getFlashcardConfig()
+        val flashcards = countries.map { item ->
+            FlashcardState(
+                itemId = item.id,
+                itemName = item.name,
+                officialName = item.officialName,
+                capital = item.capital,
+                flagImage = item.flagImage,
+                region = item.location,
+            )
         }
 
         updateScreen(FlashcardScreenState::class) {
             it.copy(
                 isLoading = false,
                 screenTitle = params.screenTitle,
-                studyTarget = studyTarget,
-                cards = countries.map { item ->
-                    FlashcardState(
-                        itemId = item.id,
-                        itemName = item.name,
-                        officialName = item.officialName,
-                        capital = item.capital,
-                        flagImage = item.flagImage,
-                        region = item.location,
-                    )
-                },
-                currentIndex = 0,
+                config = config,
+                cards = if (config.shuffleEnabled) flashcards.shuffled() else flashcards,
+                originalCards = flashcards,
             )
         }
     },

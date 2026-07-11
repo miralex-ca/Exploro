@@ -10,16 +10,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Refresh
-import androidx.compose.material.icons.outlined.Shuffle
-import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.retain.retain
@@ -49,6 +49,7 @@ import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
+import com.exploramus.core.models.FlashcardConfig
 import com.exploramus.core.models.FlashcardStudyTarget
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
@@ -73,10 +74,12 @@ fun FlashcardScreen(
         if (screenState.isLoading) {
             ScreenLoading()
         } else {
-            FlashcardContent(
-                screenState = screenState,
-                onEvent = eventHandler::onEvent,
-            )
+            key(screenState.revision) {
+                FlashcardContent(
+                    screenState = screenState,
+                    onEvent = eventHandler::onEvent,
+                )
+            }
         }
     }
 
@@ -84,8 +87,8 @@ fun FlashcardScreen(
 
     if (screenState.isSettingsDialogVisible) {
         FlashcardSettingsDialog(
-            currentField = screenState.studyTarget,
-            onFieldSelected = { eventHandler.onEvent(FlashcardUiEvent.OnRevealFieldChanged(it)) },
+            currentConfig = screenState.config,
+            onConfigChanged = { eventHandler.onEvent(FlashcardUiEvent.OnConfigChanged(it)) },
             onDismiss = { eventHandler.onEvent(FlashcardUiEvent.OnSettingsDismissed) },
         )
     }
@@ -104,7 +107,7 @@ fun FlashcardContent(
     val layout = MaterialTheme.layout.flashcard
 
     val pagerState = rememberPagerState(
-        initialPage = screenState.currentIndex,
+        initialPage = 0,
         pageCount = { screenState.cards.size },
     )
 
@@ -132,11 +135,11 @@ fun FlashcardContent(
                 .fillMaxWidth(),
         ) { page ->
             val card = screenState.cards[page]
-            var isRevealed by retain(page) { mutableStateOf(false) }
+            var isRevealed by retain(page) { mutableStateOf(screenState.config.revealEnabled) }
 
             FlashcardItem(
                 card = card,
-                revealField = screenState.studyTarget,
+                revealField = screenState.config.studyTarget,
                 isRevealed = isRevealed,
                 isLandscape = isLandscape,
                 onRevealToggle = { isRevealed = !isRevealed },
@@ -519,115 +522,6 @@ fun FlashcardFlagImage(card: FlashcardState) {
     )
 }
 
-//@Composable
-//fun FlashcardRevealedContent(
-//    card: FlashcardState,
-//    revealField: FlashcardStudyTarget,
-//) {
-//    Column(
-//        horizontalAlignment = Alignment.CenterHorizontally,
-//        verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.CenterVertically),
-//        modifier = Modifier.fillMaxSize(),
-//    ) {
-//        // Table of aligned information
-//        FlashcardTable(
-//            items = mutableListOf<Pair<String, String>>().apply {
-//                add("Official" to card.officialName)
-//                if (revealField != FlashcardStudyTarget.SECONDARY) {
-//                    add("Capital" to card.capital)
-//                }
-//                add("Location" to card.region)
-//            }
-//        )
-//
-//        // Larger Flag Image
-//        if (revealField != FlashcardStudyTarget.IMAGE) {
-//            RemoteImage(
-//                imageUrl = card.flagImage,
-//                contentDescription = null,
-//                contentScale = ContentScale.Fit,
-//                modifier = Modifier
-//                    .height(110.dp)
-//                    .fillMaxWidth(0.8f),
-//                shape = RoundedCornerShape(8.dp),
-//                usePlaceholder = false
-//            )
-//        }
-//    }
-//}
-//
-//@Composable
-//private fun FlashcardTable(items: List<Pair<String, String>>) {
-//    Layout(
-//        content = {
-//            items.forEach { (label, value) ->
-//                Text(
-//                    text = label.uppercase(),
-//                    style = MaterialTheme.typography.labelSmall,
-//                    fontWeight = FontWeight.Light,
-//                    color = MaterialTheme.colorScheme.onSurface,
-//                    textAlign = TextAlign.End,
-//                    modifier = Modifier.layoutId("label")
-//                )
-//                Text(
-//                    text = value,
-//                    style = MaterialTheme.typography.titleMedium,
-//                    fontWeight = FontWeight.Bold,
-//                    color = MaterialTheme.colorScheme.onSurface,
-//                    textAlign = TextAlign.Start,
-//                    modifier = Modifier.layoutId("value")
-//                )
-//            }
-//        }
-//    ) { measurables, constraints ->
-//        val labelMeasurables = measurables.filter { it.layoutId == "label" }
-//        val valueMeasurables = measurables.filter { it.layoutId == "value" }
-//
-//        // 1. Measure labels to find the widest one
-//        val labelPlaceables = labelMeasurables.map { it.measure(constraints.copy(minWidth = 0)) }
-//        val maxLabelWidth = labelPlaceables.maxOfOrNull { it.width } ?: 0
-//
-//        // 2. Measure values with remaining width
-//        val spacing = 16.dp.roundToPx()
-//        val valueConstraints = constraints.copy(
-//            minWidth = 0,
-//            maxWidth = (constraints.maxWidth - maxLabelWidth - spacing).coerceAtLeast(0)
-//        )
-//        val valuePlaceables = valueMeasurables.map { it.measure(valueConstraints) }
-//
-//        // 3. Calculate row heights and total dimensions
-//        val rowHeights = labelPlaceables.zip(valuePlaceables).map { (l, v) -> maxOf(l.height, v.height) }
-//        val maxValueWidth = valuePlaceables.maxOfOrNull { it.width } ?: 0
-//
-//        val totalWidth = maxLabelWidth + spacing + maxValueWidth
-//        val verticalSpacing = 12.dp.roundToPx()
-//        val totalHeight = rowHeights.sum() + (verticalSpacing * (items.size - 1))
-//
-//        // 4. Place everything
-//        layout(totalWidth, totalHeight) {
-//            var yPosition = 0
-//            labelPlaceables.forEachIndexed { index, labelPlaceable ->
-//                val valuePlaceable = valuePlaceables[index]
-//                val rowHeight = rowHeights[index]
-//
-//                // Align label to the end of the first column
-//                labelPlaceable.placeRelative(
-//                    x = maxLabelWidth - labelPlaceable.width,
-//                    y = yPosition + (rowHeight - labelPlaceable.height) / 2
-//                )
-//
-//                // Align value to the start of the second column
-//                valuePlaceable.placeRelative(
-//                    x = maxLabelWidth + spacing,
-//                    y = yPosition + (rowHeight - valuePlaceable.height) / 2
-//                )
-//
-//                yPosition += rowHeight + verticalSpacing
-//            }
-//        }
-//    }
-//}
-
 
 @Composable
 fun FlashcardNavBar(
@@ -706,26 +600,31 @@ fun FlashcardNavBar(
 
 @Composable
 fun FlashcardSettingsDialog(
-    currentField: FlashcardStudyTarget,
-    onFieldSelected: (FlashcardStudyTarget) -> Unit,
+    currentConfig: FlashcardConfig,
+    onConfigChanged: (FlashcardConfig) -> Unit,
     onDismiss: () -> Unit,
 ) {
+    var tempConfig by remember { mutableStateOf(currentConfig) }
+    val isChanged = tempConfig != currentConfig
+
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "Reveal on tap",
+                text = "Flashcard Settings",
                 style = MaterialTheme.typography.titleLarge,
             )
         },
         text = {
-            Column {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState())
+            ) {
                 Text(
-                    text = "Choose what to show in the hidden half.",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                    text = "Front of the card",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary,
                 )
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(8.dp))
                 FlashcardStudyTarget.entries.forEach { field ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -735,17 +634,15 @@ fun FlashcardSettingsDialog(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = ripple(),
                                 onClick = {
-                                    onFieldSelected(field)
-                                    onDismiss()
+                                    tempConfig = tempConfig.copy(studyTarget = field)
                                 },
                             )
-                            .padding(vertical = 10.dp),
+                            .padding(vertical = 4.dp),
                     ) {
                         RadioButton(
-                            selected = currentField == field,
+                            selected = tempConfig.studyTarget == field,
                             onClick = {
-                                onFieldSelected(field)
-                                onDismiss()
+                                tempConfig = tempConfig.copy(studyTarget = field)
                             },
                         )
                         Spacer(modifier = Modifier.width(8.dp))
@@ -755,11 +652,75 @@ fun FlashcardSettingsDialog(
                         )
                     }
                 }
+
+                HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            tempConfig = tempConfig.copy(shuffleEnabled = !tempConfig.shuffleEnabled)
+                        }
+                        .padding(vertical = 8.dp),
+                ) {
+                    Text(
+                        text = "Shuffle cards",
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Switch(
+                        checked = tempConfig.shuffleEnabled,
+                        onCheckedChange = {
+                            tempConfig = tempConfig.copy(shuffleEnabled = it)
+                        }
+                    )
+                }
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            tempConfig = tempConfig.copy(revealEnabled = !tempConfig.revealEnabled)
+                        }
+                        .padding(vertical = 8.dp),
+                ) {
+                    Text(
+                        text = "Reveal details",
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Switch(
+                        checked = tempConfig.revealEnabled,
+                        onCheckedChange = {
+                            tempConfig = tempConfig.copy(revealEnabled = it)
+                        }
+                    )
+                }
+            }
+        },
+        dismissButton = {
+            if (isChanged) {
+                TextButton(onClick = onDismiss) {
+                    Text("Cancel")
+                }
             }
         },
         confirmButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Done")
+            if (isChanged) {
+                Button(
+                    onClick = {
+                        onConfigChanged(tempConfig)
+                        onDismiss()
+                    }
+                ) {
+                    Text("Restart")
+                }
+            } else {
+                TextButton(onClick = onDismiss) {
+                    Text("Done")
+                }
             }
         },
     )
@@ -768,9 +729,9 @@ fun FlashcardSettingsDialog(
 // ─── FlashcardRevealField helpers ─────────────────────────────────────────────
 
 private fun FlashcardStudyTarget.displayLabel(): String = when (this) {
-    FlashcardStudyTarget.PRIMARY -> "Capital city"
-    FlashcardStudyTarget.SECONDARY    -> "Flag"
-    FlashcardStudyTarget.IMAGE  -> "Region"
+    FlashcardStudyTarget.PRIMARY -> "Country name"
+    FlashcardStudyTarget.SECONDARY    -> "Capital city"
+    FlashcardStudyTarget.IMAGE  -> "Flag"
 }
 
 private fun FlashcardStudyTarget.hintLabel(): String = when (this) {
@@ -826,33 +787,7 @@ fun FlashcardsTopBar(
                 onDismissRequest = { showMenu = false }
             ) {
                 DropdownMenuItem(
-                    text = { Text("Reveal details") },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Visibility,
-                            contentDescription = null
-                        )
-                    },
-                    onClick = {
-                        onEvent(FlashcardUiEvent.OnRevealDetailsClicked)
-                        showMenu = false
-                    }
-                )
-                DropdownMenuItem(
-                    text = { Text("Shuffle cards") },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Shuffle,
-                            contentDescription = null
-                        )
-                    },
-                    onClick = {
-                        onEvent(FlashcardUiEvent.OnShuffleClicked)
-                        showMenu = false
-                    }
-                )
-                DropdownMenuItem(
-                    text = { Text("Change info") },
+                    text = { Text("Cards settings") },
                     leadingIcon = {
                         Icon(
                             painter = painterResource(id = R.drawable.instant_mix),

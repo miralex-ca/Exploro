@@ -1,5 +1,11 @@
 package com.exploramus.core.models
 
+data class FlashcardConfig(
+    val studyTarget: FlashcardStudyTarget = FlashcardStudyTarget.DEFAULT,
+    val revealEnabled: Boolean = false,
+    val shuffleEnabled: Boolean = true,
+)
+
 enum class FlashcardStudyTarget(val id: Int) {
     PRIMARY(0),
     SECONDARY(1),

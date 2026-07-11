@@ -34,7 +34,7 @@ class EventHandlers(
     }
 
     val flashcards by lazy {
-        FlashcardEventHandler(navActions)
+        FlashcardEventHandler(navActions, events)
     }
 
     val section by lazy {
