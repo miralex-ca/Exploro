@@ -1,7 +1,7 @@
 package com.exploramus.app.composables.screens.quizzes.flashcards
 
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
-import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardStudyTarget
+import com.exploramus.core.models.FlashcardStudyTarget
 
 sealed class FlashcardUiEvent  {
     object OnBackClicked : FlashcardUiEvent()

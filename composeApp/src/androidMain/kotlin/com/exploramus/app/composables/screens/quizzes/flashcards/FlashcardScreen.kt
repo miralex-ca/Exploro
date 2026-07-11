@@ -14,7 +14,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.ChevronLeft
+import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Shuffle
 import androidx.compose.material.icons.outlined.Visibility
@@ -47,9 +49,9 @@ import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
+import com.exploramus.core.models.FlashcardStudyTarget
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
-import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardStudyTarget
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 

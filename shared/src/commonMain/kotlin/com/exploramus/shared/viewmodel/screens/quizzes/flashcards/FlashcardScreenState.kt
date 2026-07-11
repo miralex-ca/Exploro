@@ -1,9 +1,8 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.flashcards
 
+import com.exploramus.core.models.FlashcardStudyTarget
 import com.exploramus.shared.viewmodel.core.ScreenState
 
-
-enum class FlashcardStudyTarget { PRIMARY, SECONDARY, IMAGE }
 
 data class FlashcardScreenState(
     val isLoading: Boolean = false,

@@ -1,5 +1,6 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.flashcards
 
+import com.exploramus.core.models.FlashcardStudyTarget
 import com.exploramus.data.repository.functions.getAllCountries
 import com.exploramus.data.repository.functions.getCountriesBySectionId
 import com.exploramus.data.repository.functions.getFavorites
