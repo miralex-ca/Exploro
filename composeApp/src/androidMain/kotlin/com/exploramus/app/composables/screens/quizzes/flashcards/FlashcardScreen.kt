@@ -66,24 +66,33 @@ fun FlashcardScreen(
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        FlashcardsTopBar(
-            title = screenState.screenTitle,
-            onBackClick = {  eventHandler.onEvent(FlashcardUiEvent.OnBackClicked) },
-            onEvent = eventHandler::onEvent,
-        )
-
         if (screenState.isLoading) {
+            FlashcardsTopBar(
+                title = screenState.screenTitle,
+                onBackClick = { eventHandler.onEvent(FlashcardUiEvent.OnBackClicked) },
+                onEvent = eventHandler::onEvent,
+            )
             ScreenLoading()
         } else {
             key(screenState.revision) {
+                val pagerState = rememberPagerState(
+                    initialPage = 0,
+                    pageCount = { screenState.cards.size },
+                )
+                FlashcardsTopBar(
+                    title = screenState.screenTitle,
+                    onBackClick = { eventHandler.onEvent(FlashcardUiEvent.OnBackClicked) },
+                    onEvent = eventHandler::onEvent,
+                    pagerState = pagerState
+                )
                 FlashcardContent(
                     screenState = screenState,
                     onEvent = eventHandler::onEvent,
+                    pagerState = pagerState
                 )
             }
         }
     }
-
 
 
     if (screenState.isSettingsDialogVisible) {
@@ -101,16 +110,12 @@ fun FlashcardScreen(
 fun FlashcardContent(
     screenState: FlashcardScreenState,
     onEvent: (FlashcardUiEvent) -> Unit,
+    pagerState: PagerState,
 ) {
     val formFactor = LocalFormFactor.current
     val isLandscape = formFactor.isLandscape
 
     val layout = MaterialTheme.layout.flashcard
-
-    val pagerState = rememberPagerState(
-        initialPage = 0,
-        pageCount = { screenState.cards.size },
-    )
 
     LaunchedEffect(pagerState.currentPage) {
         onEvent(FlashcardUiEvent.OnPageChanged(pagerState.currentPage))
@@ -776,8 +781,10 @@ fun FlashcardsTopBar(
     title: String,
     onBackClick: () -> Unit,
     onEvent: (FlashcardUiEvent) -> Unit,
+    pagerState: PagerState? = null,
 ) {
     val formFactor = LocalFormFactor.current
+    val scope = rememberCoroutineScope()
     var showMenu by remember { mutableStateOf(false) }
 
     TopAppBar(
@@ -806,6 +813,39 @@ fun FlashcardsTopBar(
             }
         },
         actions = {
+            if (formFactor.heightType == HeightType.COMPACT && pagerState != null) {
+                val currentPage = pagerState.currentPage
+                val pageCount = pagerState.pageCount
+
+                IconButton(
+                    onClick = {
+                        scope.launch {
+                            pagerState.animateScrollToPage((currentPage - 1).coerceAtLeast(0))
+                        }
+                    },
+                    enabled = currentPage > 0,
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ChevronLeft,
+                        contentDescription = "Previous",
+                    )
+                }
+
+                IconButton(
+                    onClick = {
+                        scope.launch {
+                            pagerState.animateScrollToPage((currentPage + 1).coerceAtMost(pageCount - 1))
+                        }
+                    },
+                    enabled = currentPage < pageCount - 1,
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ChevronRight,
+                        contentDescription = "Next",
+                    )
+                }
+            }
+
             IconButton(onClick = { showMenu = !showMenu }) {
                 Icon(
                     imageVector = Icons.Default.MoreVert,
