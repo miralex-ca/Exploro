@@ -51,5 +51,5 @@ fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInit
             )
         }
     },
-    callOnInitAtEachNavigation = CallOnInitValues.CALL_BEFORE_SHOWING_SCREEN,
+    callOnInitAtEachNavigation = CallOnInitValues.DONT_CALL,
 )

@@ -5,7 +5,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -16,9 +15,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -606,6 +607,7 @@ fun FlashcardSettingsDialog(
 ) {
     var tempConfig by remember { mutableStateOf(currentConfig) }
     val isChanged = tempConfig != currentConfig
+    var expanded by remember { mutableStateOf(false) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -617,40 +619,66 @@ fun FlashcardSettingsDialog(
         },
         text = {
             Column(
-                modifier = Modifier.verticalScroll(rememberScrollState())
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                Text(
-                    text = "Front of the card",
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                FlashcardStudyTarget.entries.forEach { field ->
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable(
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = ripple(),
-                                onClick = {
-                                    tempConfig = tempConfig.copy(studyTarget = field)
-                                },
-                            )
-                            .padding(vertical = 4.dp),
+                            .clickable { expanded = true }
+                            .padding(vertical = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
-                        RadioButton(
-                            selected = tempConfig.studyTarget == field,
-                            onClick = {
-                                tempConfig = tempConfig.copy(studyTarget = field)
-                            },
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = field.displayLabel(),
+                            text = "Visible clue",
                             style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Normal,
                         )
+                        Box {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                Text(
+                                    text = tempConfig.studyTarget.displayLabel(),
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    fontWeight = FontWeight.SemiBold,
+                                    maxLines = 1,
+                                    modifier = Modifier.widthIn(min = 100.dp)
+                                )
+                                Icon(
+                                    imageVector = Icons.Default.ArrowDropDown,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            }
+                            DropdownMenu(
+                                expanded = expanded,
+                                onDismissRequest = { expanded = false }
+                            ) {
+                                FlashcardStudyTarget.entries.forEach { field ->
+                                    DropdownMenuItem(
+                                        text = { Text(field.displayLabel()) },
+                                        onClick = {
+                                            tempConfig = tempConfig.copy(studyTarget = field)
+                                            expanded = false
+                                        }
+                                    )
+                                }
+                            }
+                        }
                     }
+                    Text(
+                        text = "Choose which information is displayed on the visible part of the card.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                    )
                 }
 
                 HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
@@ -667,6 +695,7 @@ fun FlashcardSettingsDialog(
                     Text(
                         text = "Shuffle cards",
                         style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Normal,
                         modifier = Modifier.weight(1f)
                     )
                     Switch(
@@ -689,6 +718,7 @@ fun FlashcardSettingsDialog(
                     Text(
                         text = "Reveal details",
                         style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Normal,
                         modifier = Modifier.weight(1f)
                     )
                     Switch(
@@ -731,7 +761,7 @@ fun FlashcardSettingsDialog(
 private fun FlashcardStudyTarget.displayLabel(): String = when (this) {
     FlashcardStudyTarget.PRIMARY -> "Country name"
     FlashcardStudyTarget.SECONDARY    -> "Capital city"
-    FlashcardStudyTarget.IMAGE  -> "Flag"
+    FlashcardStudyTarget.IMAGE  -> "Country Flag"
 }
 
 private fun FlashcardStudyTarget.hintLabel(): String = when (this) {
@@ -790,7 +820,7 @@ fun FlashcardsTopBar(
                     text = { Text("Cards settings") },
                     leadingIcon = {
                         Icon(
-                            painter = painterResource(id = R.drawable.instant_mix),
+                            imageVector = Icons.Default.Tune,
                             contentDescription = null
                         )
                     },

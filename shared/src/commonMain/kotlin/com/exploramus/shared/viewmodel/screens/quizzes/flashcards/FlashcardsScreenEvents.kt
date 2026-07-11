@@ -21,15 +21,6 @@ fun Events.updateFlashcardConfig(config: FlashcardConfig) = screenCoroutine {
     }
 }
 
-fun Events.shuffleFlashcards() = screenCoroutine {
-    stateManager.updateScreen(FlashcardScreenState::class) {
-        it.copy(
-            cards = it.cards.shuffled(),
-            revision = it.revision + 1
-        )
-    }
-}
-
 fun Events.restartFlashcards() = screenCoroutine {
     stateManager.updateScreen(FlashcardScreenState::class) {
         it.copy(
