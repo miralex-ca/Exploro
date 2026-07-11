@@ -68,6 +68,20 @@ object Strings {
     val emptyTitleNotFound @Composable get() = stringRes(R.string.empty_title_not_found)
     val emptyMsgNotFound @Composable get() = stringRes(R.string.empty_msg_not_found)
 
+    val flashcardSettingsTitle @Composable get() = stringRes(R.string.flashcard_settings_title)
+    val flashcardVisibleClue @Composable get() = stringRes(R.string.flashcard_visible_clue)
+    val flashcardTargetPrimary @Composable get() = stringRes(R.string.flashcard_target_primary)
+    val flashcardTargetSecondary @Composable get() = stringRes(R.string.flashcard_target_secondary)
+    val flashcardTargetImage @Composable get() = stringRes(R.string.flashcard_target_image)
+    val flashcardSettingsDescription @Composable get() = stringRes(R.string.flashcard_settings_description)
+    val flashcardShuffleCards @Composable get() = stringRes(R.string.flashcard_shuffle_cards)
+    val flashcardRevealDetails @Composable get() = stringRes(R.string.flashcard_reveal_details)
+    val flashcardRestart @Composable get() = stringRes(R.string.flashcard_restart)
+    val flashcardDone @Composable get() = stringRes(R.string.flashcard_done)
+    val flashcardHintTapToReveal @Composable get() = stringRes(R.string.flashcard_hint_tap_to_reveal)
+    val flashcardMenuSettings @Composable get() = stringRes(R.string.flashcard_menu_settings)
+    val flashcardLabelCapital @Composable get() = stringRes(R.string.flashcard_label_capital)
+
     @Composable
     fun detailLabelLanguage(count: Int) = if (count == 1)
         stringRes(R.string.detail_label_language)

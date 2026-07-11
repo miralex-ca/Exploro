@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.exploramus.app.resources.Strings
 import com.exploramus.core.models.FlashcardConfig
 import com.exploramus.core.models.FlashcardStudyTarget
 
@@ -33,7 +34,7 @@ fun FlashcardSettingsDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "Flashcard Settings",
+                text = Strings.flashcardSettingsTitle,
                 style = MaterialTheme.typography.titleLarge,
             )
         },
@@ -57,7 +58,7 @@ fun FlashcardSettingsDialog(
                         verticalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
                         Text(
-                            text = "Visible clue",
+                            text = Strings.flashcardVisibleClue,
                             style = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Normal,
                         )
@@ -95,7 +96,7 @@ fun FlashcardSettingsDialog(
                         }
                     }
                     Text(
-                        text = "Choose which information is displayed on the visible part of the card.",
+                        text = Strings.flashcardSettingsDescription,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                     )
@@ -113,7 +114,7 @@ fun FlashcardSettingsDialog(
                         .padding(vertical = 8.dp),
                 ) {
                     Text(
-                        text = "Shuffle cards",
+                        text = Strings.flashcardShuffleCards,
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Normal,
                         modifier = Modifier.weight(1f)
@@ -136,7 +137,7 @@ fun FlashcardSettingsDialog(
                         .padding(vertical = 8.dp),
                 ) {
                     Text(
-                        text = "Reveal details",
+                        text = Strings.flashcardRevealDetails,
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Normal,
                         modifier = Modifier.weight(1f)
@@ -153,7 +154,7 @@ fun FlashcardSettingsDialog(
         dismissButton = {
             if (isChanged) {
                 TextButton(onClick = onDismiss) {
-                    Text("Cancel")
+                    Text(Strings.commonCancel)
                 }
             }
         },
@@ -165,19 +166,20 @@ fun FlashcardSettingsDialog(
                         onDismiss()
                     }
                 ) {
-                    Text("Restart")
+                    Text(Strings.flashcardRestart)
                 }
             } else {
                 TextButton(onClick = onDismiss) {
-                    Text("Done")
+                    Text(Strings.flashcardDone)
                 }
             }
         },
     )
 }
 
+@Composable
 private fun FlashcardStudyTarget.displayLabel(): String = when (this) {
-    FlashcardStudyTarget.PRIMARY -> "Country name"
-    FlashcardStudyTarget.SECONDARY    -> "Capital city"
-    FlashcardStudyTarget.IMAGE  -> "Country Flag"
+    FlashcardStudyTarget.PRIMARY -> Strings.flashcardTargetPrimary
+    FlashcardStudyTarget.SECONDARY    -> Strings.flashcardTargetSecondary
+    FlashcardStudyTarget.IMAGE  -> Strings.flashcardTargetImage
 }

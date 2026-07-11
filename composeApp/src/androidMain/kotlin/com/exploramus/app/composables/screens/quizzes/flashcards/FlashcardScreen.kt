@@ -35,6 +35,7 @@ import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.composables.components.ScreenLoading
 import com.exploramus.app.composables.screens.quizzes.flashcards.views.FlashcardSettingsDialog
 import com.exploramus.app.composables.screens.quizzes.flashcards.views.FlashcardsTopBar
+import com.exploramus.app.resources.Strings
 import com.exploramus.app.design.adaptive.HeightType
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
@@ -391,7 +392,7 @@ fun FlashcardHiddenHalf(
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = revealField.hintLabel(),
+                        text = Strings.flashcardHintTapToReveal,
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.35f),
                         textAlign = TextAlign.Center,
@@ -433,7 +434,7 @@ fun FlashcardRevealedContent(
             FlashcardStudyTarget.PRIMARY -> {
                 RevealPrimaryText(text = card.officialName)
                 Spacer(modifier = Modifier.height(16.dp))
-                RevealLabeledField(label = "Capital", value = card.capital)
+                RevealLabeledField(label = Strings.flashcardLabelCapital, value = card.capital)
                 Spacer(modifier = Modifier.height(12.dp))
                 RevealTextField(value = card.region)
                 Spacer(modifier = Modifier.height(16.dp))
@@ -449,7 +450,7 @@ fun FlashcardRevealedContent(
             FlashcardStudyTarget.IMAGE -> {
                 RevealPrimaryText(text = card.officialName)
                 Spacer(modifier = Modifier.height(16.dp))
-                RevealLabeledField(label = "Capital", value = card.capital)
+                RevealLabeledField(label = Strings.flashcardLabelCapital, value = card.capital)
                 Spacer(modifier = Modifier.height(16.dp))
                 RevealTextField(value = card.region)
             }
@@ -542,7 +543,7 @@ fun FlashcardNavBar(
             ) {
                 Icon(
                     imageVector = Icons.Default.ChevronLeft,
-                    contentDescription = "Previous",
+                    contentDescription = Strings.commonPrevious,
                     tint = if (currentPage > 0)
                         MaterialTheme.colorScheme.onSurface
                     else
@@ -572,7 +573,7 @@ fun FlashcardNavBar(
             ) {
                 Icon(
                     imageVector = Icons.Default.ChevronRight,
-                    contentDescription = "Next",
+                    contentDescription = Strings.commonNext,
                     tint = if (currentPage < total - 1)
                         MaterialTheme.colorScheme.onSurface
                     else
@@ -584,8 +585,3 @@ fun FlashcardNavBar(
     }
 }
 
-private fun FlashcardStudyTarget.hintLabel(): String = when (this) {
-    FlashcardStudyTarget.PRIMARY -> "Tap to reveal"
-    FlashcardStudyTarget.SECONDARY    -> "Tap to reveal"
-    FlashcardStudyTarget.IMAGE  -> "Tap to reveal"
-}

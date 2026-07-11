@@ -71,7 +71,7 @@ fun FlashcardsTopBar(
                 ) {
                     Icon(
                         imageVector = Icons.Default.ChevronLeft,
-                        contentDescription = "Previous",
+                        contentDescription = Strings.commonPrevious,
                     )
                 }
 
@@ -85,7 +85,7 @@ fun FlashcardsTopBar(
                 ) {
                     Icon(
                         imageVector = Icons.Default.ChevronRight,
-                        contentDescription = "Next",
+                        contentDescription = Strings.commonNext,
                     )
                 }
             }
@@ -93,7 +93,7 @@ fun FlashcardsTopBar(
             IconButton(onClick = { showMenu = !showMenu }) {
                 Icon(
                     imageVector = Icons.Default.MoreVert,
-                    contentDescription = "More"
+                    contentDescription = Strings.commonMore
                 )
             }
             DropdownMenu(
@@ -101,7 +101,7 @@ fun FlashcardsTopBar(
                 onDismissRequest = { showMenu = false }
             ) {
                 DropdownMenuItem(
-                    text = { Text("Cards settings") },
+                    text = { Text(Strings.flashcardMenuSettings) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Default.Tune,
@@ -114,7 +114,7 @@ fun FlashcardsTopBar(
                     }
                 )
                 DropdownMenuItem(
-                    text = { Text("Restart") },
+                    text = { Text(Strings.flashcardRestart) },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Refresh,

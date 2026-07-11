@@ -89,4 +89,17 @@
     <string name="empty_msg_empty_list">There is nothing to show here yet.</string>
     <string name="empty_msg_not_found">The requested content could not be found.</string>
 
+    <string name="flashcard_settings_title">Flashcard Settings</string>
+    <string name="flashcard_visible_clue">Visible clue</string>
+    <string name="flashcard_target_primary">Country name</string>
+    <string name="flashcard_target_secondary">Capital city</string>
+    <string name="flashcard_target_image">Country Flag</string>
+    <string name="flashcard_settings_description">Choose which information is displayed on the visible part of the card.</string>
+    <string name="flashcard_shuffle_cards">Shuffle cards</string>
+    <string name="flashcard_reveal_details">Reveal details</string>
+    <string name="flashcard_restart">Restart</string>
+    <string name="flashcard_done">Done</string>
+    <string name="flashcard_hint_tap_to_reveal">Tap to reveal</string>
+    <string name="flashcard_menu_settings">Cards settings</string>
+    <string name="flashcard_label_capital">Capital</string>
 </resources>
