@@ -14,8 +14,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.filled.ChevronLeft
-import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material.icons.outlined.Shuffle
+import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.retain.retain
@@ -62,7 +64,8 @@ fun FlashcardScreen(
     ) {
         FlashcardsTopBar(
             title = screenState.screenTitle,
-            onBackClick = {  eventHandler.onEvent(FlashcardUiEvent.OnBackClicked) }
+            onBackClick = {  eventHandler.onEvent(FlashcardUiEvent.OnBackClicked) },
+            onEvent = eventHandler::onEvent,
         )
 
         if (screenState.isLoading) {
@@ -778,9 +781,11 @@ private fun FlashcardStudyTarget.hintLabel(): String = when (this) {
 @Composable
 fun FlashcardsTopBar(
     title: String,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onEvent: (FlashcardUiEvent) -> Unit,
 ) {
     val formFactor = LocalFormFactor.current
+    var showMenu by remember { mutableStateOf(false) }
 
     TopAppBar(
         title = {
@@ -804,6 +809,71 @@ fun FlashcardsTopBar(
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
                     contentDescription = Strings.commonBack,
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = { showMenu = !showMenu }) {
+                Icon(
+                    imageVector = Icons.Default.MoreVert,
+                    contentDescription = "More"
+                )
+            }
+            DropdownMenu(
+                expanded = showMenu,
+                onDismissRequest = { showMenu = false }
+            ) {
+                DropdownMenuItem(
+                    text = { Text("Reveal details") },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Visibility,
+                            contentDescription = null
+                        )
+                    },
+                    onClick = {
+                        onEvent(FlashcardUiEvent.OnRevealDetailsClicked)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("Shuffle cards") },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Shuffle,
+                            contentDescription = null
+                        )
+                    },
+                    onClick = {
+                        onEvent(FlashcardUiEvent.OnShuffleClicked)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("Change info") },
+                    leadingIcon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.instant_mix),
+                            contentDescription = null
+                        )
+                    },
+                    onClick = {
+                        onEvent(FlashcardUiEvent.OnSettingsClicked)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("Restart") },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Refresh,
+                            contentDescription = null
+                        )
+                    },
+                    onClick = {
+                        onEvent(FlashcardUiEvent.OnRestartClicked)
+                        showMenu = false
+                    }
                 )
             }
         }
