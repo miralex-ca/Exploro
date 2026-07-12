@@ -26,6 +26,7 @@ import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.ScreenLoading
 import com.exploramus.app.composables.screens.quizzes.getIcon
 import com.exploramus.app.composables.screens.quizzes.toAppColorSet
+import com.exploramus.app.composables.screens.quizzes.quizzeslist.views.QuizzesListFlashcardSettingsDialog
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
@@ -48,6 +49,14 @@ fun QuizzesListScreen(
             screenState = screenState,
             onEvent = eventHandler::onEvent,
         )
+
+        screenState.flashcardConfig?.let { config ->
+            QuizzesListFlashcardSettingsDialog(
+                config = config,
+                onConfigChanged = { eventHandler.onEvent(QuizzesListUiEvent.UpdateFlashcardConfig(it)) },
+                onDismiss = { eventHandler.onEvent(QuizzesListUiEvent.ToggleFlashcardSettings(false)) }
+            )
+        }
     }
 }
 

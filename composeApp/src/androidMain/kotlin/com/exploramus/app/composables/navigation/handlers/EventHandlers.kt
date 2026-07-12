@@ -30,7 +30,7 @@ class EventHandlers(
     }
 
     val quizzesList by lazy {
-        QuizzesListEventHandler(navActions)
+        QuizzesListEventHandler(navActions, events)
     }
 
     val flashcards by lazy {

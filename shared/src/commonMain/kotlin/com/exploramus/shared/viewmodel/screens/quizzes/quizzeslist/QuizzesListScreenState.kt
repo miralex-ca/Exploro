@@ -1,11 +1,13 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist
 
+import com.exploramus.core.models.FlashcardConfig
 import com.exploramus.shared.viewmodel.core.ScreenState
 
 data class QuizzesListScreenState(
     val isLoading: Boolean = false,
     val sectionInfo: QuizzesSectionHeaderState = QuizzesSectionHeaderState(),
     val quizzes: List<QuizState> = emptyList(),
+    val flashcardConfig: FlashcardConfig? = null,
 ) : ScreenState
 
 data class QuizzesSectionHeaderState(
