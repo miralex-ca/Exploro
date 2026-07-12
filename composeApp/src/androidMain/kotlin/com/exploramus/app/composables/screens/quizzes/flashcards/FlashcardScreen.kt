@@ -53,7 +53,7 @@ fun FlashcardScreen(
 
     val rotation by animateFloatAsState(
         targetValue = screenState.revision * 180f,
-        animationSpec = tween(durationMillis = 800),
+        animationSpec = tween(durationMillis = 500),
         label = "FlashcardRotation"
     )
 
@@ -75,8 +75,8 @@ fun FlashcardScreen(
             AnimatedContent(
                 targetState = screenState.deck to screenState.revision,
                 transitionSpec = {
-                    fadeIn(animationSpec = tween(800)) togetherWith
-                            fadeOut(animationSpec = tween(800))
+                    fadeIn(animationSpec = tween(500)) togetherWith
+                            fadeOut(animationSpec = tween(200, delayMillis = 200))
                 },
                 label = "FlashcardRestart",
                 modifier = Modifier
@@ -95,7 +95,9 @@ fun FlashcardScreen(
                     pageCount = { deck.cards.size },
                 )
                 LaunchedEffect(pagerState) {
-                    activePagerState = pagerState
+                    if (revision == screenState.revision) {
+                        activePagerState = pagerState
+                    }
                 }
                 Box(
                     modifier = Modifier
