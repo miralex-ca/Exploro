@@ -27,6 +27,7 @@ import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.ScreenLoading
+import com.exploramus.app.composables.screens.quizzes.toSectionColor
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
@@ -36,6 +37,7 @@ import com.exploramus.core.common.logging.Log
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.ContinentSectionState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionsScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 
 @Composable
 fun QuizSectionsScreen(
@@ -122,16 +124,17 @@ fun FavoritesSectionCard(
     itemsCount: Int,
     onClick: () -> Unit,
 ) {
+    val colors = QuizzesSectionType.FAVORITES.toSectionColor()
     QuizSectionCard(
         title = "Favorites",
         subtitle = "$itemsCount countries",
         onClick = onClick,
         iconContent = {
-            SectionIconBox(color = Color(0xFFFFF8E1).copy(alpha = 0.7f)) {
+            SectionIconBox(color = colors.background()) {
                 Icon(
                     imageVector = Icons.Default.Star,
                     contentDescription = null,
-                    tint = Color(0xFFF9A825),
+                    tint = colors.icon(),
                     modifier = Modifier.size(24.dp),
                 )
             }
@@ -144,16 +147,17 @@ fun AllCountriesSectionCard(
     itemsCount: Int,
     onClick: () -> Unit,
 ) {
+    val colors = QuizzesSectionType.ALL_COUNTRIES.toSectionColor()
     QuizSectionCard(
         title = "All Countries",
         subtitle = "$itemsCount countries",
         onClick = onClick,
         iconContent = {
-            SectionIconBox(color = Color(0xFFC5E4FC).copy(alpha = 0.6F)) {  // light blue
+            SectionIconBox(color = colors.background()) {
                 Icon(
                     imageVector = Icons.Default.Public,
                     contentDescription = null,
-                    tint = Color(0xFF1E88E5),             // blue
+                    tint = colors.icon(),
                     modifier = Modifier.size(24.dp),
                 )
             }
@@ -166,6 +170,7 @@ fun ContinentsSectionGroup(
     section: QuizSectionState.Continents,
     onContinentClick: (String, String) -> Unit,
 ) {
+    val colors = QuizzesSectionType.CONTINENT.toSectionColor()
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier.fillMaxWidth(),
@@ -179,11 +184,11 @@ fun ContinentsSectionGroup(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
             ) {
-                SectionIconBox(color = Color(0xFFFCE4EC)) {
+                SectionIconBox(color = colors.background()) {
                     Icon(
                         imageVector = Icons.Default.Map,
                         contentDescription = null,
-                        tint = Color(0xFFE91E63),
+                        tint = colors.icon(),
                         modifier = Modifier.size(24.dp),
                     )
                 }
@@ -244,12 +249,12 @@ fun ContinentRow(
             modifier = Modifier
                 .size(35.dp)
                 .clip(CircleShape)
-                .background(continent.sectionId.toContinentColor()),
+                .background(continent.sectionId.toSectionColor().icon()),
         ) {
             Text(
                 text = continent.sectionName.take(1),
                 style = MaterialTheme.typography.titleSmall,
-                color = Color.White,
+                color = continent.sectionId.toSectionColor().onIcon(),
                 fontWeight = FontWeight.Bold,
             )
         }
@@ -342,14 +347,5 @@ fun SectionIconBox(
 }
 
 
-private fun String.toContinentColor(): Color = when (this.lowercase()) {
-    "af" -> Color(0xFF66BB6A)
-    "eu" -> Color(0xFF42A5F5)
-    "as" -> Color(0xFFFF7043)
-    "na" -> Color(0xFFAB47BC)
-    "sa" -> Color(0xFFFFCA28)
-    "oc" -> Color(0xFF26C6DA)
-    else -> Color(0xFF9E9E9E)
-}
 
 

@@ -9,6 +9,7 @@ val LocalAppColors = staticCompositionLocalOf<AppColors> {
 }
 
 data class AppColors(
+    val isDark: Boolean,
     val topBarContainer: Color,
     val onTopBarContainer: Color,
     val caretColor: Color,
@@ -20,6 +21,7 @@ data class AppColors(
 )
 
 val LightAppColors = AppColors(
+    isDark = false,
     topBarContainer = TopBarContaineColor,
     onTopBarContainer = OnTopBarContainer,
     detailHederWrapper = Color.Black.copy(alpha = 0.05f),
@@ -31,6 +33,7 @@ val LightAppColors = AppColors(
 )
 
 val DarkAppColors = AppColors(
+    isDark = true,
     topBarContainer = TopBarContainerDark,
     onTopBarContainer = OnTopBarContainerDark,
     detailHederWrapper = Color.White.copy(alpha = 0.15f),

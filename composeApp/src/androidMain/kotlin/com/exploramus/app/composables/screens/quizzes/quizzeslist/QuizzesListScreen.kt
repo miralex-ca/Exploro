@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -19,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -27,16 +24,17 @@ import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.ScreenLoading
+import com.exploramus.app.composables.screens.quizzes.getIcon
+import com.exploramus.app.composables.screens.quizzes.toSectionColor
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.theme.SectionColorPalette
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizState
-import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionHeaderState
-import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 
 @Composable
 fun QuizzesListScreen(
@@ -118,7 +116,8 @@ fun QuizzesListContent(
 
 @Composable
 fun QuizzesListHeaderCard(sectionInfo: QuizzesSectionHeaderState) {
-    val iconData = sectionInfo.toHeaderIconData()
+    val colors = sectionInfo.sectionType.toSectionColor(sectionInfo.continentId)
+    val icon = sectionInfo.sectionType.getIcon()
 
     Card(
         shape = RoundedCornerShape(20.dp),
@@ -139,13 +138,13 @@ fun QuizzesListHeaderCard(sectionInfo: QuizzesSectionHeaderState) {
                     text = sectionInfo.title,
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
-                    color = iconData.iconTint,
+                    color = colors.text(),
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = "${sectionInfo.itemsCount} countries available",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = iconData.iconTint.copy(alpha = 0.8f),
+                    color = colors.text().copy(alpha = 0.8f),
                 )
             }
 
@@ -155,12 +154,12 @@ fun QuizzesListHeaderCard(sectionInfo: QuizzesSectionHeaderState) {
             SectionIconBox(
                 size = 66.dp,
                 cornerRadius = 16.dp,
-                color = iconData.boxBackground,
+                color = colors.background(),
             ) {
                 Icon(
-                    imageVector = iconData.icon,
+                    imageVector = icon,
                     contentDescription = null,
-                    tint = iconData.iconTint,
+                    tint = colors.icon(),
                     modifier = Modifier.size(32.dp),
                 )
             }
@@ -174,7 +173,8 @@ fun QuizCard(
     onClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
-    val iconData = quiz.quizType.toIconData()
+    val colors = SectionColorPalette.Teal
+    val icon = quiz.quizType.getIcon()
     val interactionSource = remember { MutableInteractionSource() }
 
     Card(
@@ -223,87 +223,20 @@ fun QuizCard(
                     modifier = Modifier
                         .size(52.dp)
                         .clip(RoundedCornerShape(14.dp))
-                        .background(iconData.background),
+                        .background(colors.background()),
                 ) {
                     Icon(
-                        imageVector = iconData.icon,
+                        imageVector = icon,
                         contentDescription = null,
-                        tint = iconData.tint,
+                        tint = colors.icon(),
                         modifier = Modifier.size(30.dp),
                     )
                 }
 
                 Spacer(modifier = Modifier.height(6.dp))
-
-                // Settings button
-//                IconButton(
-//                    onClick = onSettingsClick,
-//                    modifier = Modifier.size(32.dp),
-//                ) {
-//                    Icon(
-//                        imageVector = Icons.Default.Tune,
-//                        contentDescription = "Quiz settings",
-//                        tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.35f),
-//                        modifier = Modifier.size(18.dp),
-//                    )
-//                }
             }
         }
     }
-}
-
-// ─── Icon / theme data ────────────────────────────────────────────────────────
-
-private data class SectionIconData(
-    val icon: ImageVector,
-    val iconTint: Color,
-    val cardBackground: Color,
-    val contentColor: Color,
-)
-
-private fun QuizzesSectionType.toIconData(): SectionIconData = when (this) {
-    QuizzesSectionType.FAVORITES -> SectionIconData(
-        icon = Icons.Default.Star,
-        iconTint = Color(0xFFF9A825).copy(alpha = 0.5f),
-        cardBackground = Color(0xFFFFF8E1),
-        contentColor = Color(0xFF5D4037),
-    )
-    QuizzesSectionType.ALL_COUNTRIES -> SectionIconData(
-        icon = Icons.Default.Public,
-        iconTint = Color(0xFF1E88E5).copy(alpha = 0.45f),
-        cardBackground = Color(0xFFE3F2FD),
-        contentColor = Color(0xFF0D47A1),
-    )
-    QuizzesSectionType.CONTINENT -> SectionIconData(
-        icon = Icons.Default.Map,
-        iconTint = Color(0xFFE91E63).copy(alpha = 0.45f),
-        cardBackground = Color(0xFFFCE4EC),
-        contentColor = Color(0xFF880E4F),
-    )
-}
-
-private data class QuizIconData(
-    val icon: ImageVector,
-    val tint: Color,
-    val background: Color,
-)
-
-private fun QuizType.toIconData(): QuizIconData = when (this) {
-    QuizType.FLASHCARDS -> QuizIconData(
-        icon = Icons.Default.Style,         // card/deck icon
-        tint = Color(0xFF7B1FA2),           // deep purple
-        background = Color(0xFFF3E5F5),     // light purple
-    )
-    QuizType.TEST_COUNTRY_CAPITAL -> QuizIconData(
-        icon = Icons.Default.LocationCity,  // capital / city
-        tint = Color(0xFF1565C0),           // dark blue
-        background = Color(0xFFE3F2FD),     // light blue
-    )
-    QuizType.TEST_FLAG_COUNTRY -> QuizIconData(
-        icon = Icons.Default.Flag,          // flag
-        tint = Color(0xFF2E7D32),           // dark green
-        background = Color(0xFFE8F5E9),     // light green
-    )
 }
 
 @Composable
@@ -323,42 +256,4 @@ fun SectionIconBox(
     )
 }
 
-private data class HeaderIconData(
-    val icon: ImageVector,
-    val iconTint: Color,
-    val boxBackground: Color,
-)
-
-private fun QuizzesSectionHeaderState.toHeaderIconData(): HeaderIconData = when (sectionType) {
-    QuizzesSectionType.FAVORITES -> HeaderIconData(
-        icon = Icons.Default.Star,
-        iconTint = Color(0xFFF9A825),       // amber
-        boxBackground = Color(0xFFFFF8E1),  // warm cream
-    )
-    QuizzesSectionType.ALL_COUNTRIES -> HeaderIconData(
-        icon = Icons.Default.Public,
-        iconTint = Color(0xFF1E88E5),       // blue
-        boxBackground = Color(0xFFE3F2FD),  // light blue
-    )
-    QuizzesSectionType.CONTINENT -> {
-        // Reuse the same continent color from the previous screen
-        val continentColor = continentId.toContinentColor()
-        HeaderIconData(
-            icon = Icons.Default.Map,
-            iconTint = continentColor,
-            boxBackground = continentColor.copy(alpha = 0.12f),
-        )
-    }
-}
-
-fun String?.toContinentColor(): Color = when (this?.lowercase()) {
-    "af"        -> Color(0xFF66BB6A)
-    "eu"        -> Color(0xFF42A5F5)
-    "as"          -> Color(0xFFFF7043)
-    "na" -> Color(0xFFAB47BC)
-    "sa" -> Color(0xFFFFCA28)
-    "oc"       -> Color(0xFF26C6DA)
-    "an"    -> Color(0xFF90A4AE)
-    else            -> Color(0xFF9E9E9E)
-}
 
