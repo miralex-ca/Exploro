@@ -59,6 +59,17 @@ object AppTypography {
         fontWeight = FontWeight.SemiBold
     )
 
+    val quizCardTitle = TextStyle(
+        fontSize = 18.sp,
+        fontWeight = FontWeight.SemiBold
+    )
+
+    val quizCardDescription = TextStyle(
+        fontSize = 13.sp,
+        fontWeight = FontWeight.Normal,
+        lineHeight = 16.sp
+    )
+
     val listItemTitle = TextStyle(
         fontSize = 15.sp,
         fontWeight = FontWeight.Medium

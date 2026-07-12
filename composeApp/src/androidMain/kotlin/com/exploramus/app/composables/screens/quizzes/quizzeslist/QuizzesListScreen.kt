@@ -2,17 +2,18 @@ package com.exploramus.app.composables.screens.quizzes.quizzeslist
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,6 +30,7 @@ import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.theme.AppTypography
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenState
@@ -171,7 +173,6 @@ fun QuizCard(
 ) {
     val colors = quiz.quizType.toAppColorSet()
     val icon = quiz.quizType.getIcon()
-    val interactionSource = remember { MutableInteractionSource() }
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -184,41 +185,43 @@ fun QuizCard(
         onClick = onClick
     ) {
         Row(
-            verticalAlignment = Alignment.Top,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, top = 16.dp, bottom = 16.dp, end = 10.dp),
+                .padding(start = 16.dp, top = 12.dp, bottom = 8.dp, end = 12.dp)
+            ,
+            verticalAlignment = Alignment.Top
         ) {
-
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(top = 6.dp, bottom = 8.dp)
+            ) {
                 Text(
                     text = quiz.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
+                    style = AppTypography.quizCardTitle,
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text = quiz.description,
-                    style = MaterialTheme.typography.bodySmall,
+                    style = AppTypography.quizCardDescription,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                     maxLines = 2,
                 )
             }
 
-            // Right: icon + settings button stacked
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
-                    .width(72.dp)
-                    .padding(bottom = 0.dp),
+                    .fillMaxHeight()
+                    .padding(start = 12.dp),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
                 // Large icon in tinted rounded square
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
                         .size(52.dp)
-                        .clip(RoundedCornerShape(14.dp))
+                        .clip(RoundedCornerShape(8.dp))
                         .background(colors.background()),
                 ) {
                     Icon(
@@ -229,7 +232,19 @@ fun QuizCard(
                     )
                 }
 
-                Spacer(modifier = Modifier.height(6.dp))
+                Spacer(modifier = Modifier.height(8.dp))
+                IconButton(
+                    onClick = onSettingsClick,
+                    modifier = Modifier
+                        .size(40.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Tune,
+                        contentDescription = "Quiz Settings",
+                        tint = Color.Black.copy(alpha = 0.6f),
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
             }
         }
     }
