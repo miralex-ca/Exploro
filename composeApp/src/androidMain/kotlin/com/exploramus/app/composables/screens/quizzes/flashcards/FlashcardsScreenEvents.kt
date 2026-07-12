@@ -9,7 +9,6 @@ import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.updateFlashcar
 
 sealed class FlashcardUiEvent  {
     data object OnBackClicked : FlashcardUiEvent()
-    data class OnPageChanged(val index: Int) : FlashcardUiEvent()
     data object OnSettingsClicked : FlashcardUiEvent()
     data object OnSettingsDismissed : FlashcardUiEvent()
     data class OnConfigChanged(val config: FlashcardConfig) : FlashcardUiEvent()
@@ -22,10 +21,9 @@ class FlashcardEventHandler(
 ) {
     fun onEvent(event: FlashcardUiEvent) {
         when (event) {
-            is FlashcardUiEvent.OnPageChanged -> {}
             is FlashcardUiEvent.OnConfigChanged -> events.updateFlashcardConfig(event.config)
-            FlashcardUiEvent.OnSettingsClicked -> events.toggleFlashcardsSettingsDialog(true)
-            FlashcardUiEvent.OnSettingsDismissed -> events.toggleFlashcardsSettingsDialog(false)
+            FlashcardUiEvent.OnSettingsClicked -> events.toggleFlashcardsSettingsDialog(visible = true)
+            FlashcardUiEvent.OnSettingsDismissed -> events.toggleFlashcardsSettingsDialog(visible = false)
             FlashcardUiEvent.OnRestartClicked -> events.restartFlashcards()
             FlashcardUiEvent.OnBackClicked -> navActions.navigateBack()
         }

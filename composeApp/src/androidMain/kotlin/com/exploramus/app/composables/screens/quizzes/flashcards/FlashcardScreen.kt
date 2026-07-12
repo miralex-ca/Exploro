@@ -1,8 +1,11 @@
 package com.exploramus.app.composables.screens.quizzes.flashcards
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -109,10 +112,9 @@ fun FlashcardScreen(
                         }
                 ) {
                     FlashcardContent(
-                        deckState = deck,
-                        onEvent = eventHandler::onEvent,
-                        pagerState = pagerState
-                    )
+                    deckState = deck,
+                    pagerState = pagerState
+                )
                 }
             }
         }
@@ -130,17 +132,12 @@ fun FlashcardScreen(
 @Composable
 fun FlashcardContent(
     deckState: FlashcardDeckState,
-    onEvent: (FlashcardUiEvent) -> Unit,
     pagerState: PagerState,
 ) {
     val formFactor = LocalFormFactor.current
     val isLandscape = formFactor.isLandscape
 
     val layout = MaterialTheme.layout.flashcard
-
-    LaunchedEffect(pagerState.currentPage) {
-        onEvent(FlashcardUiEvent.OnPageChanged(pagerState.currentPage))
-    }
 
     Column(
         modifier = Modifier

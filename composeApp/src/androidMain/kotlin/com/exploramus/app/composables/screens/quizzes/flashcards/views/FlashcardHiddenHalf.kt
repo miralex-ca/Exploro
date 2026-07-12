@@ -66,7 +66,7 @@ fun FlashcardHiddenHalf(
             modifier = Modifier.fillMaxSize()
         ) {
             if (rotation <= 90f) {
-                FlashcardHintView()
+                FlashcardHintView(modifier = Modifier.fillMaxSize())
             } else {
                 Box(
                     Modifier
