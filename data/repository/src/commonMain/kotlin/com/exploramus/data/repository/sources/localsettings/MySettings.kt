@@ -1,5 +1,6 @@
 package com.exploramus.data.repository.sources.localsettings
 
+import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.core.models.FlashcardStudyTarget
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.boolean
@@ -19,8 +20,18 @@ class MySettings (s : Settings) {
     var flashcardsShuffleEnabled by s.boolean(defaultValue = false)
 
     private var flashcardStudyTargetId by s.int(defaultValue = FlashcardStudyTarget.DEFAULT.id)
+    private var choiceQuizPrimarySecondaryTargetId by s.int(defaultValue = ChoiceQuizStudyTarget.PRIMARY_SECONDARY.id)
+    private var choiceQuizImagePrimaryTargetId by s.int(defaultValue = ChoiceQuizStudyTarget.IMAGE_PRIMARY.id)
 
     var flashcardStudyTarget: FlashcardStudyTarget
         get() = FlashcardStudyTarget.fromId(flashcardStudyTargetId)
         set(value) { flashcardStudyTargetId = value.id }
+
+    var choiceQuizPrimarySecondaryTarget: ChoiceQuizStudyTarget
+        get() = ChoiceQuizStudyTarget.fromId(choiceQuizPrimarySecondaryTargetId, ChoiceQuizStudyTarget.PRIMARY_SECONDARY)
+        set(value) { choiceQuizPrimarySecondaryTargetId = value.id }
+
+    var choiceQuizImagePrimaryTarget: ChoiceQuizStudyTarget
+        get() = ChoiceQuizStudyTarget.fromId(choiceQuizImagePrimaryTargetId, ChoiceQuizStudyTarget.IMAGE_PRIMARY)
+        set(value) { choiceQuizImagePrimaryTargetId = value.id }
 }

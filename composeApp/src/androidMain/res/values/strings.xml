@@ -102,4 +102,12 @@
     <string name="flashcard_hint_tap_to_reveal">Tap to reveal</string>
     <string name="flashcard_menu_settings">Cards settings</string>
     <string name="flashcard_label_capital">Capital</string>
+
+    <string name="quiz_target_primary_secondary">Country → Capital</string>
+    <string name="quiz_target_secondary_primary">Capital → Country</string>
+    <string name="quiz_target_image_primary">Flag → Country</string>
+    <string name="quiz_target_primary_image">Country → Flag</string>
+
+    <string name="choice_quiz_settings_title">Quiz settings</string>
+    <string name="choice_quiz_select_pair">Select quiz pair</string>
 </resources>

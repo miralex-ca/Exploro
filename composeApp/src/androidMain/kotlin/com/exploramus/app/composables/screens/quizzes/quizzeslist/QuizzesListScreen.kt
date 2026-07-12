@@ -24,16 +24,20 @@ import androidx.compose.ui.unit.dp
 import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.ScreenLoading
-import com.exploramus.app.composables.screens.quizzes.getIcon
-import com.exploramus.app.composables.screens.quizzes.toAppColorSet
+import com.exploramus.app.composables.screens.quizzes.quizzeslist.views.QuizzesListChoiceQuizSettingsDialog
 import com.exploramus.app.composables.screens.quizzes.quizzeslist.views.QuizzesListFlashcardSettingsDialog
+import com.exploramus.app.composables.screens.quizzes.utils.getIcon
+import com.exploramus.app.composables.screens.quizzes.utils.toAppColorSet
+import com.exploramus.app.composables.screens.quizzes.utils.toTitle
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.AppTypography
 import com.exploramus.app.design.theme.appColors
+import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionHeaderState
 
@@ -55,6 +59,16 @@ fun QuizzesListScreen(
                 config = config,
                 onConfigChanged = { eventHandler.onEvent(QuizzesListUiEvent.UpdateFlashcardConfig(it)) },
                 onDismiss = { eventHandler.onEvent(QuizzesListUiEvent.ToggleFlashcardSettings(false)) }
+            )
+        }
+
+        screenState.choiceQuizConfig?.let { config ->
+            val quizType = screenState.choiceQuizType ?: return@let
+            QuizzesListChoiceQuizSettingsDialog(
+                quizType = quizType,
+                config = config,
+                onConfigChanged = { eventHandler.onEvent(QuizzesListUiEvent.UpdateChoiceQuizConfig(it, quizType)) },
+                onDismiss = { eventHandler.onEvent(QuizzesListUiEvent.ToggleChoiceQuizSettings(false)) }
             )
         }
     }
@@ -104,6 +118,8 @@ fun QuizzesListContent(
                 ) {
                     QuizCard(
                         quiz = quiz,
+                        psTarget = screenState.psTarget,
+                        ipTarget = screenState.ipTarget,
                         onClick = {
                             onEvent(QuizzesListUiEvent.OnQuizClicked(
                                 sectionId = screenState.sectionInfo.continentId ?: "",
@@ -111,7 +127,7 @@ fun QuizzesListContent(
                                 title = screenState.sectionInfo.title
                             ))
                                   },
-                        onSettingsClick = { onEvent(QuizzesListUiEvent.OnQuizSettingsClicked(quiz.quizId)) },
+                        onSettingsClick = { onEvent(QuizzesListUiEvent.OnQuizSettingsClicked(quiz.quizId, quiz.quizType)) },
                     )
                 }
 
@@ -177,11 +193,19 @@ fun QuizzesListHeaderCard(sectionInfo: QuizzesSectionHeaderState) {
 @Composable
 fun QuizCard(
     quiz: QuizState,
+    psTarget: ChoiceQuizStudyTarget,
+    ipTarget: ChoiceQuizStudyTarget,
     onClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
     val colors = quiz.quizType.toAppColorSet()
     val icon = quiz.quizType.getIcon()
+
+    val displayTitle = when(quiz.quizType) {
+        QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY -> psTarget.toTitle()
+        QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> ipTarget.toTitle()
+        else -> quiz.title
+    }
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -206,7 +230,7 @@ fun QuizCard(
                     .padding(top = 6.dp, bottom = 8.dp)
             ) {
                 Text(
-                    text = quiz.title,
+                    text = displayTitle,
                     style = AppTypography.quizCardTitle,
                 )
                 Spacer(modifier = Modifier.height(12.dp))

@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.ScreenLoading
-import com.exploramus.app.composables.screens.quizzes.toAppColorSet
+import com.exploramus.app.composables.screens.quizzes.utils.toAppColorSet
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar

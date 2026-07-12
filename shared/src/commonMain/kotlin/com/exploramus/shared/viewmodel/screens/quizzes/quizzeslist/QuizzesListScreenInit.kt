@@ -1,6 +1,8 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist
 
 import com.exploramus.data.repository.functions.getAllCountriesCount
+import com.exploramus.data.repository.functions.getChoiceQuizImagePrimaryConfig
+import com.exploramus.data.repository.functions.getChoiceQuizPrimarySecondaryConfig
 import com.exploramus.data.repository.functions.getCountriesCountBySection
 import com.exploramus.data.repository.functions.getFavoritesCount
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
@@ -34,13 +36,16 @@ fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = Screen
             continentId = params.sectionId.takeIf { params.sectionType == QuizzesSectionType.CONTINENT },
         )
 
-        val quizzes = defaultQuizzes()
+        val psConfig = dataRepository.getChoiceQuizPrimarySecondaryConfig()
+        val ipConfig = dataRepository.getChoiceQuizImagePrimaryConfig()
 
         updateScreen(QuizzesListScreenState::class) {
             it.copy(
                 isLoading = false,
                 sectionInfo = sectionInfo,
-                quizzes = quizzes,
+                quizzes = defaultQuizzes(),
+                psTarget = psConfig.studyTarget,
+                ipTarget = ipConfig.studyTarget
             )
         }
     },
@@ -57,13 +62,13 @@ fun defaultQuizzes(): List<QuizState> = listOf(
     QuizState(
         quizId = QuizzIds.CHOICE_QUIZ_PRIMARY_SECONDARY,
         quizType = QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY,
-        title = "Country → Capital",
+        title = "Choice Quiz", // Falling back to generic title, UI will resolve specific
         description = "Given a country name, choose the correct capital city.",
     ),
     QuizState(
         quizId = QuizzIds.CHOICE_QUIZ_IMAGE_PRIMARY,
         quizType = QuizType.CHOICE_QUIZ_IMAGE_PRIMARY,
-        title = "Flag → Country",
+        title = "Choice Quiz", // Falling back to generic title, UI will resolve specific
         description = "Given a flag, identify which country it belongs to.",
     ),
 )

@@ -1,6 +1,7 @@
 package com.exploramus.app.composables.screens.quizzes.quizzeslist
 
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
+import com.exploramus.core.models.ChoiceQuizConfig
 import com.exploramus.core.models.FlashcardConfig
 import com.exploramus.shared.viewmodel.core.Events
 import com.exploramus.shared.viewmodel.screens.Screen
@@ -14,10 +15,13 @@ sealed class QuizzesListUiEvent {
         val title: String
     ) : QuizzesListUiEvent()
 
-    data class OnQuizSettingsClicked(val quizId: String) : QuizzesListUiEvent()
+    data class OnQuizSettingsClicked(val quizId: String, val quizType: QuizType) : QuizzesListUiEvent()
 
     data class ToggleFlashcardSettings(val visible: Boolean) : QuizzesListUiEvent()
     data class UpdateFlashcardConfig(val config: FlashcardConfig) : QuizzesListUiEvent()
+
+    data class ToggleChoiceQuizSettings(val visible: Boolean, val quizType: QuizType? = null) : QuizzesListUiEvent()
+    data class UpdateChoiceQuizConfig(val config: ChoiceQuizConfig, val quizType: QuizType) : QuizzesListUiEvent()
 }
 
 class QuizzesListEventHandler(
@@ -37,8 +41,10 @@ class QuizzesListEventHandler(
                 )
             }
             is QuizzesListUiEvent.OnQuizSettingsClicked -> {
-                if (event.quizId == QuizzIds.FLASHCARDS) {
-                    events.toggleFlashcardsSettingsDialog(true)
+                when (event.quizType) {
+                    QuizType.FLASHCARDS -> events.toggleFlashcardsSettingsDialog(true)
+                    QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY,
+                    QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> events.toggleChoiceQuizSettingsDialog(true, event.quizType)
                 }
             }
             is QuizzesListUiEvent.ToggleFlashcardSettings -> {
@@ -47,7 +53,12 @@ class QuizzesListEventHandler(
             is QuizzesListUiEvent.UpdateFlashcardConfig -> {
                 events.updateFlashcardConfig(event.config)
             }
+            is QuizzesListUiEvent.ToggleChoiceQuizSettings -> {
+                events.toggleChoiceQuizSettingsDialog(event.visible, event.quizType)
+            }
+            is QuizzesListUiEvent.UpdateChoiceQuizConfig -> {
+                events.updateChoiceQuizConfig(event.config, event.quizType)
+            }
         }
     }
 }
-

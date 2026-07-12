@@ -1,4 +1,4 @@
-package com.exploramus.app.composables.screens.quizzes
+package com.exploramus.app.composables.screens.quizzes.utils
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Map

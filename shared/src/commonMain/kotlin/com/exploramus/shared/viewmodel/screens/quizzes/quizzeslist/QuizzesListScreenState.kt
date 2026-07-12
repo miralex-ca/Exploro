@@ -1,5 +1,7 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist
 
+import com.exploramus.core.models.ChoiceQuizConfig
+import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.core.models.FlashcardConfig
 import com.exploramus.shared.viewmodel.core.ScreenState
 
@@ -8,6 +10,10 @@ data class QuizzesListScreenState(
     val sectionInfo: QuizzesSectionHeaderState = QuizzesSectionHeaderState(),
     val quizzes: List<QuizState> = emptyList(),
     val flashcardConfig: FlashcardConfig? = null,
+    val choiceQuizConfig: ChoiceQuizConfig? = null,
+    val choiceQuizType: QuizType? = null,
+    val psTarget: ChoiceQuizStudyTarget = ChoiceQuizStudyTarget.PRIMARY_SECONDARY,
+    val ipTarget: ChoiceQuizStudyTarget = ChoiceQuizStudyTarget.IMAGE_PRIMARY,
 ) : ScreenState
 
 data class QuizzesSectionHeaderState(

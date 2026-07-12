@@ -82,12 +82,21 @@ object Strings {
     val flashcardMenuSettings @Composable get() = stringRes(R.string.flashcard_menu_settings)
     val flashcardLabelCapital @Composable get() = stringRes(R.string.flashcard_label_capital)
 
+    val quizTargetPrimarySecondary @Composable get() = stringRes(R.string.quiz_target_primary_secondary)
+    val quizTargetSecondaryPrimary @Composable get() = stringRes(R.string.quiz_target_secondary_primary)
+    val quizTargetImagePrimary @Composable get() = stringRes(R.string.quiz_target_image_primary)
+    val quizTargetPrimaryImage @Composable get() = stringRes(R.string.quiz_target_primary_image)
+
+    val choiceQuizSettingsTitle @Composable get() = stringRes(R.string.choice_quiz_settings_title)
+    val choiceQuizSelectPair @Composable get() = stringRes(R.string.choice_quiz_select_pair)
+
     @Composable
     fun detailLabelLanguage(count: Int) = if (count == 1)
         stringRes(R.string.detail_label_language)
     else
         stringRes(R.string.detail_label_languages)
 }
+
 
 
 
