@@ -1,7 +1,8 @@
 package com.exploramus.core.models
 
 data class ChoiceQuizConfig(
-    val studyTarget: ChoiceQuizStudyTarget
+    val studyTarget: ChoiceQuizStudyTarget,
+    val quizLimit: Int? = null
 )
 
 enum class ChoiceQuizStudyTarget(val id: Int) {

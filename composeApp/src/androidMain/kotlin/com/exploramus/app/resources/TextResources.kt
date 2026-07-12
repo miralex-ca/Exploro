@@ -89,6 +89,8 @@ object Strings {
 
     val choiceQuizSettingsTitle @Composable get() = stringRes(R.string.choice_quiz_settings_title)
     val choiceQuizSelectPair @Composable get() = stringRes(R.string.choice_quiz_select_pair)
+    val choiceQuizLimitLabel @Composable get() = stringRes(R.string.choice_quiz_limit_label)
+    val choiceQuizLimitNoLimit @Composable get() = stringRes(R.string.choice_quiz_limit_no_limit)
 
     @Composable
     fun detailLabelLanguage(count: Int) = if (count == 1)

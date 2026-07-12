@@ -110,4 +110,6 @@
 
     <string name="choice_quiz_settings_title">Quiz settings</string>
     <string name="choice_quiz_select_pair">Select quiz pair</string>
+    <string name="choice_quiz_limit_label">Quiz limit</string>
+    <string name="choice_quiz_limit_no_limit">No limit</string>
 </resources>

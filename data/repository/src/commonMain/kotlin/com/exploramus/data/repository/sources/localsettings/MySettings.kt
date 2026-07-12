@@ -23,6 +23,9 @@ class MySettings (s : Settings) {
     private var choiceQuizPrimarySecondaryTargetId by s.int(defaultValue = ChoiceQuizStudyTarget.PRIMARY_SECONDARY.id)
     private var choiceQuizImagePrimaryTargetId by s.int(defaultValue = ChoiceQuizStudyTarget.IMAGE_PRIMARY.id)
 
+    var choiceQuizPrimarySecondaryLimit by s.int(defaultValue = -1)
+    var choiceQuizImagePrimaryLimit by s.int(defaultValue = -1)
+
     var flashcardStudyTarget: FlashcardStudyTarget
         get() = FlashcardStudyTarget.fromId(flashcardStudyTargetId)
         set(value) { flashcardStudyTargetId = value.id }
