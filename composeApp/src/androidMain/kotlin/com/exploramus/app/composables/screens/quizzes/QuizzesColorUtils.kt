@@ -1,7 +1,12 @@
 package com.exploramus.app.composables.screens.quizzes
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.Public
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.Flag
+import androidx.compose.material.icons.outlined.LocationCity
+import androidx.compose.material.icons.outlined.Style
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.exploramus.app.design.theme.SectionColor
 import com.exploramus.app.design.theme.SectionColorPalette
@@ -21,6 +26,7 @@ fun String?.toSectionColor(): SectionColor = when (this?.lowercase()) {
 fun QuizzesSectionType.toSectionColor(continentId: String? = null): SectionColor = when (this) {
     QuizzesSectionType.FAVORITES -> SectionColorPalette.Favorites
     QuizzesSectionType.ALL_COUNTRIES -> SectionColorPalette.AllCountries
+    QuizzesSectionType.CONTINENT if (continentId == null) -> SectionColorPalette.AllContinents
     QuizzesSectionType.CONTINENT -> continentId.toSectionColor()
 }
 
@@ -37,7 +43,7 @@ fun QuizType.toSectionColor(): SectionColor = when (this) {
 }
 
 fun QuizType.getIcon(): ImageVector = when (this) {
-    QuizType.FLASHCARDS -> Icons.Default.Style
-    QuizType.TEST_COUNTRY_CAPITAL -> Icons.Default.LocationCity
-    QuizType.TEST_FLAG_COUNTRY -> Icons.Default.Flag
+    QuizType.FLASHCARDS -> Icons.Outlined.Style
+    QuizType.TEST_COUNTRY_CAPITAL -> Icons.Outlined.LocationCity
+    QuizType.TEST_FLAG_COUNTRY -> Icons.Outlined.Flag
 }

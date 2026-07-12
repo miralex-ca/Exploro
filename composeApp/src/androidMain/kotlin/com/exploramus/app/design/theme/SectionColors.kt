@@ -228,9 +228,10 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    // Specific Mappings
     val Favorites = Amber
     val AllCountries = Blue
+    val AllContinents = Pink
+    val Qizzes = LightBlue
 
     val all = listOf(
         Red, Pink, Purple, DeepPurple, Indigo, Blue, LightBlue, Cyan, Teal, Green,

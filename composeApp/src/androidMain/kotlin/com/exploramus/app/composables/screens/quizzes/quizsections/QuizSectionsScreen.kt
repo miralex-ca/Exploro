@@ -171,6 +171,7 @@ fun ContinentsSectionGroup(
     onContinentClick: (String, String) -> Unit,
 ) {
     val colors = QuizzesSectionType.CONTINENT.toSectionColor()
+
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier.fillMaxWidth(),

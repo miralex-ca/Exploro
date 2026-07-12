@@ -173,7 +173,7 @@ fun QuizCard(
     onClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
-    val colors = SectionColorPalette.Teal
+    val colors = SectionColorPalette.Qizzes
     val icon = quiz.quizType.getIcon()
     val interactionSource = remember { MutableInteractionSource() }
 
