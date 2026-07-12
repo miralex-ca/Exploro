@@ -5,6 +5,7 @@ import com.exploramus.shared.viewmodel.screens.details.CountryDetailsState
 
 data class DetailsScreenState (
     val isLoading: Boolean = false,
+    val screenTitle: String = "",
     val details: CountryDetailsState? = null,
     val isFavorite: Boolean = false
 ): ScreenState

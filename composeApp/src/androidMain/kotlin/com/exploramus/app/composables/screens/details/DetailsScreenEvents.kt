@@ -20,6 +20,10 @@ class DetailsEventHandler(
             is DetailsUiEvent.OnBackClicked -> navActions.navigateBack()
         }
     }
+
+    fun onBackClicked() {
+        navActions.navigateBack()
+    }
 }
 
 sealed class DetailsPagerUiEvent {
