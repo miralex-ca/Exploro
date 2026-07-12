@@ -1,5 +1,6 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.flashcards
 
+import com.exploramus.core.models.Country
 import com.exploramus.core.models.FlashcardConfig
 import com.exploramus.shared.viewmodel.core.ScreenState
 
@@ -24,4 +25,13 @@ data class FlashcardState(
     val capital: String,
     val flagImage: String,
     val region: String,
+)
+
+fun Country.toFlashcardState() = FlashcardState(
+    itemId = id,
+    itemName = name,
+    officialName = officialName,
+    capital = capital,
+    flagImage = flagImage,
+    region = location,
 )

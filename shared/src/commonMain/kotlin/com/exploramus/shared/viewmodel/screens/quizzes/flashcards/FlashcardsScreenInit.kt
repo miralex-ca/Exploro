@@ -1,9 +1,9 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.flashcards
 
-import com.exploramus.data.repository.functions.getAllCountries
-import com.exploramus.data.repository.functions.getCountriesBySectionId
-import com.exploramus.data.repository.functions.getFavorites
 import com.exploramus.data.repository.functions.getFlashcardConfig
+import com.exploramus.data.repository.functions.getFlashcardCountriesAll
+import com.exploramus.data.repository.functions.getFlashcardCountriesBySection
+import com.exploramus.data.repository.functions.getFlashcardCountriesFavorites
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
@@ -24,22 +24,13 @@ fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInit
     callOnInit = {
 
         val countries = when (params.sectionType) {
-            QuizzesSectionType.FAVORITES -> dataRepository.getFavorites()
-            QuizzesSectionType.ALL_COUNTRIES -> dataRepository.getAllCountries()
-            QuizzesSectionType.CONTINENT -> dataRepository.getCountriesBySectionId(params.sectionId)
+            QuizzesSectionType.FAVORITES -> dataRepository.getFlashcardCountriesFavorites()
+            QuizzesSectionType.ALL_COUNTRIES -> dataRepository.getFlashcardCountriesAll()
+            QuizzesSectionType.CONTINENT -> dataRepository.getFlashcardCountriesBySection(params.sectionId)
         }
 
         val config = dataRepository.getFlashcardConfig()
-        val flashcards = countries.map { item ->
-            FlashcardState(
-                itemId = item.id,
-                itemName = item.name,
-                officialName = item.officialName,
-                capital = item.capital,
-                flagImage = item.flagImage,
-                region = item.location,
-            )
-        }
+        val flashcards = countries.map { it.toFlashcardState() }
 
         updateScreen(FlashcardScreenState::class) {
             it.copy(
