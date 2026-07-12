@@ -54,4 +54,5 @@ fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInit
         }
     },
     callOnInitAtEachNavigation = CallOnInitValues.DONT_CALL,
+    clearStateCacheWhenScreenIsRemovedFromBackstack = true,
 )

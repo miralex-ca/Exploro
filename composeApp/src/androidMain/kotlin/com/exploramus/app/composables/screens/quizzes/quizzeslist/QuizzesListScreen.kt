@@ -103,7 +103,7 @@ fun QuizzesListContent(
                             onEvent(QuizzesListUiEvent.OnQuizClicked(
                                 sectionId = screenState.sectionInfo.continentId ?: "",
                                 sectionType = screenState.sectionInfo.sectionType,
-                                title = "Flashcards: ${screenState.sectionInfo.title}"
+                                title = screenState.sectionInfo.title
                             ))
                                   },
                         onSettingsClick = { onEvent(QuizzesListUiEvent.OnQuizSettingsClicked(quiz.quizId)) },
@@ -134,7 +134,6 @@ fun QuizzesListHeaderCard(sectionInfo: QuizzesSectionHeaderState) {
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp, vertical = 20.dp),
         ) {
-            // Left: title + count
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = sectionInfo.title,
