@@ -25,9 +25,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
-import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.ScreenLoading
-import com.exploramus.app.composables.screens.quizzes.toSectionColor
+import com.exploramus.app.composables.screens.quizzes.toAppColorSet
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
@@ -47,15 +46,10 @@ fun QuizSectionsScreen(
     if (screenState.isLoading) {
         ScreenLoading()
     } else {
-        FadeInScreenContent(
-            durationMillis = 200
-        ) {
-
-            QuizzesSectionsContent(
-                screenState = screenState,
-                onEvent = eventHandler::onEvent,
-            )
-        }
+        QuizzesSectionsContent(
+            screenState = screenState,
+            onEvent = eventHandler::onEvent,
+        )
     }
 }
 
@@ -124,7 +118,7 @@ fun FavoritesSectionCard(
     itemsCount: Int,
     onClick: () -> Unit,
 ) {
-    val colors = QuizzesSectionType.FAVORITES.toSectionColor()
+    val colors = QuizzesSectionType.FAVORITES.toAppColorSet()
     QuizSectionCard(
         title = "Favorites",
         subtitle = "$itemsCount countries",
@@ -147,7 +141,7 @@ fun AllCountriesSectionCard(
     itemsCount: Int,
     onClick: () -> Unit,
 ) {
-    val colors = QuizzesSectionType.ALL_COUNTRIES.toSectionColor()
+    val colors = QuizzesSectionType.ALL_COUNTRIES.toAppColorSet()
     QuizSectionCard(
         title = "All Countries",
         subtitle = "$itemsCount countries",
@@ -170,7 +164,7 @@ fun ContinentsSectionGroup(
     section: QuizSectionState.Continents,
     onContinentClick: (String, String) -> Unit,
 ) {
-    val colors = QuizzesSectionType.CONTINENT.toSectionColor()
+    val colors = QuizzesSectionType.CONTINENT.toAppColorSet()
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -215,6 +209,7 @@ fun ContinentsSectionGroup(
             )
 
             section.continents.forEachIndexed { _, section ->
+                
                 ContinentRow(
                     continent = section,
                     onClick = { onContinentClick(section.sectionId, section.sectionName) },
@@ -250,12 +245,12 @@ fun ContinentRow(
             modifier = Modifier
                 .size(35.dp)
                 .clip(CircleShape)
-                .background(continent.sectionId.toSectionColor().icon()),
+                .background(continent.sectionId.toAppColorSet().icon()),
         ) {
             Text(
                 text = continent.sectionName.take(1),
                 style = MaterialTheme.typography.titleSmall,
-                color = continent.sectionId.toSectionColor().onIcon(),
+                color = continent.sectionId.toAppColorSet().onIcon(),
                 fontWeight = FontWeight.Bold,
             )
         }
@@ -280,12 +275,6 @@ fun ContinentRow(
     }
 }
 
-// ─── Shared Card Shell ────────────────────────────────────────────────────────
-
-/**
- * Base card used by every section row.
- * [onClick] null = non-interactive (used for the continents group header).
- */
 @Composable
 fun QuizSectionCard(
     title: String,
@@ -329,8 +318,6 @@ fun QuizSectionCard(
         }
     }
 }
-
-// ─── Icon Box (rounded square bg) ────────────────────────────────────────────
 
 @Composable
 fun SectionIconBox(

@@ -3,7 +3,7 @@ package com.exploramus.app.design.theme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-data class SectionColor(
+data class AppColorSet(
     val iconLight: Color,
     val iconDark: Color,
     val backgroundLight: Color,
@@ -29,10 +29,10 @@ data class SectionColor(
     private fun isDarkTheme(): Boolean = LocalAppColors.current.isDark
 }
 
-object SectionColorPalette {
-    val Red = SectionColor(
+object AppColorPalette {
+    val Red = AppColorSet(
         iconLight = Color(0xFFE53935),
-        iconDark = Color(0xFFEF5350),
+        iconDark = Color(0xFFFA4E4B),
         backgroundLight = Color(0xFFFFEBEE),
         backgroundDark = Color(0xFFEF5350).copy(alpha = 0.2f),
         textLight = Color(0xFFD32F2F),
@@ -41,9 +41,9 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Pink = SectionColor(
+    val Pink = AppColorSet(
         iconLight = Color(0xFFD81B60),
-        iconDark = Color(0xFFEC407A),
+        iconDark = Color(0xFFF8427F),
         backgroundLight = Color(0xFFFCE4EC),
         backgroundDark = Color(0xFFEC407A).copy(alpha = 0.2f),
         textLight = Color(0xFFC2185B),
@@ -52,7 +52,7 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Purple = SectionColor(
+    val Purple = AppColorSet(
         iconLight = Color(0xFF8E24AA),
         iconDark = Color(0xFFAB47BC),
         backgroundLight = Color(0xFFF3E5F5),
@@ -63,7 +63,7 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val DeepPurple = SectionColor(
+    val DeepPurple = AppColorSet(
         iconLight = Color(0xFF5E35B1),
         iconDark = Color(0xFF7E57C2),
         backgroundLight = Color(0xFFEDE7F6),
@@ -74,7 +74,7 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Indigo = SectionColor(
+    val Indigo = AppColorSet(
         iconLight = Color(0xFF3949AB),
         iconDark = Color(0xFF5C6BC0),
         backgroundLight = Color(0xFFE8EAF6),
@@ -85,9 +85,9 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Blue = SectionColor(
+    val Blue = AppColorSet(
         iconLight = Color(0xFF1E88E5),
-        iconDark = Color(0xFF42A5F5),
+        iconDark = Color(0xFF50B0FD),
         backgroundLight = Color(0xFFE3F2FD),
         backgroundDark = Color(0xFF42A5F5).copy(alpha = 0.2f),
         textLight = Color(0xFF1976D2),
@@ -96,7 +96,29 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val LightBlue = SectionColor(
+    val CornflowerBlue = AppColorSet(
+        iconLight = Color(0xFF4B91EC),
+        iconDark = Color(0xFF72AFF3),
+        backgroundLight = Color(0xFF669DD5).copy(alpha = 0.2f),
+        backgroundDark = Color(0xFF669DD5).copy(alpha = 0.2f),
+        textLight = Color(0xFF1F4E8F),
+        textDark = Color(0xFFD3E4FA),
+        onIconLight = Color.White,
+        onIconDark = Color.White
+    )
+
+    val SkyBlue = AppColorSet(
+        iconLight = Color(0xFF0B87C7),
+        iconDark = Color(0xFF67CEFB),
+        backgroundLight = Color(0xFF40C4FF).copy(alpha = 0.2f),
+        backgroundDark = Color(0xFF40C4FF).copy(alpha = 0.2f),
+        textLight = Color(0xFF086694),
+        textDark = Color(0xFFC7EBFF),
+        onIconLight = Color.White,
+        onIconDark = Color.White
+    )
+
+    val LightBlue = AppColorSet(
         iconLight = Color(0xFF039BE5),
         iconDark = Color(0xFF29B6F6),
         backgroundLight = Color(0xFFE1F5FE),
@@ -107,7 +129,7 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Cyan = SectionColor(
+    val Cyan = AppColorSet(
         iconLight = Color(0xFF00ACC1),
         iconDark = Color(0xFF26C6DA),
         backgroundLight = Color(0xFFE0F7FA),
@@ -118,7 +140,18 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Teal = SectionColor(
+    val SkyCyan = AppColorSet(
+        iconLight = Color(0xFF0FA8BC),
+        iconDark = Color(0xFF64DEEF),
+        backgroundLight = Color(0xFF33CFE3).copy(alpha = 0.2f),
+        backgroundDark = Color(0xFF33CFE3).copy(alpha = 0.2f),
+        textLight = Color(0xFF0B7A8A),
+        textDark = Color(0xFFC2F5FC),
+        onIconLight = Color.White,
+        onIconDark = Color.White
+    )
+
+    val Teal = AppColorSet(
         iconLight = Color(0xFF00897B),
         iconDark = Color(0xFF26A69A),
         backgroundLight = Color(0xFFE0F2F1),
@@ -129,7 +162,29 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Green = SectionColor(
+    val MintGreen = AppColorSet(
+        iconLight = Color(0xFF1FB294),
+        iconDark = Color(0xFF3FBFA6),
+        backgroundLight = Color(0xFF71D6C2).copy(alpha = 0.2f),
+        backgroundDark = Color(0xFF71D6C2).copy(alpha = 0.2f),
+        textLight = Color(0xFF16785F),
+        textDark = Color(0xFFB8F5E7),
+        onIconLight = Color.White,
+        onIconDark = Color.White
+    )
+
+    val Jade = AppColorSet(
+        iconLight = Color(0xFF00997F),
+        iconDark = Color(0xFF00BFA5),
+        backgroundLight = Color(0xFF1CD7BE).copy(alpha = 0.2f),
+        backgroundDark = Color(0xFF00BFA5).copy(alpha = 0.2f),
+        textLight = Color(0xFF00705C),
+        textDark = Color(0xFFA0F5E5),
+        onIconLight = Color.White,
+        onIconDark = Color.White
+    )
+
+    val Green = AppColorSet(
         iconLight = Color(0xFF43A047),
         iconDark = Color(0xFF66BB6A),
         backgroundLight = Color(0xFFE8F5E9),
@@ -140,7 +195,7 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val LightGreen = SectionColor(
+    val LightGreen = AppColorSet(
         iconLight = Color(0xFF7CB342),
         iconDark = Color(0xFF9CCC65),
         backgroundLight = Color(0xFFF1F8E9),
@@ -151,7 +206,7 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Lime = SectionColor(
+    val Lime = AppColorSet(
         iconLight = Color(0xFFC0CA33),
         iconDark = Color(0xFFD4E157),
         backgroundLight = Color(0xFFF9FBE7),
@@ -162,9 +217,9 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Yellow = SectionColor(
+    val Yellow = AppColorSet(
         iconLight = Color(0xFFF9A825),
-        iconDark = Color(0xFFFBC02D),
+        iconDark = Color(0xFFFDDD3F),
         backgroundLight = Color(0xFFFFFDE7),
         backgroundDark = Color(0xFFFBC02D).copy(alpha = 0.2f),
         textLight = Color(0xFFE65100), // Darkened for better contrast on titles
@@ -173,9 +228,9 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Amber = SectionColor(
+    val Amber = AppColorSet(
         iconLight = Color(0xFFFF8F00),
-        iconDark = Color(0xFFFFA000),
+        iconDark = Color(0xFFFCAB29),
         backgroundLight = Color(0xFFFFF8E1),
         backgroundDark = Color(0xFFFFA000).copy(alpha = 0.2f),
         textLight = Color(0xFFBF360C), // Darkened for better contrast on titles
@@ -184,7 +239,7 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Orange = SectionColor(
+    val Orange = AppColorSet(
         iconLight = Color(0xFFFB8C00),
         iconDark = Color(0xFFFFA726),
         backgroundLight = Color(0xFFFFF3E0),
@@ -195,7 +250,7 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val DeepOrange = SectionColor(
+    val DeepOrange = AppColorSet(
         iconLight = Color(0xFFF4511E),
         iconDark = Color(0xFFFF7043),
         backgroundLight = Color(0xFFFBE9E7),
@@ -206,7 +261,7 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val Brown = SectionColor(
+    val Brown = AppColorSet(
         iconLight = Color(0xFF6D4C41),
         iconDark = Color(0xFF8D6E63),
         backgroundLight = Color(0xFFEFEBE9),
@@ -217,21 +272,16 @@ object SectionColorPalette {
         onIconDark = Color.White
     )
 
-    val BlueGrey = SectionColor(
-        iconLight = Color(0xFF546E7A),
-        iconDark = Color(0xFF78909C),
-        backgroundLight = Color(0xFFECEFF1),
-        backgroundDark = Color(0xFF78909C).copy(alpha = 0.2f),
+    val BlueGrey = AppColorSet(
+        iconLight = Color(0xFF4A798F),
+        iconDark = Color(0xFF89B3C7),
+        backgroundLight = Color(0xFFEAF4FC),
+        backgroundDark = Color(0xFF7EA5B9).copy(alpha = 0.2f),
         textLight = Color(0xFF455A64),
-        textDark = Color(0xFFCFD8DC),
+        textDark = Color(0xFFC2DAE5),
         onIconLight = Color.White,
         onIconDark = Color.White
     )
-
-    val Favorites = Amber
-    val AllCountries = Blue
-    val AllContinents = Pink
-    val Qizzes = LightBlue
 
     val all = listOf(
         Red, Pink, Purple, DeepPurple, Indigo, Blue, LightBlue, Cyan, Teal, Green,

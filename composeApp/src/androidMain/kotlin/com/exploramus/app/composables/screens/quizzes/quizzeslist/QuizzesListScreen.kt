@@ -22,15 +22,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
-import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.ScreenLoading
 import com.exploramus.app.composables.screens.quizzes.getIcon
-import com.exploramus.app.composables.screens.quizzes.toSectionColor
+import com.exploramus.app.composables.screens.quizzes.toAppColorSet
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
-import com.exploramus.app.design.theme.SectionColorPalette
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenState
@@ -44,12 +42,10 @@ fun QuizzesListScreen(
     if (screenState.isLoading) {
         ScreenLoading()
     } else {
-        FadeInScreenContent(durationMillis = 200) {
-            QuizzesListContent(
-                screenState = screenState,
-                onEvent = eventHandler::onEvent,
-            )
-        }
+        QuizzesListContent(
+            screenState = screenState,
+            onEvent = eventHandler::onEvent,
+        )
     }
 }
 
@@ -116,14 +112,14 @@ fun QuizzesListContent(
 
 @Composable
 fun QuizzesListHeaderCard(sectionInfo: QuizzesSectionHeaderState) {
-    val colors = sectionInfo.sectionType.toSectionColor(sectionInfo.continentId)
+    val colors = sectionInfo.sectionType.toAppColorSet(sectionInfo.continentId)
     val icon = sectionInfo.sectionType.getIcon()
 
     Card(
         shape = RoundedCornerShape(20.dp),
         border = BorderStroke(
             width = 1.dp,
-            color = MaterialTheme.appColors.cardBorder
+            color = colors.text().copy(alpha = 0.4f)
         ),
         modifier = Modifier.fillMaxWidth(),
     ) {
@@ -138,13 +134,13 @@ fun QuizzesListHeaderCard(sectionInfo: QuizzesSectionHeaderState) {
                     text = sectionInfo.title,
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
-                    color = colors.text(),
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = "${sectionInfo.itemsCount} countries available",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = colors.text().copy(alpha = 0.8f),
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                 )
             }
 
@@ -173,7 +169,7 @@ fun QuizCard(
     onClick: () -> Unit,
     onSettingsClick: () -> Unit,
 ) {
-    val colors = SectionColorPalette.Qizzes
+    val colors = quiz.quizType.toAppColorSet()
     val icon = quiz.quizType.getIcon()
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -191,7 +187,7 @@ fun QuizCard(
             verticalAlignment = Alignment.Top,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, top = 16.dp, bottom = 16.dp, end = 0.dp),
+                .padding(start = 16.dp, top = 16.dp, bottom = 16.dp, end = 10.dp),
         ) {
 
             Column(modifier = Modifier.weight(1f)) {
@@ -229,7 +225,7 @@ fun QuizCard(
                         imageVector = icon,
                         contentDescription = null,
                         tint = colors.icon(),
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier.size(28.dp),
                     )
                 }
 
