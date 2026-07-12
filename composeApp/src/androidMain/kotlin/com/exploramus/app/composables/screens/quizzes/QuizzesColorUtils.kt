@@ -48,13 +48,13 @@ fun QuizzesSectionType.getIcon(): ImageVector = when (this) {
 
 fun QuizType.toAppColorSet(): AppColorSet = when (this) {
     QuizType.FLASHCARDS -> AppColorPalette.MintGreen
-    QuizType.TEST_COUNTRY_CAPITAL -> AppColorPalette.SkyBlue
-    QuizType.TEST_FLAG_COUNTRY -> AppColorPalette.SkyCyan
+    QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY -> AppColorPalette.SkyBlue
+    QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> AppColorPalette.SkyCyan
 }
 
 @Composable
 fun QuizType.getIcon(): ImageVector = when (this) {
     QuizType.FLASHCARDS -> ImageVector.vectorResource(R.drawable.cards_outline)
-    QuizType.TEST_COUNTRY_CAPITAL -> Icons.Outlined.LocationCity
-    QuizType.TEST_FLAG_COUNTRY -> Icons.Outlined.Flag
+    QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY -> Icons.Outlined.LocationCity
+    QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> Icons.Outlined.Flag
 }

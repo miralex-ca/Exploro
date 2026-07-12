@@ -32,10 +32,10 @@ object QuizzCaategoryId {
 
 object QuizzIds {
     val FLASHCARDS = "flashcards"
-    val TEST_COUNTRY_CAPITAL = "test_country_capital"
-    val TEST_CAPITAL_COUNTRY = "test_capital_country"
-    val TEST_COUNTRY_FLAG = "test_country_flag"
-    val TEST_FLAG_COUNTRY = "test_flag_country"
+    val CHOICE_QUIZ_PRIMARY_SECONDARY = "choice_quiz_primary_secondary"
+    val CHOICE_QUIZ_SECONDARY_PRIMARY = "choice_quiz_secondary_primary"
+    val CHOICE_QUIZ_PRIMARY_IMAGE = "choice_quiz_primary_image"
+    val CHOICE_QUIZ_IMAGE_PRIMARY = "choice_quiz_image_primary"
 }
 
 
@@ -48,7 +48,7 @@ data class QuizState(
 
 enum class QuizType {
     FLASHCARDS,
-    TEST_COUNTRY_CAPITAL,
-    TEST_FLAG_COUNTRY,
+    CHOICE_QUIZ_PRIMARY_SECONDARY,
+    CHOICE_QUIZ_IMAGE_PRIMARY,
 }
 

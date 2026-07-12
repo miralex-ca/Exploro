@@ -49,20 +49,20 @@ fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = Screen
 
 fun defaultQuizzes(): List<QuizState> = listOf(
     QuizState(
-        quizId = "flashcards",
+        quizId = QuizzIds.FLASHCARDS,
         quizType = QuizType.FLASHCARDS,
         title = "Flashcards",
         description = "Browse country cards and reveal capital, flag, or other details at your own pace.",
     ),
     QuizState(
-        quizId = "test_country_capital",
-        quizType = QuizType.TEST_COUNTRY_CAPITAL,
+        quizId = QuizzIds.CHOICE_QUIZ_PRIMARY_SECONDARY,
+        quizType = QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY,
         title = "Country → Capital",
         description = "Given a country name, choose the correct capital city.",
     ),
     QuizState(
-        quizId = "test_flag_country",
-        quizType = QuizType.TEST_FLAG_COUNTRY,
+        quizId = QuizzIds.CHOICE_QUIZ_IMAGE_PRIMARY,
+        quizType = QuizType.CHOICE_QUIZ_IMAGE_PRIMARY,
         title = "Flag → Country",
         description = "Given a flag, identify which country it belongs to.",
     ),
