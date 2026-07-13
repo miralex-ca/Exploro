@@ -274,7 +274,7 @@ fun QuizCard(
                     Icon(
                         imageVector = Icons.Default.Tune,
                         contentDescription = "Quiz Settings",
-                        tint = Color.Black.copy(alpha = 0.6f),
+                        tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                         modifier = Modifier.size(20.dp)
                     )
                 }
