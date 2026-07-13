@@ -56,13 +56,13 @@ fun QuizzesListChoiceQuizSettingsDialog(
             Column(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
                     text = Strings.choiceQuizSelectPair,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f),
-                    modifier = Modifier.padding(bottom = 4.dp)
+                    modifier = Modifier.padding(bottom = 6.dp)
                 )
 
                 availableTargets.forEach { target ->
@@ -71,7 +71,7 @@ fun QuizzesListChoiceQuizSettingsDialog(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { onConfigChanged(config.copy(studyTarget = target)) }
-                            .padding(vertical = 4.dp)
+                            .padding(vertical = 2.dp)
                     ) {
                         RadioButton(
                             selected = config.studyTarget == target,
