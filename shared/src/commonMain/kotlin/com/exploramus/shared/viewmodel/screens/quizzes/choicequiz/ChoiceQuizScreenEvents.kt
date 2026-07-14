@@ -7,82 +7,66 @@ import kotlin.time.Duration.Companion.milliseconds
 fun Events.selectChoiceOption(itemId: String, optionId: String) = screenCoroutine {
     var isAuto = false
     var autoSubmitDelayMs = 0L
+    var scheduledRevision = -1
 
     stateManager.updateScreen(ChoiceQuizScreenState::class) { state ->
         isAuto = state.quiz.config.navigationMode == ChoiceQuizNavigationMode.AUTO
         autoSubmitDelayMs = state.quiz.config.autoSubmitDelayMs
+        scheduledRevision = state.totalRestartEvent
 
-        val updatedItems = state.quiz.items.map { item ->
-            if (item.id == itemId && !item.isSubmitted) {
-                item.copy(selectedOptionId = optionId)
-            } else {
-                item
-            }
-        }
-        state.copy(
-            quiz = state.quiz.copy(items = updatedItems)
-        )
+        state.copy(quiz = state.quiz.selectOption(itemId, optionId))
     }
 
     if (isAuto) {
         delay(autoSubmitDelayMs.milliseconds)
-        submitChoiceAnswer(itemId)
+        submitChoiceAnswer(itemId, expectedRevision = scheduledRevision)
     }
 }
 
-fun Events.submitChoiceAnswer(itemId: String) = screenCoroutine {
+fun Events.submitChoiceAnswer(itemId: String, expectedRevision: Int? = null) = screenCoroutine {
     var didSubmit = false
     var shouldNavigateAuto = false
     var delayMs = 0L
+    var scheduledRevision = -1
 
     stateManager.updateScreen(ChoiceQuizScreenState::class) { state ->
-        val updatedItems = state.quiz.items.map { item ->
-            if (item.id == itemId && item.selectedOptionId != null && !item.isSubmitted) {
-                didSubmit = true
-                item.copy(isSubmitted = true)
-            } else {
-                item
-            }
-        }
+        if (expectedRevision != null && state.totalRestartEvent != expectedRevision) return@updateScreen state
+
+        val (updatedQuiz, submitted) = state.quiz.submitAnswer(itemId)
+        didSubmit = submitted
 
         if (didSubmit) {
             shouldNavigateAuto = state.quiz.config.navigationMode == ChoiceQuizNavigationMode.AUTO
             delayMs = state.quiz.config.autoProceedDelayMs
+            scheduledRevision = state.totalRestartEvent
         }
 
-        state.copy(quiz = state.quiz.copy(items = updatedItems))
+        state.copy(quiz = updatedQuiz)
     }
 
     if (didSubmit && shouldNavigateAuto) {
         delay(delayMs.milliseconds)
-        nextChoiceQuestion()
+        nextChoiceQuestion(expectedRevision = scheduledRevision)
     }
 }
 
-fun Events.nextChoiceQuestion() {
+fun Events.nextChoiceQuestion(expectedRevision: Int? = null) {
     stateManager.updateScreen(ChoiceQuizScreenState::class) { state ->
         if (state.isFinished) return@updateScreen state
+        if (expectedRevision != null && state.totalRestartEvent != expectedRevision) return@updateScreen state
 
-        val nextIndex = state.quiz.currentIndex + 1
-        if (nextIndex < state.quiz.items.size) {
-            state.copy(
-                quiz = state.quiz.copy(currentIndex = nextIndex)
-            )
-        } else {
-            state.copy(
-                isFinished = true
-            )
-        }
+        val (updatedQuiz, isFinished) = state.quiz.next()
+        state.copy(
+            quiz = updatedQuiz,
+            isFinished = isFinished
+        )
     }
 }
 
 fun Events.restartChoiceQuiz() {
     stateManager.updateScreen(ChoiceQuizScreenState::class) { state ->
         state.copy(
-            quiz = state.quiz.copy(
-                currentIndex = 0,
-                items = state.quiz.items.map { it.copy(selectedOptionId = null, isSubmitted = false) }
-            ),
+            quiz = state.quiz.restart(),
             isFinished = false,
             totalRestartEvent = state.totalRestartEvent + 1
         )
