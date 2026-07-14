@@ -14,17 +14,14 @@ fun Navigation.TopBarContainer(
     screenIdentifier: ScreenIdentifier,
     screenNavActions: ScreenNavActions,
 ) {
+    val screen = screenIdentifier.screen
+    if (!screen.hasTopBar) return
+
     val screenTitle = getScreenTitle(screenIdentifier)
     val isLevel1 = screenIdentifier.screen.navigationLevel == 1
     val formFactor = LocalFormFactor.current
 
     when {
-        screenIdentifier.screen == Screen.SearchScreen -> {}
-        screenIdentifier.screen == Screen.Lv1SearchScreen -> {}
-        screenIdentifier.screen == Screen.CountryDetail -> {}
-        screenIdentifier.screen == Screen.DetailsPagerScreen -> {}
-        screenIdentifier.screen == Screen.FavoritesPagerScreen -> {}
-        screenIdentifier.screen == Screen.FlashcardsScreen -> {}
         isLevel1 -> {
             Level1TopBar(
                 title = screenTitle,
@@ -41,6 +38,17 @@ fun Navigation.TopBarContainer(
         }
     }
 }
+
+private val Screen.hasTopBar: Boolean
+    get() = this !in setOf(
+        Screen.SearchScreen,
+        Screen.Lv1SearchScreen,
+        Screen.CountryDetail,
+        Screen.DetailsPagerScreen,
+        Screen.FavoritesPagerScreen,
+        Screen.FlashcardsScreen,
+        Screen.ChoiceQuizScreen,
+    )
 
 @Composable
 fun Navigation.getScreenTitle(screenIdentifier: ScreenIdentifier): String {

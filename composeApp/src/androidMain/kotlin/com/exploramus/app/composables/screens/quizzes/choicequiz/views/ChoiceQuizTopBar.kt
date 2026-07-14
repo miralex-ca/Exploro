@@ -2,9 +2,10 @@ package com.exploramus.app.composables.screens.quizzes.choicequiz.views
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.text.style.TextOverflow
 import com.exploramus.app.composables.navigation.ui.topbars.topBarAdaptiveHeight
 import com.exploramus.app.composables.screens.quizzes.choicequiz.ChoiceQuizUiEvent
@@ -20,6 +21,7 @@ fun ChoiceQuizTopBar(
     onEvent: (ChoiceQuizUiEvent) -> Unit,
 ) {
     val formFactor = LocalFormFactor.current
+    var showMenu by remember { mutableStateOf(false) }
 
     TopAppBar(
         title = {
@@ -47,10 +49,28 @@ fun ChoiceQuizTopBar(
             }
         },
         actions = {
-            IconButton(onClick = { onEvent(ChoiceQuizUiEvent.OnRestartClicked) }) {
+            IconButton(onClick = { showMenu = !showMenu }) {
                 Icon(
-                    imageVector = Icons.Outlined.Refresh,
-                    contentDescription = "Restart Quiz"
+                    imageVector = Icons.Default.MoreVert,
+                    contentDescription = Strings.commonMore
+                )
+            }
+            DropdownMenu(
+                expanded = showMenu,
+                onDismissRequest = { showMenu = false }
+            ) {
+                DropdownMenuItem(
+                    text = { Text(Strings.flashcardRestart) },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Refresh,
+                            contentDescription = null
+                        )
+                    },
+                    onClick = {
+                        onEvent(ChoiceQuizUiEvent.OnRestartClicked)
+                        showMenu = false
+                    }
                 )
             }
         }

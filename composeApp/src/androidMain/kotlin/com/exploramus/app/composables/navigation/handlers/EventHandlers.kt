@@ -5,6 +5,7 @@ import com.exploramus.app.composables.screens.details.DetailsEventHandler
 import com.exploramus.app.composables.screens.details.DetailsPagerEventHandler
 import com.exploramus.app.composables.screens.favorites.FavoritesEventHandler
 import com.exploramus.app.composables.screens.home.HomeEventHandler
+import com.exploramus.app.composables.screens.quizzes.choicequiz.ChoiceQuizEventHandler
 import com.exploramus.app.composables.screens.quizzes.flashcards.FlashcardEventHandler
 import com.exploramus.app.composables.screens.quizzes.quizsections.QuizSectionsEventHandler
 import com.exploramus.app.composables.screens.quizzes.quizzeslist.QuizzesListEventHandler
@@ -35,6 +36,10 @@ class EventHandlers(
 
     val flashcards by lazy {
         FlashcardEventHandler(navActions, events)
+    }
+
+    val choiceQuiz by lazy {
+        ChoiceQuizEventHandler(navActions, events)
     }
 
     val section by lazy {

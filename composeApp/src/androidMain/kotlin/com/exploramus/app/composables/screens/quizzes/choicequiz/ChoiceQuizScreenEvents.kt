@@ -1,5 +1,6 @@
 package com.exploramus.app.composables.screens.quizzes.choicequiz
 
+import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.shared.viewmodel.core.Events
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.nextChoiceQuestion
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.restartChoiceQuiz
@@ -15,12 +16,12 @@ sealed interface ChoiceQuizUiEvent {
 }
 
 class ChoiceQuizEventHandler(
+    private val navActions: ScreenNavActions,
     private val events: Events,
-    private val onBack: () -> Unit
 ) {
     fun onEvent(event: ChoiceQuizUiEvent) {
         when (event) {
-            ChoiceQuizUiEvent.OnBackClicked -> onBack()
+            ChoiceQuizUiEvent.OnBackClicked -> navActions.navigateBack()
             is ChoiceQuizUiEvent.OnOptionSelected -> events.selectChoiceOption(event.itemId, event.optionId)
             is ChoiceQuizUiEvent.OnSubmitAnswer -> events.submitChoiceAnswer(event.itemId)
             ChoiceQuizUiEvent.OnNextClicked -> events.nextChoiceQuestion()
