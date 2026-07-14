@@ -2,6 +2,8 @@ package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
 import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.core.models.Country
+import com.exploramus.data.repository.functions.getChoiceQuizImagePrimaryConfig
+import com.exploramus.data.repository.functions.getChoiceQuizPrimarySecondaryConfig
 import com.exploramus.data.repository.functions.getFlashcardCountriesAll
 import com.exploramus.data.repository.functions.getFlashcardCountriesBySection
 import com.exploramus.data.repository.functions.getFlashcardCountriesFavorites
@@ -9,6 +11,7 @@ import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
+import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 import kotlinx.serialization.Serializable
 
@@ -17,8 +20,7 @@ data class ChoiceQuizScreenParams(
     val sectionId: String,
     val sectionType: QuizzesSectionType,
     val screenTitle: String,
-    val studyTarget: ChoiceQuizStudyTarget,
-    val quizLimit: Int? = null,
+    val quizType: QuizType,
 ) : ScreenParams
 
 fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenInitSettings(
@@ -31,13 +33,22 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
             QuizzesSectionType.CONTINENT -> dataRepository.getFlashcardCountriesBySection(params.sectionId)
         }
 
+        val config = when (params.quizType) {
+            QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY -> dataRepository.getChoiceQuizPrimarySecondaryConfig()
+            QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> dataRepository.getChoiceQuizImagePrimaryConfig()
+            else -> null
+        }
+
+        val studyTarget = config?.studyTarget ?: params.quizType.toDefaultStudyTarget()
+        val quizLimit = config?.quizLimit
+
         // We shuffle and apply the limit if provided
         val selectedCountries = countries.shuffled().let { 
-            if (params.quizLimit != null) it.take(params.quizLimit) else it 
+            if (quizLimit != null) it.take(quizLimit) else it 
         }
         
         val quizItems = selectedCountries.map { country ->
-            buildChoiceQuizItem(country, countries, params.studyTarget)
+            buildChoiceQuizItem(country, countries, studyTarget)
         }
 
         updateScreen(ChoiceQuizScreenState::class) {

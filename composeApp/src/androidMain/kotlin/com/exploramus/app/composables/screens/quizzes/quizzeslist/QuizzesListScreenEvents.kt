@@ -5,6 +5,7 @@ import com.exploramus.core.models.ChoiceQuizConfig
 import com.exploramus.core.models.FlashcardConfig
 import com.exploramus.shared.viewmodel.core.Events
 import com.exploramus.shared.viewmodel.screens.Screen
+import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizScreenParams
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenParams
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.*
 
@@ -12,7 +13,8 @@ sealed class QuizzesListUiEvent {
     data class OnQuizClicked(
         val sectionId: String,
         val sectionType: QuizzesSectionType,
-        val title: String
+        val title: String,
+        val quizType: QuizType
     ) : QuizzesListUiEvent()
 
     data class OnQuizSettingsClicked(val quizId: String, val quizType: QuizType) : QuizzesListUiEvent()
@@ -31,14 +33,30 @@ class QuizzesListEventHandler(
     fun onEvent(event: QuizzesListUiEvent) {
         when (event) {
             is QuizzesListUiEvent.OnQuizClicked -> {
-                navActions.appNavController.navigate(
-                    Screen.FlashcardsScreen,
-                    FlashcardScreenParams(
-                        sectionId = event.sectionId,
-                        sectionType = event.sectionType,
-                        screenTitle = event.title
-                    )
-                )
+                when (event.quizType) {
+                    QuizType.FLASHCARDS -> {
+                        navActions.appNavController.navigate(
+                            Screen.FlashcardsScreen,
+                            FlashcardScreenParams(
+                                sectionId = event.sectionId,
+                                sectionType = event.sectionType,
+                                screenTitle = event.title
+                            )
+                        )
+                    }
+                    QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY,
+                    QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> {
+                        navActions.appNavController.navigate(
+                            Screen.ChoiceQuizScreen,
+                            ChoiceQuizScreenParams(
+                                sectionId = event.sectionId,
+                                sectionType = event.sectionType,
+                                screenTitle = event.title,
+                                quizType = event.quizType
+                            )
+                        )
+                    }
+                }
             }
             is QuizzesListUiEvent.OnQuizSettingsClicked -> {
                 when (event.quizType) {

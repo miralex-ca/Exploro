@@ -1,5 +1,8 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
+import com.exploramus.core.models.ChoiceQuizStudyTarget
+import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
+
 data class ChoiceQuizState(
     val items: List<ChoiceQuizItemState> = emptyList(),
     val currentIndex: Int = 0,
@@ -108,3 +111,8 @@ fun ChoiceQuizState.restart(): ChoiceQuizState = copy(
     currentIndex = 0,
     items = items.map { it.copy(selectedOptionId = null, isSubmitted = false) }
 )
+
+fun QuizType.toDefaultStudyTarget(): ChoiceQuizStudyTarget = when(this) {
+    QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> ChoiceQuizStudyTarget.IMAGE_PRIMARY
+    else -> ChoiceQuizStudyTarget.PRIMARY_SECONDARY
+}
