@@ -18,7 +18,7 @@ import com.exploramus.app.composables.screens.quizzes.choicequiz.ChoiceQuizUiEve
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
-import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizNavigationMode
+import com.exploramus.core.models.ChoiceQuizNavigationMode
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

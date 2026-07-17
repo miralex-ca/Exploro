@@ -1,5 +1,6 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
+import com.exploramus.core.models.ChoiceQuizNavigationMode
 import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.core.models.Country
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
@@ -7,7 +8,7 @@ import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 data class ChoiceQuizState(
     val items: List<ChoiceQuizItemState> = emptyList(),
     val currentIndex: Int = 0,
-    val config: ChoiceQuizConfig = ChoiceQuizConfig(),
+    val config: ChoiceQuizConfigState = ChoiceQuizConfigState(),
 ) {
     val results: ChoiceQuizResultsState
         get() {
@@ -64,17 +65,13 @@ data class ChoiceQuizResultsState(
     val score: Float = 0f, // score percentage (correct/total)
 )
 
-data class ChoiceQuizConfig(
+data class ChoiceQuizConfigState(
     val showInstantFeedback: Boolean = true,
     val autoSubmitDelayMs: Long = 400L,
     val autoProceedCorrectDelayMs: Long = 600L,
     val autoProceedIncorrectDelayMs: Long = 900L,
     val navigationMode: ChoiceQuizNavigationMode = ChoiceQuizNavigationMode.MANUAL,
 )
-
-enum class ChoiceQuizNavigationMode {
-    MANUAL, AUTO
-}
 
 data class ChoiceQuizEvaluation(
     val title: String,

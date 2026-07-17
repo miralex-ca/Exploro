@@ -16,3 +16,13 @@ enum class ChoiceQuizStudyTarget(val id: Int) {
             entries.firstOrNull { it.id == id } ?: default
     }
 }
+
+enum class ChoiceQuizNavigationMode(val id: Int) {
+    MANUAL(0),
+    AUTO(1);
+
+    companion object {
+        fun fromId(id: Int, default: ChoiceQuizNavigationMode): ChoiceQuizNavigationMode =
+            entries.firstOrNull { it.id == id } ?: default
+    }
+}

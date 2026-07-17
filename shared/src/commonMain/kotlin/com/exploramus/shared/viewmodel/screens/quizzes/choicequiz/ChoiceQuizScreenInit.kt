@@ -1,10 +1,6 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
-import com.exploramus.data.repository.functions.getChoiceQuizImagePrimaryConfig
-import com.exploramus.data.repository.functions.getChoiceQuizPrimarySecondaryConfig
-import com.exploramus.data.repository.functions.getFlashcardCountriesAll
-import com.exploramus.data.repository.functions.getFlashcardCountriesBySection
-import com.exploramus.data.repository.functions.getFlashcardCountriesFavorites
+import com.exploramus.data.repository.functions.*
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
@@ -37,6 +33,8 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
             else -> null
         }
 
+        val navigationMode = dataRepository.getChoiceQuizNavigationMode()
+
         val studyTarget = config?.studyTarget ?: params.quizType.toDefaultStudyTarget()
         val quizLimit = config?.quizLimit
 
@@ -55,7 +53,7 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
                 screenTitle = params.screenTitle,
                 quiz = ChoiceQuizState(
                     items = quizItems,
-                    config = ChoiceQuizConfig()
+                    config = ChoiceQuizConfigState(navigationMode = navigationMode)
                 ),
                 allCountries = countries,
                 studyTarget = studyTarget,

@@ -1,5 +1,6 @@
 package com.exploramus.data.repository.sources.localsettings
 
+import com.exploramus.core.models.ChoiceQuizNavigationMode
 import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.core.models.FlashcardStudyTarget
 import com.russhwolf.settings.Settings
@@ -22,9 +23,9 @@ class MySettings (s : Settings) {
     private var flashcardStudyTargetId by s.int(defaultValue = FlashcardStudyTarget.DEFAULT.id)
     private var choiceQuizPrimarySecondaryTargetId by s.int(defaultValue = ChoiceQuizStudyTarget.PRIMARY_SECONDARY.id)
     private var choiceQuizImagePrimaryTargetId by s.int(defaultValue = ChoiceQuizStudyTarget.IMAGE_PRIMARY.id)
+    private var choiceQuizNavigationModeId by s.int(defaultValue = ChoiceQuizNavigationMode.MANUAL.id)
 
-    var choiceQuizPrimarySecondaryLimit by s.int(defaultValue = -1)
-    var choiceQuizImagePrimaryLimit by s.int(defaultValue = -1)
+    var choiceQuizLimit by s.int(defaultValue = -1)
 
     var flashcardStudyTarget: FlashcardStudyTarget
         get() = FlashcardStudyTarget.fromId(flashcardStudyTargetId)
@@ -37,4 +38,8 @@ class MySettings (s : Settings) {
     var choiceQuizImagePrimaryTarget: ChoiceQuizStudyTarget
         get() = ChoiceQuizStudyTarget.fromId(choiceQuizImagePrimaryTargetId, ChoiceQuizStudyTarget.IMAGE_PRIMARY)
         set(value) { choiceQuizImagePrimaryTargetId = value.id }
+
+    var choiceQuizNavigationMode: ChoiceQuizNavigationMode
+        get() = ChoiceQuizNavigationMode.fromId(choiceQuizNavigationModeId, ChoiceQuizNavigationMode.MANUAL)
+        set(value) { choiceQuizNavigationModeId = value.id }
 }
