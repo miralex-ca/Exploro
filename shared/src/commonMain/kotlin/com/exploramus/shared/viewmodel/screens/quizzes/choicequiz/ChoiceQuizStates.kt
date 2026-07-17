@@ -16,6 +16,8 @@ data class ChoiceQuizState(
             return ChoiceQuizResultsState(
                 correctCount = answered.count { it.status == ChoiceQuizAnswerStatus.CORRECT },
                 incorrectCount = answered.count { it.status == ChoiceQuizAnswerStatus.INCORRECT },
+                totalCount = items.size,
+                skipped = items.size - answered.size,
                 progress = if (items.isEmpty()) 0f else answered.size / items.size.toFloat(),
                 score = if (items.isEmpty()) 0f else answered.count { it.status == ChoiceQuizAnswerStatus.CORRECT } / items.size.toFloat()
             )
@@ -61,6 +63,8 @@ enum class ChoiceQuizAnswerStatus {
 data class ChoiceQuizResultsState(
     val correctCount: Int = 0,
     val incorrectCount: Int = 0,
+    val totalCount: Int = 0,
+    val skipped: Int = 0,
     val progress: Float = 0f, // current progress percentage (answered/total)
     val score: Float = 0f, // score percentage (correct/total)
 )

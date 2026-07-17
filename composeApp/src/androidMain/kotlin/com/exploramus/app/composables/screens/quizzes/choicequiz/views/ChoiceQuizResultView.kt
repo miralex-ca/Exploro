@@ -1,16 +1,27 @@
 package com.exploramus.app.composables.screens.quizzes.choicequiz.views
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Assessment
+import androidx.compose.material.icons.outlined.Cancel
+import androidx.compose.material.icons.outlined.EmojiEvents
+import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -19,6 +30,8 @@ import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.theme.AppColorPalette
+import com.exploramus.app.design.theme.AppColorSet
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizResultsState
@@ -60,7 +73,6 @@ fun ChoiceQuizResultView(
                     )
                     ResultStatsCard(
                         results = results,
-                        evaluationColor = Color(evaluation.color),
                         onRestartClick = onRestartClick,
                         shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
                         modifier = Modifier.weight(1f).fillMaxHeight()
@@ -78,7 +90,6 @@ fun ChoiceQuizResultView(
                     )
                     ResultStatsCard(
                         results = results,
-                        evaluationColor = Color(evaluation.color),
                         onRestartClick = onRestartClick,
                         shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
                         modifier = Modifier.weight(1f).fillMaxWidth().padding(bottom = layout.cardBottomPadding.value())
@@ -128,11 +139,42 @@ private fun ResultEvaluationCard(
 @Composable
 private fun ResultStatsCard(
     results: ChoiceQuizResultsState,
-    evaluationColor: Color,
     onRestartClick: () -> Unit,
     shape: androidx.compose.ui.graphics.Shape,
     modifier: Modifier = Modifier
 ) {
+    val totalCount = results.totalCount
+    val scorePercentage = (results.score * 100).toInt()
+
+    val totalLabel = if (results.skipped > 0) "Total (skipped: ${results.skipped})" else "Total question"
+
+    val metrics = listOf(
+        QuizResultMetric(
+            label = "Total question",
+            value = totalCount.toString(),
+            icon = Icons.Outlined.Assessment,
+            colorSet = AppColorPalette.BlueGrey
+        ),
+        QuizResultMetric(
+            label = "Score",
+            value = "$scorePercentage%",
+            icon = Icons.Outlined.EmojiEvents,
+            colorSet = AppColorPalette.Amber
+        ),
+        QuizResultMetric(
+            label = "Correct",
+            value = results.correctCount.toString(),
+            icon = Icons.Rounded.Check,
+            colorSet = AppColorPalette.Green
+        ),
+        QuizResultMetric(
+            label = "Errors",
+            value = results.incorrectCount.toString(),
+            icon = Icons.Outlined.Cancel,
+            colorSet = AppColorPalette.Red
+        )
+    )
+
     Card(
         shape = shape,
         border = BorderStroke(1.dp, MaterialTheme.appColors.cardBorder),
@@ -144,28 +186,40 @@ private fun ResultStatsCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(top = 16.dp)
+                modifier = Modifier.padding(top = 8.dp)
             ) {
-                Text(
-                    text = "Summary",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Text(
-                    text = "Correct answers: ${results.correctCount} / ${results.correctCount + results.incorrectCount}",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontSize = 18.sp
-                )
-                Text(
-                    text = "Result: ${(results.score * 100).toInt()}%",
-                    style = MaterialTheme.typography.headlineMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = evaluationColor
-                )
+
+
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        QuizResultCard(metric = metrics[0], modifier = Modifier.weight(1f))
+                        QuizResultCard(metric = metrics[1], modifier = Modifier.weight(1f))
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        QuizResultCard(metric = metrics[2], modifier = Modifier.weight(1f))
+                        QuizResultCard(metric = metrics[3], modifier = Modifier.weight(1f))
+                    }
+                }
+
+                if (results.skipped > 0) {
+                    Text(
+                        text = "Skipped questions: ${results.skipped}",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Normal
+                    )
+                }
             }
+
 
             Button(
                 onClick = onRestartClick,
@@ -177,3 +231,61 @@ private fun ResultStatsCard(
         }
     }
 }
+
+@Composable
+private fun QuizResultCard(
+    metric: QuizResultMetric,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier
+            .border(
+                width = 0.5.dp,
+                color = MaterialTheme.appColors.cardBorder,
+                shape = RoundedCornerShape(12.dp)
+            )
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(36.dp)
+                    .clip(CircleShape)
+                    .background(metric.colorSet.background()),
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(
+                    imageVector = metric.icon,
+                    contentDescription = null,
+                    tint = metric.colorSet.icon(),
+                    modifier = Modifier.size(24.dp),
+                )
+            }
+            Text(
+                text = metric.value,
+                fontSize = 26.sp,
+                fontWeight = FontWeight.Medium,
+                color = metric.colorSet.text(),
+            )
+        }
+
+        Spacer(modifier = Modifier.height(6.dp))
+
+        Text(
+            text = metric.label,
+            fontSize = 13.sp,
+            color = Color(0xFF5F5E5A),
+        )
+    }
+}
+
+private data class QuizResultMetric(
+    val label: String,
+    val value: String,
+    val icon: ImageVector,
+    val colorSet: AppColorSet
+)
