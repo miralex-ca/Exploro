@@ -20,9 +20,8 @@ fun ChoiceQuizOptionsView(
     onOptionSelected: (String) -> Unit,
     shape: Shape,
     modifier: Modifier = Modifier,
+    useGridLayout: Boolean = options.any { it.contentType == ChoiceQuizContentType.IMAGE },
 ) {
-    val isImageQuiz = options.any { it.contentType == ChoiceQuizContentType.IMAGE }
-
     Card(
         shape = shape,
         border = BorderStroke(
@@ -31,7 +30,7 @@ fun ChoiceQuizOptionsView(
         ),
         modifier = modifier
     ) {
-        if (isImageQuiz) {
+        if (useGridLayout) {
             ChoiceQuizGridOptionsView(
                 options = options,
                 selectedOptionId = selectedOptionId,

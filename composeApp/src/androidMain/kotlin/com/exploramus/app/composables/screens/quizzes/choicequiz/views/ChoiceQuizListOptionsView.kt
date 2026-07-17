@@ -1,14 +1,16 @@
 package com.exploramus.app.composables.screens.quizzes.choicequiz.views
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cancel
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.RadioButtonUnchecked
+import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -17,10 +19,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizOptionState
 
 @Composable
@@ -66,6 +70,7 @@ private fun ListOptionItem(
 ) {
     val borderColor = getOptionBorderColor(isSelected, isCorrect, isSubmitted)
     val contentColor = getOptionContentColor(isSelected, isCorrect, isSubmitted)
+    val backgroundColor = getOptionBackgroundColor(isSelected, isCorrect, isSubmitted)
     val borderWidth = getOptionBorderWidth(isSelected, isCorrect, isSubmitted, isGrid = false)
 
     Surface(
@@ -73,7 +78,7 @@ private fun ListOptionItem(
         enabled = !isSubmitted,
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(borderWidth, borderColor),
-        color = Color.Transparent,
+        color = backgroundColor,
         modifier = modifier.fillMaxWidth()
     ) {
         Row(
@@ -86,23 +91,34 @@ private fun ListOptionItem(
                 text = option.content,
                 style = MaterialTheme.typography.titleLarge,
                 fontSize = 20.sp,
-                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                fontWeight = if (isSelected || (isSubmitted && isCorrect)) FontWeight.Bold else FontWeight.Medium,
                 color = contentColor,
                 modifier = Modifier.weight(1f)
             )
 
-            Icon(
-                imageVector = when {
-                    !isSubmitted -> Icons.Default.RadioButtonUnchecked
-                    isCorrect -> Icons.Default.CheckCircle
-                    isSelected -> Icons.Default.Cancel
-                    else -> Icons.Default.RadioButtonUnchecked
-                },
-                contentDescription = null,
-                tint = if (isSubmitted && (isCorrect || isSelected)) contentColor 
-                       else contentColor.copy(alpha = 0.5f),
-                modifier = Modifier.size(24.dp)
-            )
+            if (isSubmitted && (isCorrect || isSelected)) {
+                Box(
+                    modifier = Modifier
+                        .size(30.dp)
+                        .clip(CircleShape)
+                        .background(contentColor.copy(alpha = 0.2f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = if (isCorrect) Icons.Rounded.Check else Icons.Rounded.Close,
+                        contentDescription = null,
+                        tint = contentColor,
+                        modifier = Modifier.size(20.dp)
+                    )
+                }
+            } else {
+                Icon(
+                    imageVector = Icons.Default.RadioButtonUnchecked,
+                    contentDescription = null,
+                    tint = contentColor.copy(alpha = 0.5f),
+                    modifier = Modifier.size(24.dp)
+                )
+            }
         }
     }
 }

@@ -28,9 +28,19 @@ internal fun getOptionContentColor(isSelected: Boolean, isCorrect: Boolean, isSu
             if (isSelected) AppColorPalette.Blue.text()
             else MaterialTheme.colorScheme.onSurface
         }
-        isCorrect -> AppColorPalette.Green.text()
-        isSelected -> AppColorPalette.Red.text()
+        isCorrect -> AppColorPalette.Green.onIcon()
+        isSelected -> AppColorPalette.Red.onIcon()
         else -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
+    }
+}
+
+@Composable
+internal fun getOptionBackgroundColor(isSelected: Boolean, isCorrect: Boolean, isSubmitted: Boolean): Color {
+    return when {
+        !isSubmitted -> Color.Transparent
+        isCorrect -> AppColorPalette.Green.icon()
+        isSelected -> AppColorPalette.Red.icon()
+        else -> Color.Transparent
     }
 }
 

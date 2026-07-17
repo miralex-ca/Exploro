@@ -30,6 +30,7 @@ import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
+import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizContentType
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizItemState
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizState
@@ -207,6 +208,7 @@ fun ChoiceQuizItem(
                     isSubmitted = item.isSubmitted,
                     onOptionSelected = onOptionSelected,
                     shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
+                    useGridLayout = item.question.contentType == ChoiceQuizContentType.IMAGE || item.options.any { it.contentType == ChoiceQuizContentType.IMAGE },
                     modifier = Modifier
                         .weight(1f)
                         .fillMaxHeight(),
@@ -233,6 +235,7 @@ fun ChoiceQuizItem(
                     isSubmitted = item.isSubmitted,
                     onOptionSelected = onOptionSelected,
                     shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
+                    useGridLayout = item.question.contentType == ChoiceQuizContentType.IMAGE || item.options.any { it.contentType == ChoiceQuizContentType.IMAGE },
                     modifier = Modifier
                         .padding(bottom = layout.cardBottomPadding.value())
                         .weight(1f)
