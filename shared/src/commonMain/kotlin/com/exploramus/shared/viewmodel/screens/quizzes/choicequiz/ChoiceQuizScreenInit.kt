@@ -1,7 +1,5 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
-import com.exploramus.core.models.ChoiceQuizStudyTarget
-import com.exploramus.core.models.Country
 import com.exploramus.data.repository.functions.getChoiceQuizImagePrimaryConfig
 import com.exploramus.data.repository.functions.getChoiceQuizPrimarySecondaryConfig
 import com.exploramus.data.repository.functions.getFlashcardCountriesAll
@@ -57,73 +55,14 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
                 screenTitle = params.screenTitle,
                 quiz = ChoiceQuizState(
                     items = quizItems,
-                    config = ChoiceQuizConfig(
-                        navigationMode = ChoiceQuizNavigationMode.AUTO
-                    )
-                )
+                    config = ChoiceQuizConfig()
+                ),
+                allCountries = countries,
+                studyTarget = studyTarget,
+                quizLimit = quizLimit
             )
         }
     },
     callOnInitAtEachNavigation = CallOnInitValues.DONT_CALL,
     clearStateCacheWhenScreenIsRemovedFromBackstack = true,
 )
-
-private fun buildChoiceQuizItem(
-    target: Country,
-    allCountries: List<Country>,
-    studyTarget: ChoiceQuizStudyTarget
-): ChoiceQuizItemState {
-    // 1. Pick distractors (3 other countries)
-    val distractors = allCountries
-        .filter { it.id != target.id }
-        .shuffled()
-        .take(3)
-
-    // 2. Build options based on studyTarget
-    val options = (distractors + target).shuffled().map { country ->
-        val content = when (studyTarget) {
-            ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> country.capital
-            ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> country.name
-            ChoiceQuizStudyTarget.IMAGE_PRIMARY -> country.name
-            ChoiceQuizStudyTarget.PRIMARY_IMAGE -> country.flagImage
-        }
-        val contentType = if (studyTarget == ChoiceQuizStudyTarget.PRIMARY_IMAGE) {
-            ChoiceQuizContentType.IMAGE
-        } else {
-            ChoiceQuizContentType.TEXT
-        }
-        ChoiceQuizOptionState(id = country.id, content = content, contentType = contentType)
-    }
-
-    // 3. Build question based on studyTarget
-    val questionContent = when (studyTarget) {
-        ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> target.name
-        ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> target.capital
-        ChoiceQuizStudyTarget.IMAGE_PRIMARY -> target.flagImage
-        ChoiceQuizStudyTarget.PRIMARY_IMAGE -> target.name
-    }
-
-    val questionContentType = if (studyTarget == ChoiceQuizStudyTarget.IMAGE_PRIMARY) {
-        ChoiceQuizContentType.IMAGE
-    } else {
-        ChoiceQuizContentType.TEXT
-    }
-
-    val prompt = when (studyTarget) {
-        ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> "What is the capital of this country?"
-        ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> "Which country belongs to this capital?"
-        ChoiceQuizStudyTarget.IMAGE_PRIMARY -> "Which country does this flag belong to?"
-        ChoiceQuizStudyTarget.PRIMARY_IMAGE -> "Find the flag for this country:"
-    }
-
-    return ChoiceQuizItemState(
-        id = target.id,
-        question = ChoiceQuizQuestionState(
-            prompt = prompt,
-            content = questionContent,
-            contentType = questionContentType
-        ),
-        options = options,
-        correctOptionId = target.id
-    )
-}

@@ -6,6 +6,7 @@ import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.nextChoiceQues
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.restartChoiceQuiz
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.selectChoiceOption
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.submitChoiceAnswer
+import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.toggleChoiceQuizNavigationMode
 
 sealed interface ChoiceQuizUiEvent {
     data object OnBackClicked : ChoiceQuizUiEvent
@@ -13,6 +14,7 @@ sealed interface ChoiceQuizUiEvent {
     data class OnSubmitAnswer(val itemId: String) : ChoiceQuizUiEvent
     data object OnNextClicked : ChoiceQuizUiEvent
     data object OnRestartClicked : ChoiceQuizUiEvent
+    data object OnToggleNavigationMode : ChoiceQuizUiEvent
 }
 
 class ChoiceQuizEventHandler(
@@ -26,6 +28,7 @@ class ChoiceQuizEventHandler(
             is ChoiceQuizUiEvent.OnSubmitAnswer -> events.submitChoiceAnswer(event.itemId)
             ChoiceQuizUiEvent.OnNextClicked -> events.nextChoiceQuestion()
             ChoiceQuizUiEvent.OnRestartClicked -> events.restartChoiceQuiz()
+            ChoiceQuizUiEvent.OnToggleNavigationMode -> events.toggleChoiceQuizNavigationMode()
         }
     }
 }

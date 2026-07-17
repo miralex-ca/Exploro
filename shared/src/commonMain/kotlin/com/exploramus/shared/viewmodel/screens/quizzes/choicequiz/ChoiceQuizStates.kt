@@ -1,6 +1,7 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
 import com.exploramus.core.models.ChoiceQuizStudyTarget
+import com.exploramus.core.models.Country
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 
 data class ChoiceQuizState(
@@ -15,6 +16,7 @@ data class ChoiceQuizState(
                 correctCount = answered.count { it.status == ChoiceQuizAnswerStatus.CORRECT },
                 incorrectCount = answered.count { it.status == ChoiceQuizAnswerStatus.INCORRECT },
                 progress = if (items.isEmpty()) 0f else answered.size / items.size.toFloat(),
+                score = if (items.isEmpty()) 0f else answered.count { it.status == ChoiceQuizAnswerStatus.CORRECT } / items.size.toFloat()
             )
         }
 }
@@ -58,21 +60,38 @@ enum class ChoiceQuizAnswerStatus {
 data class ChoiceQuizResultsState(
     val correctCount: Int = 0,
     val incorrectCount: Int = 0,
-    val progress: Float = 0f, // current progress percentage
+    val progress: Float = 0f, // current progress percentage (answered/total)
+    val score: Float = 0f, // score percentage (correct/total)
 )
 
 data class ChoiceQuizConfig(
     val showInstantFeedback: Boolean = true,
+    val autoSubmitDelayMs: Long = 400L,
+    val autoProceedCorrectDelayMs: Long = 600L,
+    val autoProceedIncorrectDelayMs: Long = 900L,
     val navigationMode: ChoiceQuizNavigationMode = ChoiceQuizNavigationMode.MANUAL,
-    val autoSubmitDelayMs: Long = 300L,
-    val autoProceedDelayMs: Long = 1000L,
 )
 
 enum class ChoiceQuizNavigationMode {
     MANUAL, AUTO
 }
 
+data class ChoiceQuizEvaluation(
+    val title: String,
+    val emoji: String,
+    val color: Long
+)
+
 // Logic Extensions
+
+fun ChoiceQuizResultsState.getEvaluation(): ChoiceQuizEvaluation {
+    return when {
+        score >= 1f -> ChoiceQuizEvaluation("Awesome!", "🤩", 0xFF4CAF50)
+        score >= 0.8f -> ChoiceQuizEvaluation("Very Good!", "😊", 0xFF2196F3)
+        score >= 0.4f -> ChoiceQuizEvaluation("Good Effort", "😐", 0xFFFF9800)
+        else -> ChoiceQuizEvaluation("Keep Practicing", "😔", 0xFFF44336)
+    }
+}
 
 fun ChoiceQuizState.selectOption(itemId: String, optionId: String): ChoiceQuizState {
     val updatedItems = items.map { item ->
@@ -115,4 +134,64 @@ fun ChoiceQuizState.restart(): ChoiceQuizState = copy(
 fun QuizType.toDefaultStudyTarget(): ChoiceQuizStudyTarget = when(this) {
     QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> ChoiceQuizStudyTarget.IMAGE_PRIMARY
     else -> ChoiceQuizStudyTarget.PRIMARY_SECONDARY
+}
+
+fun buildChoiceQuizItem(
+    target: Country,
+    allCountries: List<Country>,
+    studyTarget: ChoiceQuizStudyTarget
+): ChoiceQuizItemState {
+    // 1. Pick distractors (3 other countries)
+    val distractors = allCountries
+        .filter { it.id != target.id }
+        .shuffled()
+        .take(3)
+
+    // 2. Build options based on studyTarget
+    val options = (distractors + target).shuffled().map { country ->
+        val content = when (studyTarget) {
+            ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> country.capital
+            ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> country.name
+            ChoiceQuizStudyTarget.IMAGE_PRIMARY -> country.name
+            ChoiceQuizStudyTarget.PRIMARY_IMAGE -> country.flagImage
+        }
+        val contentType = if (studyTarget == ChoiceQuizStudyTarget.PRIMARY_IMAGE) {
+            ChoiceQuizContentType.IMAGE
+        } else {
+            ChoiceQuizContentType.TEXT
+        }
+        ChoiceQuizOptionState(id = country.id, content = content, contentType = contentType)
+    }
+
+    // 3. Build question based on studyTarget
+    val questionContent = when (studyTarget) {
+        ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> target.name
+        ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> target.capital
+        ChoiceQuizStudyTarget.IMAGE_PRIMARY -> target.flagImage
+        ChoiceQuizStudyTarget.PRIMARY_IMAGE -> target.name
+    }
+
+    val questionContentType = if (studyTarget == ChoiceQuizStudyTarget.IMAGE_PRIMARY) {
+        ChoiceQuizContentType.IMAGE
+    } else {
+        ChoiceQuizContentType.TEXT
+    }
+
+    val prompt = when (studyTarget) {
+        ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> "What is the capital of this country?"
+        ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> "Which country belongs to this capital?"
+        ChoiceQuizStudyTarget.IMAGE_PRIMARY -> "Which country does this flag belong to?"
+        ChoiceQuizStudyTarget.PRIMARY_IMAGE -> "Find the flag for this country:"
+    }
+
+    return ChoiceQuizItemState(
+        id = target.id,
+        question = ChoiceQuizQuestionState(
+            prompt = prompt,
+            content = questionContent,
+            contentType = questionContentType
+        ),
+        options = options,
+        correctOptionId = target.id
+    )
 }

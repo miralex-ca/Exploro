@@ -1,5 +1,7 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
+import com.exploramus.core.models.ChoiceQuizStudyTarget
+import com.exploramus.core.models.Country
 import com.exploramus.shared.viewmodel.core.ScreenState
 
 data class ChoiceQuizScreenState(
@@ -8,4 +10,7 @@ data class ChoiceQuizScreenState(
     val quiz: ChoiceQuizState = ChoiceQuizState(),
     val isFinished: Boolean = false,
     val totalRestartEvent: Int = 0,
+    val allCountries: List<Country> = emptyList(),
+    val studyTarget: ChoiceQuizStudyTarget = ChoiceQuizStudyTarget.PRIMARY_SECONDARY,
+    val quizLimit: Int? = null,
 ) : ScreenState
