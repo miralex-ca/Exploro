@@ -184,6 +184,17 @@ object AppColorPalette {
         onIconDark = Color.White
     )
 
+    val BrightGreen = AppColorSet(
+        iconLight = Color(0xFF19D401),
+        iconDark = Color(0xFF26FF0A),
+        backgroundLight = Color(0xFFE8FCE9),
+        backgroundDark = Color(0xFF19D401).copy(alpha = 0.2f),
+        textLight = Color(0xFF14A801),
+        textDark = Color(0xFFA5FF96),
+        onIconLight = Color.White,
+        onIconDark = Color.Black
+    )
+
     val Green = AppColorSet(
         iconLight = Color(0xFF43A047),
         iconDark = Color(0xFF66BB6A),
@@ -284,7 +295,7 @@ object AppColorPalette {
     )
 
     val all = listOf(
-        Red, Pink, Purple, DeepPurple, Indigo, Blue, LightBlue, Cyan, Teal, Green,
+        Red, Pink, Purple, DeepPurple, Indigo, Blue, LightBlue, Cyan, Teal, Jade, BrightGreen, Green,
         LightGreen, Lime, Yellow, Amber, Orange, DeepOrange, Brown, BlueGrey
     )
 }

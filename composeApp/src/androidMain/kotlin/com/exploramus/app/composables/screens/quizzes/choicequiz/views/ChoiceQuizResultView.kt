@@ -7,10 +7,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Assessment
-import androidx.compose.material.icons.outlined.Cancel
-import androidx.compose.material.icons.outlined.EmojiEvents
+import androidx.compose.material.icons.rounded.BarChart
 import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.FormatListNumbered
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -26,6 +26,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.exploramus.app.composables.screens.quizzes.utils.QuizResultGrade
+import com.exploramus.app.composables.screens.quizzes.utils.getQuizResultGrade
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
@@ -35,7 +37,6 @@ import com.exploramus.app.design.theme.AppColorSet
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizResultsState
-import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.getEvaluation
 
 @Composable
 fun ChoiceQuizResultView(
@@ -43,7 +44,8 @@ fun ChoiceQuizResultView(
     onRestartClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val evaluation = results.getEvaluation()
+    val scorePercentage = (results.score * 100).toInt()
+    val grade = getQuizResultGrade(scorePercentage)
     val layout = MaterialTheme.layout.flashcard
     val isLandscape = LocalFormFactor.current.isLandscape
 
@@ -67,12 +69,13 @@ fun ChoiceQuizResultView(
                     horizontalArrangement = Arrangement.spacedBy(2.dp)
                 ) {
                     ResultEvaluationCard(
-                        evaluation = evaluation,
+                        grade = grade,
                         shape = RoundedCornerShape(topStart = 24.dp, bottomStart = 24.dp),
                         modifier = Modifier.weight(0.65f).fillMaxHeight()
                     )
                     ResultStatsCard(
                         results = results,
+                        grade = grade,
                         onRestartClick = onRestartClick,
                         shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
                         modifier = Modifier.weight(1f).fillMaxHeight()
@@ -84,12 +87,13 @@ fun ChoiceQuizResultView(
                     verticalArrangement = Arrangement.spacedBy(2.dp)
                 ) {
                     ResultEvaluationCard(
-                        evaluation = evaluation,
+                        grade = grade,
                         shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
                         modifier = Modifier.weight(0.4f).fillMaxWidth()
                     )
                     ResultStatsCard(
                         results = results,
+                        grade = grade,
                         onRestartClick = onRestartClick,
                         shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
                         modifier = Modifier.weight(1f).fillMaxWidth().padding(bottom = layout.cardBottomPadding.value())
@@ -110,7 +114,7 @@ fun ChoiceQuizResultView(
 
 @Composable
 private fun ResultEvaluationCard(
-    evaluation: com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizEvaluation,
+    grade: QuizResultGrade,
     shape: androidx.compose.ui.graphics.Shape,
     modifier: Modifier = Modifier
 ) {
@@ -124,13 +128,20 @@ private fun ResultEvaluationCard(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = evaluation.emoji, fontSize = 64.sp)
             Text(
-                text = evaluation.title,
+                text = grade.title,
                 style = MaterialTheme.typography.headlineLarge,
                 fontWeight = FontWeight.Bold,
-                color = Color(evaluation.color),
-                textAlign = TextAlign.Center
+                color = grade.colorSet.text(),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Icon(
+                imageVector = grade.icon,
+                contentDescription = null,
+                tint = grade.colorSet.icon(),
+                modifier = Modifier.size(72.dp),
             )
         }
     }
@@ -139,6 +150,7 @@ private fun ResultEvaluationCard(
 @Composable
 private fun ResultStatsCard(
     results: ChoiceQuizResultsState,
+    grade: QuizResultGrade,
     onRestartClick: () -> Unit,
     shape: androidx.compose.ui.graphics.Shape,
     modifier: Modifier = Modifier
@@ -146,20 +158,18 @@ private fun ResultStatsCard(
     val totalCount = results.totalCount
     val scorePercentage = (results.score * 100).toInt()
 
-    val totalLabel = if (results.skipped > 0) "Total (skipped: ${results.skipped})" else "Total question"
-
     val metrics = listOf(
         QuizResultMetric(
             label = "Total question",
             value = totalCount.toString(),
-            icon = Icons.Outlined.Assessment,
+            icon = Icons.Rounded.FormatListNumbered,
             colorSet = AppColorPalette.BlueGrey
         ),
         QuizResultMetric(
             label = "Score",
             value = "$scorePercentage%",
-            icon = Icons.Outlined.EmojiEvents,
-            colorSet = AppColorPalette.Amber
+            icon = Icons.Rounded.BarChart,
+            colorSet = grade.colorSet
         ),
         QuizResultMetric(
             label = "Correct",
@@ -170,7 +180,7 @@ private fun ResultStatsCard(
         QuizResultMetric(
             label = "Errors",
             value = results.incorrectCount.toString(),
-            icon = Icons.Outlined.Cancel,
+            icon = Icons.Rounded.Close,
             colorSet = AppColorPalette.Red
         )
     )
