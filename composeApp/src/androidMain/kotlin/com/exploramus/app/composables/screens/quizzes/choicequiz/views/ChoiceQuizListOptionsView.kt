@@ -19,13 +19,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizOptionState
 
 @Composable
@@ -91,8 +89,8 @@ private fun ListOptionItem(
             Text(
                 text = option.content,
                 style = MaterialTheme.typography.titleLarge,
-                fontSize = 20.sp,
-                fontWeight = if (isSelected || (isSubmitted && isCorrect)) FontWeight.Bold else FontWeight.Medium,
+                fontSize = 19.sp,
+                fontWeight = FontWeight.Normal,
                 color = contentColor,
                 modifier = Modifier.weight(1f)
             )
@@ -101,8 +99,14 @@ private fun ListOptionItem(
                 Box(
                     modifier = Modifier
                         .size(30.dp)
-                        .clip(CircleShape)
-                        .background(contentColor.copy(alpha = 0.25f)),
+                        .graphicsLayer {
+                            shadowElevation = 8.dp.toPx()
+                            shape = CircleShape
+                            spotShadowColor = Color.Black.copy(alpha = 0.25f)
+                            ambientShadowColor = Color.Black.copy(alpha = 0.25f)
+                            clip = true
+                        }
+                        .background(contentColor.copy(alpha = 0.25f), CircleShape),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(

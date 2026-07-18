@@ -195,6 +195,17 @@ object AppColorPalette {
         onIconDark = Color.Black
     )
 
+    val KellyGreen = AppColorSet(
+        iconLight = Color(0xFF2EBA24),
+        iconDark = Color(0xFF46DD3A),
+        backgroundLight = Color(0xFFE8F8E9),
+        backgroundDark = Color(0xFF46DD3A).copy(alpha = 0.2f),
+        textLight = Color(0xFF269B1E),
+        textDark = Color(0xFFAFFAB0),
+        onIconLight = Color.White,
+        onIconDark = Color.Black
+    )
+
     val Green = AppColorSet(
         iconLight = Color(0xFF43A047),
         iconDark = Color(0xFF66BB6A),

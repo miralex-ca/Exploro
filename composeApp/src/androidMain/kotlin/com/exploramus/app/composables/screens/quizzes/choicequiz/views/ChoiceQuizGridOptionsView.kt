@@ -14,17 +14,17 @@ import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.unit.dp
-import androidx.compose.material3.Text
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.design.theme.AppColorPalette
@@ -126,17 +126,24 @@ private fun GridOptionItem(
                         .align(Alignment.TopEnd)
                         .padding(8.dp)
                         .size(30.dp)
-                        .clip(CircleShape)
+                        .graphicsLayer {
+                            shadowElevation = 8.dp.toPx()
+                            shape = CircleShape
+                            spotShadowColor = Color.Black.copy(alpha = 0.2f)
+                            ambientShadowColor = Color.Black.copy(alpha = 0.2f)
+                            clip = true
+                        }
                         .background(
-                            if (isImage) {
-                                if (isCorrect) AppColorPalette.Green.icon() else AppColorPalette.Red.icon()
+                            color = if (isImage) {
+                                if (isCorrect) AppColorPalette.BrightGreen.icon() else AppColorPalette.Red.icon()
                             } else {
                                 contentColor.copy(alpha = 0.2f)
-                            }
+                            },
+                            shape = CircleShape
                         )
                         .then(
                             if (isImage) {
-                                Modifier.border(BorderStroke(1.dp, Color.White.copy(alpha = 0.5f)), CircleShape)
+                                Modifier.border(BorderStroke(0.5.dp, Color.White.copy(alpha = 0.2f)), CircleShape)
                             } else {
                                 Modifier
                             }
