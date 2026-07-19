@@ -7,11 +7,6 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Flag
 import androidx.compose.material.icons.outlined.LocationCity
 import androidx.compose.material.icons.outlined.PieChart
-import androidx.compose.material.icons.rounded.EmojiEvents
-import androidx.compose.material.icons.rounded.SentimentDissatisfied
-import androidx.compose.material.icons.rounded.SentimentNeutral
-import androidx.compose.material.icons.rounded.SentimentSatisfied
-import androidx.compose.material.icons.rounded.SentimentVeryDissatisfied
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
@@ -72,11 +67,4 @@ data class QuizResultGrade(
     val scoreIcon: ImageVector = Icons.Outlined.PieChart
 )
 
-fun getQuizResultGrade(scorePercentage: Int): QuizResultGrade = when {
-    scorePercentage >= 96 -> QuizResultGrade("Brilliant Work!", AppColorPalette.BrightGreen, Icons.Rounded.EmojiEvents)
-    scorePercentage >= 80 -> QuizResultGrade("Excellent Effort!", AppColorPalette.Jade, Icons.Rounded.EmojiEvents)
-    scorePercentage >= 50 -> QuizResultGrade("Good Progress!", AppColorPalette.Blue, Icons.Rounded.SentimentSatisfied)
-    scorePercentage >= 30 -> QuizResultGrade("Getting There!", AppColorPalette.DeepOrange, Icons.Rounded.SentimentNeutral)
-    scorePercentage >= 1 -> QuizResultGrade("Keep Practicing!", AppColorPalette.Red, Icons.Rounded.SentimentDissatisfied)
-    else -> QuizResultGrade("Start Learning!", AppColorPalette.BlueGrey, Icons.Rounded.SentimentVeryDissatisfied)
-}
+

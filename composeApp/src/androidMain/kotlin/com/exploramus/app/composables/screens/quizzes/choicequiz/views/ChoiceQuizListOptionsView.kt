@@ -19,8 +19,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -99,13 +99,13 @@ private fun ListOptionItem(
                 Box(
                     modifier = Modifier
                         .size(30.dp)
-                        .graphicsLayer {
-                            shadowElevation = 8.dp.toPx()
-                            shape = CircleShape
-                            spotShadowColor = Color.Black.copy(alpha = 0.25f)
-                            ambientShadowColor = Color.Black.copy(alpha = 0.25f)
-                            clip = true
-                        }
+                        .shadow(
+                            elevation = 8.dp,
+                            shape = CircleShape,
+                            ambientColor = Color.Black.copy(alpha = 0.1f),
+                            spotColor = Color.Black.copy(alpha = 0.1f),
+                        )
+                        .background(color = backgroundColor, shape = CircleShape)
                         .background(contentColor.copy(alpha = 0.25f), CircleShape),
                     contentAlignment = Alignment.Center
                 ) {

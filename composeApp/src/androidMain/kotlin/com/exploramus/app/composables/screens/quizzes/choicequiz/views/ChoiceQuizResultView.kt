@@ -27,7 +27,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.screens.quizzes.utils.QuizResultGrade
-import com.exploramus.app.composables.screens.quizzes.utils.getQuizResultGrade
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
@@ -118,6 +117,8 @@ private fun ResultEvaluationCard(
     shape: androidx.compose.ui.graphics.Shape,
     modifier: Modifier = Modifier
 ) {
+
+    val contentColor = grade.colorSet.text()
     Card(
         shape = shape,
         border = BorderStroke(1.dp, MaterialTheme.appColors.cardBorder),
@@ -132,7 +133,7 @@ private fun ResultEvaluationCard(
                 text = grade.title,
                 style = MaterialTheme.typography.headlineLarge,
                 fontWeight = FontWeight.Bold,
-                color = grade.colorSet.text(),
+                color = contentColor,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
@@ -140,7 +141,7 @@ private fun ResultEvaluationCard(
             Icon(
                 imageVector = grade.icon,
                 contentDescription = null,
-                tint = grade.colorSet.icon(),
+                tint = contentColor,
                 modifier = Modifier.size(72.dp),
             )
         }
@@ -224,7 +225,7 @@ private fun ResultStatsCard(
                 if (results.skipped > 0) {
                     Text(
                         text = "Skipped questions: ${results.skipped}",
-                        fontSize = 16.sp,
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.Normal
                     )
                 }
