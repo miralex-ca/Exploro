@@ -223,7 +223,7 @@ fun FlashcardItem(
                 modifier = Modifier
                     .widthIn(max = layout.landScapeCardMaxWidth.value())
                     .fillMaxHeight(),
-                horizontalArrangement = Arrangement.spacedBy(2.dp)
+                horizontalArrangement = Arrangement.spacedBy(1.dp)
             ) {
                 FlashcardOpenHalf(
                     card = card,
@@ -250,7 +250,7 @@ fun FlashcardItem(
                 modifier = Modifier
                     .widthIn(max = layout.cardMaxWidth.value())
                     .fillMaxHeight(),
-                verticalArrangement = Arrangement.spacedBy(2.dp)
+                verticalArrangement = Arrangement.spacedBy(1.dp)
             ) {
                 val openCardRatio = if (studyTarget == FlashcardStudyTarget.IMAGE) 0.65f else 0.4f
                 FlashcardOpenHalf(

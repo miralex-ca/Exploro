@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -252,7 +251,7 @@ private fun QuizResultCard(
         modifier = modifier
             .border(
                 width = 0.5.dp,
-                color = MaterialTheme.appColors.cardBorder,
+                color = MaterialTheme.appColors.quiz.metricBorder,
                 shape = RoundedCornerShape(12.dp)
             )
             .padding(16.dp),
@@ -289,7 +288,7 @@ private fun QuizResultCard(
         Text(
             text = metric.label,
             fontSize = 13.sp,
-            color = Color(0xFF5F5E5A),
+           // color = Color(0xFF5F5E5A),
         )
     }
 }

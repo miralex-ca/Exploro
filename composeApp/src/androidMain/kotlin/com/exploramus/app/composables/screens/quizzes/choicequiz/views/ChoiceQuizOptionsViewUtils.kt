@@ -10,8 +10,11 @@ import androidx.compose.material.icons.rounded.WorkspacePremium
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.exploramus.app.R
 import com.exploramus.app.composables.screens.quizzes.utils.QuizResultGrade
 import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.app.design.theme.AppColorSet
@@ -22,11 +25,11 @@ internal fun getOptionBorderColor(isSelected: Boolean, isCorrect: Boolean, isSub
     return when {
         !isSubmitted -> {
             if (isSelected) AppColorPalette.Blue.icon()
-            else MaterialTheme.appColors.cardBorder.copy(alpha = 0.5f)
+            else MaterialTheme.appColors.quiz.optionBorder
         }
         isCorrect -> AppColorPalette.GreenCorrect.icon()
         isSelected -> AppColorPalette.RedIncorrect.icon()
-        else -> MaterialTheme.appColors.cardBorder.copy(alpha = 0.3f)
+        else -> MaterialTheme.appColors.cardBorder.copy(alpha = 0.6f)
     }
 }
 
@@ -39,17 +42,17 @@ internal fun getOptionContentColor(isSelected: Boolean, isCorrect: Boolean, isSu
         }
         isCorrect -> AppColorPalette.GreenCorrect.onIcon()
         isSelected -> AppColorPalette.RedIncorrect.onIcon()
-        else -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
+        else -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
     }
 }
 
 @Composable
 internal fun getOptionBackgroundColor(isSelected: Boolean, isCorrect: Boolean, isSubmitted: Boolean): Color {
     return when {
-        !isSubmitted -> Color.Transparent
+        !isSubmitted -> MaterialTheme.appColors.quiz.optionBg
         isCorrect -> AppColorPalette.GreenCorrect.icon()
         isSelected -> AppColorPalette.RedIncorrect.icon()
-        else -> Color.Transparent
+        else -> MaterialTheme.appColors.quiz.optionBg
     }
 }
 
@@ -58,12 +61,17 @@ internal fun getOptionBorderWidth(isSelected: Boolean, isCorrect: Boolean, isSub
     return when {
         isGrid && isHighlighted -> 4.dp
         isHighlighted -> 2.dp
-        else -> 2.dp
+        else -> 1.dp
     }
 }
 
 internal fun getOptionAlpha(isSelected: Boolean, isCorrect: Boolean, isSubmitted: Boolean): Float {
     return if (isSubmitted && !isSelected && !isCorrect) 0.7f else 1f
+}
+
+@Composable
+internal fun getChoiceQuizIconPainter(isCorrect: Boolean): Painter {
+    return painterResource(if (isCorrect) R.drawable.check_bold else R.drawable.close_bold)
 }
 
 fun getQuizResultGrade(scorePercentage: Int): QuizResultGrade = when {
@@ -78,10 +86,10 @@ fun getQuizResultGrade(scorePercentage: Int): QuizResultGrade = when {
 
 val AppColorPalette.GreenCorrect: AppColorSet
     get() = AppColorSet(
-        iconLight = Color(0xFF2AB020),
+        iconLight = Color(0xFF3DAB35),
         iconDark = Color(0xFF209319),
         backgroundLight = Color(0xFFE8F8E9),
-        backgroundDark = Color(0xFF46DD3A).copy(alpha = 0.2f),
+        backgroundDark = Color(0xFF4ED543).copy(alpha = 0.2f),
         textLight = Color(0xFF269B1E),
         textDark = Color(0xFFAFFAB0),
         onIconLight = Color.White,
@@ -90,7 +98,7 @@ val AppColorPalette.GreenCorrect: AppColorSet
 
 val AppColorPalette.RedIncorrect: AppColorSet
     get() = AppColorSet(
-        iconLight = Color(0xFFF53B36),
+        iconLight = Color(0xFFEC4642),
         iconDark = Color(0xFFD53330),
         backgroundLight = Color(0xFFFFEBEE),
         backgroundDark = Color(0xFFEF5350).copy(alpha = 0.2f),

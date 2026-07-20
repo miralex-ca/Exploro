@@ -30,6 +30,7 @@ import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizContentType
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizItemState
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizScreenState
@@ -183,6 +184,8 @@ fun ChoiceQuizItem(
 ) {
     val layout = MaterialTheme.layout.flashcard
 
+    val cardsSpace = if (MaterialTheme.appColors.isDark) 2.dp else 1.dp
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxWidth(),
@@ -192,7 +195,7 @@ fun ChoiceQuizItem(
                 modifier = Modifier
                     .widthIn(max = layout.landScapeCardMaxWidth.value())
                     .fillMaxHeight(),
-                horizontalArrangement = Arrangement.spacedBy(2.dp)
+                horizontalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
                 ChoiceQuizQuestionView(
                     question = item.question,
@@ -219,7 +222,7 @@ fun ChoiceQuizItem(
                 modifier = Modifier
                     .widthIn(max = layout.cardMaxWidth.value())
                     .fillMaxHeight(),
-                verticalArrangement = Arrangement.spacedBy(2.dp)
+                verticalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
                 ChoiceQuizQuestionView(
                     question = item.question,

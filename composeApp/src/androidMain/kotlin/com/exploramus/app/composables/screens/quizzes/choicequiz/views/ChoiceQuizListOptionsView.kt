@@ -9,8 +9,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.RadioButtonUnchecked
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -18,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -35,27 +32,35 @@ fun ChoiceQuizListOptionsView(
     onOptionSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        options.forEach { option ->
-            val isSelected = option.id == selectedOptionId
-            val isCorrect = option.id == correctOptionId
-            ListOptionItem(
-                option = option,
-                isSelected = isSelected,
-                isCorrect = isCorrect,
-                isSubmitted = isSubmitted,
-                onClick = { onOptionSelected(option.id) },
-                modifier = Modifier.alpha(getOptionAlpha(isSelected, isCorrect, isSubmitted))
-            )
+
+    BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+        val topPadding = (maxHeight * 0.1f).coerceAtLeast(5.dp)
+
+        Column(
+            modifier = modifier
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 20.dp)
+                .padding(top = 10.dp, bottom = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(Modifier.height(topPadding))
+            options.forEach { option ->
+                val isSelected = option.id == selectedOptionId
+                val isCorrect = option.id == correctOptionId
+                ListOptionItem(
+                    option = option,
+                    isSelected = isSelected,
+                    isCorrect = isCorrect,
+                    isSubmitted = isSubmitted,
+                    onClick = { onOptionSelected(option.id) },
+                    //   modifier = Modifier.alpha(getOptionAlpha(isSelected, isCorrect, isSubmitted))
+                )
+            }
         }
+
     }
+
 }
 
 @Composable
@@ -110,17 +115,18 @@ private fun ListOptionItem(
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        imageVector = if (isCorrect) Icons.Rounded.Check else Icons.Rounded.Close,
+                       // imageVector = if (isCorrect) Icons.Rounded.Check else Icons.Rounded.Close,
+                        painter = getChoiceQuizIconPainter(isCorrect),
                         contentDescription = null,
                         tint = contentColor,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(18.dp)
                     )
                 }
             } else {
                 Icon(
                     imageVector = Icons.Default.RadioButtonUnchecked,
                     contentDescription = null,
-                    tint = contentColor.copy(alpha = 0.5f),
+                    tint = contentColor.copy(alpha = if (isSubmitted) 0.2f else 0.5f),
                     modifier = Modifier.size(24.dp)
                 )
             }

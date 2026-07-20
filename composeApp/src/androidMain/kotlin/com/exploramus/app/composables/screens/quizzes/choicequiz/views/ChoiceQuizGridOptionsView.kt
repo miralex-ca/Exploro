@@ -8,9 +8,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -158,10 +155,10 @@ private fun ImageAnswerBadge(
         contentAlignment = Alignment.Center
     ) {
         Icon(
-            imageVector = if (isCorrect) Icons.Rounded.Check else Icons.Rounded.Close,
+            painter = getChoiceQuizIconPainter(isCorrect),
             contentDescription = null,
             tint = Color.White,
-            modifier = Modifier.size(20.dp)
+            modifier = Modifier.size(18.dp)
         )
     }
 }
@@ -188,10 +185,11 @@ private fun FlatAnswerBadge(
         contentAlignment = Alignment.Center
     ) {
         Icon(
-            imageVector = if (isCorrect) Icons.Rounded.Check else Icons.Rounded.Close,
+            //imageVector = if (isCorrect) Icons.Rounded.Check else Icons.Rounded.Close,
+            painter = getChoiceQuizIconPainter(isCorrect),
             contentDescription = null,
             tint = Color.White,
-            modifier = Modifier.size(20.dp)
+            modifier = Modifier.size(18.dp)
         )
     }
 }

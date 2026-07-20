@@ -4,16 +4,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
-import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.core.models.ChoiceQuizNavigationMode
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizResultsState
 
@@ -29,8 +29,7 @@ fun ChoiceQuizNavBar(
 ) {
     val isLastPage = currentIndex == totalCount - 1
     val buttonText = if (isLastPage) "Finish" else "Next"
-    
-    // Button is ONLY shown in MANUAL mode. In AUTO mode, everything is automated.
+
     val showButton = navigationMode == ChoiceQuizNavigationMode.MANUAL
     val isEnabled = !isLastPage || isOptionSelected
 
@@ -52,7 +51,7 @@ fun ChoiceQuizNavBar(
                 .widthIn(min = 240.dp)
             ,
         ) {
-            // Stats Section
+
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(if (showButton) 12.dp else 20.dp),
@@ -61,34 +60,32 @@ fun ChoiceQuizNavBar(
                 // Correct Counter
                 StatItem(
                     count = results.correctCount,
-                    icon = Icons.Rounded.Check,
-                    color = Color(0xFF4CAF50)
+                    icon = getChoiceQuizIconPainter(true),
+                    color = AppColorPalette.GreenCorrect.text()
                 )
 
                 // Error Counter
                 StatItem(
                     count = results.incorrectCount,
-                    icon = Icons.Rounded.Close,
-                    color = MaterialTheme.colorScheme.error
+                    icon = getChoiceQuizIconPainter(false),
+                    color = AppColorPalette.RedIncorrect.text()
                 )
 
-                // Divider
                 VerticalDivider(
                     modifier = Modifier.height(24.dp),
                     thickness = 1.dp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)
                 )
 
-                // Progress Counter
                 Text(
                     text = "${currentIndex + 1} / $totalCount",
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                  //  modifier = Modifier.weight(1f)
                 )
             }
 
-            // Continue Button
             if (showButton) {
                 Spacer(modifier = Modifier.width(20.dp))
                 Button(
@@ -98,7 +95,7 @@ fun ChoiceQuizNavBar(
                     contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
                     modifier = Modifier
                         .height(44.dp)
-                        .widthIn(min = 100.dp)
+                        .widthIn(min = 110.dp)
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -127,15 +124,15 @@ fun ChoiceQuizNavBar(
 @Composable
 private fun StatItem(
     count: Int,
-    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    icon: Painter,
     color: Color
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        horizontalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         Icon(
-            imageVector = icon,
+            painter = icon,
             contentDescription = null,
             tint = color,
             modifier = Modifier.size(18.dp)
@@ -143,7 +140,7 @@ private fun StatItem(
         Text(
             text = count.toString(),
             style = MaterialTheme.typography.bodyLarge,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Medium,
             color = color
         )
     }

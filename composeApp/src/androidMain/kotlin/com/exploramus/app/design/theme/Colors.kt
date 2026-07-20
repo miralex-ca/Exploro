@@ -17,7 +17,7 @@ val BlueBackground = Color(0xFFD8DFEC) // background of screen
 val OnBlueBackground = Color(0xFF001B3E)
 
 val BlueSurface = Color(0xFFECF3FA) // bottom bar
-val onBlueSurface = Color(0xFF001B3E) //ripple effet on surface,
+val onBlueSurface = Color(0xFF283E5B) //ripple effet on surface,
 val BlueSurfaceTint = Color(0xFF385BA9)
 
 val BlueSurfaceContainer = Color(0xFFECF3FA)
