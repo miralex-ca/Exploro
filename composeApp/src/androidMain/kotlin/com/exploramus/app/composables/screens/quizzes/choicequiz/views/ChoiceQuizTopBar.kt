@@ -68,19 +68,6 @@ fun ChoiceQuizTopBar(
                 onDismissRequest = { showMenu = false }
             ) {
                 DropdownMenuItem(
-                    text = { Text(Strings.flashcardRestart) },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Outlined.Refresh,
-                            contentDescription = null
-                        )
-                    },
-                    onClick = {
-                        onEvent(ChoiceQuizUiEvent.OnRestartClicked)
-                        showMenu = false
-                    }
-                )
-                DropdownMenuItem(
                     text = { Text("Auto-advance") },
                     leadingIcon = {
                         val icon = if (navigationMode == ChoiceQuizNavigationMode.AUTO) {
@@ -92,6 +79,20 @@ fun ChoiceQuizTopBar(
                     },
                     onClick = {
                         onEvent(ChoiceQuizUiEvent.OnToggleNavigationMode)
+                        showMenu = false
+                    }
+                )
+
+                DropdownMenuItem(
+                    text = { Text(Strings.flashcardRestart) },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Refresh,
+                            contentDescription = null
+                        )
+                    },
+                    onClick = {
+                        onEvent(ChoiceQuizUiEvent.OnRestartClicked)
                         showMenu = false
                     }
                 )

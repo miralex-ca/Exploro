@@ -37,35 +37,47 @@ fun ChoiceQuizGridOptionsView(
     onOptionSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        FlowRow(
-            modifier = Modifier.verticalScroll(rememberScrollState()),
-            maxItemsInEachRow = 2,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+
+    BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+        val topPadding = (maxHeight * 0.14f).coerceAtLeast(5.dp)
+
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(horizontal = 18.dp)
+            ,
+            contentAlignment = Alignment.TopCenter
         ) {
-            options.forEach { option ->
-                val isSelected = option.id == selectedOptionId
-                val isCorrect = option.id == correctOptionId
-                GridOptionItem(
-                    option = option,
-                    isSelected = isSelected,
-                    isCorrect = isCorrect,
-                    isSubmitted = isSubmitted,
-                    onClick = { onOptionSelected(option.id) },
-                    modifier = Modifier
-                        .weight(1f)
-                        .aspectRatio(1.5f)
-                        .alpha(getOptionAlpha(isSelected, isCorrect, isSubmitted))
-                )
+
+            FlowRow(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .padding(top = topPadding)
+                    .padding(top = 10.dp, bottom = 20.dp)
+                ,
+                maxItemsInEachRow = 2,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                options.forEach { option ->
+                    val isSelected = option.id == selectedOptionId
+                    val isCorrect = option.id == correctOptionId
+                    GridOptionItem(
+                        option = option,
+                        isSelected = isSelected,
+                        isCorrect = isCorrect,
+                        isSubmitted = isSubmitted,
+                        onClick = { onOptionSelected(option.id) },
+                        modifier = Modifier
+                            .weight(1f)
+                            .aspectRatio(1.5f)
+                            .alpha(getOptionAlpha(isSelected, isCorrect, isSubmitted))
+                    )
+                }
             }
         }
     }
+
 }
 
 @Composable

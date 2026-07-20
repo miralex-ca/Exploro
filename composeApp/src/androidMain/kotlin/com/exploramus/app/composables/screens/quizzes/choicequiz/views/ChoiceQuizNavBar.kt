@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.exploramus.app.design.theme.AppColorPalette
@@ -54,17 +55,15 @@ fun ChoiceQuizNavBar(
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(if (showButton) 12.dp else 20.dp),
+                horizontalArrangement = Arrangement.spacedBy(if (showButton) 4.dp else 14.dp),
                 modifier = Modifier.fillMaxHeight()
             ) {
-                // Correct Counter
                 StatItem(
                     count = results.correctCount,
                     icon = getChoiceQuizIconPainter(true),
                     color = AppColorPalette.GreenCorrect.text()
                 )
 
-                // Error Counter
                 StatItem(
                     count = results.incorrectCount,
                     icon = getChoiceQuizIconPainter(false),
@@ -72,9 +71,13 @@ fun ChoiceQuizNavBar(
                 )
 
                 VerticalDivider(
-                    modifier = Modifier.height(24.dp),
+                    modifier =
+                        Modifier
+                            .height(24.dp)
+                            .padding(horizontal = 6.dp)
+                    ,
                     thickness = 1.dp,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
                 )
 
                 Text(
@@ -82,40 +85,21 @@ fun ChoiceQuizNavBar(
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                  //  modifier = Modifier.weight(1f)
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .widthIn(min = 60.dp)
+                       // .padding(horizontal = 6.dp)
                 )
             }
 
             if (showButton) {
-                Spacer(modifier = Modifier.width(20.dp))
-                Button(
-                    onClick = onContinueClick,
+                Spacer(modifier = Modifier.width(16.dp))
+                ContinueButton(
+                    text = buttonText,
+                    showIcon = !isLastPage,
                     enabled = isEnabled,
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                    modifier = Modifier
-                        .height(44.dp)
-                        .widthIn(min = 110.dp)
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                    ) {
-                        Text(
-                            text = buttonText,
-                            style = MaterialTheme.typography.labelLarge,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        if (!isLastPage) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
-                                contentDescription = null,
-                                modifier = Modifier.size(20.dp)
-                            )
-                        }
-                    }
-                }
+                    onClick = onContinueClick
+                )
             }
         }
     }
@@ -139,9 +123,59 @@ private fun StatItem(
         )
         Text(
             text = count.toString(),
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Medium,
-            color = color
+            color = color,
+            textAlign = TextAlign.Start,
+            modifier = Modifier
+                .widthIn(min = 20.dp)
         )
+    }
+}
+
+@Composable
+private fun ContinueButton(
+    text: String,
+    showIcon: Boolean,
+    enabled: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+
+    val contentPadding = PaddingValues(
+        start = if (showIcon) 28.dp else 16.dp,
+        end = 16.dp,
+        top = 8.dp,
+        bottom = 8.dp,
+    )
+
+    Button(
+        onClick = onClick,
+        enabled = enabled,
+        shape = CircleShape,
+        contentPadding = contentPadding,
+        modifier = modifier
+            .height(44.dp)
+            .widthIn(min = 120.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.labelLarge,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+            )
+
+            if (showIcon) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp)
+                )
+            }
+        }
     }
 }

@@ -211,7 +211,7 @@ fun ChoiceQuizItem(
                     isSubmitted = item.isSubmitted,
                     onOptionSelected = onOptionSelected,
                     shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
-                    useGridLayout = item.question.contentType == ChoiceQuizContentType.IMAGE || item.options.any { it.contentType == ChoiceQuizContentType.IMAGE },
+                    useGridLayout = item.options.any { it.contentType == ChoiceQuizContentType.IMAGE },
                     modifier = Modifier
                         .weight(1f)
                         .fillMaxHeight(),
@@ -238,7 +238,7 @@ fun ChoiceQuizItem(
                     isSubmitted = item.isSubmitted,
                     onOptionSelected = onOptionSelected,
                     shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
-                    useGridLayout = item.question.contentType == ChoiceQuizContentType.IMAGE || item.options.any { it.contentType == ChoiceQuizContentType.IMAGE },
+                    useGridLayout = item.options.any { it.contentType == ChoiceQuizContentType.IMAGE },
                     modifier = Modifier
                         .padding(bottom = layout.cardBottomPadding.value())
                         .weight(1f)
