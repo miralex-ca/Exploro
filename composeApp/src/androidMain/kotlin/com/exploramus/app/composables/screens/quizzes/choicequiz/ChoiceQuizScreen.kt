@@ -97,6 +97,9 @@ fun ChoiceQuizScreen(
     }
 }
 
+
+private val NavBarReservedWidth = 72.dp
+
 @Composable
 fun ChoiceQuizContent(
     quizState: ChoiceQuizState,
@@ -105,8 +108,9 @@ fun ChoiceQuizContent(
 ) {
     val formFactor = LocalFormFactor.current
     val isLandscape = formFactor.isLandscape
+    val isCompactHeight = formFactor.heightType == HeightType.COMPACT
 
-    val layout = MaterialTheme.layout.flashcard // Reuse flashcard layout values for consistency
+    val layout = MaterialTheme.layout.flashcard
 
     Column(
         modifier = Modifier
@@ -115,50 +119,75 @@ fun ChoiceQuizContent(
             .padding(top = layout.topPadding.value()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        HorizontalPager(
-            state = pagerState,
-            contentPadding = PaddingValues(horizontal = layout.cardHorizontalPadding.value()),
-            pageSpacing = 32.dp,
-            beyondViewportPageCount = 2,
-            userScrollEnabled = false,
+        Box(
             modifier = Modifier
                 .weight(1f)
-                .fillMaxWidth(),
-        ) { page ->
-            val item = quizState.items[page]
+                .fillMaxWidth()
+        ) {
+            HorizontalPager(
+                state = pagerState,
+                contentPadding = PaddingValues(horizontal = layout.cardHorizontalPadding.value()),
+                pageSpacing = 32.dp,
+                beyondViewportPageCount = 2,
+                userScrollEnabled = false,
+                modifier = Modifier.fillMaxSize(),
+            ) { page ->
+                val item = quizState.items[page]
 
-            ChoiceQuizItem(
-                item = item,
-                isLandscape = isLandscape,
-                onOptionSelected = { optionId ->
-                    onEvent(ChoiceQuizUiEvent.OnOptionSelected(item.id, optionId))
-                },
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(bottom = 30.dp)
-                    .graphicsLayer {
-                        val pageOffset = (
-                                (pagerState.currentPage - page) + pagerState
-                                    .currentPageOffsetFraction
-                                ).absoluteValue
-
-                        val scale = lerp(
-                            start = 0.94f,
-                            stop = 1f,
-                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                        )
-                        scaleX = scale
-                        scaleY = scale
-                        alpha = lerp(
-                            start = 0.8f,
-                            stop = 1f,
-                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                        )
+                ChoiceQuizItem(
+                    item = item,
+                    isLandscape = isLandscape,
+                    onOptionSelected = { optionId ->
+                        onEvent(ChoiceQuizUiEvent.OnOptionSelected(item.id, optionId))
                     },
-            )
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .padding(
+                            end = if (isCompactHeight) NavBarReservedWidth else 0.dp,
+                            bottom = if (isCompactHeight) 0.dp else 30.dp,
+                        )
+                        .graphicsLayer {
+                            val pageOffset = (
+                                    (pagerState.currentPage - page) + pagerState
+                                        .currentPageOffsetFraction
+                                    ).absoluteValue
+
+                            val scale = lerp(
+                                start = 0.94f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            )
+                            scaleX = scale
+                            scaleY = scale
+                            alpha = lerp(
+                                start = 0.8f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            )
+                        },
+                )
+            }
+
+            if (isCompactHeight) {
+                val currentItem = quizState.items.getOrNull(pagerState.currentPage)
+                ChoiceQuizNavBar(
+                    results = quizState.results,
+                    currentIndex = pagerState.currentPage,
+                    totalCount = quizState.items.size,
+                    isOptionSelected = currentItem?.selectedOptionId != null,
+                    navigationMode = quizState.config.navigationMode,
+                    onContinueClick = { onEvent(ChoiceQuizUiEvent.OnNextClicked) },
+                    isVertical = true,
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                        .padding(end = layout.cardHorizontalPadding.value())
+                        .padding(bottom = 16.dp)
+                        .navigationBarsPadding()
+                )
+            }
         }
 
-        if (formFactor.heightType != HeightType.COMPACT) {
+        if (!isCompactHeight) {
             val currentItem = quizState.items.getOrNull(pagerState.currentPage)
             ChoiceQuizNavBar(
                 results = quizState.results,
