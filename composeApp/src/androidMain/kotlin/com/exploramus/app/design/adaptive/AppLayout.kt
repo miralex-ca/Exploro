@@ -27,6 +27,7 @@ data class AppLayout(
     val homeCard: HomeCard,
     val sectionCard: SectionCard,
     val flashcard: Flashcard,
+    val quiz: Quiz,
 ) {
 
 
@@ -69,15 +70,27 @@ data class AppLayout(
         val cardBottomPadding: AdpH,
         val bottomBarPadding: AdpH,
         val cardHorizontalPadding: Adp,
+    )
 
-        )
+    data class Quiz(
+        val topPadding: AdaptiveSizeValue<Dp>,
+        val cardMaxWidth: AdaptiveSizeValue<Dp>,
+        val maxHeight: AdaptiveSizeValue<Dp>,
+        val landScapeCardMaxWidth: AdaptiveSizeValue<Dp>,
+        val optionsHorizontalPadding: AdaptiveSizeValue<Dp>,
+        val optionsTopPadding: AdaptiveSizeValue<Dp>,
+        val optionsBottomPadding: AdaptiveSizeValue<Dp>,
+        val cardBottomPadding: AdpH,
+    )
 
     data class QuizzesSection(
         val itemMaxWidth: Adp,
-        val horizontalPadding:Adp,
+        val horizontalPadding: Adp,
         val topPadding: Adp,
         val bottomPadding: Adp,
     )
+
+
 
     data class HomeCard(
         val width: Adp,
@@ -194,7 +207,27 @@ object AppLayouts {
             cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
             bottomBarPadding = adph(16.dp, expandedInCompact = 20.dp),
             cardHorizontalPadding = adp(16.dp, 24.dp, 48.dp),
+        ),
+        quiz = AppLayout.Quiz(
+            topPadding = adpSizeForFormat(phone = 26.dp, phoneLandscape = 12.dp, tablet = 60.dp),
 
+            cardMaxWidth = adpSizeForFormat(
+                phone = 440.dp,
+                tablet = 520.dp,
+                largeTablet = 580.dp,
+            ),
+            maxHeight = adpSizeForFormat(
+                phone = 800.dp,
+                tablet = 950.dp,
+                tabletLandscape = 580.dp,
+                largeTablet = 1050.dp,
+                largeTabletLandscape = 650.dp,
+            ),
+            landScapeCardMaxWidth = adpSizeForFormat(phone = 620.dp, phoneLandscape = 700.dp, tablet = 840.dp, largeTabletLandscape = 900.dp),
+            optionsHorizontalPadding = adpSizeForFormat( phone = 20.dp, tablet = 40.dp, largeTablet = 50.dp, largeTabletLandscape = 60.dp),
+            optionsTopPadding = adpSizeForFormat( phone = 10.dp, tablet = 10.dp, tabletLandscape = 20.dp),
+            optionsBottomPadding = adpSizeForFormat( phone = 10.dp, largePhone = 40.dp, tablet = 90.dp, tabletLandscape = 20.dp),
+            cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
         )
     )
 

@@ -43,7 +43,9 @@ fun ChoiceQuizGridOptionsView(
 
         Box(
             modifier = modifier
+
                 .fillMaxSize()
+
                 .padding(horizontal = 18.dp)
             ,
             contentAlignment = Alignment.TopCenter
@@ -51,9 +53,11 @@ fun ChoiceQuizGridOptionsView(
 
             FlowRow(
                 modifier = Modifier
+                    .align(Alignment.Center)
                     .verticalScroll(rememberScrollState())
-                    .padding(top = topPadding)
-                    .padding(top = 10.dp, bottom = 20.dp)
+                    //.padding(bottom = 20.dp)
+                   // .padding(top = topPadding)
+                    .padding(top = 10.dp, bottom = 40.dp)
                 ,
                 maxItemsInEachRow = 2,
                 horizontalArrangement = Arrangement.spacedBy(12.dp),

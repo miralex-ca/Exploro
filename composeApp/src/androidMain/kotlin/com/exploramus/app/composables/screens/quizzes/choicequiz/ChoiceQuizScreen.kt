@@ -25,8 +25,8 @@ import com.exploramus.app.composables.screens.quizzes.choicequiz.views.ChoiceQui
 import com.exploramus.app.composables.screens.quizzes.choicequiz.views.ChoiceQuizQuestionView
 import com.exploramus.app.composables.screens.quizzes.choicequiz.views.ChoiceQuizResultView
 import com.exploramus.app.composables.screens.quizzes.choicequiz.views.ChoiceQuizTopBar
-import com.exploramus.app.design.adaptive.HeightType
 import com.exploramus.app.design.adaptive.LocalFormFactor
+import com.exploramus.app.design.adaptive.isCompactHeight
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
@@ -108,29 +108,35 @@ fun ChoiceQuizContent(
 ) {
     val formFactor = LocalFormFactor.current
     val isLandscape = formFactor.isLandscape
-    val isCompactHeight = formFactor.heightType == HeightType.COMPACT
+    val isCompactLandscape = formFactor.isCompactHeight && formFactor.isLandscape
 
-    val layout = MaterialTheme.layout.flashcard
+    val cardLayout = MaterialTheme.layout.flashcard
 
-    Column(
+    val layout = MaterialTheme.layout.quiz
+
+
+    Box(
         modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(max = layout.maxHeight.value())
-            .padding(top = layout.topPadding.value()),
-        horizontalAlignment = Alignment.CenterHorizontally,
+            .fillMaxSize()
     ) {
-        Box(
+
+        Column(
             modifier = Modifier
-                .weight(1f)
                 .fillMaxWidth()
+                .heightIn(max = layout.maxHeight.value())
+                .padding(top = layout.topPadding.value()),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+
             HorizontalPager(
                 state = pagerState,
-                contentPadding = PaddingValues(horizontal = layout.cardHorizontalPadding.value()),
+                contentPadding = PaddingValues(horizontal = cardLayout.cardHorizontalPadding.value()),
                 pageSpacing = 32.dp,
                 beyondViewportPageCount = 2,
                 userScrollEnabled = false,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
             ) { page ->
                 val item = quizState.items[page]
 
@@ -141,10 +147,10 @@ fun ChoiceQuizContent(
                         onEvent(ChoiceQuizUiEvent.OnOptionSelected(item.id, optionId))
                     },
                     modifier = Modifier
-                        .fillMaxHeight()
+                        // .fillMaxHeight()
                         .padding(
-                            end = if (isCompactHeight) NavBarReservedWidth else 0.dp,
-                            bottom = if (isCompactHeight) 0.dp else 30.dp,
+                            end = if (isCompactLandscape) NavBarReservedWidth else 0.dp,
+                            bottom = if (isCompactLandscape) 25.dp else 30.dp,
                         )
                         .graphicsLayer {
                             val pageOffset = (
@@ -168,7 +174,7 @@ fun ChoiceQuizContent(
                 )
             }
 
-            if (isCompactHeight) {
+            if (!isCompactLandscape) {
                 val currentItem = quizState.items.getOrNull(pagerState.currentPage)
                 ChoiceQuizNavBar(
                     results = quizState.results,
@@ -177,18 +183,17 @@ fun ChoiceQuizContent(
                     isOptionSelected = currentItem?.selectedOptionId != null,
                     navigationMode = quizState.config.navigationMode,
                     onContinueClick = { onEvent(ChoiceQuizUiEvent.OnNextClicked) },
-                    isVertical = true,
                     modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .padding(end = layout.cardHorizontalPadding.value())
-                        .padding(bottom = 16.dp)
                         .navigationBarsPadding()
+                        .padding(bottom = cardLayout.bottomBarPadding.value())
                 )
             }
+
         }
 
-        if (!isCompactHeight) {
+        if (isCompactLandscape) {
             val currentItem = quizState.items.getOrNull(pagerState.currentPage)
+
             ChoiceQuizNavBar(
                 results = quizState.results,
                 currentIndex = pagerState.currentPage,
@@ -196,11 +201,16 @@ fun ChoiceQuizContent(
                 isOptionSelected = currentItem?.selectedOptionId != null,
                 navigationMode = quizState.config.navigationMode,
                 onContinueClick = { onEvent(ChoiceQuizUiEvent.OnNextClicked) },
+                isVertical = true,
                 modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = cardLayout.cardHorizontalPadding.value())
+                    .padding(bottom = 4.dp)
                     .navigationBarsPadding()
-                    .padding(bottom = layout.bottomBarPadding.value())
             )
         }
+
+
     }
 }
 
@@ -211,7 +221,7 @@ fun ChoiceQuizItem(
     onOptionSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val layout = MaterialTheme.layout.flashcard
+    val layout = MaterialTheme.layout.quiz
 
     val cardsSpace = if (MaterialTheme.appColors.isDark) 2.dp else 1.dp
 
@@ -223,7 +233,8 @@ fun ChoiceQuizItem(
             Row(
                 modifier = Modifier
                     .widthIn(max = layout.landScapeCardMaxWidth.value())
-                    .fillMaxHeight(),
+                    //.fillMaxHeight()
+                ,
                 horizontalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
                 ChoiceQuizQuestionView(
@@ -231,7 +242,7 @@ fun ChoiceQuizItem(
                     shape = RoundedCornerShape(topStart = 24.dp, bottomStart = 24.dp),
                     modifier = Modifier
                         .weight(0.65f)
-                        .fillMaxHeight()
+                        //.fillMaxHeight()
                 )
                 ChoiceQuizOptionsView(
                     options = item.options,
@@ -250,15 +261,16 @@ fun ChoiceQuizItem(
             Column(
                 modifier = Modifier
                     .widthIn(max = layout.cardMaxWidth.value())
-                    .fillMaxHeight(),
+                   // .fillMaxHeight()
+                ,
                 verticalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
                 ChoiceQuizQuestionView(
                     question = item.question,
                     shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
                     modifier = Modifier
-                        .weight(0.4f)
-                        .fillMaxWidth(),
+                        .weight(0.5f)
+                       // .fillMaxWidth(),
                 )
                 ChoiceQuizOptionsView(
                     options = item.options,

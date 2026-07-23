@@ -68,8 +68,13 @@ data class AdaptiveSizeValue<T>(
     val mediumMedium: T = compactMedium, // foldable
     val mediumExpanded: T = mediumMedium, // tablet portrait
 
+
     val expandedCompact: T = mediumMedium, // phone landscape
     val expandedMedium: T = mediumExpanded, // tablet landscape
+
+    val largeMediumExpanded: T = mediumExpanded, // largest tablet, desktop
+    val largeExpandedMedium: T = expandedMedium, // large tablet landscape
+
     val expandedExpanded: T = expandedMedium // largest tablet, desktop
 )
 
@@ -85,6 +90,9 @@ fun <T> AdaptiveSizeValue<T>.value(): T {
         SizeBucket.ExpandedCompact -> expandedCompact
         SizeBucket.ExpandedMedium -> expandedMedium
         SizeBucket.ExpandedExpanded -> expandedExpanded
+        SizeBucket.LargeMediumExpanded -> largeMediumExpanded
+        SizeBucket.LargeExpandedMedium -> largeExpandedMedium
+        SizeBucket.LargeExpandedExpanded -> expandedExpanded
     }
 }
 
@@ -111,4 +119,31 @@ fun adpSizeForHeight(
         expandedCompact = compact,
         expandedMedium = medium,
         expandedExpanded = expanded
+    )
+
+fun adpSizeForFormat(
+    phone: Dp,
+    phoneLandscape: Dp = phone,
+    largePhone: Dp = phone,
+    largePhoneLandscape: Dp = phoneLandscape,
+    foldable: Dp = largePhone,
+    tablet: Dp = largePhone,
+    tabletLandscape: Dp = tablet,
+    largeTablet: Dp = tablet,
+    largeTabletLandscape: Dp = tabletLandscape,
+): AdaptiveSizeValue<Dp> =
+    AdaptiveSizeValue(
+        compactCompact = phone,
+        compactMedium = phone,
+        compactExpanded = largePhone,
+
+        mediumCompact = phoneLandscape,
+        mediumMedium = foldable,
+        mediumExpanded = tablet,
+        largeMediumExpanded = largeTablet,
+
+        expandedCompact = largePhoneLandscape,
+        expandedMedium = tabletLandscape,
+        largeExpandedMedium = largeTabletLandscape,
+        expandedExpanded = largeTabletLandscape
     )

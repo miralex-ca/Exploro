@@ -21,6 +21,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.exploramus.app.design.adaptive.layout
+import com.exploramus.app.design.adaptive.value
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizOptionState
 
 @Composable
@@ -33,18 +35,27 @@ fun ChoiceQuizListOptionsView(
     modifier: Modifier = Modifier,
 ) {
 
-    BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+    val layout = MaterialTheme.layout.quiz
+
+    BoxWithConstraints(
+        modifier = modifier
+            .fillMaxSize()
+
+    ) {
+
         val topPadding = (maxHeight * 0.1f).coerceAtLeast(5.dp)
 
         Column(
             modifier = modifier
+                .align(Alignment.Center)
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 20.dp)
-                .padding(top = 10.dp, bottom = 20.dp),
+                .padding(horizontal = layout.optionsHorizontalPadding.value())
+                .padding(top = layout.optionsTopPadding.value(), bottom = layout.optionsBottomPadding.value())
+            ,
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(Modifier.height(topPadding))
+           // Spacer(Modifier.height(topPadding))
             options.forEach { option ->
                 val isSelected = option.id == selectedOptionId
                 val isCorrect = option.id == correctOptionId

@@ -1,7 +1,6 @@
 package com.exploramus.app.design.adaptive
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -18,7 +17,8 @@ val LocalFormFactor = staticCompositionLocalOf<FormFactor> {
 data class FormFactor(
     val widthType: WidthType,
     val heightType: HeightType,
-    val orientation: ScreenOrientation
+    val orientation: ScreenOrientation,
+    val isLargeTablet: Boolean
 )
 
 enum class WidthType {
@@ -49,7 +49,11 @@ enum class SizeBucket {
 
     ExpandedCompact,
     ExpandedMedium,
-    ExpandedExpanded
+    ExpandedExpanded,
+
+    LargeExpandedMedium,
+    LargeMediumExpanded,
+    LargeExpandedExpanded,
 }
 
 val FormFactor.isPhone get() = this.widthType == WidthType.COMPACT
@@ -72,12 +76,15 @@ val FormFactor.sizeBucket: SizeBucket
         WidthType.MEDIUM -> when (heightType) {
             HeightType.COMPACT -> SizeBucket.MediumCompact
             HeightType.MEDIUM -> SizeBucket.MediumMedium
+            HeightType.EXPANDED if isLargeTablet -> SizeBucket.LargeMediumExpanded
             HeightType.EXPANDED -> SizeBucket.MediumExpanded
         }
 
         WidthType.EXPANDED -> when (heightType) {
             HeightType.COMPACT -> SizeBucket.ExpandedCompact
+            HeightType.MEDIUM if isLargeTablet -> SizeBucket.LargeExpandedMedium
             HeightType.MEDIUM -> SizeBucket.ExpandedMedium
+            HeightType.EXPANDED if isLargeTablet -> SizeBucket.LargeExpandedExpanded
             HeightType.EXPANDED -> SizeBucket.ExpandedExpanded
         }
     }
@@ -114,17 +121,20 @@ fun rememberFormFactor(): FormFactor {
         }
 
         val screenOrientation =
-            if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+            if (configuration.screenWidthDp > configuration.screenHeightDp)
                 ScreenOrientation.LANDSCAPE
             else
                 ScreenOrientation.PORTRAIT
 
+        val isLargeTablet = configuration.screenWidthDp > 1200 || configuration.screenHeightDp > 1100
+
         FormFactor(
             widthType = widthType,
             heightType = heightType,
-            orientation = screenOrientation
+            orientation = screenOrientation,
+            isLargeTablet = isLargeTablet
         ).also{
-            Log.d("Formfactor: $it , width ${ configuration.screenWidthDp}, height ${configuration.screenHeightDp} ")
+            Log.d("Formfactor: $it, size: ${it.sizeBucket} , width ${ configuration.screenWidthDp}, height ${configuration.screenHeightDp} ")
         }
     }
 }
