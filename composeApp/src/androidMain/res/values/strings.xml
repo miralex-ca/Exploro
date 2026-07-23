@@ -112,4 +112,9 @@
     <string name="choice_quiz_select_pair">Select quiz pair</string>
     <string name="choice_quiz_limit_label">Quiz limit</string>
     <string name="choice_quiz_limit_no_limit">No limit</string>
+
+    <string name="choice_quiz_prompt_primary_secondary">What is the capital of this country?</string>
+    <string name="choice_quiz_prompt_secondary_primary">Which country belongs to this capital?</string>
+    <string name="choice_quiz_prompt_image_primary">Which country does this flag belong to?</string>
+    <string name="choice_quiz_prompt_primary_image">Find the flag for this country:</string>
 </resources>

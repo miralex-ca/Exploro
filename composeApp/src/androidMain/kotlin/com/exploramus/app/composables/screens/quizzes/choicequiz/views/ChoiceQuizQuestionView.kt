@@ -2,7 +2,7 @@ package com.exploramus.app.composables.screens.quizzes.choicequiz.views
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
@@ -19,6 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.screens.quizzes.utils.toPrompt
+import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizContentType
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizQuestionState
@@ -29,6 +32,7 @@ fun ChoiceQuizQuestionView(
     shape: Shape,
     modifier: Modifier = Modifier,
 ) {
+    val layout = MaterialTheme.layout.quiz
     Card(
         shape = shape,
         border = BorderStroke(
@@ -37,39 +41,57 @@ fun ChoiceQuizQuestionView(
         ),
         modifier = modifier,
     ) {
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize(),
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
         ) {
-            when (question.contentType) {
-                ChoiceQuizContentType.TEXT -> {
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(24.dp),
-                    ) {
+            val prompt = question.toPrompt()
+            if (prompt != null) {
+                Text(
+                    text = prompt,
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(top = 12.dp, bottom = 12.dp)
+                )
+            }
+
+            Box(
+                contentAlignment = when (question.contentType) {
+                    ChoiceQuizContentType.TEXT -> BiasAlignment(
+                        horizontalBias = 0f,
+                        verticalBias = layout.qustionTextVerticalAlign
+                    )
+                    ChoiceQuizContentType.IMAGE -> Alignment.Center
+                },
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+            ) {
+                when (question.contentType) {
+                    ChoiceQuizContentType.TEXT -> {
                         Text(
                             text = question.content,
-                            style = MaterialTheme.typography.headlineMedium,
+                            style = MaterialTheme.typography.headlineLarge,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onSurface,
                         )
                     }
-                }
-                ChoiceQuizContentType.IMAGE -> {
-                    RemoteImage(
-                        imageUrl = question.content,
-                        contentDescription = null,
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .fillMaxWidth(0.75f)
-                            .fillMaxHeight(0.6f),
-                        shape = RoundedCornerShape(8.dp),
-                        usePlaceholder = false,
-                    )
+
+                    ChoiceQuizContentType.IMAGE -> {
+                        RemoteImage(
+                            imageUrl = question.content,
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier
+                                .fillMaxSize(0.9f),
+                            shape = RoundedCornerShape(8.dp),
+                            usePlaceholder = false,
+                        )
+                    }
                 }
             }
         }

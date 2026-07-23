@@ -24,6 +24,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.design.adaptive.layout
+import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizContentType
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizOptionState
@@ -37,6 +39,8 @@ fun ChoiceQuizGridOptionsView(
     onOptionSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+
+    val layout = MaterialTheme.layout.quiz
 
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
         val topPadding = (maxHeight * 0.14f).coerceAtLeast(5.dp)
@@ -55,9 +59,8 @@ fun ChoiceQuizGridOptionsView(
                 modifier = Modifier
                     .align(Alignment.Center)
                     .verticalScroll(rememberScrollState())
-                    //.padding(bottom = 20.dp)
-                   // .padding(top = topPadding)
-                    .padding(top = 10.dp, bottom = 40.dp)
+                    .padding(horizontal = layout.gridHorizontalPadding.value())
+                    .padding(top = layout.optionsTopPadding.value(), bottom = layout.optionsBottomPadding.value())
                 ,
                 maxItemsInEachRow = 2,
                 horizontalArrangement = Arrangement.spacedBy(12.dp),

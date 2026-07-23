@@ -40,7 +40,6 @@ fun ChoiceQuizListOptionsView(
     BoxWithConstraints(
         modifier = modifier
             .fillMaxSize()
-
     ) {
 
         val topPadding = (maxHeight * 0.1f).coerceAtLeast(5.dp)

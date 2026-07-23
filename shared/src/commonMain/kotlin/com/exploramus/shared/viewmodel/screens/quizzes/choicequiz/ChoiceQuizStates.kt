@@ -41,9 +41,9 @@ data class ChoiceQuizItemState(
 }
 
 data class ChoiceQuizQuestionState(
-    val prompt: String, // e.g., "What is the capital of this country?"
     val content: String, // e.g., "France" or a URL/resource path
     val contentType: ChoiceQuizContentType = ChoiceQuizContentType.TEXT,
+    val studyTarget: ChoiceQuizStudyTarget,
 )
 
 data class ChoiceQuizOptionState(
@@ -71,9 +71,9 @@ data class ChoiceQuizResultsState(
 
 data class ChoiceQuizConfigState(
     val showInstantFeedback: Boolean = true,
-    val autoSubmitDelayMs: Long = 400L,
-    val autoProceedCorrectDelayMs: Long = 600L,
-    val autoProceedIncorrectDelayMs: Long = 900L,
+    val autoSubmitDelayMs: Long = 200L,
+    val autoProceedCorrectDelayMs: Long = 700L,
+    val autoProceedIncorrectDelayMs: Long = 1000L,
     val navigationMode: ChoiceQuizNavigationMode = ChoiceQuizNavigationMode.MANUAL,
 )
 
@@ -178,19 +178,12 @@ fun buildChoiceQuizItem(
         ChoiceQuizContentType.TEXT
     }
 
-    val prompt = when (studyTarget) {
-        ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> "What is the capital of this country?"
-        ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> "Which country belongs to this capital?"
-        ChoiceQuizStudyTarget.IMAGE_PRIMARY -> "Which country does this flag belong to?"
-        ChoiceQuizStudyTarget.PRIMARY_IMAGE -> "Find the flag for this country:"
-    }
-
     return ChoiceQuizItemState(
         id = target.id,
         question = ChoiceQuizQuestionState(
-            prompt = prompt,
             content = questionContent,
-            contentType = questionContentType
+            contentType = questionContentType,
+            studyTarget = studyTarget,
         ),
         options = options,
         correctOptionId = target.id

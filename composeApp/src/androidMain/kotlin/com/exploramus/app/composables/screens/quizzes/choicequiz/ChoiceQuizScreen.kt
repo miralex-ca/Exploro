@@ -233,7 +233,6 @@ fun ChoiceQuizItem(
             Row(
                 modifier = Modifier
                     .widthIn(max = layout.landScapeCardMaxWidth.value())
-                    //.fillMaxHeight()
                 ,
                 horizontalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
@@ -241,8 +240,7 @@ fun ChoiceQuizItem(
                     question = item.question,
                     shape = RoundedCornerShape(topStart = 24.dp, bottomStart = 24.dp),
                     modifier = Modifier
-                        .weight(0.65f)
-                        //.fillMaxHeight()
+                        .weight(0.7f)
                 )
                 ChoiceQuizOptionsView(
                     options = item.options,
@@ -260,9 +258,7 @@ fun ChoiceQuizItem(
         } else {
             Column(
                 modifier = Modifier
-                    .widthIn(max = layout.cardMaxWidth.value())
-                   // .fillMaxHeight()
-                ,
+                    .widthIn(max = layout.cardMaxWidth.value()),
                 verticalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
                 ChoiceQuizQuestionView(
@@ -270,7 +266,6 @@ fun ChoiceQuizItem(
                     shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
                     modifier = Modifier
                         .weight(0.5f)
-                       // .fillMaxWidth(),
                 )
                 ChoiceQuizOptionsView(
                     options = item.options,

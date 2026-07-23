@@ -92,6 +92,11 @@ object Strings {
     val choiceQuizLimitLabel @Composable get() = stringRes(R.string.choice_quiz_limit_label)
     val choiceQuizLimitNoLimit @Composable get() = stringRes(R.string.choice_quiz_limit_no_limit)
 
+    val choiceQuizPromptPrimarySecondary @Composable get() = stringRes(R.string.choice_quiz_prompt_primary_secondary)
+    val choiceQuizPromptSecondaryPrimary @Composable get() = stringRes(R.string.choice_quiz_prompt_secondary_primary)
+    val choiceQuizPromptImagePrimary @Composable get() = stringRes(R.string.choice_quiz_prompt_image_primary)
+    val choiceQuizPromptPrimaryImage @Composable get() = stringRes(R.string.choice_quiz_prompt_primary_image)
+
     @Composable
     fun detailLabelLanguage(count: Int) = if (count == 1)
         stringRes(R.string.detail_label_language)

@@ -77,7 +77,9 @@ data class AppLayout(
         val cardMaxWidth: AdaptiveSizeValue<Dp>,
         val maxHeight: AdaptiveSizeValue<Dp>,
         val landScapeCardMaxWidth: AdaptiveSizeValue<Dp>,
+        val qustionTextVerticalAlign: Float,
         val optionsHorizontalPadding: AdaptiveSizeValue<Dp>,
+        val gridHorizontalPadding: AdaptiveSizeValue<Dp>,
         val optionsTopPadding: AdaptiveSizeValue<Dp>,
         val optionsBottomPadding: AdaptiveSizeValue<Dp>,
         val cardBottomPadding: AdpH,
@@ -224,7 +226,9 @@ object AppLayouts {
                 largeTabletLandscape = 650.dp,
             ),
             landScapeCardMaxWidth = adpSizeForFormat(phone = 620.dp, phoneLandscape = 700.dp, tablet = 840.dp, largeTabletLandscape = 900.dp),
+            qustionTextVerticalAlign = -0.36F,
             optionsHorizontalPadding = adpSizeForFormat( phone = 20.dp, tablet = 40.dp, largeTablet = 50.dp, largeTabletLandscape = 60.dp),
+            gridHorizontalPadding = adpSizeForFormat( phone = 4.dp, tablet = 20.dp, largeTablet = 50.dp, largeTabletLandscape = 60.dp),
             optionsTopPadding = adpSizeForFormat( phone = 10.dp, tablet = 10.dp, tabletLandscape = 20.dp),
             optionsBottomPadding = adpSizeForFormat( phone = 10.dp, largePhone = 40.dp, tablet = 90.dp, tabletLandscape = 20.dp),
             cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
@@ -249,6 +253,7 @@ object AppLayouts {
             flashcard = base.flashcard.copy(
                 topPadding = adp(26.dp),
             ),
+            quiz = base.quiz.copy(qustionTextVerticalAlign = -0.5f)
 
         )
     }
