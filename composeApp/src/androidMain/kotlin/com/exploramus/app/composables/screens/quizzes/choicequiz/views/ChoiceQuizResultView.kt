@@ -1,13 +1,9 @@
 package com.exploramus.app.composables.screens.quizzes.choicequiz.views
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.BarChart
 import androidx.compose.material.icons.rounded.Check
@@ -19,6 +15,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,6 +28,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.exploramus.app.composables.components.dialogs.ChoiceQuizMetricContent
+import com.exploramus.app.composables.components.dialogs.MetricInfoDialog
+import com.exploramus.app.composables.components.dialogs.QuizResultMetricType
 import com.exploramus.app.composables.screens.quizzes.utils.QuizResultGrade
 import com.exploramus.app.design.adaptive.*
 import com.exploramus.app.design.theme.AppColorPalette
@@ -120,15 +123,9 @@ fun ChoiceQuizResultView(
                                 .padding(bottom = layout.cardBottomPadding.value())
                                 .padding(bottom = 82.dp)
                         )
-                    }
-
-
-
-
+                    } 
                 }
-            }
-
-
+            } 
 
             Spacer(
                 modifier = Modifier
@@ -190,29 +187,50 @@ private fun ResultStatsCard(
 
     val metrics = listOf(
         QuizResultMetric(
+            type = QuizResultMetricType.TOTAL,
             label = "Total question",
             value = totalCount.toString(),
             icon = Icons.Rounded.FormatListNumbered,
             colorSet = AppColorPalette.BlueGrey
         ),
         QuizResultMetric(
+            type = QuizResultMetricType.SCORE,
             label = "Score",
             value = "$scorePercentage%",
             icon = Icons.Rounded.BarChart,
             colorSet = grade.colorSet
         ),
         QuizResultMetric(
+            type = QuizResultMetricType.CORRECT,
             label = "Correct",
             value = results.correctCount.toString(),
             icon = Icons.Rounded.Check,
             colorSet = AppColorPalette.Green
         ),
         QuizResultMetric(
+            type = QuizResultMetricType.ERRORS,
             label = "Errors",
             value = results.incorrectCount.toString(),
             icon = Icons.Rounded.Close,
             colorSet = AppColorPalette.Red
         )
+    )
+
+    var selectedMetricType by remember { mutableStateOf<QuizResultMetricType?>(null) }
+    val selectedMetric = metrics.find { it.type == selectedMetricType }
+
+    MetricInfoDialog(
+        isVisible = selectedMetric != null,
+        title = selectedMetric?.label ?: "",
+        onDismiss = { selectedMetricType = null },
+        content = {
+            ChoiceQuizMetricContent(
+                type = selectedMetricType,
+                results = results,
+                grade = grade,
+                label = selectedMetric?.label ?: ""
+            )
+        }
     )
 
     Card(
@@ -252,15 +270,31 @@ private fun ResultStatsCard(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(layout.resultStatsCardsSpacing.value())
                     ) {
-                        QuizResultCard(metric = metrics[0], modifier = Modifier.weight(1f))
-                        QuizResultCard(metric = metrics[1], modifier = Modifier.weight(1f))
+                        QuizResultCard(
+                            metric = metrics[0],
+                            onClick = { selectedMetricType = QuizResultMetricType.TOTAL },
+                            modifier = Modifier.weight(1f)
+                        )
+                        QuizResultCard(
+                            metric = metrics[1],
+                            onClick = { selectedMetricType = QuizResultMetricType.SCORE },
+                            modifier = Modifier.weight(1f)
+                        )
                     }
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(layout.resultStatsCardsSpacing.value())
                     ) {
-                        QuizResultCard(metric = metrics[2], modifier = Modifier.weight(1f))
-                        QuizResultCard(metric = metrics[3], modifier = Modifier.weight(1f))
+                        QuizResultCard(
+                            metric = metrics[2],
+                            onClick = { selectedMetricType = QuizResultMetricType.CORRECT },
+                            modifier = Modifier.weight(1f)
+                        )
+                        QuizResultCard(
+                            metric = metrics[3],
+                            onClick = { selectedMetricType = QuizResultMetricType.ERRORS },
+                            modifier = Modifier.weight(1f)
+                        )
                     }
                 }
 
@@ -293,17 +327,21 @@ private fun ResultStatsCard(
 @Composable
 private fun QuizResultCard(
     metric: QuizResultMetric,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val layout = MaterialTheme.layout.quiz
+    val shape = RoundedCornerShape(12.dp)
 
     Box(
         modifier = modifier
             .border(
                 width = 0.5.dp,
                 color = MaterialTheme.appColors.quiz.metricBorder,
-                shape = RoundedCornerShape(12.dp)
-            ),
+                shape = shape
+            )
+            .clip(shape)
+            .clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -360,6 +398,7 @@ private fun QuizResultCard(
 }
 
 private data class QuizResultMetric(
+    val type: QuizResultMetricType,
     val label: String,
     val value: String,
     val icon: ImageVector,
