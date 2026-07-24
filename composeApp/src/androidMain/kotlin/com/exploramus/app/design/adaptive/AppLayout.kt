@@ -101,8 +101,6 @@ data class AppLayout(
         val bottomPadding: Adp,
     )
 
-
-
     data class HomeCard(
         val width: Adp,
         val imageHeight: Adp,
@@ -236,8 +234,8 @@ object AppLayouts {
             ),
             landScapeCardMaxWidth = adpSizeForFormat(phone = 620.dp, phoneLandscape = 700.dp, tablet = 840.dp, largeTabletLandscape = 900.dp),
             questionTextSize = aspSizeForFormat(
-                phone = 14.sp,
-                foldable = 14.sp,
+                phone = 15.sp,
+                foldable = 16.sp,
                 tablet = 18.sp,
             ),
             questionTextVerticalAlign = -0.36F,
@@ -257,7 +255,7 @@ object AppLayouts {
                 phone = 12.dp,
                 phoneLandscape = 6.dp,
                 largePhone = 24.dp,
-                largePhoneLandscape = 16.dp,
+                largePhoneLandscape = 10.dp,
             ),
             resultStatsCardsSpacing = adpSizeForFormat(
                 phone = 8.dp,
@@ -267,7 +265,7 @@ object AppLayouts {
             resultStatsIconSize = adpSizeForFormat(
                 phone = 28.dp,
                 largePhone = 36.dp,
-                largePhoneLandscape = 36.dp,
+                largePhoneLandscape = 32.dp,
                 tablet = 36.dp,
             )
         )

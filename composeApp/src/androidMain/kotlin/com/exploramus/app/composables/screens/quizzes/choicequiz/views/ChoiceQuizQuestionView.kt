@@ -52,6 +52,7 @@ fun ChoiceQuizQuestionView(
             if (prompt != null) {
                 Text(
                     text = prompt,
+                    style = MaterialTheme.typography.titleSmall,
                     fontSize = layout.questionTextSize.value(),
                     fontWeight = FontWeight.Normal,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
