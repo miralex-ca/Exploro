@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -78,7 +79,8 @@ data class AppLayout(
         val cardMaxWidth: AdaptiveSizeValue<Dp>,
         val maxHeight: AdaptiveSizeValue<Dp>,
         val landScapeCardMaxWidth: AdaptiveSizeValue<Dp>,
-        val qustionTextVerticalAlign: Float,
+        val questionTextSize: AdaptiveSizeValue<TextUnit>,
+        val questionTextVerticalAlign: Float,
         val optionsHorizontalPadding: AdaptiveSizeValue<Dp>,
         val gridHorizontalPadding: AdaptiveSizeValue<Dp>,
         val optionsTopPadding: AdaptiveSizeValue<Dp>,
@@ -87,6 +89,9 @@ data class AppLayout(
         val bottomBarPadding: AdpH,
         val resultMaxHeight: AdaptiveSizeValue<Dp>,
         val resultMetricPadding: AdaptiveSizeValue<Dp>,
+        val resultStatsVSpacing: AdaptiveSizeValue<Dp>,
+        val resultStatsCardsSpacing: AdaptiveSizeValue<Dp>,
+        val resultStatsIconSize: AdaptiveSizeValue<Dp>,
     )
 
     data class QuizzesSection(
@@ -230,19 +235,41 @@ object AppLayouts {
                 largeTabletLandscape = 650.dp,
             ),
             landScapeCardMaxWidth = adpSizeForFormat(phone = 620.dp, phoneLandscape = 700.dp, tablet = 840.dp, largeTabletLandscape = 900.dp),
-            qustionTextVerticalAlign = -0.36F,
+            questionTextSize = aspSizeForFormat(
+                phone = 14.sp,
+                foldable = 14.sp,
+                tablet = 18.sp,
+            ),
+            questionTextVerticalAlign = -0.36F,
             optionsHorizontalPadding = adpSizeForFormat( phone = 20.dp, tablet = 40.dp, largeTablet = 50.dp, largeTabletLandscape = 60.dp),
             gridHorizontalPadding = adpSizeForFormat( phone = 4.dp, tablet = 20.dp, largeTablet = 50.dp, largeTabletLandscape = 60.dp),
             optionsTopPadding = adpSizeForFormat( phone = 10.dp, tablet = 10.dp, tabletLandscape = 20.dp),
             optionsBottomPadding = adpSizeForFormat( phone = 10.dp, largePhone = 40.dp, tablet = 90.dp, tabletLandscape = 20.dp),
             cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
             bottomBarPadding = adph(16.dp, expandedInCompact = 20.dp),
-            resultMetricPadding = adpSizeForFormat( phone = 16.dp, phoneLandscape = 4.dp),
+            resultMetricPadding = adpSizeForFormat( phone = 12.dp, phoneLandscape = 8.dp, largePhone = 16.dp, largePhoneLandscape = 10.dp),
             resultMaxHeight = adpSizeForFormat(
                 phone = 800.dp,
                 tablet = 950.dp,
-                tabletLandscape = 580.dp,
+                tabletLandscape = 600.dp,
             ),
+            resultStatsVSpacing = adpSizeForFormat(
+                phone = 12.dp,
+                phoneLandscape = 6.dp,
+                largePhone = 24.dp,
+                largePhoneLandscape = 16.dp,
+            ),
+            resultStatsCardsSpacing = adpSizeForFormat(
+                phone = 8.dp,
+                largePhone = 12.dp,
+                tablet = 12.dp,
+            ),
+            resultStatsIconSize = adpSizeForFormat(
+                phone = 28.dp,
+                largePhone = 36.dp,
+                largePhoneLandscape = 36.dp,
+                tablet = 36.dp,
+            )
         )
     )
 
@@ -264,7 +291,7 @@ object AppLayouts {
             flashcard = base.flashcard.copy(
                 topPadding = adp(26.dp),
             ),
-            quiz = base.quiz.copy(qustionTextVerticalAlign = -0.5f)
+            quiz = base.quiz.copy(questionTextVerticalAlign = -0.5f)
 
         )
     }

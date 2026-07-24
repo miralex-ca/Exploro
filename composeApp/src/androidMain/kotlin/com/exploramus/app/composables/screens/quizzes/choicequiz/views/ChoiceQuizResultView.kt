@@ -25,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.screens.quizzes.utils.QuizResultGrade
@@ -70,7 +71,11 @@ fun ChoiceQuizResultView(
             ) {
                 if (isLandscape) {
                     Row(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(bottom = if (isCompactLandscape) 0.dp else  layout.cardBottomPadding.value() )
+                            .padding(bottom = if (isCompactLandscape) 0.dp else 82.dp)
+                        ,
                         horizontalArrangement = Arrangement.spacedBy(2.dp)
                     ) {
                         ResultEvaluationCard(
@@ -88,6 +93,7 @@ fun ChoiceQuizResultView(
                             modifier = Modifier
                                 .weight(1f)
                              .fillMaxHeight()
+
                         )
                     }
                 } else {
@@ -95,6 +101,7 @@ fun ChoiceQuizResultView(
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.spacedBy(2.dp)
                     ) {
+
                         ResultEvaluationCard(
                             grade = grade,
                             shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
@@ -111,18 +118,21 @@ fun ChoiceQuizResultView(
                                 .weight(1f)
                                 .fillMaxWidth()
                                 .padding(bottom = layout.cardBottomPadding.value())
+                                .padding(bottom = 82.dp)
                         )
                     }
+
+
 
 
                 }
             }
 
+
+
             Spacer(
                 modifier = Modifier
                     .navigationBarsPadding()
-                    //.padding(bottom = layout.bottomBarPadding.value())
-                   // .height(72.dp)
             )
         }
     }
@@ -176,6 +186,8 @@ private fun ResultStatsCard(
     val totalCount = results.totalCount
     val scorePercentage = (results.score * 100).toInt()
 
+    val layout = MaterialTheme.layout.quiz
+
     val metrics = listOf(
         QuizResultMetric(
             label = "Total question",
@@ -210,42 +222,42 @@ private fun ResultStatsCard(
     ) {
         Column(
             modifier = Modifier
-                .verticalScroll(rememberScrollState())
                 .fillMaxSize()
                 .padding(horizontal = 24.dp)
                 .padding(
                     top = adpSizeForFormat(
                         phone = 24.dp,
                         phoneLandscape = 8.dp
+                    ).value(),
+                    bottom = adpSizeForFormat(
+                        phone = 24.dp,
+                        phoneLandscape = 8.dp
                     ).value()
                 ),
-            verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(
-                    adpSizeForFormat(
-                        phone = 24.dp,
-                        phoneLandscape = 6.dp
-                    ).value()
-                ),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier
+                    .weight(1f)
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(layout.resultStatsVSpacing.value()),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
                 Column(
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(layout.resultStatsCardsSpacing.value()),
+                    modifier = Modifier.padding(top = 8.dp)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        horizontalArrangement = Arrangement.spacedBy(layout.resultStatsCardsSpacing.value())
                     ) {
                         QuizResultCard(metric = metrics[0], modifier = Modifier.weight(1f))
                         QuizResultCard(metric = metrics[1], modifier = Modifier.weight(1f))
                     }
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        horizontalArrangement = Arrangement.spacedBy(layout.resultStatsCardsSpacing.value())
                     ) {
                         QuizResultCard(metric = metrics[2], modifier = Modifier.weight(1f))
                         QuizResultCard(metric = metrics[3], modifier = Modifier.weight(1f))
@@ -256,7 +268,8 @@ private fun ResultStatsCard(
                     Text(
                         text = "Skipped questions: ${results.skipped}",
                         fontSize = 15.sp,
-                        fontWeight = FontWeight.Normal
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.padding(top = 0.dp)
                     )
                 }
             }
@@ -265,7 +278,8 @@ private fun ResultStatsCard(
             Button(
                 onClick = onRestartClick,
                 modifier = Modifier
-                    .padding(top = 16.dp)
+                    .padding(top = 10.dp)
+                    .widthIn(max = 400.dp)
                     .fillMaxWidth()
                     .height(56.dp),
                 shape = RoundedCornerShape(16.dp)
@@ -303,7 +317,7 @@ private fun QuizResultCard(
             ) {
                 Box(
                     modifier = Modifier
-                        .size(36.dp)
+                        .size(layout.resultStatsIconSize.value())
                         .clip(CircleShape)
                         .background(metric.colorSet.background()),
                     contentAlignment = Alignment.Center,
@@ -312,7 +326,9 @@ private fun QuizResultCard(
                         imageVector = metric.icon,
                         contentDescription = null,
                         tint = metric.colorSet.icon(),
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier
+                            .padding(6.dp)
+                            .fillMaxSize(),
                     )
                 }
                 Text(
@@ -320,6 +336,7 @@ private fun QuizResultCard(
                     fontSize = 26.sp,
                     fontWeight = FontWeight.Medium,
                     color = metric.colorSet.text(),
+                    maxLines = 1,
                 )
             }
 
@@ -335,7 +352,8 @@ private fun QuizResultCard(
             Text(
                 text = metric.label,
                 fontSize = 13.sp,
-                // color = Color(0xFF5F5E5A),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }

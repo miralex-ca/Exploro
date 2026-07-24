@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.exploramus.app.composables.components.RemoteImage
 import com.exploramus.app.composables.screens.quizzes.utils.toPrompt
 import com.exploramus.app.design.adaptive.layout
+import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizContentType
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizQuestionState
@@ -51,7 +52,8 @@ fun ChoiceQuizQuestionView(
             if (prompt != null) {
                 Text(
                     text = prompt,
-                    style = MaterialTheme.typography.titleSmall,
+                    fontSize = layout.questionTextSize.value(),
+                    fontWeight = FontWeight.Normal,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(top = 12.dp, bottom = 12.dp)
@@ -62,7 +64,7 @@ fun ChoiceQuizQuestionView(
                 contentAlignment = when (question.contentType) {
                     ChoiceQuizContentType.TEXT -> BiasAlignment(
                         horizontalBias = 0f,
-                        verticalBias = layout.qustionTextVerticalAlign
+                        verticalBias = layout.questionTextVerticalAlign
                     )
                     ChoiceQuizContentType.IMAGE -> Alignment.Center
                 },

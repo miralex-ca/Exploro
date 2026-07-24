@@ -147,3 +147,30 @@ fun adpSizeForFormat(
         largeExpandedMedium = largeTabletLandscape,
         expandedExpanded = largeTabletLandscape
     )
+
+fun aspSizeForFormat(
+    phone: TextUnit,
+    phoneLandscape: TextUnit = phone,
+    largePhone: TextUnit = phone,
+    largePhoneLandscape: TextUnit = phoneLandscape,
+    foldable: TextUnit = largePhone,
+    tablet: TextUnit = largePhone,
+    tabletLandscape: TextUnit = tablet,
+    largeTablet: TextUnit = tablet,
+    largeTabletLandscape: TextUnit = tabletLandscape,
+): AdaptiveSizeValue<TextUnit> =
+    AdaptiveSizeValue(
+        compactCompact = phone,
+        compactMedium = phone,
+        compactExpanded = largePhone,
+
+        mediumCompact = phoneLandscape,
+        mediumMedium = foldable,
+        mediumExpanded = tablet,
+        largeMediumExpanded = largeTablet,
+
+        expandedCompact = largePhoneLandscape,
+        expandedMedium = tabletLandscape,
+        largeExpandedMedium = largeTabletLandscape,
+        expandedExpanded = largeTabletLandscape
+    )
