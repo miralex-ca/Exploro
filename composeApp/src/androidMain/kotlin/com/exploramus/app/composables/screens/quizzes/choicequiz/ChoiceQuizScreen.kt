@@ -83,7 +83,6 @@ fun ChoiceQuizScreen(
                     ChoiceQuizResultView(
                         results = screenState.quiz.results,
                         onRestartClick = { eventHandler.onEvent(ChoiceQuizUiEvent.OnRestartClicked) },
-                        modifier = Modifier.fillMaxSize()
                     )
                 } else {
                     ChoiceQuizContent(
@@ -147,7 +146,6 @@ fun ChoiceQuizContent(
                         onEvent(ChoiceQuizUiEvent.OnOptionSelected(item.id, optionId))
                     },
                     modifier = Modifier
-                        // .fillMaxHeight()
                         .padding(
                             end = if (isCompactLandscape) NavBarReservedWidth else 0.dp,
                             bottom = if (isCompactLandscape) 25.dp else 30.dp,
@@ -185,7 +183,7 @@ fun ChoiceQuizContent(
                     onContinueClick = { onEvent(ChoiceQuizUiEvent.OnNextClicked) },
                     modifier = Modifier
                         .navigationBarsPadding()
-                        .padding(bottom = cardLayout.bottomBarPadding.value())
+                        .padding(bottom = layout.bottomBarPadding.value())
                 )
             }
 
@@ -231,9 +229,7 @@ fun ChoiceQuizItem(
     ) {
         if (isLandscape) {
             Row(
-                modifier = Modifier
-                    .widthIn(max = layout.landScapeCardMaxWidth.value())
-                ,
+                modifier = Modifier.widthIn(max = layout.landScapeCardMaxWidth.value()),
                 horizontalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
                 ChoiceQuizQuestionView(

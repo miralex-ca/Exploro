@@ -74,6 +74,7 @@ data class AppLayout(
 
     data class Quiz(
         val topPadding: AdaptiveSizeValue<Dp>,
+        val cardHorizontalPadding: Adp,
         val cardMaxWidth: AdaptiveSizeValue<Dp>,
         val maxHeight: AdaptiveSizeValue<Dp>,
         val landScapeCardMaxWidth: AdaptiveSizeValue<Dp>,
@@ -83,6 +84,9 @@ data class AppLayout(
         val optionsTopPadding: AdaptiveSizeValue<Dp>,
         val optionsBottomPadding: AdaptiveSizeValue<Dp>,
         val cardBottomPadding: AdpH,
+        val bottomBarPadding: AdpH,
+        val resultMaxHeight: AdaptiveSizeValue<Dp>,
+        val resultMetricPadding: AdaptiveSizeValue<Dp>,
     )
 
     data class QuizzesSection(
@@ -212,7 +216,7 @@ object AppLayouts {
         ),
         quiz = AppLayout.Quiz(
             topPadding = adpSizeForFormat(phone = 26.dp, phoneLandscape = 12.dp, tablet = 60.dp),
-
+            cardHorizontalPadding = adp(16.dp, 24.dp, 48.dp),
             cardMaxWidth = adpSizeForFormat(
                 phone = 440.dp,
                 tablet = 520.dp,
@@ -232,6 +236,13 @@ object AppLayouts {
             optionsTopPadding = adpSizeForFormat( phone = 10.dp, tablet = 10.dp, tabletLandscape = 20.dp),
             optionsBottomPadding = adpSizeForFormat( phone = 10.dp, largePhone = 40.dp, tablet = 90.dp, tabletLandscape = 20.dp),
             cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
+            bottomBarPadding = adph(16.dp, expandedInCompact = 20.dp),
+            resultMetricPadding = adpSizeForFormat( phone = 16.dp, phoneLandscape = 4.dp),
+            resultMaxHeight = adpSizeForFormat(
+                phone = 800.dp,
+                tablet = 950.dp,
+                tabletLandscape = 580.dp,
+            ),
         )
     )
 

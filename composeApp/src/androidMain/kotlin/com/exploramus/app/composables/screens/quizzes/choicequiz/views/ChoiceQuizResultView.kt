@@ -4,8 +4,10 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.BarChart
 import androidx.compose.material.icons.rounded.Check
@@ -26,10 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.screens.quizzes.utils.QuizResultGrade
-import com.exploramus.app.design.adaptive.LocalFormFactor
-import com.exploramus.app.design.adaptive.isLandscape
-import com.exploramus.app.design.adaptive.layout
-import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.adaptive.*
 import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.app.design.theme.AppColorSet
 import com.exploramus.app.design.theme.appColors
@@ -44,69 +43,88 @@ fun ChoiceQuizResultView(
 ) {
     val scorePercentage = (results.score * 100).toInt()
     val grade = getQuizResultGrade(scorePercentage)
-    val layout = MaterialTheme.layout.flashcard
-    val isLandscape = LocalFormFactor.current.isLandscape
 
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .heightIn(max = layout.maxHeight.value())
-            .padding(top = layout.topPadding.value()),
-        horizontalAlignment = Alignment.CenterHorizontally,
+    val formFactor = LocalFormFactor.current
+    val isLandscape = formFactor.isLandscape
+    val isCompactLandscape = formFactor.isCompactHeight && formFactor.isLandscape
+
+    val layout = MaterialTheme.layout.quiz
+
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Box(
-            modifier = Modifier
-                .widthIn(max = if (isLandscape) layout.landScapeCardMaxWidth.value() else layout.cardMaxWidth.value())
-                .weight(1f)
-                .padding(horizontal = layout.cardHorizontalPadding.value()),
-            contentAlignment = Alignment.Center
+
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .heightIn(max = layout.resultMaxHeight.value())
+                .padding(top = layout.topPadding.value()),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            if (isLandscape) {
-                Row(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalArrangement = Arrangement.spacedBy(2.dp)
-                ) {
-                    ResultEvaluationCard(
-                        grade = grade,
-                        shape = RoundedCornerShape(topStart = 24.dp, bottomStart = 24.dp),
-                        modifier = Modifier.weight(0.65f).fillMaxHeight()
-                    )
-                    ResultStatsCard(
-                        results = results,
-                        grade = grade,
-                        onRestartClick = onRestartClick,
-                        shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
-                        modifier = Modifier.weight(1f).fillMaxHeight()
-                    )
-                }
-            } else {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(2.dp)
-                ) {
-                    ResultEvaluationCard(
-                        grade = grade,
-                        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
-                        modifier = Modifier.weight(0.4f).fillMaxWidth()
-                    )
-                    ResultStatsCard(
-                        results = results,
-                        grade = grade,
-                        onRestartClick = onRestartClick,
-                        shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
-                        modifier = Modifier.weight(1f).fillMaxWidth().padding(bottom = layout.cardBottomPadding.value())
-                    )
+            Box(
+                modifier = Modifier
+                    .widthIn(max = if (isLandscape) layout.landScapeCardMaxWidth.value() else layout.cardMaxWidth.value())
+                    .weight(1f)
+                    .padding(horizontal = layout.cardHorizontalPadding.value()),
+                contentAlignment = Alignment.Center
+            ) {
+                if (isLandscape) {
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalArrangement = Arrangement.spacedBy(2.dp)
+                    ) {
+                        ResultEvaluationCard(
+                            grade = grade,
+                            shape = RoundedCornerShape(topStart = 24.dp, bottomStart = 24.dp),
+                            modifier = Modifier
+                                .weight(0.65f)
+                            //.fillMaxHeight()
+                        )
+                        ResultStatsCard(
+                            results = results,
+                            grade = grade,
+                            onRestartClick = onRestartClick,
+                            shape = RoundedCornerShape(topEnd = 24.dp, bottomEnd = 24.dp),
+                            modifier = Modifier
+                                .weight(1f)
+                             .fillMaxHeight()
+                        )
+                    }
+                } else {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.spacedBy(2.dp)
+                    ) {
+                        ResultEvaluationCard(
+                            grade = grade,
+                            shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+                            modifier = Modifier
+                                .weight(0.4f)
+                                .fillMaxWidth()
+                        )
+                        ResultStatsCard(
+                            results = results,
+                            grade = grade,
+                            onRestartClick = onRestartClick,
+                            shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth()
+                                .padding(bottom = layout.cardBottomPadding.value())
+                        )
+                    }
+
+
                 }
             }
-        }
 
-        // Navigation Bar Placeholder
-        Spacer(
-            modifier = Modifier
-                .navigationBarsPadding()
-                .padding(bottom = layout.bottomBarPadding.value())
-                .height(72.dp)
-        )
+            Spacer(
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    //.padding(bottom = layout.bottomBarPadding.value())
+                   // .height(72.dp)
+            )
+        }
     }
 }
 
@@ -191,16 +209,29 @@ private fun ResultStatsCard(
         modifier = modifier
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(24.dp),
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .fillMaxSize()
+                .padding(horizontal = 24.dp)
+                .padding(
+                    top = adpSizeForFormat(
+                        phone = 24.dp,
+                        phoneLandscape = 8.dp
+                    ).value()
+                ),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(24.dp),
+                verticalArrangement = Arrangement.spacedBy(
+                    adpSizeForFormat(
+                        phone = 24.dp,
+                        phoneLandscape = 6.dp
+                    ).value()
+                ),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(top = 8.dp)
             ) {
-
 
                 Column(
                     verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -233,7 +264,10 @@ private fun ResultStatsCard(
 
             Button(
                 onClick = onRestartClick,
-                modifier = Modifier.fillMaxWidth().height(56.dp),
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .fillMaxWidth()
+                    .height(56.dp),
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Text(text = Strings.flashcardRestart, fontSize = 18.sp, fontWeight = FontWeight.Bold)
@@ -247,49 +281,63 @@ private fun QuizResultCard(
     metric: QuizResultMetric,
     modifier: Modifier = Modifier,
 ) {
-    Column(
+    val layout = MaterialTheme.layout.quiz
+
+    Box(
         modifier = modifier
             .border(
                 width = 0.5.dp,
                 color = MaterialTheme.appColors.quiz.metricBorder,
                 shape = RoundedCornerShape(12.dp)
-            )
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+            ),
+        contentAlignment = Alignment.Center
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        Column(
+            modifier = Modifier.padding(layout.resultMetricPadding.value()),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Box(
-                modifier = Modifier
-                    .size(36.dp)
-                    .clip(CircleShape)
-                    .background(metric.colorSet.background()),
-                contentAlignment = Alignment.Center,
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+
             ) {
-                Icon(
-                    imageVector = metric.icon,
-                    contentDescription = null,
-                    tint = metric.colorSet.icon(),
-                    modifier = Modifier.size(24.dp),
+                Box(
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clip(CircleShape)
+                        .background(metric.colorSet.background()),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(
+                        imageVector = metric.icon,
+                        contentDescription = null,
+                        tint = metric.colorSet.icon(),
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+                Text(
+                    text = metric.value,
+                    fontSize = 26.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = metric.colorSet.text(),
                 )
             }
+
+            Spacer(
+                modifier = Modifier.height(
+                    adpSizeForFormat(
+                        phone = 6.dp,
+                        phoneLandscape = 2.dp
+                    ).value()
+                )
+            )
+
             Text(
-                text = metric.value,
-                fontSize = 26.sp,
-                fontWeight = FontWeight.Medium,
-                color = metric.colorSet.text(),
+                text = metric.label,
+                fontSize = 13.sp,
+                // color = Color(0xFF5F5E5A),
             )
         }
-
-        Spacer(modifier = Modifier.height(6.dp))
-
-        Text(
-            text = metric.label,
-            fontSize = 13.sp,
-           // color = Color(0xFF5F5E5A),
-        )
     }
 }
 
