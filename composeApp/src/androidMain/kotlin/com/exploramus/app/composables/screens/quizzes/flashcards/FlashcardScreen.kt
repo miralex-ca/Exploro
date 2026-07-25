@@ -39,6 +39,7 @@ import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isLandscape
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
 import com.exploramus.core.models.FlashcardStudyTarget
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardDeckState
@@ -212,6 +213,7 @@ fun FlashcardItem(
     modifier: Modifier = Modifier,
 ) {
     val layout = MaterialTheme.layout.flashcard
+    val cardsSpace = if (MaterialTheme.appColors.isDark) 2.dp else 1.dp
 
     Box(
         contentAlignment = Alignment.Center,
@@ -223,7 +225,7 @@ fun FlashcardItem(
                 modifier = Modifier
                     .widthIn(max = layout.landScapeCardMaxWidth.value())
                     .fillMaxHeight(),
-                horizontalArrangement = Arrangement.spacedBy(1.dp)
+                horizontalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
                 FlashcardOpenHalf(
                     card = card,
@@ -250,7 +252,7 @@ fun FlashcardItem(
                 modifier = Modifier
                     .widthIn(max = layout.cardMaxWidth.value())
                     .fillMaxHeight(),
-                verticalArrangement = Arrangement.spacedBy(1.dp)
+                verticalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
                 val openCardRatio = if (studyTarget == FlashcardStudyTarget.IMAGE) 0.65f else 0.4f
                 FlashcardOpenHalf(
