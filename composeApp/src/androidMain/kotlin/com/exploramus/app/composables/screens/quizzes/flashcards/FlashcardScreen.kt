@@ -16,7 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -298,54 +298,48 @@ fun FlashcardNavBar(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+            modifier = Modifier
+                .padding(horizontal = 8.dp, vertical = 4.dp),
         ) {
-            IconButton(
+            FilledIconButton(
                 onClick = {
                     scope.launch {
                         pagerState.animateScrollToPage((currentPage - 1).coerceAtLeast(0))
                     }
                 },
                 enabled = currentPage > 0,
+                modifier = Modifier.size(width = 58.dp, height = 44.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.ChevronLeft,
                     contentDescription = Strings.commonPrevious,
-                    tint = if (currentPage > 0)
-                        MaterialTheme.colorScheme.onSurface
-                    else
-                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.25f),
                     modifier = Modifier.size(28.dp),
                 )
             }
 
             Text(
                 text = "${currentPage + 1} / $total",
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Medium,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .widthIn(min = 120.dp)
-                    .padding(horizontal = 8.dp)
+                    .widthIn(min = 100.dp)
             )
 
-            IconButton(
+            FilledIconButton(
                 onClick = {
                     scope.launch {
                         pagerState.animateScrollToPage((currentPage + 1).coerceAtMost(total - 1))
                     }
                 },
                 enabled = currentPage < total - 1,
+                modifier = Modifier.size(width = 58.dp, height = 44.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.ChevronRight,
                     contentDescription = Strings.commonNext,
-                    tint = if (currentPage < total - 1)
-                        MaterialTheme.colorScheme.onSurface
-                    else
-                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.25f),
                     modifier = Modifier.size(28.dp),
                 )
             }
