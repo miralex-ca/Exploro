@@ -73,9 +73,7 @@ fun ChoiceQuizResultView(
                     Row(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(bottom = if (isCompactLandscape) 0.dp else  layout.cardBottomPadding.value() )
-                            .padding(bottom = if (isCompactLandscape) 0.dp else 82.dp)
-                        ,
+                            .padding(bottom = if (isCompactLandscape) 0.dp else (layout.cardBottomPadding.value() + 82.dp)),
                         horizontalArrangement = Arrangement.spacedBy(2.dp)
                     ) {
                         ResultEvaluationCard(
@@ -117,8 +115,7 @@ fun ChoiceQuizResultView(
                             modifier = Modifier
                                 .weight(1f)
                                 .fillMaxWidth()
-                                .padding(bottom = layout.cardBottomPadding.value())
-                                .padding(bottom = 82.dp)
+                                .padding(bottom = layout.cardBottomPadding.value() + 82.dp)
                         )
                     } 
                 }

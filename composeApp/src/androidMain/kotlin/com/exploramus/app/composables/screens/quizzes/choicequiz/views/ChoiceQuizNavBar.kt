@@ -83,12 +83,10 @@ private fun VerticalChoiceQuizNavBar(
                 .padding(top = if (showButton) 20.dp else 0.dp, bottom = if (showButton) 12.dp else 0.dp)
                 .padding(horizontal = 6.dp)
                 .width(52.dp)
-                //.heightIn(min = 240.dp)
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(if (showButton) 8.dp else 14.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.weight(1f, fill = false)
             ) {
                 StatItem(
                     count = results.correctCount,

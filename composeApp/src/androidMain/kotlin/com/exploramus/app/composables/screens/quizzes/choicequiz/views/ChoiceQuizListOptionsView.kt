@@ -34,27 +34,20 @@ fun ChoiceQuizListOptionsView(
     onOptionSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-
     val layout = MaterialTheme.layout.quiz
 
-    BoxWithConstraints(
-        modifier = modifier
-            .fillMaxSize()
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-
-        val topPadding = (maxHeight * 0.1f).coerceAtLeast(5.dp)
-
         Column(
-            modifier = modifier
-                .align(Alignment.Center)
+            modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = layout.optionsHorizontalPadding.value())
-                .padding(top = layout.optionsTopPadding.value(), bottom = layout.optionsBottomPadding.value())
-            ,
+                .padding(top = layout.optionsTopPadding.value(), bottom = layout.optionsBottomPadding.value()),
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-           // Spacer(Modifier.height(topPadding))
             options.forEach { option ->
                 val isSelected = option.id == selectedOptionId
                 val isCorrect = option.id == correctOptionId
@@ -63,14 +56,11 @@ fun ChoiceQuizListOptionsView(
                     isSelected = isSelected,
                     isCorrect = isCorrect,
                     isSubmitted = isSubmitted,
-                    onClick = { onOptionSelected(option.id) },
-                    //   modifier = Modifier.alpha(getOptionAlpha(isSelected, isCorrect, isSubmitted))
+                    onClick = { onOptionSelected(option.id) }
                 )
             }
         }
-
     }
-
 }
 
 @Composable
@@ -126,7 +116,6 @@ private fun ListOptionItem(
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                       // imageVector = if (isCorrect) Icons.Rounded.Check else Icons.Rounded.Close,
                         painter = getChoiceQuizIconPainter(isCorrect),
                         contentDescription = null,
                         tint = contentColor,

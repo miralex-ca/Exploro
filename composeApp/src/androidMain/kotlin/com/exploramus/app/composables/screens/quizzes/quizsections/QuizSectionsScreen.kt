@@ -32,7 +32,6 @@ import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
-import com.exploramus.core.common.logging.Log
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.ContinentSectionState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionsScreenState
@@ -62,8 +61,6 @@ fun QuizzesSectionsContent(
     val layout = MaterialTheme.layout.quizzesSection
     val bottomPadding = layout.bottomPadding.value() +
             if (formFactor.useBottomBar) 60.dp else 0.dp
-
-    Log.d("QuizzesSectionsContent: ${screenState.quizzesSections}")
 
     if (screenState.quizzesSections.isEmpty()) {
         EmptyStateView(EmptyState.EmptyList)

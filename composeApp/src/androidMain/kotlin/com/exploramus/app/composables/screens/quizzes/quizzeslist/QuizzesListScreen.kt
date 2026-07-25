@@ -121,13 +121,15 @@ fun QuizzesListContent(
                         psTarget = screenState.psTarget,
                         ipTarget = screenState.ipTarget,
                         onClick = {
-                            onEvent(QuizzesListUiEvent.OnQuizClicked(
-                                sectionId = screenState.sectionInfo.continentId ?: "",
-                                sectionType = screenState.sectionInfo.sectionType,
-                                title = screenState.sectionInfo.title,
-                                quizType = quiz.quizType
-                            ))
-                                  },
+                            onEvent(
+                                QuizzesListUiEvent.OnQuizClicked(
+                                    sectionId = screenState.sectionInfo.continentId ?: "",
+                                    sectionType = screenState.sectionInfo.sectionType,
+                                    title = screenState.sectionInfo.title,
+                                    quizType = quiz.quizType
+                                )
+                            )
+                        },
                         onSettingsClick = { onEvent(QuizzesListUiEvent.OnQuizSettingsClicked(quiz.quizId, quiz.quizType)) },
                     )
                 }
