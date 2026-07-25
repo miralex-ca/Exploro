@@ -10,42 +10,27 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ChevronLeft
-import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material3.FilledIconButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.retain.retain
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.exploramus.app.composables.components.ScreenLoading
 import com.exploramus.app.composables.screens.quizzes.flashcards.views.FlashcardHiddenHalf
+import com.exploramus.app.composables.screens.quizzes.flashcards.views.FlashcardNavBar
 import com.exploramus.app.composables.screens.quizzes.flashcards.views.FlashcardOpenHalf
 import com.exploramus.app.composables.screens.quizzes.flashcards.views.FlashcardSettingsDialog
 import com.exploramus.app.composables.screens.quizzes.flashcards.views.FlashcardsTopBar
-import com.exploramus.app.design.adaptive.HeightType
-import com.exploramus.app.design.adaptive.LocalFormFactor
-import com.exploramus.app.design.adaptive.isLandscape
-import com.exploramus.app.design.adaptive.layout
-import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.adaptive.*
 import com.exploramus.app.design.theme.appColors
-import com.exploramus.app.resources.Strings
 import com.exploramus.core.models.FlashcardStudyTarget
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardDeckState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
-import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
 @Composable
@@ -137,70 +122,93 @@ fun FlashcardContent(
 ) {
     val formFactor = LocalFormFactor.current
     val isLandscape = formFactor.isLandscape
+    val isCompactLandscape = formFactor.isCompactHeight && formFactor.isLandscape
 
     val layout = MaterialTheme.layout.flashcard
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(max = layout.maxHeight.value())
-            .padding(top = layout.topPadding.value()),
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-        HorizontalPager(
-            state = pagerState,
-            contentPadding = PaddingValues(horizontal = layout.cardHorizontalPadding.value()),
-            pageSpacing = 32.dp,
-            beyondViewportPageCount = 2,
+        Column(
             modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth(),
-        ) { page ->
-            val card = deckState.cards[page]
-            var isRevealed by retain(page) { mutableStateOf(deckState.config.revealEnabled) }
-
-            FlashcardItem(
-                card = card,
-                studyTarget = deckState.config.studyTarget,
-                isRevealed = isRevealed,
-                isLandscape = isLandscape,
-                onRevealToggle = { isRevealed = !isRevealed },
+                .fillMaxWidth()
+                .heightIn(max = layout.maxHeight.value())
+                .padding(top = layout.topPadding.value()),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            HorizontalPager(
+                state = pagerState,
+                contentPadding = PaddingValues(horizontal = layout.cardHorizontalPadding.value()),
+                pageSpacing = 32.dp,
+                beyondViewportPageCount = 2,
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .padding(bottom = 30.dp)
-                    .graphicsLayer {
-                        val pageOffset = (
-                                (pagerState.currentPage - page) + pagerState
-                                    .currentPageOffsetFraction
-                                ).absoluteValue
+                    .weight(1f)
+                    .fillMaxWidth(),
+            ) { page ->
+                val card = deckState.cards[page]
+                var isRevealed by retain(page) { mutableStateOf(deckState.config.revealEnabled) }
 
-                        val scale = lerp(
-                            start = 0.94f,
-                            stop = 1f,
-                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                FlashcardItem(
+                    card = card,
+                    studyTarget = deckState.config.studyTarget,
+                    isRevealed = isRevealed,
+                    isLandscape = isLandscape,
+                    onRevealToggle = { isRevealed = !isRevealed },
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .padding(
+                            end = if (isCompactLandscape) NavBarReservedWidth else 0.dp,
+                            bottom = 30.dp
                         )
-                        scaleX = scale
-                        scaleY = scale
-                        alpha = lerp(
-                            start = 0.8f,
-                            stop = 1f,
-                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                        )
-                    },
-            )
+                        .graphicsLayer {
+                            val pageOffset = (
+                                    (pagerState.currentPage - page) + pagerState
+                                        .currentPageOffsetFraction
+                                    ).absoluteValue
+
+                            val scale = lerp(
+                                start = 0.94f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            )
+                            scaleX = scale
+                            scaleY = scale
+                            alpha = lerp(
+                                start = 0.8f,
+                                stop = 1f,
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                            )
+                        },
+                )
+            }
+
+            if (!isCompactLandscape && formFactor.heightType != HeightType.COMPACT) {
+                FlashcardNavBar(
+                    total = deckState.cards.size,
+                    pagerState = pagerState,
+                    modifier = Modifier
+                        .navigationBarsPadding()
+                        .padding(bottom = layout.bottomBarPadding.value())
+                )
+            }
         }
 
-        if (formFactor.heightType != HeightType.COMPACT) {
+        if (isCompactLandscape) {
             FlashcardNavBar(
                 total = deckState.cards.size,
                 pagerState = pagerState,
+                isVertical = true,
                 modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = layout.cardHorizontalPadding.value())
+                    .padding(bottom = 4.dp)
                     .navigationBarsPadding()
-                    .padding(bottom = layout.bottomBarPadding.value())
             )
         }
     }
 }
+
+private val NavBarReservedWidth = 72.dp
 
 
 @Composable
@@ -274,77 +282,6 @@ fun FlashcardItem(
                         .padding(bottom = layout.cardBottomPadding.value())
                         .weight(1f)
                         .fillMaxWidth(),
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun FlashcardNavBar(
-    total: Int,
-    pagerState: PagerState,
-    modifier: Modifier = Modifier,
-) {
-    val scope = rememberCoroutineScope()
-    val currentPage = pagerState.currentPage
-
-    Surface(
-        shape = CircleShape,
-        color = MaterialTheme.colorScheme.surfaceContainerHigh,
-        tonalElevation = 2.dp,
-        shadowElevation = 1.dp,
-        modifier = modifier
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
-            modifier = Modifier
-                .padding(horizontal = 6.dp, vertical = 6.dp),
-        ) {
-            FilledIconButton(
-                onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage((currentPage - 1).coerceAtLeast(0))
-                    }
-                },
-                enabled = currentPage > 0,
-                modifier = Modifier.size(width = 46.dp, height = 44.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ChevronLeft,
-                    contentDescription = Strings.commonPrevious,
-                    modifier = Modifier.size(28.dp).offset(x = (-1).dp),
-                )
-            }
-
-            Text(
-                text = "${currentPage + 1} / $total",
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .widthIn(min = 100.dp)
-            )
-
-            FilledIconButton(
-                onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage((currentPage + 1).coerceAtMost(total - 1))
-                    }
-                },
-                enabled = currentPage < total - 1,
-                modifier = Modifier
-                    .size(width = 46.dp, height = 44.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ChevronRight,
-                    contentDescription = Strings.commonNext,
-                    modifier = Modifier
-                        .size(28.dp)
-                        .offset(x = 1.dp)
-                    ,
                 )
             }
         }
