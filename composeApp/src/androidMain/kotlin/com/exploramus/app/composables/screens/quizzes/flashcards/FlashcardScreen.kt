@@ -205,7 +205,6 @@ fun FlashcardContent(
 
 private val NavBarReservedWidth = 72.dp
 
-
 @Composable
 fun FlashcardItem(
     card: FlashcardState,
@@ -266,6 +265,7 @@ fun FlashcardItem(
                         .fillMaxWidth(),
                     studyTarget = studyTarget,
                 )
+
                 FlashcardHiddenHalf(
                     card = card,
                     revealField = studyTarget,
