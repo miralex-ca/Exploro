@@ -15,8 +15,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material3.Icon
 import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -300,7 +300,7 @@ fun FlashcardNavBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
             modifier = Modifier
-                .padding(horizontal = 8.dp, vertical = 4.dp),
+                .padding(horizontal = 6.dp, vertical = 6.dp),
         ) {
             FilledIconButton(
                 onClick = {
@@ -309,12 +309,12 @@ fun FlashcardNavBar(
                     }
                 },
                 enabled = currentPage > 0,
-                modifier = Modifier.size(width = 58.dp, height = 44.dp)
+                modifier = Modifier.size(width = 46.dp, height = 44.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.ChevronLeft,
                     contentDescription = Strings.commonPrevious,
-                    modifier = Modifier.size(28.dp),
+                    modifier = Modifier.size(28.dp).offset(x = -2.dp),
                 )
             }
 
@@ -335,12 +335,16 @@ fun FlashcardNavBar(
                     }
                 },
                 enabled = currentPage < total - 1,
-                modifier = Modifier.size(width = 58.dp, height = 44.dp)
+                modifier = Modifier
+                    .size(width = 46.dp, height = 44.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.ChevronRight,
                     contentDescription = Strings.commonNext,
-                    modifier = Modifier.size(28.dp),
+                    modifier = Modifier
+                        .size(28.dp)
+                        .offset(x = 2.dp)
+                    ,
                 )
             }
         }
