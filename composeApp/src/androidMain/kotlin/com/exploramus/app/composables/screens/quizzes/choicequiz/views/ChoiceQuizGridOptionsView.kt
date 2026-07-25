@@ -42,49 +42,40 @@ fun ChoiceQuizGridOptionsView(
 
     val layout = MaterialTheme.layout.quiz
 
-    BoxWithConstraints(modifier = modifier.fillMaxSize()) {
-        val topPadding = (maxHeight * 0.14f).coerceAtLeast(5.dp)
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 18.dp),
+        contentAlignment = Alignment.TopCenter
+    ) {
 
-        Box(
-            modifier = modifier
-
-                .fillMaxSize()
-
-                .padding(horizontal = 18.dp)
-            ,
-            contentAlignment = Alignment.TopCenter
+        FlowRow(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = layout.gridHorizontalPadding.value())
+                .padding(top = layout.optionsTopPadding.value(), bottom = layout.optionsBottomPadding.value()),
+            maxItemsInEachRow = 2,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-
-            FlowRow(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = layout.gridHorizontalPadding.value())
-                    .padding(top = layout.optionsTopPadding.value(), bottom = layout.optionsBottomPadding.value())
-                ,
-                maxItemsInEachRow = 2,
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                options.forEach { option ->
-                    val isSelected = option.id == selectedOptionId
-                    val isCorrect = option.id == correctOptionId
-                    GridOptionItem(
-                        option = option,
-                        isSelected = isSelected,
-                        isCorrect = isCorrect,
-                        isSubmitted = isSubmitted,
-                        onClick = { onOptionSelected(option.id) },
-                        modifier = Modifier
-                            .weight(1f)
-                            .aspectRatio(1.5f)
-                            .alpha(getOptionAlpha(isSelected, isCorrect, isSubmitted))
-                    )
-                }
+            options.forEach { option ->
+                val isSelected = option.id == selectedOptionId
+                val isCorrect = option.id == correctOptionId
+                GridOptionItem(
+                    option = option,
+                    isSelected = isSelected,
+                    isCorrect = isCorrect,
+                    isSubmitted = isSubmitted,
+                    onClick = { onOptionSelected(option.id) },
+                    modifier = Modifier
+                        .weight(1f)
+                        .aspectRatio(1.5f)
+                        .alpha(getOptionAlpha(isSelected, isCorrect, isSubmitted))
+                )
             }
         }
     }
-
 }
 
 @Composable
@@ -156,7 +147,7 @@ private fun GridOptionItem(
 @Composable
 private fun ImageAnswerBadge(
     isCorrect: Boolean,
-    modifier: Modifier = Modifier, // passed in, contains the align() from the caller's scope
+    modifier: Modifier = Modifier,
 ) {
     val badgeColor = if (isCorrect) AppColorPalette.GreenCorrect.icon() else AppColorPalette.RedIncorrect.icon()
 
@@ -204,7 +195,6 @@ private fun FlatAnswerBadge(
         contentAlignment = Alignment.Center
     ) {
         Icon(
-            //imageVector = if (isCorrect) Icons.Rounded.Check else Icons.Rounded.Close,
             painter = getChoiceQuizIconPainter(isCorrect),
             contentDescription = null,
             tint = Color.White,

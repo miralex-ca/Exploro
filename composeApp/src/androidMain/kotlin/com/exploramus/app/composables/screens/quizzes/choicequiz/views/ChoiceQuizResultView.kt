@@ -28,9 +28,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.exploramus.app.composables.components.dialogs.ChoiceQuizMetricContent
-import com.exploramus.app.composables.components.dialogs.MetricInfoDialog
-import com.exploramus.app.composables.components.dialogs.QuizResultMetricType
 import com.exploramus.app.composables.screens.quizzes.utils.QuizResultGrade
 import com.exploramus.app.design.adaptive.*
 import com.exploramus.app.design.theme.AppColorPalette
@@ -188,28 +185,28 @@ private fun ResultStatsCard(
     val metrics = listOf(
         QuizResultMetric(
             type = QuizResultMetricType.TOTAL,
-            label = "Total questions",
+            label = Strings.quizResultMetricTotal,
             value = totalCount.toString(),
             icon = Icons.Rounded.FormatListNumbered,
             colorSet = AppColorPalette.BlueGrey
         ),
         QuizResultMetric(
             type = QuizResultMetricType.SCORE,
-            label = "Score",
+            label = Strings.quizResultMetricScore,
             value = "$scorePercentage%",
             icon = Icons.Rounded.BarChart,
             colorSet = grade.colorSet
         ),
         QuizResultMetric(
             type = QuizResultMetricType.CORRECT,
-            label = "Correct",
+            label = Strings.quizResultMetricCorrect,
             value = results.correctCount.toString(),
             icon = Icons.Rounded.Check,
             colorSet = AppColorPalette.Green
         ),
         QuizResultMetric(
             type = QuizResultMetricType.ERRORS,
-            label = "Errors",
+            label = Strings.quizResultMetricIncorrect,
             value = results.incorrectCount.toString(),
             icon = Icons.Rounded.Close,
             colorSet = AppColorPalette.Red
@@ -224,12 +221,13 @@ private fun ResultStatsCard(
         title = selectedMetric?.label ?: "",
         onDismiss = { selectedMetricType = null },
         content = {
-            ChoiceQuizMetricContent(
-                type = selectedMetricType,
-                results = results,
-                grade = grade,
-                label = selectedMetric?.label ?: ""
-            )
+            selectedMetricType?.let { type ->
+                ChoiceQuizMetricContent(
+                    type = type,
+                    results = results,
+                    grade = grade
+                )
+            }
         }
     )
 

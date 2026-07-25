@@ -1,4 +1,4 @@
-package com.exploramus.app.composables.components.dialogs
+package com.exploramus.app.composables.screens.quizzes.choicequiz.views
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.dialogs.NoPaddingAlertDialog
 import com.exploramus.app.composables.screens.quizzes.utils.QuizResultGrade
 import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.app.resources.Strings
@@ -72,10 +73,9 @@ fun MetricInfoDialog(
 
 @Composable
 fun ChoiceQuizMetricContent(
-    type: QuizResultMetricType?,
+    type: QuizResultMetricType,
     results: ChoiceQuizResultsState,
     grade: QuizResultGrade,
-    label: String,
     modifier: Modifier = Modifier
 ) {
     val scorePercentage = (results.score * 100).toInt()
@@ -99,22 +99,18 @@ fun ChoiceQuizMetricContent(
             }
             QuizResultMetricType.CORRECT -> {
                 MetricListDialogContent(
+                    type = QuizResultMetricType.CORRECT,
                     count = results.correctCount,
-                    label = "Correct answers",
+                    label = Strings.quizResultMetricCorrect,
                     items = results.items.filter { it.status == ChoiceQuizAnswerStatus.CORRECT }
                 )
             }
             QuizResultMetricType.ERRORS -> {
                 MetricListDialogContent(
+                    type = QuizResultMetricType.ERRORS,
                     count = results.incorrectCount,
-                    label = "Incorrect answers",
+                    label = Strings.quizResultMetricIncorrect,
                     items = results.items.filter { it.status == ChoiceQuizAnswerStatus.INCORRECT }
-                )
-            }
-            else -> {
-                Text(
-                    text = "Information about $label will be added here.",
-                    style = MaterialTheme.typography.bodyMedium
                 )
             }
         }
@@ -133,19 +129,19 @@ fun TotalMetricContent(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            MetricInfoRow(label = "Total questions", value = results.totalCount.toString())
+            MetricInfoRow(label = Strings.quizResultMetricTotal, value = results.totalCount.toString())
             MetricInfoRow(
-                label = "Correct answers",
+                label = Strings.quizResultMetricCorrect,
                 value = results.correctCount.toString(),
                 color = AppColorPalette.Green.text()
             )
             MetricInfoRow(
-                label = "Incorrect answers",
+                label = Strings.quizResultMetricIncorrect,
                 value = results.incorrectCount.toString(),
                 color = AppColorPalette.Red.text()
             )
             MetricInfoRow(
-                label = "Skipped questions",
+                label = Strings.quizResultMetricSkipped,
                 value = results.skipped.toString(),
                 labelFontWeight = FontWeight.Normal,
                 valueFontWeight = FontWeight.Normal,
@@ -185,19 +181,20 @@ fun TotalMetricContent(
 
 @Composable
 fun MetricListDialogContent(
+    type: QuizResultMetricType,
     count: Int,
     label: String,
     items: List<ChoiceQuizItemState>,
     modifier: Modifier = Modifier
 ) {
-    val statusIcon = when (label) {
-        "Correct answers" -> Icons.Rounded.Check
-        "Incorrect answers" -> Icons.Rounded.Close
+    val statusIcon = when (type) {
+        QuizResultMetricType.CORRECT -> Icons.Rounded.Check
+        QuizResultMetricType.ERRORS -> Icons.Rounded.Close
         else -> null
     }
-    val statusIconColor = when (label) {
-        "Correct answers" -> AppColorPalette.Green.text()
-        "Incorrect answers" -> AppColorPalette.Red.text()
+    val statusIconColor = when (type) {
+        QuizResultMetricType.CORRECT -> AppColorPalette.Green.text()
+        QuizResultMetricType.ERRORS -> AppColorPalette.Red.text()
         else -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
     }
 
@@ -356,7 +353,7 @@ fun ScoreDialogContent(
         }
 
         Text(
-            text = "Score is calculated as the percentage of correct answers relative to the total number of questions.",
+            text = Strings.quizResultScoreDescription,
             style = MaterialTheme.typography.bodySmall,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -369,7 +366,7 @@ fun ScoreDialogContent(
         ) {
             ScoreStat(
                 value = results.correctCount.toString(),
-                label = "Correct answers",
+                label = Strings.quizResultMetricCorrect,
                 modifier = Modifier.weight(1f),
             )
             VerticalDivider(
@@ -379,7 +376,7 @@ fun ScoreDialogContent(
             )
             ScoreStat(
                 value = results.totalCount.toString(),
-                label = "Total questions",
+                label = Strings.quizResultMetricTotal,
                 modifier = Modifier.weight(1f),
             )
         }
@@ -448,5 +445,3 @@ fun MetricInfoRow(
 enum class QuizResultMetricType {
     TOTAL, SCORE, CORRECT, ERRORS
 }
-
- 

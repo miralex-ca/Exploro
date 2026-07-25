@@ -117,4 +117,11 @@
     <string name="choice_quiz_prompt_secondary_primary">Which country belongs to this capital?</string>
     <string name="choice_quiz_prompt_image_primary">Which country does this flag belong to?</string>
     <string name="choice_quiz_prompt_primary_image">Find the flag for this country:</string>
+
+    <string name="quiz_result_metric_total">Total questions</string>
+    <string name="quiz_result_metric_score">Score</string>
+    <string name="quiz_result_metric_correct">Correct answers</string>
+    <string name="quiz_result_metric_incorrect">Incorrect answers</string>
+    <string name="quiz_result_metric_skipped">Skipped questions</string>
+    <string name="quiz_result_score_description">Score is calculated as the percentage of correct answers relative to the total number of questions.</string>
 </resources>

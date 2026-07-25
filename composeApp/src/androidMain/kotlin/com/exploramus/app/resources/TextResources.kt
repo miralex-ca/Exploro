@@ -97,6 +97,13 @@ object Strings {
     val choiceQuizPromptImagePrimary @Composable get() = stringRes(R.string.choice_quiz_prompt_image_primary)
     val choiceQuizPromptPrimaryImage @Composable get() = stringRes(R.string.choice_quiz_prompt_primary_image)
 
+    val quizResultMetricTotal @Composable get() = stringRes(R.string.quiz_result_metric_total)
+    val quizResultMetricScore @Composable get() = stringRes(R.string.quiz_result_metric_score)
+    val quizResultMetricCorrect @Composable get() = stringRes(R.string.quiz_result_metric_correct)
+    val quizResultMetricIncorrect @Composable get() = stringRes(R.string.quiz_result_metric_incorrect)
+    val quizResultMetricSkipped @Composable get() = stringRes(R.string.quiz_result_metric_skipped)
+    val quizResultScoreDescription @Composable get() = stringRes(R.string.quiz_result_score_description)
+
     @Composable
     fun detailLabelLanguage(count: Int) = if (count == 1)
         stringRes(R.string.detail_label_language)
