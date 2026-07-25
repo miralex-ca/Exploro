@@ -314,7 +314,7 @@ fun FlashcardNavBar(
                 Icon(
                     imageVector = Icons.Default.ChevronLeft,
                     contentDescription = Strings.commonPrevious,
-                    modifier = Modifier.size(28.dp).offset(x = -2.dp),
+                    modifier = Modifier.size(28.dp).offset(x = (-1).dp),
                 )
             }
 
@@ -343,7 +343,7 @@ fun FlashcardNavBar(
                     contentDescription = Strings.commonNext,
                     modifier = Modifier
                         .size(28.dp)
-                        .offset(x = 2.dp)
+                        .offset(x = 1.dp)
                     ,
                 )
             }
