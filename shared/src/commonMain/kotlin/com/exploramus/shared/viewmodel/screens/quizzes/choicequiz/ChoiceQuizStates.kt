@@ -19,7 +19,8 @@ data class ChoiceQuizState(
                 totalCount = items.size,
                 skipped = items.size - answered.size,
                 progress = if (items.isEmpty()) 0f else answered.size / items.size.toFloat(),
-                score = if (items.isEmpty()) 0f else answered.count { it.status == ChoiceQuizAnswerStatus.CORRECT } / items.size.toFloat()
+                score = if (items.isEmpty()) 0f else answered.count { it.status == ChoiceQuizAnswerStatus.CORRECT } / items.size.toFloat(),
+                items = items
             )
         }
 }
@@ -67,6 +68,7 @@ data class ChoiceQuizResultsState(
     val skipped: Int = 0,
     val progress: Float = 0f, // current progress percentage (answered/total)
     val score: Float = 0f, // score percentage (correct/total)
+    val items: List<ChoiceQuizItemState> = emptyList(),
 )
 
 data class ChoiceQuizConfigState(

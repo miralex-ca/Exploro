@@ -188,7 +188,7 @@ private fun ResultStatsCard(
     val metrics = listOf(
         QuizResultMetric(
             type = QuizResultMetricType.TOTAL,
-            label = "Total question",
+            label = "Total questions",
             value = totalCount.toString(),
             icon = Icons.Rounded.FormatListNumbered,
             colorSet = AppColorPalette.BlueGrey

@@ -45,6 +45,7 @@ fun NoPaddingAlertDialog(
         ) {
             Column(
                 modifier = Modifier
+                    .widthIn(max = 450.dp)
                     .fillMaxWidth()
             ) {
                 if (titleText.isEmpty()) {
@@ -64,19 +65,22 @@ fun NoPaddingAlertDialog(
                         fontSize = 24.sp
                     )
                 }
-                content?.invoke()
                 Box(
-                    Modifier.fillMaxWidth()
-                        .verticalScroll(rememberScrollState()),
+                    modifier = Modifier
+                        .weight(1f, fill = false)
+                        .verticalScroll(rememberScrollState())
                 ) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.End),
-                        modifier = Modifier.fillMaxWidth()
-                            .padding(vertical = 8.dp, horizontal = 18.dp),
-                    ) {
-                        dismissButton?.invoke()
-                        confirmButton()
-                    }
+                    content?.invoke()
+                }
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.End),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp, horizontal = 18.dp),
+                ) {
+                    dismissButton?.invoke()
+                    confirmButton()
                 }
             }
         }
