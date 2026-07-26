@@ -2,11 +2,7 @@ package com.exploramus.app.composables.screens.quizzes.choicequiz
 
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.shared.viewmodel.core.Events
-import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.nextChoiceQuestion
-import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.restartChoiceQuiz
-import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.selectChoiceOption
-import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.submitChoiceAnswer
-import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.toggleChoiceQuizNavigationMode
+import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.*
 
 sealed interface ChoiceQuizUiEvent {
     data object OnBackClicked : ChoiceQuizUiEvent
@@ -15,6 +11,11 @@ sealed interface ChoiceQuizUiEvent {
     data object OnNextClicked : ChoiceQuizUiEvent
     data object OnRestartClicked : ChoiceQuizUiEvent
     data object OnToggleNavigationMode : ChoiceQuizUiEvent
+    data class OnSubmitQuizResult(
+        val quizId: String,
+        val correctAnswers: Int,
+        val totalAnswers: Int
+    ) : ChoiceQuizUiEvent
 }
 
 class ChoiceQuizEventHandler(
@@ -29,6 +30,11 @@ class ChoiceQuizEventHandler(
             ChoiceQuizUiEvent.OnNextClicked -> events.nextChoiceQuestion()
             ChoiceQuizUiEvent.OnRestartClicked -> events.restartChoiceQuiz()
             ChoiceQuizUiEvent.OnToggleNavigationMode -> events.toggleChoiceQuizNavigationMode()
+            is ChoiceQuizUiEvent.OnSubmitQuizResult -> events.saveChoiceQuizResult(
+                event.quizId,
+                event.correctAnswers,
+                event.totalAnswers
+            )
         }
     }
 }
