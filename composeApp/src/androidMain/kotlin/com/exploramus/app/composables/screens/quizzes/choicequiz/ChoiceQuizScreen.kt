@@ -70,6 +70,19 @@ fun ChoiceQuizScreen(
                 }
             }
 
+            LaunchedEffect(screenState.isFinished) {
+                if (screenState.isFinished) {
+                    val results = screenState.quiz.results
+                    eventHandler.onEvent(
+                        ChoiceQuizUiEvent.OnSubmitQuizResult(
+                            quizId = screenState.quiz.quizId,
+                            correctAnswers = results.correctCount,
+                            totalAnswers = results.totalCount
+                        )
+                    )
+                }
+            }
+
             AnimatedContent(
                 targetState = screenState.isFinished to screenState.totalRestartEvent,
                 transitionSpec = {

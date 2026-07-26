@@ -119,6 +119,7 @@ fun Events.restartChoiceQuiz() {
 
         state.copy(
             quiz = ChoiceQuizState(
+                quizId = state.quiz.quizId,
                 items = quizItems,
                 config = state.quiz.config,
                 currentIndex = 0

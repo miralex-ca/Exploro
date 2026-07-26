@@ -7,6 +7,7 @@ import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
+import com.exploramus.shared.viewmodel.utils.QuizIdBuilder
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -47,11 +48,19 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
             buildChoiceQuizItem(country, countries, studyTarget)
         }
 
+        val quizId = QuizIdBuilder.build(
+            sectionId = params.sectionId,
+            sectionType = params.sectionType,
+            quizType = params.quizType,
+            studyTarget = studyTarget
+        )
+
         updateScreen(ChoiceQuizScreenState::class) {
             it.copy(
                 isLoading = false,
                 screenTitle = params.screenTitle,
                 quiz = ChoiceQuizState(
+                    quizId = quizId,
                     items = quizItems,
                     config = ChoiceQuizConfigState(navigationMode = navigationMode)
                 ),

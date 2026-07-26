@@ -6,6 +6,7 @@ import com.exploramus.core.models.Country
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 
 data class ChoiceQuizState(
+    val quizId: String = "",
     val items: List<ChoiceQuizItemState> = emptyList(),
     val currentIndex: Int = 0,
     val config: ChoiceQuizConfigState = ChoiceQuizConfigState(),
