@@ -5,19 +5,20 @@ import appLocalDb.AppLocalDb
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 import com.exploramus.core.models.CountryWithDetails
+import com.exploramus.core.models.QuizResult
 import com.exploramus.core.models.Section
 import com.exploramus.data.common.LocalDataSource
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
-    const val VERSION = 9L
+    const val VERSION = 10L
 }
 
 internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {
     val appLocalDb = AppLocalDb(sqlDriver)
     return SQLDelightLocalDataSource(
         appLocalDb,
-        DatabaseManager.Base(sqlDriver, appLocalDb)
+        DatabaseManager.Base(sqlDriver, appLocalDb),
     )
 }
 
@@ -119,5 +120,33 @@ internal class SQLDelightLocalDataSource(
     override suspend fun getCountriesCountBySection(sectionId: String): Long {
         val sectionName = database.sectionsQueries.getSectionNameById(sectionId).executeAsOneOrNull() ?: sectionId
         return database.getCountriesCountByContinent(sectionName)
+    }
+
+    override suspend fun saveQuizResult(
+        quizId: String,
+        correctAnswers: Int,
+        totalAnswers: Int,
+        completedAt: Long
+    ) {
+        database.quizResultsQueries.insertQuizResult(
+            quiz_id = quizId,
+            completed_at = completedAt,
+            correct_answers = correctAnswers.toLong(),
+            total_answers = totalAnswers.toLong()
+        )
+    }
+
+    override suspend fun getQuizResult(quizId: String): QuizResult? {
+        return database.quizResultsQueries
+            .getQuizResult(quizId)
+            .executeAsOneOrNull()
+            ?.toQuizResult()
+    }
+
+    override suspend fun getQuizResults(quizIds: List<String>): List<QuizResult> {
+        return database.quizResultsQueries
+            .getQuizResultsByIds(quizIds)
+            .executeAsList()
+            .toQuizResultList()
     }
 }

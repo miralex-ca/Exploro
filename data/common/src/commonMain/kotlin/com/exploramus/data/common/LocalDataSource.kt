@@ -3,6 +3,7 @@ package com.exploramus.data.common
 import com.exploramus.core.models.Country
 import com.exploramus.core.models.CountryDetails
 import com.exploramus.core.models.CountryWithDetails
+import com.exploramus.core.models.QuizResult
 import com.exploramus.core.models.Section
 
 interface LocalDataSource {
@@ -28,4 +29,8 @@ interface LocalDataSource {
     suspend fun getFavoritesCount(): Long
     suspend fun getAllCountriesCount(): Long
     suspend fun getCountriesCountBySection(sectionId: String): Long
+
+    suspend fun saveQuizResult(quizId: String, correctAnswers: Int, totalAnswers: Int, completedAt: Long)
+    suspend fun getQuizResult(quizId: String): QuizResult?
+    suspend fun getQuizResults(quizIds: List<String>): List<QuizResult>
 }

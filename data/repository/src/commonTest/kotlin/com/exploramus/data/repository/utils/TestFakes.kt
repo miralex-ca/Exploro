@@ -85,6 +85,17 @@ object TestFakes {
         override suspend fun getAllCountriesCount(): Long = storedCountries.size.toLong()
         override suspend fun getCountriesCountBySection(sectionId: String): Long =
             countriesBySection[sectionId]?.size?.toLong() ?: 0
+
+        override suspend fun saveQuizResult(
+            quizId: String,
+            correctAnswers: Int,
+            totalAnswers: Int,
+            completedAt: Long
+        ) {}
+
+        override suspend fun getQuizResult(quizId: String): QuizResult? = null
+
+        override suspend fun getQuizResults(quizIds: List<String>): List<QuizResult> = emptyList()
     }
 
     class FakeRemoteDataSource(
