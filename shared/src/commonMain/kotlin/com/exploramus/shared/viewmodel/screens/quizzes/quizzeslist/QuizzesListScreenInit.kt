@@ -1,14 +1,11 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist
 
-import com.exploramus.data.repository.functions.getAllCountriesCount
-import com.exploramus.data.repository.functions.getChoiceQuizImagePrimaryConfig
-import com.exploramus.data.repository.functions.getChoiceQuizPrimarySecondaryConfig
-import com.exploramus.data.repository.functions.getCountriesCountBySection
-import com.exploramus.data.repository.functions.getFavoritesCount
+import com.exploramus.data.repository.functions.*
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
+import com.exploramus.shared.viewmodel.utils.QuizIdBuilder
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -39,11 +36,19 @@ fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = Screen
         val psConfig = dataRepository.getChoiceQuizPrimarySecondaryConfig()
         val ipConfig = dataRepository.getChoiceQuizImagePrimaryConfig()
 
+        val quizzes = defaultQuizzes(params)
+        val quizIds = quizzes.map { it.quizId }
+        val quizResults = dataRepository.getQuizResults(quizIds).associateBy { it.quizId }
+
+        val quizzesWithResults = quizzes.map { quiz ->
+            quiz.copy(result = quizResults[quiz.quizId])
+        }
+
         updateScreen(QuizzesListScreenState::class) {
             it.copy(
                 isLoading = false,
                 sectionInfo = sectionInfo,
-                quizzes = defaultQuizzes(),
+                quizzes = quizzesWithResults,
                 psTarget = psConfig.studyTarget,
                 ipTarget = ipConfig.studyTarget
             )
@@ -52,23 +57,17 @@ fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = Screen
     callOnInitAtEachNavigation = CallOnInitValues.CALL_BEFORE_SHOWING_SCREEN,
 )
 
-fun defaultQuizzes(): List<QuizState> = listOf(
+fun defaultQuizzes(params: QuizzesListScreenParams): List<QuizState> = listOf(
     QuizState(
-        quizId = QuizzIds.FLASHCARDS,
+        quizId = QuizIdBuilder.build(params.sectionId, params.sectionType, QuizType.FLASHCARDS),
         quizType = QuizType.FLASHCARDS,
-        title = "Flashcards",
-        description = "Browse country cards and reveal capital, flag, or other details at your own pace.",
     ),
     QuizState(
-        quizId = QuizzIds.CHOICE_QUIZ_PRIMARY_SECONDARY,
+        quizId = QuizIdBuilder.build(params.sectionId, params.sectionType, QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY),
         quizType = QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY,
-        title = "Choice Quiz", // Falling back to generic title, UI will resolve specific
-        description = "Given a country name, choose the correct capital city.",
     ),
     QuizState(
-        quizId = QuizzIds.CHOICE_QUIZ_IMAGE_PRIMARY,
+        quizId = QuizIdBuilder.build(params.sectionId, params.sectionType, QuizType.CHOICE_QUIZ_IMAGE_PRIMARY),
         quizType = QuizType.CHOICE_QUIZ_IMAGE_PRIMARY,
-        title = "Choice Quiz", // Falling back to generic title, UI will resolve specific
-        description = "Given a flag, identify which country it belongs to.",
     ),
 )

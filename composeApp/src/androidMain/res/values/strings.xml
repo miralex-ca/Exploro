@@ -102,6 +102,7 @@
     <string name="flashcard_hint_tap_to_reveal">Tap to reveal</string>
     <string name="flashcard_menu_settings">Cards settings</string>
     <string name="flashcard_label_capital">Capital</string>
+    <string name="quiz_type_flashcards">Flashcards</string>
 
     <string name="quiz_target_primary_secondary">Country → Capital</string>
     <string name="quiz_target_secondary_primary">Capital → Country</string>
@@ -124,4 +125,16 @@
     <string name="quiz_result_metric_incorrect">Incorrect answers</string>
     <string name="quiz_result_metric_skipped">Skipped questions</string>
     <string name="quiz_result_score_description">Score is calculated as the percentage of correct answers relative to the total number of questions.</string>
+
+    <string name="quiz_desc_flashcards">Study countries using flashcards with flags and capitals.</string>
+    <string name="quiz_desc_choice_ps">Test your knowledge by identifying capital cities.</string>
+    <string name="quiz_desc_choice_ip">Challenge yourself by recognizing countries by their flags.</string>
+    <string name="quiz_collection_favorites">Favorites</string>
+    <string name="quiz_collection_all">All countries</string>
+    <string name="quiz_collection_continents">Continents</string>
+    <string name="quiz_collection_continents_desc">Browse quizzes for each continent</string>
+    <string name="quiz_collection_items_count_fmt">%d countries</string>
+    <string name="quiz_result_last_score_fmt">Last score: %1$d%% (%2$d/%3$d)</string>
+    <string name="quiz_result_completed_at_fmt">Completed: %s</string>
+    <string name="quiz_result_date_time_at">%1$s at %2$s</string>
 </resources>

@@ -28,6 +28,7 @@ import com.exploramus.app.composables.screens.quizzes.quizzeslist.views.QuizzesL
 import com.exploramus.app.composables.screens.quizzes.quizzeslist.views.QuizzesListFlashcardSettingsDialog
 import com.exploramus.app.composables.screens.quizzes.utils.getIcon
 import com.exploramus.app.composables.screens.quizzes.utils.toAppColorSet
+import com.exploramus.app.composables.screens.quizzes.utils.toDescription
 import com.exploramus.app.composables.screens.quizzes.utils.toTitle
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
@@ -37,7 +38,6 @@ import com.exploramus.app.design.theme.AppTypography
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizState
-import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionHeaderState
 
@@ -204,11 +204,8 @@ fun QuizCard(
     val colors = quiz.quizType.toAppColorSet()
     val icon = quiz.quizType.getIcon()
 
-    val displayTitle = when(quiz.quizType) {
-        QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY -> psTarget.toTitle()
-        QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> ipTarget.toTitle()
-        else -> quiz.title
-    }
+    val displayTitle = quiz.toTitle(psTarget, ipTarget)
+    val displayDescription = quiz.toDescription()
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -238,7 +235,7 @@ fun QuizCard(
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = quiz.description,
+                    text = displayDescription,
                     style = AppTypography.quizCardDescription,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                     maxLines = 2,

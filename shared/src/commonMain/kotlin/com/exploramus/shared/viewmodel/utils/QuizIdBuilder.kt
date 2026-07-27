@@ -4,6 +4,11 @@ import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 
+object QuizCollectionIds {
+    const val FAVORITES = "favorites"
+    const val ALL = "all"
+}
+
 object QuizIdBuilder {
     fun build(
         sectionId: String,
@@ -13,8 +18,8 @@ object QuizIdBuilder {
         useTargetSpecificId: Boolean = false
     ): String {
         val prefix = when (sectionType) {
-            QuizzesSectionType.FAVORITES -> "favorites"
-            QuizzesSectionType.ALL_COUNTRIES -> "all"
+            QuizzesSectionType.FAVORITES -> QuizCollectionIds.FAVORITES
+            QuizzesSectionType.ALL_COUNTRIES -> QuizCollectionIds.ALL
             QuizzesSectionType.CONTINENT -> sectionId.lowercase()
         }
 
@@ -36,7 +41,6 @@ object QuizIdBuilder {
                     when (quizType) {
                         QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY -> "choice_ps"
                         QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> "choice_ip"
-                        else -> ""
                     }
                 }
             }

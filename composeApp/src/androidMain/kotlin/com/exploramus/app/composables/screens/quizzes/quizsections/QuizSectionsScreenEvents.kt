@@ -2,35 +2,35 @@ package com.exploramus.app.composables.screens.quizzes.quizsections
 
 import com.exploramus.app.composables.navigation.controller.QuizListNavParams
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
-import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzCaategoryId
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
+import com.exploramus.shared.viewmodel.utils.QuizCollectionIds
 
 sealed class QuizSectionsUiEvent {
-    data object OnFavoritesClicked : QuizSectionsUiEvent()
-    data object OnAllCountriesClicked : QuizSectionsUiEvent()
+    data class OnFavoritesClicked(val sectionName: String) : QuizSectionsUiEvent()
+    data class OnAllCountriesClicked(val sectionName: String) : QuizSectionsUiEvent()
     data class OnContinentClicked(val sectionId: String, val sectionName: String) : QuizSectionsUiEvent()
 }
 
 class QuizSectionsEventHandler(
-    val navActions: ScreenNavActions
+    val navActions: ScreenNavActions,
 ) {
     fun onEvent(event: QuizSectionsUiEvent) {
         when (event) {
             is QuizSectionsUiEvent.OnFavoritesClicked -> {
                 navActions.toQuizList(
                     QuizListNavParams(
-                        sectionId = QuizzCaategoryId.FAVORITES,
+                        sectionId = QuizCollectionIds.FAVORITES,
                         quizType = QuizzesSectionType.FAVORITES,
-                        name = "Favorites"
+                        name = event.sectionName
                     )
                 )
             }
-            QuizSectionsUiEvent.OnAllCountriesClicked -> {
+            is QuizSectionsUiEvent.OnAllCountriesClicked -> {
                 navActions.toQuizList(
                     QuizListNavParams(
-                        sectionId = QuizzCaategoryId.ALL_COUNTRIES,
+                        sectionId = QuizCollectionIds.ALL,
                         quizType = QuizzesSectionType.ALL_COUNTRIES,
-                        name = "All countries"
+                        name = event.sectionName
                     )
                 )
             }
@@ -46,4 +46,3 @@ class QuizSectionsEventHandler(
         }
     }
 }
-

@@ -81,6 +81,7 @@ object Strings {
     val flashcardHintTapToReveal @Composable get() = stringRes(R.string.flashcard_hint_tap_to_reveal)
     val flashcardMenuSettings @Composable get() = stringRes(R.string.flashcard_menu_settings)
     val flashcardLabelCapital @Composable get() = stringRes(R.string.flashcard_label_capital)
+    val quizTypeFlashcards @Composable get() = stringRes(R.string.quiz_type_flashcards)
 
     val quizTargetPrimarySecondary @Composable get() = stringRes(R.string.quiz_target_primary_secondary)
     val quizTargetSecondaryPrimary @Composable get() = stringRes(R.string.quiz_target_secondary_primary)
@@ -103,6 +104,18 @@ object Strings {
     val quizResultMetricIncorrect @Composable get() = stringRes(R.string.quiz_result_metric_incorrect)
     val quizResultMetricSkipped @Composable get() = stringRes(R.string.quiz_result_metric_skipped)
     val quizResultScoreDescription @Composable get() = stringRes(R.string.quiz_result_score_description)
+
+    val quizDescFlashcards @Composable get() = stringRes(R.string.quiz_desc_flashcards)
+    val quizDescChoicePs @Composable get() = stringRes(R.string.quiz_desc_choice_ps)
+    val quizDescChoiceIp @Composable get() = stringRes(R.string.quiz_desc_choice_ip)
+    val quizCollectionFavorites @Composable get() = stringRes(R.string.quiz_collection_favorites)
+    val quizCollectionAll @Composable get() = stringRes(R.string.quiz_collection_all)
+    val quizCollectionContinents @Composable get() = stringRes(R.string.quiz_collection_continents)
+    val quizCollectionContinentsDesc @Composable get() = stringRes(R.string.quiz_collection_continents_desc)
+    @Composable fun quizCollectionItemsCount(count: Int) = stringRes(R.string.quiz_collection_items_count_fmt, count)
+    @Composable fun quizResultLastScore(score: Int, correct: Int, total: Int) = stringRes(R.string.quiz_result_last_score_fmt, score, correct, total)
+    @Composable fun quizResultCompletedAt(dateTime: String) = stringRes(R.string.quiz_result_completed_at_fmt, dateTime)
+    @Composable fun quizResultDateTimeAt(date: String, time: String) = stringRes(R.string.quiz_result_date_time_at, date, time)
 
     @Composable
     fun detailLabelLanguage(count: Int) = if (count == 1)

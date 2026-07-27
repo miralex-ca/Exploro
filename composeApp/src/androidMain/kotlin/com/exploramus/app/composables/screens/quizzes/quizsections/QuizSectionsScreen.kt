@@ -32,6 +32,7 @@ import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
+import com.exploramus.app.resources.Strings
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.ContinentSectionState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionsScreenState
@@ -84,14 +85,24 @@ fun QuizzesSectionsContent(
                     modifier = Modifier.widthIn(max = layout.itemMaxWidth.value())
                 ) {
                     when (section) {
-                        is QuizSectionState.Favorites -> FavoritesSectionCard(
-                            itemsCount = section.itemsCount,
-                            onClick = { onEvent(QuizSectionsUiEvent.OnFavoritesClicked) },
-                        )
-                        is QuizSectionState.AllCountries -> AllCountriesSectionCard(
-                            itemsCount = section.itemsCount,
-                            onClick = { onEvent(QuizSectionsUiEvent.OnAllCountriesClicked) },
-                        )
+                        is QuizSectionState.Favorites -> {
+                            val title = Strings.quizCollectionFavorites
+                            FavoritesSectionCard(
+                                itemsCount = section.itemsCount,
+                                onClick = {
+                                    onEvent(QuizSectionsUiEvent.OnFavoritesClicked(title))
+                                },
+                            )
+                        }
+                        is QuizSectionState.AllCountries -> {
+                            val title = Strings.quizCollectionAll
+                            AllCountriesSectionCard(
+                                itemsCount = section.itemsCount,
+                                onClick = {
+                                    onEvent(QuizSectionsUiEvent.OnAllCountriesClicked(title))
+                                },
+                            )
+                        }
                         is QuizSectionState.Continents -> ContinentsSectionGroup(
                             section = section,
                             onContinentClick = { id, name ->
@@ -117,8 +128,8 @@ fun FavoritesSectionCard(
 ) {
     val colors = QuizzesSectionType.FAVORITES.toAppColorSet()
     QuizSectionCard(
-        title = "Favorites",
-        subtitle = "$itemsCount countries",
+        title = Strings.quizCollectionFavorites,
+        subtitle = Strings.quizCollectionItemsCount(itemsCount),
         onClick = onClick,
         iconContent = {
             SectionIconBox(color = colors.background()) {
@@ -140,8 +151,8 @@ fun AllCountriesSectionCard(
 ) {
     val colors = QuizzesSectionType.ALL_COUNTRIES.toAppColorSet()
     QuizSectionCard(
-        title = "All Countries",
-        subtitle = "$itemsCount countries",
+        title = Strings.quizCollectionAll,
+        subtitle = Strings.quizCollectionItemsCount(itemsCount),
         onClick = onClick,
         iconContent = {
             SectionIconBox(color = colors.background()) {
@@ -187,12 +198,12 @@ fun ContinentsSectionGroup(
                 Spacer(modifier = Modifier.width(14.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Continents",
+                        text = Strings.quizCollectionContinents,
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.SemiBold,
                     )
                     Text(
-                        text = "Browse quizzes for each continent",
+                        text = Strings.quizCollectionContinentsDesc,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                     )
@@ -259,7 +270,7 @@ fun ContinentRow(
                 fontWeight = FontWeight.Normal,
             )
             Text(
-                text = "${continent.itemsCount} countries",
+                text = Strings.quizCollectionItemsCount(continent.itemsCount),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
             )
