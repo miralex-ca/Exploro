@@ -1,5 +1,9 @@
 package com.exploramus.core.models
 
+enum class QuizItemStatus {
+    UNKNOWN, FAMILIAR, MASTERED
+}
+
 data class QuizItemResult(
     val id: String,
     val score: Int,
@@ -9,7 +13,35 @@ data class QuizItemResult(
     val lastCorrectAt: Long?,
     val lastErrorAt: Long?
 ) {
+    val status: QuizItemStatus
+        get() = when (score) {
+            0 -> QuizItemStatus.UNKNOWN
+            1, 2 -> QuizItemStatus.FAMILIAR
+            3, 4 -> QuizItemStatus.MASTERED
+            else -> QuizItemStatus.UNKNOWN
+        }
+
+    /**
+     * A calculated value used to compare mastery across different items.
+     * Lower values indicate items that need more practice (high errors, low score).
+     * Higher values indicate stronger mastery.
+     */
+    val masteryRating: Double
+        get() {
+            // Weights to ensure the order of importance: Errors > Score > Total Correct > Recency
+            // Errors are inverted (more errors = lower rating)
+            val errorFactor = -errors.toDouble() * 1000.0
+            val scoreFactor = score.toDouble() * 100.0
+            val totalCorrectFactor = totalCorrectCompleted.toDouble() * 1.0
+            // Recency as a small fractional tie-breaker (normalized to roughly 0.0-1.0 range)
+            val recencyFactor = (lastCorrectAt?.toDouble() ?: 0.0) / 1_000_000_000_000.0
+
+            return errorFactor + scoreFactor + totalCorrectFactor + recencyFactor
+        }
+
     companion object {
+        val MasteryComparator = compareBy<QuizItemResult> { it.masteryRating }
+
         fun empty(id: String) = QuizItemResult(
             id = id,
             score = 0,
