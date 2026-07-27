@@ -2,16 +2,12 @@ package com.exploramus.data.localdb
 
 import app.cash.sqldelight.db.SqlDriver
 import appLocalDb.AppLocalDb
-import com.exploramus.core.models.Country
-import com.exploramus.core.models.CountryDetails
-import com.exploramus.core.models.CountryWithDetails
-import com.exploramus.core.models.QuizResult
-import com.exploramus.core.models.Section
+import com.exploramus.core.models.*
 import com.exploramus.data.common.LocalDataSource
 
 internal object DatabaseConfig {
     const val NAME = "applocal.db"
-    const val VERSION = 10L
+    const val VERSION = 11L
 }
 
 internal fun createLocalDataSource(sqlDriver: SqlDriver): LocalDataSource {
@@ -122,17 +118,12 @@ internal class SQLDelightLocalDataSource(
         return database.getCountriesCountByContinent(sectionName)
     }
 
-    override suspend fun saveQuizResult(
-        quizId: String,
-        correctAnswers: Int,
-        totalAnswers: Int,
-        completedAt: Long
-    ) {
+    override suspend fun saveQuizResult(result: QuizResult) {
         database.quizResultsQueries.insertQuizResult(
-            quiz_id = quizId,
-            completed_at = completedAt,
-            correct_answers = correctAnswers.toLong(),
-            total_answers = totalAnswers.toLong()
+            quiz_id = result.quizId,
+            completed_at = result.completedAt,
+            correct_answers = result.correctAnswers.toLong(),
+            total_answers = result.totalAnswers.toLong()
         )
     }
 
@@ -148,5 +139,38 @@ internal class SQLDelightLocalDataSource(
             .getQuizResultsByIds(quizIds)
             .executeAsList()
             .toQuizResultList()
+    }
+
+    override suspend fun saveQuizItemResult(result: QuizItemResult) {
+        database.quizItemResultsQueries.insertQuizItemResult(
+            id = result.id,
+            score = result.score.toLong(),
+            errors = result.errors.toLong(),
+            total_correct_completed = result.totalCorrectCompleted.toLong(),
+            last_completed_at = result.lastCompletedAt,
+            last_correct_at = result.lastCorrectAt,
+            last_error_at = result.lastErrorAt
+        )
+    }
+
+    override suspend fun getQuizItemResult(id: String): QuizItemResult? {
+        return database.quizItemResultsQueries
+            .getQuizItemResult(id)
+            .executeAsOneOrNull()
+            ?.toQuizItemResult()
+    }
+
+    override suspend fun getQuizItemResults(ids: List<String>): List<QuizItemResult> {
+        return database.quizItemResultsQueries
+            .getQuizItemResultsByIds(ids)
+            .executeAsList()
+            .toQuizItemResultList()
+    }
+
+    override suspend fun getAllQuizItemResults(): List<QuizItemResult> {
+        return database.quizItemResultsQueries
+            .getAllQuizItemResults()
+            .executeAsList()
+            .toQuizItemResultList()
     }
 }

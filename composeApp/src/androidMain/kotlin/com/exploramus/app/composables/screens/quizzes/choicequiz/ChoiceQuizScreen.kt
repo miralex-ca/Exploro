@@ -35,6 +35,7 @@ import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizCont
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizItemState
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizState
+import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.toQuizResult
 import kotlin.math.absoluteValue
 
 @Composable
@@ -72,13 +73,8 @@ fun ChoiceQuizScreen(
 
             LaunchedEffect(screenState.isFinished) {
                 if (screenState.isFinished) {
-                    val results = screenState.quiz.results
                     eventHandler.onEvent(
-                        ChoiceQuizUiEvent.OnSubmitQuizResult(
-                            quizId = screenState.quiz.quizId,
-                            correctAnswers = results.correctCount,
-                            totalAnswers = results.totalCount
-                        )
+                        ChoiceQuizUiEvent.OnSubmitQuizResult(screenState.quiz.toQuizResult())
                     )
                 }
             }

@@ -1,6 +1,7 @@
 package com.exploramus.app.composables.screens.quizzes.choicequiz
 
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
+import com.exploramus.core.models.QuizResult
 import com.exploramus.shared.viewmodel.core.Events
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.*
 
@@ -11,11 +12,7 @@ sealed interface ChoiceQuizUiEvent {
     data object OnNextClicked : ChoiceQuizUiEvent
     data object OnRestartClicked : ChoiceQuizUiEvent
     data object OnToggleNavigationMode : ChoiceQuizUiEvent
-    data class OnSubmitQuizResult(
-        val quizId: String,
-        val correctAnswers: Int,
-        val totalAnswers: Int
-    ) : ChoiceQuizUiEvent
+    data class OnSubmitQuizResult(val result: QuizResult) : ChoiceQuizUiEvent
 }
 
 class ChoiceQuizEventHandler(
@@ -30,11 +27,7 @@ class ChoiceQuizEventHandler(
             ChoiceQuizUiEvent.OnNextClicked -> events.nextChoiceQuestion()
             ChoiceQuizUiEvent.OnRestartClicked -> events.restartChoiceQuiz()
             ChoiceQuizUiEvent.OnToggleNavigationMode -> events.toggleChoiceQuizNavigationMode()
-            is ChoiceQuizUiEvent.OnSubmitQuizResult -> events.saveChoiceQuizResult(
-                event.quizId,
-                event.correctAnswers,
-                event.totalAnswers
-            )
+            is ChoiceQuizUiEvent.OnSubmitQuizResult -> events.saveChoiceQuizResult(event.result)
         }
     }
 }

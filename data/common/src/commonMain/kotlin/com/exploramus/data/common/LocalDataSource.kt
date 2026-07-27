@@ -1,10 +1,6 @@
 package com.exploramus.data.common
 
-import com.exploramus.core.models.Country
-import com.exploramus.core.models.CountryDetails
-import com.exploramus.core.models.CountryWithDetails
-import com.exploramus.core.models.QuizResult
-import com.exploramus.core.models.Section
+import com.exploramus.core.models.*
 
 interface LocalDataSource {
     val databaseVersion: Long
@@ -30,7 +26,12 @@ interface LocalDataSource {
     suspend fun getAllCountriesCount(): Long
     suspend fun getCountriesCountBySection(sectionId: String): Long
 
-    suspend fun saveQuizResult(quizId: String, correctAnswers: Int, totalAnswers: Int, completedAt: Long)
+    suspend fun saveQuizResult(result: QuizResult)
     suspend fun getQuizResult(quizId: String): QuizResult?
     suspend fun getQuizResults(quizIds: List<String>): List<QuizResult>
+
+    suspend fun saveQuizItemResult(result: QuizItemResult)
+    suspend fun getQuizItemResult(id: String): QuizItemResult?
+    suspend fun getQuizItemResults(ids: List<String>): List<QuizItemResult>
+    suspend fun getAllQuizItemResults(): List<QuizItemResult>
 }

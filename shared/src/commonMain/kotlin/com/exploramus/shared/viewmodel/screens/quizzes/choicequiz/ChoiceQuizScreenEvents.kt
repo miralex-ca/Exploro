@@ -1,11 +1,11 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
 import com.exploramus.core.models.ChoiceQuizNavigationMode
+import com.exploramus.core.models.QuizResult
 import com.exploramus.data.repository.functions.saveQuizResult
 import com.exploramus.data.repository.functions.updateChoiceQuizNavigationMode
 import com.exploramus.shared.viewmodel.core.Events
 import kotlinx.coroutines.delay
-import kotlin.time.Clock
 import kotlin.time.Duration.Companion.milliseconds
 
 fun Events.selectChoiceOption(itemId: String, optionId: String) = screenCoroutine {
@@ -130,15 +130,6 @@ fun Events.restartChoiceQuiz() {
     }
 }
 
-fun Events.saveChoiceQuizResult(
-    quizId: String,
-    correctAnswers: Int,
-    totalAnswers: Int
-) = screenCoroutine {
-    dataRepository.saveQuizResult(
-        quizId = quizId,
-        correctAnswers = correctAnswers,
-        totalAnswers = totalAnswers,
-        completedAt = Clock.System.now().toEpochMilliseconds()
-    )
+fun Events.saveChoiceQuizResult(result: QuizResult) = screenCoroutine {
+    dataRepository.saveQuizResult(result)
 }

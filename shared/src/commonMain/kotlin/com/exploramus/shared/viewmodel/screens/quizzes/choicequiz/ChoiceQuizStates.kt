@@ -3,7 +3,9 @@ package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 import com.exploramus.core.models.ChoiceQuizNavigationMode
 import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.core.models.Country
+import com.exploramus.core.models.QuizResult
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
+import kotlin.time.Clock
 
 data class ChoiceQuizState(
     val quizId: String = "",
@@ -134,6 +136,16 @@ fun ChoiceQuizState.restart(): ChoiceQuizState = copy(
     currentIndex = 0,
     items = items.map { it.copy(selectedOptionId = null, isSubmitted = false) }
 )
+
+fun ChoiceQuizState.toQuizResult(): QuizResult {
+    val res = results
+    return QuizResult(
+        quizId = quizId,
+        correctAnswers = res.correctCount,
+        totalAnswers = res.totalCount,
+        completedAt = Clock.System.now().toEpochMilliseconds()
+    )
+}
 
 fun QuizType.toDefaultStudyTarget(): ChoiceQuizStudyTarget = when(this) {
     QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> ChoiceQuizStudyTarget.IMAGE_PRIMARY
