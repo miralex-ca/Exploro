@@ -5,6 +5,9 @@ import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
+import com.exploramus.shared.viewmodel.screens.quizzes.common.DistractorPoolProvider
+import com.exploramus.shared.viewmodel.screens.quizzes.common.SameListDistractorPoolProvider
+import com.exploramus.shared.viewmodel.screens.quizzes.common.SectionDistractorPoolProvider
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 import com.exploramus.shared.viewmodel.utils.QuizIdBuilder
@@ -40,12 +43,25 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
         val quizLimit = config?.quizLimit
 
         // We shuffle and apply the limit if provided
-        val selectedCountries = countries.shuffled().let { 
-            if (quizLimit != null) it.take(quizLimit) else it 
+        val selectedCountries = countries.shuffled().let {
+            if (quizLimit != null) it.take(quizLimit) else it
         }
-        
+
+        // Distractors come from the section each country belongs to (favorites/all),
+        // or from the already-scoped list itself (continent screens).
+        val distractorPoolProvider: DistractorPoolProvider = when (params.sectionType) {
+            QuizzesSectionType.FAVORITES,
+            QuizzesSectionType.ALL_COUNTRIES -> SectionDistractorPoolProvider(dataRepository)
+            QuizzesSectionType.CONTINENT -> SameListDistractorPoolProvider(countries)
+        }
+        distractorPoolProvider.preload(selectedCountries)
+
         val quizItems = selectedCountries.map { country ->
-            buildChoiceQuizItem(country, countries, studyTarget)
+            buildChoiceQuizItem(
+                target = country,
+                distractorPool = distractorPoolProvider.poolFor(country),
+                studyTarget = studyTarget
+            )
         }
 
         val quizId = QuizIdBuilder.build(

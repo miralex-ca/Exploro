@@ -88,17 +88,6 @@ data class ChoiceQuizEvaluation(
     val color: Long
 )
 
-// Logic Extensions
-
-fun ChoiceQuizResultsState.getEvaluation(): ChoiceQuizEvaluation {
-    return when {
-        score >= 1f -> ChoiceQuizEvaluation("Awesome!", "🤩", 0xFF4CAF50)
-        score >= 0.8f -> ChoiceQuizEvaluation("Very Good!", "😊", 0xFF2196F3)
-        score >= 0.4f -> ChoiceQuizEvaluation("Good Effort", "😐", 0xFFFF9800)
-        else -> ChoiceQuizEvaluation("Keep Practicing", "😔", 0xFFF44336)
-    }
-}
-
 fun ChoiceQuizState.selectOption(itemId: String, optionId: String): ChoiceQuizState {
     val updatedItems = items.map { item ->
         if (item.id == itemId && !item.isSubmitted) {
@@ -154,11 +143,10 @@ fun QuizType.toDefaultStudyTarget(): ChoiceQuizStudyTarget = when(this) {
 
 fun buildChoiceQuizItem(
     target: Country,
-    allCountries: List<Country>,
+    distractorPool: List<Country>,
     studyTarget: ChoiceQuizStudyTarget
 ): ChoiceQuizItemState {
-    // 1. Pick distractors (3 other countries)
-    val distractors = allCountries
+    val distractors = distractorPool
         .filter { it.id != target.id }
         .shuffled()
         .take(3)
