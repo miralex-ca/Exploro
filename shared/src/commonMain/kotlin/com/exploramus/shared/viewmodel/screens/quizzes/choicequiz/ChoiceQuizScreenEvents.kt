@@ -1,11 +1,13 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
-import com.exploramus.core.models.ChoiceQuizNavigationMode
-import com.exploramus.core.models.QuizResult
+import com.exploramus.core.models.*
+import com.exploramus.data.repository.functions.getQuizItemResult
+import com.exploramus.data.repository.functions.saveQuizItemResult
 import com.exploramus.data.repository.functions.saveQuizResult
 import com.exploramus.data.repository.functions.updateChoiceQuizNavigationMode
 import com.exploramus.shared.viewmodel.core.Events
 import kotlinx.coroutines.delay
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.milliseconds
 
 fun Events.selectChoiceOption(itemId: String, optionId: String) = screenCoroutine {
@@ -27,6 +29,8 @@ fun Events.submitChoiceAnswer(itemId: String, expectedRevision: Int? = null) = s
     var shouldNavigateAuto = false
     var autoProceedDelayMs = 0L
     var scheduledRevision = -1
+    var isCorrect = false
+    var didActuallySubmit = false
 
     stateManager.updateScreen(ChoiceQuizScreenState::class) { state ->
         if (expectedRevision != null && state.totalRestartEvent != expectedRevision) return@updateScreen state
@@ -34,9 +38,12 @@ fun Events.submitChoiceAnswer(itemId: String, expectedRevision: Int? = null) = s
         val (updatedQuiz, didSubmit) = state.quiz.submitAnswer(itemId)
         
         if (didSubmit) {
+            didActuallySubmit = true
             val currentItem = updatedQuiz.items.firstOrNull { it.id == itemId }
+            isCorrect = currentItem?.status == ChoiceQuizAnswerStatus.CORRECT
+            
             shouldNavigateAuto = updatedQuiz.config.navigationMode == ChoiceQuizNavigationMode.AUTO
-            autoProceedDelayMs = if (currentItem?.status == ChoiceQuizAnswerStatus.CORRECT) {
+            autoProceedDelayMs = if (isCorrect) {
                 updatedQuiz.config.autoProceedCorrectDelayMs
             } else {
                 updatedQuiz.config.autoProceedIncorrectDelayMs
@@ -45,6 +52,10 @@ fun Events.submitChoiceAnswer(itemId: String, expectedRevision: Int? = null) = s
         }
 
         state.copy(quiz = updatedQuiz)
+    }
+
+    if (didActuallySubmit) {
+        saveChoiceQuizItemResult(itemId, isCorrect)
     }
 
     if (shouldNavigateAuto) {
@@ -132,4 +143,12 @@ fun Events.restartChoiceQuiz() {
 
 fun Events.saveChoiceQuizResult(result: QuizResult) = screenCoroutine {
     dataRepository.saveQuizResult(result)
+}
+
+fun Events.saveChoiceQuizItemResult(itemId: String, isCorrect: Boolean) = screenCoroutine {
+    val timestamp = Clock.System.now().toEpochMilliseconds()
+    val existing = dataRepository.getQuizItemResult(itemId) ?: QuizItemResult.empty(itemId)
+    val updated = existing.update(isCorrect, timestamp)
+
+    dataRepository.saveQuizItemResult(updated)
 }
