@@ -121,11 +121,6 @@ fun ChoiceQuizState.next(): Pair<ChoiceQuizState, Boolean> {
     }
 }
 
-fun ChoiceQuizState.restart(): ChoiceQuizState = copy(
-    currentIndex = 0,
-    items = items.map { it.copy(selectedOptionId = null, isSubmitted = false) }
-)
-
 fun ChoiceQuizState.toQuizResult(): QuizResult {
     val res = results
     return QuizResult(

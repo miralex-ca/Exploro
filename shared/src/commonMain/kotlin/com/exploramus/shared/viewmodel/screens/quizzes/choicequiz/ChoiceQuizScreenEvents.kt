@@ -119,13 +119,12 @@ fun Events.nextChoiceQuestion(expectedRevision: Int? = null) {
 
 fun Events.restartChoiceQuiz() {
     stateManager.updateScreen(ChoiceQuizScreenState::class) { state ->
-        // Completely rebuild/reshuffle data
-        val selectedCountries = state.allCountries.shuffled().let { 
-            if (state.quizLimit != null) it.take(state.quizLimit) else it 
+        val selectedCountries = state.allCountries.shuffled().let {
+            if (state.quizLimit != null) it.take(state.quizLimit) else it
         }
-        
+
         val quizItems = selectedCountries.map { country ->
-            buildChoiceQuizItem(country, state.allCountries, state.studyTarget)
+            buildChoiceQuizItem(country, state.distractorPoolProvider.poolFor(country), state.studyTarget)
         }
 
         state.copy(

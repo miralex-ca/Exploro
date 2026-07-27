@@ -82,7 +82,8 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
                 ),
                 allCountries = countries,
                 studyTarget = studyTarget,
-                quizLimit = quizLimit
+                quizLimit = quizLimit,
+                distractorPoolProvider = distractorPoolProvider,
             )
         }
     },
