@@ -5,9 +5,7 @@ import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
-import com.exploramus.shared.viewmodel.screens.quizzes.common.DistractorPoolProvider
-import com.exploramus.shared.viewmodel.screens.quizzes.common.SameListDistractorPoolProvider
-import com.exploramus.shared.viewmodel.screens.quizzes.common.SectionDistractorPoolProvider
+import com.exploramus.shared.viewmodel.screens.quizzes.common.QuizCountryManager
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 import com.exploramus.shared.viewmodel.utils.QuizIdBuilder
@@ -25,12 +23,6 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
     title = "Quiz",
     initState = { ChoiceQuizScreenState(isLoading = true) },
     callOnInit = {
-        val countries = when (params.sectionType) {
-            QuizzesSectionType.FAVORITES -> dataRepository.getFlashcardCountriesFavorites()
-            QuizzesSectionType.ALL_COUNTRIES -> dataRepository.getFlashcardCountriesAll()
-            QuizzesSectionType.CONTINENT -> dataRepository.getFlashcardCountriesBySection(params.sectionId)
-        }
-
         val config = when (params.quizType) {
             QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY -> dataRepository.getChoiceQuizPrimarySecondaryConfig()
             QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> dataRepository.getChoiceQuizImagePrimaryConfig()
@@ -38,22 +30,17 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
         }
 
         val navigationMode = dataRepository.getChoiceQuizNavigationMode()
-
         val studyTarget = config?.studyTarget ?: params.quizType.toDefaultStudyTarget()
         val quizLimit = config?.quizLimit
 
-        // We shuffle and apply the limit if provided
-        val selectedCountries = countries.shuffled().let {
-            if (quizLimit != null) it.take(quizLimit) else it
-        }
+        val countryManager = QuizCountryManager(dataRepository)
+        val (countries, selectedCountries) = countryManager.getCountriesForQuiz(
+            sectionType = params.sectionType,
+            sectionId = params.sectionId,
+            quizLimit = quizLimit
+        )
 
-        // Distractors come from the section each country belongs to (favorites/all),
-        // or from the already-scoped list itself (continent screens).
-        val distractorPoolProvider: DistractorPoolProvider = when (params.sectionType) {
-            QuizzesSectionType.FAVORITES,
-            QuizzesSectionType.ALL_COUNTRIES -> SectionDistractorPoolProvider(dataRepository)
-            QuizzesSectionType.CONTINENT -> SameListDistractorPoolProvider(countries)
-        }
+        val distractorPoolProvider = countryManager.getDistractorPoolProvider(params.sectionType, countries)
         distractorPoolProvider.preload(selectedCountries)
 
         val quizItems = selectedCountries.map { country ->
