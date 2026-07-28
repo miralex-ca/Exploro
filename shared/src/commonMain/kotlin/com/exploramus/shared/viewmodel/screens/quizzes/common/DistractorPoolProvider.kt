@@ -1,10 +1,6 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.common
 
 import com.exploramus.core.models.Country
-import com.exploramus.data.repository.Repository
-import com.exploramus.data.repository.functions.getFlashcardCountriesAll
-import com.exploramus.data.repository.functions.getFlashcardCountriesBySection
-import com.exploramus.data.repository.functions.getSections
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -22,7 +18,7 @@ class SameListDistractorPoolProvider(
 }
 
 class SectionDistractorPoolProvider(
-    private val dataRepository: Repository,
+    private val dataSource: ChoiceQuizDataSource,
     private val minPoolSize: Int = 4
 ) : DistractorPoolProvider {
 
@@ -34,18 +30,14 @@ class SectionDistractorPoolProvider(
     override suspend fun preload(targets: List<Country>) {
         val continentNames = targets.map { it.continent }.distinct()
 
-        // Resolve continent name -> section id once, matching on normalized name
-        val sections = dataRepository.getSections()
-        val sectionIdByNormalizedName = sections.associateBy(
-            { normalize(it.name) },
-            { it.id }
-        )
+        val sections = dataSource.getSections()
+        val sectionIdByNormalizedName = sections.associateBy({ normalize(it.name) }, { it.id })
 
         coroutineScope {
             continentNames
                 .mapNotNull { name ->
                     val sectionId = sectionIdByNormalizedName[normalize(name)] ?: return@mapNotNull null
-                    async { name to dataRepository.getFlashcardCountriesBySection(sectionId) }
+                    async { name to dataSource.getItemsBySection(sectionId) }
                 }
                 .awaitAll()
         }.forEach { (name, countries) -> cache[normalize(name)] = countries }
@@ -53,7 +45,7 @@ class SectionDistractorPoolProvider(
         val needsFallback = cache.values.any { it.size < minPoolSize } ||
                 continentNames.any { normalize(it) !in cache }
         if (needsFallback) {
-            allCountriesFallback = dataRepository.getFlashcardCountriesAll()
+            allCountriesFallback = dataSource.getItemsFromAll()
         }
     }
 

@@ -1,6 +1,9 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
-import com.exploramus.core.models.*
+import com.exploramus.core.models.ChoiceQuizNavigationMode
+import com.exploramus.core.models.QuizItemResult
+import com.exploramus.core.models.QuizResult
+import com.exploramus.core.models.update
 import com.exploramus.data.repository.functions.getQuizItemResult
 import com.exploramus.data.repository.functions.saveQuizItemResult
 import com.exploramus.data.repository.functions.saveQuizResult
@@ -65,22 +68,24 @@ fun Events.submitChoiceAnswer(itemId: String, expectedRevision: Int? = null) = s
 }
 
 fun Events.toggleChoiceQuizNavigationMode() = screenCoroutine {
+    val state = stateManager.getScreenState(ChoiceQuizScreenState::class) ?: return@screenCoroutine
+
+    val newMode = if (state.quiz.config.navigationMode == ChoiceQuizNavigationMode.MANUAL) {
+        ChoiceQuizNavigationMode.AUTO
+    } else {
+        ChoiceQuizNavigationMode.MANUAL
+    }
+
+    dataRepository.updateChoiceQuizNavigationMode(newMode)
+
     var shouldNavigateAuto = false
     var autoProceedDelayMs = 0L
     var scheduledRevision = -1
 
-    stateManager.updateScreen(ChoiceQuizScreenState::class) { state ->
-        val newMode = if (state.quiz.config.navigationMode == ChoiceQuizNavigationMode.MANUAL) {
-            ChoiceQuizNavigationMode.AUTO
-        } else {
-            ChoiceQuizNavigationMode.MANUAL
-        }
-
-        dataRepository.updateChoiceQuizNavigationMode(newMode)
-        
-        val updatedState = state.copy(
-            quiz = state.quiz.copy(
-                config = state.quiz.config.copy(navigationMode = newMode)
+    stateManager.updateScreen(ChoiceQuizScreenState::class) { current ->
+        val updatedState = current.copy(
+            quiz = current.quiz.copy(
+                config = current.quiz.config.copy(navigationMode = newMode)
             )
         )
 
@@ -117,25 +122,27 @@ fun Events.nextChoiceQuestion(expectedRevision: Int? = null) {
     }
 }
 
-fun Events.restartChoiceQuiz() {
-    stateManager.updateScreen(ChoiceQuizScreenState::class) { state ->
-        val selectedCountries = state.allCountries.shuffled().let {
-            if (state.quizLimit != null) it.take(state.quizLimit) else it
-        }
+fun Events.restartChoiceQuiz() = screenCoroutine {
+    val state = stateManager.getScreenState(ChoiceQuizScreenState::class) ?: return@screenCoroutine
+    val session = state.session ?: return@screenCoroutine
+    val originalQuizId = state.quiz.quizId
 
-        val quizItems = selectedCountries.map { country ->
-            buildChoiceQuizItem(country, state.distractorPoolProvider.poolFor(country), state.studyTarget)
-        }
+    val quizItems = session.buildQuizItems(state.quizLimit)
 
-        state.copy(
-            quiz = ChoiceQuizState(
-                quizId = state.quiz.quizId,
-                items = quizItems,
-                config = state.quiz.config,
-                currentIndex = 0
-            ),
+    val quizState = ChoiceQuizState(
+        quizId = originalQuizId,
+        items = quizItems,
+        config = state.quiz.config,
+        currentIndex = 0
+    )
+
+    stateManager.updateScreen(ChoiceQuizScreenState::class) { current ->
+        if (current.quiz.quizId != originalQuizId) return@updateScreen current
+
+        current.copy(
+            quiz = quizState,
             isFinished = false,
-            totalRestartEvent = state.totalRestartEvent + 1
+            totalRestartEvent = current.totalRestartEvent + 1
         )
     }
 }

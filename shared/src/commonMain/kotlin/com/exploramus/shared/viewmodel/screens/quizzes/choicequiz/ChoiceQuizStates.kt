@@ -2,7 +2,6 @@ package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
 import com.exploramus.core.models.ChoiceQuizNavigationMode
 import com.exploramus.core.models.ChoiceQuizStudyTarget
-import com.exploramus.core.models.Country
 import com.exploramus.core.models.QuizResult
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import kotlin.time.Clock
@@ -82,12 +81,6 @@ data class ChoiceQuizConfigState(
     val navigationMode: ChoiceQuizNavigationMode = ChoiceQuizNavigationMode.MANUAL,
 )
 
-data class ChoiceQuizEvaluation(
-    val title: String,
-    val emoji: String,
-    val color: Long
-)
-
 fun ChoiceQuizState.selectOption(itemId: String, optionId: String): ChoiceQuizState {
     val updatedItems = items.map { item ->
         if (item.id == itemId && !item.isSubmitted) {
@@ -134,56 +127,4 @@ fun ChoiceQuizState.toQuizResult(): QuizResult {
 fun QuizType.toDefaultStudyTarget(): ChoiceQuizStudyTarget = when(this) {
     QuizType.CHOICE_QUIZ_IMAGE_PRIMARY -> ChoiceQuizStudyTarget.IMAGE_PRIMARY
     else -> ChoiceQuizStudyTarget.PRIMARY_SECONDARY
-}
-
-fun buildChoiceQuizItem(
-    target: Country,
-    distractorPool: List<Country>,
-    studyTarget: ChoiceQuizStudyTarget
-): ChoiceQuizItemState {
-    val distractors = distractorPool
-        .filter { it.id != target.id }
-        .shuffled()
-        .take(3)
-
-    // 2. Build options based on studyTarget
-    val options = (distractors + target).shuffled().map { country ->
-        val content = when (studyTarget) {
-            ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> country.capital
-            ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> country.name
-            ChoiceQuizStudyTarget.IMAGE_PRIMARY -> country.name
-            ChoiceQuizStudyTarget.PRIMARY_IMAGE -> country.flagImage
-        }
-        val contentType = if (studyTarget == ChoiceQuizStudyTarget.PRIMARY_IMAGE) {
-            ChoiceQuizContentType.IMAGE
-        } else {
-            ChoiceQuizContentType.TEXT
-        }
-        ChoiceQuizOptionState(id = country.id, content = content, contentType = contentType)
-    }
-
-    // 3. Build question based on studyTarget
-    val questionContent = when (studyTarget) {
-        ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> target.name
-        ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> target.capital
-        ChoiceQuizStudyTarget.IMAGE_PRIMARY -> target.flagImage
-        ChoiceQuizStudyTarget.PRIMARY_IMAGE -> target.name
-    }
-
-    val questionContentType = if (studyTarget == ChoiceQuizStudyTarget.IMAGE_PRIMARY) {
-        ChoiceQuizContentType.IMAGE
-    } else {
-        ChoiceQuizContentType.TEXT
-    }
-
-    return ChoiceQuizItemState(
-        id = target.id,
-        question = ChoiceQuizQuestionState(
-            content = questionContent,
-            contentType = questionContentType,
-            studyTarget = studyTarget,
-        ),
-        options = options,
-        correctOptionId = target.id
-    )
 }

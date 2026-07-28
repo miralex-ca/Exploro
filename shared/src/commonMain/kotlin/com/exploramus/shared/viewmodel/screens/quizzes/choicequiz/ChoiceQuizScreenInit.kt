@@ -1,11 +1,14 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.choicequiz
 
-import com.exploramus.data.repository.functions.*
+import com.exploramus.data.repository.functions.getChoiceQuizImagePrimaryConfig
+import com.exploramus.data.repository.functions.getChoiceQuizNavigationMode
+import com.exploramus.data.repository.functions.getChoiceQuizPrimarySecondaryConfig
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
-import com.exploramus.shared.viewmodel.screens.quizzes.common.QuizCountryManager
+import com.exploramus.shared.viewmodel.screens.quizzes.common.ChoiceQuizDataSource
+import com.exploramus.shared.viewmodel.screens.quizzes.common.ChoiceQuizSession
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 import com.exploramus.shared.viewmodel.utils.QuizIdBuilder
@@ -33,23 +36,14 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
         val studyTarget = config?.studyTarget ?: params.quizType.toDefaultStudyTarget()
         val quizLimit = config?.quizLimit
 
-        val countryManager = QuizCountryManager(dataRepository)
-        val (countries, selectedCountries) = countryManager.getCountriesForQuiz(
+        val session = ChoiceQuizSession.create(
+            dataSource = ChoiceQuizDataSource.Default(dataRepository),
             sectionType = params.sectionType,
             sectionId = params.sectionId,
-            quizLimit = quizLimit
+            studyTarget = studyTarget,
         )
 
-        val distractorPoolProvider = countryManager.getDistractorPoolProvider(params.sectionType, countries)
-        distractorPoolProvider.preload(selectedCountries)
-
-        val quizItems = selectedCountries.map { country ->
-            buildChoiceQuizItem(
-                target = country,
-                distractorPool = distractorPoolProvider.poolFor(country),
-                studyTarget = studyTarget
-            )
-        }
+        val quizItems = session.buildQuizItems(quizLimit)
 
         val quizId = QuizIdBuilder.build(
             sectionId = params.sectionId,
@@ -58,19 +52,18 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
             studyTarget = studyTarget
         )
 
+        val quizState = ChoiceQuizState(
+            quizId = quizId,
+            items = quizItems,
+            config = ChoiceQuizConfigState(navigationMode = navigationMode)
+        )
+
         updateScreen(ChoiceQuizScreenState::class) {
             it.copy(
                 isLoading = false,
-                screenTitle = params.screenTitle,
-                quiz = ChoiceQuizState(
-                    quizId = quizId,
-                    items = quizItems,
-                    config = ChoiceQuizConfigState(navigationMode = navigationMode)
-                ),
-                allCountries = countries,
-                studyTarget = studyTarget,
+                quiz = quizState,
                 quizLimit = quizLimit,
-                distractorPoolProvider = distractorPoolProvider,
+                session = session,
             )
         }
     },
