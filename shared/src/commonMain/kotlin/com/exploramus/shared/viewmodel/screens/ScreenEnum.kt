@@ -10,6 +10,7 @@ import com.exploramus.shared.viewmodel.screens.favorites.initFavoritesScreen
 import com.exploramus.shared.viewmodel.screens.home.initHomeScreen
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.initChoiceQuizScreen
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.initFlashcardScreen
+import com.exploramus.shared.viewmodel.screens.quizzes.groupeditems.initGroupedItemsScreen
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.initQuizSectionsScreen
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.initQuizzesListScreen
 import com.exploramus.shared.viewmodel.screens.search.initSearchScreen
@@ -62,7 +63,7 @@ enum class Screen(
     }),
 
     GroupedItemsScreen("groupedItems", 3, {
-        initFavoritesScreen()
+        initGroupedItemsScreen(it.screenParams())
     }),
 
     SearchScreen("search", 2, {
