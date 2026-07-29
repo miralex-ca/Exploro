@@ -8,6 +8,7 @@ import com.exploramus.app.composables.screens.quizzes.groupeditems.views.Grouped
 import com.exploramus.app.composables.screens.quizzes.groupeditems.views.GroupedItemsList
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isCompact
+import com.exploramus.core.models.QuizItemStatus
 import com.exploramus.shared.viewmodel.screens.quizzes.groupeditems.GroupedItemsScreenState
 
 @Composable
@@ -32,7 +33,12 @@ fun GroupedItemsScreenContent(
     val useGrid = !formFactor.isCompact
 
     if (screenState.items.isEmpty()) {
-        EmptyStateView(EmptyState.EmptyList)
+        if (screenState.masteryStatus == QuizItemStatus.UNKNOWN) {
+            EmptyStateView(EmptyState.NotFound)
+        } else {
+            EmptyStateView(EmptyState.EmptyList)
+        }
+
     } else {
         if (useGrid) {
             GroupedItemsGrid(

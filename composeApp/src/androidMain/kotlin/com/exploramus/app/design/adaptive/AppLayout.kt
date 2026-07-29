@@ -19,6 +19,7 @@ data class AppLayout(
     val cardSpacing: Adp,
     val home: Home,
     val favorites: Favorites,
+    val groupedItems: GroupedItems,
     val section: Section,
     val details: Details,
     val search: Search,
@@ -115,6 +116,15 @@ data class AppLayout(
         val imageTextSpace: Adp,
     )
 
+    data class GroupedItems(
+        val listItemMaxWidth: Adp,
+        val itemImageHeight: Adp,
+        val itemGridImageHeight: Adp,
+        val itemImageWidth: AdaptiveSizeValue<Dp>,
+        val bottomPadding: Adp,
+        val imageTextSpace: Adp,
+    )
+
     data class Search(
         val listItemMaxWidth: Adp,
         val itemImageWidth: Adp,
@@ -157,6 +167,24 @@ object AppLayouts {
             gridItemMaxWidth = adp(200.dp, 100.dp),
             itemImageHeight = adp(52.dp, 60.dp,70.dp),
             itemGridImageHeight = adp(60.dp, 70.dp,80.dp),
+            bottomPadding = adp(60.dp),
+            imageTextSpace = adp(20.dp, 26.dp),
+        ),
+
+        groupedItems = AppLayout.GroupedItems(
+            listItemMaxWidth = adp(420.dp, 500.dp),
+            itemImageHeight = adp(52.dp, 60.dp, 70.dp),
+            itemImageWidth = adpSizeForFormat(
+                phone = 90.dp,
+                phoneLandscape = 100.dp,
+                largePhone = 90.dp,
+                largePhoneLandscape = 110.dp,
+                tablet = 100.dp,
+                tabletLandscape = 130.dp,
+                largeTablet = 120.dp,
+                largeTabletLandscape = 110.dp,
+            ),
+            itemGridImageHeight = adp(60.dp, 70.dp, 80.dp),
             bottomPadding = adp(60.dp),
             imageTextSpace = adp(20.dp, 26.dp),
         ),

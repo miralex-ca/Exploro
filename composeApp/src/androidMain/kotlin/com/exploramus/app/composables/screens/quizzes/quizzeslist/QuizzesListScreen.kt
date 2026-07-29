@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.ScreenLoading
@@ -34,7 +35,6 @@ import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
-import com.exploramus.app.design.theme.AppTypography
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.core.models.QuizItemStatus
@@ -339,13 +339,19 @@ fun QuizCard(
             ) {
                 Text(
                     text = displayTitle,
-                    style = AppTypography.quizCardTitle,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 20.sp,
+                    maxLines = 1,
                 )
-                Spacer(modifier = Modifier.height(12.dp))
+
+                Spacer(modifier = Modifier.height(14.dp))
                 Text(
                     text = displayDescription,
-                    style = AppTypography.quizCardDescription,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 14.sp,
                     maxLines = 2,
                 )
             }

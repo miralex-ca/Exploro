@@ -47,8 +47,6 @@ object AppTypography {
         lineHeight = 20.sp
     )
 
-
-
     val appBarTitle = TextStyle(
         fontSize = 18.sp,
         fontWeight = FontWeight.SemiBold
@@ -60,14 +58,17 @@ object AppTypography {
     )
 
     val quizCardTitle = TextStyle(
-        fontSize = 18.sp,
-        fontWeight = FontWeight.SemiBold
+        fontSize = 19.sp,
+        fontWeight = FontWeight.Medium,
+        lineHeight = 20.sp,
+        letterSpacing = 0.2.sp
     )
 
     val quizCardDescription = TextStyle(
-        fontSize = 13.sp,
+        fontSize = 14.sp,
         fontWeight = FontWeight.Normal,
-        lineHeight = 16.sp
+        lineHeight = 20.sp,
+        letterSpacing = 0.2.sp
     )
 
     val listItemTitle = TextStyle(
