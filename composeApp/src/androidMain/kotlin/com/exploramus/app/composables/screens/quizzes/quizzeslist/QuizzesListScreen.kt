@@ -100,9 +100,20 @@ fun QuizzesListContent(
             Box(
                 modifier = Modifier.widthIn(max = MaterialTheme.layout.quizzesSection.itemMaxWidth.value())
             ) {
-                QuizzesListHeaderCard(sectionInfo = screenState.sectionInfo)
+                QuizzesListHeaderCard(
+                    sectionInfo = screenState.sectionInfo,
+                    onStatClick = { status ->
+                        onEvent(
+                            QuizzesListUiEvent.OnMasteryStatsClicked(
+                                sectionId = screenState.sectionInfo.continentId ?: "",
+                                sectionType = screenState.sectionInfo.sectionType,
+                                status = status,
+                                title = screenState.sectionInfo.title
+                            )
+                        )
+                    }
+                )
             }
-
         }
 
         if (screenState.quizzes.isEmpty()) {

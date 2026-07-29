@@ -5,6 +5,7 @@ import com.exploramus.shared.viewmodel.screens.Screen
 import com.exploramus.shared.viewmodel.screens.details.detailpager.DetailsPagerScreenParams
 import com.exploramus.shared.viewmodel.screens.details.detailpager.FavoritesPagerScreenParams
 import com.exploramus.shared.viewmodel.screens.details.singledetail.DetailsScreenParams
+import com.exploramus.shared.viewmodel.screens.quizzes.groupeditems.GroupedItemsScreenParams
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenParams
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 import com.exploramus.shared.viewmodel.screens.section.SectionParams
@@ -27,6 +28,8 @@ interface ScreenNavActions {
     fun toSection(section: SectionNavParams)
 
     fun toQuizList(item: QuizListNavParams)
+
+    fun toGroupedItems(params: GroupedItemsScreenParams)
 
     fun toLevel1Screen(level1Navigation: Level1Navigation)
 
@@ -93,6 +96,10 @@ interface ScreenNavActions {
                     screenTitle = item.name
                 )
             )
+        }
+
+        override fun toGroupedItems(params: GroupedItemsScreenParams) {
+            appNavController.navigate(Screen.GroupedItemsScreen, params)
         }
 
         override fun toLevel1Screen(level1Navigation: Level1Navigation) {

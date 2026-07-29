@@ -19,6 +19,13 @@ import com.exploramus.shared.viewmodel.screens.settings.initSettingsScreen
 
 enum class Screen(
     val asString: String,
+    /**
+     * The navigation level defines the vertical depth of the screen in the backstack hierarchy.
+     * It is critical for the [com.exploramus.shared.viewmodel.core.Navigation] manager to correctly 
+     * handle screen transitions and backstack management.
+     * - Level 1: Root screens (e.g., Home, Favorites) usually associated with bottom navigation.
+     * - Level > 1: Nested screens or detail views.
+     */
     val navigationLevel: Int = 1,
     val initSettings: StateManager.(ScreenIdentifier) -> ScreenInitSettings,
 ) {
@@ -46,15 +53,15 @@ enum class Screen(
         initChoiceQuizScreen(it.screenParams())
     }),
 
-    CountryDetail("detail", 3, {
+    CountryDetail("detail", 4, {
         initCountryDetail(it.screenParams())
     }),
 
-    DetailsPagerScreen("detailspager", 3, {
+    DetailsPagerScreen("detailspager", 4, {
         initDetailsPager(it.screenParams())
     }),
 
-    FavoritesPagerScreen("favoritesspager", 3, {
+    FavoritesPagerScreen("favoritesspager", 4, {
         initFavoritesDetailsPager(it.screenParams())
     }),
 
@@ -62,7 +69,7 @@ enum class Screen(
         initSectionScreen(params = it.screenParams())
     }),
 
-    GroupedItemsScreen("groupedItems", 3, {
+    GroupedItemsScreen("groupeditems", 3, {
         initGroupedItemsScreen(it.screenParams())
     }),
 

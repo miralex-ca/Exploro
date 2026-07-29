@@ -3,10 +3,12 @@ package com.exploramus.app.composables.screens.quizzes.quizzeslist
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.core.models.ChoiceQuizConfig
 import com.exploramus.core.models.FlashcardConfig
+import com.exploramus.core.models.QuizItemStatus
 import com.exploramus.shared.viewmodel.core.Events
 import com.exploramus.shared.viewmodel.screens.Screen
 import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizScreenParams
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenParams
+import com.exploramus.shared.viewmodel.screens.quizzes.groupeditems.GroupedItemsScreenParams
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.*
 
 sealed class QuizzesListUiEvent {
@@ -24,6 +26,13 @@ sealed class QuizzesListUiEvent {
 
     data class ToggleChoiceQuizSettings(val visible: Boolean, val quizType: QuizType? = null) : QuizzesListUiEvent()
     data class UpdateChoiceQuizConfig(val config: ChoiceQuizConfig, val quizType: QuizType) : QuizzesListUiEvent()
+
+    data class OnMasteryStatsClicked(
+        val sectionId: String,
+        val sectionType: QuizzesSectionType,
+        val status: QuizItemStatus?,
+        val title: String? = null
+    ) : QuizzesListUiEvent()
 }
 
 class QuizzesListEventHandler(
@@ -76,6 +85,16 @@ class QuizzesListEventHandler(
             }
             is QuizzesListUiEvent.UpdateChoiceQuizConfig -> {
                 events.updateChoiceQuizConfig(event.config, event.quizType)
+            }
+            is QuizzesListUiEvent.OnMasteryStatsClicked -> {
+                navActions.toGroupedItems(
+                    GroupedItemsScreenParams(
+                        sectionId = event.sectionId,
+                        sectionType = event.sectionType,
+                        masteryStatus = event.status,
+                        screenTitle = event.title
+                    )
+                )
             }
         }
     }
