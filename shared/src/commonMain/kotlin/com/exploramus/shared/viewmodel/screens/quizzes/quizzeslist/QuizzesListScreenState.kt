@@ -22,6 +22,9 @@ data class QuizzesSectionHeaderState(
     val itemsCount: Int = 0,
     val sectionType: QuizzesSectionType = QuizzesSectionType.ALL_COUNTRIES,
     val continentId: String? = null,
+    val unknownCount: Int = 0,
+    val familiarCount: Int = 0,
+    val masteredCount: Int = 0,
 )
 
 enum class QuizzesSectionType {

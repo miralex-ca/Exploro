@@ -142,7 +142,10 @@ fun QuizzesListContent(
 
 
 @Composable
-fun QuizzesListHeaderCard(sectionInfo: QuizzesSectionHeaderState) {
+fun QuizzesListHeaderCard(
+    sectionInfo: QuizzesSectionHeaderState,
+    onStatClick: (QuizItemStatus) -> Unit = {},
+) {
     val colors = sectionInfo.sectionType.toAppColorSet(sectionInfo.continentId)
     val icon = sectionInfo.sectionType.getIcon()
 
@@ -154,43 +157,136 @@ fun QuizzesListHeaderCard(sectionInfo: QuizzesSectionHeaderState) {
         ),
         modifier = Modifier.fillMaxWidth(),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp, vertical = 20.dp),
         ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = sectionInfo.title,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = "${sectionInfo.itemsCount} countries available",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
-                )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = sectionInfo.title,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = "${sectionInfo.itemsCount} countries available",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(16.dp))
+
+                SectionIconBox(
+                    size = 66.dp,
+                    cornerRadius = 16.dp,
+                    color = colors.background(),
+                ) {
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = null,
+                        tint = colors.icon(),
+                        modifier = Modifier.size(32.dp),
+                    )
+                }
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.height(28.dp))
 
-
-            SectionIconBox(
-                size = 66.dp,
-                cornerRadius = 16.dp,
-                color = colors.background(),
-            ) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    tint = colors.icon(),
-                    modifier = Modifier.size(32.dp),
+            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                StatsRow(
+                    mastered = sectionInfo.masteredCount,
+                    familiar = sectionInfo.familiarCount,
+                    unknown =  sectionInfo.unknownCount,
+                    onClick = onStatClick,
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun StatsRow(
+    unknown: Int,
+    familiar: Int,
+    mastered: Int,
+    onClick: (QuizItemStatus) -> Unit,
+) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .widthIn(max = 420.dp), // caps chip growth on wide tablets
+    ) {
+        StatChip(
+            count = mastered,
+            label = "Mastered",
+            status = QuizItemStatus.MASTERED,
+            modifier = Modifier.weight(1f),
+            onClick = { onClick(QuizItemStatus.MASTERED) },
+        )
+        StatChip(
+            count = familiar,
+            label = "Familiar",
+            status = QuizItemStatus.FAMILIAR,
+            modifier = Modifier.weight(1f),
+            onClick = { onClick(QuizItemStatus.FAMILIAR) },
+        )
+        StatChip(
+            count = unknown,
+            label = "Unknown",
+            status = QuizItemStatus.UNKNOWN,
+            modifier = Modifier.weight(1f),
+            onClick = { onClick(QuizItemStatus.UNKNOWN) },
+        )
+    }
+}
+
+@Composable
+private fun StatChip(
+    count: Int,
+    label: String,
+    status: QuizItemStatus,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+    val colorSet = status.toAppColorSet()
+    val color = colorSet.text()
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .clip(RoundedCornerShape(50))
+            .background(colorSet.background())
+            .border(
+                width = 1.dp,
+                color = color.copy(alpha = 0.35f),
+                shape = RoundedCornerShape(50),
+            )
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = ripple(color = color),
+                onClick = onClick,
+            )
+            .padding(vertical = 10.dp),
+    ) {
+        Text(
+            text = count.toString(),
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold,
+            color = color,
+        )
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall,
+            color = color.copy(alpha = 0.85f),
+        )
     }
 }
 

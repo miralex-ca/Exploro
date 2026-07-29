@@ -61,6 +61,10 @@ enum class Screen(
         initSectionScreen(params = it.screenParams())
     }),
 
+    GroupedItemsScreen("groupedItems", 3, {
+        initFavoritesScreen()
+    }),
+
     SearchScreen("search", 2, {
         initSearchScreen()
     }),

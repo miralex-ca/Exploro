@@ -20,17 +20,22 @@ fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = Screen
     initState = { QuizzesListScreenState(isLoading = true) },
     callOnInit = {
 
-        val itemsCount = when (params.sectionType) {
-            QuizzesSectionType.FAVORITES -> dataRepository.getFavoritesCount()
-            QuizzesSectionType.ALL_COUNTRIES -> dataRepository.getAllCountriesCount()
-            QuizzesSectionType.CONTINENT -> dataRepository.getCountriesCountBySection(params.sectionId)
+        val countries = when (params.sectionType) {
+            QuizzesSectionType.FAVORITES -> dataRepository.getFavorites()
+            QuizzesSectionType.ALL_COUNTRIES -> dataRepository.getAllCountries()
+            QuizzesSectionType.CONTINENT -> dataRepository.getCountriesBySectionId(params.sectionId)
         }
+
+        val stats = dataRepository.getSectionStats(countries.map { it.id })
 
         val sectionInfo = QuizzesSectionHeaderState(
             title = params.screenTitle ?: "",
-            itemsCount = itemsCount.toInt(),
+            itemsCount = countries.size,
             sectionType = params.sectionType,
             continentId = params.sectionId.takeIf { params.sectionType == QuizzesSectionType.CONTINENT },
+            unknownCount = stats.unknown,
+            familiarCount = stats.familiar,
+            masteredCount = stats.mastered
         )
 
         val psConfig = dataRepository.getChoiceQuizPrimarySecondaryConfig()

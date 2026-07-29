@@ -11,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import com.exploramus.app.R
+import com.exploramus.app.composables.screens.quizzes.choicequiz.views.GreenCorrect
 import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.app.design.theme.AppColorSet
+import com.exploramus.core.models.QuizItemStatus
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 
@@ -21,6 +23,10 @@ object QuizColorPalette {
     val AllCountries = AppColorPalette.Blue
     val AllContinents = AppColorPalette.Pink
     val Quizzes = AppColorPalette.BlueGrey
+    
+    val Mastered = AppColorPalette.GreenCorrect
+    val Familiar = AppColorPalette.LightBlue
+    val Unknown = AppColorPalette.BlueGrey
 }
 
 fun String?.toAppColorSet(): AppColorSet = when (this?.lowercase()) {
@@ -38,6 +44,12 @@ fun QuizzesSectionType.toAppColorSet(continentId: String? = null): AppColorSet =
     QuizzesSectionType.ALL_COUNTRIES -> QuizColorPalette.AllCountries
     QuizzesSectionType.CONTINENT if (continentId == null) -> QuizColorPalette.AllContinents
     QuizzesSectionType.CONTINENT -> continentId.toAppColorSet()
+}
+
+fun QuizItemStatus.toAppColorSet(): AppColorSet = when (this) {
+    QuizItemStatus.UNKNOWN -> QuizColorPalette.Unknown
+    QuizItemStatus.FAMILIAR -> QuizColorPalette.Familiar
+    QuizItemStatus.MASTERED -> QuizColorPalette.Mastered
 }
 
 @Composable
