@@ -12,8 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.screens.quizzes.utils.toAppColorSet
 import com.exploramus.core.models.QuizItemStatus
+
+import com.exploramus.app.design.theme.AppColorPalette
+import com.exploramus.app.resources.Strings
 
 @Composable
 fun MasteryStatusMark(
@@ -36,7 +40,34 @@ fun MasteryStatusMark(
             text = status.name.lowercase().replaceFirstChar { it.uppercase() },
             style = MaterialTheme.typography.labelSmall,
             color = statusColorSet.text(),
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+@Composable
+fun ErrorCountMark(
+    modifier: Modifier = Modifier,
+    errorCount: Int,
+) {
+    val colorSet = AppColorPalette.Red
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(6.dp))
+            .background(colorSet.background())
+            .border(
+                width = 1.dp,
+                color = colorSet.text().copy(alpha = 0.2f),
+                shape = RoundedCornerShape(6.dp)
+            )
+            .padding(horizontal = 6.dp, vertical = 1.dp)
+    ) {
+        Text(
+            text = Strings.commonErrorsCount(errorCount),
+            style = MaterialTheme.typography.labelSmall,
+            color = colorSet.text(),
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 10.sp
         )
     }
 }

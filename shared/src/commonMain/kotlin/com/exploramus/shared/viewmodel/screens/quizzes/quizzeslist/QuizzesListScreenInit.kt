@@ -16,7 +16,7 @@ data class QuizzesListScreenParams(
 ) : ScreenParams
 
 fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = ScreenInitSettings(
-    title = "Quizzes list" ,
+    title = "Quizzes",
     initState = { QuizzesListScreenState(isLoading = true) },
     callOnInit = {
 

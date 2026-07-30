@@ -47,7 +47,8 @@ fun StateManager.initGroupedItemsScreen(params: GroupedItemsScreenParams) = Scre
                 flagEmoji = country.flagEmoji,
                 flagImage = country.flagImage,
                 subregion = country.location,
-                status = status
+                status = status,
+                errorCount = result?.errors ?: 0
             )
         }.filter {
             params.masteryStatus == null || it.status == params.masteryStatus

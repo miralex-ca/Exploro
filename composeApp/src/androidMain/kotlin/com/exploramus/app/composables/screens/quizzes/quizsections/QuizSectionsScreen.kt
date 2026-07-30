@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.ScreenLoading
@@ -126,6 +127,7 @@ fun FavoritesSectionCard(
     itemsCount: Int,
     onClick: () -> Unit,
 ) {
+    val layout = MaterialTheme.layout.quizzesSection
     val colors = QuizzesSectionType.FAVORITES.toAppColorSet()
     QuizSectionCard(
         title = Strings.quizCollectionFavorites,
@@ -137,7 +139,7 @@ fun FavoritesSectionCard(
                     imageVector = Icons.Default.Star,
                     contentDescription = null,
                     tint = colors.icon(),
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier.size(layout.iconSize.value()),
                 )
             }
         },
@@ -149,6 +151,7 @@ fun AllCountriesSectionCard(
     itemsCount: Int,
     onClick: () -> Unit,
 ) {
+    val layout = MaterialTheme.layout.quizzesSection
     val colors = QuizzesSectionType.ALL_COUNTRIES.toAppColorSet()
     QuizSectionCard(
         title = Strings.quizCollectionAll,
@@ -160,7 +163,7 @@ fun AllCountriesSectionCard(
                     imageVector = Icons.Default.Public,
                     contentDescription = null,
                     tint = colors.icon(),
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier.size(layout.iconSize.value()),
                 )
             }
         },
@@ -173,6 +176,7 @@ fun ContinentsSectionGroup(
     onContinentClick: (String, String) -> Unit,
 ) {
     val colors = QuizzesSectionType.CONTINENT.toAppColorSet()
+    val layout = MaterialTheme.layout.quizzesSection
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -182,7 +186,10 @@ fun ContinentsSectionGroup(
             color = MaterialTheme.appColors.cardBorder
         ),
     ) {
-        Column {
+        Column (
+            modifier = Modifier.padding(bottom = 14.dp),
+        ) {
+
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
@@ -192,19 +199,24 @@ fun ContinentsSectionGroup(
                         imageVector = Icons.Default.Map,
                         contentDescription = null,
                         tint = colors.icon(),
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(layout.iconSize.value()),
                     )
                 }
-                Spacer(modifier = Modifier.width(14.dp))
-                Column(modifier = Modifier.weight(1f)) {
+                Spacer(modifier = Modifier.width(13.dp))
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(2.dp)
+                ) {
                     Text(
                         text = Strings.quizCollectionContinents,
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = layout.titleFontSize.value()
                     )
                     Text(
                         text = Strings.quizCollectionContinentsDesc,
                         style = MaterialTheme.typography.bodySmall,
+                        fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                     )
                 }
@@ -213,16 +225,14 @@ fun ContinentsSectionGroup(
             HorizontalDivider(
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f),
                 thickness = 1.dp,
-                modifier = Modifier.padding(horizontal = 16.dp),
+                modifier = Modifier.padding(horizontal = 16.dp).padding(top = 4.dp, bottom = 12.dp),
             )
 
             section.continents.forEachIndexed { _, section ->
-                
                 ContinentRow(
                     continent = section,
                     onClick = { onContinentClick(section.sectionId, section.sectionName) },
                 )
-
             }
         }
     }
@@ -244,7 +254,7 @@ fun ContinentRow(
                 indication = ripple(),
                 onClick = onClick,
             )
-            .padding(start = 24.dp, end = 16.dp)
+            .padding(start = 28.dp, end = 16.dp)
             .padding(vertical = 12.dp),
     ) {
 
@@ -272,6 +282,7 @@ fun ContinentRow(
             Text(
                 text = Strings.quizCollectionItemsCount(continent.itemsCount),
                 style = MaterialTheme.typography.bodySmall,
+                fontSize = 13.sp,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
             )
         }
@@ -290,6 +301,7 @@ fun QuizSectionCard(
     onClick: () -> Unit,
     iconContent: @Composable () -> Unit,
 ) {
+    val layout = MaterialTheme.layout.quizzesSection
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier.fillMaxWidth() ,
@@ -305,15 +317,20 @@ fun QuizSectionCard(
         ) {
             iconContent()
             Spacer(modifier = Modifier.width(14.dp))
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(2.dp)
+            ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = layout.titleFontSize.value()
                 )
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.bodySmall,
+                    fontSize = 13.sp,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
                 )
             }
@@ -332,10 +349,11 @@ fun SectionIconBox(
     color: Color,
     content: @Composable BoxScope.() -> Unit,
 ) {
+    val layout = MaterialTheme.layout.quizzesSection
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .size(44.dp)
+            .size(layout.imageSize.value())
             .clip(RoundedCornerShape(12.dp))
             .background(color),
         content = content,

@@ -60,7 +60,7 @@ fun FavoritesList(
                 top = 12.dp, bottom = bottomPadding
             ),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp),
             modifier = Modifier.fillMaxSize()
         ) {
             items(

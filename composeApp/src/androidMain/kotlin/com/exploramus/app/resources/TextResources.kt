@@ -122,6 +122,12 @@ object Strings {
         stringRes(R.string.detail_label_language)
     else
         stringRes(R.string.detail_label_languages)
+
+    @Composable
+    fun commonErrorsCount(count: Int) = if (count == 1)
+        stringRes(R.string.common_error_fmt, count)
+    else
+        stringRes(R.string.common_errors_fmt, count)
 }
 
 

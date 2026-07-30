@@ -17,4 +17,5 @@ data class MasteryItemState(
     val flagImage: String,
     val subregion: String,
     val status: QuizItemStatus,
+    val errorCount: Int,
 )

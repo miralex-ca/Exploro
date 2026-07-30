@@ -60,9 +60,14 @@ fun QuizItemResult.update(isCorrect: Boolean, timestamp: Long): QuizItemResult {
 
 fun QuizItemResult.onCorrect(timestamp: Long): QuizItemResult {
     val nextScore = (score + 1).coerceAtMost(MAX_SCORE)
+    val nextErrors = if (nextScore == MAX_SCORE) {
+        0
+    } else {
+        (errors - 1).coerceAtLeast(0)
+    }
     return copy(
         score = nextScore,
-        errors = if (nextScore == MAX_SCORE) 0 else errors,
+        errors = nextErrors,
         totalCorrectCompleted = totalCorrectCompleted + 1,
         lastCompletedAt = timestamp,
         lastCorrectAt = timestamp

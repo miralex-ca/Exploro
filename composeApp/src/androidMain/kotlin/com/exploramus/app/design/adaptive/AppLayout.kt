@@ -96,10 +96,15 @@ data class AppLayout(
     )
 
     data class QuizzesSection(
-        val itemMaxWidth: Adp,
+        val itemMaxWidth: AdaptiveSizeValue<Dp>,
         val horizontalPadding: Adp,
         val topPadding: Adp,
         val bottomPadding: Adp,
+        val imageSize: AdaptiveSizeValue<Dp>,
+        val iconSize: AdaptiveSizeValue<Dp>,
+        val titleFontSize: AdaptiveSizeValue<TextUnit>,
+        val headerImage: AdaptiveSizeValue<Dp>,
+        val headerIcon: AdaptiveSizeValue<Dp>,
     )
 
     data class HomeCard(
@@ -230,10 +235,22 @@ object AppLayouts {
             imageHeight = adp(70.dp, 100.dp),
         ),
         quizzesSection = AppLayout.QuizzesSection(
-            itemMaxWidth = adp(420.dp, 580.dp),
+            itemMaxWidth = adpSizeForFormat(
+                phone = 420.dp,
+                phoneLandscape = 500.dp,
+                tablet = 520.dp,
+                tabletLandscape = 550.dp,
+                largeTablet = 580.dp,
+                largeTabletLandscape = 580.dp
+            ),
             horizontalPadding = adp(16.dp, 28.dp, 50.dp),
             topPadding = adp(12.dp, 16.dp),
             bottomPadding = adp(60.dp),
+            imageSize = adpSizeForFormat(phone = 54.dp, tablet = 64.dp),
+            iconSize = adpSizeForFormat(phone = 28.dp, tablet = 32.dp),
+            titleFontSize = aspSizeForFormat(phone = 17.sp, tablet = 20.sp),
+            headerImage = adpSizeForFormat(phone = 76.dp, tablet = 76.dp),
+            headerIcon = adpSizeForFormat(phone = 36.dp, tablet = 32.dp),
         ),
         flashcard = AppLayout.Flashcard(
             horizontalPadding = adp(16.dp, 28.dp, 50.dp),
@@ -311,9 +328,7 @@ object AppLayouts {
                 width = adp(140.dp, 140.dp, 160.dp),
                 imageHeight = adp(70.dp, 70.dp,80.dp),
             ),
-            quizzesSection =  base.quizzesSection.copy(
-                itemMaxWidth = adp(420.dp, 500.dp),
-            ),
+
             flashcard = base.flashcard.copy(
                 topPadding = adp(26.dp),
             ),

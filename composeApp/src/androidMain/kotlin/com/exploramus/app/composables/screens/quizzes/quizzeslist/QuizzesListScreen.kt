@@ -159,7 +159,7 @@ fun QuizzesListHeaderCard(
 ) {
     val colors = sectionInfo.sectionType.toAppColorSet(sectionInfo.continentId)
     val icon = sectionInfo.sectionType.getIcon()
-
+    val layout = MaterialTheme.layout.quizzesSection
     Card(
         shape = RoundedCornerShape(20.dp),
         border = BorderStroke(
@@ -186,7 +186,7 @@ fun QuizzesListHeaderCard(
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "${sectionInfo.itemsCount} countries available",
+                        text = "${sectionInfo.itemsCount} countries",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                     )
@@ -195,7 +195,7 @@ fun QuizzesListHeaderCard(
                 Spacer(modifier = Modifier.width(16.dp))
 
                 SectionIconBox(
-                    size = 66.dp,
+                    size = layout.headerImage.value(),
                     cornerRadius = 16.dp,
                     color = colors.background(),
                 ) {
@@ -203,7 +203,7 @@ fun QuizzesListHeaderCard(
                         imageVector = icon,
                         contentDescription = null,
                         tint = colors.icon(),
-                        modifier = Modifier.size(32.dp),
+                        modifier = Modifier.size(layout.headerIcon.value()),
                     )
                 }
             }
@@ -346,12 +346,13 @@ fun QuizCard(
                 )
 
                 Spacer(modifier = Modifier.height(14.dp))
+
                 Text(
                     text = displayDescription,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Normal,
-                    fontSize = 14.sp,
+                    fontSize = 13.sp,
                     maxLines = 2,
                 )
             }

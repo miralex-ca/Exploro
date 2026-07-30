@@ -136,12 +136,18 @@ fun GroupedGridCell(
                 }
             }
 
-            MasteryStatusMark(
+            Column(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(top = 10.dp, end = 10.dp),
-                status = item.status
-            )
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                MasteryStatusMark(status = item.status)
+                if (item.errorCount > 0) {
+                    ErrorCountMark(errorCount = item.errorCount)
+                }
+            }
         }
     }
 }

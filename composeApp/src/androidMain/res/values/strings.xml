@@ -132,9 +132,11 @@
     <string name="quiz_collection_favorites">Favorites</string>
     <string name="quiz_collection_all">All countries</string>
     <string name="quiz_collection_continents">Continents</string>
-    <string name="quiz_collection_continents_desc">Browse quizzes for each continent</string>
+    <string name="quiz_collection_continents_desc">Quizzes for each continent</string>
     <string name="quiz_collection_items_count_fmt">%d countries</string>
     <string name="quiz_result_last_score_fmt">Last score: %1$d%% (%2$d/%3$d)</string>
     <string name="quiz_result_completed_at_fmt">Completed: %s</string>
+    <string name="common_error_fmt">%d error</string>
+    <string name="common_errors_fmt">%d errors</string>
     <string name="quiz_result_date_time_at">%1$s at %2$s</string>
 </resources>
