@@ -32,6 +32,7 @@ object Strings {
     val detailsCoatOfArms @Composable get() = stringRes(R.string.details_coat_of_arms)
     val commonClose @Composable get() = stringRes(R.string.common_close)
     val commonConfirm @Composable get() = stringRes(R.string.common_confirm)
+    val commonGotIt @Composable get() = stringRes(R.string.common_got_it)
     val commonCancel @Composable get() = stringRes(R.string.common_cancel)
 
     val detailLabelLocation @Composable get() = stringRes(R.string.detail_label_location)
@@ -113,6 +114,21 @@ object Strings {
     val quizCollectionContinents @Composable get() = stringRes(R.string.quiz_collection_continents)
     val quizCollectionContinentsDesc @Composable get() = stringRes(R.string.quiz_collection_continents_desc)
     @Composable fun quizCollectionItemsCount(count: Int) = stringRes(R.string.quiz_collection_items_count_fmt, count)
+    @Composable fun quizCollectionItemsCount(eligible: Int, total: Int) =
+        if (eligible == total)
+            stringRes(R.string.quiz_collection_items_count_fmt, total)
+        else
+            stringRes(R.string.quiz_collection_items_eligible_count_fmt, eligible, total)
+
+    val quizStatUnknown @Composable get() = stringRes(R.string.quiz_stat_unknown)
+    val quizStatFamiliar @Composable get() = stringRes(R.string.quiz_stat_familiar)
+    val quizStatMastered @Composable get() = stringRes(R.string.quiz_stat_mastered)
+
+    val quizNoDataAlertTitle @Composable get() = stringRes(R.string.quiz_no_data_alert_title)
+    val quizNoDataAlertText @Composable get() = stringRes(R.string.quiz_no_data_alert_text)
+    val quizEligibilityInfoTitle @Composable get() = stringRes(R.string.quiz_eligibility_info_title)
+    val quizEligibilityInfoText @Composable get() = stringRes(R.string.quiz_eligibility_info_text)
+
     @Composable fun quizResultLastScore(score: Int, correct: Int, total: Int) = stringRes(R.string.quiz_result_last_score_fmt, score, correct, total)
     @Composable fun quizResultCompletedAt(dateTime: String) = stringRes(R.string.quiz_result_completed_at_fmt, dateTime)
     @Composable fun quizResultDateTimeAt(date: String, time: String) = stringRes(R.string.quiz_result_date_time_at, date, time)

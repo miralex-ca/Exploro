@@ -3,6 +3,9 @@ package com.exploramus.shared.viewmodel.screens.quizzes.quizsections
 import com.exploramus.data.repository.functions.getAllCountriesCount
 import com.exploramus.data.repository.functions.getCountriesCountBySection
 import com.exploramus.data.repository.functions.getFavoritesCount
+import com.exploramus.data.repository.functions.getQuizCountriesCountAll
+import com.exploramus.data.repository.functions.getQuizCountriesCountBySection
+import com.exploramus.data.repository.functions.getQuizCountriesCountFavorites
 import com.exploramus.data.repository.functions.getSections
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
@@ -17,21 +20,31 @@ fun StateManager.initQuizSectionsScreen() = ScreenInitSettings(
         val allCountriesCount = dataRepository.getAllCountriesCount()
         val sections = dataRepository.getSections()
 
-        val continentSections = sections.map { section ->
+        val quizFavoritesCount = dataRepository.getQuizCountriesCountFavorites()
+        val quizAllCountriesCount = dataRepository.getQuizCountriesCountAll()
+
+        val continentSections = sections.mapNotNull { section ->
+            val totalCount = dataRepository.getCountriesCountBySection(section.id).toInt()
+            val eligibleCount = dataRepository.getQuizCountriesCountBySection(section.id)
+
+            if (eligibleCount == 0) return@mapNotNull null
+
             ContinentSectionState(
                 sectionId = section.id,
                 sectionName = section.name,
-                itemsCount = dataRepository.getCountriesCountBySection(section.id).toInt()
+                itemsCount = totalCount
             )
         }
 
         val quizzesSections = buildList {
-            if (favoritesCount > 0) {
+            if (quizFavoritesCount > 0) {
                 add(QuizSectionState.Favorites(itemsCount = favoritesCount.toInt()))
             }
-            add(QuizSectionState.AllCountries(itemsCount = allCountriesCount.toInt()))
+            if (quizAllCountriesCount > 0) {
+                add(QuizSectionState.AllCountries(itemsCount = allCountriesCount.toInt()))
+            }
 
-            if (continentSections .isNotEmpty()) {
+            if (continentSections.isNotEmpty()) {
                 add(QuizSectionState.Continents(continents = continentSections))
             }
         }

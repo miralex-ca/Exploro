@@ -1,6 +1,7 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.groupeditems
 
 import com.exploramus.core.models.QuizItemStatus
+import com.exploramus.core.models.isValidForQuiz
 import com.exploramus.data.repository.functions.getAllCountries
 import com.exploramus.data.repository.functions.getCountriesBySectionId
 import com.exploramus.data.repository.functions.getFavorites
@@ -34,7 +35,7 @@ fun StateManager.initGroupedItemsScreen(params: GroupedItemsScreenParams) = Scre
             QuizzesSectionType.FAVORITES -> dataRepository.getFavorites()
             QuizzesSectionType.ALL_COUNTRIES -> dataRepository.getAllCountries()
             QuizzesSectionType.CONTINENT -> dataRepository.getCountriesBySectionId(params.sectionId)
-        }
+        }.filter { it.isValidForQuiz }
 
         val results = dataRepository.getQuizItemResults(countries.map { it.id }).associateBy { it.id }
 

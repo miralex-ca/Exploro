@@ -1,5 +1,6 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist
 
+import com.exploramus.core.models.isValidForQuiz
 import com.exploramus.data.repository.functions.*
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
@@ -26,11 +27,13 @@ fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = Screen
             QuizzesSectionType.CONTINENT -> dataRepository.getCountriesBySectionId(params.sectionId)
         }
 
-        val stats = dataRepository.getSectionStats(countries.map { it.id })
+        val eligibleCountries = countries.filter { it.isValidForQuiz }
+        val stats = dataRepository.getSectionStats(eligibleCountries.map { it.id })
 
         val sectionInfo = QuizzesSectionHeaderState(
             title = params.screenTitle ?: "",
             itemsCount = countries.size,
+            eligibleCount = eligibleCountries.size,
             sectionType = params.sectionType,
             continentId = params.sectionId.takeIf { params.sectionType == QuizzesSectionType.CONTINENT },
             unknownCount = stats.unknown,

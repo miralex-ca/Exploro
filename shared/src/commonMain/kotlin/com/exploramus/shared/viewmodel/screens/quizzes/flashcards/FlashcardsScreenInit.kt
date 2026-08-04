@@ -1,9 +1,9 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.flashcards
 
 import com.exploramus.data.repository.functions.getFlashcardConfig
-import com.exploramus.data.repository.functions.getFlashcardCountriesAll
-import com.exploramus.data.repository.functions.getFlashcardCountriesBySection
-import com.exploramus.data.repository.functions.getFlashcardCountriesFavorites
+import com.exploramus.data.repository.functions.getQuizCountriesAll
+import com.exploramus.data.repository.functions.getQuizCountriesBySection
+import com.exploramus.data.repository.functions.getQuizCountriesFavorites
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.ScreenParams
@@ -24,9 +24,9 @@ fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInit
     callOnInit = {
 
         val countries = when (params.sectionType) {
-            QuizzesSectionType.FAVORITES -> dataRepository.getFlashcardCountriesFavorites()
-            QuizzesSectionType.ALL_COUNTRIES -> dataRepository.getFlashcardCountriesAll()
-            QuizzesSectionType.CONTINENT -> dataRepository.getFlashcardCountriesBySection(params.sectionId)
+            QuizzesSectionType.FAVORITES -> dataRepository.getQuizCountriesFavorites()
+            QuizzesSectionType.ALL_COUNTRIES -> dataRepository.getQuizCountriesAll()
+            QuizzesSectionType.CONTINENT -> dataRepository.getQuizCountriesBySection(params.sectionId)
         }
 
         val config = dataRepository.getFlashcardConfig()

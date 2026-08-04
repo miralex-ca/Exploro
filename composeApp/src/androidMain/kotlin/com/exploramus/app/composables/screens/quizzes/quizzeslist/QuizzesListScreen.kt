@@ -11,9 +11,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,6 +40,7 @@ import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
+import com.exploramus.app.resources.Strings
 import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.core.models.QuizItemStatus
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizState
@@ -47,11 +52,27 @@ fun QuizzesListScreen(
     screenState: QuizzesListScreenState,
     eventHandler: QuizzesListEventHandler,
 ) {
+    var showNoDataAlert by remember { mutableStateOf(false) }
+
     if (screenState.isLoading) {
         ScreenLoading()
     } else {
         QuizzesListContent(
             screenState = screenState,
+            onQuizClick = { quiz ->
+                if (screenState.sectionInfo.eligibleCount > 0) {
+                    eventHandler.onEvent(
+                        QuizzesListUiEvent.OnQuizClicked(
+                            sectionId = screenState.sectionInfo.continentId ?: "",
+                            sectionType = screenState.sectionInfo.sectionType,
+                            title = screenState.sectionInfo.title,
+                            quizType = quiz.quizType,
+                        )
+                    )
+                } else {
+                    showNoDataAlert = true
+                }
+            },
             onEvent = eventHandler::onEvent,
         )
 
@@ -72,12 +93,28 @@ fun QuizzesListScreen(
                 onDismiss = { eventHandler.onEvent(QuizzesListUiEvent.ToggleChoiceQuizSettings(false)) }
             )
         }
+
+        if (showNoDataAlert) {
+            AlertDialog(
+                onDismissRequest = { showNoDataAlert = false },
+                title = { Text(Strings.quizNoDataAlertTitle) },
+                text = {
+                    Text(Strings.quizNoDataAlertText)
+                },
+                confirmButton = {
+                    TextButton(onClick = { showNoDataAlert = false }) {
+                        Text(Strings.commonClose)
+                    }
+                },
+            )
+        }
     }
 }
 
 @Composable
 fun QuizzesListContent(
     screenState: QuizzesListScreenState,
+    onQuizClick: (QuizState) -> Unit,
     onEvent: (QuizzesListUiEvent) -> Unit,
 ) {
     val layout = MaterialTheme.layout
@@ -132,16 +169,7 @@ fun QuizzesListContent(
                         quiz = quiz,
                         psTarget = screenState.psTarget,
                         ipTarget = screenState.ipTarget,
-                        onClick = {
-                            onEvent(
-                                QuizzesListUiEvent.OnQuizClicked(
-                                    sectionId = screenState.sectionInfo.continentId ?: "",
-                                    sectionType = screenState.sectionInfo.sectionType,
-                                    title = screenState.sectionInfo.title,
-                                    quizType = quiz.quizType
-                                )
-                            )
-                        },
+                        onClick = { onQuizClick(quiz) },
                         onSettingsClick = { onEvent(QuizzesListUiEvent.OnQuizSettingsClicked(quiz.quizId, quiz.quizType)) },
                     )
                 }
@@ -160,6 +188,8 @@ fun QuizzesListHeaderCard(
     val colors = sectionInfo.sectionType.toAppColorSet(sectionInfo.continentId)
     val icon = sectionInfo.sectionType.getIcon()
     val layout = MaterialTheme.layout.quizzesSection
+    var showEligibilityInfo by remember { mutableStateOf(false) }
+
     Card(
         shape = RoundedCornerShape(20.dp),
         border = BorderStroke(
@@ -185,10 +215,11 @@ fun QuizzesListHeaderCard(
                         color = MaterialTheme.colorScheme.onSurface,
                     )
                     Spacer(modifier = Modifier.height(2.dp))
-                    Text(
-                        text = "${sectionInfo.itemsCount} countries",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
+
+                    CountriesEligibilityLabel(
+                        eligibleCount = sectionInfo.eligibleCount,
+                        totalCount = sectionInfo.itemsCount,
+                        onInfoClick = { showEligibilityInfo = true },
                     )
                 }
 
@@ -214,10 +245,64 @@ fun QuizzesListHeaderCard(
                 StatsRow(
                     mastered = sectionInfo.masteredCount,
                     familiar = sectionInfo.familiarCount,
-                    unknown =  sectionInfo.unknownCount,
+                    unknown = sectionInfo.unknownCount,
                     onClick = onStatClick,
                 )
             }
+        }
+    }
+
+    if (showEligibilityInfo) {
+        AlertDialog(
+            onDismissRequest = { showEligibilityInfo = false },
+            title = { Text(Strings.quizEligibilityInfoTitle) },
+            text = {
+                Text(Strings.quizEligibilityInfoText)
+            },
+            confirmButton = {
+                TextButton(onClick = { showEligibilityInfo = false }) {
+                    Text(Strings.commonGotIt)
+                }
+            },
+        )
+    }
+}
+
+@Composable
+private fun CountriesEligibilityLabel(
+    eligibleCount: Int,
+    totalCount: Int,
+    onInfoClick: () -> Unit,
+) {
+    val isPartiallyEligible = eligibleCount < totalCount
+    val label = Strings.quizCollectionItemsCount(eligibleCount, totalCount)
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = if (isPartiallyEligible) {
+            Modifier
+                .offset(x = (-8).dp)
+                .clip(RoundedCornerShape(50))
+                .clickable { onInfoClick() }
+                .padding(horizontal = 8.dp, vertical = 4.dp)
+        } else {
+            Modifier
+        },
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
+        )
+
+        if (isPartiallyEligible) {
+            Spacer(modifier = Modifier.width(4.dp))
+            Icon(
+                imageVector = Icons.Outlined.Info,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
+                modifier = Modifier.size(18.dp),
+            )
         }
     }
 }
@@ -237,21 +322,21 @@ private fun StatsRow(
     ) {
         StatChip(
             count = mastered,
-            label = "Mastered",
+            label = Strings.quizStatMastered,
             status = QuizItemStatus.MASTERED,
             modifier = Modifier.weight(1f),
             onClick = { onClick(QuizItemStatus.MASTERED) },
         )
         StatChip(
             count = familiar,
-            label = "Familiar",
+            label = Strings.quizStatFamiliar,
             status = QuizItemStatus.FAMILIAR,
             modifier = Modifier.weight(1f),
             onClick = { onClick(QuizItemStatus.FAMILIAR) },
         )
         StatChip(
             count = unknown,
-            label = "Unknown",
+            label = Strings.quizStatUnknown,
             status = QuizItemStatus.UNKNOWN,
             modifier = Modifier.weight(1f),
             onClick = { onClick(QuizItemStatus.UNKNOWN) },
@@ -388,7 +473,7 @@ fun QuizCard(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Tune,
-                        contentDescription = "Quiz Settings",
+                        contentDescription = Strings.commonSettings,
                         tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                         modifier = Modifier.size(20.dp)
                     )

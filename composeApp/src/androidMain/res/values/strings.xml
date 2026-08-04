@@ -53,6 +53,7 @@
     <string name="details_coat_of_arms">Coat of Arms</string>
     <string name="common_close">Close</string>
     <string name="common_confirm">Confirm</string>
+    <string name="common_got_it">Got it</string>
     <string name="common_cancel">Cancel</string>
     <string name="common_view">View</string>
     <string name="common_remove">Remove</string>
@@ -134,6 +135,18 @@
     <string name="quiz_collection_continents">Continents</string>
     <string name="quiz_collection_continents_desc">Quizzes for each continent</string>
     <string name="quiz_collection_items_count_fmt">%d countries</string>
+    <string name="quiz_collection_items_eligible_count_fmt">%1$d of %2$d countries</string>
+
+    <string name="quiz_stat_unknown">Unknown</string>
+    <string name="quiz_stat_familiar">Familiar</string>
+    <string name="quiz_stat_mastered">Mastered</string>
+
+    <string name="quiz_no_data_alert_title">No quizzes available</string>
+    <string name="quiz_no_data_alert_text">None of the countries in this section have enough information to generate a quiz. Try another section!</string>
+
+    <string name="quiz_eligibility_info_title">Quiz eligibility</string>
+    <string name="quiz_eligibility_info_text">Some countries in this section don\'t have enough information available to generate a quiz.</string>
+
     <string name="quiz_result_last_score_fmt">Last score: %1$d%% (%2$d/%3$d)</string>
     <string name="quiz_result_completed_at_fmt">Completed: %s</string>
     <string name="common_error_fmt">%d error</string>
