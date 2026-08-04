@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -23,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,6 +41,7 @@ import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
 import com.exploramus.core.models.ChoiceQuizStudyTarget
@@ -314,6 +317,8 @@ private fun StatsRow(
     mastered: Int,
     onClick: (QuizItemStatus) -> Unit,
 ) {
+    val allMastered = familiar == 0 && unknown == 0 && mastered > 0
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier
@@ -327,20 +332,26 @@ private fun StatsRow(
             modifier = Modifier.weight(1f),
             onClick = { onClick(QuizItemStatus.MASTERED) },
         )
-        StatChip(
-            count = familiar,
-            label = Strings.quizStatFamiliar,
-            status = QuizItemStatus.FAMILIAR,
-            modifier = Modifier.weight(1f),
-            onClick = { onClick(QuizItemStatus.FAMILIAR) },
-        )
-        StatChip(
-            count = unknown,
-            label = Strings.quizStatUnknown,
-            status = QuizItemStatus.UNKNOWN,
-            modifier = Modifier.weight(1f),
-            onClick = { onClick(QuizItemStatus.UNKNOWN) },
-        )
+
+
+        if (allMastered) {
+            AllMasteredBadge(modifier = Modifier.weight(2f))
+        } else {
+            StatChip(
+                count = familiar,
+                label = Strings.quizStatFamiliar,
+                status = QuizItemStatus.FAMILIAR,
+                modifier = Modifier.weight(1f),
+                onClick = { onClick(QuizItemStatus.FAMILIAR) },
+            )
+            StatChip(
+                count = unknown,
+                label = Strings.quizStatUnknown,
+                status = QuizItemStatus.UNKNOWN,
+                modifier = Modifier.weight(1f),
+                onClick = { onClick(QuizItemStatus.UNKNOWN) },
+            )
+        }
     }
 }
 
@@ -382,6 +393,51 @@ private fun StatChip(
             text = label,
             style = MaterialTheme.typography.labelSmall,
             color = color.copy(alpha = 0.85f),
+        )
+    }
+}
+
+@Composable
+private fun AllMasteredBadge(modifier: Modifier = Modifier) {
+    val colorSet = AppColorPalette.Marigold
+    val text = colorSet.text()
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .clip(RoundedCornerShape(50))
+            .background(colorSet.background())
+            .border(
+                width = 1.dp,
+                color = colorSet.icon().copy(alpha = 0.6f),
+                shape = RoundedCornerShape(50),
+            )
+            .padding(vertical = 10.dp),
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.AutoAwesome,
+                contentDescription = null,
+                tint = text,
+                modifier = Modifier.size(20.dp),
+            )
+            Text(
+                text = "Amazing!", //Strings.quizAllMasteredHeadline, // "Brilliant!"
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                color = text,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
+        Text(
+            text = "All countries mastered!", //Strings.quizAllMasteredHint, // "All countries mastered!"
+            style = MaterialTheme.typography.labelSmall,
+            color = text,
+            maxLines = 1,
         )
     }
 }

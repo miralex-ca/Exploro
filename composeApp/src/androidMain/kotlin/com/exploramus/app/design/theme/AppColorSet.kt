@@ -261,6 +261,17 @@ object AppColorPalette {
         onIconDark = Color.White
     )
 
+    val Marigold = AppColorSet(
+        iconLight = Color(0xFFC9A227),
+        iconDark = Color(0xFFFFD666),
+        backgroundLight = Color(0xFFFFF9E6),
+        backgroundDark = Color(0xFFC9A227).copy(alpha = 0.2f),
+        textLight = Color(0xFF7A5C00), // darkened for contrast on headline text
+        textDark = Color(0xFFFFE9A8),
+        onIconLight = Color.White,
+        onIconDark = Color.White
+    )
+
     val Orange = AppColorSet(
         iconLight = Color(0xFFFB8C00),
         iconDark = Color(0xFFFFA726),
