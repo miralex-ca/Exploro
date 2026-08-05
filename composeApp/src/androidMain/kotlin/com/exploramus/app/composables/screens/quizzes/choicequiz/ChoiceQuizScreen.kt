@@ -1,6 +1,7 @@
 package com.exploramus.app.composables.screens.quizzes.choicequiz
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -13,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,6 +45,14 @@ fun ChoiceQuizScreen(
     screenState: ChoiceQuizScreenState,
     eventHandler: ChoiceQuizEventHandler,
 ) {
+    val rotation by animateFloatAsState(
+        targetValue = screenState.totalRestartEvent * 180f,
+        animationSpec = tween(durationMillis = 500),
+        label = "ChoiceQuizRotation"
+    )
+
+    val isLandscape = LocalFormFactor.current.isLandscape
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -86,19 +96,38 @@ fun ChoiceQuizScreen(
                             fadeOut(animationSpec = tween(200, delayMillis = 200))
                 },
                 label = "ChoiceQuizFlow",
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .graphicsLayer {
+                        if (isLandscape) {
+                            rotationX = rotation
+                        } else {
+                            rotationY = rotation
+                        }
+                        cameraDistance = 12f * density
+                    }
             ) { (isFinished, restartEvent) ->
-                if (isFinished) {
-                    ChoiceQuizResultView(
-                        results = screenState.quiz.results,
-                        onRestartClick = { eventHandler.onEvent(ChoiceQuizUiEvent.OnRestartClicked) },
-                    )
-                } else {
-                    ChoiceQuizContent(
-                        quizState = quiz,
-                        pagerState = pagerState,
-                        onEvent = eventHandler::onEvent
-                    )
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .graphicsLayer {
+                            if (restartEvent % 2 != 0) {
+                                if (isLandscape) rotationX = 180f else rotationY = 180f
+                            }
+                        }
+                ) {
+                    if (isFinished) {
+                        ChoiceQuizResultView(
+                            results = screenState.quiz.results,
+                            onRestartClick = { eventHandler.onEvent(ChoiceQuizUiEvent.OnRestartClicked) },
+                        )
+                    } else {
+                        ChoiceQuizContent(
+                            quizState = quiz,
+                            pagerState = pagerState,
+                            onEvent = eventHandler::onEvent
+                        )
+                    }
                 }
             }
         }
