@@ -20,8 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ResourceImage
 import com.exploramus.app.composables.components.dialogs.NoPaddingAlertDialog
+import com.exploramus.app.composables.components.flagAssetUri
 import com.exploramus.app.composables.screens.quizzes.utils.QuizResultGrade
 import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.app.resources.Strings
@@ -164,7 +165,7 @@ fun TotalMetricContent(
                         val correctOption = item.options.find { it.id == item.correctOptionId }
                         if (correctOption?.contentType == ChoiceQuizContentType.IMAGE) {
                             AnswerImageItem(
-                                imageUrl = correctOption.content
+                                iso2 = correctOption.content
                             )
                         } else {
                             AnswerRow(
@@ -225,7 +226,7 @@ fun MetricListDialogContent(
                 ) {
                     if (correctOption?.contentType == ChoiceQuizContentType.IMAGE) {
                         AnswerImageItem(
-                            imageUrl = correctOption.content
+                            iso2 = correctOption.content
                         )
                     } else {
                         AnswerRow(
@@ -264,8 +265,8 @@ private fun QuestionItem(
                 )
             }
             if (item.question.contentType == ChoiceQuizContentType.IMAGE) {
-                RemoteImage(
-                    imageUrl = item.question.content,
+                ResourceImage(
+                    imageUri = flagAssetUri(item.question.content),
                     contentScale = ContentScale.Fit,
                     modifier = Modifier.height(30.dp),
                     shape = RoundedCornerShape(4.dp),
@@ -305,15 +306,15 @@ private fun AnswerRow(
 
 @Composable
 private fun AnswerImageItem(
-    imageUrl: String,
+    iso2: String,
     modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier
             .height(40.dp)
     ) {
-        RemoteImage(
-            imageUrl = imageUrl,
+        ResourceImage(
+            imageUri = flagAssetUri(iso2),
             contentScale = ContentScale.Fit,
             modifier = Modifier.fillMaxHeight(),
             shape = RoundedCornerShape(4.dp),

@@ -25,7 +25,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.exploramus.app.composables.LocalAppEnvironment
-import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ResourceImage
+import com.exploramus.app.composables.components.flagAssetUri
 import com.exploramus.app.composables.screens.favorites.FavoritesUiEvent
 import com.exploramus.app.composables.screens.favorites.FavoritesUiEvent.OnItemClicked
 import com.exploramus.app.composables.screens.favorites.FavoritesUiEvent.RemoveFavorite
@@ -183,8 +184,8 @@ fun FavoriteListRow(
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                RemoteImage(
-                    imageUrl = item.flagImage,
+                ResourceImage(
+                    imageUri = flagAssetUri(item.iso2),
                     modifier = Modifier
                         .height(layout.itemImageHeight.value())
                         .width(90.dp)

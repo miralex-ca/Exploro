@@ -17,7 +17,7 @@ import coil3.request.crossfade
 
 
 fun flagAssetUri(countryCode: String): String =
-    "file:///android_asset/flags/w640/$countryCode.png"
+    "file:///android_asset/flags/w640/${countryCode.lowercase()}.png"
 
 @Composable
 fun RemoteImage(

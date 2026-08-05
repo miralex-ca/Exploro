@@ -4,6 +4,7 @@ import com.exploramus.core.models.CountryWithDetails
 
 data class CountryDetailsState(
     val id: String = "",
+    val iso2: String = "",
     val name: String = "",
     val officialName: String = "",
     val flagImage: String = "",
@@ -28,6 +29,7 @@ fun List<CountryWithDetails>.toDetailsState() = map { it.toDetailsState() }
 
 fun CountryWithDetails.toDetailsState() = CountryDetailsState(
     id = country.id,
+    iso2 = country.iso2,
     name = country.name,
     officialName = country.officialName,
     flagImage = country.flagImage,

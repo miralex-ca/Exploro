@@ -73,7 +73,7 @@ fun buildChoiceQuizItem(
             ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> country.capital
             ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> country.name
             ChoiceQuizStudyTarget.IMAGE_PRIMARY -> country.name
-            ChoiceQuizStudyTarget.PRIMARY_IMAGE -> country.flagImage
+            ChoiceQuizStudyTarget.PRIMARY_IMAGE -> country.iso2
         }
         val contentType = if (studyTarget == ChoiceQuizStudyTarget.PRIMARY_IMAGE) {
             ChoiceQuizContentType.IMAGE
@@ -87,7 +87,7 @@ fun buildChoiceQuizItem(
     val questionContent = when (studyTarget) {
         ChoiceQuizStudyTarget.PRIMARY_SECONDARY -> target.name
         ChoiceQuizStudyTarget.SECONDARY_PRIMARY -> target.capital
-        ChoiceQuizStudyTarget.IMAGE_PRIMARY -> target.flagImage
+        ChoiceQuizStudyTarget.IMAGE_PRIMARY -> target.iso2
         ChoiceQuizStudyTarget.PRIMARY_IMAGE -> target.name
     }
 

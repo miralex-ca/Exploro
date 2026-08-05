@@ -18,7 +18,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ResourceImage
+import com.exploramus.app.composables.components.flagAssetUri
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.core.models.FlashcardStudyTarget
 import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardState
@@ -76,8 +77,8 @@ fun FlashcardOpenHalf(
                     }
                 }
                 FlashcardStudyTarget.IMAGE -> {
-                    RemoteImage(
-                        imageUrl = card.flagImage,
+                    ResourceImage(
+                        imageUri = flagAssetUri(card.iso2),
                         contentDescription = card.itemName,
                         contentScale = ContentScale.Fit,
                         modifier = Modifier

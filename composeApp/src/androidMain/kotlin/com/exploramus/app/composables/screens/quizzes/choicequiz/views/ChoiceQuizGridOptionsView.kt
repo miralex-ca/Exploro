@@ -23,7 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ResourceImage
+import com.exploramus.app.composables.components.flagAssetUri
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.AppColorPalette
@@ -106,8 +107,8 @@ private fun GridOptionItem(
         ) {
             when (option.contentType) {
                 ChoiceQuizContentType.IMAGE -> {
-                    RemoteImage(
-                        imageUrl = option.content,
+                    ResourceImage(
+                        imageUri = flagAssetUri(option.content),
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.fillMaxSize().alpha(if (isSubmitted && !isCorrect && !isSelected) 0.5f else 1f)

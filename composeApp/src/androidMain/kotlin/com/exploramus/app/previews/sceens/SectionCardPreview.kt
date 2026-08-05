@@ -7,7 +7,7 @@ import com.exploramus.app.previews.PreviewCard
 import com.exploramus.app.previews.PreviewCountry
 
 private val previewName = PreviewCountry.france.name
-private val previewFlagUrl = PreviewCountry.france.flagImage
+private val previewIso2 = PreviewCountry.france.iso2
 private val previewSubregion = PreviewCountry.france.location
 
 @Preview(name = "Card - Light", widthDp = 250)
@@ -16,7 +16,7 @@ internal fun CountryGridCardPreviewLight() {
     PreviewCard {
         CountryGridCard(
             name = previewName,
-            flagPngUrl = previewFlagUrl,
+            iso2 = previewIso2,
             subregion = previewSubregion,
             onClick = {}
         )
@@ -29,7 +29,7 @@ fun CountryGridCardPreviewDark() {
     PreviewCard(dark = true) {
         CountryGridCard(
             name = previewName,
-            flagPngUrl = previewFlagUrl,
+            iso2 = previewIso2,
             subregion = previewSubregion,
             onClick = {}
         )

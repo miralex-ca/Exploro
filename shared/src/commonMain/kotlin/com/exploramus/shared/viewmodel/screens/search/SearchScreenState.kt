@@ -25,6 +25,7 @@ sealed class SearchResult {
 
 data class SearchListItem(
     val id: String,
+    val iso2: String,
     val name: String,
     val officialName: String,
     val capital: String,
@@ -33,6 +34,7 @@ data class SearchListItem(
 
 fun Country.toSearchListItem() = SearchListItem(
     id = id,
+    iso2 = iso2,
     name = name,
     officialName = officialName,
     capital = capital,

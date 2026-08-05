@@ -19,7 +19,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ResourceImage
+import com.exploramus.app.composables.components.flagAssetUri
 import com.exploramus.app.composables.screens.quizzes.utils.toPrompt
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
@@ -85,8 +86,8 @@ fun ChoiceQuizQuestionView(
                     }
 
                     ChoiceQuizContentType.IMAGE -> {
-                        RemoteImage(
-                            imageUrl = question.content,
+                        ResourceImage(
+                            imageUri = flagAssetUri(question.content),
                             contentDescription = null,
                             contentScale = ContentScale.Fit,
                             modifier = Modifier

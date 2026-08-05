@@ -27,6 +27,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ResourceImage
+import com.exploramus.app.composables.components.flagAssetUri
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.isCompact
 import com.exploramus.app.design.adaptive.layout
@@ -47,7 +49,7 @@ fun DetailHeaderSection(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         FlagContainer(
-            flagUrl = details.flagImage,
+            iso2 = details.iso2,
             flagAlt = details.flagEmoji,
             isFavorite = details.isFavorite,
             onFavoriteClick = onFavoriteClick
@@ -93,7 +95,7 @@ fun LargeDetailsHeaderSection(
             modifier = Modifier.weight(0.85f)
         ) {
             FlagContainer(
-                flagUrl = details.flagImage,
+                iso2 = details.iso2,
                 flagAlt = details.flagEmoji,
                 isFavorite = details.isFavorite,
                 onFavoriteClick = onFavoriteClick
@@ -104,7 +106,7 @@ fun LargeDetailsHeaderSection(
 
 @Composable
 fun FlagContainer(
-    flagUrl: String,
+    iso2: String,
     flagAlt: String?,
     isFavorite: Boolean = false,
     onFavoriteClick: () -> Unit
@@ -119,8 +121,8 @@ fun FlagContainer(
             .clip(RoundedCornerShape(detailsLayout.imageCorner.value()))
     ) {
 
-        RemoteImage(
-            imageUrl = flagUrl,
+        ResourceImage(
+            imageUri = flagAssetUri(iso2),
             contentDescription = flagAlt,
             modifier = Modifier
                 .fillMaxSize()
@@ -135,8 +137,8 @@ fun FlagContainer(
                 .background(MaterialTheme.appColors.detailHederWrapper)
         )
 
-        RemoteImage(
-            imageUrl = flagUrl,
+        ResourceImage(
+            imageUri = flagAssetUri(iso2),
             contentDescription = flagAlt,
             contentScale = ContentScale.Fit,
             modifier = Modifier

@@ -20,6 +20,7 @@ data class FlashcardDeckState(
 
 data class FlashcardState(
     val itemId: String,
+    val iso2: String,
     val itemName: String,
     val officialName: String,
     val capital: String,
@@ -29,6 +30,7 @@ data class FlashcardState(
 
 fun Country.toFlashcardState() = FlashcardState(
     itemId = id,
+    iso2 = iso2,
     itemName = name,
     officialName = officialName,
     capital = capital,

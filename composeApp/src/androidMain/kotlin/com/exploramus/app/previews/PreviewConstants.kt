@@ -46,6 +46,7 @@ object PreviewCountry {
 object PreviewCountryDetailsState {
     val france = CountryDetailsState(
         id = "FRA",
+        iso2 = "FR",
         name = "France",
         officialName = "French Republic",
         flagImage = "https://flagcdn.com/w640/fr.png",
@@ -68,6 +69,7 @@ object PreviewCountryDetailsState {
 
     val empty = CountryDetailsState(
         id = "",
+        iso2 = "",
         name = "",
         officialName = "",
         flagImage = "",

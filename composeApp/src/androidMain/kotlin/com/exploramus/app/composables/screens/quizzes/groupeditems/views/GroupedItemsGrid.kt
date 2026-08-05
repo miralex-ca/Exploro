@@ -20,7 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ResourceImage
+import com.exploramus.app.composables.components.flagAssetUri
 import com.exploramus.app.composables.screens.quizzes.groupeditems.GroupedItemsUiEvent
 import com.exploramus.app.composables.screens.quizzes.groupeditems.GroupedItemsUiEvent.OnItemClicked
 import com.exploramus.app.design.adaptive.LocalFormFactor
@@ -96,8 +97,8 @@ fun GroupedGridCell(
                     ,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                RemoteImage(
-                    imageUrl = item.flagImage,
+                ResourceImage(
+                    imageUri = flagAssetUri(item.iso2),
                     modifier = Modifier
                         .height(layout.itemGridImageHeight.value())
                         .width(layout.itemImageWidth.value())

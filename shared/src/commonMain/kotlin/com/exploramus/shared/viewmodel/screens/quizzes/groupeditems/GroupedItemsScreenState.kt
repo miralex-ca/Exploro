@@ -12,6 +12,7 @@ data class GroupedItemsScreenState(
 
 data class MasteryItemState(
     val id: String,
+    val iso2: String,
     val name: String,
     val flagEmoji: String,
     val flagImage: String,

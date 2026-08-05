@@ -44,6 +44,7 @@ fun StateManager.initGroupedItemsScreen(params: GroupedItemsScreenParams) = Scre
             val status = result?.status ?: QuizItemStatus.UNKNOWN
             MasteryItemState(
                 id = country.id,
+                iso2 = country.iso2,
                 name = country.name,
                 flagEmoji = country.flagEmoji,
                 flagImage = country.flagImage,

@@ -17,11 +17,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.exploramus.app.composables.components.EmptyState
-import com.exploramus.app.composables.components.EmptyStateView
-import com.exploramus.app.composables.components.FadeInScreenContent
-import com.exploramus.app.composables.components.RemoteImage
-import com.exploramus.app.composables.components.ScreenLoading
+import com.exploramus.app.composables.components.*
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
@@ -72,7 +68,7 @@ fun SectionScreenContent(
             items(screenState.countries) { item ->
                 CountryGridCard(
                     name = item.name,
-                    flagPngUrl = item.flagImage,
+                    iso2 = item.iso2,
                     subregion = item.location,
                     onClick = {
                         onListItemClick(item)
@@ -86,7 +82,7 @@ fun SectionScreenContent(
 @Composable
 fun CountryGridCard(
     name: String,
-    flagPngUrl: String,
+    iso2: String,
     subregion: String,
     onClick: () -> Unit
 ) {
@@ -111,8 +107,8 @@ fun CountryGridCard(
                 )
             ) {
 
-                RemoteImage(
-                    imageUrl = flagPngUrl,
+                ResourceImage(
+                    imageUri = flagAssetUri(iso2),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(layout.sectionCard.imageHeight.value())

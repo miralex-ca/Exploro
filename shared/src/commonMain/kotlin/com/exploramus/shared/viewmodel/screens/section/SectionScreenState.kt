@@ -12,6 +12,7 @@ data class SectionScreenState(
 
 data class SectionListItem(
     val id: String,
+    val iso2: String,
     val name: String,
     val location: String,
     val flagImage: String,
@@ -19,6 +20,7 @@ data class SectionListItem(
 
 fun Country.toSectionListItem() = SectionListItem(
     id = id,
+    iso2 = iso2,
     name = name,
     location = location,
     flagImage = flagImage

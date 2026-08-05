@@ -22,7 +22,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ResourceImage
+import com.exploramus.app.composables.components.flagAssetUri
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
 import com.exploramus.core.models.FlashcardStudyTarget
@@ -166,8 +167,8 @@ private fun RevealTextField(value: String) {
 
 @Composable
 private fun FlashcardFlagImage(card: FlashcardState) {
-    RemoteImage(
-        imageUrl = card.flagImage,
+    ResourceImage(
+        imageUri = flagAssetUri(card.iso2),
         contentDescription = card.itemName,
         contentScale = ContentScale.Fit,
         modifier = Modifier
