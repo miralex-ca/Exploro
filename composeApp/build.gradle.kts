@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.koin.compose.viewmodel)
 
     implementation(libs.coil.compose)
+    implementation(libs.coil.network.ktor)
 
     debugImplementation(libs.composeUiTooling)
     debugImplementation(libs.androidx.compose.uitest.manifest)

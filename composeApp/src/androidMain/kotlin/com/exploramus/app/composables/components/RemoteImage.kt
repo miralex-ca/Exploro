@@ -9,9 +9,11 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import coil.compose.AsyncImage
-import coil.request.CachePolicy
-import coil.request.ImageRequest
+import coil3.compose.AsyncImage
+import coil3.compose.LocalPlatformContext
+import coil3.request.CachePolicy
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 
 @Composable
 fun RemoteImage(
@@ -36,6 +38,32 @@ fun RemoteImage(
         contentDescription = contentDescription,
         modifier = modifier
             .clip(shape),
+        contentScale = contentScale,
+        alpha = alpha
+    )
+}
+
+@Composable
+fun ResourceImage(
+    imageUri: String?,
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null,
+    contentScale: ContentScale = ContentScale.Crop,
+    alpha: Float = 1f,
+    shape: Shape = RectangleShape,
+    usePlaceholder: Boolean = true
+) {
+    AsyncImage(
+        model = ImageRequest.Builder(LocalPlatformContext.current)
+            .data(imageUri)
+            .crossfade(true)
+            .memoryCachePolicy(CachePolicy.ENABLED)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .build(),
+        error = if (usePlaceholder) ColorPainter(Color.Gray.copy(alpha = 0.1f)) else null,
+        placeholder = if (usePlaceholder) ColorPainter(Color.Gray.copy(alpha = 0.1f)) else null,
+        contentDescription = contentDescription,
+        modifier = modifier.clip(shape),
         contentScale = contentScale,
         alpha = alpha
     )
