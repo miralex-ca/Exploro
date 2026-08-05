@@ -32,6 +32,7 @@ object Strings {
     val detailsCoatOfArms @Composable get() = stringRes(R.string.details_coat_of_arms)
     val commonClose @Composable get() = stringRes(R.string.common_close)
     val commonConfirm @Composable get() = stringRes(R.string.common_confirm)
+    val commonGotIt @Composable get() = stringRes(R.string.common_got_it)
     val commonCancel @Composable get() = stringRes(R.string.common_cancel)
 
     val detailLabelLocation @Composable get() = stringRes(R.string.detail_label_location)
@@ -68,12 +69,83 @@ object Strings {
     val emptyTitleNotFound @Composable get() = stringRes(R.string.empty_title_not_found)
     val emptyMsgNotFound @Composable get() = stringRes(R.string.empty_msg_not_found)
 
+    val flashcardSettingsTitle @Composable get() = stringRes(R.string.flashcard_settings_title)
+    val flashcardVisibleClue @Composable get() = stringRes(R.string.flashcard_visible_clue)
+    val flashcardTargetPrimary @Composable get() = stringRes(R.string.flashcard_target_primary)
+    val flashcardTargetSecondary @Composable get() = stringRes(R.string.flashcard_target_secondary)
+    val flashcardTargetImage @Composable get() = stringRes(R.string.flashcard_target_image)
+    val flashcardSettingsDescription @Composable get() = stringRes(R.string.flashcard_settings_description)
+    val flashcardShuffleCards @Composable get() = stringRes(R.string.flashcard_shuffle_cards)
+    val flashcardRevealDetails @Composable get() = stringRes(R.string.flashcard_reveal_details)
+    val flashcardRestart @Composable get() = stringRes(R.string.flashcard_restart)
+    val flashcardDone @Composable get() = stringRes(R.string.flashcard_done)
+    val flashcardHintTapToReveal @Composable get() = stringRes(R.string.flashcard_hint_tap_to_reveal)
+    val flashcardMenuSettings @Composable get() = stringRes(R.string.flashcard_menu_settings)
+    val flashcardLabelCapital @Composable get() = stringRes(R.string.flashcard_label_capital)
+    val quizTypeFlashcards @Composable get() = stringRes(R.string.quiz_type_flashcards)
+
+    val quizTargetPrimarySecondary @Composable get() = stringRes(R.string.quiz_target_primary_secondary)
+    val quizTargetSecondaryPrimary @Composable get() = stringRes(R.string.quiz_target_secondary_primary)
+    val quizTargetImagePrimary @Composable get() = stringRes(R.string.quiz_target_image_primary)
+    val quizTargetPrimaryImage @Composable get() = stringRes(R.string.quiz_target_primary_image)
+
+    val choiceQuizSettingsTitle @Composable get() = stringRes(R.string.choice_quiz_settings_title)
+    val choiceQuizSelectPair @Composable get() = stringRes(R.string.choice_quiz_select_pair)
+    val choiceQuizLimitLabel @Composable get() = stringRes(R.string.choice_quiz_limit_label)
+    val choiceQuizLimitNoLimit @Composable get() = stringRes(R.string.choice_quiz_limit_no_limit)
+
+    val choiceQuizPromptPrimarySecondary @Composable get() = stringRes(R.string.choice_quiz_prompt_primary_secondary)
+    val choiceQuizPromptSecondaryPrimary @Composable get() = stringRes(R.string.choice_quiz_prompt_secondary_primary)
+    val choiceQuizPromptImagePrimary @Composable get() = stringRes(R.string.choice_quiz_prompt_image_primary)
+    val choiceQuizPromptPrimaryImage @Composable get() = stringRes(R.string.choice_quiz_prompt_primary_image)
+
+    val quizResultMetricTotal @Composable get() = stringRes(R.string.quiz_result_metric_total)
+    val quizResultMetricScore @Composable get() = stringRes(R.string.quiz_result_metric_score)
+    val quizResultMetricCorrect @Composable get() = stringRes(R.string.quiz_result_metric_correct)
+    val quizResultMetricIncorrect @Composable get() = stringRes(R.string.quiz_result_metric_incorrect)
+    val quizResultMetricSkipped @Composable get() = stringRes(R.string.quiz_result_metric_skipped)
+    val quizResultScoreDescription @Composable get() = stringRes(R.string.quiz_result_score_description)
+
+    val quizDescFlashcards @Composable get() = stringRes(R.string.quiz_desc_flashcards)
+    val quizDescChoicePs @Composable get() = stringRes(R.string.quiz_desc_choice_ps)
+    val quizDescChoiceIp @Composable get() = stringRes(R.string.quiz_desc_choice_ip)
+    val quizCollectionFavorites @Composable get() = stringRes(R.string.quiz_collection_favorites)
+    val quizCollectionAll @Composable get() = stringRes(R.string.quiz_collection_all)
+    val quizCollectionContinents @Composable get() = stringRes(R.string.quiz_collection_continents)
+    val quizCollectionContinentsDesc @Composable get() = stringRes(R.string.quiz_collection_continents_desc)
+    @Composable fun quizCollectionItemsCount(count: Int) = stringRes(R.string.quiz_collection_items_count_fmt, count)
+    @Composable fun quizCollectionItemsCount(eligible: Int, total: Int) =
+        if (eligible == total)
+            stringRes(R.string.quiz_collection_items_count_fmt, total)
+        else
+            stringRes(R.string.quiz_collection_items_eligible_count_fmt, eligible, total)
+
+    val quizStatUnknown @Composable get() = stringRes(R.string.quiz_stat_unknown)
+    val quizStatFamiliar @Composable get() = stringRes(R.string.quiz_stat_familiar)
+    val quizStatMastered @Composable get() = stringRes(R.string.quiz_stat_mastered)
+
+    val quizNoDataAlertTitle @Composable get() = stringRes(R.string.quiz_no_data_alert_title)
+    val quizNoDataAlertText @Composable get() = stringRes(R.string.quiz_no_data_alert_text)
+    val quizEligibilityInfoTitle @Composable get() = stringRes(R.string.quiz_eligibility_info_title)
+    val quizEligibilityInfoText @Composable get() = stringRes(R.string.quiz_eligibility_info_text)
+
+    @Composable fun quizResultLastScore(score: Int, correct: Int, total: Int) = stringRes(R.string.quiz_result_last_score_fmt, score, correct, total)
+    @Composable fun quizResultCompletedAt(dateTime: String) = stringRes(R.string.quiz_result_completed_at_fmt, dateTime)
+    @Composable fun quizResultDateTimeAt(date: String, time: String) = stringRes(R.string.quiz_result_date_time_at, date, time)
+
     @Composable
     fun detailLabelLanguage(count: Int) = if (count == 1)
         stringRes(R.string.detail_label_language)
     else
         stringRes(R.string.detail_label_languages)
+
+    @Composable
+    fun commonErrorsCount(count: Int) = if (count == 1)
+        stringRes(R.string.common_error_fmt, count)
+    else
+        stringRes(R.string.common_errors_fmt, count)
 }
+
 
 
 

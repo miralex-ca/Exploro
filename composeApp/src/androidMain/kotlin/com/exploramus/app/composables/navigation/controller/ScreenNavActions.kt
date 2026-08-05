@@ -5,6 +5,9 @@ import com.exploramus.shared.viewmodel.screens.Screen
 import com.exploramus.shared.viewmodel.screens.details.detailpager.DetailsPagerScreenParams
 import com.exploramus.shared.viewmodel.screens.details.detailpager.FavoritesPagerScreenParams
 import com.exploramus.shared.viewmodel.screens.details.singledetail.DetailsScreenParams
+import com.exploramus.shared.viewmodel.screens.quizzes.groupeditems.GroupedItemsScreenParams
+import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenParams
+import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 import com.exploramus.shared.viewmodel.screens.section.SectionParams
 
 interface ScreenNavActions {
@@ -23,6 +26,10 @@ interface ScreenNavActions {
     fun toFavoritesPagerFromList(item: FavoritesPagerNavParams)
 
     fun toSection(section: SectionNavParams)
+
+    fun toQuizList(item: QuizListNavParams)
+
+    fun toGroupedItems(params: GroupedItemsScreenParams)
 
     fun toLevel1Screen(level1Navigation: Level1Navigation)
 
@@ -80,6 +87,21 @@ interface ScreenNavActions {
             )
         }
 
+        override fun toQuizList(item: QuizListNavParams) {
+            appNavController.navigate(
+                Screen.QuizzesListScreen,
+                QuizzesListScreenParams(
+                    sectionId = item.sectionId,
+                    sectionType = item.quizType,
+                    screenTitle = item.name
+                )
+            )
+        }
+
+        override fun toGroupedItems(params: GroupedItemsScreenParams) {
+            appNavController.navigate(Screen.GroupedItemsScreen, params)
+        }
+
         override fun toLevel1Screen(level1Navigation: Level1Navigation) {
             appNavController.navigateByLevel1(level1Navigation)
         }
@@ -104,5 +126,11 @@ data class FavoritesPagerNavParams(
 
 data class SectionNavParams(
     val id: String,
+    val name: String,
+)
+
+data class QuizListNavParams(
+    val sectionId: String,
+    val quizType: QuizzesSectionType,
     val name: String,
 )

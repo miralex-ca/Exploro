@@ -1,13 +1,13 @@
 package com.exploramus.app.design.adaptive
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.window.core.layout.WindowSizeClass
+import com.exploramus.core.common.logging.Log
 
 val LocalFormFactor = staticCompositionLocalOf<FormFactor> {
     error("LocalFormFactor not provided — wrap with CompositionLocalProvider at root")
@@ -17,7 +17,8 @@ val LocalFormFactor = staticCompositionLocalOf<FormFactor> {
 data class FormFactor(
     val widthType: WidthType,
     val heightType: HeightType,
-    val orientation: ScreenOrientation
+    val orientation: ScreenOrientation,
+    val isLargeTablet: Boolean
 )
 
 enum class WidthType {
@@ -37,6 +38,24 @@ enum class ScreenOrientation {
     LANDSCAPE
 }
 
+enum class SizeBucket {
+    CompactCompact,
+    CompactMedium,
+    CompactExpanded,
+
+    MediumCompact,
+    MediumMedium,
+    MediumExpanded,
+
+    ExpandedCompact,
+    ExpandedMedium,
+    ExpandedExpanded,
+
+    LargeExpandedMedium,
+    LargeMediumExpanded,
+    LargeExpandedExpanded,
+}
+
 val FormFactor.isPhone get() = this.widthType == WidthType.COMPACT
 val FormFactor.isLarge get() = this.widthType != WidthType.COMPACT && this.heightType != HeightType.COMPACT
 val FormFactor.isCompact get() = this.widthType == WidthType.COMPACT || this.heightType == HeightType.COMPACT
@@ -46,6 +65,29 @@ val FormFactor.useBottomBar get() = this.widthType == WidthType.COMPACT
 val FormFactor.useNavRail get() = widthType == WidthType.MEDIUM || (widthType == WidthType.EXPANDED && isCompactHeight)
 val FormFactor.useDrawer get() = this.widthType == WidthType.EXPANDED && !isCompactHeight
 val FormFactor.isCompactHeight get() = this.heightType == HeightType.COMPACT
+val FormFactor.sizeBucket: SizeBucket
+    get() = when (widthType) {
+        WidthType.COMPACT -> when (heightType) {
+            HeightType.COMPACT -> SizeBucket.CompactCompact
+            HeightType.MEDIUM -> SizeBucket.CompactMedium
+            HeightType.EXPANDED -> SizeBucket.CompactExpanded
+        }
+
+        WidthType.MEDIUM -> when (heightType) {
+            HeightType.COMPACT -> SizeBucket.MediumCompact
+            HeightType.MEDIUM -> SizeBucket.MediumMedium
+            HeightType.EXPANDED if isLargeTablet -> SizeBucket.LargeMediumExpanded
+            HeightType.EXPANDED -> SizeBucket.MediumExpanded
+        }
+
+        WidthType.EXPANDED -> when (heightType) {
+            HeightType.COMPACT -> SizeBucket.ExpandedCompact
+            HeightType.MEDIUM if isLargeTablet -> SizeBucket.LargeExpandedMedium
+            HeightType.MEDIUM -> SizeBucket.ExpandedMedium
+            HeightType.EXPANDED if isLargeTablet -> SizeBucket.LargeExpandedExpanded
+            HeightType.EXPANDED -> SizeBucket.ExpandedExpanded
+        }
+    }
 
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
@@ -79,17 +121,20 @@ fun rememberFormFactor(): FormFactor {
         }
 
         val screenOrientation =
-            if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+            if (configuration.screenWidthDp > configuration.screenHeightDp)
                 ScreenOrientation.LANDSCAPE
             else
                 ScreenOrientation.PORTRAIT
 
+        val isLargeTablet = configuration.screenWidthDp > 1200 || configuration.screenHeightDp > 1100
+
         FormFactor(
             widthType = widthType,
             heightType = heightType,
-            orientation = screenOrientation
+            orientation = screenOrientation,
+            isLargeTablet = isLargeTablet
         ).also{
-            println("Formfactor: $it , width ${ configuration.screenWidthDp}, height ${configuration.screenHeightDp} ")
+            Log.d("Formfactor: $it, size: ${it.sizeBucket} , width ${ configuration.screenWidthDp}, height ${configuration.screenHeightDp} ")
         }
     }
 }

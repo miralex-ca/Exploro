@@ -14,7 +14,7 @@ class UpdateCountriesListDataTest {
     fun `returns success when data is up to date`() = runTest {
         val repo = TestFakes.createRepository(
             localDb = TestFakes.FakeLocalDataSource(hasData = true),
-            apiSyncTimestamp = Clock.System.now().epochSeconds
+            apiSyncTimestamp = Clock.System.now().toEpochMilliseconds()
         )
         assertTrue(repo.updateCountriesListData() is DataResult.Success)
     }

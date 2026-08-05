@@ -1,0 +1,33 @@
+CREATE TABLE QuizResults (
+    quiz_id TEXT NOT NULL PRIMARY KEY,
+    completed_at INTEGER NOT NULL,
+    correct_answers INTEGER NOT NULL,
+    total_answers INTEGER NOT NULL
+);
+
+insertQuizResult:
+INSERT OR REPLACE INTO QuizResults(
+    quiz_id,
+    completed_at,
+    correct_answers,
+    total_answers
+)
+VALUES (?, ?, ?, ?);
+
+getQuizResult:
+SELECT *
+FROM QuizResults
+WHERE quiz_id = ?;
+
+getQuizResultsByIds:
+SELECT *
+FROM QuizResults
+WHERE quiz_id IN ?;
+
+getAllQuizResults:
+SELECT *
+FROM QuizResults;
+
+deleteQuizResult:
+DELETE FROM QuizResults
+WHERE quiz_id = ?;

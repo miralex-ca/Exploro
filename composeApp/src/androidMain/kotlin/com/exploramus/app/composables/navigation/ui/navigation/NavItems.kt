@@ -1,12 +1,9 @@
 package com.exploramus.app.composables.navigation.ui.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Explore
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.StarOutline
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.Explore
+import androidx.compose.material.icons.outlined.School
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -17,12 +14,13 @@ import com.exploramus.shared.viewmodel.screens.Level1Navigation
 class NavItems(
     val home: NavItemData,
     val favorites: NavItemData,
+    val quizzes: NavItemData,
     val search: NavItemData,
     val settings: NavItemData,
 ) {
-    val level1Items get() = listOf(home, favorites)
+    val level1Items get() = listOf(home, favorites, quizzes)
     val utilities get() = listOf(settings, search)
-    val allItems get() = listOf(home, favorites, settings, search,)
+    val allItems get() = listOf(home, favorites, quizzes, settings, search,)
 }
 
 @Composable
@@ -46,6 +44,13 @@ fun rememberNavItems(
             label = { Strings.navFavorites },
             navigation = Level1Navigation.Favorites,
             onClick = { navigateByLevel1Menu(Level1Navigation.Favorites) }
+        ),
+        quizzes = NavItemData(
+            icon = Icons.Outlined.School,
+            selectedIcon = Icons.Filled.School,
+            label = { "Quizzes" },
+            navigation = Level1Navigation.QuizzesSections,
+            onClick = { navigateByLevel1Menu(Level1Navigation.QuizzesSections) }
         ),
         settings = NavItemData(
             icon = Icons.Outlined.Settings,

@@ -1,7 +1,11 @@
 package com.exploramus.app.composables.screens.details
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -14,9 +18,9 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
-import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.ScreenLoading
 import com.exploramus.app.composables.navigation.ui.topbars.DetailsTopBar
+import com.exploramus.app.composables.navigation.ui.topbars.TopBar
 import com.exploramus.app.composables.screens.details.DetailsUiEvent.ToggleFavorite
 import com.exploramus.app.composables.screens.details.views.DetailHeaderSection
 import com.exploramus.app.composables.screens.details.views.DetailsInfoSection
@@ -37,16 +41,26 @@ fun DetailsScreen(
 ) {
     val details = screenState.details
 
-    FadeInScreenContent {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        if (details != null) {
+            DetailsTopBar(
+                title = details.name,
+                mapsUrl = details.mapsUrl,
+                wikiUrl = details.wikiUrl,
+                onBackClick = eventHandler::onBackClicked
+            )
+        } else {
+            TopBar(
+                title = screenState.screenTitle,
+                onBackClick = eventHandler::onBackClicked
+            )
+        }
+
         when {
-            screenState.isLoading -> {
-                ScreenLoading()
-            }
-
-            details == null -> {
-                EmptyStateView(EmptyState.NotFound)
-            }
-
+            screenState.isLoading -> ScreenLoading()
+            details == null -> EmptyStateView(EmptyState.NotFound)
             else -> {
                 DetailsScreenContent(
                     details = details,
@@ -66,45 +80,30 @@ fun DetailsScreenContent(
     val isLandscape = formFactor.isLandscape
     val layout = MaterialTheme.layout.details
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .widthIn(max = layout.maxWidth.value())
+                .padding(horizontal = layout.horizontalPadding.value())
+                .padding(top = layout.topPadding.value(), bottom = layout.bottomPadding.value())
         ) {
-
-            DetailsTopBar(
-                title = details.name,
-                mapsUrl = details.mapsUrl,
-                wikiUrl = details.wikiUrl,
-                onBackClick = {  onEvent(DetailsUiEvent.OnBackClicked) }
-            )
-
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState()),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Column(
-                    modifier = Modifier
-                        .widthIn(max = layout.maxWidth.value())
-                        .padding(horizontal = layout.horizontalPadding.value())
-                        .padding(top = layout.topPadding.value(), bottom = layout.bottomPadding.value())
-                ) {
-                    if (isLandscape) {
-                        LargeDetailsSections(
-                            details = details,
-                            onFavoriteClick = { onEvent(ToggleFavorite(details.id)) }
-                        )
-                    } else {
-                        DetailsSections(
-                            details = details,
-                            onFavoriteClick = { onEvent(ToggleFavorite(details.id)) }
-                        )
-                    }
-                }
+            if (isLandscape) {
+                LargeDetailsSections(
+                    details = details,
+                    onFavoriteClick = { onEvent(ToggleFavorite(details.id)) }
+                )
+            } else {
+                DetailsSections(
+                    details = details,
+                    onFavoriteClick = { onEvent(ToggleFavorite(details.id)) }
+                )
             }
         }
-
     }
 }
 

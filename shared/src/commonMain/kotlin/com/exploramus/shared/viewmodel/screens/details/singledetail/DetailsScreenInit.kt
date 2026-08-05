@@ -13,7 +13,7 @@ data class DetailsScreenParams(val countryCode: String? = null, val screenTitle:
 
 fun StateManager.initCountryDetail(params: DetailsScreenParams) = ScreenInitSettings(
     title = params.screenTitle ?: "",
-    initState = { DetailsScreenState(isLoading = true) },
+    initState = { DetailsScreenState(isLoading = true, screenTitle = params.screenTitle ?: "") },
     callOnInit = {
         val countryCode = params.countryCode ?: return@ScreenInitSettings
 

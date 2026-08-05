@@ -3,6 +3,8 @@ package com.exploramus.app.design.adaptive
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -17,13 +19,17 @@ data class AppLayout(
     val cardSpacing: Adp,
     val home: Home,
     val favorites: Favorites,
+    val groupedItems: GroupedItems,
     val section: Section,
     val details: Details,
     val search: Search,
     val settings: Settings,
+    val quizzesSection: QuizzesSection,
     var showSearchFab: AdBool,
     val homeCard: HomeCard,
     val sectionCard: SectionCard,
+    val flashcard: Flashcard,
+    val quiz: Quiz,
 ) {
 
 
@@ -57,6 +63,50 @@ data class AppLayout(
         val infoRowVerticalPadding: Adp,
     )
 
+    data class Flashcard(
+        val horizontalPadding: Adp,
+        val topPadding: Adp,
+        val cardMaxWidth: AdaptiveSizeValue<Dp>,
+        val landScapeCardMaxWidth: AdaptiveSizeValue<Dp>,
+        val maxHeight: AdpH,
+        val cardBottomPadding: AdpH,
+        val bottomBarPadding: AdpH,
+        val cardHorizontalPadding: Adp,
+    )
+
+    data class Quiz(
+        val topPadding: AdaptiveSizeValue<Dp>,
+        val cardHorizontalPadding: Adp,
+        val cardMaxWidth: AdaptiveSizeValue<Dp>,
+        val maxHeight: AdaptiveSizeValue<Dp>,
+        val landScapeCardMaxWidth: AdaptiveSizeValue<Dp>,
+        val questionTextSize: AdaptiveSizeValue<TextUnit>,
+        val questionTextVerticalAlign: Float,
+        val optionsHorizontalPadding: AdaptiveSizeValue<Dp>,
+        val gridHorizontalPadding: AdaptiveSizeValue<Dp>,
+        val optionsTopPadding: AdaptiveSizeValue<Dp>,
+        val optionsBottomPadding: AdaptiveSizeValue<Dp>,
+        val cardBottomPadding: AdpH,
+        val bottomBarPadding: AdpH,
+        val resultMaxHeight: AdaptiveSizeValue<Dp>,
+        val resultMetricPadding: AdaptiveSizeValue<Dp>,
+        val resultStatsVSpacing: AdaptiveSizeValue<Dp>,
+        val resultStatsCardsSpacing: AdaptiveSizeValue<Dp>,
+        val resultStatsIconSize: AdaptiveSizeValue<Dp>,
+    )
+
+    data class QuizzesSection(
+        val itemMaxWidth: AdaptiveSizeValue<Dp>,
+        val horizontalPadding: Adp,
+        val topPadding: Adp,
+        val bottomPadding: Adp,
+        val imageSize: AdaptiveSizeValue<Dp>,
+        val iconSize: AdaptiveSizeValue<Dp>,
+        val titleFontSize: AdaptiveSizeValue<TextUnit>,
+        val headerImage: AdaptiveSizeValue<Dp>,
+        val headerIcon: AdaptiveSizeValue<Dp>,
+    )
+
     data class HomeCard(
         val width: Adp,
         val imageHeight: Adp,
@@ -67,6 +117,15 @@ data class AppLayout(
         val gridItemMaxWidth: Adp,
         val itemImageHeight: Adp,
         val itemGridImageHeight: Adp,
+        val bottomPadding: Adp,
+        val imageTextSpace: Adp,
+    )
+
+    data class GroupedItems(
+        val listItemMaxWidth: Adp,
+        val itemImageHeight: Adp,
+        val itemGridImageHeight: Adp,
+        val itemImageWidth: AdaptiveSizeValue<Dp>,
         val bottomPadding: Adp,
         val imageTextSpace: Adp,
     )
@@ -117,6 +176,24 @@ object AppLayouts {
             imageTextSpace = adp(20.dp, 26.dp),
         ),
 
+        groupedItems = AppLayout.GroupedItems(
+            listItemMaxWidth = adp(420.dp, 500.dp),
+            itemImageHeight = adp(52.dp, 60.dp, 70.dp),
+            itemImageWidth = adpSizeForFormat(
+                phone = 90.dp,
+                phoneLandscape = 100.dp,
+                largePhone = 90.dp,
+                largePhoneLandscape = 110.dp,
+                tablet = 100.dp,
+                tabletLandscape = 130.dp,
+                largeTablet = 120.dp,
+                largeTabletLandscape = 110.dp,
+            ),
+            itemGridImageHeight = adp(60.dp, 70.dp, 80.dp),
+            bottomPadding = adp(60.dp),
+            imageTextSpace = adp(20.dp, 26.dp),
+        ),
+
         section = AppLayout.Section(
             horizontalPadding = adp(16.dp, 28.dp, 50.dp),
             topPadding = adph(16.dp, 20.dp, 28.dp),
@@ -157,6 +234,86 @@ object AppLayouts {
             width = adp(140.dp, 180.dp),
             imageHeight = adp(70.dp, 100.dp),
         ),
+        quizzesSection = AppLayout.QuizzesSection(
+            itemMaxWidth = adpSizeForFormat(
+                phone = 420.dp,
+                phoneLandscape = 500.dp,
+                tablet = 520.dp,
+                tabletLandscape = 550.dp,
+                largeTablet = 580.dp,
+                largeTabletLandscape = 580.dp
+            ),
+            horizontalPadding = adp(16.dp, 28.dp, 50.dp),
+            topPadding = adp(12.dp, 16.dp),
+            bottomPadding = adp(60.dp),
+            imageSize = adpSizeForFormat(phone = 54.dp, tablet = 64.dp),
+            iconSize = adpSizeForFormat(phone = 28.dp, tablet = 32.dp),
+            titleFontSize = aspSizeForFormat(phone = 17.sp, tablet = 20.sp),
+            headerImage = adpSizeForFormat(phone = 76.dp, tablet = 76.dp),
+            headerIcon = adpSizeForFormat(phone = 36.dp, tablet = 32.dp),
+        ),
+        flashcard = AppLayout.Flashcard(
+            horizontalPadding = adp(16.dp, 28.dp, 50.dp),
+            topPadding = adp(26.dp, 50.dp, 60.dp),
+            cardMaxWidth = adpSize(440.dp, 460.dp, 520.dp),
+            landScapeCardMaxWidth = adpSize(450.dp, 700.dp, 860.dp),
+            maxHeight = adph(800.dp, 850.dp, 950.dp),
+            cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
+            bottomBarPadding = adph(16.dp, expandedInCompact = 20.dp),
+            cardHorizontalPadding = adp(16.dp, 24.dp, 48.dp),
+        ),
+        quiz = AppLayout.Quiz(
+            topPadding = adpSizeForFormat(phone = 26.dp, phoneLandscape = 12.dp, tablet = 60.dp),
+            cardHorizontalPadding = adp(16.dp, 24.dp, 48.dp),
+            cardMaxWidth = adpSizeForFormat(
+                phone = 440.dp,
+                tablet = 520.dp,
+                largeTablet = 580.dp,
+            ),
+            maxHeight = adpSizeForFormat(
+                phone = 800.dp,
+                tablet = 950.dp,
+                tabletLandscape = 580.dp,
+                largeTablet = 1050.dp,
+                largeTabletLandscape = 650.dp,
+            ),
+            landScapeCardMaxWidth = adpSizeForFormat(phone = 620.dp, phoneLandscape = 700.dp, tablet = 840.dp, largeTabletLandscape = 900.dp),
+            questionTextSize = aspSizeForFormat(
+                phone = 15.sp,
+                foldable = 16.sp,
+                tablet = 18.sp,
+            ),
+            questionTextVerticalAlign = -0.36F,
+            optionsHorizontalPadding = adpSizeForFormat( phone = 20.dp, tablet = 40.dp, largeTablet = 50.dp, largeTabletLandscape = 60.dp),
+            gridHorizontalPadding = adpSizeForFormat( phone = 4.dp, tablet = 20.dp, largeTablet = 50.dp, largeTabletLandscape = 60.dp),
+            optionsTopPadding = adpSizeForFormat( phone = 10.dp, tablet = 10.dp, tabletLandscape = 20.dp),
+            optionsBottomPadding = adpSizeForFormat( phone = 10.dp, largePhone = 40.dp, tablet = 90.dp, tabletLandscape = 20.dp),
+            cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
+            bottomBarPadding = adph(16.dp, expandedInCompact = 20.dp),
+            resultMetricPadding = adpSizeForFormat( phone = 12.dp, phoneLandscape = 8.dp, largePhone = 16.dp, largePhoneLandscape = 10.dp),
+            resultMaxHeight = adpSizeForFormat(
+                phone = 800.dp,
+                tablet = 950.dp,
+                tabletLandscape = 600.dp,
+            ),
+            resultStatsVSpacing = adpSizeForFormat(
+                phone = 12.dp,
+                phoneLandscape = 6.dp,
+                largePhone = 24.dp,
+                largePhoneLandscape = 10.dp,
+            ),
+            resultStatsCardsSpacing = adpSizeForFormat(
+                phone = 8.dp,
+                largePhone = 12.dp,
+                tablet = 12.dp,
+            ),
+            resultStatsIconSize = adpSizeForFormat(
+                phone = 28.dp,
+                largePhone = 36.dp,
+                largePhoneLandscape = 32.dp,
+                tablet = 36.dp,
+            )
+        )
     )
 
     fun compactLandscape(base: AppLayout = default()): AppLayout {
@@ -170,7 +327,13 @@ object AppLayouts {
             homeCard = base.homeCard.copy(
                 width = adp(140.dp, 140.dp, 160.dp),
                 imageHeight = adp(70.dp, 70.dp,80.dp),
-            )
+            ),
+
+            flashcard = base.flashcard.copy(
+                topPadding = adp(26.dp),
+            ),
+            quiz = base.quiz.copy(questionTextVerticalAlign = -0.5f)
+
         )
     }
 }

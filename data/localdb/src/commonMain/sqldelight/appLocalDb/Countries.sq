@@ -97,6 +97,14 @@ ORDER BY name;
 countCountries:
 SELECT COUNT(*) FROM Countries;
 
+countCountriesByContinent:
+SELECT COUNT(*) FROM Countries WHERE continent = :continent;
+
+getAllCountries:
+SELECT *
+FROM Countries
+ORDER BY name ASC;
+
 
 getAllCountriesWithDetails:
 SELECT

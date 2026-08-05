@@ -5,6 +5,11 @@ import com.exploramus.app.composables.screens.details.DetailsEventHandler
 import com.exploramus.app.composables.screens.details.DetailsPagerEventHandler
 import com.exploramus.app.composables.screens.favorites.FavoritesEventHandler
 import com.exploramus.app.composables.screens.home.HomeEventHandler
+import com.exploramus.app.composables.screens.quizzes.choicequiz.ChoiceQuizEventHandler
+import com.exploramus.app.composables.screens.quizzes.flashcards.FlashcardEventHandler
+import com.exploramus.app.composables.screens.quizzes.groupeditems.GroupedItemsEventHandler
+import com.exploramus.app.composables.screens.quizzes.quizsections.QuizSectionsEventHandler
+import com.exploramus.app.composables.screens.quizzes.quizzeslist.QuizzesListEventHandler
 import com.exploramus.app.composables.screens.search.SearchEventHandler
 import com.exploramus.app.composables.screens.section.SectionEventHandler
 import com.exploramus.app.composables.screens.settings.SettingsEventHandler
@@ -18,8 +23,32 @@ class EventHandlers(
         HomeEventHandler(navActions)
     }
 
+    val favorites by lazy {
+        FavoritesEventHandler(navActions, events)
+    }
+
+    val quizzesSections by lazy {
+        QuizSectionsEventHandler(navActions)
+    }
+
+    val quizzesList by lazy {
+        QuizzesListEventHandler(navActions, events)
+    }
+
+    val flashcards by lazy {
+        FlashcardEventHandler(navActions, events)
+    }
+
+    val choiceQuiz by lazy {
+        ChoiceQuizEventHandler(navActions, events)
+    }
+
     val section by lazy {
         SectionEventHandler(navActions)
+    }
+
+    val groupedItems by lazy {
+        GroupedItemsEventHandler(navActions)
     }
 
     val details by lazy {
@@ -28,10 +57,6 @@ class EventHandlers(
 
     val detailsPager by lazy {
         DetailsPagerEventHandler(events, navActions)
-    }
-
-    val favorites by lazy {
-        FavoritesEventHandler(navActions, events)
     }
 
     val search by lazy {

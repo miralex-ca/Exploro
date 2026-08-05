@@ -12,6 +12,11 @@ import com.exploramus.app.composables.screens.details.DetailsPagerScreen
 import com.exploramus.app.composables.screens.details.DetailsScreen
 import com.exploramus.app.composables.screens.favorites.FavoritesScreen
 import com.exploramus.app.composables.screens.home.HomeScreen
+import com.exploramus.app.composables.screens.quizzes.choicequiz.ChoiceQuizScreen
+import com.exploramus.app.composables.screens.quizzes.flashcards.FlashcardScreen
+import com.exploramus.app.composables.screens.quizzes.groupeditems.GroupedItemsScreen
+import com.exploramus.app.composables.screens.quizzes.quizsections.QuizSectionsScreen
+import com.exploramus.app.composables.screens.quizzes.quizzeslist.QuizzesListScreen
 import com.exploramus.app.composables.screens.search.SearchScreen
 import com.exploramus.app.composables.screens.section.SectionScreen
 import com.exploramus.app.composables.screens.settings.SettingsScreen
@@ -22,6 +27,11 @@ import com.exploramus.shared.viewmodel.screens.details.detailpager.DetailsPagerS
 import com.exploramus.shared.viewmodel.screens.details.singledetail.DetailsScreenState
 import com.exploramus.shared.viewmodel.screens.favorites.FavoritesScreenState
 import com.exploramus.shared.viewmodel.screens.home.HomeScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.choicequiz.ChoiceQuizScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.flashcards.FlashcardScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.groupeditems.GroupedItemsScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.QuizSectionsScreenState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenState
 import com.exploramus.shared.viewmodel.screens.search.SearchScreenState
 import com.exploramus.shared.viewmodel.screens.section.SectionScreenState
 import com.exploramus.shared.viewmodel.screens.settings.SettingsScreenState
@@ -50,11 +60,42 @@ fun Navigation.ScreenPicker(
                 eventHandler = eventHandlers.favorites,
             )
 
+        Screen.QuizzesSectionsScreen ->
+            QuizSectionsScreen(
+                screenState = state as QuizSectionsScreenState,
+                eventHandler = eventHandlers.quizzesSections,
+            )
+
+        Screen.QuizzesListScreen ->
+            QuizzesListScreen(
+                screenState = state as QuizzesListScreenState,
+                eventHandler = eventHandlers.quizzesList,
+            )
+
+        Screen.FlashcardsScreen ->
+            FlashcardScreen(
+                screenState = state as FlashcardScreenState,
+                eventHandler = eventHandlers.flashcards,
+            )
+
+        Screen.ChoiceQuizScreen ->
+            ChoiceQuizScreen(
+                screenState = state as ChoiceQuizScreenState,
+                eventHandler = eventHandlers.choiceQuiz,
+            )
+
         Screen.SectionScreen ->
             SectionScreen(
                 screenState = state as SectionScreenState,
                 eventHandler = eventHandlers.section,
             )
+
+        Screen.GroupedItemsScreen ->
+            GroupedItemsScreen(
+                screenState = state as GroupedItemsScreenState,
+                eventHandler = eventHandlers.groupedItems,
+            )
+
         Screen.CountryDetail ->
             DetailsScreen(
                 screenState = state as DetailsScreenState,

@@ -1,0 +1,39 @@
+CREATE TABLE QuizItemResults (
+    id TEXT NOT NULL PRIMARY KEY,
+    score INTEGER NOT NULL DEFAULT 0,
+    errors INTEGER NOT NULL DEFAULT 0,
+    total_correct_completed INTEGER NOT NULL DEFAULT 0,
+    last_completed_at INTEGER,
+    last_correct_at INTEGER,
+    last_error_at INTEGER
+);
+
+insertQuizItemResult:
+INSERT OR REPLACE INTO QuizItemResults(
+    id,
+    score,
+    errors,
+    total_correct_completed,
+    last_completed_at,
+    last_correct_at,
+    last_error_at
+)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+getQuizItemResult:
+SELECT *
+FROM QuizItemResults
+WHERE id = ?;
+
+getQuizItemResultsByIds:
+SELECT *
+FROM QuizItemResults
+WHERE id IN ?;
+
+getAllQuizItemResults:
+SELECT *
+FROM QuizItemResults;
+
+deleteQuizItemResult:
+DELETE FROM QuizItemResults
+WHERE id = ?;

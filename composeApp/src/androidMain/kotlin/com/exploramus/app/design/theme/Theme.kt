@@ -2,7 +2,10 @@ package com.exploramus.app.design.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.ripple.RippleAlpha
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RippleConfiguration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
@@ -42,12 +45,32 @@ fun AppTheme(
         }
     }
 
+    val rippleConfiguration = RippleConfiguration(
+        color = if (darkTheme) darkThemeRippleColor else lightThemeRippleColor,
+        rippleAlpha = if (darkTheme) {
+            RippleAlpha(
+                draggedAlpha = 0.16f,
+                focusedAlpha = 0.12f,
+                hoveredAlpha = 0.08f,
+                pressedAlpha = 0.16f
+            )
+        } else {
+            RippleAlpha(
+                draggedAlpha = 0.14f,
+                focusedAlpha = 0.10f,
+                hoveredAlpha = 0.07f,
+                pressedAlpha = 0.12f
+            )
+        }
+    )
+
     MaterialTheme(
         colorScheme = colorScheme,
         typography = typography,
     ) {
         CompositionLocalProvider(
-            LocalAppColors provides appColors
+            LocalAppColors provides appColors,
+            LocalRippleConfiguration provides rippleConfiguration
         ) {
             content()
         }

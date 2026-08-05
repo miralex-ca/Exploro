@@ -93,31 +93,40 @@ class StateManager(repo: Repository) {
         }
     }
 
-    inline fun <reified T: ScreenState> updateScreen(
-        @Suppress("UNUSED_PARAMETER") stateClass: KClass<T>,
-        update: (T) -> T,
-    ) {
-        Log.d("updateScreen: "+stateClass.simpleName)
-        var screenState : T?
-        for(i in currentVerticalNavigationLevelsMap.keys.sortedDescending()) {
-            screenState = screenStatesMap[currentVerticalNavigationLevelsMap[i]?.URI]?.value as? T
+    inline fun <reified T : ScreenState> findCurrentScreenStateEntry(): Pair<String, T>? {
+        for (level in currentVerticalNavigationLevelsMap.keys.sortedDescending()) {
+            val screenIdentifier = currentVerticalNavigationLevelsMap[level] ?: continue
+            val screenState = screenStatesMap[screenIdentifier.URI]?.value as? T
             if (screenState != null) {
-                val screenIdentifier = currentVerticalNavigationLevelsMap[i]!!
-                screenStatesMap[screenIdentifier.URI]!!.value = update(screenState)
-                Log.d("state updated @ /${screenIdentifier.URI}")
-                return
+                return screenIdentifier.URI to screenState
             }
         }
 
-        // if not found in current stack, update all screens in the states map that match the state class
-        // this is useful for updating level 1 screens when they are not in the current stack
         screenStatesMap.forEach { (uri, stateFlow) ->
-            screenState = stateFlow.value as? T
-            if (screenState != null) {
-                stateFlow.value = update(screenState)
-                Log.d("state updated (fallback) @ /$uri")
-            }
+            val screenState = stateFlow.value as? T
+            if (screenState != null) return uri to screenState
         }
+
+        return null
+    }
+
+    inline fun <reified T : ScreenState> getScreenState(
+        @Suppress("UNUSED_PARAMETER") stateClass: KClass<T>
+    ): T? = findCurrentScreenStateEntry<T>()?.second
+
+    inline fun <reified T : ScreenState> updateScreen(
+        stateClass: KClass<T>,
+        update: (T) -> T,
+    ) {
+        Log.d("updateScreen: "+stateClass.simpleName)
+        val (uri, screenState) = findCurrentScreenStateEntry<T>() ?: return
+        val stateFlow = screenStatesMap[uri]
+        if (stateFlow == null) {
+            Log.d("updateScreen: no stateFlow found @ /$uri, skipping update")
+            return
+        }
+        stateFlow.value = update(screenState)
+        Log.d("state updated @ /$uri")
     }
 
     // REMOVE SCREEN

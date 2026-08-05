@@ -53,6 +53,7 @@
     <string name="details_coat_of_arms">Coat of Arms</string>
     <string name="common_close">Close</string>
     <string name="common_confirm">Confirm</string>
+    <string name="common_got_it">Got it</string>
     <string name="common_cancel">Cancel</string>
     <string name="common_view">View</string>
     <string name="common_remove">Remove</string>
@@ -89,4 +90,66 @@
     <string name="empty_msg_empty_list">There is nothing to show here yet.</string>
     <string name="empty_msg_not_found">The requested content could not be found.</string>
 
+    <string name="flashcard_settings_title">Flashcard Settings</string>
+    <string name="flashcard_visible_clue">Visible clue</string>
+    <string name="flashcard_target_primary">Country name</string>
+    <string name="flashcard_target_secondary">Capital city</string>
+    <string name="flashcard_target_image">Country Flag</string>
+    <string name="flashcard_settings_description">Choose which information is displayed on the visible part of the card.</string>
+    <string name="flashcard_shuffle_cards">Shuffle cards</string>
+    <string name="flashcard_reveal_details">Reveal details</string>
+    <string name="flashcard_restart">Restart</string>
+    <string name="flashcard_done">Done</string>
+    <string name="flashcard_hint_tap_to_reveal">Tap to reveal</string>
+    <string name="flashcard_menu_settings">Cards settings</string>
+    <string name="flashcard_label_capital">Capital</string>
+    <string name="quiz_type_flashcards">Flashcards</string>
+
+    <string name="quiz_target_primary_secondary">Country → Capital</string>
+    <string name="quiz_target_secondary_primary">Capital → Country</string>
+    <string name="quiz_target_image_primary">Flag → Country</string>
+    <string name="quiz_target_primary_image">Country → Flag</string>
+
+    <string name="choice_quiz_settings_title">Quiz settings</string>
+    <string name="choice_quiz_select_pair">Select quiz pair</string>
+    <string name="choice_quiz_limit_label">Quiz limit</string>
+    <string name="choice_quiz_limit_no_limit">No limit</string>
+
+    <string name="choice_quiz_prompt_primary_secondary">What is the capital of this country?</string>
+    <string name="choice_quiz_prompt_secondary_primary">Which country belongs to this capital?</string>
+    <string name="choice_quiz_prompt_image_primary">Which country does this flag belong to?</string>
+    <string name="choice_quiz_prompt_primary_image">Find the flag for this country:</string>
+
+    <string name="quiz_result_metric_total">Total questions</string>
+    <string name="quiz_result_metric_score">Score</string>
+    <string name="quiz_result_metric_correct">Correct answers</string>
+    <string name="quiz_result_metric_incorrect">Incorrect answers</string>
+    <string name="quiz_result_metric_skipped">Skipped questions</string>
+    <string name="quiz_result_score_description">Score is calculated as the percentage of correct answers relative to the total number of questions.</string>
+
+    <string name="quiz_desc_flashcards">Study countries using flashcards with flags and capitals.</string>
+    <string name="quiz_desc_choice_ps">Test your knowledge by identifying capital cities.</string>
+    <string name="quiz_desc_choice_ip">Challenge yourself by recognizing countries by their flags.</string>
+    <string name="quiz_collection_favorites">Favorites</string>
+    <string name="quiz_collection_all">All countries</string>
+    <string name="quiz_collection_continents">Continents</string>
+    <string name="quiz_collection_continents_desc">Quizzes for each continent</string>
+    <string name="quiz_collection_items_count_fmt">%d countries</string>
+    <string name="quiz_collection_items_eligible_count_fmt">%1$d of %2$d countries</string>
+
+    <string name="quiz_stat_unknown">Unknown</string>
+    <string name="quiz_stat_familiar">Familiar</string>
+    <string name="quiz_stat_mastered">Mastered</string>
+
+    <string name="quiz_no_data_alert_title">No quizzes available</string>
+    <string name="quiz_no_data_alert_text">None of the countries in this section have enough information to generate a quiz. Try another section!</string>
+
+    <string name="quiz_eligibility_info_title">Quiz eligibility</string>
+    <string name="quiz_eligibility_info_text">Some countries in this section don\'t have enough information available to generate a quiz.</string>
+
+    <string name="quiz_result_last_score_fmt">Last score: %1$d%% (%2$d/%3$d)</string>
+    <string name="quiz_result_completed_at_fmt">Completed: %s</string>
+    <string name="common_error_fmt">%d error</string>
+    <string name="common_errors_fmt">%d errors</string>
+    <string name="quiz_result_date_time_at">%1$s at %2$s</string>
 </resources>

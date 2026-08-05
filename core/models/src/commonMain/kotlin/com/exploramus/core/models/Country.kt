@@ -12,6 +12,9 @@ data class Country(
     val flagEmoji: String,
 )
 
+val Country.isValidForQuiz: Boolean
+    get() = name.isNotBlank() && capital.isNotBlank()
+
 data class CountryDetails(
     val id: String,
     val population: Long,

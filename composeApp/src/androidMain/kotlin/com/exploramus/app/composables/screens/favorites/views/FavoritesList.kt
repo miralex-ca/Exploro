@@ -36,6 +36,7 @@ import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.shared.viewmodel.screens.favorites.FavoriteListItem
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun FavoritesList(
@@ -59,7 +60,7 @@ fun FavoritesList(
                 top = 12.dp, bottom = bottomPadding
             ),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp),
             modifier = Modifier.fillMaxSize()
         ) {
             items(
@@ -99,7 +100,7 @@ fun SwipeableFavoriteRow(
     LaunchedEffect(dismissState.currentValue) {
         if (dismissState.currentValue == SwipeToDismissBoxValue.EndToStart && !handled) {
             handled = true
-            delay(200)
+            delay(200.milliseconds)
             onRemove()
         }
     }
@@ -161,8 +162,7 @@ fun FavoriteListRow(
     val layout = MaterialTheme.layout.favorites
 
     Card(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         border = BorderStroke(
             width = 1.dp,

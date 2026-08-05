@@ -58,6 +58,7 @@ object TestFakes {
         ): List<Country> =
             countriesBySection[sectionId].orEmpty()
 
+        override suspend fun getAllCountries(): List<Country> = storedCountries
         override suspend fun getAllCountriesBySectionId(sectionId: String) = emptyList<Country>()
         override suspend fun getAllCountriesWithDetailsBySectionId(sectionId: String) = emptyList<CountryWithDetails>()
         override suspend fun searchCountries(query: String): List<Country> {
@@ -79,6 +80,25 @@ object TestFakes {
         }
 
         override suspend fun getSections(): List<Section> = storedSections
+
+        override suspend fun getFavoritesCount(): Long = 0
+        override suspend fun getAllCountriesCount(): Long = storedCountries.size.toLong()
+        override suspend fun getCountriesCountBySection(sectionId: String): Long =
+            countriesBySection[sectionId]?.size?.toLong() ?: 0
+
+        override suspend fun saveQuizResult(result: QuizResult) {}
+
+        override suspend fun getQuizResult(quizId: String): QuizResult? = null
+
+        override suspend fun getQuizResults(quizIds: List<String>): List<QuizResult> = emptyList()
+
+        override suspend fun saveQuizItemResult(result: QuizItemResult) {}
+
+        override suspend fun getQuizItemResult(id: String): QuizItemResult? = null
+
+        override suspend fun getQuizItemResults(ids: List<String>): List<QuizItemResult> = emptyList()
+
+        override suspend fun getAllQuizItemResults(): List<QuizItemResult> = emptyList()
     }
 
     class FakeRemoteDataSource(
