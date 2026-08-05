@@ -32,5 +32,9 @@ data class ContinentSectionState(
     val sectionId: String,
     val sectionName: String,
     val itemsCount: Int,
-)
+    val eligibleItemsCount: Int,
+    val masteredItemsCount: Int,
+) {
+    val isAllMastered: Boolean = eligibleItemsCount > 0 && eligibleItemsCount == masteredItemsCount
+}
 

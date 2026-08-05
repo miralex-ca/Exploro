@@ -1,12 +1,6 @@
 package com.exploramus.shared.viewmodel.screens.quizzes.quizsections
 
-import com.exploramus.data.repository.functions.getAllCountriesCount
-import com.exploramus.data.repository.functions.getCountriesCountBySection
-import com.exploramus.data.repository.functions.getFavoritesCount
-import com.exploramus.data.repository.functions.getQuizCountriesCountAll
-import com.exploramus.data.repository.functions.getQuizCountriesCountBySection
-import com.exploramus.data.repository.functions.getQuizCountriesCountFavorites
-import com.exploramus.data.repository.functions.getSections
+import com.exploramus.data.repository.functions.*
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
 import com.exploramus.shared.viewmodel.core.StateManager
@@ -25,14 +19,20 @@ fun StateManager.initQuizSectionsScreen() = ScreenInitSettings(
 
         val continentSections = sections.mapNotNull { section ->
             val totalCount = dataRepository.getCountriesCountBySection(section.id).toInt()
-            val eligibleCount = dataRepository.getQuizCountriesCountBySection(section.id)
+            val quizCountries = dataRepository.getQuizCountriesBySection(section.id)
+            val eligibleCount = quizCountries.size
 
             if (eligibleCount == 0) return@mapNotNull null
+
+            val stats = dataRepository.getSectionStats(quizCountries.map { it.id })
+            val masteredCount = stats.mastered
 
             ContinentSectionState(
                 sectionId = section.id,
                 sectionName = section.name,
-                itemsCount = totalCount
+                itemsCount = totalCount,
+                eligibleItemsCount = eligibleCount,
+                masteredItemsCount = masteredCount,
             )
         }
 

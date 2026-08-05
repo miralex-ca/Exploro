@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.rounded.WorkspacePremium
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -32,6 +33,7 @@ import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
+import com.exploramus.app.design.theme.AppColorPalette
 import com.exploramus.app.design.theme.appColors
 import com.exploramus.app.resources.Strings
 import com.exploramus.shared.viewmodel.screens.quizzes.quizsections.ContinentSectionState
@@ -284,6 +286,14 @@ fun ContinentRow(
                 style = MaterialTheme.typography.bodySmall,
                 fontSize = 13.sp,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f),
+            )
+        }
+        if (continent.isAllMastered) {
+            Icon(
+                imageVector = Icons.Rounded.WorkspacePremium,
+                contentDescription = null,
+                tint = AppColorPalette.BrightGreen.text(),
+                modifier = Modifier.size(28.dp).padding(end = 4.dp),
             )
         }
         Icon(
