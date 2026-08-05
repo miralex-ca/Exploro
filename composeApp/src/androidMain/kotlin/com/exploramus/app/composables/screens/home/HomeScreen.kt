@@ -28,13 +28,16 @@ import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.FadeInScreenContent
 import com.exploramus.app.composables.components.RemoteImage
+import com.exploramus.app.composables.components.ResourceImage
 import com.exploramus.app.composables.components.ScreenLoading
+import com.exploramus.app.composables.components.flagAssetUri
 import com.exploramus.app.design.adaptive.LocalFormFactor
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.useBottomBar
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.design.theme.AppTypography
 import com.exploramus.app.design.theme.appColors
+import com.exploramus.core.common.logging.Log
 import com.exploramus.shared.viewmodel.screens.home.HomeListItem
 import com.exploramus.shared.viewmodel.screens.home.HomeScreenState
 import com.exploramus.shared.viewmodel.screens.home.HomeSectionState
@@ -159,7 +162,7 @@ fun HomeSectionRow(
             ) { item ->
                 HomeSectionListCard(
                     name = item.name,
-                    flagPngUrl = item.flagImage,
+                    flagPngUrl = flagAssetUri(item.iso2),
                     onClick = { onListItemClick(item) }
                 )
             }
@@ -188,8 +191,9 @@ fun HomeSectionListCard(
         Column(
             modifier = Modifier.padding(8.dp)
         ) {
-            RemoteImage(
-                imageUrl = flagPngUrl,
+            Log.d("flagPngUrl: $flagPngUrl")
+            ResourceImage(
+                imageUri = flagPngUrl,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(layout.homeCard.imageHeight.value())

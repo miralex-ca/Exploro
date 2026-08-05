@@ -25,12 +25,14 @@ fun List<HomeSection>.toHomeSectionStates() = map { it.toHomeSectionState() }
 
 data class HomeListItem(
     val id: String,
+    val iso2: String,
     val name: String,
     val flagImage: String,
 )
 
 fun Country.toHomeListItem() = HomeListItem(
     id = id,
+    iso2 = iso2,
     name = name,
     flagImage = flagImage
 )
