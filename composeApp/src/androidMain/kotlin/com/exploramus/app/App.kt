@@ -5,6 +5,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import coil3.ImageLoader
+import coil3.SingletonImageLoader
+import coil3.network.ktor3.KtorNetworkFetcherFactory
 import com.exploramus.di.appModules
 import com.exploramus.shared.getAndroidInstance
 import com.exploramus.shared.viewmodel.core.DKMPViewModel
@@ -25,6 +28,14 @@ class App : Application() {
 
         val appLifecycleObserver = AppLifecycleObserver(model)
         ProcessLifecycleOwner.get().lifecycle.addObserver(appLifecycleObserver)
+
+        SingletonImageLoader.setSafe { context ->
+            ImageLoader.Builder(context)
+                .components {
+                    add(KtorNetworkFetcherFactory())
+                }
+                .build()
+        }
     }
 }
 
