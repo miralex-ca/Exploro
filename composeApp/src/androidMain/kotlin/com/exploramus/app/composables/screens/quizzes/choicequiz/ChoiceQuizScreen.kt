@@ -70,8 +70,7 @@ fun ChoiceQuizScreen(
             val pagerState = key(screenState.totalRestartEvent) {
                 rememberPagerState(
                     initialPage = quiz.currentIndex,
-                    pageCount = { quiz.items.size },
-                )
+                ) { quiz.items.size }
             }
 
             // Sync with currentIndex for navigation
@@ -90,7 +89,11 @@ fun ChoiceQuizScreen(
             }
 
             AnimatedContent(
-                targetState = screenState.isFinished to screenState.totalRestartEvent,
+                targetState = Triple(
+                    screenState.isFinished,
+                    screenState.totalRestartEvent,
+                    if (screenState.isFinished) screenState.quiz.results else null
+                ),
                 transitionSpec = {
                     fadeIn(animationSpec = tween(500)) togetherWith
                             fadeOut(animationSpec = tween(200, delayMillis = 200))
@@ -106,24 +109,24 @@ fun ChoiceQuizScreen(
                         }
                         cameraDistance = 12f * density
                     }
-            ) { (isFinished, restartEvent) ->
+            ) { (isFinished, restartEvent, results) ->
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .graphicsLayer {
-                            if (restartEvent % 2 != 0) {
+                            if ((restartEvent % 2) != 0) {
                                 if (isLandscape) rotationX = 180f else rotationY = 180f
                             }
                         }
                 ) {
-                    if (isFinished) {
+                    if (isFinished && results != null) {
                         ChoiceQuizResultView(
-                            results = screenState.quiz.results,
+                            results = results,
                             onRestartClick = { eventHandler.onEvent(ChoiceQuizUiEvent.OnRestartClicked) },
                         )
                     } else {
                         ChoiceQuizContent(
-                            quizState = quiz,
+                            quizState = screenState.quiz,
                             pagerState = pagerState,
                             onEvent = eventHandler::onEvent
                         )
@@ -204,7 +207,7 @@ fun ChoiceQuizContent(
                             alpha = lerp(
                                 start = 0.8f,
                                 stop = 1f,
-                                fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                                fraction = 1f - pageOffset.coerceIn(0f, 1f),
                             )
                         },
                 )
