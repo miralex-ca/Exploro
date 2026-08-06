@@ -10,7 +10,7 @@ class SettingsBuilder(repository: Repository) {
     @JvmName("buildCategoriesAll")
     fun buildCategories(): List<SettingsCategory> = listOf(
         InterfaceSettingsCategory(localSettings).build(),
-        DataSettingsCategory(localSettings).build(),
+        //DataSettingsCategory(localSettings).build(),
         InfoSettingsCategory(platformInfo).build(),
     )
 
