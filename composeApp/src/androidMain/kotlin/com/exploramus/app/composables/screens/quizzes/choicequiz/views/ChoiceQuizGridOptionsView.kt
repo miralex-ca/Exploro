@@ -47,33 +47,40 @@ fun ChoiceQuizGridOptionsView(
         modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 18.dp),
-        contentAlignment = Alignment.TopCenter
+        contentAlignment = Alignment.Center
     ) {
-
-        FlowRow(
+        Column(
             modifier = Modifier
-                .align(Alignment.Center)
+                .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = layout.gridHorizontalPadding.value())
                 .padding(top = layout.optionsTopPadding.value(), bottom = layout.optionsBottomPadding.value()),
-            maxItemsInEachRow = 2,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            options.forEach { option ->
-                val isSelected = option.id == selectedOptionId
-                val isCorrect = option.id == correctOptionId
-                GridOptionItem(
-                    option = option,
-                    isSelected = isSelected,
-                    isCorrect = isCorrect,
-                    isSubmitted = isSubmitted,
-                    onClick = { onOptionSelected(option.id) },
-                    modifier = Modifier
-                        .weight(1f)
-                        .aspectRatio(1.5f)
-                        .alpha(getOptionAlpha(isSelected, isCorrect, isSubmitted))
-                )
+            options.chunked(2).forEach { rowOptions ->
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    rowOptions.forEach { option ->
+                        val isSelected = option.id == selectedOptionId
+                        val isCorrect = option.id == correctOptionId
+                        GridOptionItem(
+                            option = option,
+                            isSelected = isSelected,
+                            isCorrect = isCorrect,
+                            isSubmitted = isSubmitted,
+                            onClick = { onOptionSelected(option.id) },
+                            modifier = Modifier
+                                .weight(1f)
+                                .aspectRatio(1.5f)
+                                .alpha(getOptionAlpha(isSelected, isCorrect, isSubmitted))
+                        )
+                    }
+                    if (rowOptions.size == 1) {
+                        Spacer(modifier = Modifier.weight(1f))
+                    }
+                }
             }
         }
     }

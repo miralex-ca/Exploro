@@ -63,6 +63,7 @@ fun ResourceImage(
             .crossfade(true)
             .memoryCachePolicy(CachePolicy.ENABLED)
             .diskCachePolicy(CachePolicy.ENABLED)
+            .networkCachePolicy(CachePolicy.ENABLED)
             .build(),
         error = if (usePlaceholder) ColorPainter(Color.Gray.copy(alpha = 0.1f)) else null,
         placeholder = if (usePlaceholder) ColorPainter(Color.Gray.copy(alpha = 0.1f)) else null,
