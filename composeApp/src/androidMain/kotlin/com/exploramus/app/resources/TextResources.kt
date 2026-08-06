@@ -32,6 +32,7 @@ object Strings {
     val detailsCoatOfArms @Composable get() = stringRes(R.string.details_coat_of_arms)
     val commonClose @Composable get() = stringRes(R.string.common_close)
     val commonConfirm @Composable get() = stringRes(R.string.common_confirm)
+    val commonReset @Composable get() = stringRes(R.string.common_reset)
     val commonGotIt @Composable get() = stringRes(R.string.common_got_it)
     val commonCancel @Composable get() = stringRes(R.string.common_cancel)
 
@@ -128,6 +129,10 @@ object Strings {
     val quizNoDataAlertText @Composable get() = stringRes(R.string.quiz_no_data_alert_text)
     val quizEligibilityInfoTitle @Composable get() = stringRes(R.string.quiz_eligibility_info_title)
     val quizEligibilityInfoText @Composable get() = stringRes(R.string.quiz_eligibility_info_text)
+
+    val quizMenuResetProgress @Composable get() = stringRes(R.string.quiz_menu_reset_progress)
+    val quizResetProgressDialogTitle @Composable get() = stringRes(R.string.quiz_reset_progress_dialog_title)
+    val quizResetProgressDialogText @Composable get() = stringRes(R.string.quiz_reset_progress_dialog_text)
 
     @Composable fun quizResultLastScore(score: Int, correct: Int, total: Int) = stringRes(R.string.quiz_result_last_score_fmt, score, correct, total)
     @Composable fun quizResultCompletedAt(dateTime: String) = stringRes(R.string.quiz_result_completed_at_fmt, dateTime)

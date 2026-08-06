@@ -1,6 +1,7 @@
 package com.exploramus.app.composables.navigation.ui.topbars
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
@@ -80,7 +81,8 @@ fun Level1TopBar(
 @Composable
 fun TopBar(
     title: String,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    actions: @Composable RowScope.() -> Unit = {}
 ) {
     val formFactor = LocalFormFactor.current
 
@@ -108,7 +110,8 @@ fun TopBar(
                     contentDescription = Strings.commonBack,
                 )
             }
-        }
+        },
+        actions = actions
     )
 }
 

@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Info
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import com.exploramus.app.composables.components.EmptyState
 import com.exploramus.app.composables.components.EmptyStateView
 import com.exploramus.app.composables.components.ScreenLoading
+import com.exploramus.app.composables.navigation.ui.topbars.TopBar
 import com.exploramus.app.composables.screens.quizzes.quizzeslist.views.QuizzesListChoiceQuizSettingsDialog
 import com.exploramus.app.composables.screens.quizzes.quizzeslist.views.QuizzesListFlashcardSettingsDialog
 import com.exploramus.app.composables.screens.quizzes.utils.getIcon
@@ -56,60 +58,127 @@ fun QuizzesListScreen(
     eventHandler: QuizzesListEventHandler,
 ) {
     var showNoDataAlert by remember { mutableStateOf(false) }
+    var showMenu by remember { mutableStateOf(false) }
+    var showResetDialog by remember { mutableStateOf(false) }
 
-    if (screenState.isLoading) {
-        ScreenLoading()
-    } else {
-        QuizzesListContent(
-            screenState = screenState,
-            onQuizClick = { quiz ->
-                if (screenState.sectionInfo.eligibleCount > 0) {
-                    eventHandler.onEvent(
-                        QuizzesListUiEvent.OnQuizClicked(
-                            sectionId = screenState.sectionInfo.continentId ?: "",
-                            sectionType = screenState.sectionInfo.sectionType,
-                            title = screenState.sectionInfo.title,
-                            quizType = quiz.quizType,
-                        )
+    Column(modifier = Modifier.fillMaxSize()) {
+        TopBar(
+            title = screenState.sectionInfo.title,
+            onBackClick = { eventHandler.navActions.navigateBack() },
+            actions = {
+                IconButton(onClick = { showMenu = true }) {
+                    Icon(
+                        imageVector = Icons.Default.MoreVert,
+                        contentDescription = Strings.commonMoreOptions
                     )
-                } else {
-                    showNoDataAlert = true
                 }
-            },
-            onEvent = eventHandler::onEvent,
+                DropdownMenu(
+                    expanded = showMenu,
+                    onDismissRequest = { showMenu = false }
+                ) {
+                    DropdownMenuItem(
+                        text = { Text(Strings.quizMenuResetProgress) },
+                        onClick = {
+                            showMenu = false
+                            showResetDialog = true
+                        }
+                    )
+                }
+            }
         )
 
-        screenState.flashcardConfig?.let { config ->
-            QuizzesListFlashcardSettingsDialog(
-                config = config,
-                onConfigChanged = { eventHandler.onEvent(QuizzesListUiEvent.UpdateFlashcardConfig(it)) },
-                onDismiss = { eventHandler.onEvent(QuizzesListUiEvent.ToggleFlashcardSettings(false)) }
-            )
-        }
+        Box(modifier = Modifier.weight(1f)) {
+            if (screenState.isLoading) {
+                ScreenLoading()
+            } else {
+                QuizzesListContent(
+                    screenState = screenState,
+                    onQuizClick = { quiz ->
+                        if (screenState.sectionInfo.eligibleCount > 0) {
+                            eventHandler.onEvent(
+                                QuizzesListUiEvent.OnQuizClicked(
+                                    sectionId = screenState.sectionInfo.continentId ?: "",
+                                    sectionType = screenState.sectionInfo.sectionType,
+                                    title = screenState.sectionInfo.title,
+                                    quizType = quiz.quizType,
+                                )
+                            )
+                        } else {
+                            showNoDataAlert = true
+                        }
+                    },
+                    onEvent = eventHandler::onEvent,
+                )
 
-        screenState.choiceQuizConfig?.let { config ->
-            val quizType = screenState.choiceQuizType ?: return@let
-            QuizzesListChoiceQuizSettingsDialog(
-                quizType = quizType,
-                config = config,
-                onConfigChanged = { eventHandler.onEvent(QuizzesListUiEvent.UpdateChoiceQuizConfig(it, quizType)) },
-                onDismiss = { eventHandler.onEvent(QuizzesListUiEvent.ToggleChoiceQuizSettings(false)) }
-            )
-        }
+                screenState.flashcardConfig?.let { config ->
+                    QuizzesListFlashcardSettingsDialog(
+                        config = config,
+                        onConfigChanged = { eventHandler.onEvent(QuizzesListUiEvent.UpdateFlashcardConfig(it)) },
+                        onDismiss = { eventHandler.onEvent(QuizzesListUiEvent.ToggleFlashcardSettings(false)) }
+                    )
+                }
 
-        if (showNoDataAlert) {
-            AlertDialog(
-                onDismissRequest = { showNoDataAlert = false },
-                title = { Text(Strings.quizNoDataAlertTitle) },
-                text = {
-                    Text(Strings.quizNoDataAlertText)
-                },
-                confirmButton = {
-                    TextButton(onClick = { showNoDataAlert = false }) {
-                        Text(Strings.commonClose)
-                    }
-                },
-            )
+                screenState.choiceQuizConfig?.let { config ->
+                    val quizType = screenState.choiceQuizType ?: return@let
+                    QuizzesListChoiceQuizSettingsDialog(
+                        quizType = quizType,
+                        config = config,
+                        onConfigChanged = { eventHandler.onEvent(QuizzesListUiEvent.UpdateChoiceQuizConfig(it, quizType)) },
+                        onDismiss = { eventHandler.onEvent(QuizzesListUiEvent.ToggleChoiceQuizSettings(false)) }
+                    )
+                }
+
+                if (showNoDataAlert) {
+                    AlertDialog(
+                        onDismissRequest = { showNoDataAlert = false },
+                        title = { Text(Strings.quizNoDataAlertTitle) },
+                        text = {
+                            Text(Strings.quizNoDataAlertText)
+                        },
+                        confirmButton = {
+                            TextButton(onClick = { showNoDataAlert = false }) {
+                                Text(Strings.commonClose)
+                            }
+                        },
+                    )
+                }
+
+                if (showResetDialog) {
+                    AlertDialog(
+                        onDismissRequest = { showResetDialog = false },
+                        title = {
+                            Text(
+                                text = Strings.quizResetProgressDialogTitle,
+                                style = MaterialTheme.typography.headlineSmall
+                            )
+                        },
+                        text = {
+                            Text(
+                                text = Strings.quizResetProgressDialogText,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                        },
+                        confirmButton = {
+                            Button(
+                                onClick = {
+                                    showResetDialog = false
+                                    // TODO: eventHandler.onEvent(QuizzesListUiEvent.ResetProgress)
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.error
+                                )
+                            ) {
+                                Text(Strings.commonReset)
+                            }
+                        },
+                        dismissButton = {
+                            TextButton(onClick = { showResetDialog = false }) {
+                                Text(Strings.commonCancel)
+                            }
+                        }
+                    )
+                }
+            }
         }
     }
 }

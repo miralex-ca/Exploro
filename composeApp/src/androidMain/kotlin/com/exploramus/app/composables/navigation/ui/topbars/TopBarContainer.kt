@@ -48,6 +48,7 @@ private val Screen.hasTopBar: Boolean
         Screen.FavoritesPagerScreen,
         Screen.FlashcardsScreen,
         Screen.ChoiceQuizScreen,
+        Screen.QuizzesListScreen,
     )
 
 @Composable

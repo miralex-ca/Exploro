@@ -63,6 +63,7 @@
     <string name="common_more">More</string>
     <string name="common_more_options">More options</string>
     <string name="common_search">Search</string>
+    <string name="common_reset">Reset</string>
     <string name="common_previous">Previous</string>
     <string name="common_next">Next</string>
     <string name="common_open_in_maps">Open in Maps</string>
@@ -146,6 +147,10 @@
 
     <string name="quiz_eligibility_info_title">Quiz eligibility</string>
     <string name="quiz_eligibility_info_text">Some countries in this section don\'t have enough information available to generate a quiz.</string>
+
+    <string name="quiz_menu_reset_progress">Reset progress</string>
+    <string name="quiz_reset_progress_dialog_title">Reset progress?</string>
+    <string name="quiz_reset_progress_dialog_text">Are you sure you want to reset your progress? This will delete all quiz results and mastery data for this section. This action cannot be undone.</string>
 
     <string name="quiz_result_last_score_fmt">Last score: %1$d%% (%2$d/%3$d)</string>
     <string name="quiz_result_completed_at_fmt">Completed: %s</string>
