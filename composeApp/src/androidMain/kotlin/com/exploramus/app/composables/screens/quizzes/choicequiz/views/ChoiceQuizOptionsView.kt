@@ -1,6 +1,7 @@
 package com.exploramus.app.composables.screens.quizzes.choicequiz.views
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -36,7 +37,8 @@ fun ChoiceQuizOptionsView(
                 selectedOptionId = selectedOptionId,
                 correctOptionId = correctOptionId,
                 isSubmitted = isSubmitted,
-                onOptionSelected = onOptionSelected
+                onOptionSelected = onOptionSelected,
+                modifier = Modifier.fillMaxSize()
             )
         } else {
             ChoiceQuizListOptionsView(
@@ -44,7 +46,8 @@ fun ChoiceQuizOptionsView(
                 selectedOptionId = selectedOptionId,
                 correctOptionId = correctOptionId,
                 isSubmitted = isSubmitted,
-                onOptionSelected = onOptionSelected
+                onOptionSelected = onOptionSelected,
+                modifier = Modifier.fillMaxSize()
             )
         }
     }
