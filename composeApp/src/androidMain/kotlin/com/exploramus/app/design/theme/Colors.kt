@@ -73,7 +73,7 @@ val OnDarkSurfaceVariant = Color(0xFFBECCE0)
 
 val DarkPrimaryContainer = Color(0xFF2C5296)
 val OnDarkPrimaryContainer = Color(0xFFEAF0FF)
-
+val DarkError = Color(0xFFF6716B)
 
 val CardBorderDark = Color(0xFF424E67)
 
@@ -102,6 +102,7 @@ val LightColorScheme = lightColorScheme(
     primaryContainer = BluePrimaryContainer,
     onPrimaryContainer = onBluePrimaryContainer,
 
+
     )
 
 val DarkColorScheme = darkColorScheme(
@@ -129,6 +130,7 @@ val DarkColorScheme = darkColorScheme(
 
     primaryContainer = DarkPrimaryContainer,
     onPrimaryContainer = OnDarkPrimaryContainer,
+    error = DarkError,
 )
 
 
