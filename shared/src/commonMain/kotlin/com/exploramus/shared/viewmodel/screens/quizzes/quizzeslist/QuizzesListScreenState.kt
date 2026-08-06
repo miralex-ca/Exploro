@@ -21,12 +21,15 @@ data class QuizzesSectionHeaderState(
     val title: String = "",
     val itemsCount: Int = 0,
     val sectionType: QuizzesSectionType = QuizzesSectionType.ALL_COUNTRIES,
-    val continentId: String? = null,
+    val sectionId: String = "",
     val unknownCount: Int = 0,
     val familiarCount: Int = 0,
     val masteredCount: Int = 0,
     val eligibleCount: Int = 0,
-)
+) {
+    @Deprecated("Use sectionId instead", ReplaceWith("sectionId"))
+    val continentId: String? get() = sectionId.takeIf { sectionType == QuizzesSectionType.CONTINENT }
+}
 
 enum class QuizzesSectionType {
     FAVORITES,

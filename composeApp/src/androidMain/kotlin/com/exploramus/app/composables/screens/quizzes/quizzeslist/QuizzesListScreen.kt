@@ -49,6 +49,7 @@ import com.exploramus.app.resources.Strings
 import com.exploramus.core.models.ChoiceQuizStudyTarget
 import com.exploramus.core.models.QuizItemStatus
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizState
+import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesListScreenState
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionHeaderState
 
@@ -93,20 +94,7 @@ fun QuizzesListScreen(
             } else {
                 QuizzesListContent(
                     screenState = screenState,
-                    onQuizClick = { quiz ->
-                        if (screenState.sectionInfo.eligibleCount > 0) {
-                            eventHandler.onEvent(
-                                QuizzesListUiEvent.OnQuizClicked(
-                                    sectionId = screenState.sectionInfo.continentId ?: "",
-                                    sectionType = screenState.sectionInfo.sectionType,
-                                    title = screenState.sectionInfo.title,
-                                    quizType = quiz.quizType,
-                                )
-                            )
-                        } else {
-                            showNoDataAlert = true
-                        }
-                    },
+                    onNoData = { showNoDataAlert = true },
                     onEvent = eventHandler::onEvent,
                 )
 
@@ -162,7 +150,12 @@ fun QuizzesListScreen(
                             Button(
                                 onClick = {
                                     showResetDialog = false
-                                    // TODO: eventHandler.onEvent(QuizzesListUiEvent.ResetProgress)
+                                    eventHandler.onEvent(
+                                        QuizzesListUiEvent.ResetProgress(
+                                            sectionId = screenState.sectionInfo.sectionId,
+                                            sectionType = screenState.sectionInfo.sectionType
+                                        )
+                                    )
                                 },
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = MaterialTheme.colorScheme.error
@@ -186,13 +179,21 @@ fun QuizzesListScreen(
 @Composable
 fun QuizzesListContent(
     screenState: QuizzesListScreenState,
-    onQuizClick: (QuizState) -> Unit,
+    onNoData: () -> Unit,
     onEvent: (QuizzesListUiEvent) -> Unit,
 ) {
     val layout = MaterialTheme.layout
     val formFactor = LocalFormFactor.current
     val bottomPadding = layout.home.bottomPadding.value() +
             if (formFactor.useBottomBar) 60.dp else 0.dp
+
+    val onQuizClick: (QuizState) -> Unit = { quiz ->
+        if (screenState.sectionInfo.eligibleCount > 0) {
+            onEvent(screenState.sectionInfo.toQuizClickedEvent(quiz.quizType))
+        } else {
+            onNoData()
+        }
+    }
 
     LazyColumn(
         contentPadding = PaddingValues(
@@ -212,14 +213,7 @@ fun QuizzesListContent(
                 QuizzesListHeaderCard(
                     sectionInfo = screenState.sectionInfo,
                     onStatClick = { status ->
-                        onEvent(
-                            QuizzesListUiEvent.OnMasteryStatsClicked(
-                                sectionId = screenState.sectionInfo.continentId ?: "",
-                                sectionType = screenState.sectionInfo.sectionType,
-                                status = status,
-                                title = screenState.sectionInfo.title
-                            )
-                        )
+                        onEvent(screenState.sectionInfo.toMasteryStatsEvent(status))
                     }
                 )
             }
@@ -251,13 +245,29 @@ fun QuizzesListContent(
     }
 }
 
+private fun QuizzesSectionHeaderState.toQuizClickedEvent(quizType: QuizType) =
+    QuizzesListUiEvent.OnQuizClicked(
+        sectionId = sectionId,
+        sectionType = sectionType,
+        title = title,
+        quizType = quizType
+    )
+
+private fun QuizzesSectionHeaderState.toMasteryStatsEvent(status: QuizItemStatus?) =
+    QuizzesListUiEvent.OnMasteryStatsClicked(
+        sectionId = sectionId,
+        sectionType = sectionType,
+        status = status,
+        title = title
+    )
+
 
 @Composable
 fun QuizzesListHeaderCard(
     sectionInfo: QuizzesSectionHeaderState,
     onStatClick: (QuizItemStatus) -> Unit = {},
 ) {
-    val colors = sectionInfo.sectionType.toAppColorSet(sectionInfo.continentId)
+    val colors = sectionInfo.sectionType.toAppColorSet(sectionInfo.sectionId)
     val icon = sectionInfo.sectionType.getIcon()
     val layout = MaterialTheme.layout.quizzesSection
     var showEligibilityInfo by remember { mutableStateOf(false) }

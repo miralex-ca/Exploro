@@ -33,6 +33,11 @@ sealed class QuizzesListUiEvent {
         val status: QuizItemStatus?,
         val title: String? = null
     ) : QuizzesListUiEvent()
+
+    data class ResetProgress(
+        val sectionId: String,
+        val sectionType: QuizzesSectionType
+    ) : QuizzesListUiEvent()
 }
 
 class QuizzesListEventHandler(
@@ -95,6 +100,9 @@ class QuizzesListEventHandler(
                         screenTitle = event.title
                     )
                 )
+            }
+            is QuizzesListUiEvent.ResetProgress -> {
+                events.resetQuizzesProgress(event.sectionId, event.sectionType)
             }
         }
     }

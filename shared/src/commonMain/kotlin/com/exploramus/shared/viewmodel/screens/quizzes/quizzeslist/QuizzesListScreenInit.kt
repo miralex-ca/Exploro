@@ -35,7 +35,7 @@ fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = Screen
             itemsCount = countries.size,
             eligibleCount = eligibleCountries.size,
             sectionType = params.sectionType,
-            continentId = params.sectionId.takeIf { params.sectionType == QuizzesSectionType.CONTINENT },
+            sectionId = params.sectionId,
             unknownCount = stats.unknown,
             familiarCount = stats.familiar,
             masteredCount = stats.mastered

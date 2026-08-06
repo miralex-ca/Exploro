@@ -31,3 +31,7 @@ FROM QuizResults;
 deleteQuizResult:
 DELETE FROM QuizResults
 WHERE quiz_id = ?;
+
+deleteQuizResultsByIds:
+DELETE FROM QuizResults
+WHERE quiz_id IN ?;

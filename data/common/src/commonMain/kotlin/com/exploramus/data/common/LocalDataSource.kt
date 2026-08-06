@@ -34,4 +34,7 @@ interface LocalDataSource {
     suspend fun getQuizItemResult(id: String): QuizItemResult?
     suspend fun getQuizItemResults(ids: List<String>): List<QuizItemResult>
     suspend fun getAllQuizItemResults(): List<QuizItemResult>
+
+    suspend fun deleteQuizResults(quizIds: List<String>)
+    suspend fun deleteQuizItemResults(ids: List<String>)
 }

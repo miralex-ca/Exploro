@@ -173,4 +173,12 @@ internal class SQLDelightLocalDataSource(
             .executeAsList()
             .toQuizItemResultList()
     }
+
+    override suspend fun deleteQuizResults(quizIds: List<String>) {
+        database.quizResultsQueries.deleteQuizResultsByIds(quizIds)
+    }
+
+    override suspend fun deleteQuizItemResults(ids: List<String>) {
+        database.quizItemResultsQueries.deleteQuizItemResultsByIds(ids)
+    }
 }

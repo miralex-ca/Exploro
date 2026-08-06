@@ -63,3 +63,12 @@ suspend fun Repository.getSectionStats(countryIds: List<String>): SectionStats =
 
     SectionStats(unknown, familiar, mastered)
 }
+
+suspend fun Repository.deleteQuizResults(quizIds: List<String>) = withRepoContext {
+    localDb.deleteQuizResults(quizIds)
+}
+
+suspend fun Repository.deleteQuizItemResults(ids: List<String>) = withRepoContext {
+    localDb.deleteQuizItemResults(ids)
+}
+
