@@ -22,7 +22,9 @@ interface AppNavController {
         private fun activeBackStack() = backStacks.getValue(currentLevel1.value.URI)
 
         override fun navigateBack() {
+            if (navigation.nextBackQuitsApp) return
             val stack = activeBackStack()
+            if (stack.size <= 1) return
             val originScreenIdentifier = stack.lastOrNull()?.screenIdentifier ?: return
             navigation.exitScreen(originScreenIdentifier)
             stack.removeLastOrNull()

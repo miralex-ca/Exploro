@@ -159,23 +159,26 @@ class Navigation(val stateManager : StateManager) {
     // only if the screenIdentifier to exit is valid
     fun exitScreenForIos(screenIdentifier: ScreenIdentifier) {
         //debugLogger.log("exitScreenForIos: " + screenIdentifier.URI)
-        if (screenIdentifier.URI != stateManager.currentScreenIdentifier.URI || nextBackQuitsApp) {
-            return
-        }
         exitScreen(screenIdentifier)
     }
 
     fun exitScreen(screenIdentifier: ScreenIdentifier) {
+        if (screenIdentifier.URI != stateManager.currentScreenIdentifier.URI || nextBackQuitsApp) {
+            return
+        }
         Log.d("exitScreen: "+screenIdentifier.URI)
         if (screenIdentifier.screen.navigationLevel == 1) {
             stateManager.level1Backstack.removeAt(stateManager.level1Backstack.size - 1)
             stateManager.verticalNavigationLevels.remove(screenIdentifier.URI)
             stateManager.currentVerticalBackstack.clear()
             stateManager.removeScreen(screenIdentifier)
-            stateManager.currentVerticalBackstack.add(stateManager.currentLevel1ScreenIdentifier!!)
-            if (!stateManager.isInTheStatesMap(stateManager.currentLevel1ScreenIdentifier!!)) {
-                stateManager.verticalNavigationLevels[stateManager.currentLevel1ScreenIdentifier!!.URI] = mutableMapOf(1 to stateManager.currentLevel1ScreenIdentifier!!)
-                stateManager.initScreen(stateManager.level1Backstack.last())
+            val currentLevel1 = stateManager.currentLevel1ScreenIdentifier
+            if (currentLevel1 != null) {
+                stateManager.currentVerticalBackstack.add(currentLevel1)
+                if (!stateManager.isInTheStatesMap(currentLevel1)) {
+                    stateManager.verticalNavigationLevels[currentLevel1.URI] = mutableMapOf(1 to currentLevel1)
+                    stateManager.initScreen(stateManager.level1Backstack.last())
+                }
             }
         } else {
             stateManager.currentVerticalNavigationLevelsMap.remove(screenIdentifier.screen.navigationLevel)
@@ -220,5 +223,4 @@ class Navigation(val stateManager : StateManager) {
         Log.d("onEnterBackground: screen scopes are cancelled")
         stateManager.cancelScreenScopes()
     }
-
 }
