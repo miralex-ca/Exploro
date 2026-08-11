@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -88,14 +89,30 @@ fun SwipeableFavoriteRow(
     onClick: () -> Unit,
     onRemove: () -> Unit,
 ) {
+    var width by remember { mutableFloatStateOf(0f) }
+    val stateRef = remember { mutableStateOf<SwipeToDismissBoxState?>(null) }
+
+    // confirmValueChange deprecated w/ no working replacement yet — keeping it.
+    @Suppress("DEPRECATION") //
     val dismissState = rememberSwipeToDismissBoxState(
         initialValue = SwipeToDismissBoxValue.Settled,
-        positionalThreshold = { it * 0.60f }, // seems to be not working
+        confirmValueChange = { value ->
+            if (value == SwipeToDismissBoxValue.EndToStart) {
+                val state = stateRef.value
+                if (state != null && width > 0) {
+                    state.requireOffset() <= -(width * 0.55f)
+                } else true
+            } else true
+        }
     )
+
+    SideEffect { stateRef.value = dismissState }
+
     var handled by remember { mutableStateOf(false) }
 
     val alpha by animateFloatAsState(
-        if (handled) 0f else 1f
+        if (handled) 0f else 1f,
+        label = "alpha"
     )
 
     LaunchedEffect(dismissState.currentValue) {
@@ -110,7 +127,7 @@ fun SwipeableFavoriteRow(
         state = dismissState,
         enableDismissFromStartToEnd = false,
         enableDismissFromEndToStart = isSwipeEnabled,
-        modifier = modifier,
+        modifier = modifier.onGloballyPositioned { width = it.size.width.toFloat() },
         backgroundContent = {
             Box(
                 modifier = Modifier
