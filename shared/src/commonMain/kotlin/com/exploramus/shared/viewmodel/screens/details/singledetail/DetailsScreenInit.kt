@@ -2,18 +2,14 @@ package com.exploramus.shared.viewmodel.screens.details.singledetail
 
 import com.exploramus.data.repository.functions.getCountryDetails
 import com.exploramus.data.repository.functions.isFavorite
+import com.exploramus.shared.viewmodel.core.DetailsScreenParams
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
-import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.screens.details.toDetailsState
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class DetailsScreenParams(val countryCode: String? = null, val screenTitle: String? = null) : ScreenParams
 
 fun StateManager.initCountryDetail(params: DetailsScreenParams) = ScreenInitSettings(
     title = params.screenTitle ?: "",
-    initState = { DetailsScreenState(isLoading = true, screenTitle = params.screenTitle ?: "") },
+    initState = { _ -> DetailsScreenState(isLoading = true, screenTitle = params.screenTitle ?: "") },
     callOnInit = {
         val countryCode = params.countryCode ?: return@ScreenInitSettings
 

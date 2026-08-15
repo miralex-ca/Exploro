@@ -8,7 +8,7 @@ import com.exploramus.shared.viewmodel.core.StateManager
 
 fun StateManager.initQuizSectionsScreen() = ScreenInitSettings(
     title = "Quizzes",
-    initState = { QuizSectionsScreenState(isLoading = true) },
+    initState = { _ -> QuizSectionsScreenState(isLoading = true) },
     callOnInit = {
         val favoritesCount = dataRepository.getFavoritesCount()
         val allCountriesCount = dataRepository.getAllCountriesCount()

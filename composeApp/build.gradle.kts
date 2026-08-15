@@ -1,7 +1,66 @@
 plugins {
+    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.composeCompiler)
+}
+
+kotlin {
+    androidTarget()
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+    }
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.jetbrains.compose.runtime)
+            implementation(libs.jetbrains.compose.foundation)
+            implementation(libs.jetbrains.compose.ui)
+            implementation(libs.jetbrains.compose.material3)
+            implementation(libs.jetbrains.compose.materialIconsExtended)
+            implementation(libs.jetbrains.compose.components.resources)
+            implementation(libs.jetbrains.compose.ui.tooling.preview)
+
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor)
+
+            // JetBrains Navigation 3 Multiplatform
+            implementation(libs.jetbrains.navigation3.ui)
+            implementation(libs.jetbrains.lifecycle.viewmodel.navigation3)
+            implementation(libs.jetbrains.adaptive.navigation3)
+
+            implementation(projects.shared)
+            implementation(project(":core:common"))
+            implementation(project(":data:repository"))
+            implementation(project(":di"))
+        }
+
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.lifecycle)
+            implementation(libs.android.material)
+            implementation(libs.androidx.core.splashscreen)
+            implementation(libs.koin.android)
+
+            // Standard adaptive is currently Android-only in these versions
+            implementation(libs.adaptive)
+            implementation(libs.adaptive.layout)
+            implementation(libs.adaptive.navigation)
+        }
+
+        iosMain.dependencies {
+        }
+    }
 }
 
 android {
@@ -11,12 +70,6 @@ android {
     sourceSets {
         getByName("main") {
             assets.directories.add("../data/assets/src/commonMain/resources")
-            kotlin.directories.add("src/androidMain/kotlin")
-            res.directories.add("src/androidMain/res")
-            manifest.srcFile("src/androidMain/AndroidManifest.xml")
-        }
-        getByName("androidTest") {
-            kotlin.directories.add("src/androidTest/kotlin")
         }
     }
 
@@ -46,34 +99,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.shared)
-    implementation(project(":core:common"))
-    implementation(project(":data:repository"))
-    implementation(project(":di"))
-
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.lifecycle)
-    implementation(libs.android.material)
-    implementation(libs.androidx.core.splashscreen)
-    implementation(libs.adaptive)
-    implementation(libs.adaptive.layout)
-    implementation(libs.adaptive.navigation)
-    implementation(libs.androidx.navigation3.runtime)
-    implementation(libs.androidx.navigation3.ui)
-
-    implementation(libs.jetbrains.compose.runtime)
-    implementation(libs.jetbrains.compose.foundation)
-    implementation(libs.jetbrains.compose.ui)
-    implementation(libs.jetbrains.compose.material3)
-    implementation(libs.jetbrains.compose.materialIconsExtended)
-
-    implementation(libs.koin.android)
-    implementation(libs.koin.compose)
-    implementation(libs.koin.compose.viewmodel)
-
-    implementation(libs.coil.compose)
-    implementation(libs.coil.network.ktor)
-
     debugImplementation(libs.composeUiTooling)
     debugImplementation(libs.androidx.compose.uitest.manifest)
 

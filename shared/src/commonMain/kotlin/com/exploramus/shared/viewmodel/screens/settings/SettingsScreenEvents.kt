@@ -49,7 +49,7 @@ fun Events.updateThemeMode(name: String) = appCoroutine {
     val current = dataRepository.getThemeMode()
 
     stateManager.updateAppEnvironment(
-        state = stateManager.appEnvironment.value.copy(
+        appEnvironment = stateManager.appEnvironment.value.copy(
             themeMode = current
         )
     )
@@ -63,7 +63,7 @@ fun Events.updateFavoriteSwipeEnabled(enabled: Boolean) = appCoroutine {
     val isFavoriteSwipeEnabled = dataRepository.getFavoriteSwipeEnabled()
 
     stateManager.updateAppEnvironment(
-        state = stateManager.appEnvironment.value.copy(
+        appEnvironment = stateManager.appEnvironment.value.copy(
             favoriteSwipeEnabled = isFavoriteSwipeEnabled
         )
     )

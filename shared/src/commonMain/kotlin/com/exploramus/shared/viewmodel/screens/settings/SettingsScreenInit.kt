@@ -6,7 +6,7 @@ import com.exploramus.shared.viewmodel.core.StateManager
 
 fun StateManager.initSettingsScreen() = ScreenInitSettings(
     title = "Settings",
-    initState = { SettingsScreenState(isLoading = true) },
+    initState = { _ -> SettingsScreenState(isLoading = true) },
     callOnInit = {
         val categories = settingsManager.getCategories()
 

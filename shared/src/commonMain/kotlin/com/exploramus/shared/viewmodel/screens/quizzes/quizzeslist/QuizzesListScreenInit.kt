@@ -3,22 +3,14 @@ package com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist
 import com.exploramus.core.models.isValidForQuiz
 import com.exploramus.data.repository.functions.*
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
+import com.exploramus.shared.viewmodel.core.QuizzesListScreenParams
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
-import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.utils.QuizIdBuilder
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class QuizzesListScreenParams(
-    val sectionId: String,
-    val sectionType: QuizzesSectionType,
-    val screenTitle: String? = null
-) : ScreenParams
 
 fun StateManager.initQuizzesListScreen(params: QuizzesListScreenParams) = ScreenInitSettings(
     title = "Quizzes",
-    initState = { QuizzesListScreenState(isLoading = true) },
+    initState = { _ -> QuizzesListScreenState(isLoading = true) },
     callOnInit = {
 
         val countries = when (params.sectionType) {

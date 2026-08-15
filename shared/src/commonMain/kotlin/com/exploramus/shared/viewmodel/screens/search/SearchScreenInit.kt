@@ -6,7 +6,7 @@ import com.exploramus.shared.viewmodel.core.StateManager
 
 fun StateManager.initSearchScreen() = ScreenInitSettings(
     title = "Search",
-    initState = { SearchScreenState(isLoading = false) },
+    initState = { _ -> SearchScreenState(isLoading = false) },
     callOnInit = {
         updateScreen(SearchScreenState::class) {
             it.copy(screenBecomeActive = it.screenBecomeActive.trigger())

@@ -7,7 +7,7 @@ import com.exploramus.shared.viewmodel.core.StateManager
 
 fun StateManager.initFavoritesScreen() = ScreenInitSettings(
     title = "Favorites",
-    initState = { FavoritesScreenState(isLoading = true) },
+    initState = { _ -> FavoritesScreenState(isLoading = true) },
     callOnInit = {
         val favorites = dataRepository.getFavorites().toFavoriteItems()
         updateScreen(FavoritesScreenState::class) {

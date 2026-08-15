@@ -2,67 +2,55 @@ package com.exploramus.shared.viewmodel.core
 
 import com.exploramus.shared.viewmodel.screens.Level1Navigation
 import com.exploramus.shared.viewmodel.screens.Screen
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.Serializable
 
 typealias URI = String
 
-class ScreenIdentifier private constructor(
+@Serializable
+data class ScreenIdentifier(
     val screen : Screen,
-    var params: ScreenParams? = null,
-    var paramsAsString: String? = null,
+    val params: ScreenParams? = null,
 ) {
 
     val URI : URI
         get() = returnURI()
 
     companion object Factory {
-        fun get(screen: Screen, params: ScreenParams?): ScreenIdentifier {
-            return ScreenIdentifier(screen, params, null)
+        fun get(screen: Screen, params: ScreenParams? = null): ScreenIdentifier {
+            return ScreenIdentifier(screen, params)
         }
+
+        /**
+         * Parses a URI string into a ScreenIdentifier.
+         * Note: This is primarily used for deep linking or simple persistence.
+         * For complex parameters, full polymorphic serialization is preferred.
+         */
         fun getByURI(URI: String): ScreenIdentifier? {
             val parts = URI.split(":")
-            Screen.entries.forEach {
-                if (it.asString == parts[0]) {
-                    return ScreenIdentifier(it, null, parts[1])
-                }
+            val screenName = parts[0]
+            
+            val screen = Screen.entries.find { it.asString == screenName }
+            if (screen != null) {
+                // If there's an old-format ":nul" or similar, we just treat it as no params
+                return ScreenIdentifier(screen, null)
             }
             return null
         }
     }
 
     private fun returnURI() : String {
-        if (paramsAsString != null) {
-            return screen.asString + ":" + paramsAsString
-        }
+        if (params == null) return screen.asString
         val toString = params.toString() // returns `ClassParams(A=1&B=2)`
         val startIndex = toString.indexOf("(")
+        if (startIndex == -1) return screen.asString + ":" + toString
         val paramsString = toString.substring(startIndex + 1, toString.length - 1)
         return screen.asString  + ":" + paramsString
     }
 
     // unlike the "params" property, this reified function returns the specific type and not the generic "ScreenParams" interface type
     inline fun <reified T: ScreenParams> screenParams() : T {
-        if (params == null && paramsAsString != null) {
-            val jsonValues = paramsStrToJson(paramsAsString!!)
-            params = Json.decodeFromString<T>("""{$jsonValues}""")
-        }
         return params as T
     }
-
-    fun paramsStrToJson(paramsAsString: String) : String {
-        // converts `A=1&B=1` into `"A":"1","B":"2"`
-        val elements = paramsAsString.split("&")
-        var jsonValues = ""
-        elements.forEach {
-            if (jsonValues!="") {
-                jsonValues += ","
-            }
-            val parts = it.split("=")
-            jsonValues += "\"${parts[0]}\":\"${parts[1]}\""
-        }
-        return jsonValues
-    }
-
 
     fun getScreenInitSettings(stateManager: StateManager) : ScreenInitSettings {
         return screen.initSettings(stateManager,this)

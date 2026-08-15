@@ -5,22 +5,14 @@ import com.exploramus.data.repository.functions.getQuizCountriesAll
 import com.exploramus.data.repository.functions.getQuizCountriesBySection
 import com.exploramus.data.repository.functions.getQuizCountriesFavorites
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
+import com.exploramus.shared.viewmodel.core.FlashcardScreenParams
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
-import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class FlashcardScreenParams(
-    val sectionId: String,
-    val sectionType: QuizzesSectionType,
-    val screenTitle: String,
-) : ScreenParams
 
 fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInitSettings(
     title = "Flashcards",
-    initState = { FlashcardScreenState(isLoading = true) },
+    initState = { _ -> FlashcardScreenState(isLoading = true) },
     callOnInit = {
 
         val countries = when (params.sectionType) {

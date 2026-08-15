@@ -8,7 +8,7 @@ import com.exploramus.shared.viewmodel.core.StateManager
 
 fun StateManager.initHomeScreen() = ScreenInitSettings(
     title = "Home",
-    initState = { HomeScreenState(isLoading = true) },
+    initState = { _ -> HomeScreenState(isLoading = true) },
     callOnInit = {
         val isFirstRun = !dataRepository.runtimeCache.isBootstrapped
 

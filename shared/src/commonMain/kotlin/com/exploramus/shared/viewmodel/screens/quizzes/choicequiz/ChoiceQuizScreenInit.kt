@@ -4,27 +4,17 @@ import com.exploramus.data.repository.functions.getChoiceQuizImagePrimaryConfig
 import com.exploramus.data.repository.functions.getChoiceQuizNavigationMode
 import com.exploramus.data.repository.functions.getChoiceQuizPrimarySecondaryConfig
 import com.exploramus.shared.viewmodel.core.CallOnInitValues
+import com.exploramus.shared.viewmodel.core.ChoiceQuizScreenParams
 import com.exploramus.shared.viewmodel.core.ScreenInitSettings
-import com.exploramus.shared.viewmodel.core.ScreenParams
 import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.screens.quizzes.common.ChoiceQuizDataSource
 import com.exploramus.shared.viewmodel.screens.quizzes.common.ChoiceQuizSession
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
-import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 import com.exploramus.shared.viewmodel.utils.QuizIdBuilder
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class ChoiceQuizScreenParams(
-    val sectionId: String,
-    val sectionType: QuizzesSectionType,
-    val screenTitle: String,
-    val quizType: QuizType,
-) : ScreenParams
 
 fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenInitSettings(
     title = "Quiz",
-    initState = { ChoiceQuizScreenState(isLoading = true) },
+    initState = { _ -> ChoiceQuizScreenState(isLoading = true) },
     callOnInit = {
         val config = when (params.quizType) {
             QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY -> dataRepository.getChoiceQuizPrimarySecondaryConfig()

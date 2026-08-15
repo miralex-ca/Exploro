@@ -43,11 +43,15 @@ class Navigation(val stateManager : StateManager) {
     }
 
     fun getStartScreenIdentifier() : ScreenIdentifier {
-        var startScreenIdentifier = navigationSettings.homeScreen.screenIdentifier
+        val defaultScreen = navigationSettings.homeScreen.screenIdentifier
         if (navigationSettings.saveLastLevel1Screen) {
-            startScreenIdentifier = ScreenIdentifier.getByURI(savedLevel1URI) ?: startScreenIdentifier
+            val restored = ScreenIdentifier.getByURI(savedLevel1URI)
+            if (restored != null) {
+                return restored
+            }
+            Log.d("Navigation: Failed to restore saved screen URI '$savedLevel1URI'. Falling back to default.")
         }
-        return startScreenIdentifier
+        return defaultScreen
     }
 
     fun updateNavigationState() {
