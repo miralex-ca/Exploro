@@ -32,7 +32,6 @@ data class AppLayout(
     val quiz: Quiz,
 ) {
 
-
     data class Home(
         val horizontalPadding: Adp,
         val topPadding: Adp,
@@ -206,7 +205,7 @@ object AppLayouts {
         ),
 
         details = AppLayout.Details(
-            maxWidth = adp(420.dp, 580.dp, 750.dp),
+            maxWidth = adp(480.dp, 580.dp, 750.dp),
             horizontalPadding = adp(16.dp),
             topPadding = adp(26.dp, 60.dp, 50.dp),
             bottomPadding = adp(36.dp),
@@ -263,7 +262,11 @@ object AppLayouts {
             cardHorizontalPadding = adp(16.dp, 24.dp, 48.dp),
         ),
         quiz = AppLayout.Quiz(
-            topPadding = adpSizeForFormat(phone = 26.dp, phoneLandscape = 12.dp, tablet = 60.dp),
+            topPadding = adpSizeForFormat(
+                phone = 26.dp,
+                phoneLandscape = 12.dp,
+                tablet = 60.dp,
+            ),
             cardHorizontalPadding = adp(16.dp, 24.dp, 48.dp),
             cardMaxWidth = adpSizeForFormat(
                 phone = 440.dp,
@@ -277,7 +280,12 @@ object AppLayouts {
                 largeTablet = 1050.dp,
                 largeTabletLandscape = 650.dp,
             ),
-            landScapeCardMaxWidth = adpSizeForFormat(phone = 620.dp, phoneLandscape = 700.dp, tablet = 840.dp, largeTabletLandscape = 900.dp),
+            landScapeCardMaxWidth = adpSizeForFormat(
+                phone = 620.dp,
+                phoneLandscape = 700.dp,
+                tablet = 840.dp,
+                largeTabletLandscape = 900.dp
+            ),
             questionTextSize = aspSizeForFormat(
                 phone = 15.sp,
                 foldable = 16.sp,

@@ -1,5 +1,6 @@
 package com.exploramus.app.composables.screens.quizzes.flashcards
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -20,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.exploramus.app.composables.components.ScreenLoading
@@ -110,6 +112,7 @@ fun FlashcardScreen(
     }
 }
 
+@SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
 fun FlashcardContent(
     deckState: FlashcardDeckState,
@@ -121,6 +124,10 @@ fun FlashcardContent(
 
     val layout = MaterialTheme.layout.flashcard
 
+    val windowHeight = LocalConfiguration.current.screenHeightDp
+    val topPadding = if (!isCompactLandscape && isLandscape && windowHeight < 620 ) 30.dp
+    else layout.topPadding.value()
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -128,7 +135,7 @@ fun FlashcardContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(max = layout.maxHeight.value())
-                .padding(top = layout.topPadding.value()),
+                .padding(top = topPadding),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             HorizontalPager(
@@ -214,6 +221,7 @@ fun FlashcardItem(
     onRevealToggle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val formFactor = LocalFormFactor.current
     val layout = MaterialTheme.layout.flashcard
     val cardsSpace = if (MaterialTheme.appColors.isDark) 2.dp else 1.dp
 
@@ -226,7 +234,13 @@ fun FlashcardItem(
             Row(
                 modifier = Modifier
                     .widthIn(max = layout.landScapeCardMaxWidth.value())
-                    .fillMaxHeight(),
+                    .then(
+                        if (formFactor.isCompactHeight) {
+                            Modifier.heightIn(max = 360.dp)
+                        } else {
+                            Modifier.fillMaxHeight()
+                        }
+                    ),
                 horizontalArrangement = Arrangement.spacedBy(cardsSpace)
             ) {
                 FlashcardOpenHalf(

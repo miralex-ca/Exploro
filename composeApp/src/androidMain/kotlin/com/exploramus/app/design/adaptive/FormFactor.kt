@@ -8,17 +8,17 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.window.core.layout.WindowSizeClass
 import com.exploramus.core.common.logging.Log
+import kotlin.math.min
 
 val LocalFormFactor = staticCompositionLocalOf<FormFactor> {
     error("LocalFormFactor not provided — wrap with CompositionLocalProvider at root")
 }
 
-
 data class FormFactor(
     val widthType: WidthType,
     val heightType: HeightType,
     val orientation: ScreenOrientation,
-    val isLargeTablet: Boolean
+    val isLargeTablet: Boolean,
 )
 
 enum class WidthType {
@@ -108,6 +108,11 @@ fun rememberFormFactor(): FormFactor {
         val isExpandedHeight = adaptiveInfo.windowSizeClass
             .isHeightAtLeastBreakpoint(WindowSizeClass.HEIGHT_DP_EXPANDED_LOWER_BOUND)
 
+        val isLargeTablet = configuration.screenWidthDp > 1200 || configuration.screenHeightDp > 1100
+
+        val smallestSizeDp = min(configuration.screenWidthDp, configuration.screenHeightDp)
+        val isCompactDSize = smallestSizeDp >= 550
+
         val widthType = when {
             isCompactWidth -> WidthType.COMPACT
             isExpandedWidth -> WidthType.EXPANDED
@@ -116,6 +121,7 @@ fun rememberFormFactor(): FormFactor {
 
         val heightType = when {
             isCompactHeight  -> HeightType.COMPACT
+            !isCompactDSize && widthType == WidthType.EXPANDED -> HeightType.COMPACT
             isExpandedHeight -> HeightType.EXPANDED
             else -> HeightType.MEDIUM
         }
@@ -126,13 +132,13 @@ fun rememberFormFactor(): FormFactor {
             else
                 ScreenOrientation.PORTRAIT
 
-        val isLargeTablet = configuration.screenWidthDp > 1200 || configuration.screenHeightDp > 1100
+
 
         FormFactor(
             widthType = widthType,
             heightType = heightType,
             orientation = screenOrientation,
-            isLargeTablet = isLargeTablet
+            isLargeTablet = isLargeTablet,
         ).also{
             Log.d("Formfactor: $it, size: ${it.sizeBucket} , width ${ configuration.screenWidthDp}, height ${configuration.screenHeightDp} ")
         }
