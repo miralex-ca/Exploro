@@ -1,5 +1,5 @@
 import Foundation
-import Shared
+import ComposeApp
 
 extension StringRef {
     func asString() -> String {

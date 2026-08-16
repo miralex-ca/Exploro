@@ -1,5 +1,5 @@
 import SwiftUI
-import Shared
+import ComposeApp
 
 enum SettingsUiAction {
     case toggle(key: String, value: Bool)

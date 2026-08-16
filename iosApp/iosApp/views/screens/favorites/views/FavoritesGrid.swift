@@ -1,5 +1,5 @@
 import SwiftUI
-import Shared
+import ComposeApp
 
 struct FavoritesGrid: View {
     let items: [FavoriteListItem]

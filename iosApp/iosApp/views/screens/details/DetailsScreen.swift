@@ -1,7 +1,7 @@
 
 import SwiftUI
 import MapKit
-import Shared
+import ComposeApp
 
 
 struct DetailsScreen: View {

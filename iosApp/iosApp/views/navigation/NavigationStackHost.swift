@@ -1,6 +1,6 @@
 
 import SwiftUI
-import Shared
+import ComposeApp
 
 struct NavigationStackHost: View {
     var level1ScreenIdentifier : ScreenIdentifier

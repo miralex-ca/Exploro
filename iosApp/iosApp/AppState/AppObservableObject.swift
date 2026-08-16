@@ -1,7 +1,7 @@
 
 
 import SwiftUI
-import Shared
+import ComposeApp
 
 class AppObservableObject: ObservableObject {
     let model : DKMPViewModel = DKMPViewModel.Factory().getIosInstance()

@@ -3,19 +3,22 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.skie)
 }
 
 kotlin {
     androidTarget()
 
     listOf(
-        iosX64(),
+        // iosX64(), // Disabled due to artifact availability
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+            export(projects.shared)
+            linkerOpts("-lsqlite3")
         }
     }
 
@@ -39,7 +42,7 @@ kotlin {
             implementation(libs.jetbrains.lifecycle.viewmodel.navigation3)
             implementation(libs.jetbrains.adaptive.navigation3)
 
-            implementation(projects.shared)
+            api(projects.shared)
             implementation(project(":core:common"))
             implementation(project(":data:repository"))
             implementation(project(":di"))

@@ -1,6 +1,6 @@
 
 import SwiftUI
-import Shared
+import ComposeApp
 
 struct FavoritesScreen: View {
     let screenState: FavoritesScreenState

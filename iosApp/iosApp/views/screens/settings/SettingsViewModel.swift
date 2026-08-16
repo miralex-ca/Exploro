@@ -1,6 +1,6 @@
 
 import SwiftUI
-import Shared
+import ComposeApp
 
 @MainActor
 final class SettingsViewModel: ObservableObject {

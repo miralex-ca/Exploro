@@ -1,7 +1,7 @@
  
 
 import SwiftUI
-import Shared
+import ComposeApp
 
 
 struct FavoritesList: View {

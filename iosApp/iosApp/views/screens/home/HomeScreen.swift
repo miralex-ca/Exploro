@@ -1,5 +1,5 @@
 import SwiftUI
-import Shared
+import ComposeApp
 
 struct HomeScreen: View {
     let screenState: HomeScreenState

@@ -1,5 +1,5 @@
 import SwiftUI
-import Shared
+import ComposeApp
 
 struct MainView: View {
     @EnvironmentObject var appObj: AppObservableObject
@@ -9,20 +9,15 @@ struct MainView: View {
     @Environment(\.verticalSizeClass) var vertical
     
     var body: some View {
-        GeometryReader { geo in
-            Router()
-            .environment(\.appTheme, AppTheme.from(colorScheme))
+        ComposeView(navigation: appObj.dkmpNav)
+            .ignoresSafeArea()
             .preferredColorScheme(resolveColorScheme(appObj.appEnvironment.themeMode))
-            .onChange(of: geo.size, initial: true) { _, size in
-                appLayout.update(horizontal: horizontal, vertical: vertical, size: size)
-            }
             .task {
                 await appObj.collectAppEnvironment()
             }
             .task {
                 await appObj.collectAppstartupState()
             }
-        }
     }
 }
 

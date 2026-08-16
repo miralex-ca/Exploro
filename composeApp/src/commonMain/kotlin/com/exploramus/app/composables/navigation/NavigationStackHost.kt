@@ -15,8 +15,6 @@ import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.app.composables.navigation.controller.ScreenNavKey
 import com.exploramus.app.composables.navigation.ui.navigation.Level1NavRail
 import com.exploramus.app.composables.navigation.ui.topbars.TopBarContainer
-import com.exploramus.app.composables.navigation.ui.transitions.popTransition
-import com.exploramus.app.composables.navigation.ui.transitions.pushTransition
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 
@@ -30,9 +28,9 @@ fun Navigation.NavigationStackHost(
     NavDisplay(
         backStack = activeBackStack,
         onBack = { screenNavActions.navigateBack() },
-        transitionSpec = { pushTransition() },
-        popTransitionSpec = { popTransition() },
-        predictivePopTransitionSpec = { popTransition() },
+     //   transitionSpec = { pushTransition() },
+      //  popTransitionSpec = { popTransition() },
+      //  predictivePopTransitionSpec = { popTransition() },
         entryProvider = { key ->
             NavEntry(key) {
                 ScreenEntryContent(

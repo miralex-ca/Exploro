@@ -1,7 +1,7 @@
 
 
 import SwiftUI
-import Shared
+import ComposeApp
 
 class AppSession {
     static let shared = AppSession()

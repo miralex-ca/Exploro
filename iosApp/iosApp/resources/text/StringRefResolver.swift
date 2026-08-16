@@ -1,5 +1,5 @@
 import Foundation
-import Shared
+import ComposeApp
 
 struct StringRefResolver {
     

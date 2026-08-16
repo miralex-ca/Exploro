@@ -1,6 +1,6 @@
 
 import SwiftUI
-import Shared
+import ComposeApp
 
 struct AppErrorScreen: View {
     let failedAfterSync: Bool
