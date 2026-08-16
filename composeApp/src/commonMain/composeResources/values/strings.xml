@@ -8,7 +8,7 @@
     <string name="nav_browse">Browse</string>
     <string name="nav_favorites">Favorites</string>
 
-    <string name="settings_summary_current">Current: %s</string>
+    <string name="settings_summary_current">Current: %1$s</string>
     <string name="settings_theme_title">Theme</string>
     <string name="settings_theme_option_light">Light</string>
     <string name="settings_theme_option_dark">Dark</string>
@@ -25,18 +25,18 @@
     <string name="settings_sync_dialog_message">We’ll refresh the app content with the latest available data.</string>
 
     <string name="settings_sync_in_progress">Updating content…</string>
-    <string name="settings_sync_last">Last updated: %s</string>
-    <string name="settings_sync_success">Content is up to date.\nLast updated: %s</string>
-    <string name="settings_sync_failed">Update failed. Please try again.\nLast updated: %s</string>
+    <string name="settings_sync_last">Last updated: %1$s</string>
+    <string name="settings_sync_success">Content is up to date.\nLast updated: %1$s</string>
+    <string name="settings_sync_failed">Update failed. Please try again.\nLast updated: %1$s</string>
 
 
     <string name="settings_category_interface">Interface</string>
     <string name="settings_category_data">App data</string>
 
     <string name="settings_appversion_title">App version</string>
-    <string name="settings_appversion_summary">Current: %s</string>
+    <string name="settings_appversion_summary">Current: %1$s</string>
     <string name="settings_deviceinfo_title">Device</string>
-    <string name="settings_deviceinfo_summary">Current: %s</string>
+    <string name="settings_deviceinfo_summary">Current: %1$s</string>
 
     <string name="app_startup_error_title">Something went wrong</string>
     <string name="app_startup_error_sync_desc">We couldn’t load your data. Please check your connection and try again.</string>
@@ -81,9 +81,9 @@
     <string name="detail_label_capital">Capital:</string>
     <string name="detail_label_region">Region:</string>
     <string name="list_item_label_capital">Capital:</string>
-    <string name="list_item_label_capital_fmt">Capital: %s</string>
+    <string name="list_item_label_capital_fmt">Capital: %1$s</string>
 
-    <string name="settings_mode_summary">Current: %s</string>
+    <string name="settings_mode_summary">Current: %1$s</string>
     <string name="empty_title_no_results">No results found</string>
     <string name="empty_title_empty_list">Nothing here yet</string>
     <string name="empty_title_not_found">Not found</string>
@@ -135,8 +135,8 @@
     <string name="quiz_collection_all">All countries</string>
     <string name="quiz_collection_continents">Continents</string>
     <string name="quiz_collection_continents_desc">Quizzes for each continent</string>
-    <string name="quiz_collection_items_count_fmt">%d countries</string>
-    <string name="quiz_collection_items_eligible_count_fmt">%1$d of %2$d countries</string>
+    <string name="quiz_collection_items_count_fmt">%1$s countries</string>
+    <string name="quiz_collection_items_eligible_count_fmt">%1$s of %2$s countries</string>
 
     <string name="quiz_stat_unknown">Unknown</string>
     <string name="quiz_stat_familiar">Familiar</string>
@@ -152,9 +152,9 @@
     <string name="quiz_reset_progress_dialog_title">Reset progress?</string>
     <string name="quiz_reset_progress_dialog_text">Are you sure you want to reset your progress? This will delete all quiz results and mastery data for this section. This action cannot be undone.</string>
 
-    <string name="quiz_result_last_score_fmt">Last score: %1$d%% (%2$d/%3$d)</string>
-    <string name="quiz_result_completed_at_fmt">Completed: %s</string>
-    <string name="common_error_fmt">%d error</string>
-    <string name="common_errors_fmt">%d errors</string>
+    <string name="quiz_result_last_score_fmt">Last score: %1$s (%2$s/%3$s)</string>
+    <string name="quiz_result_completed_at_fmt">Completed: %1$s</string>
+    <string name="common_error_fmt">%1$s error</string>
+    <string name="common_errors_fmt">%1$s errors</string>
     <string name="quiz_result_date_time_at">%1$s at %2$s</string>
 </resources>

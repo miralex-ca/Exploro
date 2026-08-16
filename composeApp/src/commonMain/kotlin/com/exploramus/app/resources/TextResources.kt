@@ -106,12 +106,12 @@ object Strings {
     val quizCollectionAll @Composable get() = stringResource(Res.string.quiz_collection_all)
     val quizCollectionContinents @Composable get() = stringResource(Res.string.quiz_collection_continents)
     val quizCollectionContinentsDesc @Composable get() = stringResource(Res.string.quiz_collection_continents_desc)
-    @Composable fun quizCollectionItemsCount(count: Int) = stringResource(Res.string.quiz_collection_items_count_fmt, count)
+    @Composable fun quizCollectionItemsCount(count: Int) = stringResource(Res.string.quiz_collection_items_count_fmt, count.toString())
     @Composable fun quizCollectionItemsCount(eligible: Int, total: Int) =
         if (eligible == total)
-            stringResource(Res.string.quiz_collection_items_count_fmt, total)
+            stringResource(Res.string.quiz_collection_items_count_fmt, total.toString())
         else
-            stringResource(Res.string.quiz_collection_items_eligible_count_fmt, eligible, total)
+            stringResource(Res.string.quiz_collection_items_eligible_count_fmt, eligible.toString(), total.toString())
 
     val quizStatUnknown @Composable get() = stringResource(Res.string.quiz_stat_unknown)
     val quizStatFamiliar @Composable get() = stringResource(Res.string.quiz_stat_familiar)
@@ -126,7 +126,7 @@ object Strings {
     val quizResetProgressDialogTitle @Composable get() = stringResource(Res.string.quiz_reset_progress_dialog_title)
     val quizResetProgressDialogText @Composable get() = stringResource(Res.string.quiz_reset_progress_dialog_text)
 
-    @Composable fun quizResultLastScore(score: Int, correct: Int, total: Int) = stringResource(Res.string.quiz_result_last_score_fmt, score, correct, total)
+    @Composable fun quizResultLastScore(score: Int, correct: Int, total: Int) = stringResource(Res.string.quiz_result_last_score_fmt, "$score%", correct.toString(), total.toString())
     @Composable fun quizResultCompletedAt(dateTime: String) = stringResource(Res.string.quiz_result_completed_at_fmt, dateTime)
     @Composable fun quizResultDateTimeAt(date: String, time: String) = stringResource(Res.string.quiz_result_date_time_at, date, time)
 
@@ -138,7 +138,7 @@ object Strings {
 
     @Composable
     fun commonErrorsCount(count: Int) = if (count == 1)
-        stringResource(Res.string.common_error_fmt, count)
+        stringResource(Res.string.common_error_fmt, count.toString())
     else
-        stringResource(Res.string.common_errors_fmt, count)
+        stringResource(Res.string.common_errors_fmt, count.toString())
 }
