@@ -16,10 +16,14 @@ import androidx.navigation3.ui.defaultPredictivePopTransitionSpec
 import androidx.navigation3.ui.defaultTransitionSpec
 import com.exploramus.app.composables.navigation.controller.ScreenNavActions
 import com.exploramus.app.composables.navigation.controller.ScreenNavKey
+import com.exploramus.app.composables.navigation.ui.navigation.Level1NavDrawer
 import com.exploramus.app.composables.navigation.ui.navigation.Level1NavRail
 import com.exploramus.app.composables.navigation.ui.topbars.TopBarContainer
 import com.exploramus.app.composables.navigation.ui.transitions.currentScreenTransitionStyle
 import com.exploramus.app.composables.navigation.ui.transitions.rememberScreenTransitions
+import com.exploramus.app.design.adaptive.LocalFormFactor
+import com.exploramus.app.design.adaptive.useDrawer
+import com.exploramus.app.design.adaptive.useNavRail
 import com.exploramus.shared.viewmodel.core.Navigation
 import com.exploramus.shared.viewmodel.core.ScreenIdentifier
 
@@ -28,7 +32,7 @@ fun Navigation.NavigationStackHost(
     activeBackStack: NavBackStack<ScreenNavKey>,
     currentLevel1: ScreenIdentifier,
     screenNavActions: ScreenNavActions,
-    useNavRailPlaceholder: Boolean,
+    usePersistentNavPanelPlaceholder: Boolean,
 ) {
     val style = currentScreenTransitionStyle()
     val transitions = rememberScreenTransitions(style)
@@ -46,7 +50,7 @@ fun Navigation.NavigationStackHost(
                         key = key,
                         currentLevel1 = currentLevel1,
                         screenNavActions = screenNavActions,
-                        useNavRailPlaceholder = useNavRailPlaceholder,
+                        usePersistentNavPanelPlaceholder = usePersistentNavPanelPlaceholder,
                     )
                 }
             }
@@ -61,7 +65,7 @@ fun Navigation.NavigationStackHost(
                         key = key,
                         currentLevel1 = currentLevel1,
                         screenNavActions = screenNavActions,
-                        useNavRailPlaceholder = useNavRailPlaceholder,
+                        usePersistentNavPanelPlaceholder = usePersistentNavPanelPlaceholder,
                     )
                 }
             }
@@ -74,13 +78,18 @@ private fun Navigation.ScreenEntryContent(
     key: ScreenNavKey,
     currentLevel1: ScreenIdentifier,
     screenNavActions: ScreenNavActions,
-    useNavRailPlaceholder: Boolean,
+    usePersistentNavPanelPlaceholder: Boolean,
 ) {
     val isLevel1 = key.screenIdentifier.screen.navigationLevel == 1
+    val formFactor = LocalFormFactor.current
 
     Row(modifier = Modifier.fillMaxSize()) {
-        if (useNavRailPlaceholder && isLevel1) {
-            NavRailGhostPlaceholder(currentLevel1 = currentLevel1)
+        if (usePersistentNavPanelPlaceholder && isLevel1) {
+            if (formFactor.useNavRail) {
+                NavRailGhostPlaceholder(currentLevel1 = currentLevel1)
+            } else if (formFactor.useDrawer) {
+                NavDrawerGhostPlaceholder(currentLevel1 = currentLevel1)
+            }
         }
 
         Column(
@@ -104,6 +113,24 @@ private fun Navigation.NavRailGhostPlaceholder(
     currentLevel1: ScreenIdentifier
 ) {
     Level1NavRail(
+        modifier = Modifier.pointerInput(Unit) {},
+        selectedTab = currentLevel1,
+        navigateByLevel1Menu = {},
+        onSearchClick = {},
+        onSettingsClick = {},
+    )
+}
+
+/**
+ * Copy of Level1NavDrawer, purely to reserve identical width in this
+ * entry's own layout pass — kept in sync with the real drawer automatically since
+ * it's the same composable
+ */
+@Composable
+private fun Navigation.NavDrawerGhostPlaceholder(
+    currentLevel1: ScreenIdentifier
+) {
+    Level1NavDrawer(
         modifier = Modifier.pointerInput(Unit) {},
         selectedTab = currentLevel1,
         navigateByLevel1Menu = {},

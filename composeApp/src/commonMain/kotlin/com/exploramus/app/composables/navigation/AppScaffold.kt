@@ -47,70 +47,77 @@ fun Navigation.AppScaffold(
     val isLevel1 = screenIdentifier.screen.navigationLevel == 1
     val tabStateHolder = rememberSaveableStateHolder()
 
-    val content = @Composable {
-        Scaffold(contentWindowInsets = WindowInsets(0)) { contentPadding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(contentPadding)
-            ) {
-                if (formFactor.useNavRail) {
-                    Row(
-                        Modifier
-                            .align(Alignment.CenterStart)
-                            .zIndex(1f)
+    Scaffold(contentWindowInsets = WindowInsets(0)) { contentPadding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(contentPadding)
+        ) {
+            if (formFactor.useNavRail) {
+                Row(
+                    Modifier
+                        .align(Alignment.CenterStart)
+                        .zIndex(1f)
+                ) {
+                    AnimatedVisibility(
+                        visible = isLevel1,
+                        enter = navRailEnterTransition,
+                        exit = navRailExitTransition,
                     ) {
-                        AnimatedVisibility(
-                            visible = isLevel1,
-                            enter = navRailEnterTransition,
-                            exit = navRailExitTransition,
-                        ) {
-                            Level1NavRail(
-                                selectedTab = currentLevel1.value,
-                                navigateByLevel1Menu = screenNavActions::toLevel1Screen,
-                                onSearchClick = screenNavActions::toSearch,
-                                onSettingsClick = screenNavActions::toSettings,
-                            )
-                        }
+                        Level1NavRail(
+                            selectedTab = currentLevel1.value,
+                            navigateByLevel1Menu = screenNavActions::toLevel1Screen,
+                            onSearchClick = screenNavActions::toSearch,
+                            onSettingsClick = screenNavActions::toSettings,
+                        )
                     }
                 }
+            }
 
-                tabStateHolder.SaveableStateProvider(currentLevel1.value.URI) {
-                    NavigationStackHost(
-                        activeBackStack = activeBackStack,
-                        currentLevel1 = currentLevel1.value,
-                        screenNavActions = screenNavActions,
-                        useNavRailPlaceholder = formFactor.useNavRail,
-                    )
+            if (formFactor.useDrawer) {
+                Row(
+                    Modifier
+                        .align(Alignment.CenterStart)
+                        .zIndex(1f)
+                ) {
+                    AnimatedVisibility(
+                        visible = isLevel1,
+                        enter = navRailEnterTransition, // Reusing rail transitions for now as requested
+                        exit = navRailExitTransition,
+                    ) {
+                        Level1NavDrawer(
+                            selectedTab = currentLevel1.value,
+                            navigateByLevel1Menu = screenNavActions::toLevel1Screen,
+                            onSearchClick = screenNavActions::toSearch,
+                            onSettingsClick = screenNavActions::toSettings,
+                        )
+                    }
                 }
+            }
 
-                if (formFactor.useBottomBar) {
-                    Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-                        AnimatedVisibility(
-                            visible = isLevel1,
-                            enter = bottomBarEnterTransition,
-                            exit = bottomBarExitTransition
-                        ) {
-                            Level1BottomBar(
-                                selectedTab = navigationState.currentLevel1ScreenIdentifier,
-                                navigateByLevel1Menu = screenNavActions::toLevel1Screen,
-                            )
-                        }
+            tabStateHolder.SaveableStateProvider(currentLevel1.value.URI) {
+                NavigationStackHost(
+                    activeBackStack = activeBackStack,
+                    currentLevel1 = currentLevel1.value,
+                    screenNavActions = screenNavActions,
+                    usePersistentNavPanelPlaceholder = formFactor.useNavRail || formFactor.useDrawer,
+                )
+            }
+
+            if (formFactor.useBottomBar) {
+                Column(modifier = Modifier.align(Alignment.BottomCenter)) {
+                    AnimatedVisibility(
+                        visible = isLevel1,
+                        enter = bottomBarEnterTransition,
+                        exit = bottomBarExitTransition
+                    ) {
+                        Level1BottomBar(
+                            selectedTab = currentLevel1.value,
+                            navigateByLevel1Menu = screenNavActions::toLevel1Screen,
+                        )
                     }
                 }
             }
         }
-    }
-
-    if (formFactor.useDrawer && isLevel1) {
-        Level1NavDrawer(
-            selectedTab = screenIdentifier,
-            navigateByLevel1Menu = screenNavActions::toLevel1Screen,
-            onSearchClick = screenNavActions::toSearch,
-            onSettingsClick = screenNavActions::toSettings,
-            content = content
-        )
-    } else {
-        content()
     }
 }

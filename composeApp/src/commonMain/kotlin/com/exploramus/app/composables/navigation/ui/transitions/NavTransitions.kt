@@ -1,7 +1,10 @@
 package com.exploramus.app.composables.navigation.ui.transitions
 
 import androidx.compose.animation.*
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.ui.graphics.Color
+import androidx.navigationevent.NavigationEvent
 
 private const val NAV_TRANSITION_DURATION_MS = 350
 
@@ -23,8 +26,8 @@ fun popTransition(durationMs: Int = NAV_TRANSITION_DURATION_MS): ContentTransfor
     )
 
 
-private const val NAV_RAIL_APPEAR_DELAY_MS = 120
-private const val NAV_RAIL_APPEAR_DURATION_MS = 220
+private const val NAV_RAIL_APPEAR_DELAY_MS = 150
+private const val NAV_RAIL_APPEAR_DURATION_MS = 120
 
 val navRailEnterTransition: EnterTransition =
     fadeIn(animationSpec = tween(durationMillis = NAV_RAIL_APPEAR_DURATION_MS, delayMillis = NAV_RAIL_APPEAR_DELAY_MS))
@@ -79,3 +82,28 @@ fun iosTabletPopTransition(
         ),
         sizeTransform = SizeTransform { _, _ -> tween(durationMs) }
     )
+
+/**
+ * iPad-specific predictive pop transition:
+ * - Upper screen slides out horizontally.
+ * - Lower screen stays completely static but has a dimming scrim (unveilIn) 
+ *   that tracks gesture progress.
+ */
+@OptIn(ExperimentalAnimationApi::class)
+fun tabletPredictivePopTransition(
+    edge: Int,
+    durationMs: Int = IOS_TABLET_TRANSITION_DURATION_MS
+): ContentTransform {
+    val isLeft = edge == NavigationEvent.EDGE_LEFT
+    return ContentTransform(
+        targetContentEnter = unveilIn(
+            animationSpec = tween(durationMs, easing = LinearEasing),
+            initialColor = Color.Black.copy(alpha = 0.25f)
+        ),
+        initialContentExit = slideOutHorizontally(
+            targetOffsetX = { if (isLeft) it else -it },
+            animationSpec = tween(durationMs, easing = LinearEasing)
+        ),
+        sizeTransform = SizeTransform { _, _ -> tween(durationMs) }
+    )
+}

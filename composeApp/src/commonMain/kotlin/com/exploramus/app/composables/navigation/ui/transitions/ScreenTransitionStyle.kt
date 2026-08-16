@@ -24,11 +24,16 @@ fun rememberScreenTransitions(style: ScreenTransitionStyle): ScreenTransitions? 
     ScreenTransitionStyle.CUSTOM -> ScreenTransitions(
         push = { pushTransition() },
         pop = { popTransition() },
-        predictivePop = { popTransition() }
+        predictivePop = {
+            popTransition()
+        }
     )
     ScreenTransitionStyle.IOS_TABLET -> ScreenTransitions(
-        push = { iosTabletPushTransition() },
-        pop = { iosTabletPopTransition() }
+        push = { pushTransition() },
+        pop = { popTransition() },
+        predictivePop = { edge ->
+            tabletPredictivePopTransition(edge)
+        }
     )
     ScreenTransitionStyle.PLATFORM_DEFAULT -> null
 }

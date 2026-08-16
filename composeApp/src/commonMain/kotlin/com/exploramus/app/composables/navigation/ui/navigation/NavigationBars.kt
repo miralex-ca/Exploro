@@ -3,7 +3,11 @@ package com.exploramus.app.composables.navigation.ui.navigation
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.PermanentDrawerSheet
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -68,44 +72,38 @@ fun Navigation.Level1NavRail(
 
 @Composable
 fun Navigation.Level1NavDrawer(
+    modifier: Modifier = Modifier,
     selectedTab: ScreenIdentifier,
     navigateByLevel1Menu: (Level1Navigation) -> Unit,
     onSearchClick: () -> Unit,
     onSettingsClick: () -> Unit,
-    content: @Composable () -> Unit
 ) {
-    PermanentNavigationDrawer(
-        drawerContent = {
-            PermanentDrawerSheet(Modifier.width(240.dp)) {
-                Column(
-                    modifier = Modifier
-                        .statusBarsPadding()
-                        .padding(horizontal = 12.dp)
-                        .verticalScroll(rememberScrollState())
-                ) {
+    PermanentDrawerSheet(modifier.width(240.dp)) {
+        Column(
+            modifier = Modifier
+                .statusBarsPadding()
+                .padding(horizontal = 12.dp)
+                .verticalScroll(rememberScrollState())
+        ) {
 
-                    val navItems = rememberNavItems(
-                        selectedTab,
-                        navigateByLevel1Menu,
-                        onSearchClick,
-                        onSettingsClick
-                    )
+            val navItems = rememberNavItems(
+                selectedTab,
+                navigateByLevel1Menu,
+                onSearchClick,
+                onSettingsClick
+            )
 
-                    Spacer(modifier = Modifier.height(60.dp))
+            Spacer(modifier = Modifier.height(60.dp))
 
-                    navItems.level1Items.forEach { item ->
-                        DrawerItem(item, selectedTab)
-                    }
-
-                    HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
-
-                    navItems.utilities.forEach { item ->
-                        DrawerItem(item, selectedTab)
-                    }
-
-                }
+            navItems.level1Items.forEach { item ->
+                DrawerItem(item, selectedTab)
             }
-        },
-        content = content
-    )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
+
+            navItems.utilities.forEach { item ->
+                DrawerItem(item, selectedTab)
+            }
+        }
+    }
 }
