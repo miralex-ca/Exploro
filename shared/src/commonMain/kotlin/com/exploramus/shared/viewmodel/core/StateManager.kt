@@ -17,6 +17,7 @@ interface ScreenState
 class StateManager(repo: Repository) {
     val screenStatesMap : MutableMap<URI,MutableStateFlow<ScreenState>> = mutableMapOf() // map of screen states currently in memory
     val screenScopesMap : MutableMap<URI,CoroutineScope> = mutableMapOf() // map of coroutine scopes associated to current screen states
+    val screenIdentifiersMap : MutableMap<URI,ScreenIdentifier> = mutableMapOf() // map of screen identifiers currently in memory
 
     val level1Backstack: MutableList<ScreenIdentifier> = mutableListOf() // list elements are only NavigationLevel1 screenIdentifiers
     val currentVerticalBackstack: MutableList<ScreenIdentifier> = mutableListOf() // list elements are the screenIdentifiers of the current vertical backstack
@@ -69,12 +70,14 @@ class StateManager(repo: Repository) {
             if (!isInTheStatesMap(screenIdentifier)) {
                 val screenState = screenInitSettings.initState(screenIdentifier)
                 screenStatesMap[screenIdentifier.URI] = MutableStateFlow(screenState)
+                screenIdentifiersMap[screenIdentifier.URI] = screenIdentifier
                 isFirstInit = true
             }
         } else {
             if (screenStatesMap[screenIdentifier.URI] == null) {
                 val screenState = screenInitSettings.initState(screenIdentifier)
                 screenStatesMap[screenIdentifier.URI] = MutableStateFlow(screenState)
+                screenIdentifiersMap[screenIdentifier.URI] = screenIdentifier
                 isFirstInit = true
             }
         }
@@ -100,6 +103,7 @@ class StateManager(repo: Repository) {
         val screenInitSettings = screenIdentifier.getScreenInitSettings(this)
         if (screenInitSettings.clearStateCacheWhenScreenIsRemovedFromBackstack) {
             screenStatesMap.remove(screenIdentifier.URI)
+            screenIdentifiersMap.remove(screenIdentifier.URI)
         }
         screenScopesMap[screenIdentifier.URI]?.cancel()
         screenScopesMap.remove(screenIdentifier.URI)
@@ -118,9 +122,13 @@ class StateManager(repo: Repository) {
             if (screenScopesMap[it.key] == null) {
                 val screenScope = CoroutineScope(Job() + Dispatchers.Main)
                 screenScopesMap[it.key] = screenScope
-                val screenIdentifier = ScreenIdentifier.getByURI(it.key)
-                if (screenIdentifier != null) {
-                    reinitializedScreens.add(screenIdentifier)
+                val screenIdentifier = screenIdentifiersMap[it.key]
+                if (screenIdentifier == null) {
+                    Log.d("reinitScreenScopes: no cached ScreenIdentifier for ${it.key}, falling back to URI parsing which may lose params")
+                }
+                val finalScreenIdentifier = screenIdentifier ?: ScreenIdentifier.getByURI(it.key)
+                if (finalScreenIdentifier != null) {
+                    reinitializedScreens.add(finalScreenIdentifier)
                 }
             }
         }
