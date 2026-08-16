@@ -6,10 +6,13 @@ import com.exploramus.shared.viewmodel.appstate.AppEnvironment
 import com.exploramus.shared.viewmodel.appstate.AppStartupState
 import com.exploramus.shared.viewmodel.screens.settings.builder.SettingsBuilder
 import com.exploramus.shared.viewmodel.screens.settings.builder.SettingsCategory
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlin.reflect.KClass
 
 interface ScreenState
