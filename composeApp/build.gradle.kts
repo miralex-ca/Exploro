@@ -6,6 +6,12 @@ plugins {
     alias(libs.plugins.skie)
 }
 
+compose {
+    resources {
+        publicResClass = true
+    }
+}
+
 kotlin {
     androidTarget()
 

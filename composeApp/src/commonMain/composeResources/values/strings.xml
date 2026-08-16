@@ -1,0 +1,160 @@
+<resources>
+    <string name="app_name">Exploramus</string>
+    <string name="screen_home_title">Discover</string>
+    <string name="screen_favorites_title">Favorites countries</string>
+    <string name="screen_search_title">Search</string>
+    <string name="screen_settings_title">Settings</string>
+
+    <string name="nav_browse">Browse</string>
+    <string name="nav_favorites">Favorites</string>
+
+    <string name="settings_summary_current">Current: %s</string>
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_theme_option_light">Light</string>
+    <string name="settings_theme_option_dark">Dark</string>
+    <string name="settings_theme_option_system">Use device settings</string>
+    <string name="settings_theme_dialog_title">Choose theme</string>
+
+    <string name="settings_favorite_swipe_title">Swipe to delete favorites</string>
+    <string name="settings_favorite_swipe_summaryOn">Enabled</string>
+    <string name="settings_favorite_swipe_summaryOff">Disabled</string>
+
+    <string name="settings_sync_title">Content updates</string>
+    <string name="settings_sync_summary">Keep app content up to date</string>
+    <string name="settings_sync_dialog_title">Check for updates?</string>
+    <string name="settings_sync_dialog_message">We’ll refresh the app content with the latest available data.</string>
+
+    <string name="settings_sync_in_progress">Updating content…</string>
+    <string name="settings_sync_last">Last updated: %s</string>
+    <string name="settings_sync_success">Content is up to date.\nLast updated: %s</string>
+    <string name="settings_sync_failed">Update failed. Please try again.\nLast updated: %s</string>
+
+
+    <string name="settings_category_interface">Interface</string>
+    <string name="settings_category_data">App data</string>
+
+    <string name="settings_appversion_title">App version</string>
+    <string name="settings_appversion_summary">Current: %s</string>
+    <string name="settings_deviceinfo_title">Device</string>
+    <string name="settings_deviceinfo_summary">Current: %s</string>
+
+    <string name="app_startup_error_title">Something went wrong</string>
+    <string name="app_startup_error_sync_desc">We couldn’t load your data. Please check your connection and try again.</string>
+    <string name="app_startup_error_desc">We couldn’t load your data. Please try again later.</string>
+    <string name="app_error_try_again">Try again</string>
+
+    <string name="theme_mode_light">Light mode</string>
+    <string name="theme_mode_dark">Dark mode</string>
+    <string name="theme_mode_system">System mode</string>
+
+    <string name="search_placeholder">Search…</string>
+    <string name="start_search">Search by country name or capital</string>
+    <string name="no_search_result">No search results for the query</string>
+    <string name="details_coat_of_arms">Coat of Arms</string>
+    <string name="common_close">Close</string>
+    <string name="common_confirm">Confirm</string>
+    <string name="common_got_it">Got it</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_view">View</string>
+    <string name="common_remove">Remove</string>
+    <string name="common_back">Back</string>
+    <string name="common_clear">Clear</string>
+    <string name="common_settings">Settings</string>
+    <string name="common_more">More</string>
+    <string name="common_more_options">More options</string>
+    <string name="common_search">Search</string>
+    <string name="common_reset">Reset</string>
+    <string name="common_previous">Previous</string>
+    <string name="common_next">Next</string>
+    <string name="common_open_in_maps">Open in Maps</string>
+    <string name="common_open_in_wikipedia">Wikipedia</string>
+    <string name="open_keyboard">Open keyboard</string>
+    <string name="app_loading_message">Preparing your data…</string>
+
+    <string name="detail_label_location">Location</string>
+    <string name="detail_label_area">Area</string>
+    <string name="detail_label_population">Population</string>
+    <string name="detail_label_language">Official language</string>
+    <string name="detail_label_languages">Official languages</string>
+    <string name="detail_label_currency">Currency</string>
+    <string name="detail_label_timezones">Time zones</string>
+    <string name="detail_label_capital">Capital:</string>
+    <string name="detail_label_region">Region:</string>
+    <string name="list_item_label_capital">Capital:</string>
+    <string name="list_item_label_capital_fmt">Capital: %s</string>
+
+    <string name="settings_mode_summary">Current: %s</string>
+    <string name="empty_title_no_results">No results found</string>
+    <string name="empty_title_empty_list">Nothing here yet</string>
+    <string name="empty_title_not_found">Not found</string>
+    <string name="empty_msg_no_results">We couldn’t find anything matching your request.</string>
+    <string name="empty_msg_empty_list">There is nothing to show here yet.</string>
+    <string name="empty_msg_not_found">The requested content could not be found.</string>
+
+    <string name="flashcard_settings_title">Flashcard Settings</string>
+    <string name="flashcard_visible_clue">Visible clue</string>
+    <string name="flashcard_target_primary">Country name</string>
+    <string name="flashcard_target_secondary">Capital city</string>
+    <string name="flashcard_target_image">Country Flag</string>
+    <string name="flashcard_settings_description">Choose which information is displayed on the visible part of the card.</string>
+    <string name="flashcard_shuffle_cards">Shuffle cards</string>
+    <string name="flashcard_reveal_details">Reveal details</string>
+    <string name="flashcard_restart">Restart</string>
+    <string name="flashcard_done">Done</string>
+    <string name="flashcard_hint_tap_to_reveal">Tap to reveal</string>
+    <string name="flashcard_menu_settings">Cards settings</string>
+    <string name="flashcard_label_capital">Capital</string>
+    <string name="quiz_type_flashcards">Flashcards</string>
+
+    <string name="quiz_target_primary_secondary">Country → Capital</string>
+    <string name="quiz_target_secondary_primary">Capital → Country</string>
+    <string name="quiz_target_image_primary">Flag → Country</string>
+    <string name="quiz_target_primary_image">Country → Flag</string>
+
+    <string name="choice_quiz_settings_title">Quiz settings</string>
+    <string name="choice_quiz_select_pair">Select quiz pair</string>
+    <string name="choice_quiz_limit_label">Quiz limit</string>
+    <string name="choice_quiz_limit_no_limit">No limit</string>
+
+    <string name="choice_quiz_prompt_primary_secondary">What is the capital of this country?</string>
+    <string name="choice_quiz_prompt_secondary_primary">Which country belongs to this capital?</string>
+    <string name="choice_quiz_prompt_image_primary">Which country does this flag belong to?</string>
+    <string name="choice_quiz_prompt_primary_image">Find the flag for this country:</string>
+
+    <string name="quiz_result_metric_total">Total questions</string>
+    <string name="quiz_result_metric_score">Score</string>
+    <string name="quiz_result_metric_correct">Correct answers</string>
+    <string name="quiz_result_metric_incorrect">Incorrect answers</string>
+    <string name="quiz_result_metric_skipped">Skipped questions</string>
+    <string name="quiz_result_score_description">Score is calculated as the percentage of correct answers relative to the total number of questions.</string>
+
+    <string name="quiz_desc_flashcards">Study countries using flashcards with flags and capitals.</string>
+    <string name="quiz_desc_choice_ps">Test your knowledge by identifying capital cities.</string>
+    <string name="quiz_desc_choice_ip">Challenge yourself by recognizing countries by their flags.</string>
+    <string name="quiz_collection_favorites">Favorites</string>
+    <string name="quiz_collection_all">All countries</string>
+    <string name="quiz_collection_continents">Continents</string>
+    <string name="quiz_collection_continents_desc">Quizzes for each continent</string>
+    <string name="quiz_collection_items_count_fmt">%d countries</string>
+    <string name="quiz_collection_items_eligible_count_fmt">%1$d of %2$d countries</string>
+
+    <string name="quiz_stat_unknown">Unknown</string>
+    <string name="quiz_stat_familiar">Familiar</string>
+    <string name="quiz_stat_mastered">Mastered</string>
+
+    <string name="quiz_no_data_alert_title">No quizzes available</string>
+    <string name="quiz_no_data_alert_text">None of the countries in this section have enough information to generate a quiz. Try another section!</string>
+
+    <string name="quiz_eligibility_info_title">Quiz eligibility</string>
+    <string name="quiz_eligibility_info_text">Some countries in this section don\'t have enough information available to generate a quiz.</string>
+
+    <string name="quiz_menu_reset_progress">Reset progress</string>
+    <string name="quiz_reset_progress_dialog_title">Reset progress?</string>
+    <string name="quiz_reset_progress_dialog_text">Are you sure you want to reset your progress? This will delete all quiz results and mastery data for this section. This action cannot be undone.</string>
+
+    <string name="quiz_result_last_score_fmt">Last score: %1$d%% (%2$d/%3$d)</string>
+    <string name="quiz_result_completed_at_fmt">Completed: %s</string>
+    <string name="common_error_fmt">%d error</string>
+    <string name="common_errors_fmt">%d errors</string>
+    <string name="quiz_result_date_time_at">%1$s at %2$s</string>
+</resources>

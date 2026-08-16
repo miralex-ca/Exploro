@@ -9,24 +9,6 @@ import com.exploramus.app.R
 
 @SuppressLint("DiscouragedApi")
 @Composable
-actual fun stringResource(id: String): String {
-    val context = LocalContext.current
-    val resourceId = context.resources.getIdentifier(id, "string", context.packageName)
-    if (resourceId == 0) return id
-    return context.getString(resourceId)
-}
-
-@SuppressLint("DiscouragedApi")
-@Composable
-actual fun stringResource(id: String, vararg formatArgs: Any): String {
-    val context = LocalContext.current
-    val resourceId = context.resources.getIdentifier(id, "string", context.packageName)
-    if (resourceId == 0) return id
-    return context.getString(resourceId, *formatArgs)
-}
-
-@SuppressLint("DiscouragedApi")
-@Composable
 actual fun painterResource(resName: String): Painter {
     val context = LocalContext.current
     val resourceId = context.resources.getIdentifier(resName, "drawable", context.packageName)

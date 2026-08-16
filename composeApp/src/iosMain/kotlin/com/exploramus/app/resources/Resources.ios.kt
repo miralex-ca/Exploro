@@ -6,12 +6,6 @@ import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.graphics.painter.Painter
 
 @Composable
-actual fun stringResource(id: String): String = id
-
-@Composable
-actual fun stringResource(id: String, vararg formatArgs: Any): String = id
-
-@Composable
 actual fun painterResource(resName: String): Painter = ColorPainter(Color.Gray)
 
 actual fun formatString(format: String, vararg args: Any): String {
