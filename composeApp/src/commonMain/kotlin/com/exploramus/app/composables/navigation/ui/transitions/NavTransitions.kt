@@ -38,3 +38,44 @@ val bottomBarEnterTransition: EnterTransition =
 
 val bottomBarExitTransition: ExitTransition =
     fadeOut(animationSpec = tween(250, delayMillis = 80))
+
+private const val IOS_TABLET_TRANSITION_DURATION_MS = 250
+
+/**
+ * iPad-specific push transition:
+ * - Entering screen slides in from right.
+ * - Exiting screen (lower) can either fade out gradually (variant A) or hold and snap out (variant B).
+ */
+fun iosTabletPushTransition(
+    durationMs: Int = IOS_TABLET_TRANSITION_DURATION_MS,
+    useFadeOverlay: Boolean = true // Set to false to use variant B (holdThenSnapOut)
+): ContentTransform =
+    ContentTransform(
+        targetContentEnter = slideInHorizontally(
+            initialOffsetX = { it },
+            animationSpec = tween(durationMs)
+        ),
+        initialContentExit = if (useFadeOverlay) {
+            fadeOut(animationSpec = tween(durationMs))
+        } else {
+            holdThenSnapOut(durationMs)
+        },
+        sizeTransform = SizeTransform { _, _ -> tween(durationMs) }
+    )
+
+/**
+ * iPad-specific pop transition:
+ * - Exiting screen (upper) slides out to the right.
+ * - Entering screen (lower) is revealed without any additional enter animation.
+ */
+fun iosTabletPopTransition(
+    durationMs: Int = IOS_TABLET_TRANSITION_DURATION_MS
+): ContentTransform =
+    ContentTransform(
+        targetContentEnter = EnterTransition.None,
+        initialContentExit = slideOutHorizontally(
+            targetOffsetX = { it },
+            animationSpec = tween(durationMs)
+        ),
+        sizeTransform = SizeTransform { _, _ -> tween(durationMs) }
+    )
