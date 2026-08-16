@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E77A14E12FD7ABE3002B81BB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E77A14E02FD7ABE3002B81BB /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E77A14E12FD7ABE3002B81BB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +113,6 @@
 			);
 			name = iosApp;
 			packageProductDependencies = (
-				E77A14E02FD7ABE3002B81BB /* Kingfisher */,
 			);
 			productName = iosApp;
 			productReference = 9C489DAA575E8D0C31BD49C9 /* Exploramus.app */;
@@ -173,7 +170,6 @@
 			mainGroup = 1545BCD8747E1E3C9F28EBE0;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				E77A14DF2FD7ABE3002B81BB /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 39326507B4461B060C068C10 /* Products */;
@@ -509,24 +505,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		E77A14DF2FD7ABE3002B81BB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.9.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 
-/* Begin XCSwiftPackageProductDependency section */
-		E77A14E02FD7ABE3002B81BB /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E77A14DF2FD7ABE3002B81BB /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FF13DE81F8632A957B4FF4F3 /* Project object */;
 }
