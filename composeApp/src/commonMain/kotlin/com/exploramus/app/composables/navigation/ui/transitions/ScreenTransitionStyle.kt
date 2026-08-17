@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 enum class ScreenTransitionStyle {
     PLATFORM_DEFAULT,
     CUSTOM,
+    IOS,
     IOS_TABLET
 }
 
@@ -27,6 +28,9 @@ fun rememberScreenTransitions(style: ScreenTransitionStyle): ScreenTransitions? 
         predictivePop = {
             popTransition()
         }
+    )
+    ScreenTransitionStyle.IOS -> ScreenTransitions(
+        push = { iosPushTransition() }
     )
     ScreenTransitionStyle.IOS_TABLET -> ScreenTransitions(
         push = { pushTransition() },

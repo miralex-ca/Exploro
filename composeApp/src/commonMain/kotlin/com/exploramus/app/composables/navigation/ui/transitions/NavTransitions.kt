@@ -42,6 +42,28 @@ val bottomBarEnterTransition: EnterTransition =
 val bottomBarExitTransition: ExitTransition =
     fadeOut(animationSpec = tween(250, delayMillis = 80))
 
+private const val IOS_TRANSITION_DURATION_MS = 200
+
+@OptIn(ExperimentalAnimationApi::class)
+fun iosPushTransition(
+    durationMs: Int = IOS_TRANSITION_DURATION_MS
+): ContentTransform =
+    ContentTransform(
+        targetContentEnter = slideInHorizontally(
+            initialOffsetX = { it },
+            animationSpec = tween(durationMs)
+        ),
+        initialContentExit =
+            veilOut(
+                animationSpec = tween(durationMs),
+                targetColor = Color.Black.copy(alpha = 0.3f),
+            ) + slideOutHorizontally(
+                animationSpec = tween(durationMs),
+                targetOffsetX = { -it / 8 }
+            ),
+        sizeTransform = SizeTransform { _, _ -> tween(durationMs) }
+    )
+
 private const val IOS_TABLET_TRANSITION_DURATION_MS = 250
 
 /**

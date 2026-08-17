@@ -8,7 +8,7 @@ import com.exploramus.app.design.adaptive.useBottomBar
 actual fun currentScreenTransitionStyle(): ScreenTransitionStyle {
     val formFactor = rememberFormFactor()
     return if (formFactor.useBottomBar) {
-        ScreenTransitionStyle.PLATFORM_DEFAULT
+        ScreenTransitionStyle.IOS
     } else {
         ScreenTransitionStyle.IOS_TABLET
     }
