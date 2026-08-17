@@ -64,10 +64,11 @@ data class AppLayout(
 
     data class Flashcard(
         val horizontalPadding: Adp,
-        val topPadding: Adp,
+        val topPadding: AdaptiveSizeValue<Dp>,
+        val maxHeight: AdaptiveSizeValue<Dp>,
         val cardMaxWidth: AdaptiveSizeValue<Dp>,
         val landScapeCardMaxWidth: AdaptiveSizeValue<Dp>,
-        val maxHeight: AdpH,
+
         val cardBottomPadding: AdpH,
         val bottomBarPadding: AdpH,
         val cardHorizontalPadding: Adp,
@@ -75,9 +76,9 @@ data class AppLayout(
 
     data class Quiz(
         val topPadding: AdaptiveSizeValue<Dp>,
-        val cardHorizontalPadding: Adp,
-        val cardMaxWidth: AdaptiveSizeValue<Dp>,
         val maxHeight: AdaptiveSizeValue<Dp>,
+        val cardMaxWidth: AdaptiveSizeValue<Dp>,
+        val cardHorizontalPadding: Adp,
         val landScapeCardMaxWidth: AdaptiveSizeValue<Dp>,
         val questionTextSize: AdaptiveSizeValue<TextUnit>,
         val questionTextVerticalAlign: Float,
@@ -253,10 +254,23 @@ object AppLayouts {
         ),
         flashcard = AppLayout.Flashcard(
             horizontalPadding = adp(16.dp, 28.dp, 50.dp),
-            topPadding = adp(26.dp, 50.dp, 60.dp),
+            topPadding = adpSizeForFormat(
+                phone = 26.dp,
+                phoneLandscape = 12.dp,
+                tablet = 60.dp,
+                tabletLandscape = 40.dp,
+                largeTablet = 60.dp,
+                largeTabletLandscape = 60.dp,
+            ),
+            maxHeight = adpSizeForFormat(
+                phone = 800.dp,
+                tablet = 950.dp,
+                tabletLandscape = 580.dp,
+                largeTablet = 1000.dp,
+                largeTabletLandscape = 600.dp,
+            ),
             cardMaxWidth = adpSize(440.dp, 460.dp, 520.dp),
             landScapeCardMaxWidth = adpSize(450.dp, 700.dp, 860.dp),
-            maxHeight = adph(800.dp, 850.dp, 950.dp),
             cardBottomPadding = adph(4.dp, 4.dp, 8.dp, 30.dp),
             bottomBarPadding = adph(16.dp, expandedInCompact = 20.dp),
             cardHorizontalPadding = adp(16.dp, 24.dp, 48.dp),
@@ -266,6 +280,9 @@ object AppLayouts {
                 phone = 26.dp,
                 phoneLandscape = 12.dp,
                 tablet = 60.dp,
+                tabletLandscape = 40.dp,
+                largeTablet = 60.dp,
+                largeTabletLandscape = 60.dp,
             ),
             cardHorizontalPadding = adp(16.dp, 24.dp, 48.dp),
             cardMaxWidth = adpSizeForFormat(
@@ -277,8 +294,8 @@ object AppLayouts {
                 phone = 800.dp,
                 tablet = 950.dp,
                 tabletLandscape = 580.dp,
-                largeTablet = 1050.dp,
-                largeTabletLandscape = 650.dp,
+                largeTablet = 1000.dp,
+                largeTabletLandscape = 630.dp,
             ),
             landScapeCardMaxWidth = adpSizeForFormat(
                 phone = 620.dp,
@@ -335,10 +352,6 @@ object AppLayouts {
             homeCard = base.homeCard.copy(
                 width = adp(140.dp, 140.dp, 160.dp),
                 imageHeight = adp(70.dp, 70.dp,80.dp),
-            ),
-
-            flashcard = base.flashcard.copy(
-                topPadding = adp(26.dp),
             ),
             quiz = base.quiz.copy(questionTextVerticalAlign = -0.5f)
 

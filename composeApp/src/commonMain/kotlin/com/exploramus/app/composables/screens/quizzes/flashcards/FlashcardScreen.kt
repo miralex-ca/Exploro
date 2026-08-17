@@ -121,8 +121,7 @@ fun FlashcardContent(
 
     val layout = MaterialTheme.layout.flashcard
 
-    val topPadding = if (!isCompactLandscape && isLandscape ) 30.dp
-    else layout.topPadding.value()
+    val topPadding = layout.topPadding.value()
 
     Box(
         modifier = Modifier.fillMaxSize()

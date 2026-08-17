@@ -152,8 +152,7 @@ fun ChoiceQuizContent(
     val cardLayout = MaterialTheme.layout.flashcard
     val layout = MaterialTheme.layout.quiz
 
-    val topPadding = if (!isCompactLandscape && isLandscape ) 30.dp
-        else layout.topPadding.value()
+    val topPadding = layout.topPadding.value()
 
     Box(
         modifier = Modifier
