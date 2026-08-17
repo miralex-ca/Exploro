@@ -11,8 +11,8 @@ import com.exploramus.shared.viewmodel.core.StateManager
 import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizzesSectionType
 
 fun StateManager.initFlashcardScreen(params: FlashcardScreenParams) = ScreenInitSettings(
-    title = "Flashcards",
-    initState = { _ -> FlashcardScreenState(isLoading = true) },
+    title = params.screenTitle,
+    initState = { _ -> FlashcardScreenState(isLoading = true, screenTitle = params.screenTitle) },
     callOnInit = {
 
         val countries = when (params.sectionType) {

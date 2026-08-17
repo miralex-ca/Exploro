@@ -13,8 +13,8 @@ import com.exploramus.shared.viewmodel.screens.quizzes.quizzeslist.QuizType
 import com.exploramus.shared.viewmodel.utils.QuizIdBuilder
 
 fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenInitSettings(
-    title = "Quiz",
-    initState = { _ -> ChoiceQuizScreenState(isLoading = true) },
+    title = params.screenTitle,
+    initState = { _ -> ChoiceQuizScreenState(isLoading = true, screenTitle = params.screenTitle) },
     callOnInit = {
         val config = when (params.quizType) {
             QuizType.CHOICE_QUIZ_PRIMARY_SECONDARY -> dataRepository.getChoiceQuizPrimarySecondaryConfig()
@@ -51,6 +51,7 @@ fun StateManager.initChoiceQuizScreen(params: ChoiceQuizScreenParams) = ScreenIn
         updateScreen(ChoiceQuizScreenState::class) {
             it.copy(
                 isLoading = false,
+                screenTitle = params.screenTitle,
                 quiz = quizState,
                 quizLimit = quizLimit,
                 session = session,
