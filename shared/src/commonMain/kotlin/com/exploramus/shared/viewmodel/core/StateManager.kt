@@ -4,6 +4,7 @@ import com.exploramus.core.common.logging.Log
 import com.exploramus.data.repository.Repository
 import com.exploramus.shared.viewmodel.appstate.AppEnvironment
 import com.exploramus.shared.viewmodel.appstate.AppStartupState
+import com.exploramus.shared.viewmodel.appstate.prepareAppEnvironment
 import com.exploramus.shared.viewmodel.screens.settings.builder.SettingsBuilder
 import com.exploramus.shared.viewmodel.screens.settings.builder.SettingsCategory
 import kotlinx.coroutines.CoroutineScope
@@ -50,6 +51,10 @@ class StateManager(repo: Repository) {
 
     val settingsManager = SettingsManager(this)
     val appScope = CoroutineScope(Job() + Dispatchers.Main)
+
+    init {
+        prepareAppEnvironment()
+    }
 
     fun runInScreenScope (block: suspend () -> Unit) {
         screenScopesMap[currentScreenIdentifier.URI]?.launch {
@@ -169,7 +174,6 @@ class StateManager(repo: Repository) {
     fun isInTheStatesMap(screenIdentifier: ScreenIdentifier) : Boolean {
         return screenStatesMap.containsKey(screenIdentifier.URI)
     }
-
 }
 
 class SettingsManager(val stateManager: StateManager) {
