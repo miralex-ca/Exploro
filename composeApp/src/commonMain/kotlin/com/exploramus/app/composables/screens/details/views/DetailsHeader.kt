@@ -17,9 +17,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.BlurredEdgeTreatment
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -114,11 +116,15 @@ fun FlagContainer(
     val formFactor = LocalFormFactor.current
     val alignFavoriteButton = if (formFactor.isCompact) Alignment.BottomEnd else Alignment.TopEnd
     val detailsLayout = MaterialTheme.layout.details
+    val cornerRadius = detailsLayout.imageCorner.value()
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(200.dp)
-            .clip(RoundedCornerShape(detailsLayout.imageCorner.value()))
+            .graphicsLayer {
+                shape = RoundedCornerShape(cornerRadius)
+                clip = true
+            }
     ) {
 
         ResourceImage(
@@ -126,7 +132,7 @@ fun FlagContainer(
             contentDescription = flagAlt,
             modifier = Modifier
                 .fillMaxSize()
-                .blur(30.dp),
+                .blur(30.dp, edgeTreatment = BlurredEdgeTreatment.Unbounded),
             contentScale = ContentScale.Crop,
             alpha = 0.45f
         )
