@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.exploramus.app.design.adaptive.layout
 import com.exploramus.app.design.adaptive.value
 import com.exploramus.app.resources.Strings
-import com.exploramus.app.resources.formatString
+import com.exploramus.app.resources.formatDecimal
 import com.exploramus.shared.viewmodel.screens.details.CountryDetailsState
 
 data class DetailsRowModel(
@@ -109,14 +109,6 @@ fun DetailsScreenInfoRow(
     }
 }
 
-fun formatArea(area: Double): String {
-    return when {
-        area >= 1_000_000 -> "${formatString("%.1f", area / 1_000_000)}M km²"
-        area >= 1_000 -> "${formatString("%.1f", area / 1_000)}K km²"
-        else -> "${area.toInt()} km²"
-    }
-}
-
 fun formatTimezones(timezones: List<String>): String {
     if (timezones.isEmpty()) return "N/A"
 
@@ -127,13 +119,20 @@ fun formatTimezones(timezones: List<String>): String {
     }
 }
 
+fun formatArea(area: Double): String = when {
+    area >= 1_000_000 ->
+        "${formatDecimal(area / 1_000_000, 1)}M km²"
+
+    area >= 1_000 ->
+        "${formatDecimal(area / 1_000, 1)}K km²"
+
+    else ->
+        "${area.toInt()} km²"
+}
+
 fun Long.toHumanReadable(): String {
     fun Double.clean(): String =
-        if (this % 1.0 == 0.0) {
-            this.toInt().toString()
-        } else {
-            formatString("%.1f", this)
-        }
+        formatDecimal(this, 1)
 
     return when {
         this >= 1_000_000_000 ->
